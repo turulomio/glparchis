@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/glparchis" >
+        <file>cube1.png</file>
+        <file>cube2.png</file>
+        <file>cube3.png</file>
+        <file>cube4.png</file>
+        <file>cube5.png</file>
+        <file>cube6.png</file>
+        <file>exit.png</file>
+        <file>ficharoja.png</file>
+        <file>kbabel.png</file>
+        <file>keka.png</file>
+        <file>keke.png</file>
+        <file>keki.png</file>
+        <file>keko.png</file>
+        <file>star.png</file>
+    </qresource>
+</RCC>
