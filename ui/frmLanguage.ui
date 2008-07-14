@@ -1,0 +1,77 @@
+<ui version="4.0" >
+ <class>frmLanguage</class>
+ <widget class="QDialog" name="frmLanguage" >
+  <property name="windowModality" >
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>372</width>
+    <height>105</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Dialog</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="../images/glparchis.qrc" >:/glparchis/kbabel.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <layout class="QVBoxLayout" >
+     <item>
+      <layout class="QHBoxLayout" >
+       <item>
+        <widget class="QLabel" name="lbl" >
+         <property name="text" >
+          <string>Selecciona un idioma</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="cmb" >
+         <item>
+          <property name="text" >
+           <string>English</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Español</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Français</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Русский</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cmd" >
+       <property name="text" >
+        <string>C&amp;ambiar Idioma</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="../images/glparchis.qrc" >:/glparchis/kbabel.png</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../images/glparchis.qrc" />
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,238 @@
+<ui version="4.0" >
+ <author>Mariano Muñoz</author>
+ <class>frmMain</class>
+ <widget class="QMainWindow" name="frmMain" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>718</width>
+    <height>632</height>
+   </rect>
+  </property>
+  <property name="cursor" >
+   <cursorShape>PointingHandCursor</cursorShape>
+  </property>
+  <property name="windowTitle" >
+   <string>glParchis 2008</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="../images/glparchis.qrc" >:/glparchis/ficharoja.png</iconset>
+  </property>
+  <widget class="QWidget" name="wdg" >
+   <layout class="QVBoxLayout" >
+    <item>
+     <layout class="QHBoxLayout" >
+      <item>
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QWidget" native="1" name="panel1" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>378</width>
+            <height>125</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" native="1" name="panel2" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>378</width>
+            <height>125</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" native="1" name="panel3" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>378</width>
+            <height>125</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" native="1" name="panel4" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>378</width>
+            <height>125</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QTabWidget" name="tab" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="autoFillBackground" >
+         <bool>true</bool>
+        </property>
+        <property name="tabShape" >
+         <enum>QTabWidget::Rounded</enum>
+        </property>
+        <property name="currentIndex" >
+         <number>0</number>
+        </property>
+        <property name="elideMode" >
+         <enum>Qt::ElideMiddle</enum>
+        </property>
+        <widget class="QWidget" name="tabGame" >
+         <attribute name="title" >
+          <string>Juego</string>
+         </attribute>
+         <attribute name="icon" >
+          <iconset resource="../images/glparchis.qrc" >:/glparchis/keko.png</iconset>
+         </attribute>
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="wdgOpenGL" native="1" name="ogl" />
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabStatistics" >
+         <attribute name="title" >
+          <string>Estadísticas</string>
+         </attribute>
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QTreeView" name="lst" />
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>718</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuAyuda" >
+    <property name="title" >
+     <string>A&amp;yuda</string>
+    </property>
+    <addaction name="actionAcercaDe" />
+   </widget>
+   <widget class="QMenu" name="menuJugar" >
+    <property name="title" >
+     <string>J&amp;ugar</string>
+    </property>
+    <addaction name="actionJugar" />
+    <addaction name="separator" />
+    <addaction name="actionSalir" />
+   </widget>
+   <widget class="QMenu" name="menuPreferencias" >
+    <property name="title" >
+     <string>P&amp;referencias</string>
+    </property>
+    <addaction name="actionLenguaje" />
+   </widget>
+   <addaction name="menuJugar" />
+   <addaction name="menuPreferencias" />
+   <addaction name="menuAyuda" />
+  </widget>
+  <widget class="QToolBar" name="toolBar" >
+   <property name="windowTitle" >
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea" >
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionJugar" />
+   <addaction name="separator" />
+   <addaction name="actionLenguaje" />
+   <addaction name="separator" />
+   <addaction name="actionSalir" />
+  </widget>
+  <widget class="QStatusBar" name="status" />
+  <action name="actionSalir" >
+   <property name="icon" >
+    <iconset resource="../images/glparchis.qrc" >:/glparchis/exit.png</iconset>
+   </property>
+   <property name="text" >
+    <string>S&amp;alir</string>
+   </property>
+  </action>
+  <action name="actionAcercaDe" >
+   <property name="icon" >
+    <iconset resource="../images/glparchis.qrc" >:/glparchis/ficharoja.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Acerca de</string>
+   </property>
+  </action>
+  <action name="actionJugar" >
+   <property name="icon" >
+    <iconset resource="../images/glparchis.qrc" >:/glparchis/keko.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Jugar</string>
+   </property>
+  </action>
+  <action name="actionLenguaje" >
+   <property name="icon" >
+    <iconset resource="../images/glparchis.qrc" >:/glparchis/kbabel.png</iconset>
+   </property>
+   <property name="text" >
+    <string>I&amp;dioma</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>wdgOpenGL</class>
+   <extends>QWidget</extends>
+   <header location="global" >wdgOpenGL</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../images/glparchis.qrc" />
+ </resources>
+ <connections/>
+</ui>
