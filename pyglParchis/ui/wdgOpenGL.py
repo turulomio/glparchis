@@ -4,311 +4,192 @@ from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.QtGui import *
 import math
-from OpenGL.GL import *
-from OpenGL.GLU import *
-from objloader import  *
+from OpenGL import GL,  GLU
+import datos
+
+class Casilla(QGLWidget):
+    def __init__(self, id, parent=None):
+        QGLWidget.__init__(self, parent)
+        self.id=id
+        self.color=self.defineColor(id)
+        self.position=datos.posCasillas[id]
+        self.rotate=self.defineRotate(id)
+
+    def defineColor(self,  id):
+        if id==5 or (id>=69 and id<=75):
+           return QColor(255, 255, 0)        
+        elif id==39 or (id>=85 and id<=91):
+           return QColor(255, 0, 0)
+        elif id==22 or (id>=76 and id<=84):
+           return QColor(0, 0, 255)
+        elif id==56 or (id>=92 and id<=99):
+           return QColor(0, 255, 0)
+        elif id==68 or  id==63 or  id==51 or id==46 or id==34 or  id==29 or  id==17 or   id==12:  
+           return QColor(128, 128, 128)
+        else:
+            return QColor(255, 255, 255)
+            
+    def defineRotate(self,  id):
+        if (id>=10 and id<=24) or (id>=76 and id<=84) or(id>=43 and id <=59) or (id>=92 and id<=99):
+           return 90
+        else:
+            return 0
+        
+    def dibujar(self):       
+        GL.glPushMatrix()
+        GL.glTranslated(self.position[0],self.position[1],self.position[2] )
+        GL.glRotated(self.rotate, 0, 0, 1 )
+        GL.glBegin(GL.GL_QUADS)
+        v1 = (0, 0, 0)
+        v2 = (7, 0, 0)
+        v3 = (7, 3, 0)
+        v4 = (0, 3, 0)
+        v5 = (0, 0, 0.2)
+        v6 = (7, 0, 0.2)
+        v7 = (7, 3, 0.2)
+        v8 = (0, 3, 0.2)
+
+        self.quad(v1, v2, v3, v4, QColor(0, 0, 0))      
+        self.quad(v8, v7, v6, v5, self.color)      
+        self.quad(v1, v4, v8, v5, QColor(0, 0, 0))      
+        self.quad(v2, v3, v7, v6, QColor(0, 0, 0))      
+        self.quad(v1, v2, v6, v5, QColor(0, 0, 0))      
+        self.quad(v4, v3, v7, v8, QColor(0, 0, 0))      
+
+        GL.glEnd()
+        self.border()
+        GL.glPopMatrix()
+            
+    def quad(self, p1, p2, p3, p4, color):
+        self.qglColor(color)
+        GL.glVertex3d(p1[0], p1[1], p1[2])
+        GL.glVertex3d(p2[0], p2[1], p2[2])
+        GL.glVertex3d(p3[0], p3[1], p3[2])
+        GL.glVertex3d(p4[0], p4[1], p4[2])
+        
+    def border(self):        
+        GL.glBegin(GL.GL_LINES)
+        b5 = (0, 0, 0.21)
+        b6 = (7, 0, 0.21)
+        b7 = (7, 3, 0.21)
+        b8 = (0, 3, 0.21)
+        GL.glVertex3d(b5[0], b5[1], b5[2])
+        GL.glVertex3d(b6[0], b6[1], b6[2])
+        GL.glVertex3d(b7[0], b7[1], b7[2])
+        GL.glVertex3d(b8[0], b8[1], b8[2])
+        GL.glEnd()
 
 class wdgOpenGL(QGLWidget):
     def __init__(self, parent=None):
         QGLWidget.__init__(self, parent)
-
-        self.object = 0
-        self.xRot = 0
-        self.yRot = 0
-        self.zRot = 0
-
+        self.tablero=Tablero()
+        
         self.lastPos = QPoint()
-
+        self.casillas=[]
+        for i in range(0, 104):
+            self.casillas.append(Casilla(i+1))
         self.trolltechGreen = QColor.fromCmykF(0.40, 0.0, 1.0, 0.0)
         self.trolltechPurple = QColor.fromCmykF(0.39, 0.39, 0.0, 0.0)
-        
-        
 
 
     def initializeGL(self):
         self.qglClearColor(self.trolltechPurple.dark())
+        self.tablero.makeObject()
+#NO POR COLOR Y NUMEROS        self.casillas[0].makeObject()
+        GL.glShadeModel(GL.GL_FLAT)
+        GL.glEnable(GL.GL_DEPTH_TEST)
+        GL.glEnable(GL.GL_CULL_FACE)
+#        GL.glCullFace(GL_FRONT_AND_BACK)
 
-#        self.obj = OBJ("parchis4.obj", swapyz=True)
-        self.ficha = OBJ("dado.obj", swapyz=True)        
-        glShadeModel(GL_FLAT)
-        glEnable(GL_DEPTH_TEST)
-        glEnable(GL_CULL_FACE)
-        glLightfv(GL_LIGHT0, GL_POSITION,  (-40, 200, 100, 0.0))
-        glLightfv(GL_LIGHT0, GL_AMBIENT, (0.2, 0.2, 0.2, 1.0))
-        glLightfv(GL_LIGHT0, GL_DIFFUSE, (0.5, 0.5, 0.5, 1.0))
-        glEnable(GL_LIGHT0)
-        glEnable(GL_LIGHTING)
-        glEnable(GL_COLOR_MATERIAL)
-        glEnable(GL_DEPTH_TEST)
-        glShadeModel(GL_SMOOTH)             
-        
-        
-#        glEnable(GL_DEPTH_TEST);
-#        glFrontFace(GL_CCW);
-##      
-##        GLfloat light_ambient[] =  {1, 1, 1, 1};
-##        GLfloat light_diffuse[] =  {0, 0, 1, 0};
-##        GLfloat light_specular[] =  {0, 0, 0, 0};
-##        GLfloat light_position[] =  {5.0, 5.0, 5.0, 0.0};
-##      
-##      
-#        glEnable(GL_LIGHTING);
-##        glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
-##        glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-#        glEnable(GL_LIGHT0);
-#      
-#        glEnable(GL_COLOR_MATERIAL);
-#        glColorMaterial(GL_FRONT,GL_AMBIENT_AND_DIFFUSE);
-#        glShadeModel (GL_SMOOTH);
-##        self.object = self.makeObject()
-##        glShadeModel(GL_FLAT)
-##        glEnable(GL_DEPTH_TEST)
-#        glEnable(GL_CULL_FACE)
-        
+    def paintGL(self):   
+        GL.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT)
+        GL.glLoadIdentity()
+        GL.glTranslated(0, 0, -4)
+#        GLU.gluLookAt(0,0,50,    0, 0,-100    ,0,1,0);
+#        GLU.gluLookAt(10.5,12,   36,10.5,   12,0,0,1,0);
 
-    def paintGL(self):
-        glMatrixMode(GL_MODELVIEW)
-        glLoadIdentity()
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-#        gluLookAt(0,0,5,0, 0, 0,0,0,-1);
-        glTranslated(0.0, 0.0, -5.0)
-#        glRotated(45, 0.0, 0.0, 1.0)
-#        glRotated(self.yRot / 16.0, 0.0, 1.0, 0.0)
-#        glRotated(self.zRot / 16.0, 0.0, 0.0, 1.0)
-        print "OJÑLKJJ"
-#        glCallList(self.obj.gl_list)
-
-#        glPushMatrix()
-##        glTranslated(0.0, 0.0, 4.0)
-#        glCallList(self.ficha.gl_list)
-#        glPopMatrix()
-        glPushMatrix()
-        glColor3d(0,1,1)
-        glBegin(GL_QUADS)
-        glVertex3d(0, 0, 0)
-        glVertex3d(1, 1, -12);
-        glVertex3d(1, 1, 10)
-        glVertex3d(2, 2, 2)
-        glEnd()
-        glPopMatrix()
-
-#        self.swapBuffers()
+        GL.glCallList(self.tablero.object)
+        for c in self.casillas:
+            c.dibujar()
 
     def resizeGL(self, width, height):
-        print "Resized"
-        side = min(width, height)
-        glViewport((width - side) / 2, (height - side) / 2, side, side)
+        GL.glViewport(0, 0, width, height)
 
-        glMatrixMode(GL_PROJECTION)
-        glLoadIdentity()
+        GL.glMatrixMode(GL.GL_PROJECTION)
+        GL.glLoadIdentity()
+        GL.glOrtho(-1, +64, +64, -1, 2.0, 25.0)
+        GL.glMatrixMode(GL.GL_MODELVIEW)
+
+
+
+    def keyPressEvent(self, event):
+        print "hola"
+        if (event.key() == Qt.Key_Escape) or (event.key() == Qt.Key_Q):
+            self.close()
+
+        if event.key() == Qt.Key_Q: # toggle mode
+            self.updateGL()
+                
+    def mousePressEvent(self, event):
+        self.lastPos = QPoint(event.pos())
         
-#        gluPerspective(45.0, width/float(height), 1, 100.0)
-        glOrtho(-0.5, +0.5, +0.5, -0.5, 4.0, 15.0)
-        glMatrixMode(GL_MODELVIEW)
-#        glLoadIdentity()
+        if event.buttons() & Qt.RightButton:
+            return
+        self.updateGL()
 
-#
-#// Our 3DS model class
-#class CModel3DS
-#{
-#	public:
-#		CModel3DS(std::string filename);
-#		virtual void Draw() const;
-#		virtual void CreateVBO();
-#		virtual ~CModel3DS();
-#	protected:
-#		void GetFaces();
-#		unsigned int m_TotalFaces;
-#		Lib3dsFile * m_model;
-#		GLuint m_VertexVBO, m_NormalVBO;
-#};
-#
-#// Load 3DS model
-#CModel3DS::CModel3DS(std::string filename)
-#{
-#	m_TotalFaces = 0;
-#	
-#	m_model = lib3ds_file_load(filename.c_str());
-#	// If loading the model failed, we throw an exception
-#	if(!m_model)
-#	{
-#		throw strcat("Unable to load ", filename.c_str());
-#	}
-#}
-#
-#// Destructor
-#CModel3DS::~CModel3DS()
-#{
-#	glDeleteBuffers(1, &m_VertexVBO);
-#	glDeleteBuffers(1, &m_NormalVBO);
-#	
-#	if(m_model != NULL)
-#	{
-#		lib3ds_file_free(m_model);
-#	}
-#}
-#
-#// Copy vertices and normals to the memory of the GPU
-#void CModel3DS::CreateVBO()
-#{
-#	assert(m_model != NULL);
-#	
-#	// Calculate the number of faces we have in total
-#	GetFaces();
-#	
-#	// Allocate memory for our vertices and normals
-#	Lib3dsVector * vertices = new Lib3dsVector[m_TotalFaces * 3];
-#	Lib3dsVector * normals = new Lib3dsVector[m_TotalFaces * 3];
-#	
-#	Lib3dsMesh * mesh;
-#	unsigned int FinishedFaces = 0;
-#	// Loop through all the meshes
-#	for(mesh = m_model->meshes;mesh != NULL;mesh = mesh->next)
-#	{
-#		lib3ds_mesh_calculate_normals(mesh, &normals[FinishedFaces*3]);
-#		// Loop through every face
-#		for(unsigned int cur_face = 0; cur_face < mesh->faces;cur_face++)
-#		{
-#			Lib3dsFace * face = &mesh->faceL[cur_face];
-#			for(unsigned int i = 0;i < 3;i++)
-#			{
-#				memcpy(&vertices[FinishedFaces*3 + i], mesh->pointL[face->points[i]].pos, sizeof(Lib3dsVector));
-#			}
-#			FinishedFaces++;
-#		}
-#	}
-#	
-#	// Generate a Vertex Buffer Object and store it with our vertices
-#	glGenBuffers(1, &m_VertexVBO);
-#	glBindBuffer(GL_ARRAY_BUFFER, m_VertexVBO);
-#	glBufferData(GL_ARRAY_BUFFER, sizeof(Lib3dsVector) * 3 * m_TotalFaces, vertices, GL_STATIC_DRAW);
-#	
-#	// Generate another Vertex Buffer Object and store the normals in it
-#	glGenBuffers(1, &m_NormalVBO);
-#	glBindBuffer(GL_ARRAY_BUFFER, m_NormalVBO);
-#	glBufferData(GL_ARRAY_BUFFER, sizeof(Lib3dsVector) * 3 * m_TotalFaces, normals, GL_STATIC_DRAW);
-#	
-#	// Clean up our allocated memory
-#	delete vertices;
-#	delete normals;
-#	
-#	// We no longer need lib3ds
-#	lib3ds_file_free(m_model);
-#	m_model = NULL;
-#}
-#
-#// Count the total number of faces this model has
-#void CModel3DS::GetFaces()
-#{
-#	assert(m_model != NULL);
-#	
-#	m_TotalFaces = 0;
-#	Lib3dsMesh * mesh;
-#	// Loop through every mesh
-#	for(mesh = m_model->meshes;mesh != NULL;mesh = mesh->next)
-#	{
-#		// Add the number of faces this mesh has to the total faces
-#		m_TotalFaces += mesh->faces;
-#	}
-#}
-#
-#// Render the model using Vertex Buffer Objects
-#void CModel3DS::Draw() const
-#{
-#	assert(m_TotalFaces != 0);
-#	
-#	// Enable vertex and normal arrays
-#	glEnableClientState(GL_VERTEX_ARRAY);
-#	glEnableClientState(GL_NORMAL_ARRAY);
-#	
-#	// Bind the vbo with the normals
-#	glBindBuffer(GL_ARRAY_BUFFER, m_NormalVBO);
-#	// The pointer for the normals is NULL which means that OpenGL will use the currently bound vbo
-#	glNormalPointer(GL_FLOAT, 0, NULL);
-#	
-#	glBindBuffer(GL_ARRAY_BUFFER, m_VertexVBO);
-#	glVertexPointer(3, GL_FLOAT, 0, NULL);
-#	
-#	// Render the triangles
-#	glDrawArrays(GL_TRIANGLES, 0, m_TotalFaces * 3);
-#	
-#	glDisableClientState(GL_VERTEX_ARRAY);
-#	glDisableClientState(GL_NORMAL_ARRAY);
-#}
-#
-#// A render widget for QT
-#class CRender : public QGLWidget
-#{
-#	public:
-#		CRender(QWidget *parent = 0);
-#	protected:
-#		virtual void initializeGL();
-#		virtual void resizeGL(int width, int height);
-#		virtual void paintGL();
-#	private:
-#		CModel3DS * monkey;
-#};
-#
-#// Constructor, initialize our model-object
-#CRender::CRender(QWidget *parent) : QGLWidget(parent)
-#{
-#	try
-#	{
-#		monkey = new CModel3DS("monkey.3ds");
-#	}
-#	catch(std::string error_str)
-#	{
-#		std::cerr << "Error: " << error_str << std::endl;
-#		exit(1);
-#	}
-#}
-#
-#// Initialize some OpenGL settings
-#void CRender::initializeGL()
-#{
-#	glClearColor(0.0, 0.0, 0.0, 0.0);
-#	glShadeModel(GL_SMOOTH);
-#	
-#	// Enable lighting and set the position of the light
-#	glEnable(GL_LIGHT0);
-#	glEnable(GL_LIGHTING);
-#	GLfloat pos[] = { 0.0, 4.0, 4.0 };
-#	glLightfv(GL_LIGHT0, GL_POSITION, pos);
-#	
-#	// Generate Vertex Buffer Objects
-#	monkey->CreateVBO();
-#}
-#
-#// Reset viewport and projection matrix after the window was resized
-#void CRender::resizeGL(int width, int height)
-#{
-#	// Reset the viewport
-#	glViewport(0, 0, width, height);
-#	// Reset the projection and modelview matrix
-#	glMatrixMode(GL_PROJECTION);
-#	glLoadIdentity();
-#	// 10 x 10 x 10 viewing volume
-#	glOrtho(-5.0, 5.0, -5.0, 5.0, -5.0, 5.0);
-#	glMatrixMode(GL_MODELVIEW);
-#	glLoadIdentity();
-#}
-#
-#// Do all the OpenGL rendering
-#void CRender::paintGL()
-#{
-#	glClear(GL_COLOR_BUFFER_BIT);
-#	
-#	// Draw our model
-#	monkey->Draw();
-#	
-#	// We don't need to swap the buffers, because QT does that automaticly for us
-#}
-#
-#int main(int argc, char **argv)
-#{
-#	QApplication app(argc, argv);
-#	CRender * window = new CRender();
-#	window->show();
-#	return app.exec();
-#}
-#
+
+class Tablero(QGLWidget):
+    def __init__(self, parent=None):
+        QGLWidget.__init__(self, parent)
+        self.object = 1
+
+
+            
+    def quad(self, p1, p2, p3, p4, color):
+        self.qglColor(color)
+        GL.glVertex3d(p1[0], p1[1], p1[2])
+        GL.glVertex3d(p2[0], p2[1], p2[2])
+        GL.glVertex3d(p3[0], p3[1], p3[2])
+        GL.glVertex3d(p4[0], p4[1], p4[2])
+    def border(self):        
+        GL.glBegin(GL.GL_LINES)
+        b5 = (0, 0, 0.021)
+        b6 = (0.7, 0, 0.021)
+        b7 = (0.7, 0.3, 0.021)
+        b8 = (0, 0.3, 0.021)
+        GL.glVertex3d(b5[0], b5[1], b5[2])
+        GL.glVertex3d(b6[0], b6[1], b6[2])
+        GL.glVertex3d(b7[0], b7[1], b7[2])
+        GL.glVertex3d(b8[0], b8[1], b8[2])
+        GL.glEnd()
+        
+    def makeObject(self):
+        genList = GL.glGenLists(self.object)
+        GL.glNewList(genList, GL.GL_COMPILE)
+        GL.glPushMatrix()
+        GL.glTranslated(0,0, -2)
+        GL.glBegin(GL.GL_QUADS)
+        v1 = (0, 0, 0)
+        v2 = (63, 0, 0)
+        v3 = (63, 63, 0)
+        v4 = (0, 63, 0)
+        v5 = (0, 0, 2)
+        v6 = (63, 0, 2)
+        v7 = (63, 63, 2)
+        v8 = (0, 63, 2)
+
+        self.quad(v1, v2, v3, v4, QColor(10, 10, 0))      
+        self.quad(v8, v7, v6, v5, QColor(0, 64, 64))      
+        self.quad(v1, v4, v8, v5, QColor(10, 10, 0))      
+        self.quad(v2, v3, v7, v6, QColor(10, 10, 0))      
+        self.quad(v1, v2, v6, v5, QColor(10, 10, 0))      
+        self.quad(v4, v3, v7, v8, QColor(10, 10, 0))      
+
+        GL.glEnd()
+        self.border()
+        GL.glPopMatrix()
+            
+
+        GL.glEndList()
+
+        return genList
