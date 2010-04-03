@@ -14,20 +14,31 @@ class Casilla(QGLWidget):
         self.color=self.defineColor(id)
         self.position=datos.posCasillas[id]
         self.rotate=self.defineRotate(id)
+        self.tipo=self.defineTipo(id)
+
+    def defineTipo(self,  id):
+        if id==101 or id==102 or id==103 or id==104:
+           return 0 #Casilla inicial
+        elif id==76 or id==84 or id==92 or id==100:
+           return 1 #Casilla final
+        elif id==8 or  id==9 or  id==25 or id==26 or id==42 or  id==43 or  id==59 or   id==60:  
+           return 2 #Casilla oblicua
+        else:
+            return 3 #Casilla Normal
 
     def defineColor(self,  id):
-        if id==5 or (id>=69 and id<=75):
+        if id==5 or (id>=69 and id<=75) or id==101:
            return QColor(255, 255, 0)        
-        elif id==39 or (id>=85 and id<=91):
+        elif id==39 or (id>=85 and id<=91) or id==103:
            return QColor(255, 0, 0)
-        elif id==22 or (id>=76 and id<=84):
+        elif id==22 or (id>=76 and id<=84) or id==102:
            return QColor(0, 0, 255)
-        elif id==56 or (id>=92 and id<=99):
+        elif id==56 or (id>=92 and id<=100) or id==104:
            return QColor(0, 255, 0)
         elif id==68 or  id==63 or  id==51 or id==46 or id==34 or  id==29 or  id==17 or   id==12:  
            return QColor(128, 128, 128)
         else:
-            return QColor(255, 255, 255)
+            return QColor(255, 255, 255)            
             
     def defineRotate(self,  id):
         if (id>=10 and id<=24) or (id>=76 and id<=84) or(id>=43 and id <=59) or (id>=92 and id<=99):
@@ -35,7 +46,42 @@ class Casilla(QGLWidget):
         else:
             return 0
         
-    def dibujar(self):       
+    def dibujar(self):
+        if self.tipo==0:
+            self.tipo_inicio()
+        elif self.tipo==1:
+            self.tipo_final()
+        elif self.tipo==2:
+            self.tipo_oblicuo()
+        else:
+            self.tipo_normal()
+        
+    def tipo_inicio(self):
+        GL.glPushMatrix()
+        GL.glTranslated(self.position[0],self.position[1],self.position[2] )
+        GL.glRotated(self.rotate, 0, 0, 1 )
+        GL.glBegin(GL.GL_QUADS)
+        v1 = (0, 0, 0)
+        v2 = (21, 0, 0)
+        v3 = (21, 21, 0)
+        v4 = (0, 21, 0)
+        v5 = (0, 0, 0.2)
+        v6 = (21, 0, 0.2)
+        v7 = (21, 21, 0.2)
+        v8 = (0, 21, 0.2)
+
+        self.quad(v1, v2, v3, v4, QColor(0, 0, 0))      
+        self.quad(v8, v7, v6, v5, self.color)      
+        self.quad(v1, v4, v8, v5, QColor(0, 0, 0))      
+        self.quad(v2, v3, v7, v6, QColor(0, 0, 0))      
+        self.quad(v1, v2, v6, v5, QColor(0, 0, 0))      
+        self.quad(v4, v3, v7, v8, QColor(0, 0, 0))      
+
+        GL.glEnd()
+        self.border(v5, v6, v7, v8)
+        GL.glPopMatrix()
+
+    def tipo_normal(self):
         GL.glPushMatrix()
         GL.glTranslated(self.position[0],self.position[1],self.position[2] )
         GL.glRotated(self.rotate, 0, 0, 1 )
@@ -57,8 +103,14 @@ class Casilla(QGLWidget):
         self.quad(v4, v3, v7, v8, QColor(0, 0, 0))      
 
         GL.glEnd()
-        self.border()
+        self.border(v5, v6, v7, v8)
         GL.glPopMatrix()
+        
+    def tipo_oblicuo(self):
+        return
+        
+    def tipo_final(self):
+        return
             
     def quad(self, p1, p2, p3, p4, color):
         self.qglColor(color)
@@ -67,16 +119,12 @@ class Casilla(QGLWidget):
         GL.glVertex3d(p3[0], p3[1], p3[2])
         GL.glVertex3d(p4[0], p4[1], p4[2])
         
-    def border(self):        
+    def border(self, a, b, c, d):        
         GL.glBegin(GL.GL_LINES)
-        b5 = (0, 0, 0.21)
-        b6 = (7, 0, 0.21)
-        b7 = (7, 3, 0.21)
-        b8 = (0, 3, 0.21)
-        GL.glVertex3d(b5[0], b5[1], b5[2])
-        GL.glVertex3d(b6[0], b6[1], b6[2])
-        GL.glVertex3d(b7[0], b7[1], b7[2])
-        GL.glVertex3d(b8[0], b8[1], b8[2])
+        GL.glVertex3d(a[0], a[1], a[2]+0.21)
+        GL.glVertex3d(b[0], b[1], b[2]+0.21)
+        GL.glVertex3d(c[0], c[1], c[2]+0.21)
+        GL.glVertex3d(d[0], d[1], d[2]+0.21)
         GL.glEnd()
 
 class wdgOpenGL(QGLWidget):
