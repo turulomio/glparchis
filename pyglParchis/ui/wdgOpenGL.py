@@ -249,7 +249,8 @@ class wdgOpenGL(QGLWidget):
 
         
         GL.glTranslated(-31.5, -31.5,  -100)
-        GL.glRotated(self.rotX, 1,0.3 , 0.3)
+        GL.glRotated(self.rotX, 0.9,0.1 , 0.1)
+#        GL.glTranslated(self.rotX*0.1,0.3 , 0.3)
 #        GL.glRotated(180,  1,0 , 0)
         self.tablero.makeObject()
 #        GL.glCallList(self.tablero.object)
@@ -284,9 +285,9 @@ class wdgOpenGL(QGLWidget):
 
     def wheelEvent(self, event):
         if event.delta() > 0:
-           self.rotX=self.rotX-30;
+           self.rotX=self.rotX-10;
         else:
-           self.rotX=self.rotX+30;
+           self.rotX=self.rotX+10;
         self.updateGL()
 
 class Ficha(QGLWidget):
