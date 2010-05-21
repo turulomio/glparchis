@@ -15,7 +15,7 @@ from wdgQT import *
 #
 #
 #
-class frmAbout(QDialog, Ui_frmAbout):#    
+class frmAbout(QDialog, Ui_frmAbout):
     def __init__(self, parent = None, name = None, modal = False):
         """
         Constructor
@@ -29,6 +29,7 @@ class frmAbout(QDialog, Ui_frmAbout):#
             self.setObjectName(name)
         self.setModal(True)
         self.setupUi(self)
+        self.showMaximized()
 #
 #        qt=wdgQT(self.tabQT)
 #        

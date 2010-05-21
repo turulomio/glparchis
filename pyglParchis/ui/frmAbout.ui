@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>frmAbout</class>
- <widget class="QDialog" name="frmAbout" >
-  <property name="geometry" >
+ <widget class="QDialog" name="frmAbout">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,81 +10,83 @@
     <height>443</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <property name="windowIcon" >
-   <iconset resource="../images/glparchis.qrc" >:/glparchis/ficharoja.png</iconset>
+  <property name="windowIcon">
+   <iconset resource="../images/glparchis.qrc">
+    <normaloff>:/glparchis/ficharoja.png</normaloff>:/glparchis/ficharoja.png</iconset>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout">
    <item>
-    <layout class="QVBoxLayout" >
+    <layout class="QVBoxLayout">
      <item>
-      <widget class="QLabel" name="lblPixmap" >
-       <property name="pixmap" >
-        <pixmap resource="../images/glparchis.qrc" >:/glparchis/keko.png</pixmap>
+      <widget class="QLabel" name="lblPixmap">
+       <property name="pixmap">
+        <pixmap resource="../images/glparchis.qrc">:/glparchis/keko.png</pixmap>
        </property>
-       <property name="alignment" >
+       <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="lblApp" >
-       <property name="font" >
+      <widget class="QLabel" name="lblApp">
+       <property name="font">
         <font>
          <pointsize>20</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
-       <property name="text" >
+       <property name="text">
         <string>glParchis</string>
        </property>
-       <property name="alignment" >
+       <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QTabWidget" name="tab" >
-       <property name="currentIndex" >
-        <number>2</number>
+      <widget class="QTabWidget" name="tab">
+       <property name="currentIndex">
+        <number>3</number>
        </property>
-       <widget class="QWidget" name="tabGLParchis" >
-        <attribute name="title" >
+       <widget class="QWidget" name="tabGLParchis">
+        <attribute name="title">
          <string>Page</string>
         </attribute>
-        <layout class="QHBoxLayout" >
+        <layout class="QHBoxLayout">
          <item>
-          <widget class="QTextEdit" name="textEdit" >
-           <property name="html" >
-            <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+          <widget class="QTextEdit" name="textEdit">
+           <property name="html">
+            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Los avatares han sido extraídos de la página http://www.nobleavatar.com/&lt;/p>&lt;/body>&lt;/html></string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Los avatares han sido extraídos de la página http://www.nobleavatar.com/&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="tabLicense" >
-        <attribute name="title" >
+       <widget class="QWidget" name="tabLicense">
+        <attribute name="title">
          <string>Licencia</string>
         </attribute>
-        <layout class="QVBoxLayout" >
+        <layout class="QVBoxLayout">
          <item>
-          <widget class="QTextBrowser" name="txtLicense" >
-           <property name="autoFormatting" >
+          <widget class="QTextBrowser" name="txtLicense">
+           <property name="autoFormatting">
             <set>QTextEdit::AutoNone</set>
            </property>
-           <property name="lineWrapMode" >
+           <property name="lineWrapMode">
             <enum>QTextEdit::WidgetWidth</enum>
            </property>
-           <property name="acceptRichText" >
+           <property name="acceptRichText">
             <bool>true</bool>
            </property>
-           <property name="source" >
+           <property name="source">
             <url>
              <string>LICENSE</string>
             </url>
@@ -92,25 +95,36 @@ p, li { white-space: pre-wrap; }
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="tabQT" >
-        <attribute name="title" >
+       <widget class="QWidget" name="tabQT">
+        <attribute name="title">
          <string>Qt</string>
         </attribute>
-        <layout class="QVBoxLayout" >
+        <layout class="QVBoxLayout">
          <item>
-          <widget class="wdgQT" native="1" name="widget" />
+          <widget class="wdgQT" name="widget" native="true"/>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tabObjetos">
+        <attribute name="title">
+         <string>Objetos</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="wdgShowObject" name="wdgso" native="true"/>
          </item>
         </layout>
        </widget>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="cmd" >
-       <property name="text" >
+      <widget class="QPushButton" name="cmd">
+       <property name="text">
         <string>S&amp;alir</string>
        </property>
-       <property name="icon" >
-        <iconset resource="../images/glparchis.qrc" >:/glparchis/ficharoja.png</iconset>
+       <property name="icon">
+        <iconset resource="../images/glparchis.qrc">
+         <normaloff>:/glparchis/ficharoja.png</normaloff>:/glparchis/ficharoja.png</iconset>
        </property>
       </widget>
      </item>
@@ -122,12 +136,18 @@ p, li { white-space: pre-wrap; }
   <customwidget>
    <class>wdgQT</class>
    <extends>QWidget</extends>
-   <header location="global" >wdgQT</header>
+   <header location="global">wdgQT</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>wdgShowObject</class>
+   <extends>QWidget</extends>
+   <header location="global">wdgShowObject</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../images/glparchis.qrc" />
+  <include location="../images/glparchis.qrc"/>
  </resources>
  <connections/>
 </ui>
