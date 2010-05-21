@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/keko/Proyectos/glparchis/pyglParchis/ui/frmMain.ui'
 #
-# Created: Fri May 21 16:50:33 2010
+# Created: Fri May 21 21:47:23 2010
 #      by: PyQt4 UI code generator 4.7.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_frmMain(object):
     def setupUi(self, frmMain):
         frmMain.setObjectName("frmMain")
-        frmMain.resize(877, 596)
+        frmMain.resize(877, 598)
         frmMain.setCursor(QtCore.Qt.PointingHandCursor)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/glparchis/ficharoja.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -76,7 +76,7 @@ class Ui_frmMain(object):
         self.tabGame.setObjectName("tabGame")
         self.hboxlayout = QtGui.QHBoxLayout(self.tabGame)
         self.hboxlayout.setObjectName("hboxlayout")
-        self.ogl = wdgOpenGL(self.tabGame)
+        self.ogl = wdgGame(self.tabGame)
         self.ogl.setSizeIncrement(QtCore.QSize(10, 10))
         self.ogl.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.ogl.setObjectName("ogl")
@@ -158,7 +158,7 @@ class Ui_frmMain(object):
         self.actionJugar.setText(QtGui.QApplication.translate("frmMain", "Jugar", None, QtGui.QApplication.UnicodeUTF8))
         self.actionLenguaje.setText(QtGui.QApplication.translate("frmMain", "I&dioma", None, QtGui.QApplication.UnicodeUTF8))
 
-from wdgOpenGL import wdgOpenGL
+from wdgGame import wdgGame
 import glparchis_rc
 
 if __name__ == "__main__":

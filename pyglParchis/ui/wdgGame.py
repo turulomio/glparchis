@@ -204,23 +204,27 @@ class Casilla(QGLWidget):
         GL.glVertex3d(c[0], c[1], c[2]+0.0001)
         GL.glVertex3d(d[0], d[1], d[2]+0.0001)
         GL.glEnd()
-class wdgOpenGL(QGLWidget):
+
+
+class wdgGame(QGLWidget):
     def __init__(self, parent=None):
         QGLWidget.__init__(self, parent)
         self.tablero=Tablero()
-        self.tablero.position=(-1, -1, 0)
         self.rotX=0
         self.lastPos = QPoint()
         self.casillas=[]
+        self.fichas=[]
         for i in range(0, 104):
             self.casillas.append(Casilla(i+1))
+        for i in range(0, 16):
+            print "Iniciando Ficha",  i
+            self.fichas.append(Ficha(i))
         self.trolltechGreen = QColor.fromCmykF(0.40, 0.0, 1.0, 0.0)
         self.trolltechPurple = QColor.fromCmykF(0.39, 0.39, 0.0, 0.0)
 
 
     def initializeGL(self):
         self.qglClearColor(self.trolltechPurple.dark())
-#        self.tablero.makeObject()
         GL.glShadeModel(GL.GL_FLAT)
         GL.glEnable(GL.GL_DEPTH_TEST)
         GL.glEnable(GL.GL_CULL_FACE)
@@ -228,7 +232,7 @@ class wdgOpenGL(QGLWidget):
         
         GL.glFrontFace(GL.GL_CCW);
 
-        light_ambient =  (1, 1, 1, 1);
+        light_ambient =  (0.3, 0.3, 0.3, 0.1);
         light_diffuse =  (0, 0, 1, 0);
         light_specular =  (0, 0, 0, 0);
         light_position =  (5.0, 5.0, 5.0, 0.0);
@@ -243,26 +247,34 @@ class wdgOpenGL(QGLWidget):
         GL.glColorMaterial(GL.GL_FRONT,GL.GL_AMBIENT_AND_DIFFUSE);
         GL.glShadeModel (GL.GL_SMOOTH);
 
+#    def numFichas_en_casilla(self, idcasilla):
+#        resultado=0
+#        for f in self.fichas:
+#            if ruta[f.jugador][f.ruta]==id_casilla:
+#                resultado=resultado+1
+#        return resultado
+
     def paintGL(self):   
         GL.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT)
         GL.glLoadIdentity()
 
         
-        GL.glTranslated(-31.5, -31.5,  -100)
+        GL.glTranslated(-31.5, -31.5,  -60)
         GL.glRotated(self.rotX, 0.9,0.1 , 0.1)
 #        GL.glTranslated(self.rotX*0.1,0.3 , 0.3)
 #        GL.glRotated(180,  1,0 , 0)
-        self.tablero.makeObject()
+        self.tablero.dibujar()
 #        GL.glCallList(self.tablero.object)
         for c in self.casillas:
             c.dibujar()
+        
+        for f in self.fichas:
+            f.dibujar()
 
     def resizeGL(self, width, height):
         GL.glViewport(0, 0, width, height)
-
         GL.glMatrixMode(GL.GL_PROJECTION)
         GL.glLoadIdentity()
-#        GL.glOrtho(-1, +64, +64, -1, 2.0, 25.0)
         aspect=width/height
         GLU.gluPerspective(60.0, aspect, 1, 400)
         GL.glMatrixMode(GL.GL_MODELVIEW)
@@ -277,6 +289,8 @@ class wdgOpenGL(QGLWidget):
             self.updateGL()
                 
     def mousePressEvent(self, event):
+        self.fichas[0].mover_ficha(self.fichas[0].ruta+1)
+        self.fichas[1].mover_ficha(self.fichas[1].ruta+1)
         self.lastPos = QPoint(event.pos())
         self.setFocus()
         if event.buttons() & Qt.RightButton:
@@ -285,68 +299,95 @@ class wdgOpenGL(QGLWidget):
 
     def wheelEvent(self, event):
         if event.delta() > 0:
-           self.rotX=self.rotX-10;
+            self.fichas[0].mover_ficha(self.fichas[0].ruta+1)
+            self.fichas[1].mover_ficha(self.fichas[1].ruta+1)
+            self.fichas[4].mover_ficha(self.fichas[4].ruta+1)
+            self.fichas[5].mover_ficha(self.fichas[5].ruta+1)
+            self.fichas[8].mover_ficha(self.fichas[8].ruta+1)
+            self.fichas[9].mover_ficha(self.fichas[9].ruta+1)
+            self.fichas[12].mover_ficha(self.fichas[12].ruta+1)
+            self.fichas[13].mover_ficha(self.fichas[13].ruta+1)
+#           self.rotX=self.rotX-10;
         else:
-           self.rotX=self.rotX+10;
+            self.fichas[0].mover_ficha(self.fichas[0].ruta-1)
+            self.fichas[1].mover_ficha(self.fichas[1].ruta-1)
+            self.fichas[4].mover_ficha(self.fichas[4].ruta-1)
+            self.fichas[5].mover_ficha(self.fichas[5].ruta-1)
+            self.fichas[8].mover_ficha(self.fichas[8].ruta-1)
+            self.fichas[9].mover_ficha(self.fichas[9].ruta-1)
+            self.fichas[12].mover_ficha(self.fichas[12].ruta-1)
+            self.fichas[13].mover_ficha(self.fichas[13].ruta-1)
+#           self.rotX=self.rotX+10;
         self.updateGL()
 
 class Ficha(QGLWidget):
-    def __init__(self, parent=None):
+    def __init__(self, id,  parent=None):
         QGLWidget.__init__(self, parent)
-        self.object = 1
+#        self.object = 1
+        self.id=id
+        self.ruta=0
+        self.last_position=0
+        self.color=self.defineColor(id)
         self.ficha=GLU.gluNewQuadric();
-#
-#            
-#    def quad(self, p1, p2, p3, p4, color):
-#        self.qglColor(color)
-#        GL.glVertex3d(p1[0], p1[1], p1[2])
-#        GL.glVertex3d(p2[0], p2[1], p2[2])
-#        GL.glVertex3d(p3[0], p3[1], p3[2])
-#        GL.glVertex3d(p4[0], p4[1], p4[2])
-#    def border(self):        
-#        GL.glBegin(GL.GL_LINES)
-#        b5 = (0, 0, 0.021)
-#        b6 = (0.7, 0, 0.021)
-#        b7 = (0.7, 0.3, 0.021)
-#        b8 = (0, 0.3, 0.021)
-#        GL.glVertex3d(b5[0], b5[1], b5[2])
-#        GL.glVertex3d(b6[0], b6[1], b6[2])
-#        GL.glVertex3d(b7[0], b7[1], b7[2])
-#        GL.glVertex3d(b8[0], b8[1], b8[2])
-#        GL.glEnd()
-#        
-    def makeObject(self, color):
-#        genList = GL.glGenLists(self.object)
-#        GL.glNewList(genList, GL.GL_COMPILE)
+        self.jugador=int(id/4)
+#        self.position=self.posicion() NO PONER ATACAR A LA FUNCIÖN SINO SE DESACTUALIZARA
+#        self.casilla=self.id_casilla()
+        self.numposicion=datos.numFichas[self.casilla()]-1#Posicion dentro de la casilla
+        datos.numFichas[self.casilla()]=datos.numFichas[self.casilla()]+1
+        print "Casilla",  self.casilla()
+        print "Jugador",  self.jugador
+        print "Numfichas", datos.numFichas[self.casilla()]
+    def casilla(self):
+        return datos.ruta[self.ruta][self.jugador]
+        
+    def posicion(self):
+        return datos.posFichas[self.casilla()][self.numposicion]
+        
+    def mover_ficha(self, ruta):
+        self.last_position=self.ruta
+        datos.numFichas[self.casilla()]=datos.numFichas[self.casilla()]-1
+        self.ruta=ruta
+        datos.numFichas[self.casilla()]=datos.numFichas[self.casilla()]+1
+        print "Ficha movida desde " + str(self.last_position) + " hasta " + str(self.ruta)
+
+    def defineColor(self,  id):
+        if id>=0 and id<=3:
+           return QColor(255, 255, 0)        
+        elif id>=4 and id<=7:
+           return QColor(0, 0, 255)
+        elif id>=8 and id<=11:
+           return QColor(255, 0, 0 )
+        elif id>=12 and id<=15:
+           return QColor(0, 255, 0)
+
+
+    def dibujar(self):
         GL.glPushMatrix()
-        self.qglColor(QColor(255, 255, 0))
+        p=self.posicion()
+        GL.glTranslated(p[0], p[1], p[2])
+        GL.glRotated(180, 1, 0, 0)# da la vuelta a la cara
+        self.qglColor(QColor(255, 255, 0).dark())
         GLU.gluQuadricDrawStyle (self.ficha, GLU.GLU_FILL);
         GLU.gluQuadricNormals (self.ficha, GLU.GLU_SMOOTH);
         GLU.gluQuadricTexture (self.ficha, True);
-#        glTranslated(.4,.4,0);
-        self.qglColor(color)
-        GLU.gluCylinder (self.ficha, 2.9, 2.9, 0.5, 16, 5)
+        self.qglColor(self.color.dark())
+        GLU.gluCylinder (self.ficha, 1.4, 1.4, 0.5, 16, 5)
         GL.glTranslated(0, 0, 0.5)
         self.qglColor(QColor(70, 70, 70))
-        GLU.gluDisk(self.ficha, 0, 2.9, 16, 5)
-        self.qglColor(color.dark())
+        GLU.gluDisk(self.ficha, 0, 1.4, 16, 5)
+        self.qglColor(self.color.dark())
         GL.glTranslated(0, 0, -0.5)
         GL.glRotated(180, 1, 0, 0)# da la vuelta a la cara
-        GLU.gluDisk(self.ficha, 0, 2.9, 16, 5)
+        GLU.gluDisk(self.ficha, 0, 1.40, 16, 5)
         GL.glPopMatrix()
-        
-#        GL.glEndList()
 
-#        return genList
 
 class Tablero(QGLWidget):
     def __init__(self, parent=None):
         QGLWidget.__init__(self, parent)
         self.object = 1
-        self.position=(0, 0, 0)
+        self.position=(-1, -1, 0)
 
-
-            
     def quad(self, p1, p2, p3, p4, color):
         self.qglColor(color)
         GL.glVertex3d(p1[0], p1[1], p1[2])
@@ -354,10 +395,7 @@ class Tablero(QGLWidget):
         GL.glVertex3d(p3[0], p3[1], p3[2])
         GL.glVertex3d(p4[0], p4[1], p4[2])
 
-        
-    def makeObject(self):
-#        genList = GL.glGenLists(self.object)
-#        GL.glNewList(genList, GL.GL_COMPILE)
+    def dibujar(self):
         GL.glPushMatrix()
         GL.glTranslated(self.position[0],  self.position[1],  self.position[2])
         GL.glBegin(GL.GL_QUADS)
@@ -379,8 +417,3 @@ class Tablero(QGLWidget):
 
         GL.glEnd()
         GL.glPopMatrix()
-            
-
-#        GL.glEndList()
-
-#        return genList
