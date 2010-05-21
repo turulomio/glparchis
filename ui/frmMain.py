@@ -43,6 +43,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
         p4=wdgUserPanel(self.panel4)
         p4.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/keka.png"))
         p4.show()
+        
+#        self.tab.setFixedSize(self.tab.width(), self.tab.width())
 
         
 #        self.vbox = QVBoxLayout(self.tabGame)
@@ -81,7 +83,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
     @pyqtSignature("")
     def on_actionAcercaDe_activated(self):
         fr=frmAbout(self, "frmabout")
-        fr.show()
+#        fr.show()
         fr.exec_()
     
     @pyqtSignature("")

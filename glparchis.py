@@ -23,6 +23,7 @@ translator.load("glparchis_" + a.name() + ".qm")
 app.installTranslator(translator);
 
 frmMain = frmMain() 
+frmMain.ogl.setFocus()
 frmMain.show()
 
 sys.exit(app.exec_())
