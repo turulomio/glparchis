@@ -64,8 +64,11 @@ class Casilla(QGLWidget):
         else:
             self.tipo_normal()
         
-    def tipo_inicio(self):
+    def tipo_inicio(self):        
+        GL.glInitNames();
+        GL.glPushName(0);
         GL.glPushMatrix()
+        GL.glPushName(datos.Name.casilla[self.id]);
         GL.glTranslated(self.position[0],self.position[1],self.position[2] )
         GL.glRotated(self.rotate, 0, 0, 1 )
         GL.glBegin(GL.GL_QUADS)
@@ -87,10 +90,15 @@ class Casilla(QGLWidget):
 
         GL.glEnd()
         self.border(v5, v6, v7, v8, QColor(0, 0, 0))
+
+        GL.glPopName();
         GL.glPopMatrix()
 
     def tipo_normal(self):
+        GL.glInitNames();
+        GL.glPushName(0);
         GL.glPushMatrix()
+        GL.glPushName(datos.Name.casilla[self.id]);
         GL.glTranslated(self.position[0],self.position[1],self.position[2] )
         GL.glRotated(self.rotate, 0, 0, 1 )
         GL.glBegin(GL.GL_QUADS)
@@ -112,10 +120,14 @@ class Casilla(QGLWidget):
 
         GL.glEnd()
         self.border(v5, v6, v7, v8, QColor(0, 0, 0))
+        GL.glPopName();
         GL.glPopMatrix()
-        
+
     def tipo_oblicuoi(self):
+        GL.glInitNames();
+        GL.glPushName(0);
         GL.glPushMatrix()
+        GL.glPushName(datos.Name.casilla[self.id]);
         GL.glTranslated(self.position[0],self.position[1],self.position[2] )
         GL.glRotated(self.rotate, 0, 0, 1 )
         GL.glBegin(GL.GL_QUADS)
@@ -137,10 +149,15 @@ class Casilla(QGLWidget):
 
         GL.glEnd()
         self.border(v5, v6, v7, v8, QColor(0, 0, 0))
-        GL.glPopMatrix() 
+
+        GL.glPopName();
+        GL.glPopMatrix()
 
     def tipo_oblicuod(self):
+        GL.glInitNames();
+        GL.glPushName(0);
         GL.glPushMatrix()
+        GL.glPushName(datos.Name.casilla[self.id]);
         GL.glTranslated(self.position[0],self.position[1],self.position[2] )
         GL.glRotated(self.rotate, 0, 0, 1 )
         GL.glBegin(GL.GL_QUADS)
@@ -162,10 +179,15 @@ class Casilla(QGLWidget):
 
         GL.glEnd()
         self.border(v5, v6, v7, v8, QColor(0, 0, 0))
-        GL.glPopMatrix() 
+
+        GL.glPopName();
+        GL.glPopMatrix()
         
     def tipo_final(self):
+        GL.glInitNames();
+        GL.glPushName(0);
         GL.glPushMatrix()
+        GL.glPushName(datos.Name.casilla[self.id]);
         GL.glTranslated(self.position[0],self.position[1],self.position[2] )
         GL.glRotated(self.rotate, 0, 0, 1 )
         GL.glBegin(GL.GL_QUADS)
@@ -187,6 +209,8 @@ class Casilla(QGLWidget):
 
         GL.glEnd()
         self.border(v5, v6, v7, v8, QColor(0, 0, 0))
+
+        GL.glPopName();
         GL.glPopMatrix()
         
     def quad(self, p1, p2, p3, p4, color):
@@ -214,6 +238,8 @@ class wdgGame(QGLWidget):
         self.lastPos = QPoint()
         self.casillas=[]
         self.fichas=[]
+        self.selFicha=None
+        self.selCasilla=None
         for i in range(0, 104):
             self.casillas.append(Casilla(i+1))
         for i in range(0, 16):
@@ -247,27 +273,15 @@ class wdgGame(QGLWidget):
         GL.glColorMaterial(GL.GL_FRONT,GL.GL_AMBIENT_AND_DIFFUSE);
         GL.glShadeModel (GL.GL_SMOOTH);
 
-#    def numFichas_en_casilla(self, idcasilla):
-#        resultado=0
-#        for f in self.fichas:
-#            if ruta[f.jugador][f.ruta]==id_casilla:
-#                resultado=resultado+1
-#        return resultado
 
     def paintGL(self):   
         GL.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT)
         GL.glLoadIdentity()
-
-        
         GL.glTranslated(-31.5, -31.5,  -60)
-        GL.glRotated(self.rotX, 0.9,0.1 , 0.1)
-#        GL.glTranslated(self.rotX*0.1,0.3 , 0.3)
-#        GL.glRotated(180,  1,0 , 0)
+        GL.glRotated(self.rotX, 1,0 , 0)
         self.tablero.dibujar()
-#        GL.glCallList(self.tablero.object)
         for c in self.casillas:
             c.dibujar()
-        
         for f in self.fichas:
             f.dibujar()
 
@@ -279,8 +293,6 @@ class wdgGame(QGLWidget):
         GLU.gluPerspective(60.0, aspect, 1, 400)
         GL.glMatrixMode(GL.GL_MODELVIEW)
 
-
-
     def keyPressEvent(self, event):
         if (event.key() == Qt.Key_Escape) or (event.key() == Qt.Key_Q):
             self.close()
@@ -289,35 +301,57 @@ class wdgGame(QGLWidget):
             self.updateGL()
                 
     def mousePressEvent(self, event):
-        self.fichas[0].mover_ficha(self.fichas[0].ruta+1)
-        self.fichas[1].mover_ficha(self.fichas[1].ruta+1)
-        self.lastPos = QPoint(event.pos())
+        def object(id_name):
+            if id_name>=1 and id_name<=16:
+                return self.fichas[id_name-1]
+            elif id_name==17:
+                return self.tablero
+            elif id_name>=18 and id_name<=122:
+                return self.casillas[id_name-18]
+                
+        def process(nameStack):
+            """nameStack tiene la estructura minDepth, maxDepth, names"""
+            print len(nameStack),  nameStack
+            objetos=[]
+            for minDepth, maxDepth, names in nameStack:
+                if len(names)==2:
+                   objetos.append(names[1])
+            
+            if len(objetos)==1:
+                self.selCasilla=object(objetos[0])
+                self.selFicha=None
+            elif len(objetos)==2:
+                self.selCasilla=object(objetos[0])
+                self.selFicha=object(objetos[1])
+                self.selFicha.mover_ficha(self.selFicha.ruta+1)
+                
+            print self.selCasilla,  self.selFicha
+            
+#        self.lastPos = QPoint(event.pos())
         self.setFocus()
-        if event.buttons() & Qt.RightButton:
-            return
+        if event.buttons() & Qt.LeftButton:
+            viewport=GL.glGetIntegerv(GL.GL_VIEWPORT);
+            GL.glMatrixMode(GL.GL_PROJECTION);
+            GL.glPushMatrix();
+            GL.glSelectBuffer(512);
+            GL.glRenderMode(GL.GL_SELECT);
+            GL.glLoadIdentity();
+            GLU.gluPickMatrix(event.x(),viewport[3] -event.y(),1,1, viewport)
+            aspect=viewport[2]/viewport[3]
+            GLU.gluPerspective(60,aspect,1.0,400)
+            GL.glMatrixMode(GL.GL_MODELVIEW)
+            self.paintGL()
+            GL.glMatrixMode(GL.GL_PROJECTION);
+            process(GL.glRenderMode(GL.GL_RENDER))
+            GL.glPopMatrix();
+            GL.glMatrixMode(GL.GL_MODELVIEW);            
         self.updateGL()
 
     def wheelEvent(self, event):
         if event.delta() > 0:
             self.fichas[0].mover_ficha(self.fichas[0].ruta+1)
-            self.fichas[1].mover_ficha(self.fichas[1].ruta+1)
-            self.fichas[4].mover_ficha(self.fichas[4].ruta+1)
-            self.fichas[5].mover_ficha(self.fichas[5].ruta+1)
-            self.fichas[8].mover_ficha(self.fichas[8].ruta+1)
-            self.fichas[9].mover_ficha(self.fichas[9].ruta+1)
-            self.fichas[12].mover_ficha(self.fichas[12].ruta+1)
-            self.fichas[13].mover_ficha(self.fichas[13].ruta+1)
-#           self.rotX=self.rotX-10;
         else:
             self.fichas[0].mover_ficha(self.fichas[0].ruta-1)
-            self.fichas[1].mover_ficha(self.fichas[1].ruta-1)
-            self.fichas[4].mover_ficha(self.fichas[4].ruta-1)
-            self.fichas[5].mover_ficha(self.fichas[5].ruta-1)
-            self.fichas[8].mover_ficha(self.fichas[8].ruta-1)
-            self.fichas[9].mover_ficha(self.fichas[9].ruta-1)
-            self.fichas[12].mover_ficha(self.fichas[12].ruta-1)
-            self.fichas[13].mover_ficha(self.fichas[13].ruta-1)
-#           self.rotX=self.rotX+10;
         self.updateGL()
 
 class Ficha(QGLWidget):
@@ -344,10 +378,17 @@ class Ficha(QGLWidget):
         return datos.posFichas[self.casilla()][self.numposicion]
         
     def mover_ficha(self, ruta):
+        if ruta>=73:
+            print "Ya ha llegado al final de ruta"
+            return
+        elif ruta<0:
+            print "Esta en el inicio de la ruta"
+            return
         self.last_position=self.ruta
         datos.numFichas[self.casilla()]=datos.numFichas[self.casilla()]-1
         self.ruta=ruta
         datos.numFichas[self.casilla()]=datos.numFichas[self.casilla()]+1
+        self.numposicion=datos.numFichas[self.casilla()]-1
         print "Ficha movida desde " + str(self.last_position) + " hasta " + str(self.ruta)
 
     def defineColor(self,  id):
@@ -362,7 +403,10 @@ class Ficha(QGLWidget):
 
 
     def dibujar(self):
+        GL.glInitNames();
+        GL.glPushName(0);
         GL.glPushMatrix()
+        GL.glPushName(datos.Name.ficha[self.id]);
         p=self.posicion()
         GL.glTranslated(p[0], p[1], p[2])
         GL.glRotated(180, 1, 0, 0)# da la vuelta a la cara
@@ -379,6 +423,7 @@ class Ficha(QGLWidget):
         GL.glTranslated(0, 0, -0.5)
         GL.glRotated(180, 1, 0, 0)# da la vuelta a la cara
         GLU.gluDisk(self.ficha, 0, 1.40, 16, 5)
+        GL.glPopName();
         GL.glPopMatrix()
 
 

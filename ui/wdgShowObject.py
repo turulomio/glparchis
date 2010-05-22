@@ -5,7 +5,7 @@ from PyQt4.QtOpenGL import *
 from PyQt4.QtGui import *
 import math
 from OpenGL import GL
-from wdgOpenGL import *
+from wdgGame import *
 
 class wdgShowObject(QGLWidget):
     def __init__(self, parent=None):
@@ -23,7 +23,7 @@ class wdgShowObject(QGLWidget):
         
         #Carga el primer objeto
         self.cas= Casilla(1)
-        self.ficha=Ficha()
+        self.ficha=Ficha(1)
         self.tablero=Tablero()
         self.cas.position=(-3.5, -1.5, 0, 0)
         self.cas.tipo=3
@@ -108,9 +108,9 @@ class wdgShowObject(QGLWidget):
         elif self.objeto==4:
             self.cas.dibujar()
         elif self.objeto==5:
-            self.ficha.makeObject(QColor(0, 0, 255))
+            self.ficha.dibujar()
         elif self.objeto==6:
-            self.tablero.makeObject()
+            self.tablero.dibujar()
 
 
     def resizeGL(self, width, height):
@@ -161,7 +161,7 @@ class wdgShowObject(QGLWidget):
             self.changeOrtho()
         elif self.objeto==5:#ficha
             self.ficha.position=(-1.45, -1.45, 0, 0)
-            self.ortho=(-3, +3, +3, -3, -10.0, 25.0)
+            self.ortho=(-49, +49, +49, -49, -10.0, 25.0)
             self.changeOrtho()
         elif self.objeto==6:#tablero
             self.tablero.position=(-32.5, -32.5, 0, 0)

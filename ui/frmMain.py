@@ -7,7 +7,7 @@ from Ui_frmMain import *
 from frmAbout import *
 from frmLanguage import *
 from wdgUserPanel import *
-from wdgOpenGL import *
+from wdgGame import *
 
 class frmMain(QMainWindow, Ui_frmMain):#    
     def __init__(self, parent = 0,  flags = False):
