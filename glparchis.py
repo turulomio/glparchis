@@ -2,8 +2,7 @@
 #-*- coding: utf-8 -*- 
 
 import sys
-sys.path.append("ui")
-sys.path.append("images")
+sys.path.append("/usr/lib/pyglparchis")
 
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
