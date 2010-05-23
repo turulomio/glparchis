@@ -357,15 +357,14 @@ class wdgGame(QGLWidget):
 class Ficha(QGLWidget):
     def __init__(self, id,  parent=None):
         QGLWidget.__init__(self, parent)
-#        self.object = 1
         self.id=id
         self.ruta=0
         self.last_position=0
         self.color=self.defineColor(id)
+        print "Aquí"
         self.ficha=GLU.gluNewQuadric();
+        print "Aquí"
         self.jugador=int(id/4)
-#        self.position=self.posicion() NO PONER ATACAR A LA FUNCIÖN SINO SE DESACTUALIZARA
-#        self.casilla=self.id_casilla()
         self.numposicion=datos.numFichas[self.casilla()]-1#Posicion dentro de la casilla
         datos.numFichas[self.casilla()]=datos.numFichas[self.casilla()]+1
         print "Casilla",  self.casilla()
