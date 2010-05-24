@@ -1,44 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fr_FR">
 <context>
-    <name>frmLanguage</name>
-    <message>
-        <location filename="ui/frmLanguage.ui" line="16"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmLanguage.ui" line="29"/>
-        <source>Selecciona un idioma</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmLanguage.ui" line="37"/>
-        <source>English</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmLanguage.ui" line="42"/>
-        <source>Español</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmLanguage.ui" line="47"/>
-        <source>Français</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmLanguage.ui" line="52"/>
-        <source>Русский</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmLanguage.ui" line="62"/>
-        <source>C&amp;ambiar Idioma</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>frmMain</name>
     <message>
         <location filename="ui/frmMain.ui" line="211"/>
@@ -91,22 +53,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="285"/>
-        <source>I&amp;dioma</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="ui/frmMain.ui" line="223"/>
         <source>&amp;Archivo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="294"/>
+        <location filename="ui/frmMain.ui" line="285"/>
         <source>&amp;Recuperar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="303"/>
+        <location filename="ui/frmMain.ui" line="294"/>
         <source>&amp;Guardar partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -114,7 +71,7 @@
 <context>
     <name>wdgGame</name>
     <message>
-        <location filename="ui/wdgGame.py" line="419"/>
+        <location filename="ui/wdgGame.py" line="418"/>
         <source>Han salido 3 seises te vas a casa</source>
         <translation type="unfinished"></translation>
     </message>

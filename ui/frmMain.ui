@@ -222,8 +222,8 @@
     <property name="title">
      <string>&amp;Archivo</string>
     </property>
-    <addaction name="action_Recuperar_partida"/>
-    <addaction name="actionGuardar_partida"/>
+    <addaction name="actionRecuperarPartida"/>
+    <addaction name="actionGuardarPartida"/>
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
    </widget>
@@ -243,8 +243,8 @@
    </attribute>
    <addaction name="actionDado"/>
    <addaction name="separator"/>
-   <addaction name="action_Recuperar_partida"/>
-   <addaction name="actionGuardar_partida"/>
+   <addaction name="actionRecuperarPartida"/>
+   <addaction name="actionGuardarPartida"/>
    <addaction name="separator"/>
    <addaction name="actionSalir"/>
   </widget>
@@ -276,16 +276,7 @@
     <string>Tirar dado</string>
    </property>
   </action>
-  <action name="actionLenguaje">
-   <property name="icon">
-    <iconset resource="../images/glparchis.qrc">
-     <normaloff>:/glparchis/kbabel.png</normaloff>:/glparchis/kbabel.png</iconset>
-   </property>
-   <property name="text">
-    <string>I&amp;dioma</string>
-   </property>
-  </action>
-  <action name="action_Recuperar_partida">
+  <action name="actionRecuperarPartida">
    <property name="icon">
     <iconset resource="../images/glparchis.qrc">
      <normaloff>:/glparchis/open.png</normaloff>:/glparchis/open.png</iconset>
@@ -294,7 +285,7 @@
     <string>&amp;Recuperar partida</string>
    </property>
   </action>
-  <action name="actionGuardar_partida">
+  <action name="actionGuardarPartida">
    <property name="icon">
     <iconset resource="../images/glparchis.qrc">
      <normaloff>:/glparchis/save.png</normaloff>:/glparchis/save.png</iconset>

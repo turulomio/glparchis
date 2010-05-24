@@ -5,7 +5,6 @@ from PyQt4.QtGui import *
 
 from Ui_frmMain import *
 from frmAbout import *
-from frmLanguage import *
 from wdgUserPanel import *
 from wdgGame import *
 
@@ -185,11 +184,17 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.actionDado.setEnabled(True)       
         enable_panel(self.ogl.jugadoractual,  True)
         limpia_panel(self.ogl.jugadoractual)
-        
-    @QtCore.pyqtSlot()      
-    def on_actionLenguaje_activated(self):
-        fr=frmLanguage(self, "frmlanguage")
-        fr.open()
+
                     
+    @QtCore.pyqtSlot()     
+    def on_actionRecuperarPartida_activated(self):
+        filename=QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")
+        print filename
+        
+    @QtCore.pyqtSlot()     
+    def on_actionGuardarPartida_activated(self):
+        filename=QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")
+        print filename
+
     def volver_a_tirar(self):
         self.actionDado.setEnabled(True)
