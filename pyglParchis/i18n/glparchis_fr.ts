@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fr_FR">
 <context>
-    <name>@default</name>
-    <message>
-        <location filename="ui/wdgGame.py" line="417"/>
-        <source>Han salido 3 seises te vas a casa</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>frmLanguage</name>
     <message>
         <location filename="ui/frmLanguage.ui" line="16"/>
@@ -122,8 +114,8 @@
 <context>
     <name>wdgGame</name>
     <message>
-        <location filename="ui/wdgGame.py" line="541"/>
-        <source>Ejemplo de translacion</source>
+        <location filename="ui/wdgGame.py" line="419"/>
+        <source>Han salido 3 seises te vas a casa</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

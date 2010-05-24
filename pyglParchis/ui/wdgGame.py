@@ -358,6 +358,7 @@ class wdgGame(QGLWidget):
             """nameStack tiene la estructura minDepth, maxDepth, names"""
             objetos=[]
             for minDepth, maxDepth, names in nameStack:
+#                print minDepth,  maxDepth,  names
                 if len(names)==1:
                    objetos.append(names[0])
             
@@ -373,8 +374,8 @@ class wdgGame(QGLWidget):
             
         self.setFocus()
         if event.buttons() & Qt.LeftButton:
-            pickup(event)                
-            if self.selFicha:
+            pickup(event)            
+            if self.selFicha>=0:
                 self.after_ficha_click()
         self.updateGL()
 
@@ -414,7 +415,7 @@ class wdgGame(QGLWidget):
             
             if salio==6 and len(self.historicodado)==3:
                 self.mover(self.selLastFicha, 0)
-                self.log(tr("Han salido 3 seises te vas a casa"))
+                self.log(QCoreApplication.translate("wdgGame","Han salido 3 seises te vas a casa"))
                 self.emit(SIGNAL("cambiar_jugador()"))
                 return (False, 0)
 
@@ -481,7 +482,6 @@ class wdgGame(QGLWidget):
 #            self.log("Va a comer y usar " + str(pj[1]))
             self.pendiente=20
             self.mover(pc[1], 0)
-
         pj=self.puede_jugar(True)
 #        self.log(str(pj))
 #        self.log(self.fichas[self.selFicha].ruta+  pj[1]+  self.fichas[self.selFicha].ruta+pj[1])
@@ -505,11 +505,12 @@ class wdgGame(QGLWidget):
     def mover(self, id_ficha,  ruta):
         """Solo mueve, la logica en after_ficha_click"""
         idcasillaorigen=self.fichas[id_ficha].casilla()
-        idcasilladestino=datos.ruta[ruta][self.fichas[id_ficha].jugador]
+        idcasilladestino=datos.ruta[ruta][self.fichas[id_ficha].jugador]        
         if ruta==72:
             self.pendiente=10
         posicioncasillaorigen=self.fichas[id_ficha].numposicion
         posicioncasilladestino=self.casillas[idcasilladestino].position_free()
+        print self.selFicha,  idcasillaorigen,  idcasilladestino,  posicioncasillaorigen,  posicioncasilladestino
         self.fichas[id_ficha].last_ruta=self.fichas[id_ficha].ruta
         self.fichas[id_ficha].ruta=ruta#cambia la ruta
         self.fichas[id_ficha].numposicion=posicioncasilladestino
@@ -538,7 +539,6 @@ class Ficha(QGLWidget):
 #        print "Aquí"
         self.jugador=int(id/4)
         self.numposicion=None#Posicion dentro de la casilla
-        print QCoreApplication.translate("wdgGame","Ejemplo de translacion")
 #        self.numposicion=datos.numFichas[self.casilla()]-1#Posicion dentro de la casilla
 #        datos.numFichas[self.casilla()]=datos.numFichas[self.casilla()]+1
 #        print "Casilla",  self.casilla()

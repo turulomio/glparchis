@@ -127,7 +127,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
                         return False
             return True
             
-        numero= int(random.random()*6)+1
+#        numero= int(random.random()*6)+1
+        numero=5
         self.lstLog_newLog("Ha salido un " + str(numero))        
         self.ogl.dado=numero
         self.ogl.pendiente=1
