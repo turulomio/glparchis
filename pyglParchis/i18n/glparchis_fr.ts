@@ -9,6 +9,44 @@
     </message>
 </context>
 <context>
+    <name>frmLanguage</name>
+    <message>
+        <location filename="ui/frmLanguage.ui" line="16"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmLanguage.ui" line="29"/>
+        <source>Selecciona un idioma</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmLanguage.ui" line="37"/>
+        <source>English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmLanguage.ui" line="42"/>
+        <source>Español</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmLanguage.ui" line="47"/>
+        <source>Français</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmLanguage.ui" line="52"/>
+        <source>Русский</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmLanguage.ui" line="62"/>
+        <source>C&amp;ambiar Idioma</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>frmMain</name>
     <message>
         <location filename="ui/frmMain.ui" line="211"/>

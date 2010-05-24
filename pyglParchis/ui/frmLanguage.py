@@ -28,25 +28,26 @@ class frmLanguage(QDialog, Ui_frmLanguage):#
             self.setObjectName(name)
         self.setModal(True)
         self.setupUi(self)
+        
 
-        self.connect(self.cmd, SIGNAL("clicked()"), self.on_cmd_clicked)
-        self.connect(self.cmd, SIGNAL("textChanged(QString)"), self.on_cmb_textChanged)
+#        self.connect(self.cmd, SIGNAL("clicked()"), self.on_cmd_clicked)
     
     @pyqtSignature("")
-    def on_cmd_clicked(self):
+    def on_cmd_clicked(self):        
+        print "Hola",  self.cmb.currentText()
+        if self.cmb.currentText()==QString("Español"):
+            language="es"
+        elif self.cmb.currentText()==QString("English"):
+            language="en"
+        elif self.cmb.currentText()==QString("Français"):
+            language="fr"
+        elif self.cmb.currentText()==QString("Русский"):
+            language="ru"
+        app=QApplication.instance()
+        translator=QTranslator(app)
+        QCore.removeTranslator("/usr/share/pyglparchis/glparchis_en.qm")
+        translator.load("/usr/share/pyglparchis/glparchis_" + language + ".qm")
+        app.installTranslator(translator);
         self.done(0)
 
-    
-    @pyqtSignature("QString")
-    def on_cmb_textChanged(self, p0):
-#        translator = QTranslator(app)
-        if p0==QString("Español"):
-            language="es"
-        elif p0==QString("English"):
-            language="en"
-        elif p0==QString("Français"):
-            language="fr"
-        elif p0==QString("Русский"):
-            language="ru"
-        translator.load("glparchis_" + language + ".qm")
-        app.installTranslator(translator);
+
