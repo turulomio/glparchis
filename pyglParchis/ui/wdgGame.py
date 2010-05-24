@@ -266,7 +266,7 @@ class wdgGame(QGLWidget):
         self.selLastFicha=None #Se utiliza cuando se va a casa
         self.selFicha=None
         self.selCasilla=None
-        self.jugadoractual=0
+        self.jugadoractual=3
         for i in range(0, 105):#Se debe inializar Antes que las fichas
             self.casillas.append(Casilla(i)) #La casilla 0 no se usa pero se crea para que todo sea más intuitivo.
         for i in range(0, 16):

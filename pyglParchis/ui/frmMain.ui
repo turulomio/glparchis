@@ -212,22 +212,23 @@
     </property>
     <addaction name="actionAcercaDe"/>
    </widget>
-   <widget class="QMenu" name="menuPreferencias">
-    <property name="title">
-     <string>P&amp;referencias</string>
-    </property>
-    <addaction name="actionLenguaje"/>
-   </widget>
    <widget class="QMenu" name="menuJugar">
     <property name="title">
      <string>J&amp;ugar</string>
     </property>
     <addaction name="actionDado"/>
+   </widget>
+   <widget class="QMenu" name="menu_Archivo">
+    <property name="title">
+     <string>&amp;Archivo</string>
+    </property>
+    <addaction name="action_Recuperar_partida"/>
+    <addaction name="actionGuardar_partida"/>
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
    </widget>
+   <addaction name="menu_Archivo"/>
    <addaction name="menuJugar"/>
-   <addaction name="menuPreferencias"/>
    <addaction name="menuAyuda"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
@@ -242,7 +243,8 @@
    </attribute>
    <addaction name="actionDado"/>
    <addaction name="separator"/>
-   <addaction name="actionLenguaje"/>
+   <addaction name="action_Recuperar_partida"/>
+   <addaction name="actionGuardar_partida"/>
    <addaction name="separator"/>
    <addaction name="actionSalir"/>
   </widget>
@@ -268,7 +270,7 @@
   <action name="actionDado">
    <property name="icon">
     <iconset resource="../images/glparchis.qrc">
-     <normaloff>:/glparchis/cube5.png</normaloff>:/glparchis/cube5.png</iconset>
+     <normaloff>:/glparchis/cube.png</normaloff>:/glparchis/cube.png</iconset>
    </property>
    <property name="text">
     <string>Tirar dado</string>
@@ -281,6 +283,24 @@
    </property>
    <property name="text">
     <string>I&amp;dioma</string>
+   </property>
+  </action>
+  <action name="action_Recuperar_partida">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/open.png</normaloff>:/glparchis/open.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Recuperar partida</string>
+   </property>
+  </action>
+  <action name="actionGuardar_partida">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/save.png</normaloff>:/glparchis/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Guardar partida</string>
    </property>
   </action>
  </widget>
