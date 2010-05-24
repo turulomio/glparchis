@@ -18,7 +18,7 @@ app = QApplication(sys.argv)
 translator = QTranslator(app)
 locale=QLocale()
 a=locale.system()
-translator.load("glparchis_" + a.name() + ".qm")
+translator.load("/usr/share/pyglparchis/glparchis_" + a.name() + ".qm")
 app.installTranslator(translator);
 
 frmMain = frmMain() 

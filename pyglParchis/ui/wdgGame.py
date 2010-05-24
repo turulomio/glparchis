@@ -414,7 +414,7 @@ class wdgGame(QGLWidget):
             
             if salio==6 and len(self.historicodado)==3:
                 self.mover(self.selLastFicha, 0)
-                self.log("Han salido 3 seises te vas a casa")
+                self.log(tr("Han salido 3 seises te vas a casa"))
                 self.emit(SIGNAL("cambiar_jugador()"))
                 return (False, 0)
 
@@ -538,7 +538,7 @@ class Ficha(QGLWidget):
 #        print "Aquí"
         self.jugador=int(id/4)
         self.numposicion=None#Posicion dentro de la casilla
-
+        print QCoreApplication.translate("wdgGame","Ejemplo de translacion")
 #        self.numposicion=datos.numFichas[self.casilla()]-1#Posicion dentro de la casilla
 #        datos.numFichas[self.casilla()]=datos.numFichas[self.casilla()]+1
 #        print "Casilla",  self.casilla()
