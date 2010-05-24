@@ -20,6 +20,43 @@
       <layout class="QVBoxLayout">
        <item>
         <widget class="QLabel" name="lblAvatar">
+         <property name="palette">
+          <palette>
+           <active>
+            <colorrole role="Base">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>0</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </active>
+           <inactive>
+            <colorrole role="Base">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>0</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </inactive>
+           <disabled>
+            <colorrole role="Base">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>244</red>
+               <green>244</green>
+               <blue>244</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </disabled>
+          </palette>
+         </property>
          <property name="layoutDirection">
           <enum>Qt::LeftToRight</enum>
          </property>
@@ -27,7 +64,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="../images/glparchis.qrc">:/glparchis/keko.png</pixmap>
+          <pixmap resource="../images/glparchis.qrc">:/glparchis/ficharoja.png</pixmap>
          </property>
          <property name="scaledContents">
           <bool>false</bool>
@@ -58,7 +95,7 @@
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../images/glparchis.qrc">:/glparchis/cube6.png</pixmap>
+            <pixmap resource="../images/glparchis.qrc">:/glparchis/cube.png</pixmap>
            </property>
            <property name="scaledContents">
             <bool>true</bool>
@@ -71,7 +108,7 @@
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../images/glparchis.qrc">:/glparchis/cube6.png</pixmap>
+            <pixmap resource="../images/glparchis.qrc">:/glparchis/cube.png</pixmap>
            </property>
            <property name="scaledContents">
             <bool>true</bool>
@@ -84,7 +121,7 @@
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../images/glparchis.qrc">:/glparchis/cube6.png</pixmap>
+            <pixmap resource="../images/glparchis.qrc">:/glparchis/cube.png</pixmap>
            </property>
            <property name="scaledContents">
             <bool>true</bool>
