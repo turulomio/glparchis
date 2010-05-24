@@ -20,11 +20,8 @@ install:
 	install -m 644 -o root datos.py $(PREFIXLIB)                
 	install -m 644 -o root ui/*.py $(PREFIXLIB)                
 	install -m 644 -o root images/*.py $(PREFIXLIB)
-	install -m 644 -o root LICENSE $(PREFIXSHARE)
 	install -m 644 -o root images/ficharoja.png $(PREFIXSHARE)
 	install -m 644 -o root i18n/*.qm $(PREFIXSHARE)
-
-#	install -m 644 -o root po/es.mo $(PREFIXPO)/es/LC_MESSAGES/recovermypartition.mo
 
 uninstall:
 	rm $(PREFIXBIN)/pyglparchis

@@ -39,14 +39,39 @@
 <context>
     <name>frmLanguage</name>
     <message>
-        <location filename="ui/Ui_frmLanguage.py" line="48"/>
+        <location filename="ui/frmLanguage.ui" line="29"/>
         <source>Selecciona un idioma</source>
-        <translation type="obsolete">Select a language</translation>
+        <translation type="unfinished">Select a language</translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmLanguage.py" line="53"/>
+        <location filename="ui/frmLanguage.ui" line="62"/>
         <source>C&amp;ambiar Idioma</source>
-        <translation type="obsolete">C&amp;hange language</translation>
+        <translation type="unfinished">C&amp;hange language</translation>
+    </message>
+    <message>
+        <location filename="ui/frmLanguage.ui" line="16"/>
+        <source>Dialog</source>
+        <translation type="unfinished">Dialogo</translation>
+    </message>
+    <message>
+        <location filename="ui/frmLanguage.ui" line="37"/>
+        <source>English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmLanguage.ui" line="42"/>
+        <source>Español</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmLanguage.ui" line="47"/>
+        <source>Français</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmLanguage.ui" line="52"/>
+        <source>Русский</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
