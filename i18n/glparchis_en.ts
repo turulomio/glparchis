@@ -5,7 +5,7 @@
     <message>
         <location filename="ui/wdgGame.py" line="417"/>
         <source>Han salido 3 seises te vas a casa</source>
-        <translation type="unfinished">You got 3 sixs</translation>
+        <translation>You got 3 sixs. Go home</translation>
     </message>
 </context>
 <context>
@@ -82,32 +82,32 @@
         <translation>H&amp;elp</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="223"/>
+        <location filename="ui/frmMain.ui" line="217"/>
         <source>J&amp;ugar</source>
         <translation>P&amp;lay</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="235"/>
+        <location filename="ui/frmMain.ui" line="236"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="256"/>
+        <location filename="ui/frmMain.ui" line="258"/>
         <source>S&amp;alir</source>
         <translation>E&amp;xit</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="265"/>
+        <location filename="ui/frmMain.ui" line="267"/>
         <source>Acerca de</source>
         <translation>About</translation>
     </message>
     <message>
         <location filename="ui/frmMain.ui" line="217"/>
         <source>P&amp;referencias</source>
-        <translation>P&amp;references</translation>
+        <translation type="obsolete">P&amp;references</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="283"/>
+        <location filename="ui/frmMain.ui" line="285"/>
         <source>I&amp;dioma</source>
         <translation>L&amp;anguage</translation>
     </message>
@@ -132,9 +132,24 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="274"/>
+        <location filename="ui/frmMain.ui" line="276"/>
         <source>Tirar dado</source>
         <translation>Throw cube</translation>
+    </message>
+    <message>
+        <location filename="ui/frmMain.ui" line="223"/>
+        <source>&amp;Archivo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmMain.ui" line="294"/>
+        <source>&amp;Recuperar partida</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmMain.ui" line="303"/>
+        <source>&amp;Guardar partida</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -54,22 +54,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="223"/>
+        <location filename="ui/frmMain.ui" line="217"/>
         <source>J&amp;ugar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="235"/>
+        <location filename="ui/frmMain.ui" line="236"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="256"/>
+        <location filename="ui/frmMain.ui" line="258"/>
         <source>S&amp;alir</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="265"/>
+        <location filename="ui/frmMain.ui" line="267"/>
         <source>Acerca de</source>
         <translation type="unfinished"></translation>
     </message>
@@ -94,18 +94,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="217"/>
-        <source>P&amp;referencias</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmMain.ui" line="274"/>
+        <location filename="ui/frmMain.ui" line="276"/>
         <source>Tirar dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="283"/>
+        <location filename="ui/frmMain.ui" line="285"/>
         <source>I&amp;dioma</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmMain.ui" line="223"/>
+        <source>&amp;Archivo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmMain.ui" line="294"/>
+        <source>&amp;Recuperar partida</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmMain.ui" line="303"/>
+        <source>&amp;Guardar partida</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
