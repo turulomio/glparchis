@@ -11,10 +11,26 @@ class Casilla(QGLWidget):
     def __init__(self, id, parent=None):
         QGLWidget.__init__(self, parent)
         self.id=id
+        self.max_fichas=self.defineMaxFichas(id)
         self.color=self.defineColor(id)
         self.position=datos.posCasillas[id]
         self.rotate=self.defineRotate(id)
         self.tipo=self.defineTipo(id)
+        self.busy=[False]*self.max_fichas
+        self.seguro=self.defineSeguro(id)
+#        print self.busy
+
+    def defineSeguro(self,  id):
+        if id==5 or id==12 or id==17 or id==22 or id==29 or id==34 or id==39 or id==46 or id==51  or id==56 or id==63 or id==68:
+            return True
+        else:
+            return False
+
+    def defineMaxFichas(self,  id):
+        if id==101 or id==102 or id==103 or id==104 or id==76 or id==84 or id==92 or id==100:
+            return 4
+        else:
+            return 2
 
     def defineTipo(self,  id):
         if id==101 or id==102 or id==103 or id==104:
@@ -66,7 +82,6 @@ class Casilla(QGLWidget):
         
     def tipo_inicio(self):        
         GL.glInitNames();
-        GL.glPushName(0);
         GL.glPushMatrix()
         GL.glPushName(datos.Name.casilla[self.id]);
         GL.glTranslated(self.position[0],self.position[1],self.position[2] )
@@ -96,7 +111,6 @@ class Casilla(QGLWidget):
 
     def tipo_normal(self):
         GL.glInitNames();
-        GL.glPushName(0);
         GL.glPushMatrix()
         GL.glPushName(datos.Name.casilla[self.id]);
         GL.glTranslated(self.position[0],self.position[1],self.position[2] )
@@ -125,7 +139,6 @@ class Casilla(QGLWidget):
 
     def tipo_oblicuoi(self):
         GL.glInitNames();
-        GL.glPushName(0);
         GL.glPushMatrix()
         GL.glPushName(datos.Name.casilla[self.id]);
         GL.glTranslated(self.position[0],self.position[1],self.position[2] )
@@ -155,7 +168,6 @@ class Casilla(QGLWidget):
 
     def tipo_oblicuod(self):
         GL.glInitNames();
-        GL.glPushName(0);
         GL.glPushMatrix()
         GL.glPushName(datos.Name.casilla[self.id]);
         GL.glTranslated(self.position[0],self.position[1],self.position[2] )
@@ -185,7 +197,6 @@ class Casilla(QGLWidget):
         
     def tipo_final(self):
         GL.glInitNames();
-        GL.glPushName(0);
         GL.glPushMatrix()
         GL.glPushName(datos.Name.casilla[self.id]);
         GL.glTranslated(self.position[0],self.position[1],self.position[2] )
@@ -212,6 +223,13 @@ class Casilla(QGLWidget):
 
         GL.glPopName();
         GL.glPopMatrix()
+
+    def position_free(self):
+        """Función que busca el libro pero no lo modifica"""
+        for i in range(len(self.busy)):
+            if self.busy[i]==False:
+                return i
+        return None
         
     def quad(self, p1, p2, p3, p4, color):
         self.qglColor(color)
@@ -238,13 +256,18 @@ class wdgGame(QGLWidget):
         self.lastPos = QPoint()
         self.casillas=[]
         self.fichas=[]
+#        self.newLog= pySignal(QString)  
+    
+        self.dado=0; # aquí debera llegar el movimiento del dado y las comidas y metidas
+        self.movimientos_acumulados=[]#Comidas ymetidas
         self.selFicha=None
         self.selCasilla=None
-        for i in range(0, 104):
-            self.casillas.append(Casilla(i+1))
+        self.jugadoractual=0
+        for i in range(0, 105):#Se debe inializar Antes que las fichas
+            self.casillas.append(Casilla(i)) #La casilla 0 no se usa pero se crea para que todo sea más intuitivo.
         for i in range(0, 16):
-            print "Iniciando Ficha",  i
             self.fichas.append(Ficha(i))
+            self.mover(i, 0)# Paraz aque todo funcione debe iniciarse así.
         self.trolltechGreen = QColor.fromCmykF(0.40, 0.0, 1.0, 0.0)
         self.trolltechPurple = QColor.fromCmykF(0.39, 0.39, 0.0, 0.0)
 
@@ -254,7 +277,6 @@ class wdgGame(QGLWidget):
         GL.glShadeModel(GL.GL_FLAT)
         GL.glEnable(GL.GL_DEPTH_TEST)
         GL.glEnable(GL.GL_CULL_FACE)
-        
         
         GL.glFrontFace(GL.GL_CCW);
 
@@ -300,36 +322,8 @@ class wdgGame(QGLWidget):
         if event.key() == Qt.Key_Q: # toggle mode
             self.updateGL()
                 
-    def mousePressEvent(self, event):
-        def object(id_name):
-            if id_name>=1 and id_name<=16:
-                return self.fichas[id_name-1]
-            elif id_name==17:
-                return self.tablero
-            elif id_name>=18 and id_name<=122:
-                return self.casillas[id_name-18]
-                
-        def process(nameStack):
-            """nameStack tiene la estructura minDepth, maxDepth, names"""
-            print len(nameStack),  nameStack
-            objetos=[]
-            for minDepth, maxDepth, names in nameStack:
-                if len(names)==2:
-                   objetos.append(names[1])
-            
-            if len(objetos)==1:
-                self.selCasilla=object(objetos[0])
-                self.selFicha=None
-            elif len(objetos)==2:
-                self.selCasilla=object(objetos[0])
-                self.selFicha=object(objetos[1])
-                self.selFicha.mover_ficha(self.selFicha.ruta+1)
-                
-            print self.selCasilla,  self.selFicha
-            
-#        self.lastPos = QPoint(event.pos())
-        self.setFocus()
-        if event.buttons() & Qt.LeftButton:
+    def mousePressEvent(self, event):        
+        def pickup(event):
             viewport=GL.glGetIntegerv(GL.GL_VIEWPORT);
             GL.glMatrixMode(GL.GL_PROJECTION);
             GL.glPushMatrix();
@@ -344,51 +338,160 @@ class wdgGame(QGLWidget):
             GL.glMatrixMode(GL.GL_PROJECTION);
             process(GL.glRenderMode(GL.GL_RENDER))
             GL.glPopMatrix();
-            GL.glMatrixMode(GL.GL_MODELVIEW);            
+            GL.glMatrixMode(GL.GL_MODELVIEW);           
+
+        def object(id_name):
+            if id_name>=0 and id_name<=15:
+                return id_name
+            elif id_name==16:
+                return self.tablero
+            elif id_name>=17 and id_name<=121:
+                return id_name-17
+                
+        def process(nameStack):
+            """nameStack tiene la estructura minDepth, maxDepth, names"""
+            objetos=[]
+            for minDepth, maxDepth, names in nameStack:
+                if len(names)==1:
+                   objetos.append(names[0])
+            
+            if len(objetos)==1:
+                self.selCasilla=object(objetos[0])
+                self.selFicha=None
+            elif len(objetos)==2:
+                self.selCasilla=object(objetos[0])
+                self.selFicha=object(objetos[1])
+            if self.selCasilla:
+                self.emit(SIGNAL("newLog(QString)"),"selCasilla:" + str(self.selCasilla )+ ". Busy:" +  str(self.casillas[self.selCasilla].busy))
+
+            if self.selFicha:
+                self.emit(SIGNAL("newLog(QString)"),"selFicha:" +str(self.selFicha)+". selCasilla:" + str(self.selCasilla) + ". Busy:"+  str(self.casillas[self.selCasilla].busy))
+            
+        self.setFocus()
+        if event.buttons() & Qt.LeftButton:
+            pickup(event)                
+            if self.selFicha:
+                self.after_ficha_click()
         self.updateGL()
 
-    def wheelEvent(self, event):
-        if event.delta() > 0:
-            self.fichas[0].mover_ficha(self.fichas[0].ruta+1)
+    def puede_comer(self, id_ficha,  ruta):
+        """No modifica nada"""
+        def hay_ficha_otro_jugador(id_casilla):
+            for f in self.fichas:
+                if f.casilla()==id_casilla and f.jugador!=self.jugadoractual:
+                    return (True, f.id)
+            return (False, None)
+
+        idcasilladestino=datos.ruta[ruta][self.fichas[id_ficha].jugador]
+        r=hay_ficha_otro_jugador(idcasilladestino)
+        if r==(False, None):
+            return (False, None)
+            
+        if self.casillas[idcasilladestino].seguro==True:
+            return (False, None)
+            
+        return r
+
+    def puede_jugar(self, commit):
+        """Lo relacionado con el movimiento del dado y movimientos especiales commit igual a -True lo gasta, con False solo busca"""
+        if len(self.movimientos_acumulados)==0:
+            if self.dado==0:
+                return (False, 0)
+            else:
+                if commit==True:
+                    self.dado=0
+                return (True, self.dado)
         else:
-            self.fichas[0].mover_ficha(self.fichas[0].ruta-1)
-        self.updateGL()
+            mov=movimientos_acumulados[0]
+            if commit==True:
+                del movimientos_acumulados[0]
+            return (True, mov)
+
+    def after_ficha_click(self):
+        if  self.fichas[self.selFicha].jugador!=self.jugadoractual:             
+            self.emit(SIGNAL("newLog(QString)"),"No es el jugador actual")
+            return
+
+        pj=self.puede_jugar(False)
+
+        if pj[0]==False:
+            self.emit(SIGNAL("newLog(QString)"),"Ya no puede seguir jugando")
+            self.cambiar_jugador()
+            return
+        self.emit(SIGNAL("newLog(QString)"),"Puede user" + str(pj[1]))
+        if self.fichas[self.selFicha].ruta+ pj[1]>72:
+            self.emit(SIGNAL("newLog(QString)"),"Se ha pasado")
+            return 
+            
+#        idcasillaorigen=self.fichas[id_ficha].casilla()
+        idcasilladestino=datos.ruta[self.fichas[self.selFicha].ruta+pj[1]][self.fichas[self.selFicha].jugador]
+#        posicioncasillaorigen=self.fichas[id_ficha].numposicion
+        posicioncasilladestino=self.casillas[idcasilladestino].position_free()
+        if posicioncasilladestino==None:
+            self.emit(SIGNAL("newLog(QString)"),"No hay casilla destino libre")
+            return             
+            
+        pc=self.puede_comer(self.selFicha, self.fichas[self.selFicha].ruta+pj[1])
+        if pc[0]==True:
+            pj=self.puede_jugar(True)
+            self.mover(pc[1], 0)
+
+        pj=self.puede_jugar(True)
+        self.emit(SIGNAL("newLog(QString)"),"Va a usar" + str(pj[1]))
+        self.mover(self.selFicha,self.fichas[self.selFicha].ruta+pj[1])            
+
+
+    def cambiar_jugador(self):
+        self.jugadoractual=self.jugadoractual+1
+        if self.jugadoractual>=4:
+            self.jugadoractual=0
+        self.emit(SIGNAL("newLog(QString)"),"cambiando a jugador "  + str(self.jugadoractual))
+
+    def mover(self, id_ficha,  ruta):
+        """Solo mueve, la logica en after_ficha_click"""
+        idcasillaorigen=self.fichas[id_ficha].casilla()
+        idcasilladestino=datos.ruta[ruta][self.fichas[id_ficha].jugador]
+        posicioncasillaorigen=self.fichas[id_ficha].numposicion
+        posicioncasilladestino=self.casillas[idcasilladestino].position_free()
+        self.fichas[id_ficha].last_ruta=self.fichas[id_ficha].ruta
+        self.fichas[id_ficha].ruta=ruta#cambia la ruta
+        self.fichas[id_ficha].numposicion=posicioncasilladestino
+        if posicioncasillaorigen!=None: #Al iniciar no hay
+            print "No se ha modificado posicioncasillaorigen por ser none"
+            self.casillas[idcasillaorigen].busy[posicioncasillaorigen]=False#libera la posicion en la casilla
+        self.casillas[idcasilladestino].busy[posicioncasilladestino]=True#okupa la posicion en la casilla
+        return True
+        
+#    def wheelEvent(self, event):
+#        if event.delta() > 0:
+#            self.mover(self.selFicha, 1)
+#        else:
+#            self.mover(self.selFicha, 2)
+#        self.updateGL()
 
 class Ficha(QGLWidget):
     def __init__(self, id,  parent=None):
         QGLWidget.__init__(self, parent)
         self.id=id
         self.ruta=0
-        self.last_position=0
+        self.last_ruta=0
         self.color=self.defineColor(id)
-        print "Aquí"
+#        print "Aquí"
         self.ficha=GLU.gluNewQuadric();
-        print "Aquí"
+#        print "Aquí"
         self.jugador=int(id/4)
-        self.numposicion=datos.numFichas[self.casilla()]-1#Posicion dentro de la casilla
-        datos.numFichas[self.casilla()]=datos.numFichas[self.casilla()]+1
-        print "Casilla",  self.casilla()
-        print "Jugador",  self.jugador
-        print "Numfichas", datos.numFichas[self.casilla()]
+        self.numposicion=None#Posicion dentro de la casilla
+
+#        self.numposicion=datos.numFichas[self.casilla()]-1#Posicion dentro de la casilla
+#        datos.numFichas[self.casilla()]=datos.numFichas[self.casilla()]+1
+#        print "Casilla",  self.casilla()
+#        print "Jugador",  self.jugador
+#        print "Numfichas", datos.numFichas[self.casilla()]
     def casilla(self):
         return datos.ruta[self.ruta][self.jugador]
         
     def posicion(self):
         return datos.posFichas[self.casilla()][self.numposicion]
-        
-    def mover_ficha(self, ruta):
-        if ruta>=73:
-            print "Ya ha llegado al final de ruta"
-            return
-        elif ruta<0:
-            print "Esta en el inicio de la ruta"
-            return
-        self.last_position=self.ruta
-        datos.numFichas[self.casilla()]=datos.numFichas[self.casilla()]-1
-        self.ruta=ruta
-        datos.numFichas[self.casilla()]=datos.numFichas[self.casilla()]+1
-        self.numposicion=datos.numFichas[self.casilla()]-1
-        print "Ficha movida desde " + str(self.last_position) + " hasta " + str(self.ruta)
 
     def defineColor(self,  id):
         if id>=0 and id<=3:
@@ -403,7 +506,6 @@ class Ficha(QGLWidget):
 
     def dibujar(self):
         GL.glInitNames();
-        GL.glPushName(0);
         GL.glPushMatrix()
         GL.glPushName(datos.Name.ficha[self.id]);
         p=self.posicion()
