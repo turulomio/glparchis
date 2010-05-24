@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>wdgUserPanel</class>
- <widget class="QWidget" name="wdgUserPanel" >
-  <property name="geometry" >
+ <widget class="QWidget" name="wdgUserPanel">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,83 +10,83 @@
     <height>125</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout">
    <item>
-    <layout class="QHBoxLayout" >
+    <layout class="QHBoxLayout">
      <item>
-      <layout class="QVBoxLayout" >
+      <layout class="QVBoxLayout">
        <item>
-        <widget class="QLabel" name="lblAvatar" >
-         <property name="layoutDirection" >
+        <widget class="QLabel" name="lblAvatar">
+         <property name="layoutDirection">
           <enum>Qt::LeftToRight</enum>
          </property>
-         <property name="text" >
+         <property name="text">
           <string/>
          </property>
-         <property name="pixmap" >
-          <pixmap resource="../images/glparchis.qrc" >:/glparchis/keko.png</pixmap>
+         <property name="pixmap">
+          <pixmap resource="../images/glparchis.qrc">:/glparchis/keko.png</pixmap>
          </property>
-         <property name="scaledContents" >
+         <property name="scaledContents">
           <bool>false</bool>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" >
+        <layout class="QHBoxLayout">
          <item>
-          <widget class="QLabel" name="lblTurn" >
-           <property name="text" >
+          <widget class="QLabel" name="lblTurn">
+           <property name="text">
             <string/>
            </property>
-           <property name="pixmap" >
-            <pixmap resource="../images/glparchis.qrc" >:/glparchis/star.png</pixmap>
+           <property name="pixmap">
+            <pixmap resource="../images/glparchis.qrc">:/glparchis/star.png</pixmap>
            </property>
-           <property name="scaledContents" >
+           <property name="scaledContents">
             <bool>false</bool>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="lbl1" >
-           <property name="text" >
+          <widget class="QLabel" name="lbl1">
+           <property name="text">
             <string/>
            </property>
-           <property name="pixmap" >
-            <pixmap resource="../images/glparchis.qrc" >:/glparchis/cube6.png</pixmap>
+           <property name="pixmap">
+            <pixmap resource="../images/glparchis.qrc">:/glparchis/cube6.png</pixmap>
            </property>
-           <property name="scaledContents" >
+           <property name="scaledContents">
             <bool>true</bool>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="lbl2" >
-           <property name="text" >
+          <widget class="QLabel" name="lbl2">
+           <property name="text">
             <string/>
            </property>
-           <property name="pixmap" >
-            <pixmap resource="../images/glparchis.qrc" >:/glparchis/cube6.png</pixmap>
+           <property name="pixmap">
+            <pixmap resource="../images/glparchis.qrc">:/glparchis/cube6.png</pixmap>
            </property>
-           <property name="scaledContents" >
+           <property name="scaledContents">
             <bool>true</bool>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="lbl3" >
-           <property name="text" >
+          <widget class="QLabel" name="lbl3">
+           <property name="text">
             <string/>
            </property>
-           <property name="pixmap" >
-            <pixmap resource="../images/glparchis.qrc" >:/glparchis/cube6.png</pixmap>
+           <property name="pixmap">
+            <pixmap resource="../images/glparchis.qrc">:/glparchis/cube6.png</pixmap>
            </property>
-           <property name="scaledContents" >
+           <property name="scaledContents">
             <bool>true</bool>
            </property>
           </widget>
@@ -95,14 +96,109 @@
       </layout>
      </item>
      <item>
-      <widget class="QListView" name="lst" />
+      <widget class="QListView" name="lst">
+       <property name="palette">
+        <palette>
+         <active>
+          <colorrole role="WindowText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>255</red>
+             <green>192</green>
+             <blue>192</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="AlternateBase">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>89</red>
+             <green>113</green>
+             <blue>248</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="NoRole">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>192</red>
+             <green>192</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </active>
+         <inactive>
+          <colorrole role="WindowText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>255</red>
+             <green>192</green>
+             <blue>192</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="AlternateBase">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>89</red>
+             <green>113</green>
+             <blue>248</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="NoRole">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>192</red>
+             <green>192</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </inactive>
+         <disabled>
+          <colorrole role="WindowText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>146</red>
+             <green>145</green>
+             <blue>144</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="AlternateBase">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>89</red>
+             <green>113</green>
+             <blue>248</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="NoRole">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>192</red>
+             <green>192</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </disabled>
+        </palette>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
   </layout>
  </widget>
  <resources>
-  <include location="../images/glparchis.qrc" />
+  <include location="../images/glparchis.qrc"/>
  </resources>
  <connections/>
 </ui>

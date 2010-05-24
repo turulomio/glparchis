@@ -256,10 +256,14 @@ class wdgGame(QGLWidget):
         self.lastPos = QPoint()
         self.casillas=[]
         self.fichas=[]
+        #
+        self.pendiente=2 #0 de nada,  2 de tirar dado, 6 por seis, 10 de mover ficha por metida, 20 de mover ficha por comida
 #        self.newLog= pySignal(QString)  
     
         self.dado=0; # aquí debera llegar el movimiento del dado y las comidas y metidas
+        self.historicodado=[]
         self.movimientos_acumulados=[]#Comidas ymetidas
+        self.selLastFicha=None #Se utiliza cuando se va a casa
         self.selFicha=None
         self.selCasilla=None
         self.jugadoractual=0
@@ -295,6 +299,8 @@ class wdgGame(QGLWidget):
         GL.glColorMaterial(GL.GL_FRONT,GL.GL_AMBIENT_AND_DIFFUSE);
         GL.glShadeModel (GL.GL_SMOOTH);
 
+    def log(self, cadena):
+            self.emit(SIGNAL("newLog(QString)"),str(cadena))
 
     def paintGL(self):   
         GL.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT)
@@ -357,15 +363,13 @@ class wdgGame(QGLWidget):
             
             if len(objetos)==1:
                 self.selCasilla=object(objetos[0])
+                self.emit(SIGNAL("newLog(QString)"),"selCasilla:" + str(self.selCasilla )+ ". Busy:" +  str(self.casillas[self.selCasilla].busy))
                 self.selFicha=None
             elif len(objetos)==2:
+                self.selLastFicha=self.selFicha
                 self.selCasilla=object(objetos[0])
                 self.selFicha=object(objetos[1])
-            if self.selCasilla:
-                self.emit(SIGNAL("newLog(QString)"),"selCasilla:" + str(self.selCasilla )+ ". Busy:" +  str(self.casillas[self.selCasilla].busy))
-
-            if self.selFicha:
-                self.emit(SIGNAL("newLog(QString)"),"selFicha:" +str(self.selFicha)+". selCasilla:" + str(self.selCasilla) + ". Busy:"+  str(self.casillas[self.selCasilla].busy))
+                self.emit(SIGNAL("newLog(QString)"),"selFicha:" +str(self.selFicha))
             
         self.setFocus()
         if event.buttons() & Qt.LeftButton:
@@ -394,71 +398,124 @@ class wdgGame(QGLWidget):
 
     def puede_jugar(self, commit):
         """Lo relacionado con el movimiento del dado y movimientos especiales commit igual a -True lo gasta, con False solo busca"""
+        def jugador_tiene_alguna_ficha_en_casa():
+            for f in self.fichas:
+                if f.jugador==self.jugadoractual:
+                    if f.ruta==0:
+                        return True
+            return False
+            
+        salio=0
         if len(self.movimientos_acumulados)==0:
             if self.dado==0:
                 return (False, 0)
             else:
-                if commit==True:
-                    self.dado=0
-                return (True, self.dado)
+                salio=self.dado
+            
+            if salio==6 and len(self.historicodado)==3:
+                self.mover(self.selLastFicha, 0)
+                self.log("Han salido 3 seises te vas a casa")
+                self.emit(SIGNAL("cambiar_jugador()"))
+                return (False, 0)
+
+            if commit==True:
+                if salio==6 and jugador_tiene_alguna_ficha_en_casa()==False:
+                    salio=7
+                    self.log("Salio un 6 pero mueves 7")
+                    self.pendiente=2
+                if self.fichas[self.selFicha].ruta==0:
+                    if salio==5:
+                        salio=1   
+                        self.log("Sales de casa con un 5")
+                    else:
+                       return (False, 0)
+                self.pendiente=0
+                self.dado=0
+                return (True, salio)
+            else:               
+                if salio==6 and jugador_tiene_alguna_ficha_en_casa()==False:
+                    salio=7
+                if self.fichas[self.selFicha].ruta==0:
+                    if salio==5:
+                        salio=1
+                    else:
+                       return (False, 0)
+                return (True, salio)
         else:
-            mov=movimientos_acumulados[0]
+            salio=movimientos_acumulados[0]
             if commit==True:
                 del movimientos_acumulados[0]
-            return (True, mov)
+            return (True, salio)
 
     def after_ficha_click(self):
         if  self.fichas[self.selFicha].jugador!=self.jugadoractual:             
-            self.emit(SIGNAL("newLog(QString)"),"No es el jugador actual")
+            self.log("No es el jugador actual")
             return
-
+            
+        if self.pendiente==2:
+            self.log("Debe tirar el dado")
+            return
         pj=self.puede_jugar(False)
+#        self.log(str(pj))
 
         if pj[0]==False:
-            self.emit(SIGNAL("newLog(QString)"),"Ya no puede seguir jugando")
-            self.cambiar_jugador()
+            self.log("Ya no puede seguir jugando")
+            self.emit(SIGNAL("cambiar_jugador()"))
             return
-        self.emit(SIGNAL("newLog(QString)"),"Puede user" + str(pj[1]))
+#        self.log("Puede usar " + str(pj[1]))
+        
         if self.fichas[self.selFicha].ruta+ pj[1]>72:
-            self.emit(SIGNAL("newLog(QString)"),"Se ha pasado")
+            self.log("Se ha pasado")
             return 
             
-#        idcasillaorigen=self.fichas[id_ficha].casilla()
         idcasilladestino=datos.ruta[self.fichas[self.selFicha].ruta+pj[1]][self.fichas[self.selFicha].jugador]
-#        posicioncasillaorigen=self.fichas[id_ficha].numposicion
         posicioncasilladestino=self.casillas[idcasilladestino].position_free()
+#        self.log(str(idcasilladestino) +" " + str( posicioncasilladestino))
         if posicioncasilladestino==None:
-            self.emit(SIGNAL("newLog(QString)"),"No hay casilla destino libre")
+            self.log("No hay casilla destino libre")
             return             
             
         pc=self.puede_comer(self.selFicha, self.fichas[self.selFicha].ruta+pj[1])
         if pc[0]==True:
             pj=self.puede_jugar(True)
+#            self.log("Va a comer y usar " + str(pj[1]))
+            self.pendiente=20
             self.mover(pc[1], 0)
 
         pj=self.puede_jugar(True)
-        self.emit(SIGNAL("newLog(QString)"),"Va a usar" + str(pj[1]))
+#        self.log(str(pj))
+#        self.log(self.fichas[self.selFicha].ruta+  pj[1]+  self.fichas[self.selFicha].ruta+pj[1])
+#        self.log("Va a usar " + str(pj[1]))
         self.mover(self.selFicha,self.fichas[self.selFicha].ruta+pj[1])            
 
+        ##CHEQUEOS UNA VEZ MOVIDO
+        if self.pendiente==0:
+            self.emit(SIGNAL("cambiar_jugador()"))
+        elif self.pendiente==2:#tirardado
+                self.emit(SIGNAL("volver_a_tirar()"))
+        elif self.pendiente==6:
+            self.log("Debe tirar por haber salido un 6")
+        elif self.pendiente==10:
+            self.log("Debe mover 10")
+        elif self.pendiente==20:
+            self.log("Debe mover 20")
+            
 
-    def cambiar_jugador(self):
-        self.jugadoractual=self.jugadoractual+1
-        if self.jugadoractual>=4:
-            self.jugadoractual=0
-        self.emit(SIGNAL("newLog(QString)"),"cambiando a jugador "  + str(self.jugadoractual))
 
     def mover(self, id_ficha,  ruta):
         """Solo mueve, la logica en after_ficha_click"""
         idcasillaorigen=self.fichas[id_ficha].casilla()
         idcasilladestino=datos.ruta[ruta][self.fichas[id_ficha].jugador]
+        if ruta==72:
+            self.pendiente=10
         posicioncasillaorigen=self.fichas[id_ficha].numposicion
         posicioncasilladestino=self.casillas[idcasilladestino].position_free()
         self.fichas[id_ficha].last_ruta=self.fichas[id_ficha].ruta
         self.fichas[id_ficha].ruta=ruta#cambia la ruta
         self.fichas[id_ficha].numposicion=posicioncasilladestino
         if posicioncasillaorigen!=None: #Al iniciar no hay
-            print "No se ha modificado posicioncasillaorigen por ser none"
             self.casillas[idcasillaorigen].busy[posicioncasillaorigen]=False#libera la posicion en la casilla
+#        self.log("Ficha " +str (id_ficha)+" movido a casilla " + str(idcasilladestino) + " a la posicion " + str(posicioncasilladestino))
         self.casillas[idcasilladestino].busy[posicioncasilladestino]=True#okupa la posicion en la casilla
         return True
         
