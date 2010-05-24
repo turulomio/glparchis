@@ -5,7 +5,7 @@
     <message>
         <location filename="ui/wdgGame.py" line="417"/>
         <source>Han salido 3 seises te vas a casa</source>
-        <translation>You got 3 sixs. Go home</translation>
+        <translation type="obsolete">You got 3 sixs. Go home</translation>
     </message>
 </context>
 <context>
@@ -157,7 +157,12 @@
     <message>
         <location filename="ui/wdgGame.py" line="541"/>
         <source>Ejemplo de translacion</source>
-        <translation>Translation example</translation>
+        <translation type="obsolete">Translation example</translation>
+    </message>
+    <message>
+        <location filename="ui/wdgGame.py" line="419"/>
+        <source>Han salido 3 seises te vas a casa</source>
+        <translation type="unfinished">You got 3 sixs. Go home</translation>
     </message>
 </context>
 <context>
