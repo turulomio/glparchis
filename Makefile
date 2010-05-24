@@ -6,6 +6,8 @@ PREFIXSHARE=$(DESTDIR)/share/pyglparchis
 
 install:
 	echo "Instalando en ${DESTDIR}"
+	pylupdate4 pyglparchis.pro
+	lrelease pyglparchis.pro
 	pyuic4 ui/frmAbout.ui > ui/Ui_frmAbout.py 
 	pyuic4 ui/frmLanguage.ui > ui/Ui_frmLanguage.py 
 	pyuic4 ui/frmMain.ui > ui/Ui_frmMain.py
@@ -20,6 +22,7 @@ install:
 	install -m 644 -o root images/*.py $(PREFIXLIB)
 	install -m 644 -o root LICENSE $(PREFIXSHARE)
 	install -m 644 -o root images/ficharoja.png $(PREFIXSHARE)
+	install -m 644 -o root i18n/*.qm $(PREFIXSHARE)
 
 #	install -m 644 -o root po/es.mo $(PREFIXPO)/es/LC_MESSAGES/recovermypartition.mo
 
