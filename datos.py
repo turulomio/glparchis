@@ -302,4 +302,4 @@ class Name:
     casilla=[0]*105
     for i in range(17, 122):
         casilla[i-17]=i
-    print ficha,  tablero, casilla
+#    print ficha,  tablero, casilla

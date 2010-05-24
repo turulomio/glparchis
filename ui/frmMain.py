@@ -57,16 +57,49 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.p1.setObjectName("dado5")
         self.dado5.addPixmap(QtGui.QPixmap(":/glparchis/cube5.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.dado6 = QtGui.QIcon()
-        self.p1.setObjectName("dado6")
+        self.p1.setObjectName("dado6")        
+        self.logs1=[]
+        self.logs2=[]
+        self.logs3=[]
+        self.logs4=[]
         self.dado6.addPixmap(QtGui.QPixmap(":/glparchis/cube6.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('newLog(QString)'), self.lstLog_newLog)  
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('cambiar_jugador()'), self.cambiar_jugador)  
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('volver_a_tirar()'), self.volver_a_tirar)  
-    
+#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('tirar_dado()'), self.on_actionDado_activated)  
+        #Se activa 
+        self.enable_panel(self.ogl.jugadoractual, True)
+
+    @pyqtSignature("")
+    def on_cmdTirarDado_clicked(self):
+        self.on_actionDado_activated()
+        
+    def enable_panel(self, idjugador, bool):
+        if idjugador==0:
+            self.p1.setEnabled(bool)
+        elif idjugador==1:
+            self.p2.setEnabled(bool)
+        elif idjugador==2:
+            self.p3.setEnabled(bool)
+        elif idjugador==3:
+            self.p4.setEnabled(bool)    
+            
     def lstLog_newLog(self, log):
-        self.logs.insert(0, str(self.ogl.jugadoractual) + "|" + log)
-        self.lstLog.setModel(QStringListModel(QStringList(self.logs)))
-        self.lstLog.show()
+        if self.ogl.jugadoractual==0:
+            panel=self.p1
+            logs=self.logs1
+        elif self.ogl.jugadoractual==1:
+            panel=self.p2
+            logs=self.logs2
+        elif self.ogl.jugadoractual==2:
+            panel=self.p3
+            logs=self.logs3
+        elif self.ogl.jugadoractual==3:
+            panel=self.p4        
+            logs=self.logs4
+        logs.append( log)
+        panel.lst.setModel(QStringListModel(logs))
+        panel.lst.show()
 
     @pyqtSignature("")
     def on_actionAcercaDe_activated(self):
@@ -102,21 +135,27 @@ class frmMain(QMainWindow, Ui_frmMain):#
             if numero==1:
                 pix=QtGui.QPixmap(":/glparchis/cube1.png")
                 self.actionDado.setIcon(self.dado1)    
+                self.cmdTirarDado.setIcon(self.dado1)
             elif numero==2:
                 pix=QtGui.QPixmap(":/glparchis/cube2.png")
                 self.actionDado.setIcon(self.dado2)    
+                self.cmdTirarDado.setIcon(self.dado2)
             elif numero==3:
                 pix=QtGui.QPixmap(":/glparchis/cube3.png")
                 self.actionDado.setIcon(self.dado3)    
+                self.cmdTirarDado.setIcon(self.dado3)
             elif numero==4:
                 pix=QtGui.QPixmap(":/glparchis/cube4.png")
                 self.actionDado.setIcon(self.dado4)    
+                self.cmdTirarDado.setIcon(self.dado4)
             elif numero==5:
                 pix=QtGui.QPixmap(":/glparchis/cube5.png")
                 self.actionDado.setIcon(self.dado5)    
+                self.cmdTirarDado.setIcon(self.dado5)
             elif numero==6:
                 pix=QtGui.QPixmap(":/glparchis/cube6.png")
                 self.actionDado.setIcon(self.dado6)    
+                self.cmdTirarDado.setIcon(self.dado6)
             label.setPixmap(pix)
                 
         def jugador_tiene_todas_fichas_en_casa():
@@ -133,6 +172,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.ogl.pendiente=1
         self.ogl.historicodado.insert(0, numero)
         self.actionDado.setEnabled(False)
+        self.cmdTirarDado.setEnabled(False)
         labeldado()
         
         #LOGICA QUE NO REQUIERE LA INTEVENCION DEL USUARIO
@@ -144,15 +184,6 @@ class frmMain(QMainWindow, Ui_frmMain):#
 
                     
     def cambiar_jugador(self):
-        def enable_panel(idjugador, bool):
-            if idjugador==0:
-                self.p1.setEnabled(bool)
-            elif idjugador==1:
-                self.p2.setEnabled(bool)
-            elif idjugador==2:
-                self.p3.setEnabled(bool)
-            elif idjugador==3:
-                self.p4.setEnabled(bool)
         def limpia_panel(id):
             if id==0:
                 self.p1.lbl1.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
@@ -174,15 +205,16 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 self.p4.lbl2.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
                 self.p4.lbl3.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
                 self.p4.show()
-        enable_panel(self.ogl.jugadoractual, False)
+        self.enable_panel(self.ogl.jugadoractual, False)
         self.ogl.jugadoractual=self.ogl.jugadoractual+1
         self.ogl.historicodado=[]
         self.ogl.pendiente=2
         if self.ogl.jugadoractual>=4:
             self.ogl.jugadoractual=0
-        self.lstLog_newLog("cambiando a jugador "  + str(self.ogl.jugadoractual))
+#        self.lstLog_newLog("cambiando a jugador "  + str(self.ogl.jugadoractual))
         self.actionDado.setEnabled(True)       
-        enable_panel(self.ogl.jugadoractual,  True)
+        self.cmdTirarDado.setEnabled(True)
+        self.enable_panel(self.ogl.jugadoractual,  True)
         limpia_panel(self.ogl.jugadoractual)
 
                     
