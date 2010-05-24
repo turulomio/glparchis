@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*- 
 #Es la posición fisica de la casilla
 posCasillas=[None]*105
+posCasillas[0]=(0, 0, 0)
 posCasillas[1]=(21, 60, 0.7)
 posCasillas[2]=(21, 57, 0.7)
 posCasillas[3]=(21, 54, 0.7)
@@ -110,7 +111,7 @@ posCasillas[104]=(42,  42, 0.7)
 ##En casilla horizontal se suma al punto inferiro ezdo 1.5 en altura y 1.7 ala primera y 5.3 a la segunda
 ##En las oblucuas a la lejana se resta 1.5 y ala siguiente 2 desde este punto
 posFichas=[None]*105
-posFichas[0]=((21, 60, 0.9), (24, 60, 0.9))
+posFichas[0]=((0, 0, 0), (0, 0, 0))
 posFichas[1]=((22.7, 61.5, 0.9), (26.3, 61.5, 0.9))
 posFichas[2]=((22.7, 58.5, 0.9), (26.3, 58.5, 0.9))
 posFichas[3]=((22.7, 55.5, 0.9), (26.3, 55.5, 0.9))
@@ -292,15 +293,13 @@ ruta[70]=(74, 82, 90, 98)
 ruta[71]=(75, 83, 91, 99)
 ruta[72]=(76, 84, 92, 100)
 
-#numfichas en casilla
-numFichas=[0]*105
-
 class Name:
     """Enumeración usada para los names de opengl"""
     ficha=[0]*16
-    for i in range(1, 17):
-        ficha[i-1]=i
-    tablero=17
+    for i in range(0, 16):
+        ficha[i]=i
+    tablero=16
     casilla=[0]*105
-    for i in range(18, 123):
-        casilla[i-18]=i
+    for i in range(17, 122):
+        casilla[i-17]=i
+#    print ficha,  tablero, casilla

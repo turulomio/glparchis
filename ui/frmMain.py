@@ -33,8 +33,16 @@ class frmMain(QMainWindow, Ui_frmMain):#
         p4=wdgUserPanel(self.panel4)
         p4.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/keka.png"))
         p4.show()
-        
+#        self.lstLog.addColumn("Log")
+#        self.lstLog.setRootIsDecorated(1)
+        self.logs = []
+        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('newLog(QString)'), self.lstLog_newLog)  
     
+    def lstLog_newLog(self, log):
+        self.logs.append(log)
+        self.lstLog.setModel(QStringListModel(QStringList(self.logs)))
+        self.lstLog.show()
+
     @pyqtSignature("")
     def on_actionAcercaDe_activated(self):
         fr=frmAbout(self, "frmabout")
@@ -46,7 +54,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
     
     @QtCore.pyqtSlot()      
     def on_actionJugar_activated(self):
-        self.ogl.updateGL()
+        print "Ha salido un 3"
+        self.ogl.dado=3
         
     @QtCore.pyqtSlot()      
     def on_actionLenguaje_activated(self):
