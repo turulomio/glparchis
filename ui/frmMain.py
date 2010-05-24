@@ -153,7 +153,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 self.p3.setEnabled(bool)
             elif idjugador==3:
                 self.p4.setEnabled(bool)
-        def limpia_panel(idjugador):
+        def limpia_panel(id):
             if id==0:
                 self.p1.lbl1.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
                 self.p1.lbl2.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
