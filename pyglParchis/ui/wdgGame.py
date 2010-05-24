@@ -266,7 +266,7 @@ class wdgGame(QGLWidget):
         self.selLastFicha=None #Se utiliza cuando se va a casa
         self.selFicha=None
         self.selCasilla=None
-        self.jugadoractual=3
+        self.jugadoractual=0
         for i in range(0, 105):#Se debe inializar Antes que las fichas
             self.casillas.append(Casilla(i)) #La casilla 0 no se usa pero se crea para que todo sea más intuitivo.
         for i in range(0, 16):
@@ -275,7 +275,9 @@ class wdgGame(QGLWidget):
         self.trolltechGreen = QColor.fromCmykF(0.40, 0.0, 1.0, 0.0)
         self.trolltechPurple = QColor.fromCmykF(0.39, 0.39, 0.0, 0.0)
 
-
+#    def mouseDoubleClickEvent (self,  event ) : 
+#            self.emit(SIGNAL("tirar_dado()"))
+    
     def initializeGL(self):
         self.qglClearColor(self.trolltechPurple.dark())
         GL.glShadeModel(GL.GL_FLAT)
@@ -364,13 +366,13 @@ class wdgGame(QGLWidget):
             
             if len(objetos)==1:
                 self.selCasilla=object(objetos[0])
-                self.emit(SIGNAL("newLog(QString)"),"selCasilla:" + str(self.selCasilla )+ ". Busy:" +  str(self.casillas[self.selCasilla].busy))
+#                self.emit(SIGNAL("newLog(QString)"),"selCasilla:" + str(self.selCasilla )+ ". Busy:" +  str(self.casillas[self.selCasilla].busy))
                 self.selFicha=None
             elif len(objetos)==2:
                 self.selLastFicha=self.selFicha
                 self.selCasilla=object(objetos[0])
                 self.selFicha=object(objetos[1])
-                self.emit(SIGNAL("newLog(QString)"),"selFicha:" +str(self.selFicha))
+#                self.emit(SIGNAL("newLog(QString)"),"selFicha:" +str(self.selFicha))
             
         self.setFocus()
         if event.buttons() & Qt.LeftButton:
@@ -510,7 +512,7 @@ class wdgGame(QGLWidget):
             self.pendiente=10
         posicioncasillaorigen=self.fichas[id_ficha].numposicion
         posicioncasilladestino=self.casillas[idcasilladestino].position_free()
-        print self.selFicha,  idcasillaorigen,  idcasilladestino,  posicioncasillaorigen,  posicioncasilladestino
+#        print self.selFicha,  idcasillaorigen,  idcasilladestino,  posicioncasillaorigen,  posicioncasilladestino
         self.fichas[id_ficha].last_ruta=self.fichas[id_ficha].ruta
         self.fichas[id_ficha].ruta=ruta#cambia la ruta
         self.fichas[id_ficha].numposicion=posicioncasilladestino

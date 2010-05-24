@@ -149,6 +149,17 @@
               </property>
              </widget>
             </item>
+            <item row="1" column="0">
+             <widget class="QPushButton" name="cmdTirarDado">
+              <property name="text">
+               <string>Pulsa para tirar el dado</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../images/glparchis.qrc">
+                <normaloff>:/glparchis/cube.png</normaloff>:/glparchis/cube.png</iconset>
+              </property>
+             </widget>
+            </item>
            </layout>
           </widget>
           <widget class="QWidget" name="tabStatistics">
@@ -167,28 +178,6 @@
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_3"/>
           </widget>
-         </widget>
-        </item>
-        <item>
-         <widget class="QListView" name="lstLog">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>50</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>50</height>
-           </size>
-          </property>
          </widget>
         </item>
        </layout>
