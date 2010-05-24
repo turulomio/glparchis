@@ -4,12 +4,10 @@ SOURCES         = datos.py \
                   ui/wdgGame.py \
                   ui/wdgQT.py \
                   ui/frmAbout.py \
-                  ui/frmLanguage.py \
                   ui/wdgShowObject.py \
                   ui/wdgUserPanel.py
 
 FORMS           = ui/fromAbout.ui \
-                  ui/frmLanguage.ui \
                   ui/frmMain.ui \
                   ui/wdgUserPanel.ui
 

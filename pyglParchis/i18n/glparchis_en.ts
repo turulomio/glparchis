@@ -41,37 +41,17 @@
     <message>
         <location filename="ui/frmLanguage.ui" line="29"/>
         <source>Selecciona un idioma</source>
-        <translation type="unfinished">Select a language</translation>
+        <translation type="obsolete">Select a language</translation>
     </message>
     <message>
         <location filename="ui/frmLanguage.ui" line="62"/>
         <source>C&amp;ambiar Idioma</source>
-        <translation type="unfinished">C&amp;hange language</translation>
+        <translation type="obsolete">C&amp;hange language</translation>
     </message>
     <message>
         <location filename="ui/frmLanguage.ui" line="16"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialogo</translation>
-    </message>
-    <message>
-        <location filename="ui/frmLanguage.ui" line="37"/>
-        <source>English</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmLanguage.ui" line="42"/>
-        <source>Español</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmLanguage.ui" line="47"/>
-        <source>Français</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmLanguage.ui" line="52"/>
-        <source>Русский</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Dialogo</translation>
     </message>
 </context>
 <context>
@@ -109,7 +89,7 @@
     <message>
         <location filename="ui/frmMain.ui" line="285"/>
         <source>I&amp;dioma</source>
-        <translation>L&amp;anguage</translation>
+        <translation type="obsolete">L&amp;anguage</translation>
     </message>
     <message>
         <location filename="ui/frmMain.ui" line="136"/>
@@ -142,12 +122,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="294"/>
+        <location filename="ui/frmMain.ui" line="285"/>
         <source>&amp;Recuperar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="303"/>
+        <location filename="ui/frmMain.ui" line="294"/>
         <source>&amp;Guardar partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -160,7 +140,7 @@
         <translation type="obsolete">Translation example</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="419"/>
+        <location filename="ui/wdgGame.py" line="418"/>
         <source>Han salido 3 seises te vas a casa</source>
         <translation type="unfinished">You got 3 sixs. Go home</translation>
     </message>
