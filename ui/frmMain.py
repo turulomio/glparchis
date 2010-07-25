@@ -165,10 +165,11 @@ class frmMain(QMainWindow, Ui_frmMain):#
                         return False
             return True
             
+#        numero=5
 #        numero= int(random.random()*6)+1
-        numero=5
-        self.lstLog_newLog("Ha salido un " + str(numero))        
-        self.ogl.dado=numero
+        numero= int(random.random()*2)+5
+#        self.lstLog_newLog("Ha salido un " + str(numero))        
+#        self.ogl.dado=numero
         self.ogl.pendiente=1
         self.ogl.historicodado.insert(0, numero)
         self.actionDado.setEnabled(False)

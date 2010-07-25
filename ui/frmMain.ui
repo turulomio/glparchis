@@ -154,10 +154,6 @@
               <property name="text">
                <string>Pulsa para tirar el dado</string>
               </property>
-              <property name="icon">
-               <iconset resource="../images/glparchis.qrc">
-                <normaloff>:/glparchis/cube.png</normaloff>:/glparchis/cube.png</iconset>
-              </property>
              </widget>
             </item>
            </layout>
@@ -171,12 +167,6 @@
              <widget class="QTreeView" name="lstEstadisticas"/>
             </item>
            </layout>
-          </widget>
-          <widget class="QWidget" name="tabLog">
-           <attribute name="title">
-            <string>Log</string>
-           </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_3"/>
           </widget>
          </widget>
         </item>
@@ -257,10 +247,6 @@
    </property>
   </action>
   <action name="actionDado">
-   <property name="icon">
-    <iconset resource="../images/glparchis.qrc">
-     <normaloff>:/glparchis/cube.png</normaloff>:/glparchis/cube.png</iconset>
-   </property>
    <property name="text">
     <string>Tirar dado</string>
    </property>

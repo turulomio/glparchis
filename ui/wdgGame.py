@@ -260,7 +260,7 @@ class wdgGame(QGLWidget):
         self.pendiente=2 #0 de nada,  2 de tirar dado, 6 por seis, 10 de mover ficha por metida, 20 de mover ficha por comida
 #        self.newLog= pySignal(QString)  
     
-        self.dado=0; # aquí debera llegar el movimiento del dado y las comidas y metidas
+#        self.dado=0; # aquí debera llegar el movimiento del dado y las comidas y metidas
         self.historicodado=[]
         self.movimientos_acumulados=[]#Comidas ymetidas
         self.selLastFicha=None #Se utiliza cuando se va a casa
@@ -407,61 +407,78 @@ class wdgGame(QGLWidget):
                     if f.ruta==0:
                         return True
             return False
-            
-        salio=0
-        if len(self.movimientos_acumulados)==0:
-            if self.dado==0:
-                return (False, 0)
-            else:
-                salio=self.dado
-            
-            if salio==6 and len(self.historicodado)==3:
-                self.mover(self.selLastFicha, 0)
-                self.log(QCoreApplication.translate("wdgGame","Han salido 3 seises te vas a casa"))
-                self.emit(SIGNAL("cambiar_jugador()"))
-                return (False, 0)
 
+        def jugador_tiene_todas_fichas_en_casa():
+            resultado=True
+            for f in self.fichas:
+                if f.jugador==self.jugadoractual:
+                    if f.ruta!=0:
+                        return False
+            return resultado
+            
+        def commit(pendiente,  log):
             if commit==True:
-                if salio==6 and jugador_tiene_alguna_ficha_en_casa()==False:
-                    salio=7
-                    self.log("Salio un 6 pero mueves 7")
-                    self.pendiente=2
-                if self.fichas[self.selFicha].ruta==0:
-                    if salio==5:
-                        salio=1   
-                        self.log("Sales de casa con un 5")
-                    else:
-                       return (False, 0)
-                self.pendiente=0
-                self.dado=0
-                return (True, salio)
-            else:               
-                if salio==6 and jugador_tiene_alguna_ficha_en_casa()==False:
-                    salio=7
-                if self.fichas[self.selFicha].ruta==0:
-                    if salio==5:
-                        salio=1
-                    else:
-                       return (False, 0)
-                return (True, salio)
-        else:
+                self.log(log)
+                self.pendiente=pendiente
+                
+        ## MOVIMIENTOS ACUMULADOS
+        if len(self.movimientos_acumulados)>0:
             salio=movimientos_acumulados[0]
             if commit==True:
                 del movimientos_acumulados[0]
             return (True, salio)
+        
+        ## MOVIMIENTOS DADO
+        salio=self.historicodado[0]
+        #Tres seises para casa
+        if salio==6 and len(self.historicodado)==3:
+            self.mover(self.selLastFicha, 0)
+            self.log(QCoreApplication.translate("wdgGame","Han salido 3 seises te vas a casa"))
+            self.emit(SIGNAL("cambiar_jugador()"))
+            return (False, 0)
+             
+        #Si todas en casa
+        if jugador_tiene_todas_fichas_en_casa()==True and salio!=5:
+            commit(0, "Tiene todas en casa y no ha sacado 5")
+            return (False, 0)
+            
+        #Si esta en ruta 0
+        if self.fichas[self.selFicha].ruta==0:
+            if salio==5:
+                salio=1   
+                commit(0,"Sales de casa con un 5")
+                return(True, salio)
+            else:
+                self.log("Esta ficha solo se puede mover con un 5")#no es commit porque debe pinchar en otra
+                return (False, 0)
+        
+        #Movimiento normal
+        if salio==6:
+            if jugador_tiene_alguna_ficha_en_casa()==False:
+                salio=7
+                commit(2,"Salio un 6 pero mueves 7")
+                return (True, 7)
+            else:
+                commit(2,"Salio 6 y tienes fichas en casa")
+                return(True, 6)
+        else:
+            commit(0, "Movimiento normal")
+            return(True, salio)
+
 
     def after_ficha_click(self):
+        print "Begingi after",  self.pendiente
         if  self.fichas[self.selFicha].jugador!=self.jugadoractual:             
             self.log("No es el jugador actual")
             return
-            
+
         if self.pendiente==2:
             self.log("Debe tirar el dado")
             return
         pj=self.puede_jugar(False)
 #        self.log(str(pj))
 
-        if pj[0]==False:
+        if self.pendiente==0:
             self.log("Ya no puede seguir jugando")
             self.emit(SIGNAL("cambiar_jugador()"))
             return
@@ -491,6 +508,7 @@ class wdgGame(QGLWidget):
         self.mover(self.selFicha,self.fichas[self.selFicha].ruta+pj[1])            
 
         ##CHEQUEOS UNA VEZ MOVIDO
+        print "Finsishing after",  self.pendiente
         if self.pendiente==0:
             self.emit(SIGNAL("cambiar_jugador()"))
         elif self.pendiente==2:#tirardado
@@ -502,8 +520,6 @@ class wdgGame(QGLWidget):
         elif self.pendiente==20:
             self.log("Debe mover 20")
             
-
-
     def mover(self, id_ficha,  ruta):
         """Solo mueve, la logica en after_ficha_click"""
         idcasillaorigen=self.fichas[id_ficha].casilla()
