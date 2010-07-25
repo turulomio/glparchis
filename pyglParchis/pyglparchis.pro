@@ -7,7 +7,7 @@ SOURCES         = datos.py \
                   ui/wdgShowObject.py \
                   ui/wdgUserPanel.py
 
-FORMS           = ui/fromAbout.ui \
+FORMS           = ui/frmAbout.ui \
                   ui/frmMain.ui \
                   ui/wdgUserPanel.ui
 
