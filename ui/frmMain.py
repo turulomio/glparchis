@@ -176,11 +176,25 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.cmdTirarDado.setEnabled(False)
         labeldado()
         
+        print "num"+ str(numero)
         #LOGICA QUE NO REQUIERE LA INTEVENCION DEL USUARIO
-        if numero!=5 and jugador_tiene_todas_fichas_en_casa()==True:
-            self.lstLog_newLog("No ha salido un 5 y las tienes todas en casa")
-            self.cambiar_jugador()
-            return
+        if jugador_tiene_todas_fichas_en_casa()==True:
+            if numero <5:
+                self.lstLog_newLog(str(numero)+ "No es un 5 y las tienes todas en casa")
+                self.cambiar_jugador()
+                return
+            elif numero==6 and len(self.ogl.historicodado)==3:
+                self.lstLog_newLog("No ha salido un 5, y ha sacado 3 seises, ya no puede volver a tirar")
+                self.cambiar_jugador()
+                return            
+            elif numero==6 and len(self.ogl.historicodado)<3:
+                self.lstLog_newLog("No es 5, pero puede volver a tirar")
+                self.ogl.pendiente=2
+                self.actionDado.setEnabled(True)
+                self.cmdTirarDado.setEnabled(True)
+                return
+
+                
         
 
                     
