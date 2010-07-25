@@ -3,27 +3,27 @@
 <context>
     <name>frmMain</name>
     <message>
-        <location filename="ui/frmMain.ui" line="200"/>
+        <location filename="ui/frmMain.ui" line="190"/>
         <source>A&amp;yuda</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="206"/>
+        <location filename="ui/frmMain.ui" line="196"/>
         <source>J&amp;ugar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="225"/>
+        <location filename="ui/frmMain.ui" line="215"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="247"/>
+        <location filename="ui/frmMain.ui" line="237"/>
         <source>S&amp;alir</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="256"/>
+        <location filename="ui/frmMain.ui" line="246"/>
         <source>Acerca de</source>
         <translation type="unfinished"></translation>
     </message>
@@ -38,32 +38,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.ui" line="167"/>
+        <location filename="ui/frmMain.ui" line="163"/>
         <source>Estadísticas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="177"/>
-        <source>Log</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmMain.ui" line="265"/>
+        <location filename="ui/frmMain.ui" line="251"/>
         <source>Tirar dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="212"/>
+        <location filename="ui/frmMain.ui" line="202"/>
         <source>&amp;Archivo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="274"/>
+        <location filename="ui/frmMain.ui" line="260"/>
         <source>&amp;Recuperar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="283"/>
+        <location filename="ui/frmMain.ui" line="269"/>
         <source>&amp;Guardar partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -76,7 +71,7 @@
 <context>
     <name>wdgGame</name>
     <message>
-        <location filename="ui/wdgGame.py" line="420"/>
+        <location filename="ui/wdgGame.py" line="436"/>
         <source>Han salido 3 seises te vas a casa</source>
         <translation type="unfinished"></translation>
     </message>

@@ -156,7 +156,7 @@ class wdgShowObject(QGLWidget):
         elif self.objeto==4:#final
             self.cas.position=(-7.5, -3.75, 0, 0)
             self.cas.tipo=1
-            self.cas.color=QColor(255, 0, 255) 
+            self.cas.color=QColor(255, 255, 0) 
             self.ortho=(-8.5, +8.5, +8.5, -8.5, -10.0, 25.0)
             self.changeOrtho()
         elif self.objeto==5:#ficha
