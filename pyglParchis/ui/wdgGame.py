@@ -416,7 +416,7 @@ class wdgGame(QGLWidget):
                         return False
             return resultado
             
-        def commit(pendiente,  log):
+        def ifcommit(pendiente,  log):
             if commit==True:
                 self.log(log)
                 self.pendiente=pendiente
@@ -439,14 +439,14 @@ class wdgGame(QGLWidget):
              
         #Si todas en casa
         if jugador_tiene_todas_fichas_en_casa()==True and salio!=5:
-            commit(0, "Tiene todas en casa y no ha sacado 5")
+            ifcommit(0, "Tiene todas en casa y no ha sacado 5")
             return (False, 0)
             
         #Si esta en ruta 0
         if self.fichas[self.selFicha].ruta==0:
             if salio==5:
                 salio=1   
-                commit(0,"Sales de casa con un 5")
+                ifcommit(0,"Sales de casa con un 5")
                 return(True, salio)
             else:
                 self.log("Esta ficha solo se puede mover con un 5")#no es commit porque debe pinchar en otra
@@ -456,13 +456,13 @@ class wdgGame(QGLWidget):
         if salio==6:
             if jugador_tiene_alguna_ficha_en_casa()==False:
                 salio=7
-                commit(2,"Salio un 6 pero mueves 7")
+                ifcommit(2,"Salio un 6 pero mueves 7")
                 return (True, 7)
             else:
-                commit(2,"Salio 6 y tienes fichas en casa")
+                ifcommit(2,"Salio 6 y tienes fichas en casa")
                 return(True, 6)
         else:
-            commit(0, "Movimiento normal")
+            ifcommit(0, "Movimiento normal")
             return(True, salio)
 
 
@@ -508,7 +508,7 @@ class wdgGame(QGLWidget):
         self.mover(self.selFicha,self.fichas[self.selFicha].ruta+pj[1])            
 
         ##CHEQUEOS UNA VEZ MOVIDO
-        print "Finsishing after",  self.pendiente
+        print "Finishing after",  self.pendiente
         if self.pendiente==0:
             self.emit(SIGNAL("cambiar_jugador()"))
         elif self.pendiente==2:#tirardado
