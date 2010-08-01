@@ -2,6 +2,7 @@
 import sys,  random
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
+from xml.dom.minidom import parse
 
 from Ui_frmMain import *
 from frmAbout import *
@@ -236,7 +237,21 @@ class frmMain(QMainWindow, Ui_frmMain):#
     @QtCore.pyqtSlot()     
     def on_actionRecuperarPartida_activated(self):
         filename=QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")
-        print filename
+
+        names = []
+        values = []
+        f=open(filename)
+        dom = parse(f)
+        self.ogl.jugadoractual=int(dom.getElementsByTagName("jugadores")[0].getAttribute("actual"))
+        print self.ogl.jugadoractual
+        fichas=dom.getElementsByTagName("ficha")
+        for i in range(len(fichas)):
+            id=int(fichas[i].getAttribute("id"))
+            ruta=int(fichas[i].getAttribute("posicion_ruta"))
+            self.ogl.mover(id, ruta)
+#            value = data[i].getElementsByTagName("value")
+#            values.append(value[0].firstChild.nodeValue.encode("utf-8"))
+
         
     @QtCore.pyqtSlot()     
     def on_actionGuardarPartida_activated(self):
@@ -277,6 +292,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         f.write('        <ficha id="14" posicion_ruta="'+str(self.ogl.fichas[14].ruta)+'" />\n')
         f.write('        <ficha id="15" posicion_ruta="'+str(self.ogl.fichas[15].ruta)+'" />\n')
         f.write("      </fichas>\n")
+        f.write("    </jugador>\n")
         f.write("  </jugadores>\n")
         f.write("  <dado ultima_tirada=\"5\" num_debugs=\"0\">\n");
         f.write("     <!-- <debug tirada=\"0\" /> -->\n");
