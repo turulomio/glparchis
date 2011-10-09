@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*- 
 
-import sys
+import sys, os
 sys.path.append("/usr/lib/pyglparchis")
 
 from PyQt4.QtCore import *
@@ -11,6 +11,10 @@ from frmMain import *
 def help():
     print ("Ayuda")
 
+try:
+    os.makedirs( os.environ['HOME']+"/.glparchis/")
+except:
+    pass
 #Creamos la aplicacion principal y conectamos la señal lastWindowClosed()
 #(ultima ventana cerrada) con la funcion quit() (salir de la aplicacion)
 app = QApplication(sys.argv)

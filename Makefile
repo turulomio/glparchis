@@ -8,7 +8,8 @@ install:
 	echo "Instalando en ${DESTDIR}"
 	pylupdate4 -noobsolete pyglparchis.pro
 	lrelease pyglparchis.pro
-	pyuic4 ui/frmAbout.ui > ui/Ui_frmAbout.py 
+	pyuic4 ui/frmAbout.ui > ui/Ui_frmAbout.py
+	pyuic4 ui/frmInitGame.ui > ui/Ui_frmInitGame.py 
 	pyuic4 ui/frmMain.ui > ui/Ui_frmMain.py
 	pyuic4 ui/wdgUserPanel.ui > ui/Ui_wdgUserPanel.py
 	pyrcc4 images/glparchis.qrc > images/glparchis_rc.py

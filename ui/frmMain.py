@@ -1,13 +1,15 @@
 ## -*- coding: utf-8 -*-
-import sys,  random
+import sys,  random,  ConfigParser
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from xml.dom.minidom import parse
+from datos import cfgfile
 
 from Ui_frmMain import *
 from frmAbout import *
 from wdgUserPanel import *
 from wdgGame import *
+from frmInitGame import *
 
 class frmMain(QMainWindow, Ui_frmMain):#    
     def __init__(self, parent = 0,  flags = False):
@@ -22,11 +24,6 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.setupUi(self)
         self.showMaximized()
         
-#        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
-#        brush.setStyle(QtCore.Qt.SolidPattern)
-#        self.panel1.lblAvatar.palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        
-
         self.panel1.setEnabled(False)
         self.panel1.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaamarilla.png"))
         self.panel1.show()
@@ -56,18 +53,22 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.dado5.addPixmap(QtGui.QPixmap(":/glparchis/cube5.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.dado6 = QtGui.QIcon()
         self.panel1.setObjectName("dado6")        
+        self.dado6.addPixmap(QtGui.QPixmap(":/glparchis/cube6.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.logs1=[]
         self.logs2=[]
         self.logs3=[]
         self.logs4=[]
-        self.dado6.addPixmap(QtGui.QPixmap(":/glparchis/cube6.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('newLog(QString)'), self.lstLog_newLog)  
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('cambiar_jugador()'), self.cambiar_jugador)  
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('volver_a_tirar()'), self.volver_a_tirar)  
-#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('tirar_dado()'), self.on_actionDado_activated)  
-        #Se activa 
         self.enable_panel(self.ogl.jugadoractual, True)
+        self.settings_splitter_load()
+        initgame=frmInitGame()
+        initgame.exec_()
 
+    def on_splitter_splitterMoved(self, position, index):
+        self.settings_splitter_save()
+        
     @pyqtSignature("")
     def on_cmdTirarDado_clicked(self):
         self.on_actionDado_activated()
@@ -99,6 +100,26 @@ class frmMain(QMainWindow, Ui_frmMain):#
         panel.lst.setModel(QStringListModel(logs))
         panel.lst.show()
 
+
+    def settings_splitter_save(self):
+        config = ConfigParser.ConfigParser()
+        config.read(cfgfile)
+        if config.has_section("frmMain")==False:
+            config.add_section("frmMain")
+        config.set("frmMain",  'splitter_state', self.splitter.saveState())
+        with open(cfgfile, 'w') as configfile:
+            config.write(configfile)
+        
+    def settings_splitter_load(self):
+        config = ConfigParser.ConfigParser()
+        config.read(cfgfile)
+        try:
+            position=config.get("frmMain", "splitter_state")
+            self.splitter.restoreState(position)
+        except:
+            print ("No hay fichero de configuración")    
+    
+        
     @pyqtSignature("")
     def on_actionAcercaDe_activated(self):
         fr=frmAbout(self, "frmabout")
