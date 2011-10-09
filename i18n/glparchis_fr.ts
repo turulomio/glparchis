@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="fr_FR">
+<!DOCTYPE TS><TS version="2.0" language="fr_FR" sourcelanguage="">
 <context encoding="UTF-8">
     <name>frmAbout</name>
     <message>
@@ -70,27 +70,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>frmMain</name>
     <message>
-        <location filename="ui/frmMain.ui" line="190"/>
+        <location filename="ui/frmMain.ui" line="193"/>
         <source>A&amp;yuda</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="196"/>
+        <location filename="ui/frmMain.ui" line="199"/>
         <source>J&amp;ugar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="215"/>
+        <location filename="ui/frmMain.ui" line="218"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="237"/>
+        <location filename="ui/frmMain.ui" line="241"/>
         <source>S&amp;alir</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="246"/>
+        <location filename="ui/frmMain.ui" line="250"/>
         <source>Acerca de</source>
         <translation type="unfinished"></translation>
     </message>
@@ -100,37 +100,37 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="136"/>
+        <location filename="ui/frmMain.ui" line="139"/>
         <source>Juego</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.ui" line="163"/>
+        <location filename="ui/frmMain.ui" line="166"/>
         <source>Estadísticas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="251"/>
+        <location filename="ui/frmMain.ui" line="255"/>
         <source>Tirar dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="202"/>
+        <location filename="ui/frmMain.ui" line="205"/>
         <source>&amp;Archivo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="260"/>
+        <location filename="ui/frmMain.ui" line="264"/>
         <source>&amp;Recuperar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="269"/>
+        <location filename="ui/frmMain.ui" line="273"/>
         <source>&amp;Guardar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="155"/>
+        <location filename="ui/frmMain.ui" line="158"/>
         <source>Pulsa para tirar el dado</source>
         <translation type="unfinished"></translation>
     </message>
@@ -146,7 +146,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>wdgUserPanel</name>
     <message>
-        <location filename="ui/wdgUserPanel.ui" line="14"/>
+        <location filename="ui/wdgUserPanel.ui" line="32"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>

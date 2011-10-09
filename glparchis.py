@@ -9,7 +9,7 @@ from PyQt4.QtGui import *
 from frmMain import *
 
 def help():
-    print "Ayuda"
+    print ("Ayuda")
 
 #Creamos la aplicacion principal y conectamos la señal lastWindowClosed()
 #(ultima ventana cerrada) con la funcion quit() (salir de la aplicacion)

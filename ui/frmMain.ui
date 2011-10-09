@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>877</width>
-    <height>598</height>
+    <height>605</height>
    </rect>
   </property>
   <property name="cursor">
@@ -22,13 +22,16 @@
     <normaloff>:/glparchis/ficharoja.png</normaloff>:/glparchis/ficharoja.png</iconset>
   </property>
   <widget class="QWidget" name="wdg">
-   <layout class="QVBoxLayout" name="verticalLayout_4">
+   <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QWidget" name="">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QWidget" name="panel1" native="true">
+         <widget class="wdgUserPanel" name="panel1" native="true">
           <property name="enabled">
            <bool>true</bool>
           </property>
@@ -47,7 +50,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QWidget" name="panel2" native="true">
+         <widget class="wdgUserPanel" name="panel2" native="true">
           <property name="enabled">
            <bool>true</bool>
           </property>
@@ -66,7 +69,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QWidget" name="panel3" native="true">
+         <widget class="wdgUserPanel" name="panel3" native="true">
           <property name="enabled">
            <bool>true</bool>
           </property>
@@ -85,7 +88,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QWidget" name="panel4" native="true">
+         <widget class="wdgUserPanel" name="panel4" native="true">
           <property name="enabled">
            <bool>true</bool>
           </property>
@@ -104,8 +107,8 @@
          </widget>
         </item>
        </layout>
-      </item>
-      <item>
+      </widget>
+      <widget class="QWidget" name="">
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <widget class="QTabWidget" name="tab">
@@ -171,8 +174,8 @@
          </widget>
         </item>
        </layout>
-      </item>
-     </layout>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -182,7 +185,7 @@
      <x>0</x>
      <y>0</y>
      <width>877</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAyuda">
@@ -226,6 +229,7 @@
    <addaction name="actionGuardarPartida"/>
    <addaction name="separator"/>
    <addaction name="actionSalir"/>
+   <addaction name="separator"/>
   </widget>
   <widget class="QStatusBar" name="status"/>
   <action name="actionSalir">
@@ -275,6 +279,12 @@
    <class>wdgGame</class>
    <extends>QWidget</extends>
    <header location="global">wdgGame</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>wdgUserPanel</class>
+   <extends>QWidget</extends>
+   <header location="global">wdgUserPanel</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

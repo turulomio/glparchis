@@ -26,39 +26,36 @@ class frmMain(QMainWindow, Ui_frmMain):#
 #        brush.setStyle(QtCore.Qt.SolidPattern)
 #        self.panel1.lblAvatar.palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
         
-        self.p1=wdgUserPanel(self.panel1)
-        self.p1.setEnabled(False)
-        self.p1.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaamarilla.png"))
-        self.p1.show()
-        self.p2=wdgUserPanel(self.panel2)
-        self.p2.setEnabled(False)
-        self.p2.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaazul.png"))
-        self.p2.show()
-        self.p3=wdgUserPanel(self.panel3)
-        self.p3.setEnabled(False)
-        self.p3.show()
-        self.p4=wdgUserPanel(self.panel4)
-        self.p4.setEnabled(False)
-        self.p4.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaverde.png"))
-        self.p4.show()
+
+        self.panel1.setEnabled(False)
+        self.panel1.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaamarilla.png"))
+        self.panel1.show()
+        self.panel2.setEnabled(False)
+        self.panel2.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaazul.png"))
+        self.panel2.show()
+        self.panel3.setEnabled(False)
+        self.panel3.show()
+        self.panel4.setEnabled(False)
+        self.panel4.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaverde.png"))
+        self.panel4.show()
         self.logs = []
         self.dado1 = QtGui.QIcon()
-        self.p1.setObjectName("dado1")
+        self.panel1.setObjectName("dado1")
         self.dado1.addPixmap(QtGui.QPixmap(":/glparchis/cube1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.dado2 = QtGui.QIcon()
-        self.p1.setObjectName("dado2")
+        self.panel1.setObjectName("dado2")
         self.dado2.addPixmap(QtGui.QPixmap(":/glparchis/cube2.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.dado3 = QtGui.QIcon()
-        self.p1.setObjectName("dado3")
+        self.panel1.setObjectName("dado3")
         self.dado3.addPixmap(QtGui.QPixmap(":/glparchis/cube3.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.dado4 = QtGui.QIcon()
-        self.p1.setObjectName("dado4")
+        self.panel1.setObjectName("dado4")
         self.dado4.addPixmap(QtGui.QPixmap(":/glparchis/cube4.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.dado5= QtGui.QIcon()
-        self.p1.setObjectName("dado5")
+        self.panel1.setObjectName("dado5")
         self.dado5.addPixmap(QtGui.QPixmap(":/glparchis/cube5.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.dado6 = QtGui.QIcon()
-        self.p1.setObjectName("dado6")        
+        self.panel1.setObjectName("dado6")        
         self.logs1=[]
         self.logs2=[]
         self.logs3=[]
@@ -77,26 +74,26 @@ class frmMain(QMainWindow, Ui_frmMain):#
         
     def enable_panel(self, idjugador, bool):
         if idjugador==0:
-            self.p1.setEnabled(bool)
+            self.panel1.setEnabled(bool)
         elif idjugador==1:
-            self.p2.setEnabled(bool)
+            self.panel2.setEnabled(bool)
         elif idjugador==2:
-            self.p3.setEnabled(bool)
+            self.panel3.setEnabled(bool)
         elif idjugador==3:
-            self.p4.setEnabled(bool)    
+            self.panel4.setEnabled(bool)    
             
     def lstLog_newLog(self, log):
         if self.ogl.jugadoractual==0:
-            panel=self.p1
+            panel=self.panel1
             logs=self.logs1
         elif self.ogl.jugadoractual==1:
-            panel=self.p2
+            panel=self.panel2
             logs=self.logs2
         elif self.ogl.jugadoractual==2:
-            panel=self.p3
+            panel=self.panel3
             logs=self.logs3
         elif self.ogl.jugadoractual==3:
-            panel=self.p4        
+            panel=self.panel4        
             logs=self.logs4
         logs.append( log)
         panel.lst.setModel(QStringListModel(logs))
@@ -118,13 +115,13 @@ class frmMain(QMainWindow, Ui_frmMain):#
             numlbl=len(self.ogl.historicodado)
             #Selecciona el panel
             if self.ogl.jugadoractual==0:
-                panel=self.p1
+                panel=self.panel1
             elif self.ogl.jugadoractual==1:
-                panel=self.p2
+                panel=self.panel2
             elif self.ogl.jugadoractual==2:
-                panel=self.p3
+                panel=self.panel3
             elif self.ogl.jugadoractual==3:
-                panel=self.p4
+                panel=self.panel4
             #Selecciona el label
             if numlbl==1:
                 label=panel.lbl1
@@ -202,25 +199,25 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def cambiar_jugador(self):
         def limpia_panel(id):
             if id==0:
-                self.p1.lbl1.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.p1.lbl2.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.p1.lbl3.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.p1.show()
+                self.panel1.lbl1.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
+                self.panel1.lbl2.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
+                self.panel1.lbl3.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
+                self.panel1.show()
             elif id==1:
-                self.p2.lbl1.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.p2.lbl2.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.p2.lbl3.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.p2.show()
+                self.panel2.lbl1.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
+                self.panel2.lbl2.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
+                self.panel2.lbl3.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
+                self.panel2.show()
             elif id==2:
-                self.p3.lbl1.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.p3.lbl2.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.p3.lbl3.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.p3.show()
+                self.panel3.lbl1.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
+                self.panel3.lbl2.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
+                self.panel3.lbl3.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
+                self.panel3.show()
             elif id==3:
-                self.p4.lbl1.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.p4.lbl2.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.p4.lbl3.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.p4.show()
+                self.panel4.lbl1.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
+                self.panel4.lbl2.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
+                self.panel4.lbl3.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
+                self.panel4.show()
         self.enable_panel(self.ogl.jugadoractual, False)
         self.ogl.jugadoractual=self.ogl.jugadoractual+1
         self.ogl.historicodado=[]

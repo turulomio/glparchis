@@ -6,9 +6,27 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>378</width>
-    <height>125</height>
+    <width>549</width>
+    <height>250</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>250</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>250</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -67,10 +85,13 @@
           <pixmap resource="../images/glparchis.qrc">:/glparchis/ficharoja.png</pixmap>
          </property>
          <property name="scaledContents">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
+         </property>
+         <property name="margin">
+          <number>27</number>
          </property>
         </widget>
        </item>
@@ -91,6 +112,12 @@
          </item>
          <item>
           <widget class="QLabel" name="lbl1">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -104,6 +131,12 @@
          </item>
          <item>
           <widget class="QLabel" name="lbl2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -117,6 +150,12 @@
          </item>
          <item>
           <widget class="QLabel" name="lbl3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text">
             <string/>
            </property>
