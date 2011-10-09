@@ -204,6 +204,8 @@
     <property name="title">
      <string>J&amp;ugar</string>
     </property>
+    <addaction name="actionPartidaNueva"/>
+    <addaction name="separator"/>
     <addaction name="actionDado"/>
    </widget>
    <widget class="QMenu" name="menu_Archivo">
@@ -277,6 +279,18 @@
    </property>
    <property name="text">
     <string>&amp;Guardar partida</string>
+   </property>
+  </action>
+  <action name="actionPartidaNueva">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/star.png</normaloff>:/glparchis/star.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Partida Nueva</string>
+   </property>
+   <property name="toolTip">
+    <string>Partida Nueva</string>
    </property>
   </action>
  </widget>
