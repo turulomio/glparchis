@@ -138,17 +138,17 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="224"/>
+        <location filename="ui/frmMain.ui" line="226"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="247"/>
+        <location filename="ui/frmMain.ui" line="249"/>
         <source>S&amp;alir</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="256"/>
+        <location filename="ui/frmMain.ui" line="258"/>
         <source>Acerca de</source>
         <translation type="unfinished"></translation>
     </message>
@@ -168,28 +168,38 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="261"/>
+        <location filename="ui/frmMain.ui" line="263"/>
         <source>Tirar dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="211"/>
+        <location filename="ui/frmMain.ui" line="213"/>
         <source>&amp;Archivo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="270"/>
+        <location filename="ui/frmMain.ui" line="272"/>
         <source>&amp;Recuperar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="279"/>
+        <location filename="ui/frmMain.ui" line="281"/>
         <source>&amp;Guardar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui/frmMain.ui" line="164"/>
         <source>Pulsa para tirar el dado</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmMain.ui" line="290"/>
+        <source>&amp;Partida Nueva</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmMain.ui" line="293"/>
+        <source>Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
