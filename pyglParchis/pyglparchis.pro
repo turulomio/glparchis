@@ -1,5 +1,6 @@
 SOURCES         = datos.py \
                   glparchis.py \
+		  ui/frmInitGame.py \
                   ui/frmMain.py \
                   ui/wdgGame.py \
                   ui/wdgQT.py \
@@ -8,6 +9,7 @@ SOURCES         = datos.py \
                   ui/wdgUserPanel.py
 
 FORMS           = ui/frmAbout.ui \
+		  ui/frmInitGame.ui \
                   ui/frmMain.ui \
                   ui/wdgUserPanel.ui
 

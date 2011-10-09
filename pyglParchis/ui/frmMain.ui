@@ -25,10 +25,16 @@
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QSplitter" name="splitter">
+      <property name="frameShape">
+       <enum>QFrame::Panel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="wdgUserPanel" name="panel1" native="true">
@@ -108,7 +114,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <widget class="QTabWidget" name="tab">

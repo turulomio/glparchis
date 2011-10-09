@@ -1,4 +1,6 @@
 #-*- coding: utf-8 -*- 
+import os
+cfgfile=os.environ['HOME']+ "/.glparchis/glparchis.cfg"
 #Es la posición fisica de la casilla
 posCasillas=[None]*105
 posCasillas[0]=(0, 0, 0)

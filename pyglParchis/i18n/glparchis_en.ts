@@ -68,39 +68,97 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>frmInitGame</name>
+    <message>
+        <location filename="ui/frmInitGame.ui" line="29"/>
+        <source>Configura la partida</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmInitGame.ui" line="63"/>
+        <source>Datos jugador amarillo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmInitGame.ui" line="73"/>
+        <source>Jugador amarillo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmInitGame.ui" line="248"/>
+        <source>¿Inteligencia artificial?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmInitGame.ui" line="116"/>
+        <source>Datos jugador azul</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmInitGame.ui" line="126"/>
+        <source>Jugador azul</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmInitGame.ui" line="172"/>
+        <source>Datos jugador rojo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmInitGame.ui" line="182"/>
+        <source>Jugador rojo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmInitGame.ui" line="228"/>
+        <source>Datos jugador verde</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmInitGame.ui" line="238"/>
+        <source>Jugador verde</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmInitGame.ui" line="260"/>
+        <source>Comenzar partida</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>frmMain</name>
     <message>
-        <location filename="ui/frmMain.ui" line="193"/>
+        <location filename="ui/frmMain.ui" line="199"/>
         <source>A&amp;yuda</source>
         <translation>H&amp;elp</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="199"/>
+        <location filename="ui/frmMain.ui" line="205"/>
         <source>J&amp;ugar</source>
         <translation>P&amp;lay</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="218"/>
+        <location filename="ui/frmMain.ui" line="224"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="241"/>
+        <location filename="ui/frmMain.ui" line="247"/>
         <source>S&amp;alir</source>
         <translation>E&amp;xit</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="250"/>
+        <location filename="ui/frmMain.ui" line="256"/>
         <source>Acerca de</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="139"/>
+        <location filename="ui/frmMain.ui" line="145"/>
         <source>Juego</source>
         <translation>Game</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.ui" line="166"/>
+        <location filename="ui/frmMain.ui" line="172"/>
         <source>Estadísticas</source>
         <translation>Statistics</translation>
     </message>
@@ -110,27 +168,27 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="255"/>
+        <location filename="ui/frmMain.ui" line="261"/>
         <source>Tirar dado</source>
         <translation>Throw cube</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="205"/>
+        <location filename="ui/frmMain.ui" line="211"/>
         <source>&amp;Archivo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="264"/>
+        <location filename="ui/frmMain.ui" line="270"/>
         <source>&amp;Recuperar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="273"/>
+        <location filename="ui/frmMain.ui" line="279"/>
         <source>&amp;Guardar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="158"/>
+        <location filename="ui/frmMain.ui" line="164"/>
         <source>Pulsa para tirar el dado</source>
         <translation type="unfinished"></translation>
     </message>
@@ -149,6 +207,11 @@ p, li { white-space: pre-wrap; }
         <location filename="ui/wdgUserPanel.ui" line="32"/>
         <source>Form</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="ui/wdgUserPanel.ui" line="38"/>
+        <source>Jugador</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
