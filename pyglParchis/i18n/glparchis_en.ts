@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="en">
-<context>
-    <name>@default</name>
-    <message>
-        <location filename="ui/wdgGame.py" line="417"/>
-        <source>Han salido 3 seises te vas a casa</source>
-        <translation type="obsolete">You got 3 sixs. Go home</translation>
-    </message>
-</context>
+<!DOCTYPE TS><TS version="2.0" language="en" sourcelanguage="">
 <context encoding="UTF-8">
     <name>frmAbout</name>
     <message>
@@ -76,67 +68,39 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>frmLanguage</name>
-    <message>
-        <location filename="ui/frmLanguage.ui" line="29"/>
-        <source>Selecciona un idioma</source>
-        <translation type="obsolete">Select a language</translation>
-    </message>
-    <message>
-        <location filename="ui/frmLanguage.ui" line="62"/>
-        <source>C&amp;ambiar Idioma</source>
-        <translation type="obsolete">C&amp;hange language</translation>
-    </message>
-    <message>
-        <location filename="ui/frmLanguage.ui" line="16"/>
-        <source>Dialog</source>
-        <translation type="obsolete">Dialogo</translation>
-    </message>
-</context>
-<context>
     <name>frmMain</name>
     <message>
-        <location filename="ui/frmMain.ui" line="190"/>
+        <location filename="ui/frmMain.ui" line="193"/>
         <source>A&amp;yuda</source>
         <translation>H&amp;elp</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="196"/>
+        <location filename="ui/frmMain.ui" line="199"/>
         <source>J&amp;ugar</source>
         <translation>P&amp;lay</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="215"/>
+        <location filename="ui/frmMain.ui" line="218"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="237"/>
+        <location filename="ui/frmMain.ui" line="241"/>
         <source>S&amp;alir</source>
         <translation>E&amp;xit</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="246"/>
+        <location filename="ui/frmMain.ui" line="250"/>
         <source>Acerca de</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="217"/>
-        <source>P&amp;referencias</source>
-        <translation type="obsolete">P&amp;references</translation>
-    </message>
-    <message>
-        <location filename="ui/frmMain.ui" line="285"/>
-        <source>I&amp;dioma</source>
-        <translation type="obsolete">L&amp;anguage</translation>
-    </message>
-    <message>
-        <location filename="ui/frmMain.ui" line="136"/>
+        <location filename="ui/frmMain.ui" line="139"/>
         <source>Juego</source>
         <translation>Game</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.ui" line="163"/>
+        <location filename="ui/frmMain.ui" line="166"/>
         <source>Estadísticas</source>
         <translation>Statistics</translation>
     </message>
@@ -146,38 +110,33 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="251"/>
+        <location filename="ui/frmMain.ui" line="255"/>
         <source>Tirar dado</source>
         <translation>Throw cube</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="202"/>
+        <location filename="ui/frmMain.ui" line="205"/>
         <source>&amp;Archivo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="260"/>
+        <location filename="ui/frmMain.ui" line="264"/>
         <source>&amp;Recuperar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="269"/>
+        <location filename="ui/frmMain.ui" line="273"/>
         <source>&amp;Guardar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="155"/>
+        <location filename="ui/frmMain.ui" line="158"/>
         <source>Pulsa para tirar el dado</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>wdgGame</name>
-    <message>
-        <location filename="ui/wdgGame.py" line="541"/>
-        <source>Ejemplo de translacion</source>
-        <translation type="obsolete">Translation example</translation>
-    </message>
     <message>
         <location filename="ui/wdgGame.py" line="436"/>
         <source>Han salido 3 seises te vas a casa</source>
@@ -187,7 +146,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>wdgUserPanel</name>
     <message>
-        <location filename="ui/wdgUserPanel.ui" line="14"/>
+        <location filename="ui/wdgUserPanel.ui" line="32"/>
         <source>Form</source>
         <translation></translation>
     </message>

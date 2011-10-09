@@ -6,7 +6,7 @@ PREFIXSHARE=$(DESTDIR)/share/pyglparchis
 
 install:
 	echo "Instalando en ${DESTDIR}"
-	pylupdate4 pyglparchis.pro
+	pylupdate4 -noobsolete pyglparchis.pro
 	lrelease pyglparchis.pro
 	pyuic4 ui/frmAbout.ui > ui/Ui_frmAbout.py 
 	pyuic4 ui/frmMain.ui > ui/Ui_frmMain.py
