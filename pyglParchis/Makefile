@@ -1,11 +1,11 @@
-DESTDIR ?= /usr
+DESTDIR ?= /
 
-PREFIXBIN=$(DESTDIR)/bin
-PREFIXLIB=$(DESTDIR)/lib/pyglparchis
-PREFIXSHARE=$(DESTDIR)/share/pyglparchis 
+PREFIXBIN=$(DESTDIR)/usr/bin
+PREFIXLIB=$(DESTDIR)/usr/lib/pyglparchis
+PREFIXSHARE=$(DESTDIR)/usr/share/pyglparchis 
 
-install:
-	echo "Instalando en ${DESTDIR}"
+all: compile install
+compile:
 	pylupdate4 -noobsolete pyglparchis.pro
 	lrelease pyglparchis.pro
 	pyuic4 ui/frmAbout.ui > ui/Ui_frmAbout.py
@@ -13,6 +13,8 @@ install:
 	pyuic4 ui/frmMain.ui > ui/Ui_frmMain.py
 	pyuic4 ui/wdgUserPanel.ui > ui/Ui_wdgUserPanel.py
 	pyrcc4 images/glparchis.qrc > images/glparchis_rc.py
+
+install:
 	install -o root -d $(PREFIXBIN)
 	install -o root -d $(PREFIXLIB)
 	install -o root -d $(PREFIXSHARE)                                                      
