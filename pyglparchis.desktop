@@ -2,7 +2,7 @@
 Name=glParchis
 Type=Application
 Comment=OpenGL Parchis
-Exec=glparchis
-TryExec=glparchis
+Exec=pyglparchis
+TryExec=pyglparchis
 Icon=/usr/share/pixmaps/pyglparchis.png
 Categories=Game;BoardGame;
