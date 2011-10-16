@@ -55,27 +55,27 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def on_cmdTirarDado_clicked(self):
         self.on_actionDado_activated()
         
-    def enable_panel(self, idjugador, bool):
-        if idjugador==0:
+    def enable_panel(self, color, bool):
+        if color=="yellow":
             self.panel1.setEnabled(bool)
-        elif idjugador==1:
+        elif color=="blue":
             self.panel2.setEnabled(bool)
-        elif idjugador==2:
+        elif color=="red":
             self.panel3.setEnabled(bool)
-        elif idjugador==3:
+        elif color=="green":
             self.panel4.setEnabled(bool)    
             
     def lstLog_newLog(self, log):
-        if self.ogl.jugadoractual==0:
+        if self.ogl.jugadoractual.color=="yellow":
             panel=self.panel1
             logs=self.logs1
-        elif self.ogl.jugadoractual==1:
+        elif self.ogl.jugadoractual.color=="blue":
             panel=self.panel2
             logs=self.logs2
-        elif self.ogl.jugadoractual==2:
+        elif self.ogl.jugadoractual.color=="red":
             panel=self.panel3
             logs=self.logs3
-        elif self.ogl.jugadoractual==3:
+        elif self.ogl.jugadoractual.color=="green":
             panel=self.panel4        
             logs=self.logs4
         logs.append( log)
@@ -117,13 +117,13 @@ class frmMain(QMainWindow, Ui_frmMain):#
             numero=self.ogl.historicodado[0]
             numlbl=len(self.ogl.historicodado)
             #Selecciona el panel
-            if self.ogl.jugadoractual==0:
+            if self.ogl.jugadoractual.color=="yellow":
                 panel=self.panel1
-            elif self.ogl.jugadoractual==1:
+            elif self.ogl.jugadoractual.color=="blue":
                 panel=self.panel2
-            elif self.ogl.jugadoractual==2:
+            elif self.ogl.jugadoractual.color=="red":
                 panel=self.panel3
-            elif self.ogl.jugadoractual==3:
+            elif self.ogl.jugadoractual.color=="green":
                 panel=self.panel4
             #Selecciona el label
             if numlbl==1:
@@ -140,8 +140,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 
         def jugador_tiene_todas_fichas_en_casa():
             for f in self.ogl.fichas:
-                if f.jugador==self.ogl.jugadoractual:
-                    if f.ruta!=0:
+                if self.ogl.fichas[f].jugador==self.ogl.jugadoractual.id:
+                    if self.ogl.fichas[f].ruta!=0:
                         return False
             return True
             
@@ -181,57 +181,58 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def cambiar_jugador(self):
         def limpia_panel(id):
             pix=pixdado(None)
-            if id==0:
+            if color=="yellow":
                 self.panel1.lbl1.setPixmap(pix)
                 self.panel1.lbl2.setPixmap(pix)
                 self.panel1.lbl3.setPixmap(pix)
                 self.panel1.show()
-            elif id==1:
+            elif color=="blue":
                 self.panel2.lbl1.setPixmap(pix)
                 self.panel2.lbl2.setPixmap(pix)
                 self.panel2.lbl3.setPixmap(pix)
                 self.panel2.show()
-            elif id==2:
+            elif color=="red":
                 self.panel3.lbl1.setPixmap(pix)
                 self.panel3.lbl2.setPixmap(pix)
                 self.panel3.lbl3.setPixmap(pix)
                 self.panel3.show()
-            elif id==3:
+            elif color=="green":
                 self.panel4.lbl1.setPixmap(pix)
                 self.panel4.lbl2.setPixmap(pix)
                 self.panel4.lbl3.setPixmap(pix)
                 self.panel4.show()
-        self.ogl.jugadoractual=self.ogl.jugadoractual+1
+                
+        #Cambia jugadoractual
+        if self.ogl.jugadoractual.color=="yellow":
+            self.ogl.jugadoractual=self.ogl.jugadores["blue"]
+        elif self.ogl.jugadoractual.color=="blue":
+            self.ogl.jugadoractual=self.ogl.jugadores["red"]
+        elif self.ogl.jugadoractual.color=="red":
+            self.ogl.jugadoractual=self.ogl.jugadores["green"]
+        elif self.ogl.jugadoractual.color=="green":
+            self.ogl.jugadoractual=self.ogl.jugadores["yellow"]
         self.ogl.historicodado=[]
         self.ogl.pendiente=2
-        if self.ogl.jugadoractual>=4:
-            self.ogl.jugadoractual=0
-#        self.lstLog_newLog("cambiando a jugador "  + str(self.ogl.jugadoractual))
+
         self.actionDado.setEnabled(True)       
         self.cmdTirarDado.setEnabled(True)
-        self.enable_panel(self.ogl.jugadoractual,  True)
-        limpia_panel(self.ogl.jugadoractual)
+        self.enable_panel(self.ogl.jugadoractual.color,  True)
+        limpia_panel(self.ogl.jugadoractual.color)
 
                     
     @QtCore.pyqtSlot()     
     def on_actionRecuperarPartida_activated(self):
         filename=QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")
-        self.ogl=wdgGame(filename)
-#
-#        names = []
-#        values = []
-#        f=open(filename)
-#        dom = parse(f)
-#        self.ogl.jugadoractual=int(dom.getElementsByTagName("jugadores")[0].getAttribute("actual"))
-#        print self.ogl.jugadoractual
-#        fichas=dom.getElementsByTagName("ficha")
-#        for i in range(len(fichas)):
-#            id=int(fichas[i].getAttribute("id"))
-#            ruta=int(fichas[i].getAttribute("posicion_ruta"))
-#            self.ogl.mover(id, ruta)
+        self.ogl=wdgGame("last.glparchis")
+        
+        self.panel1.grp.setTitle(self.ogl.jugadores['yellow'].name)
+        self.panel2.grp.setTitle(self.ogl.jugadores['blue'].name)
+        self.panel3.grp.setTitle(self.ogl.jugadores['red'].name)
+        self.panel4.grp.setTitle(self.ogl.jugadores['green'].name)
+        config = ConfigParser.ConfigParser()
+        config.read("last.glparchis")#ÐEBE SERLOCAL
+        self.enable_panel(config.get("game", 'playerstarts'), True)        
 
-
-                    
     @QtCore.pyqtSlot()     
     def on_actionPartidaNueva_activated(self):
         def save_last_glparchis():
@@ -240,14 +241,27 @@ class frmMain(QMainWindow, Ui_frmMain):#
             except:
                 pass
             config = ConfigParser.ConfigParser()
-            for color in ['yellow', 'blue', 'red', 'green']:
-                config.add_section(color)
-                config.set(color,  'ia', int(self.jugadores[color].ia))
-                config.set(color,  'name', self.jugadores[color].name)
-                config.set(color,  'plays', int(self.jugadores[color].plays))
-                config.set(color,  'rutaficha1', 1)
-                config.set(color,  'rutaficha2', 2)
-                config.set(color,  'rutaficha3', 3)
+            config.add_section("yellow")
+            config.set("yellow",  'ia', int(libglparchis.c2b(initgame.chkYellow.checkState())))
+            config.set("yellow",  'name', initgame.txtYellow.text())
+            config.set("yellow",  'plays', int(libglparchis.c2b(initgame.chkYellowPlays.checkState())))
+            config.add_section("blue")
+            config.set("blue",  'ia', int(libglparchis.c2b(initgame.chkBlue.checkState())))
+            config.set("blue",  'name', initgame.txtBlue.text())
+            config.set("blue",  'plays', int(libglparchis.c2b(initgame.chkBluePlays.checkState())))
+            config.add_section("red")
+            config.set("red",  'ia', int(libglparchis.c2b(initgame.chkRed.checkState())))
+            config.set("red",  'name', initgame.txtRed.text())
+            config.set("red",  'plays', int(libglparchis.c2b(initgame.chkRedPlays.checkState())))
+            config.add_section("green")
+            config.set("green",  'ia', int(libglparchis.c2b(initgame.chkGreen.checkState())))
+            config.set("green",  'name', initgame.txtGreen.text())
+            config.set("green",  'plays', int(libglparchis.c2b(initgame.chkGreenPlays.checkState())))
+                
+            for color in libglparchis.colores:
+                config.set(color,  'rutaficha1', 0)
+                config.set(color,  'rutaficha2', 0)
+                config.set(color,  'rutaficha3', 0)
                 config.set(color,  'rutaficha4', 0)
             config.add_section("game")
             config.set("game", 'playerstarts', initgame.playerstarts)
@@ -256,89 +270,68 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 
         initgame=frmInitGame()
         initgame.exec_()
-        self.jugadores={}
-        
-        yellow=Jugador('yellow')
-        yellow.name=initgame.txtYellow.text()
-        yellow.ia=libglparchis.c2b(initgame.chkYellow.checkState())
-        yellow.plays=libglparchis.c2b(initgame.chkYellowPlays.checkState())
-        
-        blue=Jugador('blue')
-        blue.name=initgame.txtBlue.text()
-        blue.ia=libglparchis.c2b(initgame.chkBlue.checkState())
-        blue.plays=libglparchis.c2b(initgame.chkBluePlays.checkState())
-        
-        red=Jugador('red')
-        red.name=initgame.txtRed.text()
-        red.ia=libglparchis.c2b(initgame.chkRed.checkState())
-        red.plays=libglparchis.c2b(initgame.chkRedPlays.checkState())
-        
-        green=Jugador('green')
-        green.name=initgame.txtGreen.text()
-        green.ia=libglparchis.c2b(initgame.chkGreen.checkState())
-        green.plays=libglparchis.c2b(initgame.chkGreenPlays.checkState())
-        
-        self.jugadores['blue']=blue
-        self.jugadores['yellow']=yellow
-        self.jugadores['red']=red
-        self.jugadores['green']=green
-        
-        self.panel1.grp.setTitle(self.jugadores['yellow'].name)
-        self.panel2.grp.setTitle(self.jugadores['blue'].name)
-        self.panel3.grp.setTitle(self.jugadores['red'].name)
-        self.panel4.grp.setTitle(self.jugadores['green'].name)
+
+
         #Graba fichero .glparchis/last.glparchis
         save_last_glparchis()
         #Carga fichero .glparchis/last.glparchis
-        self.ogl=wdgGame()
-        self.ogl.load_file(libglparchis.lastfile)
+        self.ogl=wdgGame(libglparchis.lastfile)
+#        self.ogl.load_file()
+        
+        self.panel1.grp.setTitle(self.ogl.jugadores['yellow'].name)
+        self.panel2.grp.setTitle(self.ogl.jugadores['blue'].name)
+        self.panel3.grp.setTitle(self.ogl.jugadores['red'].name)
+        self.panel4.grp.setTitle(self.ogl.jugadores['green'].name)
+        self.enable_panel(initgame.playerstarts, True)
+
     @QtCore.pyqtSlot()     
     def on_actionGuardarPartida_activated(self):
-        filename=QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")
-        f=open(filename,"w")
-        f.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
-        f.write("<glParchis version=\"1.0\">\n")
-        f.write("<partida>\n")
-        f.write("  <jugadores numero=\""+str(4)+"\" actual=\""+str(self.ogl.jugadoractual)+"\">\n" )
-        f.write('    <jugador id="0" nombre="amarillo" tipo="'+str(0)+'">\n') #Deberá ser cambiado cuando haya IA
-        f.write("      <fichas>\n")
-        f.write('        <ficha id="0" posicion_ruta="'+str(self.ogl.fichas[0].ruta)+'" />\n')
-        f.write('        <ficha id="1" posicion_ruta="'+str(self.ogl.fichas[1].ruta)+'" />\n')
-        f.write('        <ficha id="2" posicion_ruta="'+str(self.ogl.fichas[2].ruta)+'" />\n')
-        f.write('        <ficha id="3" posicion_ruta="'+str(self.ogl.fichas[3].ruta)+'" />\n')
-        f.write("      </fichas>\n")
-        f.write("    </jugador>\n")
-        f.write('    <jugador id="1" nombre="azul" tipo="'+str(0)+'">\n')
-        f.write("      <fichas>\n")
-        f.write('        <ficha id="4" posicion_ruta="'+str(self.ogl.fichas[4].ruta)+'" />\n')
-        f.write('        <ficha id="5" posicion_ruta="'+str(self.ogl.fichas[5].ruta)+'" />\n')
-        f.write('        <ficha id="6" posicion_ruta="'+str(self.ogl.fichas[6].ruta)+'" />\n')
-        f.write('        <ficha id="7" posicion_ruta="'+str(self.ogl.fichas[7].ruta)+'" />\n')
-        f.write("      </fichas>\n")
-        f.write("    </jugador>\n")
-        f.write('    <jugador id="2" nombre="rojo" tipo="'+str(0)+'">\n')
-        f.write("      <fichas>\n")
-        f.write('        <ficha id="8" posicion_ruta="'+str(self.ogl.fichas[8].ruta)+'" />\n')
-        f.write('        <ficha id="9" posicion_ruta="'+str(self.ogl.fichas[9].ruta)+'" />\n')
-        f.write('        <ficha id="10" posicion_ruta="'+str(self.ogl.fichas[10].ruta)+'" />\n')
-        f.write('        <ficha id="11" posicion_ruta="'+str(self.ogl.fichas[11].ruta)+'" />\n')
-        f.write("      </fichas>\n")
-        f.write("    </jugador>\n")
-        f.write('    <jugador id="3" nombre="verde" tipo="'+str(0)+'">\n')
-        f.write("      <fichas>\n")
-        f.write('        <ficha id="12" posicion_ruta="'+str(self.ogl.fichas[12].ruta)+'" />\n')
-        f.write('        <ficha id="13" posicion_ruta="'+str(self.ogl.fichas[13].ruta)+'" />\n')
-        f.write('        <ficha id="14" posicion_ruta="'+str(self.ogl.fichas[14].ruta)+'" />\n')
-        f.write('        <ficha id="15" posicion_ruta="'+str(self.ogl.fichas[15].ruta)+'" />\n')
-        f.write("      </fichas>\n")
-        f.write("    </jugador>\n")
-        f.write("  </jugadores>\n")
-        f.write("  <dado ultima_tirada=\"5\" num_debugs=\"0\">\n");
-        f.write("     <!-- <debug tirada=\"0\" /> -->\n");
-        f.write("  </dado>\n")
-        f.write("</partida>\n")
-        f.write("</glParchis>\n")
-        f.close()
+        return
+#        filename=QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")
+#        f=open(filename,"w")
+#        f.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
+#        f.write("<glParchis version=\"1.0\">\n")
+#        f.write("<partida>\n")
+#        f.write("  <jugadores numero=\""+str(4)+"\" actual=\""+str(self.ogl.jugadoractual.id)+"\">\n" )
+#        f.write('    <jugador id="0" nombre="amarillo" tipo="'+str(0)+'">\n') #Deberá ser cambiado cuando haya IA
+#        f.write("      <fichas>\n")
+#        f.write('        <ficha id="0" posicion_ruta="'+str(self.ogl.fichas[0].ruta)+'" />\n')
+#        f.write('        <ficha id="1" posicion_ruta="'+str(self.ogl.fichas[1].ruta)+'" />\n')
+#        f.write('        <ficha id="2" posicion_ruta="'+str(self.ogl.fichas[2].ruta)+'" />\n')
+#        f.write('        <ficha id="3" posicion_ruta="'+str(self.ogl.fichas[3].ruta)+'" />\n')
+#        f.write("      </fichas>\n")
+#        f.write("    </jugador>\n")
+#        f.write('    <jugador id="1" nombre="azul" tipo="'+str(0)+'">\n')
+#        f.write("      <fichas>\n")
+#        f.write('        <ficha id="4" posicion_ruta="'+str(self.ogl.fichas[4].ruta)+'" />\n')
+#        f.write('        <ficha id="5" posicion_ruta="'+str(self.ogl.fichas[5].ruta)+'" />\n')
+#        f.write('        <ficha id="6" posicion_ruta="'+str(self.ogl.fichas[6].ruta)+'" />\n')
+#        f.write('        <ficha id="7" posicion_ruta="'+str(self.ogl.fichas[7].ruta)+'" />\n')
+#        f.write("      </fichas>\n")
+#        f.write("    </jugador>\n")
+#        f.write('    <jugador id="2" nombre="rojo" tipo="'+str(0)+'">\n')
+#        f.write("      <fichas>\n")
+#        f.write('        <ficha id="8" posicion_ruta="'+str(self.ogl.fichas[8].ruta)+'" />\n')
+#        f.write('        <ficha id="9" posicion_ruta="'+str(self.ogl.fichas[9].ruta)+'" />\n')
+#        f.write('        <ficha id="10" posicion_ruta="'+str(self.ogl.fichas[10].ruta)+'" />\n')
+#        f.write('        <ficha id="11" posicion_ruta="'+str(self.ogl.fichas[11].ruta)+'" />\n')
+#        f.write("      </fichas>\n")
+#        f.write("    </jugador>\n")
+#        f.write('    <jugador id="3" nombre="verde" tipo="'+str(0)+'">\n')
+#        f.write("      <fichas>\n")
+#        f.write('        <ficha id="12" posicion_ruta="'+str(self.ogl.fichas[12].ruta)+'" />\n')
+#        f.write('        <ficha id="13" posicion_ruta="'+str(self.ogl.fichas[13].ruta)+'" />\n')
+#        f.write('        <ficha id="14" posicion_ruta="'+str(self.ogl.fichas[14].ruta)+'" />\n')
+#        f.write('        <ficha id="15" posicion_ruta="'+str(self.ogl.fichas[15].ruta)+'" />\n')
+#        f.write("      </fichas>\n")
+#        f.write("    </jugador>\n")
+#        f.write("  </jugadores>\n")
+#        f.write("  <dado ultima_tirada=\"5\" num_debugs=\"0\">\n");
+#        f.write("     <!-- <debug tirada=\"0\" /> -->\n");
+#        f.write("  </dado>\n")
+#        f.write("</partida>\n")
+#        f.write("</glParchis>\n")
+#        f.close()
 
     def volver_a_tirar(self):
         self.actionDado.setEnabled(True)

@@ -3,6 +3,32 @@ import os
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
+def qcolor(colorstr):
+    if colorstr=="yellow":
+       return QColor(255, 255, 0)        
+    elif colorstr=="blue":
+       return QColor(0, 0, 255)
+    elif colorstr=="red":
+       return QColor(255, 0, 0 )
+    elif colorstr=="green":
+       return QColor(0, 255, 0)
+def colorid(color):
+    if color=="yellow":
+        return 0
+    elif color=="blue":
+        return 1
+    elif color=="red":
+        return 2
+    elif color=="green":
+        return 3
+        
+def i2b(integer):
+    """Convierte 1 en Truue 0 en False"""
+    if integer==1:
+        return True
+    elif integer==0:
+        return False
+        
 def c2b(state):
     """QCheckstate to python bool"""
     if state==Qt.Checked:
@@ -31,7 +57,7 @@ def pixdado(numero):
     elif numero==None:              
         pix=QPixmap(":/glparchis/cube.png")
     return pix
-
+colores=["yellow", "blue", "red", "green"]
 cfgfile=os.environ['HOME']+ "/.glparchis/glparchis.cfg"
 lastfile=os.environ['HOME']+ "/.glparchis/last.glparchis"
 #Es la posición fisica de la casilla
