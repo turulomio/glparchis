@@ -1,6 +1,19 @@
 #-*- coding: utf-8 -*- 
 import os
 from PyQt4.QtGui import *
+from PyQt4.QtCore import *
+
+def c2b(state):
+    """QCheckstate to python bool"""
+    if state==Qt.Checked:
+        return True
+    else:
+        return False
+def icodado(numero):
+        ico = QIcon()
+        ico.addPixmap(pixdado(numero), QIcon.Normal, QIcon.Off) 
+        return ico
+        
 def pixdado(numero):
     """Devulve un QPixmap segun el valor del numero 0-6"""
     if numero==1:
