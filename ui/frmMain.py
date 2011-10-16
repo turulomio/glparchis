@@ -3,7 +3,7 @@ import sys,  random,  ConfigParser
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from xml.dom.minidom import parse
-from datos import cfgfile
+from libglparchis import cfgfile
 
 from Ui_frmMain import *
 from frmAbout import *
@@ -150,31 +150,27 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 label=panel.lbl2
             elif numlbl==3:
                 label=panel.lbl3
-            #Selecciona el pixmap
+
             if numero==1:
-                pix=QtGui.QPixmap(":/glparchis/cube1.png")
                 self.actionDado.setIcon(self.dado1)    
                 self.cmdTirarDado.setIcon(self.dado1)
             elif numero==2:
-                pix=QtGui.QPixmap(":/glparchis/cube2.png")
                 self.actionDado.setIcon(self.dado2)    
                 self.cmdTirarDado.setIcon(self.dado2)
             elif numero==3:
-                pix=QtGui.QPixmap(":/glparchis/cube3.png")
                 self.actionDado.setIcon(self.dado3)    
                 self.cmdTirarDado.setIcon(self.dado3)
             elif numero==4:
-                pix=QtGui.QPixmap(":/glparchis/cube4.png")
                 self.actionDado.setIcon(self.dado4)    
                 self.cmdTirarDado.setIcon(self.dado4)
             elif numero==5:
-                pix=QtGui.QPixmap(":/glparchis/cube5.png")
                 self.actionDado.setIcon(self.dado5)    
                 self.cmdTirarDado.setIcon(self.dado5)
             elif numero==6:
-                pix=QtGui.QPixmap(":/glparchis/cube6.png")
                 self.actionDado.setIcon(self.dado6)    
-                self.cmdTirarDado.setIcon(self.dado6)
+                self.cmdTirarDado.setIcon(self.dado6)            
+            #Selecciona el pixmap
+            pix=pixdado(numero)
             label.setPixmap(pix)
                 
         def jugador_tiene_todas_fichas_en_casa():
@@ -219,25 +215,26 @@ class frmMain(QMainWindow, Ui_frmMain):#
                     
     def cambiar_jugador(self):
         def limpia_panel(id):
+            pix=pixdado(None)
             if id==0:
-                self.panel1.lbl1.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.panel1.lbl2.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.panel1.lbl3.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
+                self.panel1.lbl1.setPixmap(pix)
+                self.panel1.lbl2.setPixmap(pix)
+                self.panel1.lbl3.setPixmap(pix)
                 self.panel1.show()
             elif id==1:
-                self.panel2.lbl1.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.panel2.lbl2.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.panel2.lbl3.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
+                self.panel2.lbl1.setPixmap(pix)
+                self.panel2.lbl2.setPixmap(pix)
+                self.panel2.lbl3.setPixmap(pix)
                 self.panel2.show()
             elif id==2:
-                self.panel3.lbl1.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.panel3.lbl2.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.panel3.lbl3.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
+                self.panel3.lbl1.setPixmap(pix)
+                self.panel3.lbl2.setPixmap(pix)
+                self.panel3.lbl3.setPixmap(pix)
                 self.panel3.show()
             elif id==3:
-                self.panel4.lbl1.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.panel4.lbl2.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
-                self.panel4.lbl3.setPixmap(QtGui.QPixmap(":/glparchis/cube.png"))
+                self.panel4.lbl1.setPixmap(pix)
+                self.panel4.lbl2.setPixmap(pix)
+                self.panel4.lbl3.setPixmap(pix)
                 self.panel4.show()
         self.enable_panel(self.ogl.jugadoractual, False)
         self.ogl.jugadoractual=self.ogl.jugadoractual+1

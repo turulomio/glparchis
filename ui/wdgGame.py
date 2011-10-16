@@ -5,7 +5,7 @@ from PyQt4.QtOpenGL import *
 from PyQt4.QtGui import *
 import math
 from OpenGL import GL,  GLU
-import datos
+import libglparchis
 
 class Casilla(QGLWidget):
     def __init__(self, id, parent=None):
@@ -13,7 +13,7 @@ class Casilla(QGLWidget):
         self.id=id
         self.max_fichas=self.defineMaxFichas(id)
         self.color=self.defineColor(id)
-        self.position=datos.posCasillas[id]
+        self.position=libglparchis.posCasillas[id]
         self.rotate=self.defineRotate(id)
         self.tipo=self.defineTipo(id)
         self.busy=[False]*self.max_fichas
@@ -83,7 +83,7 @@ class Casilla(QGLWidget):
     def tipo_inicio(self):        
         GL.glInitNames();
         GL.glPushMatrix()
-        GL.glPushName(datos.Name.casilla[self.id]);
+        GL.glPushName(libglparchis.Name.casilla[self.id]);
         GL.glTranslated(self.position[0],self.position[1],self.position[2] )
         GL.glRotated(self.rotate, 0, 0, 1 )
         GL.glBegin(GL.GL_QUADS)
@@ -112,7 +112,7 @@ class Casilla(QGLWidget):
     def tipo_normal(self):
         GL.glInitNames();
         GL.glPushMatrix()
-        GL.glPushName(datos.Name.casilla[self.id]);
+        GL.glPushName(libglparchis.Name.casilla[self.id]);
         GL.glTranslated(self.position[0],self.position[1],self.position[2] )
         GL.glRotated(self.rotate, 0, 0, 1 )
         GL.glBegin(GL.GL_QUADS)
@@ -140,7 +140,7 @@ class Casilla(QGLWidget):
     def tipo_oblicuoi(self):
         GL.glInitNames();
         GL.glPushMatrix()
-        GL.glPushName(datos.Name.casilla[self.id]);
+        GL.glPushName(libglparchis.Name.casilla[self.id]);
         GL.glTranslated(self.position[0],self.position[1],self.position[2] )
         GL.glRotated(self.rotate, 0, 0, 1 )
         GL.glBegin(GL.GL_QUADS)
@@ -169,7 +169,7 @@ class Casilla(QGLWidget):
     def tipo_oblicuod(self):
         GL.glInitNames();
         GL.glPushMatrix()
-        GL.glPushName(datos.Name.casilla[self.id]);
+        GL.glPushName(libglparchis.Name.casilla[self.id]);
         GL.glTranslated(self.position[0],self.position[1],self.position[2] )
         GL.glRotated(self.rotate, 0, 0, 1 )
         GL.glBegin(GL.GL_QUADS)
@@ -198,7 +198,7 @@ class Casilla(QGLWidget):
     def tipo_final(self):
         GL.glInitNames();
         GL.glPushMatrix()
-        GL.glPushName(datos.Name.casilla[self.id]);
+        GL.glPushName(libglparchis.Name.casilla[self.id]);
         GL.glTranslated(self.position[0],self.position[1],self.position[2] )
         GL.glRotated(self.rotate, 0, 0, 1 )
         GL.glBegin(GL.GL_QUADS)
@@ -389,7 +389,7 @@ class wdgGame(QGLWidget):
                     return (True, f.id)
             return (False, None)
 
-        idcasilladestino=datos.ruta[ruta][self.fichas[id_ficha].jugador]
+        idcasilladestino=libglparchis.ruta[ruta][self.fichas[id_ficha].jugador]
         r=hay_ficha_otro_jugador(idcasilladestino)
         if r==(False, None):
             return (False, None)
@@ -488,7 +488,7 @@ class wdgGame(QGLWidget):
             self.log("Se ha pasado")
             return 
             
-        idcasilladestino=datos.ruta[self.fichas[self.selFicha].ruta+pj[1]][self.fichas[self.selFicha].jugador]
+        idcasilladestino=libglparchis.ruta[self.fichas[self.selFicha].ruta+pj[1]][self.fichas[self.selFicha].jugador]
         posicioncasilladestino=self.casillas[idcasilladestino].position_free()
 #        self.log(str(idcasilladestino) +" " + str( posicioncasilladestino))
         if posicioncasilladestino==None:
@@ -523,7 +523,7 @@ class wdgGame(QGLWidget):
     def mover(self, id_ficha,  ruta):
         """Solo mueve, la logica en after_ficha_click"""
         idcasillaorigen=self.fichas[id_ficha].casilla()
-        idcasilladestino=datos.ruta[ruta][self.fichas[id_ficha].jugador]        
+        idcasilladestino=libglparchis.ruta[ruta][self.fichas[id_ficha].jugador]        
         if ruta==72:
             self.pendiente=10
         posicioncasillaorigen=self.fichas[id_ficha].numposicion
@@ -557,16 +557,16 @@ class Ficha(QGLWidget):
 #        print "Aquí"
         self.jugador=int(id/4)
         self.numposicion=None#Posicion dentro de la casilla
-#        self.numposicion=datos.numFichas[self.casilla()]-1#Posicion dentro de la casilla
-#        datos.numFichas[self.casilla()]=datos.numFichas[self.casilla()]+1
+#        self.numposicion=libglparchis.numFichas[self.casilla()]-1#Posicion dentro de la casilla
+#        libglparchis.numFichas[self.casilla()]=libglparchis.numFichas[self.casilla()]+1
 #        print "Casilla",  self.casilla()
 #        print "Jugador",  self.jugador
-#        print "Numfichas", datos.numFichas[self.casilla()]
+#        print "Numfichas", libglparchis.numFichas[self.casilla()]
     def casilla(self):
-        return datos.ruta[self.ruta][self.jugador]
+        return libglparchis.ruta[self.ruta][self.jugador]
         
     def posicion(self):
-        return datos.posFichas[self.casilla()][self.numposicion]
+        return libglparchis.posFichas[self.casilla()][self.numposicion]
 
     def defineColor(self,  id):
         if id>=0 and id<=3:
@@ -582,7 +582,7 @@ class Ficha(QGLWidget):
     def dibujar(self):
         GL.glInitNames();
         GL.glPushMatrix()
-        GL.glPushName(datos.Name.ficha[self.id]);
+        GL.glPushName(libglparchis.Name.ficha[self.id]);
         p=self.posicion()
         GL.glTranslated(p[0], p[1], p[2])
         GL.glRotated(180, 1, 0, 0)# da la vuelta a la cara
