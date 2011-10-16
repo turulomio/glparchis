@@ -3,7 +3,7 @@ import sys,  random,  ConfigParser
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from xml.dom.minidom import parse
-from libglparchis import cfgfile
+import libglparchis
 
 from Ui_frmMain import *
 from frmAbout import *
@@ -36,24 +36,24 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.panel4.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaverde.png"))
         self.panel4.show()
         self.logs = []
-        self.dado1 = QtGui.QIcon()
-        self.panel1.setObjectName("dado1")
-        self.dado1.addPixmap(QtGui.QPixmap(":/glparchis/cube1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.dado2 = QtGui.QIcon()
-        self.panel1.setObjectName("dado2")
-        self.dado2.addPixmap(QtGui.QPixmap(":/glparchis/cube2.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.dado3 = QtGui.QIcon()
-        self.panel1.setObjectName("dado3")
-        self.dado3.addPixmap(QtGui.QPixmap(":/glparchis/cube3.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.dado4 = QtGui.QIcon()
-        self.panel1.setObjectName("dado4")
-        self.dado4.addPixmap(QtGui.QPixmap(":/glparchis/cube4.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.dado5= QtGui.QIcon()
-        self.panel1.setObjectName("dado5")
-        self.dado5.addPixmap(QtGui.QPixmap(":/glparchis/cube5.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.dado6 = QtGui.QIcon()
-        self.panel1.setObjectName("dado6")        
-        self.dado6.addPixmap(QtGui.QPixmap(":/glparchis/cube6.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+#        self.dado1 = QtGui.QIcon()
+#        self.panel1.setObjectName("dado1")
+#        self.dado1.addPixmap(QtGui.QPixmap(":/glparchis/cube1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+#        self.dado2 = QtGui.QIcon()
+#        self.panel1.setObjectName("dado2")
+#        self.dado2.addPixmap(QtGui.QPixmap(":/glparchis/cube2.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+#        self.dado3 = QtGui.QIcon()
+#        self.panel1.setObjectName("dado3")
+#        self.dado3.addPixmap(QtGui.QPixmap(":/glparchis/cube3.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+#        self.dado4 = QtGui.QIcon()
+#        self.panel1.setObjectName("dado4")
+#        self.dado4.addPixmap(QtGui.QPixmap(":/glparchis/cube4.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+#        self.dado5= QtGui.QIcon()
+#        self.panel1.setObjectName("dado5")
+#        self.dado5.addPixmap(QtGui.QPixmap(":/glparchis/cube5.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+#        self.dado6 = QtGui.QIcon()
+#        self.panel1.setObjectName("dado6")        
+#        self.dado6.addPixmap(QtGui.QPixmap(":/glparchis/cube6.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.logs1=[]
         self.logs2=[]
         self.logs3=[]
@@ -63,9 +63,43 @@ class frmMain(QMainWindow, Ui_frmMain):#
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('volver_a_tirar()'), self.volver_a_tirar)  
         self.enable_panel(self.ogl.jugadoractual, True)
         self.settings_splitter_load()
+        
         initgame=frmInitGame()
         initgame.exec_()
-
+        self.jugadores={}
+        
+        yellow=Jugador('yellow')
+        yellow.name=initgame.txtYellow.text()
+        yellow.ia=libglparchis.c2b(initgame.chkYellow.checkState())
+        yellow.plays=libglparchis.c2b(initgame.chkYellowPlays.checkState())
+        
+        blue=Jugador('blue')
+        blue.name=initgame.txtBlue.text()
+        blue.ia=libglparchis.c2b(initgame.chkBlue.checkState())
+        blue.plays=libglparchis.c2b(initgame.chkBluePlays.checkState())
+        
+        red=Jugador('red')
+        red.name=initgame.txtRed.text()
+        red.ia=libglparchis.c2b(initgame.chkRed.checkState())
+        red.plays=libglparchis.c2b(initgame.chkRedPlays.checkState())
+        
+        green=Jugador('green')
+        green.name=initgame.txtGreen.text()
+        green.ia=libglparchis.c2b(initgame.chkGreen.checkState())
+        green.plays=libglparchis.c2b(initgame.chkGreenPlays.checkState())
+        
+        self.jugadores['blue']=blue
+        self.jugadores['yellow']=yellow
+        self.jugadores['red']=red
+        self.jugadores['green']=green
+        
+        self.panel1.grp.setTitle(self.jugadores['yellow'].name)
+        self.panel2.grp.setTitle(self.jugadores['blue'].name)
+        self.panel3.grp.setTitle(self.jugadores['red'].name)
+        self.panel4.grp.setTitle(self.jugadores['green'].name)
+        
+        
+        
     def on_splitter_splitterMoved(self, position, index):
         self.settings_splitter_save()
         
@@ -103,16 +137,16 @@ class frmMain(QMainWindow, Ui_frmMain):#
 
     def settings_splitter_save(self):
         config = ConfigParser.ConfigParser()
-        config.read(cfgfile)
+        config.read(libglparchis.cfgfile)
         if config.has_section("frmMain")==False:
             config.add_section("frmMain")
         config.set("frmMain",  'splitter_state', self.splitter.saveState())
-        with open(cfgfile, 'w') as configfile:
+        with open(libglparchis.cfgfile, 'w') as configfile:
             config.write(configfile)
         
     def settings_splitter_load(self):
         config = ConfigParser.ConfigParser()
-        config.read(cfgfile)
+        config.read(libglparchis.cfgfile)
         try:
             position=config.get("frmMain", "splitter_state")
             self.splitter.restoreState(position)
@@ -150,27 +184,10 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 label=panel.lbl2
             elif numlbl==3:
                 label=panel.lbl3
-
-            if numero==1:
-                self.actionDado.setIcon(self.dado1)    
-                self.cmdTirarDado.setIcon(self.dado1)
-            elif numero==2:
-                self.actionDado.setIcon(self.dado2)    
-                self.cmdTirarDado.setIcon(self.dado2)
-            elif numero==3:
-                self.actionDado.setIcon(self.dado3)    
-                self.cmdTirarDado.setIcon(self.dado3)
-            elif numero==4:
-                self.actionDado.setIcon(self.dado4)    
-                self.cmdTirarDado.setIcon(self.dado4)
-            elif numero==5:
-                self.actionDado.setIcon(self.dado5)    
-                self.cmdTirarDado.setIcon(self.dado5)
-            elif numero==6:
-                self.actionDado.setIcon(self.dado6)    
-                self.cmdTirarDado.setIcon(self.dado6)            
-            #Selecciona el pixmap
-            pix=pixdado(numero)
+            ico=libglparchis.icodado(numero)
+            self.actionDado.setIcon(ico)
+            self.cmdTirarDado.setIcon(ico)   
+            pix=libglparchis.pixdado(numero)
             label.setPixmap(pix)
                 
         def jugador_tiene_todas_fichas_en_casa():

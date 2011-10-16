@@ -7,6 +7,13 @@ import math
 from OpenGL import GL,  GLU
 import libglparchis
 
+class Jugador():
+    def __init__(self, color):
+        self.name=None
+        self.color=color
+        self.ia=False
+        self.plays=True
+
 class Casilla(QGLWidget):
     def __init__(self, id, parent=None):
         QGLWidget.__init__(self, parent)
