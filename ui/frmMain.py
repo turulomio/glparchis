@@ -1,5 +1,5 @@
 ## -*- coding: utf-8 -*-
-import sys,  random,  ConfigParser
+import sys,  random,  ConfigParser,  os
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from xml.dom.minidom import parse
@@ -36,24 +36,6 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.panel4.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaverde.png"))
         self.panel4.show()
         self.logs = []
-#        self.dado1 = QtGui.QIcon()
-#        self.panel1.setObjectName("dado1")
-#        self.dado1.addPixmap(QtGui.QPixmap(":/glparchis/cube1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-#        self.dado2 = QtGui.QIcon()
-#        self.panel1.setObjectName("dado2")
-#        self.dado2.addPixmap(QtGui.QPixmap(":/glparchis/cube2.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-#        self.dado3 = QtGui.QIcon()
-#        self.panel1.setObjectName("dado3")
-#        self.dado3.addPixmap(QtGui.QPixmap(":/glparchis/cube3.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-#        self.dado4 = QtGui.QIcon()
-#        self.panel1.setObjectName("dado4")
-#        self.dado4.addPixmap(QtGui.QPixmap(":/glparchis/cube4.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-#        self.dado5= QtGui.QIcon()
-#        self.panel1.setObjectName("dado5")
-#        self.dado5.addPixmap(QtGui.QPixmap(":/glparchis/cube5.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-#        self.dado6 = QtGui.QIcon()
-#        self.panel1.setObjectName("dado6")        
-#        self.dado6.addPixmap(QtGui.QPixmap(":/glparchis/cube6.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.logs1=[]
         self.logs2=[]
         self.logs3=[]
@@ -61,43 +43,9 @@ class frmMain(QMainWindow, Ui_frmMain):#
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('newLog(QString)'), self.lstLog_newLog)  
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('cambiar_jugador()'), self.cambiar_jugador)  
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('volver_a_tirar()'), self.volver_a_tirar)  
-        self.enable_panel(self.ogl.jugadoractual, True)
         self.settings_splitter_load()
         
-        initgame=frmInitGame()
-        initgame.exec_()
-        self.jugadores={}
-        
-        yellow=Jugador('yellow')
-        yellow.name=initgame.txtYellow.text()
-        yellow.ia=libglparchis.c2b(initgame.chkYellow.checkState())
-        yellow.plays=libglparchis.c2b(initgame.chkYellowPlays.checkState())
-        
-        blue=Jugador('blue')
-        blue.name=initgame.txtBlue.text()
-        blue.ia=libglparchis.c2b(initgame.chkBlue.checkState())
-        blue.plays=libglparchis.c2b(initgame.chkBluePlays.checkState())
-        
-        red=Jugador('red')
-        red.name=initgame.txtRed.text()
-        red.ia=libglparchis.c2b(initgame.chkRed.checkState())
-        red.plays=libglparchis.c2b(initgame.chkRedPlays.checkState())
-        
-        green=Jugador('green')
-        green.name=initgame.txtGreen.text()
-        green.ia=libglparchis.c2b(initgame.chkGreen.checkState())
-        green.plays=libglparchis.c2b(initgame.chkGreenPlays.checkState())
-        
-        self.jugadores['blue']=blue
-        self.jugadores['yellow']=yellow
-        self.jugadores['red']=red
-        self.jugadores['green']=green
-        
-        self.panel1.grp.setTitle(self.jugadores['yellow'].name)
-        self.panel2.grp.setTitle(self.jugadores['blue'].name)
-        self.panel3.grp.setTitle(self.jugadores['red'].name)
-        self.panel4.grp.setTitle(self.jugadores['green'].name)
-        
+
         
         
     def on_splitter_splitterMoved(self, position, index):
@@ -253,7 +201,6 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 self.panel4.lbl2.setPixmap(pix)
                 self.panel4.lbl3.setPixmap(pix)
                 self.panel4.show()
-        self.enable_panel(self.ogl.jugadoractual, False)
         self.ogl.jugadoractual=self.ogl.jugadoractual+1
         self.ogl.historicodado=[]
         self.ogl.pendiente=2
@@ -269,22 +216,82 @@ class frmMain(QMainWindow, Ui_frmMain):#
     @QtCore.pyqtSlot()     
     def on_actionRecuperarPartida_activated(self):
         filename=QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")
+        self.ogl=wdgGame(filename)
+#
+#        names = []
+#        values = []
+#        f=open(filename)
+#        dom = parse(f)
+#        self.ogl.jugadoractual=int(dom.getElementsByTagName("jugadores")[0].getAttribute("actual"))
+#        print self.ogl.jugadoractual
+#        fichas=dom.getElementsByTagName("ficha")
+#        for i in range(len(fichas)):
+#            id=int(fichas[i].getAttribute("id"))
+#            ruta=int(fichas[i].getAttribute("posicion_ruta"))
+#            self.ogl.mover(id, ruta)
 
-        names = []
-        values = []
-        f=open(filename)
-        dom = parse(f)
-        self.ogl.jugadoractual=int(dom.getElementsByTagName("jugadores")[0].getAttribute("actual"))
-        print self.ogl.jugadoractual
-        fichas=dom.getElementsByTagName("ficha")
-        for i in range(len(fichas)):
-            id=int(fichas[i].getAttribute("id"))
-            ruta=int(fichas[i].getAttribute("posicion_ruta"))
-            self.ogl.mover(id, ruta)
-#            value = data[i].getElementsByTagName("value")
-#            values.append(value[0].firstChild.nodeValue.encode("utf-8"))
 
+                    
+    @QtCore.pyqtSlot()     
+    def on_actionPartidaNueva_activated(self):
+        def save_last_glparchis():
+            try:
+                os.remove(libglparchis.lastfile)
+            except:
+                pass
+            config = ConfigParser.ConfigParser()
+            for color in ['yellow', 'blue', 'red', 'green']:
+                config.add_section(color)
+                config.set(color,  'ia', int(self.jugadores[color].ia))
+                config.set(color,  'name', self.jugadores[color].name)
+                config.set(color,  'plays', int(self.jugadores[color].plays))
+                config.set(color,  'rutaficha1', 1)
+                config.set(color,  'rutaficha2', 2)
+                config.set(color,  'rutaficha3', 3)
+                config.set(color,  'rutaficha4', 0)
+            config.add_section("game")
+            config.set("game", 'playerstarts', initgame.playerstarts)
+            with open(libglparchis.lastfile, 'w') as configfile:
+                config.write(configfile)            
+                
+        initgame=frmInitGame()
+        initgame.exec_()
+        self.jugadores={}
         
+        yellow=Jugador('yellow')
+        yellow.name=initgame.txtYellow.text()
+        yellow.ia=libglparchis.c2b(initgame.chkYellow.checkState())
+        yellow.plays=libglparchis.c2b(initgame.chkYellowPlays.checkState())
+        
+        blue=Jugador('blue')
+        blue.name=initgame.txtBlue.text()
+        blue.ia=libglparchis.c2b(initgame.chkBlue.checkState())
+        blue.plays=libglparchis.c2b(initgame.chkBluePlays.checkState())
+        
+        red=Jugador('red')
+        red.name=initgame.txtRed.text()
+        red.ia=libglparchis.c2b(initgame.chkRed.checkState())
+        red.plays=libglparchis.c2b(initgame.chkRedPlays.checkState())
+        
+        green=Jugador('green')
+        green.name=initgame.txtGreen.text()
+        green.ia=libglparchis.c2b(initgame.chkGreen.checkState())
+        green.plays=libglparchis.c2b(initgame.chkGreenPlays.checkState())
+        
+        self.jugadores['blue']=blue
+        self.jugadores['yellow']=yellow
+        self.jugadores['red']=red
+        self.jugadores['green']=green
+        
+        self.panel1.grp.setTitle(self.jugadores['yellow'].name)
+        self.panel2.grp.setTitle(self.jugadores['blue'].name)
+        self.panel3.grp.setTitle(self.jugadores['red'].name)
+        self.panel4.grp.setTitle(self.jugadores['green'].name)
+        #Graba fichero .glparchis/last.glparchis
+        save_last_glparchis()
+        #Carga fichero .glparchis/last.glparchis
+        self.ogl=wdgGame()
+        self.ogl.load_file(libglparchis.lastfile)
     @QtCore.pyqtSlot()     
     def on_actionGuardarPartida_activated(self):
         filename=QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")

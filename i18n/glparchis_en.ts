@@ -183,12 +183,12 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="249"/>
+        <location filename="ui/frmMain.ui" line="251"/>
         <source>S&amp;alir</source>
         <translation>E&amp;xit</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="258"/>
+        <location filename="ui/frmMain.ui" line="260"/>
         <source>Acerca de</source>
         <translation>About</translation>
     </message>
@@ -208,7 +208,7 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="263"/>
+        <location filename="ui/frmMain.ui" line="265"/>
         <source>Tirar dado</source>
         <translation>Throw cube</translation>
     </message>
@@ -218,12 +218,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="272"/>
+        <location filename="ui/frmMain.ui" line="274"/>
         <source>&amp;Recuperar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="281"/>
+        <location filename="ui/frmMain.ui" line="283"/>
         <source>&amp;Guardar partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -233,12 +233,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="290"/>
+        <location filename="ui/frmMain.ui" line="292"/>
         <source>&amp;Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="293"/>
+        <location filename="ui/frmMain.ui" line="295"/>
         <source>Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
@@ -246,7 +246,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>wdgGame</name>
     <message>
-        <location filename="ui/wdgGame.py" line="443"/>
+        <location filename="ui/wdgGame.py" line="456"/>
         <source>Han salido 3 seises te vas a casa</source>
         <translation type="unfinished">You got 3 sixs. Go home</translation>
     </message>

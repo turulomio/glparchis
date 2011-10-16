@@ -3,7 +3,7 @@
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.QtGui import *
-import math
+import math,  ConfigParser
 from OpenGL import GL,  GLU
 import libglparchis
 
@@ -263,11 +263,7 @@ class wdgGame(QGLWidget):
         self.lastPos = QPoint()
         self.casillas=[]
         self.fichas=[]
-        #
         self.pendiente=2 #0 de nada,  2 de tirar dado, 6 por seis, 10 de mover ficha por metida, 20 de mover ficha por comida
-#        self.newLog= pySignal(QString)  
-    
-#        self.dado=0; # aquí debera llegar el movimiento del dado y las comidas y metidas
         self.historicodado=[]
         self.movimientos_acumulados=[]#Comidas ymetidas
         self.selLastFicha=None #Se utiliza cuando se va a casa
@@ -278,13 +274,30 @@ class wdgGame(QGLWidget):
             self.casillas.append(Casilla(i)) #La casilla 0 no se usa pero se crea para que todo sea más intuitivo.
         for i in range(0, 16):
             self.fichas.append(Ficha(i))
-            self.mover(i, 0)# Paraz aque todo funcione debe iniciarse así.
+            self.mover(i, 0)
         self.trolltechGreen = QColor.fromCmykF(0.40, 0.0, 1.0, 0.0)
         self.trolltechPurple = QColor.fromCmykF(0.39, 0.39, 0.0, 0.0)
 
-#    def mouseDoubleClickEvent (self,  event ) : 
-#            self.emit(SIGNAL("tirar_dado()"))
-    
+    def load_file(self, filename):
+        config = ConfigParser.ConfigParser()
+        config.read(filename)
+        self.mover(0, config.getint("yellow", "rutaficha1"))
+        self.mover(1, config.getint("yellow", "rutaficha2"))
+        self.mover(2, config.getint("yellow", "rutaficha3"))
+        self.mover(3, config.getint("yellow", "rutaficha4"))
+        self.mover(4, config.getint("blue", "rutaficha1"))
+        self.mover(5, config.getint("blue", "rutaficha2"))
+        self.mover(6, config.getint("blue", "rutaficha3"))
+        self.mover(7, config.getint("blue", "rutaficha4"))
+        self.mover(8, config.getint("red", "rutaficha1"))
+        self.mover(9, config.getint("red", "rutaficha2"))
+        self.mover(10, config.getint("red", "rutaficha3"))
+        self.mover(11, config.getint("red", "rutaficha4"))
+        self.mover(12, config.getint("green", "rutaficha1"))
+        self.mover(13, config.getint("green", "rutaficha2"))
+        self.mover(14, config.getint("green", "rutaficha3"))
+        self.mover(15, config.getint("green", "rutaficha4"))
+        
     def initializeGL(self):
         self.qglClearColor(self.trolltechPurple.dark())
         GL.glShadeModel(GL.GL_FLAT)

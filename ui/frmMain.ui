@@ -39,7 +39,7 @@
         <item>
          <widget class="wdgUserPanel" name="panel1" native="true">
           <property name="enabled">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -231,6 +231,8 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionPartidaNueva"/>
+   <addaction name="separator"/>
    <addaction name="actionDado"/>
    <addaction name="separator"/>
    <addaction name="actionRecuperarPartida"/>
