@@ -67,71 +67,101 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
 </context>
-<context>
+<context encoding="UTF-8">
     <name>frmInitGame</name>
     <message>
-        <location filename="ui/frmInitGame.ui" line="26"/>
-        <source>Configura la partida</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmInitGame.ui" line="60"/>
+        <location filename="ui/frmInitGame.ui" line="72"/>
         <source>Datos jugador amarillo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.ui" line="70"/>
+        <location filename="ui/frmInitGame.ui" line="82"/>
         <source>Jugador amarillo</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmInitGame.ui" line="245"/>
+        <location filename="ui/frmInitGame.ui" line="299"/>
         <source>¿Inteligencia artificial?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.ui" line="113"/>
+        <location filename="ui/frmInitGame.ui" line="139"/>
         <source>Datos jugador azul</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.ui" line="123"/>
+        <location filename="ui/frmInitGame.ui" line="149"/>
         <source>Jugador azul</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.ui" line="169"/>
+        <location filename="ui/frmInitGame.ui" line="209"/>
         <source>Datos jugador rojo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.ui" line="179"/>
+        <location filename="ui/frmInitGame.ui" line="219"/>
         <source>Jugador rojo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.ui" line="225"/>
+        <location filename="ui/frmInitGame.ui" line="279"/>
         <source>Datos jugador verde</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.ui" line="235"/>
+        <location filename="ui/frmInitGame.ui" line="289"/>
         <source>Jugador verde</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.ui" line="14"/>
-        <source>Wizard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmInitGame.ui" line="467"/>
+        <location filename="ui/frmInitGame.ui" line="501"/>
         <source>Tirar dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmInitGame.ui" line="268"/>
-        <source>Elección del primer jugador</source>
+        <location filename="ui/frmInitGame.ui" line="14"/>
+        <source>Configuración inicial de la partida</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmInitGame.py" line="15"/>
+        <source>Configurar la partida</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmInitGame.py" line="16"/>
+        <source>Selecciona las fichas que van a jugar y quién va a jugar con ellas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmInitGame.py" line="18"/>
+        <source>Elegir el jugador que empieza la partida</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmInitGame.py" line="19"/>
+        <source>Tirar el dado de tu color. El jugador que saque la puntuación más alta, empieza la partida</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmInitGame.py" line="112"/>
+        <source>El jugador %1 empieza la partida</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmInitGame.py" line="115"/>
+        <source>%1 deben tirar hasta que se aclare quién empieza la partida</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmInitGame.py" line="21"/>
+        <source>¿Quién empieza?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmInitGame.py" line="113"/>
+        <source>Empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

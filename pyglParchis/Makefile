@@ -24,7 +24,7 @@ install:
 	install -o root -d $(PREFIXAPPLICATIONS)
 
 	install -m 755 -o root glparchis.py $(PREFIXBIN)/pyglparchis
-	install -m 644 -o root datos.py $(PREFIXLIB)                
+	install -m 644 -o root libglparchis.py $(PREFIXLIB)                
 	install -m 644 -o root ui/*.py $(PREFIXLIB)                
 	install -m 644 -o root images/*.py $(PREFIXLIB)
 	install -m 644 -o root images/ficharoja.png $(PREFIXPIXMAPS)/pyglparchis.png

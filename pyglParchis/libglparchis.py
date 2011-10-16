@@ -1,5 +1,24 @@
 #-*- coding: utf-8 -*- 
 import os
+from PyQt4.QtGui import *
+def pixdado(numero):
+    """Devulve un QPixmap segun el valor del numero 0-6"""
+    if numero==1:
+        pix=QPixmap(":/glparchis/cube1.png")
+    elif numero==2:
+        pix=QPixmap(":/glparchis/cube2.png")
+    elif numero==3:
+        pix=QPixmap(":/glparchis/cube3.png")
+    elif numero==4:
+        pix=QPixmap(":/glparchis/cube4.png")
+    elif numero==5:
+        pix=QPixmap(":/glparchis/cube5.png")
+    elif numero==6:
+        pix=QPixmap(":/glparchis/cube6.png")
+    elif numero==None:              
+        pix=QPixmap(":/glparchis/cube.png")
+    return pix
+
 cfgfile=os.environ['HOME']+ "/.glparchis/glparchis.cfg"
 #Es la posición fisica de la casilla
 posCasillas=[None]*105

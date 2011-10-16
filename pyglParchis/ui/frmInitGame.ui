@@ -6,248 +6,304 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>840</width>
-    <height>396</height>
+    <width>837</width>
+    <height>350</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Wizard</string>
+   <string>Configuración inicial de la partida</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../images/glparchis.qrc">
+    <normaloff>:/glparchis/ficharoja.png</normaloff>:/glparchis/ficharoja.png</iconset>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <property name="wizardStyle">
+   <enum>QWizard::ClassicStyle</enum>
   </property>
   <widget class="QWizardPage" name="wizardPage1">
-   <layout class="QHBoxLayout" name="horizontalLayout_5">
+   <layout class="QHBoxLayout" name="horizontalLayout_11">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QLabel" name="label_9">
-        <property name="styleSheet">
-         <string notr="true">font: 75 24pt &quot;Monospace&quot;;</string>
-        </property>
-        <property name="text">
-         <string>Configura la partida</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
-         <widget class="QLabel" name="label">
+         <widget class="QCheckBox" name="chkYellowPlays">
           <property name="text">
            <string/>
-          </property>
-          <property name="pixmap">
-           <pixmap resource="../images/glparchis.qrc">:/glparchis/fichaamarilla.png</pixmap>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_2">
-          <property name="minimumSize">
-           <size>
-            <width>200</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>200</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Datos jugador amarillo</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="txtYellow">
-          <property name="text">
-           <string>Jugador amarillo</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="chkYellow">
-          <property name="text">
-           <string>¿Inteligencia artificial?</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QLabel" name="label_6">
-          <property name="text">
-           <string/>
-          </property>
-          <property name="pixmap">
-           <pixmap resource="../images/glparchis.qrc">:/glparchis/fichaazul.png</pixmap>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_3">
-          <property name="minimumSize">
-           <size>
-            <width>200</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>200</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Datos jugador azul</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="txtBlue">
-          <property name="text">
-           <string>Jugador azul</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="chkBlue">
-          <property name="text">
-           <string>¿Inteligencia artificial?</string>
           </property>
           <property name="checked">
            <bool>true</bool>
           </property>
          </widget>
         </item>
+        <item>
+         <layout class="QHBoxLayout" name="layoutYellow">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../images/glparchis.qrc">:/glparchis/fichaamarilla.png</pixmap>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Datos jugador amarillo</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtYellow">
+            <property name="text">
+             <string>Jugador amarillo</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="chkYellow">
+            <property name="text">
+             <string>¿Inteligencia artificial?</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <layout class="QHBoxLayout" name="horizontalLayout_8">
         <item>
-         <widget class="QLabel" name="label_7">
+         <widget class="QCheckBox" name="chkBluePlays">
           <property name="text">
            <string/>
-          </property>
-          <property name="pixmap">
-           <pixmap resource="../images/glparchis.qrc">:/glparchis/ficharoja.png</pixmap>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_5">
-          <property name="minimumSize">
-           <size>
-            <width>200</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>200</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Datos jugador rojo</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="txtRed">
-          <property name="text">
-           <string>Jugador rojo</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="chkRed">
-          <property name="text">
-           <string>¿Inteligencia artificial?</string>
           </property>
           <property name="checked">
            <bool>true</bool>
           </property>
          </widget>
         </item>
+        <item>
+         <layout class="QHBoxLayout" name="layoutBlue">
+          <item>
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../images/glparchis.qrc">:/glparchis/fichaazul.png</pixmap>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Datos jugador azul</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtBlue">
+            <property name="text">
+             <string>Jugador azul</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="chkBlue">
+            <property name="text">
+             <string>¿Inteligencia artificial?</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <layout class="QHBoxLayout" name="horizontalLayout_9">
         <item>
-         <widget class="QLabel" name="label_8">
+         <widget class="QCheckBox" name="chkRedPlays">
           <property name="text">
            <string/>
-          </property>
-          <property name="pixmap">
-           <pixmap resource="../images/glparchis.qrc">:/glparchis/fichaverde.png</pixmap>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_4">
-          <property name="minimumSize">
-           <size>
-            <width>200</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>300</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Datos jugador verde</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="txtGreen">
-          <property name="text">
-           <string>Jugador verde</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="chkGreen">
-          <property name="text">
-           <string>¿Inteligencia artificial?</string>
           </property>
           <property name="checked">
            <bool>true</bool>
           </property>
          </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="layoutRed">
+          <item>
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../images/glparchis.qrc">:/glparchis/ficharoja.png</pixmap>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_5">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Datos jugador rojo</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtRed">
+            <property name="text">
+             <string>Jugador rojo</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="chkRed">
+            <property name="text">
+             <string>¿Inteligencia artificial?</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_10">
+        <item>
+         <widget class="QCheckBox" name="chkGreenPlays">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="layoutGreen">
+          <item>
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../images/glparchis.qrc">:/glparchis/fichaverde.png</pixmap>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Datos jugador verde</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtGreen">
+            <property name="text">
+             <string>Jugador verde</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="chkGreen">
+            <property name="text">
+             <string>¿Inteligencia artificial?</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>
@@ -256,22 +312,9 @@
    </layout>
   </widget>
   <widget class="QWizardPage" name="wizardPage2">
-   <layout class="QHBoxLayout" name="horizontalLayout_7">
+   <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <widget class="QLabel" name="label_10">
-        <property name="styleSheet">
-         <string notr="true">font: 75 24pt &quot;Monospace&quot;;</string>
-        </property>
-        <property name="text">
-         <string>Elección del primer jugador</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_6">
         <item>
@@ -290,24 +333,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_12">
-            <property name="minimumSize">
-             <size>
-              <width>200</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>200</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
+           <widget class="QLabel" name="lblDadoYellow">
             <property name="pixmap">
-             <pixmap resource="../images/glparchis.qrc">:/glparchis/cube5.png</pixmap>
+             <pixmap resource="../images/glparchis.qrc">:/glparchis/cube.png</pixmap>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -316,6 +344,12 @@
           </item>
           <item>
            <widget class="QPushButton" name="cmdYellow">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Tirar dado</string>
             </property>
@@ -339,7 +373,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_14">
+           <widget class="QLabel" name="lblDadoBlue">
             <property name="minimumSize">
              <size>
               <width>200</width>
@@ -356,7 +390,7 @@
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="../images/glparchis.qrc">:/glparchis/cube5.png</pixmap>
+             <pixmap resource="../images/glparchis.qrc">:/glparchis/cube.png</pixmap>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -364,7 +398,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="cmdYellow_2">
+           <widget class="QPushButton" name="cmdBlue">
             <property name="text">
              <string>Tirar dado</string>
             </property>
@@ -388,7 +422,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_16">
+           <widget class="QLabel" name="lblDadoRed">
             <property name="minimumSize">
              <size>
               <width>200</width>
@@ -405,7 +439,7 @@
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="../images/glparchis.qrc">:/glparchis/cube5.png</pixmap>
+             <pixmap resource="../images/glparchis.qrc">:/glparchis/cube.png</pixmap>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -413,7 +447,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="cmdYellow_3">
+           <widget class="QPushButton" name="cmdRed">
             <property name="text">
              <string>Tirar dado</string>
             </property>
@@ -437,7 +471,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_18">
+           <widget class="QLabel" name="lblDadoGreen">
             <property name="minimumSize">
              <size>
               <width>200</width>
@@ -454,7 +488,7 @@
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="../images/glparchis.qrc">:/glparchis/cube5.png</pixmap>
+             <pixmap resource="../images/glparchis.qrc">:/glparchis/cube.png</pixmap>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -462,7 +496,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="cmdYellow_4">
+           <widget class="QPushButton" name="cmdGreen">
             <property name="text">
              <string>Tirar dado</string>
             </property>
@@ -472,6 +506,16 @@
         </item>
        </layout>
       </item>
+      <item>
+       <widget class="QLabel" name="lblPlayerStarts">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
    </layout>
@@ -479,7 +523,200 @@
  </widget>
  <resources>
   <include location="../images/glparchis.qrc"/>
-  <include location="../../../../../images/glparchis.qrc"/>
+  <include location="../images/glparchis.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>chkYellowPlays</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>txtYellow</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>32</x>
+     <y>44</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>356</x>
+     <y>43</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkYellowPlays</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>chkYellow</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>17</x>
+     <y>47</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>763</x>
+     <y>49</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkBluePlays</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>txtBlue</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>34</x>
+     <y>112</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>391</x>
+     <y>115</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkBluePlays</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>chkBlue</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>29</x>
+     <y>110</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>792</x>
+     <y>115</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkRedPlays</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>txtRed</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>27</x>
+     <y>184</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>555</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkRedPlays</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>chkRed</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>32</x>
+     <y>187</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>766</x>
+     <y>188</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkGreenPlays</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>txtGreen</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>34</x>
+     <y>255</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>473</x>
+     <y>255</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkGreenPlays</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>chkGreen</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>27</x>
+     <y>267</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>763</x>
+     <y>261</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkYellowPlays</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_2</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>31</x>
+     <y>33</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>215</x>
+     <y>50</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkBluePlays</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_3</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>33</x>
+     <y>106</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>153</x>
+     <y>112</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkRedPlays</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_5</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>33</x>
+     <y>192</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>240</x>
+     <y>200</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkGreenPlays</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_4</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>32</x>
+     <y>262</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>183</x>
+     <y>268</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
