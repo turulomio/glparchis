@@ -281,7 +281,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
 
 
 
-    def save(filename):
+    def save(self, filename):
         config = ConfigParser.ConfigParser()
         config.add_section("yellow")
         config.set("yellow",  'ia', self.ogl.jugadores['yellow'].ia)
@@ -317,14 +317,14 @@ class frmMain(QMainWindow, Ui_frmMain):#
         config.set("green",  'rutaficha4',  self.ogl.fichas[15].ruta)              
         
         config.add_section("game")
-        config.set("game", 'playerstarts', initgame.playerstarts)
-        with open(libglparchis.lastfile, 'w') as configfile:
+        config.set("game", 'playerstarts',self.ogl.jugadoractual.color)
+        with open(filename, 'w') as configfile:
             config.write(configfile)            
 
 
     @QtCore.pyqtSlot()     
     def on_actionGuardarPartida_activated(self):
-        filename=os.path.basename(q2s(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")))
+        filename=os.path.basename(libglparchis.q2s(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")))
         self.save(filename)
 
 
