@@ -3,7 +3,7 @@
 
 import sys, os
 sys.path.append("/usr/lib/pyglparchis")
-
+os.chdir(os.path.expanduser("~/.glparchis/"))
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from frmMain import *

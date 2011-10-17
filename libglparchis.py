@@ -22,6 +22,18 @@ def colorid(color):
     elif color=="green":
         return 3
         
+
+def q2s(q):
+    """Qstring to python string en utf8"""
+    return str(QString.toUtf8(q))
+    
+def s2q(st):
+    """utf8 python string to qstring"""
+    if st==None:
+        return QString("")
+    else:
+        return QString(st.decode("UTF8"))
+
 def i2b(integer):
     """Convierte 1 en Truue 0 en False"""
     if integer==1:
@@ -40,6 +52,24 @@ def icodado(numero):
         ico.addPixmap(pixdado(numero), QIcon.Normal, QIcon.Off) 
         return ico
         
+def fichas_name2id(name):
+    if name=="yellow1": return 0
+    if name=="yellow2": return 1
+    if name=="yellow3": return 2
+    if name=="yellow4": return 3
+    if name=="blue1": return 4
+    if name=="blue2": return 5
+    if name=="blue3": return 6
+    if name=="blue4": return 7
+    if name=="red1": return 8
+    if name=="red2": return 9
+    if name=="red3": return 10
+    if name=="red4": return 11
+    if name=="green1": return 12
+    if name=="green2": return 13
+    if name=="green3": return 14
+    if name=="green4": return 15
+
 def pixdado(numero):
     """Devulve un QPixmap segun el valor del numero 0-6"""
     if numero==1:

@@ -261,15 +261,15 @@ class Casilla(QGLWidget):
 
 
 class wdgGame(QGLWidget):
-    def __init__(self, filename=None, parent=None):
+    def __init__(self, parent=None,  filename=None):
         QGLWidget.__init__(self, parent)
         self.tablero=Tablero()
         self.rotX=0
         self.lastPos = QPoint()
         self.jugadores={}
         self.casillas=[]
-        self.fichas={}
-        self.fichasid={}
+        self.fichas=[]
+#        self.fichasid={}
         self.pendiente=2 #0 de nada,  2 de tirar dado, 6 por seis, 10 de mover ficha por metida, 20 de mover ficha por comida
         self.historicodado=[]
         self.movimientos_acumulados=[]#Comidas ymetidas
@@ -279,23 +279,25 @@ class wdgGame(QGLWidget):
         self.jugadoractual=None
         for i in range(0, 105):#Se debe inializar Antes que las fichas
             self.casillas.append(Casilla(i)) #La casilla 0 no se usa pero se crea para que todo sea más intuitivo.
-#        for i in range(0, 16):
-#            self.fichas.append(Ficha(i))
-#            self.mover(i, 0)
-        if filename!=None:
-            self.load_file(filename)
+
         self.trolltechGreen = QColor.fromCmykF(0.40, 0.0, 1.0, 0.0)
         self.trolltechPurple = QColor.fromCmykF(0.39, 0.39, 0.0, 0.0)
 
     def load_file(self, filename):
-        config = ConfigParser.ConfigParser()
-        config.read("last.glparchis")#ÐEBE SERLOCAL
-
+        self.rotX=0
+        self.lastPos = QPoint()
         self.jugadores={}
-        self.fichas={}
-        self.fichasid={}
-#        config.add_section("blue")
-#        q=config.get("blue", "name")
+        self.fichas=[]
+        self.pendiente=2 #0 de nada,  2 de tirar dado, 6 por seis, 10 de mover ficha por metida, 20 de mover ficha por comida
+        self.historicodado=[]
+        self.movimientos_acumulados=[]#Comidas ymetidas
+        self.selLastFicha=None #Se utiliza cuando se va a casa
+        self.selFicha=None
+        self.selCasilla=None
+        
+        config = ConfigParser.ConfigParser()
+        config.read(filename)#ÐEBE SERLOCAL
+
         yellow=Jugador('yellow')
         yellow.name=config.get('yellow', 'name')
         yellow.ia=libglparchis.i2b(config.getint("yellow", "ia"))
@@ -322,31 +324,26 @@ class wdgGame(QGLWidget):
         self.jugadores['green']=green        
         
         #Crea la lista de fichas
-        id=0
         for c in libglparchis.colores:
             for i in range(1, 5):
-                self.jugadores[c].fichas[c+str(i)].id=id
-                self.fichas[c+str(i)]=self.jugadores[c].fichas[c+str(i)]#Meto el nombre
-                self.fichasid[str(id)]=self.jugadores[c].fichas[c+str(i)]#Meto el str(id)
-                print (self.fichas[c+str(i)].name,  self.fichas[c+str(i)].id, self.jugadores[c].fichas[c+str(i)].id)
-                id=id+1
-        
-        self.mover("yellow1", config.getint("yellow", "rutaficha1"))
-        self.mover("yellow2", config.getint("yellow", "rutaficha2"))
-        self.mover("yellow3", config.getint("yellow", "rutaficha3"))
-        self.mover("yellow4", config.getint("yellow", "rutaficha4"))
-        self.mover("blue1", config.getint("blue", "rutaficha1"))
-        self.mover("blue2", config.getint("blue", "rutaficha2"))
-        self.mover("blue3", config.getint("blue", "rutaficha3"))
-        self.mover("blue4", config.getint("blue", "rutaficha4"))
-        self.mover("red1", config.getint("red", "rutaficha1"))
-        self.mover("red2", config.getint("red", "rutaficha2"))
-        self.mover("red3", config.getint("red", "rutaficha3"))
-        self.mover("red4", config.getint("red", "rutaficha4"))
-        self.mover("green1", config.getint("green", "rutaficha1"))
-        self.mover("green2", config.getint("green", "rutaficha2"))
-        self.mover("green3", config.getint("green", "rutaficha3"))
-        self.mover("green4", config.getint("green", "rutaficha4"))
+                self.fichas.append(self.jugadores[c].fichas[c+str(i)])
+      
+        self.mover(self.fichas[0], config.getint("yellow", "rutaficha1"))
+        self.mover(self.fichas[1], config.getint("yellow", "rutaficha2"))
+        self.mover(self.fichas[2], config.getint("yellow", "rutaficha3"))
+        self.mover(self.fichas[3], config.getint("yellow", "rutaficha4"))
+        self.mover(self.fichas[4], config.getint("blue", "rutaficha1"))
+        self.mover(self.fichas[5], config.getint("blue", "rutaficha2"))
+        self.mover(self.fichas[6], config.getint("blue", "rutaficha3"))
+        self.mover(self.fichas[7], config.getint("blue", "rutaficha4"))
+        self.mover(self.fichas[8], config.getint("red", "rutaficha1"))
+        self.mover(self.fichas[9], config.getint("red", "rutaficha2"))
+        self.mover(self.fichas[10], config.getint("red", "rutaficha3"))
+        self.mover(self.fichas[11], config.getint("red", "rutaficha4"))
+        self.mover(self.fichas[12], config.getint("green", "rutaficha1"))
+        self.mover(self.fichas[13], config.getint("green", "rutaficha2"))
+        self.mover(self.fichas[14], config.getint("green", "rutaficha3"))
+        self.mover(self.fichas[15], config.getint("green", "rutaficha4"))
         
         self.jugadoractual=self.jugadores[config.get("game", 'playerstarts')]
         
@@ -386,7 +383,8 @@ class wdgGame(QGLWidget):
         for c in self.casillas:
             c.dibujar()
         for f in self.fichas:
-            self.fichas[f].dibujar()
+#            print(f.name)
+            f.dibujar()
 
     def resizeGL(self, width, height):
         GL.glViewport(0, 0, width, height)
@@ -443,8 +441,8 @@ class wdgGame(QGLWidget):
                 self.selFicha=None
             elif len(objetos)==2:
                 self.selLastFicha=self.selFicha
-                self.selCasilla=object(objetos[0])
-                self.selFicha=object(objetos[1])
+                self.selCasilla=self.casillas[object(objetos[0])]
+                self.selFicha=self.fichas[object(objetos[1])]
 #                self.emit(SIGNAL("newLog(QString)"),"selFicha:" +str(self.selFicha))
             
         self.setFocus()
@@ -516,7 +514,7 @@ class wdgGame(QGLWidget):
             return (False, 0)
             
         #Si esta en ruta 0
-        if self.fichas[self.selFicha].ruta==0:
+        if self.selFicha.ruta==0:
             if salio==5:
                 salio=1   
                 ifcommit(0,"Sales de casa con un 5")
@@ -540,8 +538,7 @@ class wdgGame(QGLWidget):
 
 
     def after_ficha_click(self):
-        print "Begingi after",  self.pendiente
-        if  self.fichasid[str(self.selFicha)].jugador!=self.jugadoractual:             
+        if  self.selFicha.jugador!=self.jugadoractual.id:             
             self.log("No es el jugador actual")
             return
 
@@ -557,18 +554,18 @@ class wdgGame(QGLWidget):
             return
 #        self.log("Puede usar " + str(pj[1]))
         
-        if self.fichas[self.selFicha].ruta+ pj[1]>72:
+        if self.selFicha.ruta+ pj[1]>72:
             self.log("Se ha pasado")
             return 
             
-        idcasilladestino=libglparchis.ruta[self.fichas[self.selFicha].ruta+pj[1]][self.fichas[self.selFicha].jugador]
+        idcasilladestino=libglparchis.ruta[self.selFicha.ruta+pj[1]][self.selFicha.jugador]
         posicioncasilladestino=self.casillas[idcasilladestino].position_free()
 #        self.log(str(idcasilladestino) +" " + str( posicioncasilladestino))
         if posicioncasilladestino==None:
             self.log("No hay casilla destino libre")
             return             
             
-        pc=self.puede_comer(self.selFicha, self.fichas[self.selFicha].ruta+pj[1])
+        pc=self.puede_comer(self.selFicha.id, self.selFicha.ruta+pj[1])
         if pc[0]==True:
             pj=self.puede_jugar(True)
 #            self.log("Va a comer y usar " + str(pj[1]))
@@ -576,9 +573,9 @@ class wdgGame(QGLWidget):
             self.mover(pc[1], 0)
         pj=self.puede_jugar(True)
 #        self.log(str(pj))
-#        self.log(self.fichas[self.selFicha].ruta+  pj[1]+  self.fichas[self.selFicha].ruta+pj[1])
+#        self.log(self.selFicha.ruta+  pj[1]+  self.selFicha.ruta+pj[1])
 #        self.log("Va a usar " + str(pj[1]))
-        self.mover(self.selFicha,self.fichas[self.selFicha].ruta+pj[1])            
+        self.mover(self.selFicha,self.selFicha.ruta+pj[1])            
 
         ##CHEQUEOS UNA VEZ MOVIDO
         print "Finishing after",  self.pendiente
@@ -593,21 +590,22 @@ class wdgGame(QGLWidget):
         elif self.pendiente==20:
             self.log("Debe mover 20")
             
-    def mover(self, nameficha,  ruta):
+    def mover(self, ficha,  ruta):
         """Solo mueve, la logica en after_ficha_click"""
-        idcasillaorigen=self.fichas[nameficha].casilla()
-        idcasilladestino=libglparchis.ruta[ruta][self.fichas[nameficha].jugador]        
+#        print ("Moviendo "+ self.fichas[id_ficha].name)
+        idcasillaorigen=ficha.casilla()
+        idcasilladestino=libglparchis.ruta[ruta][ficha.jugador]        
         if ruta==72:
             self.pendiente=10
-        posicioncasillaorigen=self.fichas[nameficha].numposicion
+        posicioncasillaorigen=ficha.numposicion
         posicioncasilladestino=self.casillas[idcasilladestino].position_free()
 #        print self.selFicha,  idcasillaorigen,  idcasilladestino,  posicioncasillaorigen,  posicioncasilladestino
-        self.fichas[nameficha].last_ruta=self.fichas[nameficha].ruta
-        self.fichas[nameficha].ruta=ruta#cambia la ruta
-        self.fichas[nameficha].numposicion=posicioncasilladestino
+        ficha.last_ruta=ficha.ruta
+        ficha.ruta=ruta#cambia la ruta
+        ficha.numposicion=posicioncasilladestino
         if posicioncasillaorigen!=None: #Al iniciar no hay
             self.casillas[idcasillaorigen].busy[posicioncasillaorigen]=False#libera la posicion en la casilla
-#        self.log("Ficha " +str (nameficha)+" movido a casilla " + str(idcasilladestino) + " a la posicion " + str(posicioncasilladestino))
+#        self.log("Ficha " +str (id_ficha)+" movido a casilla " + str(idcasilladestino) + " a la posicion " + str(posicioncasilladestino))
         self.casillas[idcasilladestino].busy[posicioncasilladestino]=True#okupa la posicion en la casilla
         return True
 
@@ -622,8 +620,7 @@ class Ficha(QGLWidget):
         self.ficha=GLU.gluNewQuadric();
         self.jugador=libglparchis.colorid(name[:-1])#utilizado para array ruta
         self.numposicion=None#Posicion dentro de la casilla
-        self.id=None#Se carga en load_file
-        
+        self.id=libglparchis.fichas_name2id(name)
 
     def casilla(self):
         return libglparchis.ruta[self.ruta][self.jugador]
@@ -643,7 +640,6 @@ class Ficha(QGLWidget):
 
 
     def dibujar(self):
-#        print ("dibujando ficha")
         GL.glInitNames();
         GL.glPushMatrix()
         GL.glPushName(libglparchis.Name.ficha[self.id]);
