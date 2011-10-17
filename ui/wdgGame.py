@@ -1,9 +1,8 @@
 ## -*- coding: utf-8 -*-
-
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.QtGui import *
-import math,  ConfigParser
+import ConfigParser
 from OpenGL import GL,  GLU
 import libglparchis
 
@@ -357,9 +356,9 @@ class wdgGame(QGLWidget):
         GL.glFrontFace(GL.GL_CCW);
 
         light_ambient =  (0.3, 0.3, 0.3, 0.1);
-        light_diffuse =  (0, 0, 1, 0);
-        light_specular =  (0, 0, 0, 0);
-        light_position =  (5.0, 5.0, 5.0, 0.0);
+#        light_diffuse =  (0, 0, 1, 0);
+#        light_specular =  (0, 0, 0, 0);
+#        light_position =  (5.0, 5.0, 5.0, 0.0);
 
 
         GL.glEnable(GL.GL_LIGHTING)
@@ -578,7 +577,7 @@ class wdgGame(QGLWidget):
         self.mover(self.selFicha,self.selFicha.ruta+pj[1])            
 
         ##CHEQUEOS UNA VEZ MOVIDO
-        print "Finishing after",  self.pendiente
+#        print "Finishing after",  self.pendiente
         if self.pendiente==0:
             self.emit(SIGNAL("cambiar_jugador()"))
         elif self.pendiente==2:#tirardado

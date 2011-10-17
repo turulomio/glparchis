@@ -246,7 +246,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>wdgGame</name>
     <message>
-        <location filename="ui/wdgGame.py" line="507"/>
+        <location filename="ui/wdgGame.py" line="506"/>
         <source>Han salido 3 seises te vas a casa</source>
         <translation type="unfinished">You got 3 sixs. Go home</translation>
     </message>
