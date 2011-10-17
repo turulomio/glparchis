@@ -15,7 +15,7 @@
    <cursorShape>PointingHandCursor</cursorShape>
   </property>
   <property name="windowTitle">
-   <string>glParchis 2010</string>
+   <string>glParchis 2010-2011</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../images/glparchis.qrc">
@@ -191,7 +191,7 @@
      <x>0</x>
      <y>0</y>
      <width>877</width>
-     <height>25</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAyuda">

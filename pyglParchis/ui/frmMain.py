@@ -139,10 +139,9 @@ class frmMain(QMainWindow, Ui_frmMain):#
             label.setPixmap(pix)
                 
         def jugador_tiene_todas_fichas_en_casa():
-            for f in self.ogl.fichas:
-                if self.ogl.fichas[f].jugador==self.ogl.jugadoractual.id:
-                    if self.ogl.fichas[f].ruta!=0:
-                        return False
+            for f in self.ogl.jugadoractual.fichas:
+                if self.ogl.jugadoractual.fichas[f].ruta!=0:
+                    return False
             return True
             
 #        numero=5
@@ -156,7 +155,6 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.cmdTirarDado.setEnabled(False)
         labeldado()
         
-        print "num"+ str(numero)
         #LOGICA QUE NO REQUIERE LA INTEVENCION DEL USUARIO
         if jugador_tiene_todas_fichas_en_casa()==True:
             if numero <5:
@@ -174,12 +172,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 self.cmdTirarDado.setEnabled(True)
                 return
 
-                
-        
-
-                    
     def cambiar_jugador(self):
-        def limpia_panel(id):
+        def limpia_panel(color):
             pix=pixdado(None)
             if color=="yellow":
                 self.panel1.lbl1.setPixmap(pix)
@@ -222,15 +216,17 @@ class frmMain(QMainWindow, Ui_frmMain):#
                     
     @QtCore.pyqtSlot()     
     def on_actionRecuperarPartida_activated(self):
-        filename=QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")
-        self.ogl=wdgGame("last.glparchis")
-        
+        #ÐEBE SERLOCAL
+        filenam=os.path.basename(libglparchis.q2s(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")))
+        print (filenam)
+#        self.ogl=wdgGame(filename=filenam)
+        self.ogl.load_file(filenam)
         self.panel1.grp.setTitle(self.ogl.jugadores['yellow'].name)
         self.panel2.grp.setTitle(self.ogl.jugadores['blue'].name)
         self.panel3.grp.setTitle(self.ogl.jugadores['red'].name)
         self.panel4.grp.setTitle(self.ogl.jugadores['green'].name)
         config = ConfigParser.ConfigParser()
-        config.read("last.glparchis")#ÐEBE SERLOCAL
+        config.read(filenam)#ÐEBE SERLOCAL
         self.enable_panel(config.get("game", 'playerstarts'), True)        
 
     @QtCore.pyqtSlot()     
@@ -275,8 +271,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
         #Graba fichero .glparchis/last.glparchis
         save_last_glparchis()
         #Carga fichero .glparchis/last.glparchis
-        self.ogl=wdgGame(libglparchis.lastfile)
-#        self.ogl.load_file()
+#        self.ogl=wdgGame(filename=libglparchis.lastfile)
+        self.ogl.load_file(libglparchis.lastfile)
         
         self.panel1.grp.setTitle(self.ogl.jugadores['yellow'].name)
         self.panel2.grp.setTitle(self.ogl.jugadores['blue'].name)

@@ -193,11 +193,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="18"/>
-        <source>glParchis 2010</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="ui/frmMain.ui" line="145"/>
         <source>Juego</source>
         <translation type="unfinished"></translation>
@@ -242,11 +237,16 @@ p, li { white-space: pre-wrap; }
         <source>Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="ui/frmMain.ui" line="18"/>
+        <source>glParchis 2010-2011</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>wdgGame</name>
     <message>
-        <location filename="ui/wdgGame.py" line="509"/>
+        <location filename="ui/wdgGame.py" line="507"/>
         <source>Han salido 3 seises te vas a casa</source>
         <translation type="unfinished"></translation>
     </message>
