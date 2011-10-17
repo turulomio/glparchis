@@ -2,7 +2,6 @@
 import sys,  random,  ConfigParser,  os
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
-from xml.dom.minidom import parse
 import libglparchis
 
 from Ui_frmMain import *
@@ -280,54 +279,54 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.panel4.grp.setTitle(self.ogl.jugadores['green'].name)
         self.enable_panel(initgame.playerstarts, True)
 
+
+
+    def save(filename):
+        config = ConfigParser.ConfigParser()
+        config.add_section("yellow")
+        config.set("yellow",  'ia', self.ogl.jugadores['yellow'].ia)
+        config.set("yellow",  'name', self.ogl.jugadores['yellow'].name)
+        config.set("yellow",  'plays', self.ogl.jugadores['yellow'].plays)
+        config.set("yellow",  'rutaficha1', self.ogl.fichas[0].ruta)
+        config.set("yellow",  'rutaficha2',  self.ogl.fichas[1].ruta)
+        config.set("yellow",  'rutaficha3',  self.ogl.fichas[2].ruta)
+        config.set("yellow",  'rutaficha4',  self.ogl.fichas[3].ruta)        
+        config.add_section("blue")
+        config.set("blue",  'ia', self.ogl.jugadores['blue'].ia)
+        config.set("blue",  'name', self.ogl.jugadores['blue'].name)
+        config.set("blue",  'plays', self.ogl.jugadores['blue'].plays)
+        config.set("blue",  'rutaficha1', self.ogl.fichas[4].ruta)
+        config.set("blue",  'rutaficha2',  self.ogl.fichas[5].ruta)
+        config.set("blue",  'rutaficha3',  self.ogl.fichas[6].ruta)
+        config.set("blue",  'rutaficha4',  self.ogl.fichas[7].ruta)        
+        config.add_section("red")
+        config.set("red",  'ia', self.ogl.jugadores['red'].ia)
+        config.set("red",  'name', self.ogl.jugadores['red'].name)
+        config.set("red",  'plays', self.ogl.jugadores['red'].plays)
+        config.set("red",  'rutaficha1', self.ogl.fichas[8].ruta)
+        config.set("red",  'rutaficha2',  self.ogl.fichas[9].ruta)
+        config.set("red",  'rutaficha3',  self.ogl.fichas[10].ruta)
+        config.set("red",  'rutaficha4',  self.ogl.fichas[11].ruta)         
+        config.add_section("green")
+        config.set("green",  'ia', self.ogl.jugadores['green'].ia)
+        config.set("green",  'name', self.ogl.jugadores['green'].name)
+        config.set("green",  'plays', self.ogl.jugadores['green'].plays)
+        config.set("green",  'rutaficha1', self.ogl.fichas[12].ruta)
+        config.set("green",  'rutaficha2',  self.ogl.fichas[13].ruta)
+        config.set("green",  'rutaficha3',  self.ogl.fichas[14].ruta)
+        config.set("green",  'rutaficha4',  self.ogl.fichas[15].ruta)              
+        
+        config.add_section("game")
+        config.set("game", 'playerstarts', initgame.playerstarts)
+        with open(libglparchis.lastfile, 'w') as configfile:
+            config.write(configfile)            
+
+
     @QtCore.pyqtSlot()     
     def on_actionGuardarPartida_activated(self):
-        return
-#        filename=QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")
-#        f=open(filename,"w")
-#        f.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
-#        f.write("<glParchis version=\"1.0\">\n")
-#        f.write("<partida>\n")
-#        f.write("  <jugadores numero=\""+str(4)+"\" actual=\""+str(self.ogl.jugadoractual.id)+"\">\n" )
-#        f.write('    <jugador id="0" nombre="amarillo" tipo="'+str(0)+'">\n') #Deberá ser cambiado cuando haya IA
-#        f.write("      <fichas>\n")
-#        f.write('        <ficha id="0" posicion_ruta="'+str(self.ogl.fichas[0].ruta)+'" />\n')
-#        f.write('        <ficha id="1" posicion_ruta="'+str(self.ogl.fichas[1].ruta)+'" />\n')
-#        f.write('        <ficha id="2" posicion_ruta="'+str(self.ogl.fichas[2].ruta)+'" />\n')
-#        f.write('        <ficha id="3" posicion_ruta="'+str(self.ogl.fichas[3].ruta)+'" />\n')
-#        f.write("      </fichas>\n")
-#        f.write("    </jugador>\n")
-#        f.write('    <jugador id="1" nombre="azul" tipo="'+str(0)+'">\n')
-#        f.write("      <fichas>\n")
-#        f.write('        <ficha id="4" posicion_ruta="'+str(self.ogl.fichas[4].ruta)+'" />\n')
-#        f.write('        <ficha id="5" posicion_ruta="'+str(self.ogl.fichas[5].ruta)+'" />\n')
-#        f.write('        <ficha id="6" posicion_ruta="'+str(self.ogl.fichas[6].ruta)+'" />\n')
-#        f.write('        <ficha id="7" posicion_ruta="'+str(self.ogl.fichas[7].ruta)+'" />\n')
-#        f.write("      </fichas>\n")
-#        f.write("    </jugador>\n")
-#        f.write('    <jugador id="2" nombre="rojo" tipo="'+str(0)+'">\n')
-#        f.write("      <fichas>\n")
-#        f.write('        <ficha id="8" posicion_ruta="'+str(self.ogl.fichas[8].ruta)+'" />\n')
-#        f.write('        <ficha id="9" posicion_ruta="'+str(self.ogl.fichas[9].ruta)+'" />\n')
-#        f.write('        <ficha id="10" posicion_ruta="'+str(self.ogl.fichas[10].ruta)+'" />\n')
-#        f.write('        <ficha id="11" posicion_ruta="'+str(self.ogl.fichas[11].ruta)+'" />\n')
-#        f.write("      </fichas>\n")
-#        f.write("    </jugador>\n")
-#        f.write('    <jugador id="3" nombre="verde" tipo="'+str(0)+'">\n')
-#        f.write("      <fichas>\n")
-#        f.write('        <ficha id="12" posicion_ruta="'+str(self.ogl.fichas[12].ruta)+'" />\n')
-#        f.write('        <ficha id="13" posicion_ruta="'+str(self.ogl.fichas[13].ruta)+'" />\n')
-#        f.write('        <ficha id="14" posicion_ruta="'+str(self.ogl.fichas[14].ruta)+'" />\n')
-#        f.write('        <ficha id="15" posicion_ruta="'+str(self.ogl.fichas[15].ruta)+'" />\n')
-#        f.write("      </fichas>\n")
-#        f.write("    </jugador>\n")
-#        f.write("  </jugadores>\n")
-#        f.write("  <dado ultima_tirada=\"5\" num_debugs=\"0\">\n");
-#        f.write("     <!-- <debug tirada=\"0\" /> -->\n");
-#        f.write("  </dado>\n")
-#        f.write("</partida>\n")
-#        f.write("</glParchis>\n")
-#        f.close()
+        filename=os.path.basename(q2s(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")))
+        self.save(filename)
+
 
     def volver_a_tirar(self):
         self.actionDado.setEnabled(True)
