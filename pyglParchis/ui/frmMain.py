@@ -9,70 +9,8 @@ from frmAbout import *
 from wdgUserPanel import *
 from wdgGame import *
 from frmInitGame import *
+from qtablestatistics import *
 
-
-class Statistic():
-    def __init__(self, table):
-        self.tiradas=[]
-        self.dado1=[]
-        self.dado2=[]
-        self.dado3=[]
-        self.dado4=[]
-        self.dado5=[]
-        self.dado6=[]
-        self.comidaspormi=[]
-        self.comidasporotro=[]
-        self.tres6seguidos=[]
-        self.table=table
-        for i in range(4):
-            self.tiradas.append(0)
-            self.dado1.append(0)
-            self.dado2.append(0)
-            self.dado3.append(0)
-            self.dado4.append(0)
-            self.dado5.append(0)
-            self.dado6.append(0)
-            self.comidaspormi.append(0)
-            self.comidasporotro.append(0)
-            self.tres6seguidos.append(0)
-            
-    def registraTirada(self, color, dado):
-        i=libglparchis.colorid(color)
-        self.tiradas[i]=self.tiradas[i]+1
-        if dado==1:
-            self.dado1[i]=self.dado1[i]+1
-        elif dado==2:
-            self.dado2[i]=self.dado2[i]+1
-        elif dado==3:
-            self.dado3[i]=self.dado3[i]+1
-        elif dado==4:
-            self.dado4[i]=self.dado4[i]+1
-        elif dado==5:
-            self.dado5[i]=self.dado5[i]+1
-        elif dado==6:
-            self.dado6[i]=self.dado6[i]+1
-        self.reloadTable()
-            
-            
-    def registraTres6Seguidos(self, color):
-        i=libglparchis.colorid(color)        
-        self.tres6seguidos[i]=self.tres6seguidos[i]+1
-        self.reloadTable()
-        
-    def registraComidaPorMi(self, color):
-        i=libglparchis.colorid(color)
-        self.comidaspormi[i]=self.comidaspormi[i]+1
-        self.reloadTable()
-    
-    def registraComidaPorOtro(self, color):
-        i=libglparchis.colorid(color)
-        self.comidasporotro[i]=self.comidasporotro[i]+1
-        self.reloadTable()
-    
-    def reloadTable(self):
-        self.table.clearContents()
-        for i in range(4):
-            self.table.item(0, i).setText(str(self.tiradas[i]))
             
 class frmMain(QMainWindow, Ui_frmMain):#    
     def __init__(self, parent = 0,  flags = False):
@@ -80,7 +18,6 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.setupUi(self)
         self.showMaximized()
 
-        self.s=Statistic(self.table)
         self.panel1.setColor("yellow")
         self.panel2.setColor("blue")
         self.panel3.setColor("red")
@@ -96,7 +33,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('cambiar_jugador()'), self.cambiar_jugador)  
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('volver_a_tirar()'), self.volver_a_tirar)  
         self.settings_splitter_load()
-        
+
+        self.table.reload()
 
         
         
@@ -174,7 +112,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
 #        numero=5
 #        numero= int(random.random()*6)+1
         numero= int(random.random()*2)+5
-        self.s.registraTirada(self.ogl.jugadoractual.color, numero)
+        self.table.registraTirada(self.ogl.jugadoractual.color, numero)
 #        self.lstLog_newLog("Ha salido un " + str(numero))        
 #        self.ogl.dado=numero
         self.ogl.pendiente=1
@@ -191,6 +129,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 return
             elif numero==6 and len(self.ogl.historicodado)==3:
                 self.lstLog_newLog("No ha salido un 5, y ha sacado 3 seises, ya no puede volver a tirar")
+                self.table.registraTres6seguidos(self.ogl.jugadoractual.color)
                 self.cambiar_jugador()
                 return            
             elif numero==6 and len(self.ogl.historicodado)<3:
