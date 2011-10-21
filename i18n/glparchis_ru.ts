@@ -173,47 +173,47 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.ui" line="175"/>
+        <location filename="ui/frmMain.ui" line="179"/>
         <source>Estadísticas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="288"/>
+        <location filename="ui/frmMain.ui" line="612"/>
         <source>A&amp;yuda</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="294"/>
+        <location filename="ui/frmMain.ui" line="618"/>
         <source>J&amp;ugar</source>
         <translation type="unfinished">&amp;играть</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="308"/>
+        <location filename="ui/frmMain.ui" line="632"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="332"/>
+        <location filename="ui/frmMain.ui" line="656"/>
         <source>S&amp;alir</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="341"/>
+        <location filename="ui/frmMain.ui" line="665"/>
         <source>Acerca de</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="353"/>
+        <location filename="ui/frmMain.ui" line="677"/>
         <source>Tirar dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="362"/>
+        <location filename="ui/frmMain.ui" line="686"/>
         <source>&amp;Recuperar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="374"/>
+        <location filename="ui/frmMain.ui" line="698"/>
         <source>&amp;Guardar partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -223,12 +223,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="383"/>
+        <location filename="ui/frmMain.ui" line="707"/>
         <source>&amp;Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="386"/>
+        <location filename="ui/frmMain.ui" line="710"/>
         <source>Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
@@ -238,83 +238,88 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="248"/>
+        <location filename="ui/frmMain.py" line="186"/>
         <source>Ahora puede tirar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="369"/>
+        <location filename="ui/frmMain.py" line="307"/>
         <source>Ahora puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.ui" line="182"/>
+        <location filename="ui/frmMain.ui" line="186"/>
         <source>Número de tiradas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="192"/>
+        <location filename="ui/frmMain.ui" line="196"/>
         <source>Dado saca 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="197"/>
+        <location filename="ui/frmMain.ui" line="201"/>
         <source>Dado saca 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="202"/>
+        <location filename="ui/frmMain.ui" line="206"/>
         <source>Dado saca 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="207"/>
+        <location filename="ui/frmMain.ui" line="211"/>
         <source>Dado saca 4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="212"/>
+        <location filename="ui/frmMain.ui" line="216"/>
         <source>Dado saca 5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="217"/>
+        <location filename="ui/frmMain.ui" line="221"/>
         <source>Dado saca 6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="227"/>
+        <location filename="ui/frmMain.ui" line="231"/>
         <source>Fichas comidas por mi</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="232"/>
+        <location filename="ui/frmMain.ui" line="236"/>
         <source>Fichas comidas por otro</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="242"/>
+        <location filename="ui/frmMain.ui" line="246"/>
         <source>3 seises seguidos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="247"/>
+        <location filename="ui/frmMain.ui" line="251"/>
         <source>Amarillo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="252"/>
+        <location filename="ui/frmMain.ui" line="256"/>
         <source>Azul</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="257"/>
+        <location filename="ui/frmMain.ui" line="261"/>
         <source>Rojo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="262"/>
+        <location filename="ui/frmMain.ui" line="266"/>
         <source>Verde</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmMain.ui" line="583"/>
+        <source>0</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

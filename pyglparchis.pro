@@ -6,7 +6,8 @@ SOURCES         = datos.py \
                   ui/wdgQT.py \
                   ui/frmAbout.py \
                   ui/wdgShowObject.py \
-                  ui/wdgUserPanel.py
+                  ui/wdgUserPanel.py \
+		  ui/qtablestatistics.py
 
 FORMS           = ui/frmAbout.ui \
 		  ui/frmInitGame.ui \
