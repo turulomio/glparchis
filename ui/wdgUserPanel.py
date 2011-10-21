@@ -28,7 +28,6 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         
     @QtCore.pyqtSlot(bool)      
     def setEnabled(self, bool):
-        #self.setEnabled(bool)
         if bool==True:
             self.log=[]
 
@@ -38,7 +37,6 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         self.log.append(log)
         self.on_chk_stateChanged(self.chk.checkState())
 
-        
     def on_chk_stateChanged(self, state):
         if libglparchis.c2b(state)==True:
             self.lst.setModel(QStringListModel(self.history))
