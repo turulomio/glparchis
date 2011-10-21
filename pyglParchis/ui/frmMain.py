@@ -5,6 +5,7 @@ from PyQt4.QtGui import *
 import libglparchis
 
 from Ui_frmMain import *
+from frmShowCasilla import *
 from frmAbout import *
 from wdgUserPanel import *
 from wdgGame import *
@@ -32,6 +33,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('newLog(QString)'), self.lstLog_newLog)  
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('cambiar_jugador()'), self.cambiar_jugador)  
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('volver_a_tirar()'), self.volver_a_tirar)  
+        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('showCasilla(int)'), self.showCasilla)  
         self.settings_splitter_load()
 
         self.table.reload()
@@ -44,6 +46,12 @@ class frmMain(QMainWindow, Ui_frmMain):#
     @pyqtSignature("")
     def on_cmdTirarDado_clicked(self):
         self.on_actionDado_activated()
+
+#    @pyqtSignature("int")
+    def showCasilla(self, selCasilla):
+        a=frmShowCasilla(self, Qt.Popup,  self.ogl.casillas[selCasilla])
+        a. move(self.ogl.mapToGlobal(QPoint(10, 10))        )
+        a.show()
 
     def lstLog_newLog(self, log):
         self.panels[self.ogl.jugadoractual.color].newLog(log)

@@ -238,12 +238,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="186"/>
+        <location filename="ui/frmMain.py" line="195"/>
         <source>Ahora puede tirar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="307"/>
+        <location filename="ui/frmMain.py" line="316"/>
         <source>Ahora puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
@@ -323,10 +323,73 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context encoding="UTF-8">
+    <name>frmShowCasilla</name>
+    <message>
+        <location filename="ui/Ui_frmShowCasilla.py" line="21"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmShowCasilla.py" line="38"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/Ui_frmShowCasilla.py" line="43"/>
+        <source>Ocupación</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowCasilla.py" line="11"/>
+        <source>Casilla %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmShowCasilla.py" line="12"/>
+        <source>%1 fichas como máximo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowCasilla.py" line="14"/>
+        <source>Casilla segura</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowCasilla.py" line="16"/>
+        <source>Casilla insegura</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmShowCasilla.py" line="22"/>
+        <source>Casilla vacía</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowCasilla.py" line="27"/>
+        <source>Ocupada con una ficha</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowCasilla.py" line="31"/>
+        <source>Ocupada con dos fichas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowCasilla.py" line="34"/>
+        <source>Ocupada con tres fichas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowCasilla.py" line="36"/>
+        <source>Casilla llena</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 <context>
     <name>wdgGame</name>
     <message>
-        <location filename="ui/wdgGame.py" line="506"/>
+        <location filename="ui/wdgGame.py" line="538"/>
         <source>Han salido 3 seises te vas a casa</source>
         <translation type="unfinished">You got 3 sixs. Go home</translation>
     </message>
