@@ -10,7 +10,7 @@
     <message>
         <location filename="ui/frmAbout.ui" line="305"/>
         <source>S&amp;alir</source>
-        <translation type="unfinished">E&amp;xit</translation>
+        <translation>E&amp;xit</translation>
     </message>
     <message>
         <location filename="ui/frmAbout.ui" line="57"/>
@@ -20,7 +20,7 @@
     <message>
         <location filename="ui/frmAbout.ui" line="90"/>
         <source>Licencia</source>
-        <translation type="unfinished">License</translation>
+        <translation>License</translation>
     </message>
     <message>
         <location filename="ui/frmAbout.ui" line="264"/>
@@ -210,12 +210,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="ui/frmMain.ui" line="362"/>
         <source>&amp;Recuperar partida</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Load game</translation>
     </message>
     <message>
         <location filename="ui/frmMain.ui" line="374"/>
         <source>&amp;Guardar partida</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Save game</translation>
     </message>
     <message>
         <location filename="ui/frmMain.ui" line="167"/>
@@ -238,12 +238,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="183"/>
+        <location filename="ui/frmMain.py" line="248"/>
         <source>Ahora puede tirar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="304"/>
+        <location filename="ui/frmMain.py" line="369"/>
         <source>Ahora puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
@@ -300,22 +300,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="ui/frmMain.ui" line="247"/>
         <source>Amarillo</source>
-        <translation type="unfinished"></translation>
+        <translation>Yellow</translation>
     </message>
     <message>
         <location filename="ui/frmMain.ui" line="252"/>
         <source>Azul</source>
-        <translation type="unfinished"></translation>
+        <translation>Blue</translation>
     </message>
     <message>
         <location filename="ui/frmMain.ui" line="257"/>
         <source>Rojo</source>
-        <translation type="unfinished"></translation>
+        <translation>Red</translation>
     </message>
     <message>
         <location filename="ui/frmMain.ui" line="262"/>
         <source>Verde</source>
-        <translation type="unfinished"></translation>
+        <translation>Green</translation>
     </message>
 </context>
 <context>
@@ -336,12 +336,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="ui/wdgUserPanel.ui" line="41"/>
         <source>Jugador</source>
-        <translation type="unfinished"></translation>
+        <translation>Player</translation>
     </message>
     <message>
         <location filename="ui/wdgUserPanel.ui" line="181"/>
         <source>Muestra el historial</source>
-        <translation type="unfinished"></translation>
+        <translation>Show history</translation>
     </message>
 </context>
 </TS>
