@@ -407,7 +407,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgUserPanel.ui" line="181"/>
+        <location filename="ui/wdgUserPanel.ui" line="270"/>
         <source>Muestra el historial</source>
         <translation type="unfinished"></translation>
     </message>
