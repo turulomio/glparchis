@@ -13,13 +13,6 @@ from frmInitGame import *
 
 class frmMain(QMainWindow, Ui_frmMain):#    
     def __init__(self, parent = 0,  flags = False):
-        """
-        Constructor
-        
-        @param parent The parent widget of this dialog. (QWidget)
-        @param name The name of this dialog. (QString)
-        @param modal Flag indicating a modal dialog. (boolean)
-        """
         QMainWindow.__init__(self, None)
         self.setupUi(self)
         self.showMaximized()
@@ -35,22 +28,6 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.panels["red"]=self.panel3
         self.panels["green"]=self.panel4
         
-#        self.panel1.setEnabled(False)
-#        self.panel1.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaamarilla.png"))
-#        self.panel1.show()
-#        self.panel2.setEnabled(False)
-#        self.panel2.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaazul.png"))
-#        self.panel2.show()
-#        self.panel3.setEnabled(False)
-#        self.panel3.show()
-#        self.panel4.setEnabled(False)
-#        self.panel4.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaverde.png"))
-#        self.panel4.show()
-#        self.logs = []
-#        self.logs1=[]
-#        self.logs2=[]
-#        self.logs3=[]
-#        self.logs4=[]
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('newLog(QString)'), self.lstLog_newLog)  
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('cambiar_jugador()'), self.cambiar_jugador)  
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('volver_a_tirar()'), self.volver_a_tirar)  
@@ -65,33 +42,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
     @pyqtSignature("")
     def on_cmdTirarDado_clicked(self):
         self.on_actionDado_activated()
-        
-    def enable_panel(self, color, bool):
-        if color=="yellow":
-            self.panel1.setEnabled(bool)
-        elif color=="blue":
-            self.panel2.setEnabled(bool)
-        elif color=="red":
-            self.panel3.setEnabled(bool)
-        elif color=="green":
-            self.panel4.setEnabled(bool)    
-            
+
     def lstLog_newLog(self, log):
-#        if self.ogl.jugadoractual.color=="yellow":
-#            panel=self.panel1
-#            logs=self.logs1
-#        elif self.ogl.jugadoractual.color=="blue":
-#            panel=self.panel2
-#            logs=self.logs2
-#        elif self.ogl.jugadoractual.color=="red":
-#            panel=self.panel3
-#            logs=self.logs3
-#        elif self.ogl.jugadoractual.color=="green":
-#            panel=self.panel4        
-#            logs=self.logs4
-#        logs.append( log)
-#        panel.lst.setModel(QStringListModel(logs))
-#        panel.lst.show()
         self.panels[self.ogl.jugadoractual.color].newLog(log)
 
     def settings_splitter_save(self):
@@ -208,7 +160,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 self.panel4.show()
                 
         #Cambia jugadoractual
-        self.enable_panel(self.ogl.jugadoractual.color,  False)
+        self.panels[self.ogl.jugadoractual.color].setEnabled(False)
         while True:
             if self.ogl.jugadoractual.color=="yellow":
                 self.ogl.jugadoractual=self.ogl.jugadores["blue"]
@@ -226,7 +178,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
 
         self.actionDado.setEnabled(True)       
         self.cmdTirarDado.setEnabled(True)
-        self.enable_panel(self.ogl.jugadoractual.color,  True)
+        self.panels[self.ogl.jugadoractual.color].setEnabled(True)
         limpia_panel(self.ogl.jugadoractual.color)
         self.lstLog_newLog(self.trUtf8("Ahora puede tirar"))
 
@@ -242,7 +194,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.panel4.grp.setTitle(self.ogl.jugadores['green'].name)
         config = ConfigParser.ConfigParser()
         config.read(filenam)
-        self.enable_panel(config.get("game", 'playerstarts'), True)        
+        self.panels[config.get("game", 'playerstarts')].setEnabled(True)
         self.actionGuardarPartida.setEnabled(True)
         self.actionDado.setEnabled(True)
 
@@ -295,7 +247,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.panel2.grp.setTitle(self.ogl.jugadores['blue'].name)
         self.panel3.grp.setTitle(self.ogl.jugadores['red'].name)
         self.panel4.grp.setTitle(self.ogl.jugadores['green'].name)
-        self.enable_panel(initgame.playerstarts, True)
+        self.panels[initgame.playerstarts].setEnabled(True)
 
         self.actionGuardarPartida.setEnabled(True)
         self.actionDado.setEnabled(True)
