@@ -5,6 +5,8 @@ import libglparchis, datetime
 
 from Ui_wdgUserPanel import *
 
+    
+
 class wdgUserPanel(QWidget, Ui_wdgUserPanel):
     def __init__(self, parent = None, name = None):
         QWidget.__init__(self, parent)
