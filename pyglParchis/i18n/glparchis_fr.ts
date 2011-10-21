@@ -168,77 +168,72 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>frmMain</name>
     <message>
-        <location filename="ui/frmMain.ui" line="199"/>
+        <location filename="ui/frmMain.ui" line="194"/>
         <source>A&amp;yuda</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="205"/>
+        <location filename="ui/frmMain.ui" line="200"/>
         <source>J&amp;ugar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="226"/>
+        <location filename="ui/frmMain.ui" line="214"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="251"/>
+        <location filename="ui/frmMain.ui" line="238"/>
         <source>S&amp;alir</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="260"/>
+        <location filename="ui/frmMain.ui" line="247"/>
         <source>Acerca de</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="145"/>
+        <location filename="ui/frmMain.ui" line="140"/>
         <source>Juego</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.ui" line="172"/>
+        <location filename="ui/frmMain.ui" line="167"/>
         <source>Estadísticas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="265"/>
+        <location filename="ui/frmMain.ui" line="256"/>
         <source>Tirar dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="213"/>
-        <source>&amp;Archivo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmMain.ui" line="274"/>
+        <location filename="ui/frmMain.ui" line="265"/>
         <source>&amp;Recuperar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="283"/>
+        <location filename="ui/frmMain.ui" line="274"/>
         <source>&amp;Guardar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="164"/>
+        <location filename="ui/frmMain.ui" line="159"/>
         <source>Pulsa para tirar el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="292"/>
+        <location filename="ui/frmMain.ui" line="283"/>
         <source>&amp;Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="295"/>
+        <location filename="ui/frmMain.ui" line="286"/>
         <source>Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="18"/>
+        <location filename="ui/frmMain.ui" line="10"/>
         <source>glParchis 2010-2011</source>
         <translation type="unfinished"></translation>
     </message>
