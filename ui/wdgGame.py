@@ -28,6 +28,7 @@ class Casilla(QGLWidget):
         self.tipo=self.defineTipo(id)
         self.busy=[False]*self.max_fichas
         self.seguro=self.defineSeguro(id)
+        self.buzon=[]
 
 
     def defineSeguro(self,  id):
@@ -417,7 +418,22 @@ class wdgGame(QGLWidget):
             process(GL.glRenderMode(GL.GL_RENDER))
             GL.glPopMatrix();
             GL.glMatrixMode(GL.GL_MODELVIEW);           
-
+        def pickupright(event):
+            viewport=GL.glGetIntegerv(GL.GL_VIEWPORT);
+            GL.glMatrixMode(GL.GL_PROJECTION);
+            GL.glPushMatrix();
+            GL.glSelectBuffer(512);
+            GL.glRenderMode(GL.GL_SELECT);
+            GL.glLoadIdentity();
+            GLU.gluPickMatrix(event.x(),viewport[3] -event.y(),1,1, viewport)
+            aspect=viewport[2]/viewport[3]
+            GLU.gluPerspective(60,aspect,1.0,400)
+            GL.glMatrixMode(GL.GL_MODELVIEW)
+            self.paintGL()
+            GL.glMatrixMode(GL.GL_PROJECTION);
+            processright(GL.glRenderMode(GL.GL_RENDER))
+            GL.glPopMatrix();
+            GL.glMatrixMode(GL.GL_MODELVIEW);           
         def object(id_name):
             if id_name>=0 and id_name<=15:
                 return id_name
@@ -443,12 +459,28 @@ class wdgGame(QGLWidget):
                 self.selCasilla=self.casillas[object(objetos[0])]
                 self.selFicha=self.fichas[object(objetos[1])]
 #                self.emit(SIGNAL("newLog(QString)"),"selFicha:" +str(self.selFicha))
+        def processright(nameStack):
+            """nameStack tiene la estructura minDepth, maxDepth, names"""
+            objetos=[]
+            for minDepth, maxDepth, names in nameStack:
+#                print minDepth,  maxDepth,  names
+                if len(names)==1:
+                   objetos.append(names[0])
             
+            if len(objetos)==1:
+                selCasilla=object(objetos[0])
+                self.emit(SIGNAL("showCasilla(int)"), selCasilla)
+            elif len(objetos)==2:
+                selCasilla=self.casillas[object(objetos[0])]
+                selFicha=self.fichas[object(objetos[1])]
+                self.emit(SIGNAL("showCasillaFicha(int,int)"),selCasilla, selFicha)            
         self.setFocus()
         if event.buttons() & Qt.LeftButton:
             pickup(event)            
             if self.selFicha>=0:
                 self.after_ficha_click()
+        elif event.buttons() & Qt.RightButton:
+            pickupright(event)                    
         self.updateGL()
 
     def puede_comer(self, id_ficha,  ruta):
