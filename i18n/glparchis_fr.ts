@@ -238,12 +238,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="231"/>
+        <location filename="ui/frmMain.py" line="209"/>
         <source>Ahora puede tirar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="352"/>
+        <location filename="ui/frmMain.py" line="330"/>
         <source>Ahora puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
