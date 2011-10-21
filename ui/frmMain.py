@@ -33,7 +33,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('newLog(QString)'), self.lstLog_newLog)  
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('cambiar_jugador()'), self.cambiar_jugador)  
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('volver_a_tirar()'), self.volver_a_tirar)  
-        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('showCasilla(int)'), self.showCasilla)  
+        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('showCasillaFicha(int,int)'), self.showCasillaFicha)  
         self.settings_splitter_load()
 
         self.table.reload()
@@ -48,10 +48,14 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.on_actionDado_activated()
 
 #    @pyqtSignature("int")
-    def showCasilla(self, selCasilla):
+    def showCasillaFicha(self, selCasilla, selFicha):
         a=frmShowCasilla(self, Qt.Popup,  self.ogl.casillas[selCasilla])
         a. move(self.ogl.mapToGlobal(QPoint(10, 10))        )
         a.show()
+        if selFicha!=-99:
+            a=frmShowCasilla(self, Qt.Popup,  self.ogl.casillas[selFicha])
+            a. move(self.ogl.mapToGlobal(QPoint(500, 10))        )
+            a.show()
 
     def lstLog_newLog(self, log):
         self.panels[self.ogl.jugadoractual.color].newLog(log)

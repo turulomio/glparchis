@@ -466,14 +466,14 @@ class wdgGame(QGLWidget):
 #                print minDepth,  maxDepth,  names
                 if len(names)==1:
                    objetos.append(names[0])
-            
+#            print len(objetos)
             if len(objetos)==1:
                 selCasilla=object(objetos[0])
-                self.emit(SIGNAL("showCasilla(int)"), selCasilla)
+                self.emit(SIGNAL("showCasillaFicha(int,int)"), selCasilla, -99)
             elif len(objetos)==2:
-                selCasilla=self.casillas[object(objetos[0])]
-                selFicha=self.fichas[object(objetos[1])]
-                self.emit(SIGNAL("showCasillaFicha(int,int)"),selCasilla, selFicha)            
+                selCasilla=object(objetos[0])
+                selFicha=object(objetos[1])
+                self.emit(SIGNAL("showCasillaFicha(int,int)"),selCasilla, selFicha)
         self.setFocus()
         if event.buttons() & Qt.LeftButton:
             pickup(event)            
