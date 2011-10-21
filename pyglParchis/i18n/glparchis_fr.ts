@@ -168,73 +168,83 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>frmMain</name>
     <message>
-        <location filename="ui/frmMain.ui" line="194"/>
+        <location filename="ui/frmMain.ui" line="202"/>
         <source>A&amp;yuda</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="200"/>
+        <location filename="ui/frmMain.ui" line="208"/>
         <source>J&amp;ugar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="214"/>
+        <location filename="ui/frmMain.ui" line="222"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="238"/>
+        <location filename="ui/frmMain.ui" line="246"/>
         <source>S&amp;alir</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="247"/>
+        <location filename="ui/frmMain.ui" line="255"/>
         <source>Acerca de</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="140"/>
+        <location filename="ui/frmMain.ui" line="148"/>
         <source>Juego</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.ui" line="167"/>
+        <location filename="ui/frmMain.ui" line="175"/>
         <source>Estadísticas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="256"/>
+        <location filename="ui/frmMain.ui" line="267"/>
         <source>Tirar dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="265"/>
+        <location filename="ui/frmMain.ui" line="276"/>
         <source>&amp;Recuperar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="274"/>
+        <location filename="ui/frmMain.ui" line="288"/>
         <source>&amp;Guardar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="159"/>
+        <location filename="ui/frmMain.ui" line="167"/>
         <source>Pulsa para tirar el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="283"/>
+        <location filename="ui/frmMain.ui" line="297"/>
         <source>&amp;Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="286"/>
+        <location filename="ui/frmMain.ui" line="300"/>
         <source>Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.ui" line="10"/>
+        <location filename="ui/frmMain.ui" line="18"/>
         <source>glParchis 2010-2011</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmMain.py" line="231"/>
+        <source>Ahora puede tirar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmMain.py" line="352"/>
+        <source>Ahora puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -249,13 +259,18 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>wdgUserPanel</name>
     <message>
-        <location filename="ui/wdgUserPanel.ui" line="32"/>
+        <location filename="ui/wdgUserPanel.ui" line="35"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgUserPanel.ui" line="38"/>
+        <location filename="ui/wdgUserPanel.ui" line="41"/>
         <source>Jugador</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/wdgUserPanel.ui" line="181"/>
+        <source>Muestra el historial</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

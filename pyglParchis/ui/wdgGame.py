@@ -455,8 +455,8 @@ class wdgGame(QGLWidget):
         """No modifica nada"""
         def hay_ficha_otro_jugador(id_casilla):
             for f in self.fichas:
-                if f.casilla()==id_casilla and f.jugador!=self.jugadoractual:
-                    return (True, f.id)
+                if f.casilla()==id_casilla and f.jugador!=self.jugadoractual.id:
+                    return (True, f)
             return (False, None)
 
         idcasilladestino=libglparchis.ruta[ruta][self.fichas[id_ficha].jugador]
@@ -473,7 +473,7 @@ class wdgGame(QGLWidget):
         """Lo relacionado con el movimiento del dado y movimientos especiales commit igual a -True lo gasta, con False solo busca"""
         def jugador_tiene_alguna_ficha_en_casa():
             for f in self.fichas:
-                if f.jugador==self.jugadoractual:
+                if f.jugador==self.jugadoractual.id:
                     if f.ruta==0:
                         return True
             return False
@@ -481,7 +481,7 @@ class wdgGame(QGLWidget):
         def jugador_tiene_todas_fichas_en_casa():
             resultado=True
             for f in self.fichas:
-                if f.jugador==self.jugadoractual:
+                if f.jugador==self.jugadoractual.id:
                     if f.ruta!=0:
                         return False
             return resultado
@@ -592,6 +592,9 @@ class wdgGame(QGLWidget):
     def mover(self, ficha,  ruta):
         """Solo mueve, la logica en after_ficha_click"""
 #        print ("Moviendo "+ self.fichas[id_ficha].name)
+        if ficha==None:
+            print ("esta ficha es None y no se porque")
+            return
         idcasillaorigen=ficha.casilla()
         idcasilladestino=libglparchis.ruta[ruta][ficha.jugador]        
         if ruta==72:
