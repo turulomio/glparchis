@@ -3,6 +3,14 @@
  <author>Mariano Muñoz</author>
  <class>frmMain</class>
  <widget class="QMainWindow" name="frmMain">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>658</width>
+    <height>609</height>
+   </rect>
+  </property>
   <property name="cursor">
    <cursorShape>PointingHandCursor</cursorShape>
   </property>
@@ -248,6 +256,9 @@
    </property>
   </action>
   <action name="actionDado">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../images/glparchis.qrc">
      <normaloff>:/glparchis/cube.png</normaloff>:/glparchis/cube.png</iconset>
@@ -266,6 +277,9 @@
    </property>
   </action>
   <action name="actionGuardarPartida">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../images/glparchis.qrc">
      <normaloff>:/glparchis/save.png</normaloff>:/glparchis/save.png</iconset>

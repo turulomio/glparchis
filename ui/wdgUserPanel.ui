@@ -2,11 +2,14 @@
 <ui version="4.0">
  <class>wdgUserPanel</class>
  <widget class="QWidget" name="wdgUserPanel">
+  <property name="enabled">
+   <bool>false</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>549</width>
+    <width>456</width>
     <height>250</height>
    </rect>
   </property>
@@ -171,6 +174,13 @@
              </widget>
             </item>
            </layout>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="chk">
+            <property name="text">
+             <string>Muestra el historial</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>

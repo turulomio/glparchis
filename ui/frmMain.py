@@ -10,6 +10,7 @@ from wdgUserPanel import *
 from wdgGame import *
 from frmInitGame import *
 
+
 class frmMain(QMainWindow, Ui_frmMain):#    
     def __init__(self, parent = 0,  flags = False):
         """
@@ -22,23 +23,34 @@ class frmMain(QMainWindow, Ui_frmMain):#
         QMainWindow.__init__(self, None)
         self.setupUi(self)
         self.showMaximized()
+
+        self.panel1.setColor("yellow")
+        self.panel2.setColor("blue")
+        self.panel3.setColor("red")
+        self.panel4.setColor("green")
+                
+        self.panels={}
+        self.panels["yellow"]=self.panel1
+        self.panels["blue"]=self.panel2
+        self.panels["red"]=self.panel3
+        self.panels["green"]=self.panel4
         
-        self.panel1.setEnabled(False)
-        self.panel1.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaamarilla.png"))
-        self.panel1.show()
-        self.panel2.setEnabled(False)
-        self.panel2.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaazul.png"))
-        self.panel2.show()
-        self.panel3.setEnabled(False)
-        self.panel3.show()
-        self.panel4.setEnabled(False)
-        self.panel4.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaverde.png"))
-        self.panel4.show()
-        self.logs = []
-        self.logs1=[]
-        self.logs2=[]
-        self.logs3=[]
-        self.logs4=[]
+#        self.panel1.setEnabled(False)
+#        self.panel1.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaamarilla.png"))
+#        self.panel1.show()
+#        self.panel2.setEnabled(False)
+#        self.panel2.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaazul.png"))
+#        self.panel2.show()
+#        self.panel3.setEnabled(False)
+#        self.panel3.show()
+#        self.panel4.setEnabled(False)
+#        self.panel4.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaverde.png"))
+#        self.panel4.show()
+#        self.logs = []
+#        self.logs1=[]
+#        self.logs2=[]
+#        self.logs3=[]
+#        self.logs4=[]
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('newLog(QString)'), self.lstLog_newLog)  
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('cambiar_jugador()'), self.cambiar_jugador)  
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('volver_a_tirar()'), self.volver_a_tirar)  
@@ -65,22 +77,22 @@ class frmMain(QMainWindow, Ui_frmMain):#
             self.panel4.setEnabled(bool)    
             
     def lstLog_newLog(self, log):
-        if self.ogl.jugadoractual.color=="yellow":
-            panel=self.panel1
-            logs=self.logs1
-        elif self.ogl.jugadoractual.color=="blue":
-            panel=self.panel2
-            logs=self.logs2
-        elif self.ogl.jugadoractual.color=="red":
-            panel=self.panel3
-            logs=self.logs3
-        elif self.ogl.jugadoractual.color=="green":
-            panel=self.panel4        
-            logs=self.logs4
-        logs.append( log)
-        panel.lst.setModel(QStringListModel(logs))
-        panel.lst.show()
-
+#        if self.ogl.jugadoractual.color=="yellow":
+#            panel=self.panel1
+#            logs=self.logs1
+#        elif self.ogl.jugadoractual.color=="blue":
+#            panel=self.panel2
+#            logs=self.logs2
+#        elif self.ogl.jugadoractual.color=="red":
+#            panel=self.panel3
+#            logs=self.logs3
+#        elif self.ogl.jugadoractual.color=="green":
+#            panel=self.panel4        
+#            logs=self.logs4
+#        logs.append( log)
+#        panel.lst.setModel(QStringListModel(logs))
+#        panel.lst.show()
+        self.panels[self.ogl.jugadoractual.color].newLog(log)
 
     def settings_splitter_save(self):
         config = ConfigParser.ConfigParser()
@@ -196,14 +208,19 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 self.panel4.show()
                 
         #Cambia jugadoractual
-        if self.ogl.jugadoractual.color=="yellow":
-            self.ogl.jugadoractual=self.ogl.jugadores["blue"]
-        elif self.ogl.jugadoractual.color=="blue":
-            self.ogl.jugadoractual=self.ogl.jugadores["red"]
-        elif self.ogl.jugadoractual.color=="red":
-            self.ogl.jugadoractual=self.ogl.jugadores["green"]
-        elif self.ogl.jugadoractual.color=="green":
-            self.ogl.jugadoractual=self.ogl.jugadores["yellow"]
+        self.enable_panel(self.ogl.jugadoractual.color,  False)
+        while True:
+            if self.ogl.jugadoractual.color=="yellow":
+                self.ogl.jugadoractual=self.ogl.jugadores["blue"]
+            elif self.ogl.jugadoractual.color=="blue" :
+                self.ogl.jugadoractual=self.ogl.jugadores["red"]
+            elif self.ogl.jugadoractual.color=="red" :
+                self.ogl.jugadoractual=self.ogl.jugadores["green"]
+            elif self.ogl.jugadoractual.color=="green" :
+                self.ogl.jugadoractual=self.ogl.jugadores["yellow"]
+            if self.ogl.jugadoractual.plays:#Comprueba si el actual plays
+                break
+                
         self.ogl.historicodado=[]
         self.ogl.pendiente=2
 
@@ -211,22 +228,23 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.cmdTirarDado.setEnabled(True)
         self.enable_panel(self.ogl.jugadoractual.color,  True)
         limpia_panel(self.ogl.jugadoractual.color)
+        self.lstLog_newLog(self.trUtf8("Ahora puede tirar"))
 
                     
     @QtCore.pyqtSlot()     
     def on_actionRecuperarPartida_activated(self):
         #ÐEBE SERLOCAL
         filenam=os.path.basename(libglparchis.q2s(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")))
-        print (filenam)
-#        self.ogl=wdgGame(filename=filenam)
         self.ogl.load_file(filenam)
         self.panel1.grp.setTitle(self.ogl.jugadores['yellow'].name)
         self.panel2.grp.setTitle(self.ogl.jugadores['blue'].name)
         self.panel3.grp.setTitle(self.ogl.jugadores['red'].name)
         self.panel4.grp.setTitle(self.ogl.jugadores['green'].name)
         config = ConfigParser.ConfigParser()
-        config.read(filenam)#ÐEBE SERLOCAL
+        config.read(filenam)
         self.enable_panel(config.get("game", 'playerstarts'), True)        
+        self.actionGuardarPartida.setEnabled(True)
+        self.actionDado.setEnabled(True)
 
     @QtCore.pyqtSlot()     
     def on_actionPartidaNueva_activated(self):
@@ -279,43 +297,44 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.panel4.grp.setTitle(self.ogl.jugadores['green'].name)
         self.enable_panel(initgame.playerstarts, True)
 
+        self.actionGuardarPartida.setEnabled(True)
+        self.actionDado.setEnabled(True)
 
 
     def save(self, filename):
         config = ConfigParser.ConfigParser()
         config.add_section("yellow")
-        config.set("yellow",  'ia', self.ogl.jugadores['yellow'].ia)
+        config.set("yellow",  'ia', int(self.ogl.jugadores['yellow'].ia))
         config.set("yellow",  'name', self.ogl.jugadores['yellow'].name)
-        config.set("yellow",  'plays', self.ogl.jugadores['yellow'].plays)
+        config.set("yellow",  'plays', int(self.ogl.jugadores['yellow'].plays))
         config.set("yellow",  'rutaficha1', self.ogl.fichas[0].ruta)
         config.set("yellow",  'rutaficha2',  self.ogl.fichas[1].ruta)
         config.set("yellow",  'rutaficha3',  self.ogl.fichas[2].ruta)
         config.set("yellow",  'rutaficha4',  self.ogl.fichas[3].ruta)        
         config.add_section("blue")
-        config.set("blue",  'ia', self.ogl.jugadores['blue'].ia)
+        config.set("blue",  'ia', int(self.ogl.jugadores['blue'].ia))
         config.set("blue",  'name', self.ogl.jugadores['blue'].name)
-        config.set("blue",  'plays', self.ogl.jugadores['blue'].plays)
+        config.set("blue",  'plays', int(self.ogl.jugadores['blue'].plays))
         config.set("blue",  'rutaficha1', self.ogl.fichas[4].ruta)
         config.set("blue",  'rutaficha2',  self.ogl.fichas[5].ruta)
         config.set("blue",  'rutaficha3',  self.ogl.fichas[6].ruta)
         config.set("blue",  'rutaficha4',  self.ogl.fichas[7].ruta)        
         config.add_section("red")
-        config.set("red",  'ia', self.ogl.jugadores['red'].ia)
+        config.set("red",  'ia', int(self.ogl.jugadores['red'].ia))
         config.set("red",  'name', self.ogl.jugadores['red'].name)
-        config.set("red",  'plays', self.ogl.jugadores['red'].plays)
+        config.set("red",  'plays', int(self.ogl.jugadores['red'].plays))
         config.set("red",  'rutaficha1', self.ogl.fichas[8].ruta)
         config.set("red",  'rutaficha2',  self.ogl.fichas[9].ruta)
         config.set("red",  'rutaficha3',  self.ogl.fichas[10].ruta)
         config.set("red",  'rutaficha4',  self.ogl.fichas[11].ruta)         
         config.add_section("green")
-        config.set("green",  'ia', self.ogl.jugadores['green'].ia)
+        config.set("green",  'ia', int(self.ogl.jugadores['green'].ia))
         config.set("green",  'name', self.ogl.jugadores['green'].name)
-        config.set("green",  'plays', self.ogl.jugadores['green'].plays)
+        config.set("green",  'plays', int(self.ogl.jugadores['green'].plays))
         config.set("green",  'rutaficha1', self.ogl.fichas[12].ruta)
         config.set("green",  'rutaficha2',  self.ogl.fichas[13].ruta)
         config.set("green",  'rutaficha3',  self.ogl.fichas[14].ruta)
         config.set("green",  'rutaficha4',  self.ogl.fichas[15].ruta)              
-        
         config.add_section("game")
         config.set("game", 'playerstarts',self.ogl.jugadoractual.color)
         with open(filename, 'w') as configfile:
@@ -330,3 +349,4 @@ class frmMain(QMainWindow, Ui_frmMain):#
 
     def volver_a_tirar(self):
         self.actionDado.setEnabled(True)
+        self.lstLog_newLog(self.trUtf8("Ahora puede volver a tirar"))
