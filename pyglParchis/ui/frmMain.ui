@@ -176,7 +176,93 @@
            </attribute>
            <layout class="QHBoxLayout">
             <item>
-             <widget class="QTreeView" name="lstEstadisticas"/>
+             <widget class="QTableWidget" name="table">
+              <row>
+               <property name="text">
+                <string>Número de tiradas</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string> </string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>Dado saca 1</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>Dado saca 2</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>Dado saca 3</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>Dado saca 4</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>Dado saca 5</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>Dado saca 6</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string> </string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>Fichas comidas por mi</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>Fichas comidas por otro</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string> </string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>3 seises seguidos</string>
+               </property>
+              </row>
+              <column>
+               <property name="text">
+                <string>Amarillo</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Azul</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Rojo</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Verde</string>
+               </property>
+              </column>
+             </widget>
             </item>
            </layout>
           </widget>
