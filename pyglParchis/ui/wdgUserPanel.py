@@ -5,8 +5,6 @@ import libglparchis, datetime
 
 from Ui_wdgUserPanel import *
 
-    
-
 class wdgUserPanel(QWidget, Ui_wdgUserPanel):
     def __init__(self, parent = None, name = None):
         QWidget.__init__(self, parent)
@@ -20,13 +18,7 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         
     def setColor(self,  color):
         self.color=color
-        if color=="yellow":
-            self.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaamarilla.png"))
-        elif color=="blue":
-            self.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaazul.png"))
-        elif color=="green":
-            self.lblAvatar.setPixmap(QtGui.QPixmap(":/glparchis/fichaverde.png"))
-        
+        self.lblAvatar.setPixmap(libglparchis.pixficha(self.color))       
         
     @QtCore.pyqtSlot(bool)      
     def setEnabled(self, bool):

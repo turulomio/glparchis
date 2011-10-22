@@ -651,6 +651,7 @@ class Ficha(QGLWidget):
         self.ruta=0
         self.last_ruta=0
         self.color=libglparchis.qcolor(name[:-1])
+        self.colorname=name[:-1]
         self.ficha=GLU.gluNewQuadric();
         self.jugador=libglparchis.colorid(name[:-1])#utilizado para array ruta
         self.numposicion=None#Posicion dentro de la casilla

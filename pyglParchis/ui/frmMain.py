@@ -6,6 +6,7 @@ import libglparchis
 
 from Ui_frmMain import *
 from frmShowCasilla import *
+from frmShowFicha import *
 from frmAbout import *
 from wdgUserPanel import *
 from wdgGame import *
@@ -53,7 +54,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         a. move(self.ogl.mapToGlobal(QPoint(10, 10))        )
         a.show()
         if selFicha!=-99:
-            a=frmShowCasilla(self, Qt.Popup,  self.ogl.casillas[selFicha])
+            a=frmShowFicha(self, Qt.Popup,  self.ogl.fichas[selFicha],  self.ogl.jugadores[self.ogl.fichas[selFicha].colorname])
             a. move(self.ogl.mapToGlobal(QPoint(500, 10))        )
             a.show()
 
