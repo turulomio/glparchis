@@ -3,18 +3,8 @@
 <context encoding="UTF-8">
     <name>frmAbout</name>
     <message>
-        <location filename="ui/Ui_frmAbout.py" line="21"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="ui/Ui_frmAbout.py" line="40"/>
         <source>glParchis</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmAbout.py" line="268"/>
-        <source>Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
@@ -64,6 +54,16 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="ui/Ui_frmAbout.py" line="257"/>
         <source>S&amp;alir</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmAbout.py" line="21"/>
+        <source>Acerca de</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/Ui_frmAbout.py" line="268"/>
+        <source>Créditos</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Acerca de</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../images/glparchis.qrc">
@@ -50,11 +50,11 @@
      <item>
       <widget class="QTabWidget" name="tab">
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tabGLParchis">
         <attribute name="title">
-         <string>Page</string>
+         <string>Créditos</string>
         </attribute>
         <layout class="QHBoxLayout">
          <item>
