@@ -1,20 +1,11 @@
 ## -*- coding: utf-8 -*-
-#
-## Copyright (c) 2003 - 2008 Detlev Offenbach <detlev@die-offenbachs.de>
-##
-#
-#"""
-#Module implementing a dialog for the configuration of eric4s keyboard shortcuts.
-#"""
+
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 from Ui_frmAbout import *
 from wdgQT import *
-#from frmMain import frmMain
-#
-#
-#
+
 class frmAbout(QDialog, Ui_frmAbout):
     def __init__(self, parent = None, name = None, modal = False):
         """
@@ -30,13 +21,7 @@ class frmAbout(QDialog, Ui_frmAbout):
         self.setModal(True)
         self.setupUi(self)
         self.showMaximized()
-#
-#        qt=wdgQT(self.tabQT)
-#        
-#        qt.setGeometry(1, 1, 400, 400)
-#        qt.show()
-        
-#        self.txtLicense.setSource(QUrl("LICENSE"))
+
         
         self.connect(self.cmd, SIGNAL("clicked()"), self.on_cmd_clicked)
     

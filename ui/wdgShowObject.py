@@ -23,7 +23,7 @@ class wdgShowObject(QGLWidget):
         
         #Carga el primer objeto
         self.cas= Casilla(1)
-        self.ficha=Ficha(1)
+        self.ficha=Ficha("red")
         self.tablero=Tablero()
         self.cas.position=(-3.5, -1.5, 0, 0)
         self.cas.tipo=3
