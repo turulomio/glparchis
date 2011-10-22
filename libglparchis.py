@@ -22,7 +22,17 @@ def colorid(color):
     elif color=="green":
         return 3
         
-
+def pixficha(color):
+    """Devuelve un pixmap del color de la ficha"""
+    if color=="yellow":
+        return QPixmap(":/glparchis/fichaamarilla.png")
+    elif color=="blue":
+        return QPixmap(":/glparchis/fichaazul.png")
+    elif color=="green":
+        return QPixmap(":/glparchis/fichaverde.png")
+    elif color=="red":
+        return QPixmap(":/glparchis/ficharoja.png")
+        
 def q2s(q):
     """Qstring to python string en utf8"""
     return str(QString.toUtf8(q))
