@@ -3,22 +3,22 @@
 <context encoding="UTF-8">
     <name>frmAbout</name>
     <message>
-        <location filename="ui/frmAbout.ui" line="14"/>
+        <location filename="ui/Ui_frmAbout.py" line="21"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmAbout.ui" line="43"/>
+        <location filename="ui/Ui_frmAbout.py" line="40"/>
         <source>glParchis</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmAbout.ui" line="57"/>
+        <location filename="ui/Ui_frmAbout.py" line="268"/>
         <source>Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmAbout.ui" line="63"/>
+        <location filename="ui/Ui_frmAbout.py" line="51"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -42,27 +42,27 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmAbout.ui" line="90"/>
+        <location filename="ui/Ui_frmAbout.py" line="269"/>
         <source>Licencia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmAbout.ui" line="254"/>
+        <location filename="ui/Ui_frmAbout.py" line="270"/>
         <source>Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmAbout.ui" line="264"/>
+        <location filename="ui/Ui_frmAbout.py" line="271"/>
         <source>Objetos</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmAbout.ui" line="288"/>
+        <location filename="ui/Ui_frmAbout.py" line="247"/>
         <source>Haga doble click en la imágen para ver los distintos objetos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmAbout.ui" line="305"/>
+        <location filename="ui/Ui_frmAbout.py" line="257"/>
         <source>S&amp;alir</source>
         <translation type="unfinished"></translation>
     </message>
@@ -335,6 +335,11 @@ p, li { white-space: pre-wrap; }
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
+    <message encoding="UTF-8">
+        <location filename="ui/Ui_frmShowCasilla.py" line="43"/>
+        <source>Ocupación</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="ui/frmShowCasilla.py" line="11"/>
         <source>Casilla %1</source>
@@ -380,11 +385,6 @@ p, li { white-space: pre-wrap; }
         <source>Casilla llena</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="ui/Ui_frmShowCasilla.py" line="43"/>
-        <source>Ocupación</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>frmShowFicha</name>
@@ -398,16 +398,6 @@ p, li { white-space: pre-wrap; }
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmShowFicha.py" line="16"/>
-        <source>Posición en casilla: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmShowFicha.py" line="17"/>
-        <source>Posición en ruta: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="ui/frmShowFicha.py" line="14"/>
         <source>Nombre: %1</source>
@@ -416,6 +406,16 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="ui/frmShowFicha.py" line="15"/>
         <source>Jugador: %1 (%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmShowFicha.py" line="16"/>
+        <source>Posición en casilla: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmShowFicha.py" line="17"/>
+        <source>Posición en ruta: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -430,17 +430,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>wdgUserPanel</name>
     <message>
-        <location filename="ui/wdgUserPanel.ui" line="35"/>
+        <location filename="ui/Ui_wdgUserPanel.py" line="29"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgUserPanel.ui" line="41"/>
+        <location filename="ui/Ui_wdgUserPanel.py" line="33"/>
         <source>Jugador</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgUserPanel.ui" line="270"/>
+        <location filename="ui/Ui_wdgUserPanel.py" line="133"/>
         <source>Muestra el historial</source>
         <translation type="unfinished"></translation>
     </message>
