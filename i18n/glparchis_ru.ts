@@ -168,52 +168,52 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>frmMain</name>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="412"/>
+        <location filename="ui/Ui_frmMain.py" line="438"/>
         <source>Juego</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmMain.py" line="470"/>
+        <location filename="ui/Ui_frmMain.py" line="496"/>
         <source>Estadísticas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="339"/>
+        <location filename="ui/Ui_frmMain.py" line="365"/>
         <source>A&amp;yuda</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="342"/>
+        <location filename="ui/Ui_frmMain.py" line="368"/>
         <source>J&amp;ugar</source>
         <translation type="unfinished">&amp;играть</translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="346"/>
+        <location filename="ui/Ui_frmMain.py" line="372"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="356"/>
+        <location filename="ui/Ui_frmMain.py" line="382"/>
         <source>S&amp;alir</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="360"/>
+        <location filename="ui/Ui_frmMain.py" line="386"/>
         <source>Acerca de</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="367"/>
+        <location filename="ui/Ui_frmMain.py" line="393"/>
         <source>Tirar dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="373"/>
+        <location filename="ui/Ui_frmMain.py" line="399"/>
         <source>&amp;Recuperar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="380"/>
+        <location filename="ui/Ui_frmMain.py" line="406"/>
         <source>&amp;Guardar partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -223,12 +223,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="386"/>
+        <location filename="ui/Ui_frmMain.py" line="412"/>
         <source>&amp;Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="387"/>
+        <location filename="ui/Ui_frmMain.py" line="413"/>
         <source>Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
@@ -258,67 +258,67 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="129"/>
+        <location filename="ui/Ui_frmMain.py" line="132"/>
         <source>Dado saca 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="132"/>
+        <location filename="ui/Ui_frmMain.py" line="138"/>
         <source>Dado saca 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="135"/>
+        <location filename="ui/Ui_frmMain.py" line="144"/>
         <source>Dado saca 4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="138"/>
+        <location filename="ui/Ui_frmMain.py" line="150"/>
         <source>Dado saca 5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="141"/>
+        <location filename="ui/Ui_frmMain.py" line="156"/>
         <source>Dado saca 6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="146"/>
+        <location filename="ui/Ui_frmMain.py" line="164"/>
         <source>Fichas comidas por mi</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="149"/>
+        <location filename="ui/Ui_frmMain.py" line="167"/>
         <source>Fichas comidas por otro</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="154"/>
+        <location filename="ui/Ui_frmMain.py" line="172"/>
         <source>3 seises seguidos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="157"/>
+        <location filename="ui/Ui_frmMain.py" line="175"/>
         <source>Amarillo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="160"/>
+        <location filename="ui/Ui_frmMain.py" line="181"/>
         <source>Azul</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="163"/>
+        <location filename="ui/Ui_frmMain.py" line="187"/>
         <source>Rojo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="166"/>
+        <location filename="ui/Ui_frmMain.py" line="191"/>
         <source>Verde</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="325"/>
+        <location filename="ui/Ui_frmMain.py" line="353"/>
         <source>0</source>
         <translation type="unfinished"></translation>
     </message>
