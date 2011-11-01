@@ -430,27 +430,27 @@ p, li { white-space: pre-wrap; }
 <context encoding="UTF-8">
     <name>wdgGame</name>
     <message>
-        <location filename="ui/wdgGame.py" line="682"/>
+        <location filename="ui/wdgGame.py" line="684"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/wdgGame.py" line="684"/>
+        <location filename="ui/wdgGame.py" line="686"/>
         <source>Han salido tres seises, la última ficha movida se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="668"/>
+        <location filename="ui/wdgGame.py" line="670"/>
         <source>He metido la ficha %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/wdgGame.py" line="687"/>
+        <location filename="ui/wdgGame.py" line="689"/>
         <source>Después de tres seises, ya no puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="659"/>
+        <location filename="ui/wdgGame.py" line="661"/>
         <source>He comido la ficha %1</source>
         <translation type="unfinished"></translation>
     </message>

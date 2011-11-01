@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="en">
-<context>
+<!DOCTYPE TS><TS version="2.0" language="en" sourcelanguage="">
+<context encoding="UTF-8">
     <name>frmAbout</name>
     <message>
         <location filename="ui/Ui_frmAbout.py" line="255"/>
@@ -28,7 +27,7 @@
         <source>Qt</source>
         <translation>Qt</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/Ui_frmAbout.py" line="245"/>
         <source>Haga doble click en la imágen para ver los distintos objetos</source>
         <translation>Double click in the view to see the different objects</translation>
@@ -38,12 +37,12 @@
         <source>Acerca de</source>
         <translation>About</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/Ui_frmAbout.py" line="266"/>
         <source>Créditos</source>
         <translation>Credits</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/Ui_frmAbout.py" line="51"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -66,7 +65,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
 </context>
-<context>
+<context encoding="UTF-8">
     <name>frmInitGame</name>
     <message>
         <location filename="ui/Ui_frmInitGame.py" line="51"/>
@@ -78,7 +77,7 @@ p, li { white-space: pre-wrap; }
         <source>Jugador amarillo</source>
         <translation>Yellow player</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/Ui_frmInitGame.py" line="159"/>
         <source>¿Inteligencia artificial?</source>
         <translation>Artificial intelligence?</translation>
@@ -118,7 +117,7 @@ p, li { white-space: pre-wrap; }
         <source>Tirar dado</source>
         <translation>Throw dice</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/Ui_frmInitGame.py" line="21"/>
         <source>Configuración inicial de la partida</source>
         <translation>Initial setup of the game</translation>
@@ -128,7 +127,7 @@ p, li { white-space: pre-wrap; }
         <source>Configurar la partida</source>
         <translation>Configure game</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/frmInitGame.py" line="16"/>
         <source>Selecciona las fichas que van a jugar y quién va a jugar con ellas</source>
         <translation>Select the pieces that will play and who will play with them</translation>
@@ -138,7 +137,7 @@ p, li { white-space: pre-wrap; }
         <source>Elegir el jugador que empieza la partida</source>
         <translation>Choose the player to start the game</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/frmInitGame.py" line="19"/>
         <source>Tirar el dado de tu color. El jugador que saque la puntuación más alta, empieza la partida</source>
         <translation>Throw the dice of your color. The player with the highest score starts the game</translation>
@@ -148,12 +147,12 @@ p, li { white-space: pre-wrap; }
         <source>El jugador %1 empieza la partida</source>
         <translation>The %1 pleyer starts the game</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/frmInitGame.py" line="115"/>
         <source>%1 deben tirar hasta que se aclare quién empieza la partida</source>
         <translation>%1 should thow the dice up to clarify who starts the game</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/frmInitGame.py" line="21"/>
         <source>¿Quién empieza?</source>
         <translation>Who starts?</translation>
@@ -196,7 +195,7 @@ p, li { white-space: pre-wrap; }
         <source>Juego</source>
         <translation>Game</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/Ui_frmMain.py" line="496"/>
         <source>Estadísticas</source>
         <translation>Statistics</translation>
@@ -231,7 +230,7 @@ p, li { white-space: pre-wrap; }
         <source>Partida Nueva</source>
         <translation>New game</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/Ui_frmMain.py" line="121"/>
         <source>Número de tiradas</source>
         <translation>Number of throws</translation>
@@ -331,13 +330,13 @@ p, li { white-space: pre-wrap; }
         <source>%1 ha ganado</source>
         <translation>%1 has won the game</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/Ui_frmMain.py" line="22"/>
         <source>glParchis 2010-2011 ©</source>
         <translation>glParchis 2010-2011 ©</translation>
     </message>
 </context>
-<context>
+<context encoding="UTF-8">
     <name>frmShowCasilla</name>
     <message>
         <location filename="ui/Ui_frmShowCasilla.py" line="21"/>
@@ -349,7 +348,7 @@ p, li { white-space: pre-wrap; }
         <source>TextLabel</source>
         <translation type="unfinished">TextLabel</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/Ui_frmShowCasilla.py" line="43"/>
         <source>Ocupación</source>
         <translation type="unfinished"></translation>
@@ -359,7 +358,7 @@ p, li { white-space: pre-wrap; }
         <source>Casilla %1</source>
         <translation>Piece %1</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/frmShowCasilla.py" line="13"/>
         <source>%1 fichas como máximo</source>
         <translation>Maximum of %1 pieces</translation>
@@ -374,7 +373,7 @@ p, li { white-space: pre-wrap; }
         <source>Casilla insegura</source>
         <translation>Unsafe space</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/frmShowCasilla.py" line="23"/>
         <source>Casilla vacía</source>
         <translation>Empty space</translation>
@@ -422,36 +421,36 @@ p, li { white-space: pre-wrap; }
         <source>Jugador: %1 (%2)</source>
         <translation>Player: %1 (%2)</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/frmShowFicha.py" line="17"/>
         <source>Posición en ruta: %1</source>
         <translation>Route position: %1</translation>
     </message>
 </context>
-<context>
+<context encoding="UTF-8">
     <name>wdgGame</name>
     <message>
-        <location filename="ui/wdgGame.py" line="682"/>
+        <location filename="ui/wdgGame.py" line="684"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
-        <location filename="ui/wdgGame.py" line="684"/>
+    <message encoding="UTF-8">
+        <location filename="ui/wdgGame.py" line="686"/>
         <source>Han salido tres seises, la última ficha movida se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="668"/>
+        <location filename="ui/wdgGame.py" line="670"/>
         <source>He metido la ficha %1</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
-        <location filename="ui/wdgGame.py" line="687"/>
+    <message encoding="UTF-8">
+        <location filename="ui/wdgGame.py" line="689"/>
         <source>Después de tres seises, ya no puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="659"/>
+        <location filename="ui/wdgGame.py" line="661"/>
         <source>He comido la ficha %1</source>
         <translation>%1 piece eaten</translation>
     </message>
