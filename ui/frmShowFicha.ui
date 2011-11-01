@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>277</width>
-    <height>166</height>
+    <width>272</width>
+    <height>143</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -44,16 +44,6 @@
      </item>
      <item>
       <widget class="QLabel" name="lblJugador">
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="lblPosicion">
        <property name="text">
         <string>TextLabel</string>
        </property>

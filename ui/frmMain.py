@@ -70,9 +70,10 @@ class frmMain(QMainWindow, Ui_frmMain):#
             self.lstLog_newLog(self.trUtf8("IA mueve una ficha"))            
             for f in self.ogl.jugadoractual.fichas:
                 ficha=self.ogl.jugadoractual.fichas[f]
-                self.ogl.selFicha=ficha
-                self.ogl.selCasilla=self.ogl.casillas[ficha.id_casilla()]
-                self.ogl.after_ficha_click()
+                if self.ogl.PuedeMover(ficha, self.ogl.dado.lastthrow):
+                    self.ogl.selFicha=ficha
+                    self.ogl.after_ficha_click()
+                    return
         else:
             self.lstLog_newLog(self.trUtf8("Mueva una ficha"))
 
@@ -90,7 +91,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
         a. move(self.ogl.mapToGlobal(QPoint(10, 10))        )
         a.show()
         if selFicha!=-99:
-            a=frmShowFicha(self, Qt.Popup,  self.ogl.fichas[selFicha],  self.ogl.jugadores[self.ogl.fichas[selFicha].colorname])
+            ficha=self.ogl.busca_ficha(selFicha)
+            a=frmShowFicha(self, Qt.Popup,  ficha, self.ogl.jugadores[ficha.colorname])
             a. move(self.ogl.mapToGlobal(QPoint(500, 10))        )
             a.show()
 

@@ -2,6 +2,7 @@
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from Ui_frmShowCasilla import *   
+import libglparchis
 
 class frmShowCasilla(QDialog, Ui_frmShowCasilla):
     def __init__(self, parent = None, flags= None,  casilla=None):
@@ -21,17 +22,27 @@ class frmShowCasilla(QDialog, Ui_frmShowCasilla):
             self.lbl4.hide()
             self.grp.setTitle(self.trUtf8("Casilla vacía"))
         elif len(self.casilla.buzon)==1:
+            self.lbl1.setPixmap(libglparchis.pixficha(self.casilla.buzon[0].colorname))    
             self.lbl2.hide()
             self.lbl3.hide()
             self.lbl4.hide()
             self.grp.setTitle(self.trUtf8("Ocupada con una ficha"))
         elif len(self.casilla.buzon)==2:
+            self.lbl1.setPixmap(libglparchis.pixficha(self.casilla.buzon[0].colorname))       
+            self.lbl2.setPixmap(libglparchis.pixficha(self.casilla.buzon[1].colorname))   
             self.lbl3.hide()
             self.lbl4.hide()
             self.grp.setTitle(self.trUtf8("Ocupada con dos fichas"))
         elif len(self.casilla.buzon)==3:
+            self.lbl1.setPixmap(libglparchis.pixficha(self.casilla.buzon[0].colorname))       
+            self.lbl2.setPixmap(libglparchis.pixficha(self.casilla.buzon[1].colorname))       
+            self.lbl3.setPixmap(libglparchis.pixficha(self.casilla.buzon[2].colorname))    
             self.lbl4.hide()
             self.grp.setTitle(self.trUtf8("Ocupada con tres fichas"))
         else:
+            self.lbl1.setPixmap(libglparchis.pixficha(self.casilla.buzon[0].colorname))       
+            self.lbl2.setPixmap(libglparchis.pixficha(self.casilla.buzon[1].colorname))       
+            self.lbl3.setPixmap(libglparchis.pixficha(self.casilla.buzon[2].colorname))       
+            self.lbl4.setPixmap(libglparchis.pixficha(self.casilla.buzon[3].colorname)) 
             self.grp.setTitle(self.trUtf8("Casilla llena"))
-            
+
