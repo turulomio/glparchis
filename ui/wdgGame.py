@@ -411,8 +411,10 @@ class wdgGame(QGLWidget):
             self.mover(green.fichas["green3"], config.getint("green", "rutaficha3"), False)
             self.mover(green.fichas["green4"], config.getint("green", "rutaficha4"), False)
         
-        for i in config.get("game", 'fakedice').split(";")   :
-            self.dado.fake.append(int(i))
+        fake=config.get("game", 'fakedice')
+        if fake!="":
+            for i in  fake  :
+                self.dado.fake.append(int(i))
         print self.dado.fake
         self.jugadoractual=self.jugadores[config.get("game", 'playerstarts')]    
         self.jugadoractual.historicodado=[]
