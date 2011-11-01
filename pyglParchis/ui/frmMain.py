@@ -287,6 +287,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.panel4.grp.setTitle(self.ogl.jugadores['green'].name)
 
         self.actionGuardarPartida.setEnabled(True)
+        self.setWindowIcon(libglparchis.icoficha(self.ogl.jugadoractual.color))
         self.on_JugadorDebeTirar()
 
 
