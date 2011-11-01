@@ -341,17 +341,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="ui/Ui_frmShowCasilla.py" line="21"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialog</translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="ui/Ui_frmShowCasilla.py" line="38"/>
         <source>TextLabel</source>
-        <translation type="unfinished">TextLabel</translation>
+        <translation>TextLabel</translation>
     </message>
     <message encoding="UTF-8">
         <location filename="ui/Ui_frmShowCasilla.py" line="43"/>
         <source>Ocupación</source>
-        <translation type="unfinished"></translation>
+        <translation>Occupation</translation>
     </message>
     <message>
         <location filename="ui/frmShowCasilla.py" line="12"/>
@@ -404,12 +404,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="ui/Ui_frmShowFicha.py" line="21"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialogo</translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="ui/Ui_frmShowFicha.py" line="44"/>
         <source>TextLabel</source>
-        <translation type="unfinished">TextLabel</translation>
+        <translation>TextLabel</translation>
     </message>
     <message>
         <location filename="ui/frmShowFicha.py" line="14"/>
@@ -430,29 +430,74 @@ p, li { white-space: pre-wrap; }
 <context encoding="UTF-8">
     <name>wdgGame</name>
     <message>
-        <location filename="ui/wdgGame.py" line="684"/>
+        <location filename="ui/wdgGame.py" line="662"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/wdgGame.py" line="686"/>
+        <location filename="ui/wdgGame.py" line="664"/>
         <source>Han salido tres seises, la última ficha movida se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="670"/>
+        <location filename="ui/wdgGame.py" line="648"/>
         <source>He metido la ficha %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/wdgGame.py" line="689"/>
+        <location filename="ui/wdgGame.py" line="667"/>
         <source>Después de tres seises, ya no puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="661"/>
+        <location filename="ui/wdgGame.py" line="639"/>
         <source>He comido la ficha %1</source>
         <translation>%1 piece eaten</translation>
+    </message>
+    <message>
+        <location filename="ui/wdgGame.py" line="515"/>
+        <source>Se ha hecho click en la ficha %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/wdgGame.py" line="569"/>
+        <source>No es del jugador actual</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/wdgGame.py" line="577"/>
+        <source>No se puede mover, debes abrir barrera</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/wdgGame.py" line="585"/>
+        <source>Necesita sacar un 5 para mover esta ficha</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/wdgGame.py" line="590"/>
+        <source>Se ha pasado la meta</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/wdgGame.py" line="598"/>
+        <source>Hay una barrera</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/wdgGame.py" line="605"/>
+        <source>No hay espacio en la casilla</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/wdgGame.py" line="608"/>
+        <source>Puede mover %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/wdgGame.py" line="688"/>
+        <source>No puede mover esta ficha, seleccione otra</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

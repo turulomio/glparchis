@@ -30,9 +30,7 @@ class Jugador():
         self.fichas={}        
         self.historicodado=[]
         self.LastFichaMovida=None #Se utiliza cuando se va a casa NOne si ninguna
-#        self.hamovidoficha=False #Util para ver si se va acasa tras 6 seises
         self.movimientos_acumulados=None#Comidas ymetidas, puede ser 10, 20 o None Cuando se cuenta se borra a None
-
         self.id=libglparchis.colorid(color)
 
     def CreaFichas(self, plays):
@@ -52,9 +50,7 @@ class Jugador():
             if self.fichas[f].ruta==0:
                 return False
         return True
-                
-           
-            
+
     def HaGanado(self):
         for f in self.fichas:
             if self.fichas[f].ruta!=72:
@@ -71,7 +67,6 @@ class Casilla(QGLWidget):
         self.rotate=self.defineRotate(id)
         self.rampallegada=self.defineRampaLlegada(id)
         self.tipo=self.defineTipo(id)
-#        self.busy=[False]*self.max_fichas
         self.seguro=self.defineSeguro(id)
         self.buzon=[]
 
@@ -130,7 +125,6 @@ class Casilla(QGLWidget):
             return 0
         
     def dibujar(self):
-#        print("dibuajando casillaa")
         if self.tipo==0:
             self.tipo_inicio()
         elif self.tipo==1:
@@ -336,7 +330,6 @@ class wdgGame(QGLWidget):
         self.lastPos = QPoint()
         self.jugadores={}
         self.casillas=[]
-#        self.fichas=[]
         self.selFicha=None
         self.selCasilla=None
         self.jugadoractual=None
@@ -351,14 +344,13 @@ class wdgGame(QGLWidget):
         self.rotX=0
         self.lastPos = QPoint()
         self.jugadores={}
-#        self.fichas=[]
         self.selFicha=None
         self.selCasilla=None
         self.dado=Dado()
         
         
         config = ConfigParser.ConfigParser()
-        config.read(filename)#ÐEBE SERLOCAL
+        config.read(filename)
 
         yellow=Jugador('yellow')
         yellow.name=config.get('yellow', 'name')
@@ -384,12 +376,7 @@ class wdgGame(QGLWidget):
         self.jugadores['yellow']=yellow
         self.jugadores['red']=red
         self.jugadores['green']=green        
-        
-#        #Crea la lista de fichas
-#        for c in libglparchis.colores:
-#            for f in self.jugadores[c].fichas:
-#                self.fichas.append(self.jugadores[c].fichas[f])
-      
+
         if yellow.plays==True:
             self.mover(yellow.fichas["yellow1"], config.getint("yellow", "rutaficha1"), False)
             self.mover(yellow.fichas["yellow2"], config.getint("yellow", "rutaficha2"), False)
@@ -431,10 +418,6 @@ class wdgGame(QGLWidget):
         GL.glFrontFace(GL.GL_CCW);
 
         light_ambient =  (0.3, 0.3, 0.3, 0.1);
-#        light_diffuse =  (0, 0, 1, 0);
-#        light_specular =  (0, 0, 0, 0);
-#        light_position =  (5.0, 5.0, 5.0, 0.0);
-
 
         GL.glEnable(GL.GL_LIGHTING)
         lightpos=(0, 0, 50)
@@ -457,9 +440,6 @@ class wdgGame(QGLWidget):
         for c in self.casillas:
             c.dibujar()
             c.dibujar_fichas()
-#        for f in self.fichas:
-##            print(f.name)
-#            f.dibujar()
 
     def resizeGL(self, width, height):
         GL.glViewport(0, 0, width, height)
@@ -493,6 +473,7 @@ class wdgGame(QGLWidget):
             process(GL.glRenderMode(GL.GL_RENDER))
             GL.glPopMatrix();
             GL.glMatrixMode(GL.GL_MODELVIEW);           
+            
         def pickupright(event):
             viewport=GL.glGetIntegerv(GL.GL_VIEWPORT);
             GL.glMatrixMode(GL.GL_PROJECTION);
@@ -509,6 +490,7 @@ class wdgGame(QGLWidget):
             processright(GL.glRenderMode(GL.GL_RENDER))
             GL.glPopMatrix();
             GL.glMatrixMode(GL.GL_MODELVIEW);           
+        
         def object(id_name):
             if id_name>=0 and id_name<=15:
                 return id_name
@@ -521,19 +503,16 @@ class wdgGame(QGLWidget):
             """nameStack tiene la estructura minDepth, maxDepth, names"""
             objetos=[]
             for minDepth, maxDepth, names in nameStack:
-#                print minDepth,  maxDepth,  names
                 if len(names)==1:
                    objetos.append(names[0])
             
             if len(objetos)==1:
                 self.selCasilla=object(objetos[0])
-#                self.emit(SIGNAL("newLog(QString)"),"selCasilla:" + str(self.selCasilla )+ ". Busy:" +  str(self.casillas[self.selCasilla].busy))
                 self.selFicha=None
             elif len(objetos)==2:
-#                self.selLastFicha=self.selFicha
                 self.selCasilla=self.casillas[object(objetos[0])]
                 self.selFicha=self.busca_ficha(object(objetos[1]))
-                self.log("Clickeada " + self.selFicha.name)
+                self.log(self.trUtf8("Se ha hecho click en la ficha %1").arg(self.selFicha.name))
                 
         def processright(nameStack):
             """nameStack tiene la estructura minDepth, maxDepth, names"""
@@ -558,8 +537,7 @@ class wdgGame(QGLWidget):
         elif event.buttons() & Qt.RightButton:
             pickupright(event)                    
         self.updateGL()
-                        
-                
+
     def AlgunaPuedeMover(self):
         for f in self.jugadoractual.fichas:
             if self.PuedeMover(self.jugadoractual.fichas[f], self.dado.lastthrow)[0]==True:
@@ -588,7 +566,7 @@ class wdgGame(QGLWidget):
 
         #Es ficha del jugador actual
         if  ficha.jugador!=self.jugadoractual.id:             
-            self.log("No es del jugador actual")
+            self.log(self.trUtf8("No es del jugador actual"))
             return (False, 0)
 
         #Comprueba que no tenga obligación de abrir barrera
@@ -596,7 +574,7 @@ class wdgGame(QGLWidget):
             barreras=self.Barreras(self.jugadoractual)
             if len(barreras)!=0 :
                 if ficha.id_casilla() not in barreras:
-                    self.log("No se puede mover, debes abrir barrera")
+                    self.log(self.trUtf8("No se puede mover, debes abrir barrera"))
                     return (False, 0)
             
             
@@ -604,12 +582,12 @@ class wdgGame(QGLWidget):
         #Esta en casa y puede mover
         if ficha.EstaEnCasa()==True:
             if valordado!=5: #Saco un 5
-                self.log("Necesita sacar un 5 para mover esta ficha")
+                self.log(self.trUtf8("Necesita sacar un 5 para mover esta ficha"))
                 return (False, 0)
                         
         #se ha pasado la meta
         if ficha.ruta+movimiento>72:
-            self.log("Se ha pasado la meta")
+            self.log(self.trUtf8("Se ha pasado la meta"))
             return (False, 0)
                 
                 
@@ -617,17 +595,17 @@ class wdgGame(QGLWidget):
         for i in range(0, movimiento): 
             id_casilla=libglparchis.ruta[ficha.ruta+i+1][ficha.jugador]
             if self.casillas[id_casilla].TieneBarrera()==True:
-                self.log("Hay una barrera")
+                self.log(self.trUtf8("Hay una barrera"))
                 return (False, 0)
 
            
         #Comprueba si hay sitio libre
         id_casilladestino=libglparchis.ruta[ficha.ruta+movimiento][ficha.jugador]
         if self.casillas[id_casilladestino].haySitioEnBuzon()==False:
-            self.log("No hay espacio en la casilla")
+            self.log(self.trUtf8("No hay espacio en la casilla"))
             return (False, 0)
             
-        self.log("Puede mover "+str(movimiento))
+        self.log(self.trUtf8("Puede mover %1").arg(str(movimiento)))
         return (True, movimiento)
             
     def habiaSalidoSeis(self):
@@ -703,12 +681,11 @@ class wdgGame(QGLWidget):
             for f in self.jugadores[c].fichas:
                 if self.jugadores[c].fichas[f].id==id:
                     return self.jugadores[c].fichas[f]
-#                self.fichas.append(self.jugadores[c].fichas[f])
 
     def after_ficha_click(self):
         puede=self.PuedeMover(self.selFicha,  self.dado.lastthrow)
         if puede[0]==False:
-            self.log("No puede mover esta ficha, seleccione otra")
+            self.log(self.trUtf8("No puede mover esta ficha, seleccione otra"))
             return
         
         self.mover(self.selFicha, self.selFicha.ruta + puede[1])
@@ -749,9 +726,6 @@ class wdgGame(QGLWidget):
 
 
     def mover(self, ficha, ruta, controllastficha=True):
-        if ficha==None:
-            print ("esta ficha es None y no se porque")
-            return
         idcasillaorigen=ficha.id_casilla()
         idcasilladestino=libglparchis.ruta[ruta][ficha.jugador]        
         ficha.last_ruta=ficha.ruta
@@ -794,9 +768,6 @@ class Ficha(QGLWidget):
             return True
         return False
 
-        
-        
-        
     def defineColor(self,  id):
         if id>=0 and id<=3:
            return QColor(255, 255, 0)        
