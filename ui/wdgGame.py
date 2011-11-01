@@ -400,7 +400,7 @@ class wdgGame(QGLWidget):
         
         fake=config.get("game", 'fakedice')
         if fake!="":
-            for i in  fake  :
+            for i in  fake.split(";")  :
                 self.dado.fake.append(int(i))
         print self.dado.fake
         self.jugadoractual=self.jugadores[config.get("game", 'playerstarts')]    

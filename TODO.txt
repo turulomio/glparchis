@@ -1,6 +1,5 @@
 20100525 Cuando como no cuenta 20.
 20100525 Meter sonidos al tirar, comer y meter
-20111101 Los paneles de jugador no actual desactivados
 20111101 Cuando espere dado y se haga click en ficha que salga un warning
 20111101 Hacer que se mantenga la posici´on en casilla al mover, efecto raro.
 20111101 Los movimientos de ai no van bien
