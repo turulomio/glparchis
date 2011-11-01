@@ -23,7 +23,7 @@ class wdgShowObject(QGLWidget):
         
         #Carga el primer objeto
         self.cas= Casilla(1)
-        self.ficha=Ficha("red")
+        self.ficha=Ficha("red1")
         self.tablero=Tablero()
         self.cas.position=(-3.5, -1.5, 0, 0)
         self.cas.tipo=3
@@ -108,7 +108,7 @@ class wdgShowObject(QGLWidget):
         elif self.objeto==4:
             self.cas.dibujar()
         elif self.objeto==5:
-            self.ficha.dibujar()
+            self.ficha.dibujar(None)
         elif self.objeto==6:
             self.tablero.dibujar()
 
@@ -161,7 +161,7 @@ class wdgShowObject(QGLWidget):
             self.changeOrtho()
         elif self.objeto==5:#ficha
             self.ficha.position=(-1.45, -1.45, 0, 0)
-            self.ortho=(-49, +49, +49, -49, -10.0, 25.0)
+            self.ortho=(-8.5, +8.5, +8.5, -8.5, -10.0, 25.0)
             self.changeOrtho()
         elif self.objeto==6:#tablero
             self.tablero.position=(-32.5, -32.5, 0, 0)

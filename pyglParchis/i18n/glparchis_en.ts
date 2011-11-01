@@ -232,11 +232,6 @@ p, li { white-space: pre-wrap; }
         <source>Partida Nueva</source>
         <translation>New game</translation>
     </message>
-    <message>
-        <location filename="ui/Ui_frmMain.py" line="22"/>
-        <source>glParchis 2010-2011</source>
-        <translation>glParchis 2010-2011</translation>
-    </message>
     <message encoding="UTF-8">
         <location filename="ui/Ui_frmMain.py" line="121"/>
         <source>Número de tiradas</source>
@@ -335,6 +330,11 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="ui/frmMain.py" line="69"/>
         <source>%1 ha ganado</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/Ui_frmMain.py" line="22"/>
+        <source>glParchis 2010-2011 ©</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

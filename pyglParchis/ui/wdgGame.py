@@ -106,13 +106,13 @@ class Casilla(QGLWidget):
 
     def defineColor(self,  id):
         if id==5 or (id>=69 and id<=76) or id==101:
-           return QColor(255, 255, 0)        
+           return QColor(255, 255, 30)       #amarillo 
         elif id==39 or (id>=85 and id<=92) or id==103:
-           return QColor(255, 0, 0)
+           return QColor(255, 30, 30)#rojo
         elif id==22 or (id>=77 and id<=84) or id==102:
-           return QColor(0, 0, 255)
+           return QColor(30, 30, 255)#azul
         elif id==56 or (id>=93 and id<=100) or id==104:
-           return QColor(0, 255, 0)
+           return QColor(30, 255, 30) #verde
         elif id==68 or  id==63 or  id==51 or id==46 or id==34 or  id==29 or  id==17 or   id==12:  
            return QColor(128, 128, 128)
         else:
@@ -812,7 +812,10 @@ class Ficha(QGLWidget):
         GL.glInitNames();
         GL.glPushMatrix()
         GL.glPushName(libglparchis.Name.ficha[self.id]);
-        p=libglparchis.posFichas[self.id_casilla()][posicionBuzon]
+        if posicionBuzon==None:#Para frmAcercade
+            p=(0, 0, 0)
+        else:
+            p=libglparchis.posFichas[self.id_casilla()][posicionBuzon]
         GL.glTranslated(p[0], p[1], p[2])
         GL.glRotated(180, 1, 0, 0)# da la vuelta a la cara
         self.qglColor(QColor(255, 255, 0).dark())

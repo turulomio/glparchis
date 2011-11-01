@@ -1,5 +1,5 @@
-20100521 Generar lectura y guardado de xml
 20100525 Cuando como no cuenta 20.
 20100525 Meter sonidos al tirar, comer y meter
-20100525 No se muestra la ficha en los objetos de frmAbout
-20111009 Pasa por barreras cuando no deber´ia
+20111001 Programar los fake
+20111101 NO se va a casa con 3 seises
+
