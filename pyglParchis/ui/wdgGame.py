@@ -294,12 +294,7 @@ class Casilla(QGLWidget):
         if len(self.buzon)<self.max_fichas:
             return True
         return False
-#    def position_free(self):
-#        """Función que busca el libro pero no lo modifica"""
-#        for i in range(len(self.busy)):
-#            if self.busy[i]==False:
-#                return i
-#        return None
+
         
     def quad(self, p1, p2, p3, p4, color):
         self.qglColor(color)
@@ -327,7 +322,7 @@ class wdgGame(QGLWidget):
         self.lastPos = QPoint()
         self.jugadores={}
         self.casillas=[]
-        self.fichas=[]
+#        self.fichas=[]
         self.selFicha=None
         self.selCasilla=None
         self.jugadoractual=None
@@ -342,7 +337,7 @@ class wdgGame(QGLWidget):
         self.rotX=0
         self.lastPos = QPoint()
         self.jugadores={}
-        self.fichas=[]
+#        self.fichas=[]
         self.selFicha=None
         self.selCasilla=None
         self.dado=Dado()
@@ -376,31 +371,31 @@ class wdgGame(QGLWidget):
         self.jugadores['red']=red
         self.jugadores['green']=green        
         
-        #Crea la lista de fichas
-        for c in libglparchis.colores:
-            for f in self.jugadores[c].fichas:
-                self.fichas.append(self.jugadores[c].fichas[f])
+#        #Crea la lista de fichas
+#        for c in libglparchis.colores:
+#            for f in self.jugadores[c].fichas:
+#                self.fichas.append(self.jugadores[c].fichas[f])
       
         if yellow.plays==True:
-            self.mover(self.fichas[0], config.getint("yellow", "rutaficha1"))
-            self.mover(self.fichas[1], config.getint("yellow", "rutaficha2"))
-            self.mover(self.fichas[2], config.getint("yellow", "rutaficha3"))
-            self.mover(self.fichas[3], config.getint("yellow", "rutaficha4"))
+            self.mover(yellow.fichas["yellow1"], config.getint("yellow", "rutaficha1"))
+            self.mover(yellow.fichas["yellow2"], config.getint("yellow", "rutaficha2"))
+            self.mover(yellow.fichas["yellow3"], config.getint("yellow", "rutaficha3"))
+            self.mover(yellow.fichas["yellow4"], config.getint("yellow", "rutaficha4"))
         if blue.plays==True:
-            self.mover(self.fichas[4], config.getint("blue", "rutaficha1"))
-            self.mover(self.fichas[5], config.getint("blue", "rutaficha2"))
-            self.mover(self.fichas[6], config.getint("blue", "rutaficha3"))
-            self.mover(self.fichas[7], config.getint("blue", "rutaficha4"))
+            self.mover(blue.fichas["blue1"], config.getint("blue", "rutaficha1"))
+            self.mover(blue.fichas["blue2"], config.getint("blue", "rutaficha2"))
+            self.mover(blue.fichas["blue3"], config.getint("blue", "rutaficha3"))
+            self.mover(blue.fichas["blue4"], config.getint("blue", "rutaficha4"))
         if red.plays==True:
-            self.mover(self.fichas[8], config.getint("red", "rutaficha1"))
-            self.mover(self.fichas[9], config.getint("red", "rutaficha2"))
-            self.mover(self.fichas[10], config.getint("red", "rutaficha3"))
-            self.mover(self.fichas[11], config.getint("red", "rutaficha4"))
+            self.mover(red.fichas["red1"], config.getint("red", "rutaficha1"))
+            self.mover(red.fichas["red2"], config.getint("red", "rutaficha2"))
+            self.mover(red.fichas["red3"], config.getint("red", "rutaficha3"))
+            self.mover(red.fichas["red4"], config.getint("red", "rutaficha4"))
         if green.plays==True:
-            self.mover(self.fichas[12], config.getint("green", "rutaficha1"))
-            self.mover(self.fichas[13], config.getint("green", "rutaficha2"))
-            self.mover(self.fichas[14], config.getint("green", "rutaficha3"))
-            self.mover(self.fichas[15], config.getint("green", "rutaficha4"))
+            self.mover(green.fichas["green1"], config.getint("green", "rutaficha1"))
+            self.mover(green.fichas["green2"], config.getint("green", "rutaficha2"))
+            self.mover(green.fichas["green3"], config.getint("green", "rutaficha3"))
+            self.mover(green.fichas["green4"], config.getint("green", "rutaficha4"))
         
         self.jugadoractual=self.jugadores[config.get("game", 'playerstarts')]        
         self.jugadoractual.historicodado=[]
@@ -518,7 +513,7 @@ class wdgGame(QGLWidget):
             elif len(objetos)==2:
 #                self.selLastFicha=self.selFicha
                 self.selCasilla=self.casillas[object(objetos[0])]
-                self.selFicha=self.fichas[object(objetos[1])]
+                self.selFicha=self.busca_ficha(object(objetos[1]))
                 
         def processright(nameStack):
             """nameStack tiene la estructura minDepth, maxDepth, names"""
@@ -729,6 +724,14 @@ class wdgGame(QGLWidget):
                 else:            
                     self.emit(SIGNAL("CambiarJugador()"))
 
+
+    def busca_ficha(self, id):
+        for c in libglparchis.colores:
+            for f in self.jugadores[c].fichas:
+                if self.jugadores[c].fichas[f].id==id:
+                    return self.jugadores[c].fichas[f]
+#                self.fichas.append(self.jugadores[c].fichas[f])
+
     def after_ficha_click(self):
         puede=self.PuedeMover(self.selFicha,  self.dado.lastthrow)
         if puede[0]==False:
@@ -759,77 +762,16 @@ class wdgGame(QGLWidget):
                     self.emit(SIGNAL("CambiarJugador()"))                
             else:#si alguna puede mover
                 self.emit(SIGNAL("JugadorDebeMover()"))
-        print (" No mete")
+        print (" No mete")       
         
-                    
-                    
+        if self.habiaSalidoSeis()==True:
+            self.emit(SIGNAL("JugadorDebeTirar()"))
+        else:
+            self.emit(SIGNAL("CambiarJugador()"))      
 
 
 
-#        if self.pendiente==2:
-#            self.log("Debe tirar el dado")
-#            return
-#        pj=self.puede_jugar(False)
-##        self.log(str(pj))
-#
-#        if self.pendiente==0:
-#            self.log("Ya no puede seguir jugando")
-#            self.emit(SIGNAL("CambiarJugador()"))
-#            return
-##        self.log("Puede usar " + str(pj[1]))
-#        
-#        if self.selFicha.ruta+ pj[1]>72:
-#            self.log("Se ha pasado")
-#            return 
-#            
-#        idcasilladestino=libglparchis.ruta[self.selFicha.ruta+pj[1]][self.selFicha.jugador]
-#        if self.casillas[idcasilladestino].haySitioEnBuzon()==False:
-#            self.log("No hay casilla destino libre")
-#            return             
-#            
-#        pc=self.puede_comer(self.selFicha.id, self.selFicha.ruta+pj[1])
-#        if pc[0]==True:
-#            pj=self.puede_jugar(True)
-#            self.pendiente=20
-#            self.mover(pc[1], 0)
-#        pj=self.puede_jugar(True)
-#        self.mover(self.selFicha,self.selFicha.ruta+pj[1])            
-#
-#        ##CHEQUEOS UNA VEZ MOVIDO
-##        print "Finishing after",  self.pendiente
-#        if self.pendiente==0:
-#            self.emit(SIGNAL("CambiarJugador()"))
-#        elif self.pendiente==2:#tirardado
-#                self.emit(SIGNAL("volver_a_tirar()"))
-#        elif self.pendiente==6:
-#            self.log("Debe tirar por haber salido un 6")
-#        elif self.pendiente==10:
-#            self.log("Debe mover 10")
-#        elif self.pendiente==20:
-#            self.log("Debe mover 20")
-#            
-#    def moverviejo(self, ficha,  ruta):
-#        """Solo mueve, la logica en after_ficha_click"""
-##        print ("Moviendo "+ self.fichas[id_ficha].name)
-#        if ficha==None:
-#            print ("esta ficha es None y no se porque")
-#            return
-#        idcasillaorigen=ficha.casilla()
-#        idcasilladestino=libglparchis.ruta[ruta][ficha.jugador]        
-#        if ruta==72:
-#            self.pendiente=10
-#        posicioncasillaorigen=ficha.numposicion
-#        posicioncasilladestino=self.casillas[idcasilladestino].position_free()
-#        print ficha.name,  idcasillaorigen,  idcasilladestino,  posicioncasillaorigen,  posicioncasilladestino
-#        ficha.last_ruta=ficha.ruta
-#        ficha.ruta=ruta#cambia la ruta
-#        ficha.numposicion=posicioncasilladestino
-#        if posicioncasillaorigen!=None: #Al iniciar no hay
-#            self.casillas[idcasillaorigen].busy[posicioncasillaorigen]=False#libera la posicion en la casilla
-##        self.log("Ficha " +str (id_ficha)+" movido a casilla " + str(idcasilladestino) + " a la posicion " + str(posicioncasilladestino))
-#        self.casillas[idcasilladestino].busy[posicioncasilladestino]=True#okupa la posicion en la casilla
-#        return True
-        
+
     def mover(self, ficha, ruta):
         if ficha==None:
             print ("esta ficha es None y no se porque")

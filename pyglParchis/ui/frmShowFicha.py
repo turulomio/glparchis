@@ -13,5 +13,5 @@ class frmShowFicha(QDialog, Ui_frmShowFicha):
         self.lblFicha.setPixmap(libglparchis.pixficha(self.ficha.colorname))       
         self.lblName.setText(self.trUtf8("Nombre: %1").arg(self.ficha.name))
         self.lblJugador.setText(self.trUtf8("Jugador: %1 (%2)").arg(str(self.jugador.name)).arg(self.jugador.id))
-        self.lblPosicion.setText(self.trUtf8("Posición en casilla: %1").arg(str(self.ficha.numposicion)))
+#        self.lblPosicion.setText(self.trUtf8("Posición en casilla: %1").arg(str(self.ficha.numposicion)))
         self.lblRuta.setText(self.trUtf8("Posición en ruta: %1").arg(str(self.ficha.ruta)))

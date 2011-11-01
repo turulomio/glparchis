@@ -328,7 +328,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="77"/>
+        <location filename="ui/frmMain.py" line="78"/>
         <source>Mueva una ficha</source>
         <translation type="unfinished"></translation>
     </message>
@@ -351,47 +351,47 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmShowCasilla.py" line="11"/>
+        <location filename="ui/frmShowCasilla.py" line="12"/>
         <source>Casilla %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmShowCasilla.py" line="12"/>
+        <location filename="ui/frmShowCasilla.py" line="13"/>
         <source>%1 fichas como máximo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmShowCasilla.py" line="14"/>
+        <location filename="ui/frmShowCasilla.py" line="15"/>
         <source>Casilla segura</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmShowCasilla.py" line="16"/>
+        <location filename="ui/frmShowCasilla.py" line="17"/>
         <source>Casilla insegura</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmShowCasilla.py" line="22"/>
+        <location filename="ui/frmShowCasilla.py" line="23"/>
         <source>Casilla vacía</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmShowCasilla.py" line="27"/>
+        <location filename="ui/frmShowCasilla.py" line="29"/>
         <source>Ocupada con una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmShowCasilla.py" line="31"/>
+        <location filename="ui/frmShowCasilla.py" line="35"/>
         <source>Ocupada con dos fichas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmShowCasilla.py" line="34"/>
+        <location filename="ui/frmShowCasilla.py" line="41"/>
         <source>Ocupada con tres fichas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmShowCasilla.py" line="36"/>
+        <location filename="ui/frmShowCasilla.py" line="47"/>
         <source>Casilla llena</source>
         <translation type="unfinished"></translation>
     </message>
@@ -404,7 +404,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Dialogo</translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmShowFicha.py" line="49"/>
+        <location filename="ui/Ui_frmShowFicha.py" line="44"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -419,11 +419,6 @@ p, li { white-space: pre-wrap; }
         <translation>Player: %1 (%2)</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmShowFicha.py" line="16"/>
-        <source>Posición en casilla: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
         <location filename="ui/frmShowFicha.py" line="17"/>
         <source>Posición en ruta: %1</source>
         <translation type="unfinished"></translation>
@@ -432,7 +427,7 @@ p, li { white-space: pre-wrap; }
 <context encoding="UTF-8">
     <name>wdgGame</name>
     <message encoding="UTF-8">
-        <location filename="ui/wdgGame.py" line="717"/>
+        <location filename="ui/wdgGame.py" line="712"/>
         <source>Han salido tres seises, la ´ultima ficha movida se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
