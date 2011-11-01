@@ -7,6 +7,41 @@
         <source>glParchis</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="ui/Ui_frmAbout.py" line="267"/>
+        <source>Licencia</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmAbout.py" line="268"/>
+        <source>Qt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmAbout.py" line="269"/>
+        <source>Objetos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/Ui_frmAbout.py" line="245"/>
+        <source>Haga doble click en la imágen para ver los distintos objetos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmAbout.py" line="255"/>
+        <source>S&amp;alir</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmAbout.py" line="21"/>
+        <source>Acerca de</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/Ui_frmAbout.py" line="266"/>
+        <source>Créditos</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message encoding="UTF-8">
         <location filename="ui/Ui_frmAbout.py" line="51"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -26,44 +61,7 @@ p, li { white-space: pre-wrap; }
 &lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;French&lt;/li&gt;
 &lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Español&lt;/li&gt;&lt;/ul&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0057ae;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Los avatares han sido extraídos de la página &lt;a href=&quot;http://www.nobleavatar.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.nobleavatar.com/&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmAbout.py" line="269"/>
-        <source>Licencia</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmAbout.py" line="270"/>
-        <source>Qt</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmAbout.py" line="271"/>
-        <source>Objetos</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/Ui_frmAbout.py" line="247"/>
-        <source>Haga doble click en la imágen para ver los distintos objetos</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmAbout.py" line="257"/>
-        <source>S&amp;alir</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmAbout.py" line="21"/>
-        <source>Acerca de</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/Ui_frmAbout.py" line="268"/>
-        <source>Créditos</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -431,14 +429,24 @@ p, li { white-space: pre-wrap; }
 </context>
 <context encoding="UTF-8">
     <name>wdgGame</name>
+    <message>
+        <location filename="ui/wdgGame.py" line="681"/>
+        <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message encoding="UTF-8">
-        <location filename="ui/wdgGame.py" line="685"/>
-        <source>Han salido tres seises, la ´ultima ficha movida se va a casa</source>
+        <location filename="ui/wdgGame.py" line="683"/>
+        <source>Han salido tres seises, la última ficha movida se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="683"/>
-        <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
+        <location filename="ui/wdgGame.py" line="667"/>
+        <source>He metido la ficha %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/wdgGame.py" line="686"/>
+        <source>Después de tres seises, ya no puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

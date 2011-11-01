@@ -1,4 +1,4 @@
-## -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.QtGui import *
@@ -10,13 +10,14 @@ class Dado():
     def __init__(self):
         self.lastthrow=None
         self.fake=[]
+        
     def tirar(self):
         if len(self.fake)>0:
             self.lastthrow=self.fake[0]
             self.fake.remove(self.fake[0])
         else:
-#        numero= int(random.random()*6)+1
-            self.lastthrow= int(random.random()*2)+5
+            self.lastthrow= int(random.random()*6)+1
+#            self.lastthrow= int(random.random()*2)+5
         return self.lastthrow
     
 
@@ -28,7 +29,7 @@ class Jugador():
         self.plays=None
         self.fichas={}        
         self.historicodado=[]
-        self.lastFichaMovida=None #Se utiliza cuando se va a casa NOne si ninguna
+        self.LastFichaMovida=None #Se utiliza cuando se va a casa NOne si ninguna
 #        self.hamovidoficha=False #Util para ver si se va acasa tras 6 seises
         self.movimientos_acumulados=None#Comidas ymetidas, puede ser 10, 20 o None Cuando se cuenta se borra a None
 
@@ -390,30 +391,33 @@ class wdgGame(QGLWidget):
 #                self.fichas.append(self.jugadores[c].fichas[f])
       
         if yellow.plays==True:
-            self.mover(yellow.fichas["yellow1"], config.getint("yellow", "rutaficha1"))
-            self.mover(yellow.fichas["yellow2"], config.getint("yellow", "rutaficha2"))
-            self.mover(yellow.fichas["yellow3"], config.getint("yellow", "rutaficha3"))
-            self.mover(yellow.fichas["yellow4"], config.getint("yellow", "rutaficha4"))
+            self.mover(yellow.fichas["yellow1"], config.getint("yellow", "rutaficha1"), False)
+            self.mover(yellow.fichas["yellow2"], config.getint("yellow", "rutaficha2"), False)
+            self.mover(yellow.fichas["yellow3"], config.getint("yellow", "rutaficha3"), False)
+            self.mover(yellow.fichas["yellow4"], config.getint("yellow", "rutaficha4"), False)
         if blue.plays==True:
-            self.mover(blue.fichas["blue1"], config.getint("blue", "rutaficha1"))
-            self.mover(blue.fichas["blue2"], config.getint("blue", "rutaficha2"))
-            self.mover(blue.fichas["blue3"], config.getint("blue", "rutaficha3"))
-            self.mover(blue.fichas["blue4"], config.getint("blue", "rutaficha4"))
+            self.mover(blue.fichas["blue1"], config.getint("blue", "rutaficha1"), False)
+            self.mover(blue.fichas["blue2"], config.getint("blue", "rutaficha2"), False)
+            self.mover(blue.fichas["blue3"], config.getint("blue", "rutaficha3"), False)
+            self.mover(blue.fichas["blue4"], config.getint("blue", "rutaficha4"), False)
         if red.plays==True:
-            self.mover(red.fichas["red1"], config.getint("red", "rutaficha1"))
-            self.mover(red.fichas["red2"], config.getint("red", "rutaficha2"))
-            self.mover(red.fichas["red3"], config.getint("red", "rutaficha3"))
-            self.mover(red.fichas["red4"], config.getint("red", "rutaficha4"))
+            self.mover(red.fichas["red1"], config.getint("red", "rutaficha1"), False)
+            self.mover(red.fichas["red2"], config.getint("red", "rutaficha2"), False)
+            self.mover(red.fichas["red3"], config.getint("red", "rutaficha3"), False)
+            self.mover(red.fichas["red4"], config.getint("red", "rutaficha4"), False)
         if green.plays==True:
-            self.mover(green.fichas["green1"], config.getint("green", "rutaficha1"))
-            self.mover(green.fichas["green2"], config.getint("green", "rutaficha2"))
-            self.mover(green.fichas["green3"], config.getint("green", "rutaficha3"))
-            self.mover(green.fichas["green4"], config.getint("green", "rutaficha4"))
+            self.mover(green.fichas["green1"], config.getint("green", "rutaficha1"), False)
+            self.mover(green.fichas["green2"], config.getint("green", "rutaficha2"), False)
+            self.mover(green.fichas["green3"], config.getint("green", "rutaficha3"), False)
+            self.mover(green.fichas["green4"], config.getint("green", "rutaficha4"), False)
         
-        self.jugadoractual=self.jugadores[config.get("game", 'playerstarts')]        
+        for i in config.get("game", 'fakedice').split(";")   :
+            self.dado.fake.append(int(i))
+        print self.dado.fake
+        self.jugadoractual=self.jugadores[config.get("game", 'playerstarts')]    
         self.jugadoractual.historicodado=[]
         self.jugadoractual.movimientos_acumulados=None#Comidas ymetidas
-        self.jugadoractual.lastFichaMovida=None #Se utiliza cuando se va a casa
+        self.jugadoractual.LastFichaMovida=None #Se utiliza cuando se va a casa
         
     def initializeGL(self):
         print ("initializeGL")
@@ -440,7 +444,7 @@ class wdgGame(QGLWidget):
         GL.glShadeModel (GL.GL_SMOOTH);
 
     def log(self, cadena):
-            self.emit(SIGNAL("newLog(QString)"),str(cadena))
+            self.emit(SIGNAL("newLog(QString)"),cadena)
 
     def paintGL(self):   
         GL.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT)
@@ -648,7 +652,7 @@ class wdgGame(QGLWidget):
         if len(self.casillas[idcasilladestino].buzon)==1:
             fichaenbuzon=self.casillas[idcasilladestino].buzon[0]
             if fichaenbuzon.jugador!=self.jugadoractual:
-                self.mover(fichaenbuzon, 0)
+                self.mover(fichaenbuzon, 0, False)
                 self.jugadoractual.movimientos_acumulados=20
                 self.log("He comido la ficha"+ fichaenbuzon.name)
 
@@ -657,16 +661,10 @@ class wdgGame(QGLWidget):
             
             
     def mete(self, ficha):
-        """r Como ya se ha movido, mete si puede y devuelve True, en caso contrario False"""
-#        def hay_ficha_otro_jugador(id_casilla):
-#            for f in self.fichas:
-#                if f.id_casilla()==id_casilla and f.jugador!=self.jugadoractual.id:
-#                    return (True, f)
-#            return (False, None)
-        
+        """r Como ya se ha movido, mete si puede y devuelve True, en caso contrario False"""      
         if ficha.ruta==72:
             self.jugadoractual.movimientos_acumulados=10
-            self.log("He metido la ficha "+ ficha.name)
+            self.log(self.trUtf8("He metido la ficha %1").arg(ficha.name))
             return True
         return False
 
@@ -675,21 +673,20 @@ class wdgGame(QGLWidget):
     def after_dado_click(self,  numerodado):
         if numerodado==6 and len(self.jugadoractual.historicodado)==3:            
             self.emit(SIGNAL("TresSeisesSeguidos()"))      
-            print "Ultima ficha movida",  self.jugadoractual.lastFichaMovida
-            if self.jugadoractual.lastFichaMovida!=None:
-                print self.jugadoractual.lastFichaMovida.name
-                casilla=self.jugadoractual.lastFichaMovida.id_casilla()
+#            print "Ultima ficha movida",  self.jugadoractual.LastFichaMovida
+            if self.jugadoractual.LastFichaMovida!=None:
+#                print self.jugadoractual.LastFichaMovida.name
+                casilla=self.jugadoractual.LastFichaMovida.id_casilla()
                 if self.casillas[casilla].rampallegada==True:
                     self.log(self.trUtf8("Han salido tres seises, no se va a casa por haber llegado a rampa de llegada"))
                 else:
-                    self.log(self.trUtf8("Han salido tres seises, la ´ultima ficha movida se va a casa"))
-                    self.mover(self.jugadoractual.lastFichaMovida, 0)
+                    self.log(self.trUtf8("Han salido tres seises, la última ficha movida se va a casa"))
+                    self.mover(self.jugadoractual.LastFichaMovida, 0)
             else:               
-                self.log("Despu´es de tres seises, ya no puede volver a tirar")
+                self.log(self.trUtf8("Después de tres seises, ya no puede volver a tirar"))
             self.emit(SIGNAL("CambiarJugador()"))
         else: # si no han salido 3 seises
             if self.AlgunaPuedeMover()==True:
-                print "sale"
                 self.emit(SIGNAL("JugadorDebeMover()"))
             else:#alguna no puede mover.
                 if self.jugadoractual.historicodado[0]==6:
@@ -719,7 +716,7 @@ class wdgGame(QGLWidget):
         
         #Come
         if self.come(self.selFicha, self.selFicha.ruta+puede[1])==True:
-            print ("come")
+#            print ("come")
             if self.AlgunaPuedeMover()==False:
                 if self.habiaSalidoSeis()==True:
                     self.emit(SIGNAL("JugadorDebeTirar()"))
@@ -727,11 +724,11 @@ class wdgGame(QGLWidget):
                     self.emit(SIGNAL("CambiarJugador()"))                
             else:#si alguna puede mover
                 self.emit(SIGNAL("JugadorDebeMover()"))
-        print ("No come")
+#        print ("No come")
         
         #Mete
         if self.mete(self.selFicha)==True:
-            print ("mete")
+#            print ("mete")
             if self.AlgunaPuedeMover()==False:
                 if self.habiaSalidoSeis()==True:
                     self.emit(SIGNAL("JugadorDebeTirar()"))
@@ -739,7 +736,7 @@ class wdgGame(QGLWidget):
                     self.emit(SIGNAL("CambiarJugador()"))                
             else:#si alguna puede mover
                 self.emit(SIGNAL("JugadorDebeMover()"))
-        print (" No mete")       
+#        print (" No mete")       
         
         if self.habiaSalidoSeis()==True:
             self.emit(SIGNAL("JugadorDebeTirar()"))
@@ -749,7 +746,7 @@ class wdgGame(QGLWidget):
 
 
 
-    def mover(self, ficha, ruta):
+    def mover(self, ficha, ruta, controllastficha=True):
         if ficha==None:
             print ("esta ficha es None y no se porque")
             return
@@ -759,11 +756,13 @@ class wdgGame(QGLWidget):
         try:
             self.casillas[idcasillaorigen].buzon.remove(ficha)
         except:
-            print ("La ficha no estaba en el buz´on de la casilla "+str(idcasillaorigen),  ficha, self.casillas[idcasillaorigen].buzon )
+#            print ("La ficha no estaba en el buz´on de la casilla "+str(idcasillaorigen),  ficha, self.casillas[idcasillaorigen].buzon )
+            pass
         ficha.ruta=ruta#cambia la ruta
         self.casillas[idcasilladestino].buzon.append(ficha)
 #        print self.casillas[idcasilladestino].buzon,  ficha
-        self.LastFichaMovida=ficha
+        if controllastficha==True:
+            self.jugadoractual.LastFichaMovida=ficha
         return True
 
 

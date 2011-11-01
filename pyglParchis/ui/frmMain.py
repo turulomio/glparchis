@@ -1,4 +1,4 @@
-## -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import sys,   ConfigParser,  os,  time
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -265,6 +265,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 config.set(color,  'rutaficha4', 0)
             config.add_section("game")
             config.set("game", 'playerstarts', initgame.playerstarts)
+            config.set("game", 'fakedice','')
             with open(libglparchis.lastfile, 'w') as configfile:
                 config.write(configfile)            
                 
@@ -328,6 +329,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
             config.set("green",  'rutaficha4',  self.ogl.jugadores['green'].fichas["green4"].ruta)    
         config.add_section("game")
         config.set("game", 'playerstarts',self.ogl.jugadoractual.color)
+        config.set("game", 'fakedice','')
         with open(filename, 'w') as configfile:
             config.write(configfile)            
 
