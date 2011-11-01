@@ -72,7 +72,6 @@ class frmMain(QMainWindow, Ui_frmMain):#
         
         
     def on_JugadorDebeMover(self):
-        print "llego"
         self.actionDado.setEnabled(False)
         self.cmdTirarDado.setEnabled(False)
         if self.ogl.jugadoractual.ia==True:
