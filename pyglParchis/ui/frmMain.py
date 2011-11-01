@@ -32,7 +32,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.panels["green"]=self.panel4
         
         for p in self.panels:
-            self.panels[p].setEnabled(False)
+            self.panels[p].setActivated(False)
 
         
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('newLog(QString)'), self.lstLog_newLog)  
@@ -194,9 +194,9 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 self.panel4.show()
                 
         #Cambia jugadoractual
-        self.panels[self.ogl.jugadoractual.color].setEnabled(False)
+        self.panels[self.ogl.jugadoractual.color].setActivated(False)
         if self.ogl.jugadoractual.ia==True:
-            time.sleep(1)
+            time.sleep(0.2)
         while True:
             if self.ogl.jugadoractual.color=="yellow":
                 self.ogl.jugadoractual=self.ogl.jugadores["blue"]
@@ -213,7 +213,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.ogl.jugadoractual.movimientos_acumulados=None
         self.ogl.jugadoractual.LastFichaMovida=None
         
-        self.panels[self.ogl.jugadoractual.color].setEnabled(True)
+        self.panels[self.ogl.jugadoractual.color].setActivated(True)
         limpia_panel(self.ogl.jugadoractual.color)
         self.on_JugadorDebeTirar()
 
@@ -226,11 +226,11 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.panel2.grp.setTitle(self.ogl.jugadores['blue'].name)
         self.panel3.grp.setTitle(self.ogl.jugadores['red'].name)
         self.panel4.grp.setTitle(self.ogl.jugadores['green'].name)
-        config = ConfigParser.ConfigParser()
-        config.read(filenam)
-        self.panels[config.get("game", 'playerstarts')].setEnabled(True)
+#        config = ConfigParser.ConfigParser()
+#        config.read(filenam)
+        self.panels[self.ogl.jugadoractual.color].setActivated(True)
         self.actionGuardarPartida.setEnabled(True)
-        self.actionDado.setEnabled(True)
+        self.on_JugadorDebeTirar()
 
     @QtCore.pyqtSlot()     
     def on_actionPartidaNueva_activated(self):
@@ -278,14 +278,14 @@ class frmMain(QMainWindow, Ui_frmMain):#
 #        self.ogl=wdgGame(filename=libglparchis.lastfile)
         self.ogl.load_file(libglparchis.lastfile)
         
+        self.panels[self.ogl.jugadoractual.color].setActivated(True)
         self.panel1.grp.setTitle(self.ogl.jugadores['yellow'].name)
         self.panel2.grp.setTitle(self.ogl.jugadores['blue'].name)
         self.panel3.grp.setTitle(self.ogl.jugadores['red'].name)
         self.panel4.grp.setTitle(self.ogl.jugadores['green'].name)
-        self.panels[initgame.playerstarts].setEnabled(True)
 
         self.actionGuardarPartida.setEnabled(True)
-        self.actionDado.setEnabled(True)
+        self.on_JugadorDebeTirar()
 
 
     def save(self, filename):

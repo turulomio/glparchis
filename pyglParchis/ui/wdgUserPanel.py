@@ -20,9 +20,10 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         self.color=color
         self.lblAvatar.setPixmap(libglparchis.pixficha(self.color))       
         
-    @QtCore.pyqtSlot(bool)      
-    def setEnabled(self, bool):
-#        self.grp.setEnabled(bool)
+        
+#    @QtCore.pyqtSlot(bool)      
+    def setActivated(self, bool):
+        self.grp.setEnabled(bool)
         if bool==True:
             self.log=[]
 
