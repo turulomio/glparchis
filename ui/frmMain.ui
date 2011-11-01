@@ -15,7 +15,7 @@
    <cursorShape>PointingHandCursor</cursorShape>
   </property>
   <property name="windowTitle">
-   <string>glParchis 2010-2011</string>
+   <string>glParchis 2010-2011 ©</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../images/glparchis.qrc">
