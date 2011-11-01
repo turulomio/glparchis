@@ -5,3 +5,6 @@
 20111101 Los movimientos de ai no van bien
 20111101 Manual. No deja mover 20 despues de comer
 20111101 El texto del acerca de. Pasarlo como c´odigo para favorecer la traducci´on
+20111101 Guardar nombres de jugadores y últimas preferencias de plays e ia en un .ini
+20111101 Hacer un frmConfiguration para poner nivel de debug
+20111101 Preparar las instrucciones del parchis
