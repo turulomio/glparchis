@@ -316,12 +316,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="80"/>
+        <location filename="ui/frmMain.py" line="79"/>
         <source>IA mueve una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="88"/>
+        <location filename="ui/frmMain.py" line="87"/>
         <source>Mueva una ficha</source>
         <translation type="unfinished"></translation>
     </message>
@@ -430,23 +430,28 @@ p, li { white-space: pre-wrap; }
 <context encoding="UTF-8">
     <name>wdgGame</name>
     <message>
-        <location filename="ui/wdgGame.py" line="681"/>
+        <location filename="ui/wdgGame.py" line="682"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/wdgGame.py" line="683"/>
+        <location filename="ui/wdgGame.py" line="684"/>
         <source>Han salido tres seises, la última ficha movida se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="667"/>
+        <location filename="ui/wdgGame.py" line="668"/>
         <source>He metido la ficha %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/wdgGame.py" line="686"/>
+        <location filename="ui/wdgGame.py" line="687"/>
         <source>Después de tres seises, ya no puede volver a tirar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/wdgGame.py" line="659"/>
+        <source>He comido la ficha %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

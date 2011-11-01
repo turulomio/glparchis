@@ -147,7 +147,7 @@ class Casilla(QGLWidget):
 
         for f in self.buzon:
             if posicionBuzon+1>self.max_fichas:
-                print "Hay m´as fichas en el buz´on que posiciones en casilla"
+                print "Hay más fichas en el buzón que posiciones en casilla"
                 return            
             f.dibujar(posicionBuzon)
             posicionBuzon=posicionBuzon+1
@@ -328,7 +328,7 @@ class Casilla(QGLWidget):
 
 
 class wdgGame(QGLWidget):
-    """Clase principal del Juego, aqu´i est´a toda la ciencia, cuando se deba pasar al UI se crear´an emits que captura qT para el UI"""
+    """Clase principal del Juego, aquí está toda la ciencia, cuando se deba pasar al UI se crearán emits que captura qT para el UI"""
     def __init__(self, parent=None,  filename=None):
         QGLWidget.__init__(self, parent)
         self.tablero=Tablero()
@@ -589,7 +589,7 @@ class wdgGame(QGLWidget):
             self.log("No es del jugador actual")
             return (False, 0)
 
-        #Comprueba que no tenga obligaci´on de abrir barrera
+        #Comprueba que no tenga obligación de abrir barrera
         if valordado==6:
             barreras=self.Barreras(self.jugadoractual)
             if len(barreras)!=0 :
@@ -629,35 +629,36 @@ class wdgGame(QGLWidget):
         return (True, movimiento)
             
     def habiaSalidoSeis(self):
-        """Se usa despu´es de movimientos acumulados"""
+        """Se usa después de movimientos acumulados"""
         if self.dado.lastthrow==6:
             return True
         return False
             
     def come(self, ficha,  ruta):
-        """ruta, es la posici´on de ruta de ficha en la que come. Como ya se ha movido, come si puede y devuelve True, en caso contrario False"""
-#        def hay_ficha_otro_jugador(id_casilla):
-#            for f in self.fichas:
-#                if f.id_casilla()==id_casilla and f.jugador!=self.jugadoractual.id:
-#                    return (True, f)
-#            return (False, None)
+        """ruta, es la posición de ruta de ficha en la que come. Como ya se ha movido, come si puede y devuelve True, en caso contrario False"""
         if ruta>72:
-            print "en como se ha sobrepasado el 72"
+            print ("en como se ha sobrepasado el 72")
             return False
         idcasilladestino=libglparchis.ruta[ruta][ficha.jugador]
         
         if self.casillas[idcasilladestino].seguro==True:
             return False
         
-        if len(self.casillas[idcasilladestino].buzon)==1:
-            fichaenbuzon=self.casillas[idcasilladestino].buzon[0]
-            if fichaenbuzon.jugador!=self.jugadoractual:
-                self.mover(fichaenbuzon, 0, False)
-                self.jugadoractual.movimientos_acumulados=20
-                self.log("He comido la ficha"+ fichaenbuzon.name)
-
-                return True
-                    
+        print len(self.casillas[idcasilladestino].buzon)
+        if len(self.casillas[idcasilladestino].buzon)==2:
+            ficha1=self.casillas[idcasilladestino].buzon[0]
+            ficha2=self.casillas[idcasilladestino].buzon[1]
+            if ficha1.jugador!=self.jugadoractual.id:
+                fichaacomer=ficha1
+            elif ficha2.jugador!=self.jugadoractual.id:
+                fichaacomer=ficha2
+            else:
+                return False
+            self.mover(fichaacomer, 0, False)
+            self.jugadoractual.movimientos_acumulados=20
+            self.log(self.trUtf8("He comido la ficha %1").arg(fichaacomer.name))
+            return True
+                
             
             
     def mete(self, ficha):
@@ -715,8 +716,7 @@ class wdgGame(QGLWidget):
             self.emit(SIGNAL("HaGanado()"))
         
         #Come
-        if self.come(self.selFicha, self.selFicha.ruta+puede[1])==True:
-#            print ("come")
+        if self.come(self.selFicha, self.selFicha.ruta)==True:
             if self.AlgunaPuedeMover()==False:
                 if self.habiaSalidoSeis()==True:
                     self.emit(SIGNAL("JugadorDebeTirar()"))
@@ -756,7 +756,7 @@ class wdgGame(QGLWidget):
         try:
             self.casillas[idcasillaorigen].buzon.remove(ficha)
         except:
-#            print ("La ficha no estaba en el buz´on de la casilla "+str(idcasillaorigen),  ficha, self.casillas[idcasillaorigen].buzon )
+#            print ("La ficha no estaba en el buzón de la casilla "+str(idcasillaorigen),  ficha, self.casillas[idcasillaorigen].buzon )
             pass
         ficha.ruta=ruta#cambia la ruta
         self.casillas[idcasilladestino].buzon.append(ficha)
@@ -776,7 +776,6 @@ class Ficha(QGLWidget):
         self.colorname=name[:-1]
         self.ficha=GLU.gluNewQuadric();
         self.jugador=libglparchis.colorid(name[:-1])#utilizado para array ruta
-#        self.numposicion=None#Posicion dentro de la casilla
         self.id=libglparchis.fichas_name2id(name)
 
     def id_casilla(self):
