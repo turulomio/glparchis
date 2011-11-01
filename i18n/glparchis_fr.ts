@@ -313,23 +313,28 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="59"/>
+        <location filename="ui/frmMain.py" line="60"/>
         <source>IA Tira el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="62"/>
+        <location filename="ui/frmMain.py" line="63"/>
         <source>Tire el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="70"/>
+        <location filename="ui/frmMain.py" line="80"/>
         <source>IA mueve una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="78"/>
+        <location filename="ui/frmMain.py" line="88"/>
         <source>Mueva una ficha</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmMain.py" line="69"/>
+        <source>%1 ha ganado</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -427,8 +432,13 @@ p, li { white-space: pre-wrap; }
 <context encoding="UTF-8">
     <name>wdgGame</name>
     <message encoding="UTF-8">
-        <location filename="ui/wdgGame.py" line="712"/>
+        <location filename="ui/wdgGame.py" line="685"/>
         <source>Han salido tres seises, la ´ultima ficha movida se va a casa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/wdgGame.py" line="683"/>
+        <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -445,7 +455,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgUserPanel.py" line="133"/>
+        <location filename="ui/Ui_wdgUserPanel.py" line="103"/>
         <source>Muestra el historial</source>
         <translation type="unfinished"></translation>
     </message>

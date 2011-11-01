@@ -52,7 +52,13 @@ class Jugador():
                 return False
         return True
                 
-
+           
+            
+    def HaGanado(self):
+        for f in self.fichas:
+            if self.fichas[f].ruta!=72:
+                return False
+        return True
         
 class Casilla(QGLWidget):
     def __init__(self, id, parent=None):
@@ -62,6 +68,7 @@ class Casilla(QGLWidget):
         self.color=self.defineColor(id)
         self.position=libglparchis.posCasillas[id]
         self.rotate=self.defineRotate(id)
+        self.rampallegada=self.defineRampaLlegada(id)
         self.tipo=self.defineTipo(id)
 #        self.busy=[False]*self.max_fichas
         self.seguro=self.defineSeguro(id)
@@ -79,6 +86,11 @@ class Casilla(QGLWidget):
             return 4
         else:
             return 2
+
+    def defineRampaLlegada(self, id):
+        if id>=69 and id<= 100:
+           return True
+        return False
 
     def defineTipo(self,  id):
         if id==101 or id==102 or id==103 or id==104:
@@ -284,10 +296,11 @@ class Casilla(QGLWidget):
         GL.glPopMatrix()
 
     def TieneBarrera(self):
-        if self.max_fichas==2:
-            if len(self.buzon)==2:
-                if self.buzon[0].jugador==self.buzon[1].jugador:
-                    return True
+        if self.tipo not in (0, 1):#Casilla inicio y final
+            if self.max_fichas==2:
+                if len(self.buzon)==2:
+                    if self.buzon[0].jugador==self.buzon[1].jugador:
+                        return True
         return False
 
     def haySitioEnBuzon(self):
@@ -514,6 +527,7 @@ class wdgGame(QGLWidget):
 #                self.selLastFicha=self.selFicha
                 self.selCasilla=self.casillas[object(objetos[0])]
                 self.selFicha=self.busca_ficha(object(objetos[1]))
+                self.log("Clickeada " + self.selFicha.name)
                 
         def processright(nameStack):
             """nameStack tiene la estructura minDepth, maxDepth, names"""
@@ -545,7 +559,15 @@ class wdgGame(QGLWidget):
             if self.PuedeMover(self.jugadoractual.fichas[f], self.dado.lastthrow)[0]==True:
                 return True
         return False
-        
+
+    def Barreras(self, jugador):
+        """Devuelve [] si no y [id_casillas,] si si"""
+        resultado =[]
+        for f in jugador.fichas:
+            casilla=self.casillas[jugador.fichas[f].id_casilla()]
+            if casilla.TieneBarrera()==True:
+                resultado.append(casilla.id)
+        return resultado
         
     def PuedeMover(self, ficha,  valordado):
         #Calcula el movimiento
@@ -562,6 +584,16 @@ class wdgGame(QGLWidget):
         if  ficha.jugador!=self.jugadoractual.id:             
             self.log("No es del jugador actual")
             return (False, 0)
+
+        #Comprueba que no tenga obligaci´on de abrir barrera
+        if valordado==6:
+            barreras=self.Barreras(self.jugadoractual)
+            if len(barreras)!=0 :
+                if ficha.id_casilla() not in barreras:
+                    self.log("No se puede mover, debes abrir barrera")
+                    return (False, 0)
+            
+            
 
         #Esta en casa y puede mover
         if ficha.EstaEnCasa()==True:
@@ -580,7 +612,7 @@ class wdgGame(QGLWidget):
             id_casilla=libglparchis.ruta[ficha.ruta+i+1][ficha.jugador]
             if self.casillas[id_casilla].TieneBarrera()==True:
                 self.log("Hay una barrera")
-                retun (False, 0)
+                return (False, 0)
 
            
         #Comprueba si hay sitio libre
@@ -634,83 +666,24 @@ class wdgGame(QGLWidget):
         
         if ficha.ruta==72:
             self.jugadoractual.movimientos_acumulados=10
-            self.log("He comido la ficha"+ fichaenbuzon.name)
+            self.log("He metido la ficha "+ ficha.name)
             return True
         return False
 
-#    def puede_jugar(self, commit):
-#        """Funcion que con commit=FALSE pregunta y devuelve si puede y cuanto mueve
-#        Con true Lo relacionado con el movimiento del dado y movimientos especiales commit igual a -True lo gasta, con False solo busca"""
-#        def jugador_tiene_alguna_ficha_en_casa():
-#            for f in self.fichas:
-#                if f.jugador==self.jugadoractual.id:
-#                    if f.ruta==0:
-#                        return True
-#            return False
-#
-#        def jugador_tiene_todas_fichas_en_casa():
-#            resultado=True
-#            for f in self.fichas:
-#                if f.jugador==self.jugadoractual.id:
-#                    if f.ruta!=0:
-#                        return False
-#            return resultado
-#            
-#        def ifcommit(pendiente,  log):
-#            if commit==True:
-#                self.log(log)
-#                self.pendiente=pendiente
-#                
-#        ## MOVIMIENTOS ACUMULADOS
-#        if len(self.movimientos_acumulados)>0:
-#            salio=movimientos_acumulados[0]
-#            if commit==True:
-#                del movimientos_acumulados[0]
-#            return (True, salio)
-#        
-#        ## MOVIMIENTOS DADO
-#        salio=self.historicodado[0]
-#        #Tres seises para casa
-#        if salio==6 and len(self.historicodado)==3:
-#            self.mover(self.selLastFicha, 0)
-#            self.log(QCoreApplication.translate("wdgGame","Han salido 3 seises te vas a casa"))
-#            self.emit(SIGNAL("CambiarJugador()"))
-#            return (False, 0)
-#             
-#        #Si todas en casa
-#        if jugador_tiene_todas_fichas_en_casa()==True and salio!=5:
-#            ifcommit(0, "Tiene todas en casa y no ha sacado 5")
-#            return (False, 0)
-#            
-#        #Si esta en ruta 0
-#        if self.selFicha.ruta==0:
-#            if salio==5:
-#                salio=1   
-#                ifcommit(0,"Sales de casa con un 5")
-#                return(True, salio)
-#            else:
-#                self.log("Esta ficha solo se puede mover con un 5")#no es commit porque debe pinchar en otra
-#                return (False, 0)
-#        
-#        #Movimiento normal
-#        if salio==6:
-#            if jugador_tiene_alguna_ficha_en_casa()==False:
-#                salio=7
-#                ifcommit(2,"Salio un 6 pero mueves 7")
-#                return (True, 7)
-#            else:
-#                ifcommit(2,"Salio 6 y tienes fichas en casa")
-#                return(True, 6)
-#        else:
-#            ifcommit(0, "Movimiento normal")
-#            return(True, salio)
+
 
     def after_dado_click(self,  numerodado):
         if numerodado==6 and len(self.jugadoractual.historicodado)==3:            
-            self.emit(SIGNAL("TresSeisesSeguidos()"))        
+            self.emit(SIGNAL("TresSeisesSeguidos()"))      
+            print "Ultima ficha movida",  self.jugadoractual.lastFichaMovida
             if self.jugadoractual.lastFichaMovida!=None:
-                self.log(self.trUtf8("Han salido tres seises, la ´ultima ficha movida se va a casa"))
-                self.mover(self.jugadoractual.lastFichaMovida, 0)
+                print self.jugadoractual.lastFichaMovida.name
+                casilla=self.jugadoractual.lastFichaMovida.id_casilla()
+                if self.casillas[casilla].rampallegada==True:
+                    self.log(self.trUtf8("Han salido tres seises, no se va a casa por haber llegado a rampa de llegada"))
+                else:
+                    self.log(self.trUtf8("Han salido tres seises, la ´ultima ficha movida se va a casa"))
+                    self.mover(self.jugadoractual.lastFichaMovida, 0)
             else:               
                 self.log("Despu´es de tres seises, ya no puede volver a tirar")
             self.emit(SIGNAL("CambiarJugador()"))
@@ -739,6 +712,10 @@ class wdgGame(QGLWidget):
             return
         
         self.mover(self.selFicha, self.selFicha.ruta + puede[1])
+        
+        #Comprueba si ha ganado
+        if self.jugadoractual.HaGanado()==True:
+            self.emit(SIGNAL("HaGanado()"))
         
         #Come
         if self.come(self.selFicha, self.selFicha.ruta+puede[1])==True:

@@ -42,6 +42,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('JugadorDebeTirar()'), self.on_JugadorDebeTirar)  
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('JugadorDebeMover()'), self.on_JugadorDebeMover)  
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('TresSeisesSeguidos()'), self.on_TresSeisesSeguidos)  
+        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('HaGanado()'), self.on_HaGanado)  
         self.settings_splitter_load()
 
         self.table.reload()
@@ -55,18 +56,27 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.actionDado.setEnabled(True)
         self.cmdTirarDado.setEnabled(True)
         if self.ogl.jugadoractual.ia==True:
-            time.sleep(1)
+#            time.sleep(1)
             self.lstLog_newLog(self.trUtf8("IA Tira el dado"))
             self.on_actionDado_activated()
         else:
             self.lstLog_newLog(self.trUtf8("Tire el dado"))
             
+
+    def on_HaGanado(self):
+        m=QMessageBox()
+        m.setIcon(QMessageBox.Information)
+        m.setText(self.trUtf8("%1 ha ganado").arg(self.ogl.jugadoractual.name))
+        m.exec_() 
+        self.tab.setCurrentIndex(1)
+        
+        
     def on_JugadorDebeMover(self):
         print "llego"
         self.actionDado.setEnabled(False)
         self.cmdTirarDado.setEnabled(False)
         if self.ogl.jugadoractual.ia==True:
-            time.sleep(1)
+#            time.sleep(1)
             self.lstLog_newLog(self.trUtf8("IA mueve una ficha"))            
             for f in self.ogl.jugadoractual.fichas:
                 ficha=self.ogl.jugadoractual.fichas[f]
@@ -186,6 +196,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 
         #Cambia jugadoractual
         self.panels[self.ogl.jugadoractual.color].setEnabled(False)
+        if self.ogl.jugadoractual.ia==True:
+            time.sleep(1)
         while True:
             if self.ogl.jugadoractual.color=="yellow":
                 self.ogl.jugadoractual=self.ogl.jugadores["blue"]
@@ -282,34 +294,38 @@ class frmMain(QMainWindow, Ui_frmMain):#
         config.set("yellow",  'ia', int(self.ogl.jugadores['yellow'].ia))
         config.set("yellow",  'name', self.ogl.jugadores['yellow'].name)
         config.set("yellow",  'plays', int(self.ogl.jugadores['yellow'].plays))
-        config.set("yellow",  'rutaficha1', self.ogl.fichas[0].ruta)
-        config.set("yellow",  'rutaficha2',  self.ogl.fichas[1].ruta)
-        config.set("yellow",  'rutaficha3',  self.ogl.fichas[2].ruta)
-        config.set("yellow",  'rutaficha4',  self.ogl.fichas[3].ruta)        
+        if self.ogl.jugadores['yellow'].plays==True:
+            config.set("yellow",  'rutaficha1', self.ogl.jugadores['yellow'].fichas["yellow1"].ruta)
+            config.set("yellow",  'rutaficha2',  self.ogl.jugadores['yellow'].fichas["yellow2"].ruta)
+            config.set("yellow",  'rutaficha3',  self.ogl.jugadores['yellow'].fichas["yellow3"].ruta)
+            config.set("yellow",  'rutaficha4',  self.ogl.jugadores['yellow'].fichas["yellow4"].ruta)
         config.add_section("blue")
         config.set("blue",  'ia', int(self.ogl.jugadores['blue'].ia))
         config.set("blue",  'name', self.ogl.jugadores['blue'].name)
         config.set("blue",  'plays', int(self.ogl.jugadores['blue'].plays))
-        config.set("blue",  'rutaficha1', self.ogl.fichas[4].ruta)
-        config.set("blue",  'rutaficha2',  self.ogl.fichas[5].ruta)
-        config.set("blue",  'rutaficha3',  self.ogl.fichas[6].ruta)
-        config.set("blue",  'rutaficha4',  self.ogl.fichas[7].ruta)        
+        if self.ogl.jugadores['blue'].plays==True:        
+            config.set("blue",  'rutaficha1', self.ogl.jugadores['blue'].fichas["blue1"].ruta)
+            config.set("blue",  'rutaficha2',  self.ogl.jugadores['blue'].fichas["blue2"].ruta)
+            config.set("blue",  'rutaficha3',  self.ogl.jugadores['blue'].fichas["blue3"].ruta)
+            config.set("blue",  'rutaficha4',  self.ogl.jugadores['blue'].fichas["blue4"].ruta) 
         config.add_section("red")
         config.set("red",  'ia', int(self.ogl.jugadores['red'].ia))
         config.set("red",  'name', self.ogl.jugadores['red'].name)
         config.set("red",  'plays', int(self.ogl.jugadores['red'].plays))
-        config.set("red",  'rutaficha1', self.ogl.fichas[8].ruta)
-        config.set("red",  'rutaficha2',  self.ogl.fichas[9].ruta)
-        config.set("red",  'rutaficha3',  self.ogl.fichas[10].ruta)
-        config.set("red",  'rutaficha4',  self.ogl.fichas[11].ruta)         
+        if self.ogl.jugadores['red'].plays==True:        
+            config.set("red",  'rutaficha1', self.ogl.jugadores['red'].fichas["red1"].ruta)
+            config.set("red",  'rutaficha2',  self.ogl.jugadores['red'].fichas["red2"].ruta)
+            config.set("red",  'rutaficha3',  self.ogl.jugadores['red'].fichas["red3"].ruta)
+            config.set("red",  'rutaficha4',  self.ogl.jugadores['red'].fichas["red4"].ruta)    
         config.add_section("green")
         config.set("green",  'ia', int(self.ogl.jugadores['green'].ia))
         config.set("green",  'name', self.ogl.jugadores['green'].name)
-        config.set("green",  'plays', int(self.ogl.jugadores['green'].plays))
-        config.set("green",  'rutaficha1', self.ogl.fichas[12].ruta)
-        config.set("green",  'rutaficha2',  self.ogl.fichas[13].ruta)
-        config.set("green",  'rutaficha3',  self.ogl.fichas[14].ruta)
-        config.set("green",  'rutaficha4',  self.ogl.fichas[15].ruta)              
+        config.set("green",  'plays', int(self.ogl.jugadores['green'].plays))        
+        if self.ogl.jugadores['green'].plays==True:
+            config.set("green",  'rutaficha1', self.ogl.jugadores['green'].fichas["green1"].ruta)
+            config.set("green",  'rutaficha2',  self.ogl.jugadores['green'].fichas["green2"].ruta)
+            config.set("green",  'rutaficha3',  self.ogl.jugadores['green'].fichas["green3"].ruta)
+            config.set("green",  'rutaficha4',  self.ogl.jugadores['green'].fichas["green4"].ruta)    
         config.add_section("game")
         config.set("game", 'playerstarts',self.ogl.jugadoractual.color)
         with open(filename, 'w') as configfile:
@@ -320,8 +336,3 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def on_actionGuardarPartida_activated(self):
         filename=os.path.basename(libglparchis.q2s(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")))
         self.save(filename)
-
-#
-#    def volver_a_tirar(self):
-#        self.actionDado.setEnabled(True)
-#        self.lstLog_newLog(self.trUtf8("Ahora puede volver a tirar"))

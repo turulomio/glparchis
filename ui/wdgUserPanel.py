@@ -33,8 +33,14 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         self.on_chk_stateChanged(self.chk.checkState())
 
     def on_chk_stateChanged(self, state):
+        self.lst.clear()
         if libglparchis.c2b(state)==True:
-            self.lst.setModel(QStringListModel(self.history))
+            self.lst.addItems(self.history)  
+            self.lst.setCurrentRow(len(self.history)-1)
         else:
-            self.lst.setModel(QStringListModel(self.log))        
+            self.lst.addItems(self.log)          
+            self.lst.setCurrentRow(len(self.log)-1)
+#            QModelIndex modelIndex = list->rootIndex(); // u have to find the model index of the first item here
+#list->setCurrentIndex(modelIndex);
+#        self.lst.selectionModel().select(len(self.log)-1, QItemSelectionModel.Select)          
         self.lst.show()            
