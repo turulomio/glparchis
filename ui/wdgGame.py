@@ -2,21 +2,58 @@
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.QtGui import *
-import ConfigParser
+import ConfigParser,  random
 from OpenGL import GL,  GLU
 import libglparchis
+
+class Dado():    
+    def __init__(self):
+        self.lastthrow=None
+        self.fake=[]
+    def tirar(self):
+        if len(self.fake)>0:
+            self.lastthrow=self.fake[0]
+            self.fake.remove(self.fake[0])
+        else:
+#        numero= int(random.random()*6)+1
+            self.lastthrow= int(random.random()*2)+5
+        return self.lastthrow
+    
 
 class Jugador():
     def __init__(self, color):
         self.name=None
         self.color=color
         self.ia=False
-        self.plays=True
-        self.fichas={}
-        for i in range(1, 5):
-            self.fichas[color+str(i)]=Ficha(color+str(i))
+        self.plays=None
+        self.fichas={}        
+        self.historicodado=[]
+        self.lastFichaMovida=None #Se utiliza cuando se va a casa NOne si ninguna
+#        self.hamovidoficha=False #Util para ver si se va acasa tras 6 seises
+        self.movimientos_acumulados=None#Comidas ymetidas, puede ser 10, 20 o None Cuando se cuenta se borra a None
+
         self.id=libglparchis.colorid(color)
 
+    def CreaFichas(self, plays):
+        self.plays=plays        
+        if self.plays==True:
+            for i in range(1, 5):
+                self.fichas[self.color+str(i)]=Ficha(self.color+str(i))
+        
+    def TodasFichasEnCasa(self):
+        for f in self.fichas:
+            if self.fichas[f].ruta!=0:
+                return False
+        return True        
+        
+    def TodasFichasFueraDeCasa(self):
+        for f in self.fichas:
+            if self.fichas[f].ruta==0:
+                return False
+        return True
+                
+
+        
 class Casilla(QGLWidget):
     def __init__(self, id, parent=None):
         QGLWidget.__init__(self, parent)
@@ -26,7 +63,7 @@ class Casilla(QGLWidget):
         self.position=libglparchis.posCasillas[id]
         self.rotate=self.defineRotate(id)
         self.tipo=self.defineTipo(id)
-        self.busy=[False]*self.max_fichas
+#        self.busy=[False]*self.max_fichas
         self.seguro=self.defineSeguro(id)
         self.buzon=[]
 
@@ -91,6 +128,16 @@ class Casilla(QGLWidget):
             self.tipo_oblicuod()
         else:
             self.tipo_normal()
+            
+    def dibujar_fichas(self):
+        posicionBuzon=0
+
+        for f in self.buzon:
+            if posicionBuzon+1>self.max_fichas:
+                print "Hay m´as fichas en el buz´on que posiciones en casilla"
+                return            
+            f.dibujar(posicionBuzon)
+            posicionBuzon=posicionBuzon+1
         
     def tipo_inicio(self):        
         GL.glInitNames();
@@ -236,12 +283,23 @@ class Casilla(QGLWidget):
         GL.glPopName();
         GL.glPopMatrix()
 
-    def position_free(self):
-        """Función que busca el libro pero no lo modifica"""
-        for i in range(len(self.busy)):
-            if self.busy[i]==False:
-                return i
-        return None
+    def TieneBarrera(self):
+        if self.max_fichas==2:
+            if len(self.buzon)==2:
+                if self.buzon[0].jugador==self.buzon[1].jugador:
+                    return True
+        return False
+
+    def haySitioEnBuzon(self):
+        if len(self.buzon)<self.max_fichas:
+            return True
+        return False
+#    def position_free(self):
+#        """Función que busca el libro pero no lo modifica"""
+#        for i in range(len(self.busy)):
+#            if self.busy[i]==False:
+#                return i
+#        return None
         
     def quad(self, p1, p2, p3, p4, color):
         self.qglColor(color)
@@ -261,6 +319,7 @@ class Casilla(QGLWidget):
 
 
 class wdgGame(QGLWidget):
+    """Clase principal del Juego, aqu´i est´a toda la ciencia, cuando se deba pasar al UI se crear´an emits que captura qT para el UI"""
     def __init__(self, parent=None,  filename=None):
         QGLWidget.__init__(self, parent)
         self.tablero=Tablero()
@@ -269,14 +328,10 @@ class wdgGame(QGLWidget):
         self.jugadores={}
         self.casillas=[]
         self.fichas=[]
-#        self.fichasid={}
-        self.pendiente=2 #0 de nada,  2 de tirar dado, 6 por seis, 10 de mover ficha por metida, 20 de mover ficha por comida
-        self.historicodado=[]
-        self.movimientos_acumulados=[]#Comidas ymetidas
-        self.selLastFicha=None #Se utiliza cuando se va a casa
         self.selFicha=None
         self.selCasilla=None
         self.jugadoractual=None
+        self.dado=None
         for i in range(0, 105):#Se debe inializar Antes que las fichas
             self.casillas.append(Casilla(i)) #La casilla 0 no se usa pero se crea para que todo sea más intuitivo.
 
@@ -288,12 +343,10 @@ class wdgGame(QGLWidget):
         self.lastPos = QPoint()
         self.jugadores={}
         self.fichas=[]
-        self.pendiente=2 #0 de nada,  2 de tirar dado, 6 por seis, 10 de mover ficha por metida, 20 de mover ficha por comida
-        self.historicodado=[]
-        self.movimientos_acumulados=[]#Comidas ymetidas
-        self.selLastFicha=None #Se utiliza cuando se va a casa
         self.selFicha=None
         self.selCasilla=None
+        self.dado=Dado()
+        
         
         config = ConfigParser.ConfigParser()
         config.read(filename)#ÐEBE SERLOCAL
@@ -301,22 +354,22 @@ class wdgGame(QGLWidget):
         yellow=Jugador('yellow')
         yellow.name=config.get('yellow', 'name')
         yellow.ia=libglparchis.i2b(config.getint("yellow", "ia"))
-        yellow.plays=libglparchis.i2b(config.getint("yellow", "plays"))
+        yellow.CreaFichas(libglparchis.i2b(config.getint("yellow", "plays")))
         
         blue=Jugador('blue')
         blue.name=config.get("blue", "name")
         blue.ia=libglparchis.i2b(config.getint("blue", "ia"))
-        blue.plays=libglparchis.i2b(config.getint("blue", "plays"))
+        blue.CreaFichas(libglparchis.i2b(config.getint("blue", "plays")))
         
         red=Jugador('red')
         red.name=config.get("red", "name")
         red.ia=libglparchis.i2b(config.getint("red", "ia"))
-        red.plays=libglparchis.i2b(config.getint("red", "plays"))
+        red.CreaFichas(libglparchis.i2b(config.getint("red", "plays")))
         
         green=Jugador('green')
         green.name=config.get("green", "name")
         green.ia=libglparchis.i2b(config.getint("green", "ia"))
-        green.plays=libglparchis.i2b(config.getint("green", "plays"))
+        green.CreaFichas(libglparchis.i2b(config.getint("green", "plays")))
         
         self.jugadores['blue']=blue
         self.jugadores['yellow']=yellow
@@ -325,27 +378,34 @@ class wdgGame(QGLWidget):
         
         #Crea la lista de fichas
         for c in libglparchis.colores:
-            for i in range(1, 5):
-                self.fichas.append(self.jugadores[c].fichas[c+str(i)])
+            for f in self.jugadores[c].fichas:
+                self.fichas.append(self.jugadores[c].fichas[f])
       
-        self.mover(self.fichas[0], config.getint("yellow", "rutaficha1"))
-        self.mover(self.fichas[1], config.getint("yellow", "rutaficha2"))
-        self.mover(self.fichas[2], config.getint("yellow", "rutaficha3"))
-        self.mover(self.fichas[3], config.getint("yellow", "rutaficha4"))
-        self.mover(self.fichas[4], config.getint("blue", "rutaficha1"))
-        self.mover(self.fichas[5], config.getint("blue", "rutaficha2"))
-        self.mover(self.fichas[6], config.getint("blue", "rutaficha3"))
-        self.mover(self.fichas[7], config.getint("blue", "rutaficha4"))
-        self.mover(self.fichas[8], config.getint("red", "rutaficha1"))
-        self.mover(self.fichas[9], config.getint("red", "rutaficha2"))
-        self.mover(self.fichas[10], config.getint("red", "rutaficha3"))
-        self.mover(self.fichas[11], config.getint("red", "rutaficha4"))
-        self.mover(self.fichas[12], config.getint("green", "rutaficha1"))
-        self.mover(self.fichas[13], config.getint("green", "rutaficha2"))
-        self.mover(self.fichas[14], config.getint("green", "rutaficha3"))
-        self.mover(self.fichas[15], config.getint("green", "rutaficha4"))
+        if yellow.plays==True:
+            self.mover(self.fichas[0], config.getint("yellow", "rutaficha1"))
+            self.mover(self.fichas[1], config.getint("yellow", "rutaficha2"))
+            self.mover(self.fichas[2], config.getint("yellow", "rutaficha3"))
+            self.mover(self.fichas[3], config.getint("yellow", "rutaficha4"))
+        if blue.plays==True:
+            self.mover(self.fichas[4], config.getint("blue", "rutaficha1"))
+            self.mover(self.fichas[5], config.getint("blue", "rutaficha2"))
+            self.mover(self.fichas[6], config.getint("blue", "rutaficha3"))
+            self.mover(self.fichas[7], config.getint("blue", "rutaficha4"))
+        if red.plays==True:
+            self.mover(self.fichas[8], config.getint("red", "rutaficha1"))
+            self.mover(self.fichas[9], config.getint("red", "rutaficha2"))
+            self.mover(self.fichas[10], config.getint("red", "rutaficha3"))
+            self.mover(self.fichas[11], config.getint("red", "rutaficha4"))
+        if green.plays==True:
+            self.mover(self.fichas[12], config.getint("green", "rutaficha1"))
+            self.mover(self.fichas[13], config.getint("green", "rutaficha2"))
+            self.mover(self.fichas[14], config.getint("green", "rutaficha3"))
+            self.mover(self.fichas[15], config.getint("green", "rutaficha4"))
         
-        self.jugadoractual=self.jugadores[config.get("game", 'playerstarts')]
+        self.jugadoractual=self.jugadores[config.get("game", 'playerstarts')]        
+        self.jugadoractual.historicodado=[]
+        self.jugadoractual.movimientos_acumulados=None#Comidas ymetidas
+        self.jugadoractual.lastFichaMovida=None #Se utiliza cuando se va a casa
         
     def initializeGL(self):
         print ("initializeGL")
@@ -382,9 +442,10 @@ class wdgGame(QGLWidget):
         self.tablero.dibujar()
         for c in self.casillas:
             c.dibujar()
-        for f in self.fichas:
-#            print(f.name)
-            f.dibujar()
+            c.dibujar_fichas()
+#        for f in self.fichas:
+##            print(f.name)
+#            f.dibujar()
 
     def resizeGL(self, width, height):
         GL.glViewport(0, 0, width, height)
@@ -455,10 +516,10 @@ class wdgGame(QGLWidget):
 #                self.emit(SIGNAL("newLog(QString)"),"selCasilla:" + str(self.selCasilla )+ ". Busy:" +  str(self.casillas[self.selCasilla].busy))
                 self.selFicha=None
             elif len(objetos)==2:
-                self.selLastFicha=self.selFicha
+#                self.selLastFicha=self.selFicha
                 self.selCasilla=self.casillas[object(objetos[0])]
                 self.selFicha=self.fichas[object(objetos[1])]
-#                self.emit(SIGNAL("newLog(QString)"),"selFicha:" +str(self.selFicha))
+                
         def processright(nameStack):
             """nameStack tiene la estructura minDepth, maxDepth, names"""
             objetos=[]
@@ -482,165 +543,308 @@ class wdgGame(QGLWidget):
         elif event.buttons() & Qt.RightButton:
             pickupright(event)                    
         self.updateGL()
-
-    def puede_comer(self, id_ficha,  ruta):
-        """No modifica nada"""
-        def hay_ficha_otro_jugador(id_casilla):
-            for f in self.fichas:
-                if f.casilla()==id_casilla and f.jugador!=self.jugadoractual.id:
-                    return (True, f)
-            return (False, None)
-
-        idcasilladestino=libglparchis.ruta[ruta][self.fichas[id_ficha].jugador]
-        r=hay_ficha_otro_jugador(idcasilladestino)
-        if r==(False, None):
-            return (False, None)
-            
-        if self.casillas[idcasilladestino].seguro==True:
-            return (False, None)
-            
-        return r
-
-    def puede_jugar(self, commit):
-        """Lo relacionado con el movimiento del dado y movimientos especiales commit igual a -True lo gasta, con False solo busca"""
-        def jugador_tiene_alguna_ficha_en_casa():
-            for f in self.fichas:
-                if f.jugador==self.jugadoractual.id:
-                    if f.ruta==0:
-                        return True
-            return False
-
-        def jugador_tiene_todas_fichas_en_casa():
-            resultado=True
-            for f in self.fichas:
-                if f.jugador==self.jugadoractual.id:
-                    if f.ruta!=0:
-                        return False
-            return resultado
-            
-        def ifcommit(pendiente,  log):
-            if commit==True:
-                self.log(log)
-                self.pendiente=pendiente
+                        
                 
-        ## MOVIMIENTOS ACUMULADOS
-        if len(self.movimientos_acumulados)>0:
-            salio=movimientos_acumulados[0]
-            if commit==True:
-                del movimientos_acumulados[0]
-            return (True, salio)
+    def AlgunaPuedeMover(self):
+        for f in self.jugadoractual.fichas:
+            if self.PuedeMover(self.jugadoractual.fichas[f], self.dado.lastthrow)[0]==True:
+                return True
+        return False
         
-        ## MOVIMIENTOS DADO
-        salio=self.historicodado[0]
-        #Tres seises para casa
-        if salio==6 and len(self.historicodado)==3:
-            self.mover(self.selLastFicha, 0)
-            self.log(QCoreApplication.translate("wdgGame","Han salido 3 seises te vas a casa"))
-            self.emit(SIGNAL("cambiar_jugador()"))
+        
+    def PuedeMover(self, ficha,  valordado):
+        #Calcula el movimiento
+        if self.jugadoractual.movimientos_acumulados!=None:
+            movimiento=self.jugadoractual.movimientos_acumulados
+        else:
+            movimiento=valordado
+            if ficha.EstaEnCasa() and valordado==5:
+                movimiento=1
+            if self.jugadoractual.TodasFichasFueraDeCasa()==True and valordado==6:
+                movimiento=7
+
+        #Es ficha del jugador actual
+        if  ficha.jugador!=self.jugadoractual.id:             
+            self.log("No es del jugador actual")
             return (False, 0)
-             
-        #Si todas en casa
-        if jugador_tiene_todas_fichas_en_casa()==True and salio!=5:
-            ifcommit(0, "Tiene todas en casa y no ha sacado 5")
+
+        #Esta en casa y puede mover
+        if ficha.EstaEnCasa()==True:
+            if valordado!=5: #Saco un 5
+                self.log("Necesita sacar un 5 para mover esta ficha")
+                return (False, 0)
+                        
+        #se ha pasado la meta
+        if ficha.ruta+movimiento>72:
+            self.log("Se ha pasado la meta")
+            return (False, 0)
+                
+                
+        #Rastrea todas las casillas de paso en busca de barrera.
+        for i in range(0, movimiento): 
+            id_casilla=libglparchis.ruta[ficha.ruta+i+1][ficha.jugador]
+            if self.casillas[id_casilla].TieneBarrera()==True:
+                self.log("Hay una barrera")
+                retun (False, 0)
+
+           
+        #Comprueba si hay sitio libre
+        id_casilladestino=libglparchis.ruta[ficha.ruta+movimiento][ficha.jugador]
+        if self.casillas[id_casilladestino].haySitioEnBuzon()==False:
+            self.log("No hay espacio en la casilla")
             return (False, 0)
             
-        #Si esta en ruta 0
-        if self.selFicha.ruta==0:
-            if salio==5:
-                salio=1   
-                ifcommit(0,"Sales de casa con un 5")
-                return(True, salio)
-            else:
-                self.log("Esta ficha solo se puede mover con un 5")#no es commit porque debe pinchar en otra
-                return (False, 0)
+        self.log("Puede mover "+str(movimiento))
+        return (True, movimiento)
+            
+    def habiaSalidoSeis(self):
+        """Se usa despu´es de movimientos acumulados"""
+        if self.dado.lastthrow==6:
+            return True
+        return False
+            
+    def come(self, ficha,  ruta):
+        """ruta, es la posici´on de ruta de ficha en la que come. Como ya se ha movido, come si puede y devuelve True, en caso contrario False"""
+#        def hay_ficha_otro_jugador(id_casilla):
+#            for f in self.fichas:
+#                if f.id_casilla()==id_casilla and f.jugador!=self.jugadoractual.id:
+#                    return (True, f)
+#            return (False, None)
+        if ruta>72:
+            print "en como se ha sobrepasado el 72"
+            return False
+        idcasilladestino=libglparchis.ruta[ruta][ficha.jugador]
         
-        #Movimiento normal
-        if salio==6:
-            if jugador_tiene_alguna_ficha_en_casa()==False:
-                salio=7
-                ifcommit(2,"Salio un 6 pero mueves 7")
-                return (True, 7)
-            else:
-                ifcommit(2,"Salio 6 y tienes fichas en casa")
-                return(True, 6)
-        else:
-            ifcommit(0, "Movimiento normal")
-            return(True, salio)
+        if self.casillas[idcasilladestino].seguro==True:
+            return False
+        
+        if len(self.casillas[idcasilladestino].buzon)==1:
+            fichaenbuzon=self.casillas[idcasilladestino].buzon[0]
+            if fichaenbuzon.jugador!=self.jugadoractual:
+                self.mover(fichaenbuzon, 0)
+                self.jugadoractual.movimientos_acumulados=20
+                self.log("He comido la ficha"+ fichaenbuzon.name)
 
+                return True
+                    
+            
+            
+    def mete(self, ficha):
+        """r Como ya se ha movido, mete si puede y devuelve True, en caso contrario False"""
+#        def hay_ficha_otro_jugador(id_casilla):
+#            for f in self.fichas:
+#                if f.id_casilla()==id_casilla and f.jugador!=self.jugadoractual.id:
+#                    return (True, f)
+#            return (False, None)
+        
+        if ficha.ruta==72:
+            self.jugadoractual.movimientos_acumulados=10
+            self.log("He comido la ficha"+ fichaenbuzon.name)
+            return True
+        return False
+
+#    def puede_jugar(self, commit):
+#        """Funcion que con commit=FALSE pregunta y devuelve si puede y cuanto mueve
+#        Con true Lo relacionado con el movimiento del dado y movimientos especiales commit igual a -True lo gasta, con False solo busca"""
+#        def jugador_tiene_alguna_ficha_en_casa():
+#            for f in self.fichas:
+#                if f.jugador==self.jugadoractual.id:
+#                    if f.ruta==0:
+#                        return True
+#            return False
+#
+#        def jugador_tiene_todas_fichas_en_casa():
+#            resultado=True
+#            for f in self.fichas:
+#                if f.jugador==self.jugadoractual.id:
+#                    if f.ruta!=0:
+#                        return False
+#            return resultado
+#            
+#        def ifcommit(pendiente,  log):
+#            if commit==True:
+#                self.log(log)
+#                self.pendiente=pendiente
+#                
+#        ## MOVIMIENTOS ACUMULADOS
+#        if len(self.movimientos_acumulados)>0:
+#            salio=movimientos_acumulados[0]
+#            if commit==True:
+#                del movimientos_acumulados[0]
+#            return (True, salio)
+#        
+#        ## MOVIMIENTOS DADO
+#        salio=self.historicodado[0]
+#        #Tres seises para casa
+#        if salio==6 and len(self.historicodado)==3:
+#            self.mover(self.selLastFicha, 0)
+#            self.log(QCoreApplication.translate("wdgGame","Han salido 3 seises te vas a casa"))
+#            self.emit(SIGNAL("CambiarJugador()"))
+#            return (False, 0)
+#             
+#        #Si todas en casa
+#        if jugador_tiene_todas_fichas_en_casa()==True and salio!=5:
+#            ifcommit(0, "Tiene todas en casa y no ha sacado 5")
+#            return (False, 0)
+#            
+#        #Si esta en ruta 0
+#        if self.selFicha.ruta==0:
+#            if salio==5:
+#                salio=1   
+#                ifcommit(0,"Sales de casa con un 5")
+#                return(True, salio)
+#            else:
+#                self.log("Esta ficha solo se puede mover con un 5")#no es commit porque debe pinchar en otra
+#                return (False, 0)
+#        
+#        #Movimiento normal
+#        if salio==6:
+#            if jugador_tiene_alguna_ficha_en_casa()==False:
+#                salio=7
+#                ifcommit(2,"Salio un 6 pero mueves 7")
+#                return (True, 7)
+#            else:
+#                ifcommit(2,"Salio 6 y tienes fichas en casa")
+#                return(True, 6)
+#        else:
+#            ifcommit(0, "Movimiento normal")
+#            return(True, salio)
+
+    def after_dado_click(self,  numerodado):
+        if numerodado==6 and len(self.jugadoractual.historicodado)==3:            
+            self.emit(SIGNAL("TresSeisesSeguidos()"))        
+            if self.jugadoractual.lastFichaMovida!=None:
+                self.log(self.trUtf8("Han salido tres seises, la ´ultima ficha movida se va a casa"))
+                self.mover(self.jugadoractual.lastFichaMovida, 0)
+            else:               
+                self.log("Despu´es de tres seises, ya no puede volver a tirar")
+            self.emit(SIGNAL("CambiarJugador()"))
+        else: # si no han salido 3 seises
+            if self.AlgunaPuedeMover()==True:
+                print "sale"
+                self.emit(SIGNAL("JugadorDebeMover()"))
+            else:#alguna no puede mover.
+                if self.jugadoractual.historicodado[0]==6:
+                    self.emit(SIGNAL("JugadorDebeTirar()"))
+                else:            
+                    self.emit(SIGNAL("CambiarJugador()"))
 
     def after_ficha_click(self):
-        if  self.selFicha.jugador!=self.jugadoractual.id:             
-            self.log("No es el jugador actual")
+        puede=self.PuedeMover(self.selFicha,  self.dado.lastthrow)
+        if puede[0]==False:
+            self.log("No puede mover esta ficha, seleccione otra")
             return
-
-        if self.pendiente==2:
-            self.log("Debe tirar el dado")
-            return
-        pj=self.puede_jugar(False)
-#        self.log(str(pj))
-
-        if self.pendiente==0:
-            self.log("Ya no puede seguir jugando")
-            self.emit(SIGNAL("cambiar_jugador()"))
-            return
-#        self.log("Puede usar " + str(pj[1]))
         
-        if self.selFicha.ruta+ pj[1]>72:
-            self.log("Se ha pasado")
-            return 
-            
-        idcasilladestino=libglparchis.ruta[self.selFicha.ruta+pj[1]][self.selFicha.jugador]
-        posicioncasilladestino=self.casillas[idcasilladestino].position_free()
-#        self.log(str(idcasilladestino) +" " + str( posicioncasilladestino))
-        if posicioncasilladestino==None:
-            self.log("No hay casilla destino libre")
-            return             
-            
-        pc=self.puede_comer(self.selFicha.id, self.selFicha.ruta+pj[1])
-        if pc[0]==True:
-            pj=self.puede_jugar(True)
-#            self.log("Va a comer y usar " + str(pj[1]))
-            self.pendiente=20
-            self.mover(pc[1], 0)
-        pj=self.puede_jugar(True)
-#        self.log(str(pj))
-#        self.log(self.selFicha.ruta+  pj[1]+  self.selFicha.ruta+pj[1])
-#        self.log("Va a usar " + str(pj[1]))
-        self.mover(self.selFicha,self.selFicha.ruta+pj[1])            
+        self.mover(self.selFicha, self.selFicha.ruta + puede[1])
+        
+        #Come
+        if self.come(self.selFicha, self.selFicha.ruta+puede[1])==True:
+            print ("come")
+            if self.AlgunaPuedeMover()==False:
+                if self.habiaSalidoSeis()==True:
+                    self.emit(SIGNAL("JugadorDebeTirar()"))
+                else:
+                    self.emit(SIGNAL("CambiarJugador()"))                
+            else:#si alguna puede mover
+                self.emit(SIGNAL("JugadorDebeMover()"))
+        print ("No come")
+        
+        #Mete
+        if self.mete(self.selFicha)==True:
+            print ("mete")
+            if self.AlgunaPuedeMover()==False:
+                if self.habiaSalidoSeis()==True:
+                    self.emit(SIGNAL("JugadorDebeTirar()"))
+                else:
+                    self.emit(SIGNAL("CambiarJugador()"))                
+            else:#si alguna puede mover
+                self.emit(SIGNAL("JugadorDebeMover()"))
+        print (" No mete")
+        
+                    
+                    
 
-        ##CHEQUEOS UNA VEZ MOVIDO
-#        print "Finishing after",  self.pendiente
-        if self.pendiente==0:
-            self.emit(SIGNAL("cambiar_jugador()"))
-        elif self.pendiente==2:#tirardado
-                self.emit(SIGNAL("volver_a_tirar()"))
-        elif self.pendiente==6:
-            self.log("Debe tirar por haber salido un 6")
-        elif self.pendiente==10:
-            self.log("Debe mover 10")
-        elif self.pendiente==20:
-            self.log("Debe mover 20")
-            
-    def mover(self, ficha,  ruta):
-        """Solo mueve, la logica en after_ficha_click"""
-#        print ("Moviendo "+ self.fichas[id_ficha].name)
+
+
+#        if self.pendiente==2:
+#            self.log("Debe tirar el dado")
+#            return
+#        pj=self.puede_jugar(False)
+##        self.log(str(pj))
+#
+#        if self.pendiente==0:
+#            self.log("Ya no puede seguir jugando")
+#            self.emit(SIGNAL("CambiarJugador()"))
+#            return
+##        self.log("Puede usar " + str(pj[1]))
+#        
+#        if self.selFicha.ruta+ pj[1]>72:
+#            self.log("Se ha pasado")
+#            return 
+#            
+#        idcasilladestino=libglparchis.ruta[self.selFicha.ruta+pj[1]][self.selFicha.jugador]
+#        if self.casillas[idcasilladestino].haySitioEnBuzon()==False:
+#            self.log("No hay casilla destino libre")
+#            return             
+#            
+#        pc=self.puede_comer(self.selFicha.id, self.selFicha.ruta+pj[1])
+#        if pc[0]==True:
+#            pj=self.puede_jugar(True)
+#            self.pendiente=20
+#            self.mover(pc[1], 0)
+#        pj=self.puede_jugar(True)
+#        self.mover(self.selFicha,self.selFicha.ruta+pj[1])            
+#
+#        ##CHEQUEOS UNA VEZ MOVIDO
+##        print "Finishing after",  self.pendiente
+#        if self.pendiente==0:
+#            self.emit(SIGNAL("CambiarJugador()"))
+#        elif self.pendiente==2:#tirardado
+#                self.emit(SIGNAL("volver_a_tirar()"))
+#        elif self.pendiente==6:
+#            self.log("Debe tirar por haber salido un 6")
+#        elif self.pendiente==10:
+#            self.log("Debe mover 10")
+#        elif self.pendiente==20:
+#            self.log("Debe mover 20")
+#            
+#    def moverviejo(self, ficha,  ruta):
+#        """Solo mueve, la logica en after_ficha_click"""
+##        print ("Moviendo "+ self.fichas[id_ficha].name)
+#        if ficha==None:
+#            print ("esta ficha es None y no se porque")
+#            return
+#        idcasillaorigen=ficha.casilla()
+#        idcasilladestino=libglparchis.ruta[ruta][ficha.jugador]        
+#        if ruta==72:
+#            self.pendiente=10
+#        posicioncasillaorigen=ficha.numposicion
+#        posicioncasilladestino=self.casillas[idcasilladestino].position_free()
+#        print ficha.name,  idcasillaorigen,  idcasilladestino,  posicioncasillaorigen,  posicioncasilladestino
+#        ficha.last_ruta=ficha.ruta
+#        ficha.ruta=ruta#cambia la ruta
+#        ficha.numposicion=posicioncasilladestino
+#        if posicioncasillaorigen!=None: #Al iniciar no hay
+#            self.casillas[idcasillaorigen].busy[posicioncasillaorigen]=False#libera la posicion en la casilla
+##        self.log("Ficha " +str (id_ficha)+" movido a casilla " + str(idcasilladestino) + " a la posicion " + str(posicioncasilladestino))
+#        self.casillas[idcasilladestino].busy[posicioncasilladestino]=True#okupa la posicion en la casilla
+#        return True
+        
+    def mover(self, ficha, ruta):
         if ficha==None:
             print ("esta ficha es None y no se porque")
             return
-        idcasillaorigen=ficha.casilla()
+        idcasillaorigen=ficha.id_casilla()
         idcasilladestino=libglparchis.ruta[ruta][ficha.jugador]        
-        if ruta==72:
-            self.pendiente=10
-        posicioncasillaorigen=ficha.numposicion
-        posicioncasilladestino=self.casillas[idcasilladestino].position_free()
-#        print self.selFicha,  idcasillaorigen,  idcasilladestino,  posicioncasillaorigen,  posicioncasilladestino
         ficha.last_ruta=ficha.ruta
+        try:
+            self.casillas[idcasillaorigen].buzon.remove(ficha)
+        except:
+            print ("La ficha no estaba en el buz´on de la casilla "+str(idcasillaorigen),  ficha, self.casillas[idcasillaorigen].buzon )
         ficha.ruta=ruta#cambia la ruta
-        ficha.numposicion=posicioncasilladestino
-        if posicioncasillaorigen!=None: #Al iniciar no hay
-            self.casillas[idcasillaorigen].busy[posicioncasillaorigen]=False#libera la posicion en la casilla
-#        self.log("Ficha " +str (id_ficha)+" movido a casilla " + str(idcasilladestino) + " a la posicion " + str(posicioncasilladestino))
-        self.casillas[idcasilladestino].busy[posicioncasilladestino]=True#okupa la posicion en la casilla
+        self.casillas[idcasilladestino].buzon.append(ficha)
+#        print self.casillas[idcasilladestino].buzon,  ficha
+        self.LastFichaMovida=ficha
         return True
 
 
@@ -654,15 +858,26 @@ class Ficha(QGLWidget):
         self.colorname=name[:-1]
         self.ficha=GLU.gluNewQuadric();
         self.jugador=libglparchis.colorid(name[:-1])#utilizado para array ruta
-        self.numposicion=None#Posicion dentro de la casilla
+#        self.numposicion=None#Posicion dentro de la casilla
         self.id=libglparchis.fichas_name2id(name)
 
-    def casilla(self):
+    def id_casilla(self):
         return libglparchis.ruta[self.ruta][self.jugador]
         
-    def posicion(self):
-        return libglparchis.posFichas[self.casilla()][self.numposicion]
+    def EstaEnCasa(self):
+        if self.ruta==0:
+            return True
+        return False
+        
+                
+    def EstaEnMeta(self):
+        if self.ruta==72:
+            return True
+        return False
 
+        
+        
+        
     def defineColor(self,  id):
         if id>=0 and id<=3:
            return QColor(255, 255, 0)        
@@ -674,11 +889,11 @@ class Ficha(QGLWidget):
            return QColor(0, 255, 0)
 
 
-    def dibujar(self):
+    def dibujar(self, posicionBuzon):
         GL.glInitNames();
         GL.glPushMatrix()
         GL.glPushName(libglparchis.Name.ficha[self.id]);
-        p=self.posicion()
+        p=libglparchis.posFichas[self.id_casilla()][posicionBuzon]
         GL.glTranslated(p[0], p[1], p[2])
         GL.glRotated(180, 1, 0, 0)# da la vuelta a la cara
         self.qglColor(QColor(255, 255, 0).dark())

@@ -237,16 +237,6 @@ p, li { white-space: pre-wrap; }
         <source>glParchis 2010-2011</source>
         <translation>glParchis 2010-2011</translation>
     </message>
-    <message>
-        <location filename="ui/frmMain.py" line="200"/>
-        <source>Ahora puede tirar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmMain.py" line="321"/>
-        <source>Ahora puede volver a tirar</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message encoding="UTF-8">
         <location filename="ui/Ui_frmMain.py" line="121"/>
         <source>Número de tiradas</source>
@@ -321,6 +311,26 @@ p, li { white-space: pre-wrap; }
         <location filename="ui/Ui_frmMain.py" line="353"/>
         <source>0</source>
         <translation>0</translation>
+    </message>
+    <message>
+        <location filename="ui/frmMain.py" line="59"/>
+        <source>IA Tira el dado</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmMain.py" line="62"/>
+        <source>Tire el dado</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmMain.py" line="70"/>
+        <source>IA mueve una ficha</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmMain.py" line="77"/>
+        <source>Mueva una ficha</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context encoding="UTF-8">
@@ -419,12 +429,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
 </context>
-<context>
+<context encoding="UTF-8">
     <name>wdgGame</name>
-    <message>
-        <location filename="ui/wdgGame.py" line="538"/>
-        <source>Han salido 3 seises te vas a casa</source>
-        <translation type="unfinished">You got 3 sixs. Go home</translation>
+    <message encoding="UTF-8">
+        <location filename="ui/wdgGame.py" line="717"/>
+        <source>Han salido tres seises, la ´ultima ficha movida se va a casa</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
