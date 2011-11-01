@@ -540,7 +540,7 @@ class wdgGame(QGLWidget):
 
     def AlgunaPuedeMover(self):
         for f in self.jugadoractual.fichas:
-            if self.PuedeMover(self.jugadoractual.fichas[f], self.dado.lastthrow)[0]==True:
+            if self.PuedeMover(self.jugadoractual.fichas[f], self.dado.lastthrow, True)[0]==True:
                 return True
         return False
 
@@ -553,7 +553,12 @@ class wdgGame(QGLWidget):
                 resultado.append(casilla.id)
         return resultado
         
-    def PuedeMover(self, ficha,  valordado):
+    def PuedeMover(self, ficha,  valordado,  algunapuedemover=False):
+        if algunapuedemover==True:
+            pre="APM. "
+        else:
+            pre=""
+        
         #Calcula el movimiento
         if self.jugadoractual.movimientos_acumulados!=None:
             movimiento=self.jugadoractual.movimientos_acumulados
@@ -566,7 +571,7 @@ class wdgGame(QGLWidget):
 
         #Es ficha del jugador actual
         if  ficha.jugador!=self.jugadoractual.id:             
-            self.log(self.trUtf8("No es del jugador actual"))
+            self.log(self.trUtf8(pre+"No es del jugador actual"))
             return (False, 0)
 
         #Comprueba que no tenga obligación de abrir barrera
@@ -574,7 +579,7 @@ class wdgGame(QGLWidget):
             barreras=self.Barreras(self.jugadoractual)
             if len(barreras)!=0 :
                 if ficha.id_casilla() not in barreras:
-                    self.log(self.trUtf8("No se puede mover, debes abrir barrera"))
+                    self.log(self.trUtf8(pre+"No se puede mover, debes abrir barrera"))
                     return (False, 0)
             
             
@@ -582,12 +587,12 @@ class wdgGame(QGLWidget):
         #Esta en casa y puede mover
         if ficha.EstaEnCasa()==True:
             if valordado!=5: #Saco un 5
-                self.log(self.trUtf8("Necesita sacar un 5 para mover esta ficha"))
+                self.log(self.trUtf8(pre+"Necesita sacar un 5 para mover esta ficha"))
                 return (False, 0)
                         
         #se ha pasado la meta
         if ficha.ruta+movimiento>72:
-            self.log(self.trUtf8("Se ha pasado la meta"))
+            self.log(self.trUtf8(pre+"Se ha pasado la meta"))
             return (False, 0)
                 
                 
@@ -595,17 +600,17 @@ class wdgGame(QGLWidget):
         for i in range(0, movimiento): 
             id_casilla=libglparchis.ruta[ficha.ruta+i+1][ficha.jugador]
             if self.casillas[id_casilla].TieneBarrera()==True:
-                self.log(self.trUtf8("Hay una barrera"))
+                self.log(self.trUtf8(pre+"Hay una barrera"))
                 return (False, 0)
 
            
         #Comprueba si hay sitio libre
         id_casilladestino=libglparchis.ruta[ficha.ruta+movimiento][ficha.jugador]
         if self.casillas[id_casilladestino].haySitioEnBuzon()==False:
-            self.log(self.trUtf8("No hay espacio en la casilla"))
+            self.log(self.trUtf8(pre+"No hay espacio en la casilla"))
             return (False, 0)
             
-        self.log(self.trUtf8("Puede mover %1").arg(str(movimiento)))
+        self.log(self.trUtf8(pre+"Puede mover %1").arg(str(movimiento)))
         return (True, movimiento)
             
     def habiaSalidoSeis(self):
@@ -689,7 +694,11 @@ class wdgGame(QGLWidget):
             return
         
         self.mover(self.selFicha, self.selFicha.ruta + puede[1])
-        
+        #Quita el movimiento acumulados
+        if self.jugadoractual.movimientos_acumulados in (10, 20):
+            self.jugadoractual.movimientos_acumulados=None
+            
+            
         #Comprueba si ha ganado
         if self.jugadoractual.HaGanado()==True:
             self.emit(SIGNAL("HaGanado()"))

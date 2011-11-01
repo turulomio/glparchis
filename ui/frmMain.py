@@ -208,7 +208,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 self.ogl.jugadoractual=self.ogl.jugadores["yellow"]
             if self.ogl.jugadoractual.plays:#Comprueba si el actual plays
                 break
-                
+          
+        self.setWindowIcon(libglparchis.icoficha(self.ogl.jugadoractual.color))
         self.ogl.jugadoractual.historicodado=[]
         self.ogl.jugadoractual.movimientos_acumulados=None
         self.ogl.jugadoractual.LastFichaMovida=None
@@ -229,6 +230,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
 #        config = ConfigParser.ConfigParser()
 #        config.read(filenam)
         self.panels[self.ogl.jugadoractual.color].setActivated(True)
+        self.setWindowIcon(libglparchis.icoficha(self.ogl.jugadoractual.color))
         self.actionGuardarPartida.setEnabled(True)
         self.on_JugadorDebeTirar()
 

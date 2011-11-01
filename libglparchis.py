@@ -22,6 +22,11 @@ def colorid(color):
     elif color=="green":
         return 3
         
+def icoficha(color):
+    ico = QIcon()
+    ico.addPixmap(pixficha(color), QIcon.Normal, QIcon.Off) 
+    return ico
+
 def pixficha(color):
     """Devuelve un pixmap del color de la ficha"""
     if color=="yellow":
