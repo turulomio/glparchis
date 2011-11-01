@@ -5,3 +5,4 @@
 20111101 Hacer que se mantenga la posici´on en casilla al mover, efecto raro.
 20111101 Los movimientos de ai no van bien
 20111101 Manual. No deja mover 20 despues de comer
+20111101 El texto del acerca de. Pasarlo como c´odigo para favorecer la traducci´on
