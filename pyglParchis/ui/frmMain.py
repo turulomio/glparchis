@@ -1,5 +1,5 @@
 ## -*- coding: utf-8 -*-
-import sys,  random,  ConfigParser,  os
+import sys,   ConfigParser,  os,  time
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 import libglparchis
@@ -31,15 +31,51 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.panels["red"]=self.panel3
         self.panels["green"]=self.panel4
         
+        for p in self.panels:
+            self.panels[p].setEnabled(False)
+
+        
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('newLog(QString)'), self.lstLog_newLog)  
-        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('cambiar_jugador()'), self.cambiar_jugador)  
-        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('volver_a_tirar()'), self.volver_a_tirar)  
+        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('CambiarJugador()'), self.CambiarJugador)  
+#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('volver_a_tirar()'), self.volver_a_tirar)  
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('showCasillaFicha(int,int)'), self.showCasillaFicha)  
+        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('JugadorDebeTirar()'), self.on_JugadorDebeTirar)  
+        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('JugadorDebeMover()'), self.on_JugadorDebeMover)  
+        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('TresSeisesSeguidos()'), self.on_TresSeisesSeguidos)  
         self.settings_splitter_load()
 
         self.table.reload()
 
+    def on_TresSeisesSeguidos(self):
+            self.table.registraTres6Seguidos(self.ogl.jugadoractual.color)
         
+
+    def on_JugadorDebeTirar(self):
+        """Se ejecuta cuando se emite JugadorDebeTirar"""
+        self.actionDado.setEnabled(True)
+        self.cmdTirarDado.setEnabled(True)
+        if self.ogl.jugadoractual.ia==True:
+            time.sleep(1)
+            self.lstLog_newLog(self.trUtf8("IA Tira el dado"))
+            self.on_actionDado_activated()
+        else:
+            self.lstLog_newLog(self.trUtf8("Tire el dado"))
+            
+    def on_JugadorDebeMover(self):
+        print "llego"
+        self.actionDado.setEnabled(False)
+        self.cmdTirarDado.setEnabled(False)
+        if self.ogl.jugadoractual.ia==True:
+            time.sleep(1)
+            self.lstLog_newLog(self.trUtf8("IA mueve una ficha"))            
+            for f in self.ogl.jugadoractual.fichas:
+                ficha=self.ogl.jugadoractual.fichas[f]
+                self.ogl.selFicha=ficha
+                self.ogl.selCasilla=self.ogl.casillas[ficha.id_casilla()]
+                self.ogl.after_ficha_click()
+        else:
+            self.lstLog_newLog(self.trUtf8("Mueva una ficha"))
+
         
     def on_splitter_splitterMoved(self, position, index):
         self.settings_splitter_save()
@@ -92,8 +128,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
     @QtCore.pyqtSlot()      
     def on_actionDado_activated(self):  
         def labeldado():
-            numero=self.ogl.historicodado[0]
-            numlbl=len(self.ogl.historicodado)
+            numero=self.ogl.jugadoractual.historicodado[0]
+            numlbl=len(self.ogl.jugadoractual.historicodado)
             #Selecciona el panel
             if self.ogl.jugadoractual.color=="yellow":
                 panel=self.panel1
@@ -115,44 +151,14 @@ class frmMain(QMainWindow, Ui_frmMain):#
             self.cmdTirarDado.setIcon(ico)   
             pix=libglparchis.pixdado(numero)
             label.setPixmap(pix)
-                
-        def jugador_tiene_todas_fichas_en_casa():
-            for f in self.ogl.jugadoractual.fichas:
-                if self.ogl.jugadoractual.fichas[f].ruta!=0:
-                    return False
-            return True
-            
-#        numero=5
-#        numero= int(random.random()*6)+1
-        numero= int(random.random()*2)+5
-        self.table.registraTirada(self.ogl.jugadoractual.color, numero)
-#        self.lstLog_newLog("Ha salido un " + str(numero))        
-#        self.ogl.dado=numero
-        self.ogl.pendiente=1
-        self.ogl.historicodado.insert(0, numero)
-        self.actionDado.setEnabled(False)
-        self.cmdTirarDado.setEnabled(False)
-        labeldado()
-        
-        #LOGICA QUE NO REQUIERE LA INTEVENCION DEL USUARIO
-        if jugador_tiene_todas_fichas_en_casa()==True:
-            if numero <5:
-                self.lstLog_newLog(str(numero)+ "No es un 5 y las tienes todas en casa")
-                self.cambiar_jugador()
-                return
-            elif numero==6 and len(self.ogl.historicodado)==3:
-                self.lstLog_newLog("No ha salido un 5, y ha sacado 3 seises, ya no puede volver a tirar")
-                self.table.registraTres6seguidos(self.ogl.jugadoractual.color)
-                self.cambiar_jugador()
-                return            
-            elif numero==6 and len(self.ogl.historicodado)<3:
-                self.lstLog_newLog("No es 5, pero puede volver a tirar")
-                self.ogl.pendiente=2
-                self.actionDado.setEnabled(True)
-                self.cmdTirarDado.setEnabled(True)
-                return
 
-    def cambiar_jugador(self):
+        numero= self.ogl.dado.tirar()
+        self.ogl.jugadoractual.historicodado.insert(0, numero)        
+        self.table.registraTirada(self.ogl.jugadoractual.color, numero)
+        labeldado()
+        self.ogl.after_dado_click(numero)      
+
+    def CambiarJugador(self):
         def limpia_panel(color):
             pix=pixdado(None)
             if color=="yellow":
@@ -190,16 +196,14 @@ class frmMain(QMainWindow, Ui_frmMain):#
             if self.ogl.jugadoractual.plays:#Comprueba si el actual plays
                 break
                 
-        self.ogl.historicodado=[]
-        self.ogl.pendiente=2
-
-        self.actionDado.setEnabled(True)       
-        self.cmdTirarDado.setEnabled(True)
+        self.ogl.jugadoractual.historicodado=[]
+        self.ogl.jugadoractual.movimientos_acumulados=None
+        self.ogl.jugadoractual.LastFichaMovida=None
+        
         self.panels[self.ogl.jugadoractual.color].setEnabled(True)
         limpia_panel(self.ogl.jugadoractual.color)
-        self.lstLog_newLog(self.trUtf8("Ahora puede tirar"))
+        self.on_JugadorDebeTirar()
 
-                    
     @QtCore.pyqtSlot()     
     def on_actionRecuperarPartida_activated(self):
         #ÐEBE SERLOCAL
@@ -315,7 +319,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         filename=os.path.basename(libglparchis.q2s(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")))
         self.save(filename)
 
-
-    def volver_a_tirar(self):
-        self.actionDado.setEnabled(True)
-        self.lstLog_newLog(self.trUtf8("Ahora puede volver a tirar"))
+#
+#    def volver_a_tirar(self):
+#        self.actionDado.setEnabled(True)
+#        self.lstLog_newLog(self.trUtf8("Ahora puede volver a tirar"))

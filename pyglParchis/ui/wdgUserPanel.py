@@ -22,6 +22,7 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         
     @QtCore.pyqtSlot(bool)      
     def setEnabled(self, bool):
+#        self.grp.setEnabled(bool)
         if bool==True:
             self.log=[]
 
