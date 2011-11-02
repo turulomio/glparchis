@@ -30,6 +30,126 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>----------</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130016Z" changeid="root">
+        <seg>---------- </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>===============================</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130323Z" changeid="root">
+        <seg>=============================== </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>-----------------</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130003Z" changeid="root">
+        <seg>----------------- </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Inglés: Mariano Muñoz &lt;turulomio@yahoo.es&gt;</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T125558Z" changeid="root">
+        <seg>English: Mariano Muñoz &lt;turulomio@yahoo.es&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Idea y Desarrollo</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T125529Z" changeid="root">
+        <seg>Idea and Development</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Requisitos</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130207Z" changeid="root">
+        <seg>Requirements</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>========</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130026Z" changeid="root">
+        <seg>======== </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>============================</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130301Z" changeid="root">
+        <seg>============================ </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Índice de contenido</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T132010Z" changeid="root">
+        <seg>Índice of content</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>glParchis.</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T131519Z" changeid="root">
+        <seg>glParchis. </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>make uninstall</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130325Z" changeid="root">
+        <seg>make uninstall </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>1 &lt;a0&gt;Introducción&lt;/a0&gt;</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T132018Z" changeid="root">
+        <seg>1 &lt;a0&gt;Introduction&lt;/a0&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Procedimiento de instalación</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130250Z" changeid="root">
+        <seg>Installation procedure</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>glparchis-XXXXXXXX &lt;==&gt;  svn -r XXX co https://glparchis.svn.sourceforge.net/svnroot/glparchis pyglparchis</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T132103Z" changeid="root">
+        <seg>glparchis-XXXXXXXX &lt;==&gt;  svn -r XXX co https://glparchis.svn.sourceforge.net/svnroot/glparchis pyglparchis </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>2 &lt;a0&gt;Manual de usuario&lt;/a0&gt;</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T132036Z" changeid="root">
+        <seg>2 &lt;a0&gt;User guide&lt;/a0&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>Traducción</seg>
       </tuv>
       <tuv lang="EN-GB" changedate="20111102T125551Z" changeid="root">
@@ -42,14 +162,6 @@
       </tuv>
       <tuv lang="EN-GB" changedate="20111102T130210Z" changeid="root">
         <seg>========== </seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>----------</seg>
-      </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130016Z" changeid="root">
-        <seg>---------- </seg>
       </tuv>
     </tu>
     <tu>
@@ -78,66 +190,34 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>-----------------</seg>
+        <seg>Manual de usuario</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130003Z" changeid="root">
-        <seg>----------------- </seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>===============================</seg>
-      </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130323Z" changeid="root">
-        <seg>=============================== </seg>
+      <tuv lang="EN-GB" changedate="20111102T131450Z" changeid="root">
+        <seg>User guide</seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>Requisitos</seg>
+        <seg>2</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130207Z" changeid="root">
-        <seg>Requirements</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>Idea y Desarrollo</seg>
-      </tuv>
-      <tuv lang="EN-GB" changedate="20111102T125529Z" changeid="root">
-        <seg>Idea and Development</seg>
+      <tuv lang="EN-GB" changedate="20111102T132201Z" changeid="root">
+        <seg>2 </seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>Inglés: Mariano Muñoz &lt;turulomio@yahoo.es&gt;</seg>
+        <seg>Mariano Muñoz</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T125558Z" changeid="root">
-        <seg>English: Mariano Muñoz &lt;turulomio@yahoo.es&gt;</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>========</seg>
-      </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130026Z" changeid="root">
-        <seg>======== </seg>
+      <tuv lang="EN-GB" changedate="20111102T131532Z" changeid="root">
+        <seg>Mariano Muñoz </seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>============================</seg>
+        <seg>Introducción</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130301Z" changeid="root">
-        <seg>============================ </seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>make uninstall</seg>
-      </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130325Z" changeid="root">
-        <seg>make uninstall </seg>
+      <tuv lang="EN-GB" changedate="20111102T132047Z" changeid="root">
+        <seg>Introduction</seg>
       </tuv>
     </tu>
     <tu>
@@ -162,14 +242,6 @@
       </tuv>
       <tuv lang="EN-GB" changedate="20111102T130321Z" changeid="root">
         <seg>Uninstalling procedure</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>Procedimiento de instalación</seg>
-      </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130250Z" changeid="root">
-        <seg>Installation procedure</seg>
       </tuv>
     </tu>
   </body>
