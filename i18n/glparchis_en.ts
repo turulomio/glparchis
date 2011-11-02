@@ -3,17 +3,17 @@
 <context encoding="UTF-8">
     <name>frmAbout</name>
     <message>
-        <location filename="ui/Ui_frmAbout.py" line="255"/>
+        <location filename="ui/Ui_frmAbout.py" line="241"/>
         <source>S&amp;alir</source>
         <translation>E&amp;xit</translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmAbout.py" line="267"/>
+        <location filename="ui/Ui_frmAbout.py" line="253"/>
         <source>Licencia</source>
         <translation>License</translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmAbout.py" line="269"/>
+        <location filename="ui/Ui_frmAbout.py" line="255"/>
         <source>Objetos</source>
         <translation>Objects</translation>
     </message>
@@ -23,12 +23,12 @@
         <translation>glParchis</translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmAbout.py" line="268"/>
+        <location filename="ui/Ui_frmAbout.py" line="254"/>
         <source>Qt</source>
         <translation>Qt</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmAbout.py" line="245"/>
+        <location filename="ui/Ui_frmAbout.py" line="231"/>
         <source>Haga doble click en la imágen para ver los distintos objetos</source>
         <translation>Double click in the view to see the different objects</translation>
     </message>
@@ -38,31 +38,51 @@
         <translation>About</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmAbout.py" line="266"/>
+        <location filename="ui/Ui_frmAbout.py" line="252"/>
         <source>Créditos</source>
         <translation>Credits</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmAbout.py" line="51"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;La página del proyecto se encuentra en &lt;a href=&quot;http://glparchis.sourceforge.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://glparchis.sourceforge.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0057ae;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Este programa ha sido desarrollado por Mariano Muñoz.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ha sido traducido por:&lt;/p&gt;
-&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mariano Muñoz&lt;/li&gt;
-&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Nadejda Adam&lt;/li&gt;&lt;/ul&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;a los siguientes idiomas&lt;/p&gt;
-&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;English&lt;/li&gt;
-&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;French&lt;/li&gt;
-&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Español&lt;/li&gt;&lt;/ul&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Los avatares han sido extraídos de la página &lt;a href=&quot;http://www.nobleavatar.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.nobleavatar.com/&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <location filename="ui/frmAbout.py" line="24"/>
+        <source>Versión %1</source>
+        <translation>Version %1</translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmAbout.py" line="25"/>
+        <source>Este programa ha sido desarrollado por Mariano Muñoz.&lt;p&gt;</source>
+        <translation>Game developed by Mariano Muñoz.&lt;p&gt;</translation>
+    </message>
+    <message>
+        <location filename="ui/frmAbout.py" line="25"/>
+        <source>Ha sido traducido por:</source>
+        <translation>Translated by:</translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmAbout.py" line="25"/>
+        <source>&lt;ul&gt;&lt;li&gt;Mariano Muñoz&lt;/li&gt;&lt;li&gt;Nadejda Adam&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;
+</source>
+        <translation>&lt;ul&gt;&lt;li&gt;Mariano Muñoz&lt;/li&gt;&lt;li&gt;Nadejda Adam&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;
+</translation>
+    </message>
+    <message>
+        <location filename="ui/frmAbout.py" line="25"/>
+        <source>a los siguientes idiomas&lt;p&gt;</source>
+        <translation>to the following languages&lt;p&gt;</translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmAbout.py" line="25"/>
+        <source>Los avatares han sido extraídos de la página &lt;a href=&quot;http://www.nobleavatar.com/&quot;&gt;http://www.nobleavatar.com/&lt;/a&gt;&lt;p&gt;</source>
+        <translation>Avatars have been extracted from &lt;a href=&quot;http://www.nobleavatar.com/&quot;&gt;http://www.nobleavatar.com/&lt;/a&gt;&lt;p&gt;</translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmAbout.py" line="25"/>
+        <source>La página del proyecto se encuentra en &lt;a href=&quot;http://glparchis.sourceforge.net&quot;&gt;http://glparchis.sourceforge.net&lt;/a&gt;&lt;p&gt; &lt;p&gt;</source>
+        <translation>Project web page is in &lt;a href=&quot;http://glparchis.sourceforge.net&quot;&gt;http://glparchis.sourceforge.net&lt;/a&gt;&lt;p&gt; &lt;p&gt;</translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmAbout.py" line="25"/>
+        <source>&lt;ul&gt;&lt;li&gt;Inglés&lt;/li&gt;&lt;li&gt;Francés&lt;/li&gt;&lt;li&gt;Español&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;</source>
+        <translation>&lt;ul&gt;&lt;li&gt;English&lt;/li&gt;&lt;li&gt;French&lt;/li&gt;&lt;li&gt;Spanish&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;</translation>
     </message>
 </context>
 <context encoding="UTF-8">
@@ -432,22 +452,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="ui/wdgGame.py" line="667"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
-        <translation type="unfinished"></translation>
+        <translation>You got three sixes, but you don&apos;t go back home because you get your color ramp</translation>
     </message>
     <message encoding="UTF-8">
         <location filename="ui/wdgGame.py" line="669"/>
         <source>Han salido tres seises, la última ficha movida se va a casa</source>
-        <translation type="unfinished"></translation>
+        <translation>You got three sixes, your last moved piece goes back home</translation>
     </message>
     <message>
         <location filename="ui/wdgGame.py" line="653"/>
         <source>He metido la ficha %1</source>
-        <translation type="unfinished"></translation>
+        <translation>You put the %1 piece at the goal</translation>
     </message>
     <message encoding="UTF-8">
         <location filename="ui/wdgGame.py" line="672"/>
         <source>Después de tres seises, ya no puede volver a tirar</source>
-        <translation type="unfinished"></translation>
+        <translation>After three sixes, you can&apos;t thow again</translation>
     </message>
     <message>
         <location filename="ui/wdgGame.py" line="644"/>
@@ -457,12 +477,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="ui/wdgGame.py" line="515"/>
         <source>Se ha hecho click en la ficha %1</source>
-        <translation type="unfinished"></translation>
+        <translation>You click in the %1 piece</translation>
     </message>
     <message>
         <location filename="ui/wdgGame.py" line="693"/>
         <source>No puede mover esta ficha, seleccione otra</source>
-        <translation type="unfinished"></translation>
+        <translation>You can&apos;t move this piece. Please select other one</translation>
     </message>
 </context>
 <context>
