@@ -8,4 +8,3 @@
 20111101 Hacer un frmConfiguration para poner nivel de debug
 20111101 Preparar las instrucciones del parchis
 20111101 Establecer un debug level en logs
-20111102 Quitar toda referencia a pyglparchis
