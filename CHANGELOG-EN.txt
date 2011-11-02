@@ -1,0 +1,3 @@
+XXXXXXXX
+========
+- Se ha dado el soporte inicial a la aplicación

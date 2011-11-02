@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+  <header
+    creationtool="OmegaT+"
+    creationtoolversion="1.0"
+    segtype="sentence"
+    o-tmf="OmegaT+ TMX"
+    adminlang="en-US"
+    srclang="es-ES"
+    datatype="plaintext"
+  >
+  </header>
+  <body>
+    <tu>
+      <tuv xml:lang="es-ES">
+        <seg>Traducción
+----------
+Inglés: Mariano Muñoz &lt;turulomio@yahoo.es&gt;
+Francés: Nadejda Adam</seg>
+      </tuv>
+      <tuv xml:lang="en-GB">
+        <seg>Translation
+----------
+Inglés: Mariano Muñoz &lt;turulomio@yahoo.es&gt;
+Francés: Nadejda Adam</seg>
+      </tuv>
+    </tu>
+  </body>
+</tmx>

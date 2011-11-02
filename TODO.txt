@@ -8,3 +8,4 @@
 20111101 Guardar nombres de jugadores y últimas preferencias de plays e ia en un .ini
 20111101 Hacer un frmConfiguration para poner nivel de debug
 20111101 Preparar las instrucciones del parchis
+20111102 Poner una versión en acerca de ...

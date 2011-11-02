@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<OmegaT+ version="1.0">
+  <dir.originals>(DEFAULT)</dir.originals>
+  <dir.translations>(DEFAULT)</dir.translations>
+  <dir.tms>(DEFAULT)</dir.tms>
+  <dir.glossaries>(DEFAULT)</dir.glossaries>
+  <loc.original>es-ES</loc.original>
+  <loc.translation>en-GB</loc.translation>
+  <seg.sentence>true</seg.sentence>
+  <seg.lastactive>2</seg.lastactive>
+</OmegaT+>
