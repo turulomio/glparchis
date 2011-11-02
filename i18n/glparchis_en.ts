@@ -211,12 +211,12 @@
         <translation>About</translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="438"/>
+        <location filename="ui/Ui_frmMain.py" line="446"/>
         <source>Juego</source>
         <translation>Game</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmMain.py" line="496"/>
+        <location filename="ui/Ui_frmMain.py" line="504"/>
         <source>Estadísticas</source>
         <translation>Statistics</translation>
     </message>
@@ -326,27 +326,27 @@
         <translation>0</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="60"/>
+        <location filename="ui/frmMain.py" line="61"/>
         <source>IA Tira el dado</source>
         <translation>IA throws the dice</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="63"/>
+        <location filename="ui/frmMain.py" line="64"/>
         <source>Tire el dado</source>
         <translation>Throw the dice</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="79"/>
+        <location filename="ui/frmMain.py" line="80"/>
         <source>IA mueve una ficha</source>
         <translation>IA moves a piece</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="87"/>
+        <location filename="ui/frmMain.py" line="88"/>
         <source>Mueva una ficha</source>
         <translation>Move a piece</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="69"/>
+        <location filename="ui/frmMain.py" line="70"/>
         <source>%1 ha ganado</source>
         <translation>%1 has won the game</translation>
     </message>
@@ -354,6 +354,39 @@
         <location filename="ui/Ui_frmMain.py" line="22"/>
         <source>glParchis 2010-2011 ©</source>
         <translation>glParchis 2010-2011 ©</translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmMain.py" line="419"/>
+        <source>Preferencias</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>frmSettings</name>
+    <message encoding="UTF-8">
+        <location filename="ui/Ui_frmSettings.py" line="35"/>
+        <source>Configuración de glParchis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmSettings.py" line="56"/>
+        <source>Selecciona el nivel de detalle en los mensajes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmSettings.py" line="62"/>
+        <source>Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmSettings.py" line="64"/>
+        <source>Alto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmSettings.py" line="66"/>
+        <source>Desarrollador</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context encoding="UTF-8">
