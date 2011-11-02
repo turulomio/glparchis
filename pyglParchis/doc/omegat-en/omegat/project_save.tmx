@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tmx SYSTEM "tmx11.dtd">
+<tmx version="1.1">
+  <header
+    creationtool="OmegaT"
+    creationtoolversion="2.3.0_3"
+    segtype="sentence"
+    o-tmf="OmegaT TMX"
+    adminlang="EN-US"
+    srclang="ES-ES"
+    datatype="plaintext"
+  >
+  </header>
+  <body>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Se ha dado el soporte inicial a la aplicación</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130439Z" changeid="root">
+        <seg>- Initial support to the application</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>----------</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130016Z" changeid="root">
+        <seg>---------- </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>-----------------</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130003Z" changeid="root">
+        <seg>----------------- </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>========</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130026Z" changeid="root">
+        <seg>======== </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>==========</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130210Z" changeid="root">
+        <seg>========== </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>============================</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130301Z" changeid="root">
+        <seg>============================ </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>===============================</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130323Z" changeid="root">
+        <seg>=============================== </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Francés: Nadejda Adam</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T125604Z" changeid="root">
+        <seg>French: Nadejda Adam</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Idea y Desarrollo</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T125529Z" changeid="root">
+        <seg>Idea and Development</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Inglés: Mariano Muñoz &lt;turulomio@yahoo.es&gt;</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T125558Z" changeid="root">
+        <seg>English: Mariano Muñoz &lt;turulomio@yahoo.es&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Mariano Muñoz &lt;turulomio@yahoo.es&gt;</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130048Z" changeid="root">
+        <seg>Mariano Muñoz &lt;turulomio@yahoo.es&gt; </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Procedimiento de desinstalación</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130321Z" changeid="root">
+        <seg>Uninstalling procedure</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Procedimiento de instalación</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130250Z" changeid="root">
+        <seg>Installation procedure</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>PyQt4</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130213Z" changeid="root">
+        <seg>PyQt4 </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Requisitos</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130207Z" changeid="root">
+        <seg>Requirements</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Traducción</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T125551Z" changeid="root">
+        <seg>Translation</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>XXXXXXXX</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130053Z" changeid="root">
+        <seg>XXXXXXXX </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>make all</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130305Z" changeid="root">
+        <seg>make all </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>make uninstall</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130325Z" changeid="root">
+        <seg>make uninstall </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>pyopengl</seg>
+      </tuv>
+      <tuv lang="EN-GB" changedate="20111102T130216Z" changeid="root">
+        <seg>pyopengl </seg>
+      </tuv>
+    </tu>
+  </body>
+</tmx>

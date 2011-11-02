@@ -1,17 +1,17 @@
 #!/bin/bash
 echo "Este script lo hace todo, copia, lanza omegat y copia resultado"
-rm -Rf doc/omegat+-en/originals/
-rm -Rf doc/omegat+-en/translations/
-mkdir -p doc/omegat+-en/originals
-mkdir -p doc/omegat+-en/translations
-cp INSTALL-ES.txt doc/omegat+-en/originals/INSTALL-EN.txt
-cp RELEASES-ES.txt doc/omegat+-en/originals/RELEASES-EN.txt
-cp AUTHORS-ES.txt doc/omegat+-en/originals/AUTHORS-EN.txt        
-cp CHANGELOG-ES.txt doc/omegat+-en/originals/CHANGELOG-EN.txt
-cp doc/pyglparchis-es.odt doc/omegat+-en/originals/pyglparchis-en.odt
+rm -Rf doc/omegat-en/source/
+rm -Rf doc/omegat-en/target/
+mkdir -p doc/omegat-en/source
+mkdir -p doc/omegat-en/target
+cp INSTALL-ES.txt doc/omegat-en/source/INSTALL-EN.txt
+cp RELEASES-ES.txt doc/omegat-en/source/RELEASES-EN.txt
+cp AUTHORS-ES.txt doc/omegat-en/source/AUTHORS-EN.txt        
+cp CHANGELOG-ES.txt doc/omegat-en/source/CHANGELOG-EN.txt
+cp doc/pyglparchis-es.odt doc/omegat-en/source/pyglparchis-en.odt
 
-omegat+ doc/omegat+-en
+omegat doc/omegat-en
 
-cp doc/omegat+-en/translations/*.txt ./
-cp doc/omegat+-en/translations/*.odt ./doc
+cp doc/omegat-en/target/*.txt ./
+cp doc/omegat-en/target/*.odt ./doc
 echo "Te has acordado de generar las traducciones finales"

@@ -1,12 +1,12 @@
-Requisitos
-==========
-PyQt4
-pyopengl
+Requirements
+========== 
+PyQt4 
+pyopengl 
 
-Procedimiento de instalación
-============================
-make all
+Installation procedure
+============================ 
+make all 
 
-Procedimiento de desinstalación
-===============================
-make uninstall
+Uninstalling procedure
+=============================== 
+make uninstall 
