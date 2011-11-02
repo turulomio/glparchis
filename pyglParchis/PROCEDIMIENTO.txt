@@ -1,0 +1,17 @@
+Nueva release
+=============
+1) Modificar la version
+2) Modificar todos los ficheros INSTALL-ES AUTHORS-ES.txt RELEASE-ES CHANGELOG con num subversion +1
+3) Ejecutar omegat-integration, linguist
+
+4) Subir al subversion y comprobar que queda subversion +1
+5) Crear el fichero .tar.gz (con distribution-make que pone la version automatico) y subirlo a sourceforge
+6) Crear un nuevo ebuild con la nueva versión
+7) Modificarlo
+8) Subirlo al subversion del portage
+9) Modificar la pagina web
+   - Modificar sqlite
+   - Añadir el releas svn e en la página
+   - Subirla a internet
+10) Comprobar enlaces
+11) Publicar news en subversion con el CHANGELOG-EN

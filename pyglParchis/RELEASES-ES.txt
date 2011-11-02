@@ -1,0 +1,1 @@
+glparchis-XXXXXXXX <==>  svn -r XXX co https://glparchis.svn.sourceforge.net/svnroot/glparchis pyglparchis
