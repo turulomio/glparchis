@@ -1,8 +1,8 @@
-Idea y Desarrollo
------------------
-Mariano Muñoz <turulomio@yahoo.es>
+Idea and Development
+----------------- 
+Mariano Muñoz <turulomio@yahoo.es> 
 
 Translation
-----------
-Inglés: Mariano Muñoz <turulomio@yahoo.es>
-Francés: Nadejda Adam
+---------- 
+English: Mariano Muñoz <turulomio@yahoo.es>
+French: Nadejda Adam
