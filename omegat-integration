@@ -8,10 +8,11 @@ cp INSTALL-ES.txt doc/omegat-en/source/INSTALL-EN.txt
 cp RELEASES-ES.txt doc/omegat-en/source/RELEASES-EN.txt
 cp AUTHORS-ES.txt doc/omegat-en/source/AUTHORS-EN.txt        
 cp CHANGELOG-ES.txt doc/omegat-en/source/CHANGELOG-EN.txt
-cp doc/pyglparchis-es.odt doc/omegat-en/source/pyglparchis-en.odt
-
+cp doc/glparchis-es.odt doc/omegat-en/source/glparchis-en.odt
+cp doc/glparchis-es.odg doc/omegat-en/source/glparchis-en.odg
 omegat doc/omegat-en
 
 cp doc/omegat-en/target/*.txt ./
 cp doc/omegat-en/target/*.odt ./doc
+cp doc/omegat-en/target/*.odg ./doc
 echo "Te has acordado de generar las traducciones finales"

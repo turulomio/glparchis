@@ -1,8 +1,8 @@
 DESTDIR ?= /
 
 PREFIXBIN=$(DESTDIR)/usr/bin
-PREFIXLIB=$(DESTDIR)/usr/lib/pyglparchis
-PREFIXSHARE=$(DESTDIR)/usr/share/pyglparchis 
+PREFIXLIB=$(DESTDIR)/usr/lib/glparchis
+PREFIXSHARE=$(DESTDIR)/usr/share/glparchis 
 PREFIXPIXMAPS=$(DESTDIR)/usr/share/pixmaps
 PREFIXAPPLICATIONS=$(DESTDIR)/usr/share/applications
 
@@ -16,8 +16,8 @@ compile:
 	pyuic4 ui/frmShowFicha.ui > ui/Ui_frmShowFicha.py
 	pyuic4 ui/wdgUserPanel.ui > ui/Ui_wdgUserPanel.py
 	pyrcc4 images/glparchis.qrc > images/glparchis_rc.py
-	pylupdate4 -noobsolete pyglparchis.pro
-	lrelease pyglparchis.pro
+	pylupdate4 -noobsolete glparchis.pro
+	lrelease glparchis.pro
 
 install:
 	install -o root -d $(PREFIXBIN)
@@ -26,20 +26,20 @@ install:
 	install -o root -d $(PREFIXPIXMAPS)
 	install -o root -d $(PREFIXAPPLICATIONS)
 
-	install -m 755 -o root glparchis.py $(PREFIXBIN)/pyglparchis
+	install -m 755 -o root glparchis.py $(PREFIXBIN)/glparchis
 	install -m 644 -o root libglparchis.py $(PREFIXLIB)
 	install -m 644 -o root ui/*.py $(PREFIXLIB)
 	install -m 644 -o root images/*.py $(PREFIXLIB)
-	install -m 644 -o root images/ficharoja.png $(PREFIXPIXMAPS)/pyglparchis.png
-	install -m 644 -o root pyglparchis.desktop $(PREFIXAPPLICATIONS)
+	install -m 644 -o root images/ficharoja.png $(PREFIXPIXMAPS)/glparchis.png
+	install -m 644 -o root glparchis.desktop $(PREFIXAPPLICATIONS)
 	install -m 644 -o root i18n/*.qm $(PREFIXSHARE)
 
 uninstall:
-	rm $(PREFIXBIN)/pyglparchis
+	rm $(PREFIXBIN)/glparchis
 	rm -Rf $(PREFIXLIB)
 	rm -Rf $(PREFIXSHARE)
-	rm -fr $(PREFIXPIXMAPS)/pyglparchis.png
-	rm -fr $(PREFIXAPPLICATIONS)/pyglparchis.desktop
+	rm -fr $(PREFIXPIXMAPS)/glparchis.png
+	rm -fr $(PREFIXAPPLICATIONS)/glparchis.desktop
 
 
 
