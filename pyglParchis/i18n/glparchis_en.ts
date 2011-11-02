@@ -358,7 +358,7 @@
     <message>
         <location filename="ui/Ui_frmMain.py" line="419"/>
         <source>Preferencias</source>
-        <translation type="unfinished"></translation>
+        <translation>Settings</translation>
     </message>
 </context>
 <context>
@@ -366,27 +366,27 @@
     <message encoding="UTF-8">
         <location filename="ui/Ui_frmSettings.py" line="35"/>
         <source>Configuración de glParchis</source>
-        <translation type="unfinished"></translation>
+        <translation>glParchis configuration</translation>
     </message>
     <message>
         <location filename="ui/Ui_frmSettings.py" line="56"/>
         <source>Selecciona el nivel de detalle en los mensajes</source>
-        <translation type="unfinished"></translation>
+        <translation>Select the message verbosity level</translation>
     </message>
     <message>
         <location filename="ui/Ui_frmSettings.py" line="62"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="ui/Ui_frmSettings.py" line="64"/>
         <source>Alto</source>
-        <translation type="unfinished"></translation>
+        <translation>High</translation>
     </message>
     <message>
         <location filename="ui/Ui_frmSettings.py" line="66"/>
         <source>Desarrollador</source>
-        <translation type="unfinished"></translation>
+        <translation>Developer</translation>
     </message>
 </context>
 <context encoding="UTF-8">
