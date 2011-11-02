@@ -1,8 +1,11 @@
 [Desktop Entry]
 Name=glParchis
+GenericName=Parchís
+GenericName[en]=Parchesse
 Type=Application
-Comment=OpenGL Parchis
-Exec=pyglparchis
-TryExec=pyglparchis
+Comment=OpenGL Parchís
+Comment[en]=OpenGL Parchesse
+Exec=glparchis
+TryExec=glparchis
 Icon=/usr/share/pixmaps/pyglparchis.png
 Categories=Game;BoardGame;
