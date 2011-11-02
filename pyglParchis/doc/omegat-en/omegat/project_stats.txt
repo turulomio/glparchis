@@ -1,11 +1,11 @@
-2/11/11 14:04
+2/11/11 14:22
 Estadísticas del proyecto
 
                   	Segmentos	Palabras	Caracteres (sin espacios)	Caracteres (incluyendo espacios)	
-Total:            	      114	     365	                     1960	                            2189	
-Pendientes:       	       94	     326	                     1597	                            1802	
-Únicos:           	       91	     327	                     1801	                            2024	
-Pendientes únicos:	       71	     288	                     1438	                            1637	
+Total:            	       36	      81	                      631	                             680	
+Pendientes:       	        0	       0	                        0	                               0	
+Únicos:           	       29	      66	                      557	                             598	
+Pendientes únicos:	        0	       0	                        0	                               0	
 
 
 Estadísticas por archivo individual:
@@ -14,5 +14,5 @@ Nombre de archivo 	Total segmentos	Segmentos pendientes	Segmentos únicos	Segmen
 AUTHORS-EN.txt    	              7	                   0	               7	                          0	               16	                  0	             16	                         0	                               142	                                   0	                             142	                                          0	                                      151	                                          0	                                    151	                                                 0	
 CHANGELOG-EN.txt  	              3	                   0	               3	                          0	               10	                  0	             10	                         0	                                54	                                   0	                              54	                                          0	                                       63	                                          0	                                     63	                                                 0	
 INSTALL-EN.txt    	             10	                   0	              10	                          0	               13	                  0	             13	                         0	                               167	                                   0	                             167	                                          0	                                      173	                                          0	                                    173	                                                 0	
-pyglparchis-en.odt	             93	                  93	              70	                         70	              316	                316	            278	                       278	                              1499	                                1499	                            1340	                                       1340	                                     1696	                                       1696	                                   1531	                                              1531	
-RELEASES-EN.txt   	              1	                   1	               1	                          1	               10	                 10	             10	                        10	                                98	                                  98	                              98	                                         98	                                      106	                                        106	                                    106	                                               106	
+pyglparchis-en.odt	             15	                   0	               8	                          0	               32	                  0	             17	                         0	                               170	                                   0	                              96	                                          0	                                      187	                                          0	                                    105	                                                 0	
+RELEASES-EN.txt   	              1	                   0	               1	                          0	               10	                  0	             10	                         0	                                98	                                   0	                              98	                                          0	                                      106	                                          0	                                    106	                                                 0	
