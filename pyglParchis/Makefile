@@ -11,6 +11,7 @@ compile:
 	pyuic4 ui/frmAbout.ui > ui/Ui_frmAbout.py
 	pyuic4 ui/frmInitGame.ui > ui/Ui_frmInitGame.py
 	pyuic4 ui/frmMain.ui > ui/Ui_frmMain.py
+	pyuic4 ui/frmSettings.ui > ui/Ui_frmSettings.py
 	pyuic4 ui/frmShowCasilla.ui > ui/Ui_frmShowCasilla.py
 	pyuic4 ui/frmShowFicha.ui > ui/Ui_frmShowFicha.py
 	pyuic4 ui/wdgUserPanel.ui > ui/Ui_wdgUserPanel.py

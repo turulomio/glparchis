@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/glparchis">
+    <file>configure.png</file>
     <file>open.png</file>
     <file>save.png</file>
     <file>cube.png</file>

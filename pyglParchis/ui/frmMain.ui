@@ -662,6 +662,8 @@
     <addaction name="actionRecuperarPartida"/>
     <addaction name="actionGuardarPartida"/>
     <addaction name="separator"/>
+    <addaction name="actionSettings"/>
+    <addaction name="separator"/>
     <addaction name="actionSalir"/>
    </widget>
    <addaction name="menuJugar"/>
@@ -748,6 +750,15 @@
    </property>
    <property name="toolTip">
     <string>Partida Nueva</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/configure.png</normaloff>:/glparchis/configure.png</iconset>
+   </property>
+   <property name="text">
+    <string>Preferencias</string>
    </property>
   </action>
  </widget>

@@ -11,6 +11,7 @@ from frmAbout import *
 from wdgUserPanel import *
 from wdgGame import *
 from frmInitGame import *
+from frmSettings import *
 from qtablestatistics import *
 
             
@@ -131,7 +132,12 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def on_actionAcercaDe_activated(self):
         fr=frmAbout(self, "frmabout")
         fr.open()
-    
+        
+    @QtCore.pyqtSlot()      
+    def on_actionSettings_activated(self):
+        f=frmSettings(self)
+        f.exec_()
+        
     @QtCore.pyqtSlot()      
     def on_actionSalir_activated(self):
         sys.exit()
