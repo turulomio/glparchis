@@ -62,11 +62,12 @@ def c2b(state):
         return True
     else:
         return False
+
 def icodado(numero):
         ico = QIcon()
         ico.addPixmap(pixdado(numero), QIcon.Normal, QIcon.Off) 
         return ico
-        
+
 def fichas_name2id(name):
     if name=="yellow1": return 0
     if name=="yellow2": return 1
@@ -102,6 +103,8 @@ def pixdado(numero):
     elif numero==None:              
         pix=QPixmap(":/glparchis/cube.png")
     return pix
+
+version="20111102"
 colores=["yellow", "blue", "red", "green"]
 cfgfile=os.environ['HOME']+ "/.glparchis/glparchis.cfg"
 lastfile=os.environ['HOME']+ "/.glparchis/last.glparchis"

@@ -1,16 +1,14 @@
 #!/bin/bash
-rm myquotes-*.tar.gz
-DIR=myquotes-`cat ./myquotesd.py | grep 'version="2'| cut --delimiter='"'  -f 2`
+rm glparchis-*.tar.gz
+DIR=glparchis-`cat libglparchis.py | grep 'version="2'| cut --delimiter='"'  -f 2`
 FILE=$DIR.tar.gz
 echo "Este script crea el fichero $FILE para ser subido a sourceforge"
 
 mkdir $DIR
 mkdir $DIR/doc
-mkdir $DIR/sql
-mkdir $DIR/myquotes
-mkdir $DIR/myquotes/ui
-mkdir $DIR/myquotes/i18n
-mkdir $DIR/myquotes/images
+mkdir $DIR/i18n
+mkdir $DIR/images
+mkdir $DIR/ui
 
 cp      Makefile \
 	AUTHORS-ES.txt \
@@ -22,39 +20,27 @@ cp      Makefile \
         INSTALL-ES.txt \
         RELEASES-EN.txt \
         RELEASES-ES.txt \
-        myquotes.initd \
-        myquotesd.py \
-        libmyquotes.py \
-        config.py \
-        myquotes-myquotes.desktop \
+        glparchis.py \
+        pyglparchis.pro \
+        libglparchis.py \
+        pyglparchis.desktop \
         $DIR
 
-cp      po/en.po \
-        po/myquotes.pot \
-        po/translate \
-        $DIR/po
+cp      i18n/*.ts \
+        $DIR/i18n
 
 cp 	doc/*.odt \
+	doc/*.odg \
         $DIR/doc
 
-cp 	sql/myquotes.* \
-	$DIR/sql
+cp 	ui/frm* \
+	ui/wdg* \
+	ui/q* \
+	$DIR/ui
 
-cp	myquotes/myquotes* \
-        $DIR/myquotes
-
-cp 	myquotes/i18n/*.ts \
-	$DIR/myquotes/i18n
-
-cp	myquotes/ui/frm* \
-	myquotes/ui/wdg* \
-	$DIR/myquotes/ui
-
-cp	myquotes/images/*.png \
-	myquotes/images/*.gif \
-	myquotes/images/*.jpg \
-	myquotes/images/*.qrc \
-	$DIR/myquotes/images
+cp	images/*.png \
+	images/*.qrc \
+	$DIR/images
 
 tar cvz $DIR -f $FILE
 rm -R $DIR
