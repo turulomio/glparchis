@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*- 
 
 from OpenGL import GL,  GLU
-import os
+import os,  random
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
@@ -24,22 +24,7 @@ def colorid(color):
         return 2
     elif color=="green":
         return 3
-        
-def icoficha(color):
-    ico = QIcon()
-    ico.addPixmap(pixficha(color), QIcon.Normal, QIcon.Off) 
-    return ico
 
-def pixficha(color):
-    """Devuelve un pixmap del color de la ficha"""
-    if color=="yellow":
-        return QPixmap(":/glparchis/fichaamarilla.png")
-    elif color=="blue":
-        return QPixmap(":/glparchis/fichaazul.png")
-    elif color=="green":
-        return QPixmap(":/glparchis/fichaverde.png")
-    elif color=="red":
-        return QPixmap(":/glparchis/ficharoja.png")
         
 def q2s(q):
     """Qstring to python string en utf8"""
@@ -319,18 +304,21 @@ class Jugadores:
     def cambiar_jugador_actual(self):
         return
         
-class Tiradas:
+class TiradaHistorica:
     """Estudio estadistico de tiradas. Lleva un array con todas los objetos TiradaJugador"""
     def __init__(self):
         self.arr=[]
         
 class Tirada:
-    def __init__(self):
-        self.jugador=None
-        self.tipo=None#1 turno normal, dos por seis, tres por comer, cuatro por meter
-        self.valor=None
+    """Lanzamiento individual de un dado"""
+    def __init__(self, jugador, valor,  tipo=None):
+        self.jugador=jugador
+        self.valor=valor
+        self.tipo=tipo#None desconocido 1 turno normal, dos por seis, tres por comer, cuatro por meter
+        #EL TIPO SE PONE CUANDO SE PUEDA
 
 class TiradaJugador:
+    """Objeto que recoge todos las tiradas de un turno"""
     def __init__(self):
         self.jugador=None
         self.arr=[]
@@ -343,15 +331,24 @@ class Jugador:
         self.plays=True
         self.fichas=SetFichas()      
         self.historicodado=[]
+        self.tirada=TiradaJugador()
+        self.tiradahistorica=TiradaHistorica()
         self.LastFichaMovida=None #Se utiliza cuando se va a casa NOne si ninguna
         self.movimientos_acumulados=None#Comidas ymetidas, puede ser 10, 20 o None Cuando se cuenta se borra a None
         self.id=id
+        self.dado=None #Enlace a objeto dado de mem
+        self.log=[]#log de turno
+        self.loghistorico=[]
 #
 #    def CreaFichas(self, plays):
 #        self.fichas.arr.append()
 #        if self.plays==True:
 #            for i in range(1, 5):
 #                self.fichas[self.color+str(i)]=Ficha(self.color+str(i))
+        
+    def TirarDado(self):
+        
+        return
         
     def TodasFichasEnCasa(self):
         for f in self.fichas:
@@ -371,7 +368,22 @@ class Jugador:
                 return False
         return True
         
-
+            
+    def qicon(self):
+        ico = QIcon()
+        ico.addPixmap(self.qpixmap(), QIcon.Normal, QIcon.Off) 
+        return ico
+    
+    def qpixmap(self):
+        """Devuelve un pixmap del color de la ficha"""
+        if self.color.name=="yellow":
+            return QPixmap(":/glparchis/fichaamarilla.png")
+        elif self.color.name=="blue":
+            return QPixmap(":/glparchis/fichaazul.png")
+        elif self.color.name=="green":
+            return QPixmap(":/glparchis/fichaverde.png")
+        elif self.color.name=="red":
+            return QPixmap(":/glparchis/ficharoja.png")
 class Ruta:
     def __init__(self):
         self.arr=[] #Array ordenado
@@ -731,6 +743,7 @@ class Mem4:
         self.dic_fichas={}
         self.dic_colores={}
         self.dic_rutas={}
+        self.dado=Dado()
         
         self.generar_colores()
         self.generar_jugadores()
@@ -846,6 +859,7 @@ class Mem4:
     def generar_jugadores(self):
         for c in self.colores():
             self.dic_jugadores[str(c.name)]=Jugador(c.name, c)
+            self.dic_jugadores[str(c.name)].dado=self.dado
             
     def jugadores(self, name=None):
         if name==None:

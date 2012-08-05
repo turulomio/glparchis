@@ -24,10 +24,10 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.mem=Mem4()
         self.ogl.assign_mem(self.mem)
 
-        self.panel1.setColor("yellow")
-        self.panel2.setColor("blue")
-        self.panel3.setColor("red")
-        self.panel4.setColor("green")
+        self.panel1.setJugador(self.mem.jugadores("yellow"))
+        self.panel2.setJugador(self.mem.jugadores("blue"))
+        self.panel3.setJugador(self.mem.jugadores("red"))
+        self.panel4.setJugador(self.mem.jugadores("green"))
                 
         self.panels={}
         self.panels["yellow"]=self.panel1
@@ -83,7 +83,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
             self.lstLog_newLog(self.trUtf8("IA mueve una ficha"))            
             for f in self.ogl.jugadoractual.fichas:
                 ficha=self.ogl.jugadoractual.fichas[f]
-                if self.ogl.PuedeMover(ficha, self.ogl.dado.lastthrow):
+                if self.ogl.PuedeMover(ficha, self.mem.dado.lastthrow):
                     self.ogl.selFicha=ficha
                     self.ogl.after_ficha_click()
                     return
@@ -100,12 +100,12 @@ class frmMain(QMainWindow, Ui_frmMain):#
 
 #    @pyqtSignature("int")
     def showCasillaFicha(self, selCasilla, selFicha):
-        a=frmShowCasilla(self, Qt.Popup,  self.ogl.casillas[selCasilla])
+        a=frmShowCasilla(self,  Qt.Popup,  self.mem.casillas(selCasilla))
         a. move(self.ogl.mapToGlobal(QPoint(10, 10))        )
         a.show()
         if selFicha!=-99:
             ficha=self.ogl.busca_ficha(selFicha)
-            a=frmShowFicha(self, Qt.Popup,  ficha, self.mem.jugadores[ficha.colorname])
+            a=frmShowFicha(self, Qt.Popup,  ficha)
             a. move(self.ogl.mapToGlobal(QPoint(500, 10))        )
             a.show()
 
@@ -172,9 +172,9 @@ class frmMain(QMainWindow, Ui_frmMain):#
             pix=libglparchis.pixdado(numero)
             label.setPixmap(pix)
 
-        numero= self.ogl.dado.tirar()
+        numero= self.mem.dado.tirar()
         self.ogl.jugadoractual.historicodado.insert(0, numero)        
-        self.table.registraTirada(self.ogl.jugadoractual.color, numero)
+#        self.table.registraTirada(self.ogl.jugadoractual.color, numero)
         labeldado()
         self.ogl.after_dado_click(numero)      
 
@@ -218,7 +218,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
             if self.ogl.jugadoractual.plays:#Comprueba si el actual plays
                 break
           
-        self.setWindowIcon(libglparchis.icoficha(self.ogl.jugadoractual.color))
+        self.setWindowIcon(self.ogl.jugadoractual.qicon())
         self.ogl.jugadoractual.historicodado=[]
         self.ogl.jugadoractual.movimientos_acumulados=None
         self.ogl.jugadoractual.LastFichaMovida=None
@@ -232,14 +232,14 @@ class frmMain(QMainWindow, Ui_frmMain):#
         #ÐEBE SERLOCAL
         filenam=os.path.basename(libglparchis.q2s(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")))
         self.ogl.load_file(filenam)
-        self.panel1.grp.setTitle(self.mem.jugadores['yellow'].name)
-        self.panel2.grp.setTitle(self.mem.jugadores['blue'].name)
-        self.panel3.grp.setTitle(self.mem.jugadores['red'].name)
-        self.panel4.grp.setTitle(self.mem.jugadores['green'].name)
+        self.panel1.grp.setTitle(self.mem.jugadores('yellow').name)
+        self.panel2.grp.setTitle(self.mem.jugadores('blue').name)
+        self.panel3.grp.setTitle(self.mem.jugadores('red').name)
+        self.panel4.grp.setTitle(self.mem.jugadores('green').name)
 #        config = ConfigParser.ConfigParser()
 #        config.read(filenam)
         self.panels[self.ogl.jugadoractual.color.name].setActivated(True)
-        self.setWindowIcon(libglparchis.icoficha(self.ogl.jugadoractual.color))
+        self.setWindowIcon(self.ogl.jugadoractual.qicon())
         self.actionGuardarPartida.setEnabled(True)
         self.on_JugadorDebeTirar()
 
@@ -296,7 +296,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.panel4.grp.setTitle(self.mem.jugadores('green').name)
 
         self.actionGuardarPartida.setEnabled(True)
-        self.setWindowIcon(libglparchis.icoficha(self.ogl.jugadoractual.color.name))
+        self.setWindowIcon(self.ogl.jugadoractual.qicon())
         self.on_JugadorDebeTirar()
 
 
