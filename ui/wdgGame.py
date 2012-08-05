@@ -4,346 +4,30 @@ from PyQt4.QtOpenGL import *
 from PyQt4.QtGui import *
 import ConfigParser,  random
 from OpenGL import GL,  GLU
-import libglparchis
-
-class Dado():    
-    def __init__(self):
-        self.lastthrow=None
-        self.fake=[]
-        
-    def tirar(self):
-        if len(self.fake)>0:
-            self.lastthrow=self.fake[0]
-            self.fake.remove(self.fake[0])
-        else:
-            self.lastthrow= int(random.random()*6)+1
-#            self.lastthrow= int(random.random()*2)+5
-        return self.lastthrow
-    
-
-class Jugador():
-    def __init__(self, color):
-        self.name=None
-        self.color=color
-        self.ia=False
-        self.plays=None
-        self.fichas={}        
-        self.historicodado=[]
-        self.LastFichaMovida=None #Se utiliza cuando se va a casa NOne si ninguna
-        self.movimientos_acumulados=None#Comidas ymetidas, puede ser 10, 20 o None Cuando se cuenta se borra a None
-        self.id=libglparchis.colorid(color)
-
-    def CreaFichas(self, plays):
-        self.plays=plays        
-        if self.plays==True:
-            for i in range(1, 5):
-                self.fichas[self.color+str(i)]=Ficha(self.color+str(i))
-        
-    def TodasFichasEnCasa(self):
-        for f in self.fichas:
-            if self.fichas[f].ruta!=0:
-                return False
-        return True        
-        
-    def TodasFichasFueraDeCasa(self):
-        for f in self.fichas:
-            if self.fichas[f].ruta==0:
-                return False
-        return True
-
-    def HaGanado(self):
-        for f in self.fichas:
-            if self.fichas[f].ruta!=72:
-                return False
-        return True
-        
-class Casilla(QGLWidget):
-    def __init__(self, id, parent=None):
-        QGLWidget.__init__(self, parent)
-        self.id=id
-        self.max_fichas=self.defineMaxFichas(id)
-        self.color=self.defineColor(id)
-        self.position=libglparchis.posCasillas[id]
-        self.rotate=self.defineRotate(id)
-        self.rampallegada=self.defineRampaLlegada(id)
-        self.tipo=self.defineTipo(id)
-        self.seguro=self.defineSeguro(id)
-        self.buzon=[]
-
-
-    def defineSeguro(self,  id):
-        if id==5 or id==12 or id==17 or id==22 or id==29 or id==34 or id==39 or id==46 or id==51  or id==56 or id==63 or id==68:
-            return True
-        else:
-            return False
-
-    def defineMaxFichas(self,  id):
-        if id==101 or id==102 or id==103 or id==104 or id==76 or id==84 or id==92 or id==100:
-            return 4
-        else:
-            return 2
-
-    def defineRampaLlegada(self, id):
-        if id>=69 and id<= 100:
-           return True
-        return False
-
-    def defineTipo(self,  id):
-        if id==101 or id==102 or id==103 or id==104:
-           return 0 #Casilla inicial
-        elif id==76 or id==84 or id==92 or id==100:
-           return 1 #Casilla final
-        elif id==9 or  id==26 or  id==43 or  id==60:  
-           return 2 #Casilla oblicuai
-        elif id==8 or  id==25 or  id==42 or  id==59:  
-           return 4 #Casilla oblicuad
-        else:
-            return 3 #Casilla Normal
-
-    def defineColor(self,  id):
-        if id==5 or (id>=69 and id<=76) or id==101:
-           return QColor(255, 255, 30)       #amarillo 
-        elif id==39 or (id>=85 and id<=92) or id==103:
-           return QColor(255, 30, 30)#rojo
-        elif id==22 or (id>=77 and id<=84) or id==102:
-           return QColor(30, 30, 255)#azul
-        elif id==56 or (id>=93 and id<=100) or id==104:
-           return QColor(30, 255, 30) #verde
-        elif id==68 or  id==63 or  id==51 or id==46 or id==34 or  id==29 or  id==17 or   id==12:  
-           return QColor(128, 128, 128)
-        else:
-            return QColor(255, 255, 255)            
-            
-    def defineRotate(self,  id):
-        if (id>=10 and id<=24) or (id>=77 and id<=83) or(id>=43 and id <=59) or (id>=93 and id<=100):
-           return 90
-        if id==60 or id==8 or id==76:
-            return 180
-        if id==9 or id==25 or id==84:
-            return 270
-        else:
-            return 0
-        
-    def dibujar(self):
-        if self.tipo==0:
-            self.tipo_inicio()
-        elif self.tipo==1:
-            self.tipo_final()
-        elif self.tipo==2:
-            self.tipo_oblicuoi()
-        elif self.tipo==4:
-            self.tipo_oblicuod()
-        else:
-            self.tipo_normal()
-            
-    def dibujar_fichas(self):
-        posicionBuzon=0
-
-        for f in self.buzon:
-            if posicionBuzon+1>self.max_fichas:
-                print "Hay más fichas en el buzón que posiciones en casilla"
-                return            
-            f.dibujar(posicionBuzon)
-            posicionBuzon=posicionBuzon+1
-        
-    def tipo_inicio(self):        
-        GL.glInitNames();
-        GL.glPushMatrix()
-        GL.glPushName(libglparchis.Name.casilla[self.id]);
-        GL.glTranslated(self.position[0],self.position[1],self.position[2] )
-        GL.glRotated(self.rotate, 0, 0, 1 )
-        GL.glBegin(GL.GL_QUADS)
-        v1 = (0, 0, 0)
-        v2 = (21, 0, 0)
-        v3 = (21, 21, 0)
-        v4 = (0, 21, 0)
-        v5 = (0, 0, 0.2)
-        v6 = (21, 0, 0.2)
-        v7 = (21, 21, 0.2)
-        v8 = (0, 21, 0.2)
-
-        self.quad(v1, v2, v3, v4,self.color)      
-        self.quad(v8, v7, v6, v5,  QColor(70, 70, 70))      
-        self.quad(v1, v4, v8, v5, QColor(170, 170, 170))      
-        self.quad(v6, v7, v3, v2, QColor(170, 170, 170))      
-        self.quad(v5, v6, v2, v1, QColor(170, 170, 170))      
-        self.quad(v4, v3, v7, v8, QColor(170, 170, 170))      
-
-        GL.glEnd()
-        self.border(v5, v6, v7, v8, QColor(0, 0, 0))
-
-        GL.glPopName();
-        GL.glPopMatrix()
-
-    def tipo_normal(self):
-        GL.glInitNames();
-        GL.glPushMatrix()
-        GL.glPushName(libglparchis.Name.casilla[self.id]);
-        GL.glTranslated(self.position[0],self.position[1],self.position[2] )
-        GL.glRotated(self.rotate, 0, 0, 1 )
-        GL.glBegin(GL.GL_QUADS)
-        v1 = (0, 0, 0)
-        v2 = (7, 0, 0)
-        v3 = (7, 3, 0)
-        v4 = (0, 3, 0)
-        v5 = (0, 0, 0.2)
-        v6 = (7, 0, 0.2)
-        v7 = (7, 3, 0.2)
-        v8 = (0, 3, 0.2)
-
-        self.quad(v1, v2, v3, v4, self.color)      
-        self.quad(v8, v7, v6, v5,QColor(70, 70, 70) )      
-        self.quad(v1, v4, v8, v5,QColor(170, 170, 170))      
-        self.quad(v6, v7, v3, v2, QColor(170, 170, 170))      
-        self.quad(v5, v6, v2, v1, QColor(170, 170, 170) )      
-        self.quad(v4, v3, v7, v8, QColor(170, 170, 170))      
-
-        GL.glEnd()
-        self.border(v5, v6, v7, v8, QColor(0, 0, 0))
-        GL.glPopName();
-        GL.glPopMatrix()
-
-    def tipo_oblicuoi(self):
-        GL.glInitNames();
-        GL.glPushMatrix()
-        GL.glPushName(libglparchis.Name.casilla[self.id]);
-        GL.glTranslated(self.position[0],self.position[1],self.position[2] )
-        GL.glRotated(self.rotate, 0, 0, 1 )
-        GL.glBegin(GL.GL_QUADS)
-        v1 = (0, 0, 0)
-        v2 = (7, 0, 0)
-        v3 = (7, 3, 0)
-        v4 = (3, 3, 0)
-        v5 = (0, 0, 0.2)
-        v6 = (7, 0, 0.2)
-        v7 = (7, 3, 0.2)
-        v8 = (3, 3, 0.2)
-
-        self.quad(v1, v2, v3, v4, self.color)      
-        self.quad(v8, v7, v6, v5, QColor(70, 70, 70))      
-        self.quad(v1, v4, v8, v5,QColor(170, 170, 170))      
-        self.quad(v6, v7, v3, v2, QColor(170, 170, 170))      
-        self.quad(v5, v6, v2, v1, QColor(170, 170, 170) )      
-        self.quad(v4, v3, v7, v8, QColor(170, 170, 170))      
-
-        GL.glEnd()
-        self.border(v5, v6, v7, v8, QColor(0, 0, 0))
-
-        GL.glPopName();
-        GL.glPopMatrix()
-
-    def tipo_oblicuod(self):
-        GL.glInitNames();
-        GL.glPushMatrix()
-        GL.glPushName(libglparchis.Name.casilla[self.id]);
-        GL.glTranslated(self.position[0],self.position[1],self.position[2] )
-        GL.glRotated(self.rotate, 0, 0, 1 )
-        GL.glBegin(GL.GL_QUADS)
-        v1 = (0, 0, 0)
-        v2 = (7, 0, 0)
-        v3 = (4, 3, 0)
-        v4 = (0, 3, 0)
-        v5 = (0, 0, 0.2)
-        v6 = (7, 0, 0.2)
-        v7 = (4, 3, 0.2)
-        v8 = (0, 3, 0.2)
-
-        self.quad(v1, v2, v3, v4,self.color )      
-        self.quad(v8, v7, v6, v5, QColor(70, 70, 70))      
-        self.quad(v1, v4, v8, v5,QColor(170, 170, 170))      
-        self.quad(v6, v7, v3, v2, QColor(170, 170, 170))      
-        self.quad(v5, v6, v2, v1, QColor(170, 170, 170) )      
-        self.quad(v4, v3, v7, v8, QColor(170, 170, 170))      
-
-        GL.glEnd()
-        self.border(v5, v6, v7, v8, QColor(0, 0, 0))
-
-        GL.glPopName();
-        GL.glPopMatrix()
-        
-    def tipo_final(self):
-        GL.glInitNames();
-        GL.glPushMatrix()
-        GL.glPushName(libglparchis.Name.casilla[self.id]);
-        GL.glTranslated(self.position[0],self.position[1],self.position[2] )
-        GL.glRotated(self.rotate, 0, 0, 1 )
-        GL.glBegin(GL.GL_QUADS)
-        v1 = (0, 0, 0)
-        v2 = (0,  0, 0)
-        v3 = (15, 0, 0)
-        v4 = (7.5, 7.5, 0)
-        v5 = (0, 0, 0.2)
-        v6 = (0, 0, 0.2)
-        v7 = (15, 0, 0.2)
-        v8 = (7.5, 7.5, 0.2)
-
-        self.quad(v1, v2, v3, v4, self.color)      
-        self.quad(v8, v7, v6, v5, QColor(70, 70, 70))      
-        self.quad(v1, v4, v8, v5,QColor(170, 170, 170))      
-        self.quad(v6, v7, v3, v2, QColor(170, 170, 170))      
-        self.quad(v5, v6, v2, v1, QColor(170, 170, 170) )      
-        self.quad(v4, v3, v7, v8, QColor(170, 170, 170))      
-
-        GL.glEnd()
-        self.border(v5, v6, v7, v8, QColor(0, 0, 0))
-
-        GL.glPopName();
-        GL.glPopMatrix()
-
-    def TieneBarrera(self):
-        if self.tipo not in (0, 1):#Casilla inicio y final
-            if self.max_fichas==2:
-                if len(self.buzon)==2:
-                    if self.buzon[0].jugador==self.buzon[1].jugador:
-                        return True
-        return False
-
-    def haySitioEnBuzon(self):
-        if len(self.buzon)<self.max_fichas:
-            return True
-        return False
-
-        
-    def quad(self, p1, p2, p3, p4, color):
-        self.qglColor(color)
-        GL.glVertex3d(p1[0], p1[1], p1[2])
-        GL.glVertex3d(p2[0], p2[1], p2[2])
-        GL.glVertex3d(p3[0], p3[1], p3[2])
-        GL.glVertex3d(p4[0], p4[1], p4[2])
-        
-    def border(self, a, b, c, d, color):        
-        GL.glBegin(GL.GL_LINE_LOOP)
-        self.qglColor(color)
-        GL.glVertex3d(a[0], a[1], a[2]+0.0001)
-        GL.glVertex3d(b[0], b[1], b[2]+0.0001)
-        GL.glVertex3d(c[0], c[1], c[2]+0.0001)
-        GL.glVertex3d(d[0], d[1], d[2]+0.0001)
-        GL.glEnd()
+from libglparchis import *
 
 
 class wdgGame(QGLWidget):
     """Clase principal del Juego, aquí está toda la ciencia, cuando se deba pasar al UI se crearán emits que captura qT para el UI"""
-    def __init__(self, parent=None,  filename=None):
+    def __init__(self,  parent=None,  filename=None):
         QGLWidget.__init__(self, parent)
         self.tablero=Tablero()
         self.rotX=0
         self.lastPos = QPoint()
-        self.jugadores={}
-        self.casillas=[]
         self.selFicha=None
         self.selCasilla=None
         self.jugadoractual=None
         self.dado=None
-        for i in range(0, 105):#Se debe inializar Antes que las fichas
-            self.casillas.append(Casilla(i)) #La casilla 0 no se usa pero se crea para que todo sea más intuitivo.
 
         self.trolltechGreen = QColor.fromCmykF(0.40, 0.0, 1.0, 0.0)
         self.trolltechPurple = QColor.fromCmykF(0.39, 0.39, 0.0, 0.0)
+        
+    def assign_mem(self, mem):
+        self.mem=mem
 
     def load_file(self, filename):
         self.rotX=0
         self.lastPos = QPoint()
-        self.jugadores={}
         self.selFicha=None
         self.selCasilla=None
         self.dado=Dado()
@@ -352,58 +36,57 @@ class wdgGame(QGLWidget):
         config = ConfigParser.ConfigParser()
         config.read(filename)
 
-        yellow=Jugador('yellow')
+        yellow=self.mem.jugadores('yellow')
         yellow.name=config.get('yellow', 'name')
-        yellow.ia=libglparchis.i2b(config.getint("yellow", "ia"))
-        yellow.CreaFichas(libglparchis.i2b(config.getint("yellow", "plays")))
+        yellow.ia=i2b(config.getint("yellow", "ia"))
+        yellow.plays=(i2b(config.getint("yellow", "plays")))
         
-        blue=Jugador('blue')
+        blue=self.mem.jugadores('blue')
         blue.name=config.get("blue", "name")
-        blue.ia=libglparchis.i2b(config.getint("blue", "ia"))
-        blue.CreaFichas(libglparchis.i2b(config.getint("blue", "plays")))
+        blue.ia=i2b(config.getint("blue", "ia"))
+        blue.plays=(i2b(config.getint("blue", "plays")))
         
-        red=Jugador('red')
+        red=self.mem.jugadores('red')
         red.name=config.get("red", "name")
-        red.ia=libglparchis.i2b(config.getint("red", "ia"))
-        red.CreaFichas(libglparchis.i2b(config.getint("red", "plays")))
+        red.ia=i2b(config.getint("red", "ia"))
+        red.plays=(i2b(config.getint("red", "plays")))
         
-        green=Jugador('green')
+        green=self.mem.jugadores('green')
         green.name=config.get("green", "name")
-        green.ia=libglparchis.i2b(config.getint("green", "ia"))
-        green.CreaFichas(libglparchis.i2b(config.getint("green", "plays")))
-        
-        self.jugadores['blue']=blue
-        self.jugadores['yellow']=yellow
-        self.jugadores['red']=red
-        self.jugadores['green']=green        
+        green.ia=i2b(config.getint("green", "ia"))
+        green.plays=(i2b(config.getint("green", "plays")))  
 
-        if yellow.plays==True:
-            self.mover(yellow.fichas["yellow1"], config.getint("yellow", "rutaficha1"), False)
-            self.mover(yellow.fichas["yellow2"], config.getint("yellow", "rutaficha2"), False)
-            self.mover(yellow.fichas["yellow3"], config.getint("yellow", "rutaficha3"), False)
-            self.mover(yellow.fichas["yellow4"], config.getint("yellow", "rutaficha4"), False)
-        if blue.plays==True:
-            self.mover(blue.fichas["blue1"], config.getint("blue", "rutaficha1"), False)
-            self.mover(blue.fichas["blue2"], config.getint("blue", "rutaficha2"), False)
-            self.mover(blue.fichas["blue3"], config.getint("blue", "rutaficha3"), False)
-            self.mover(blue.fichas["blue4"], config.getint("blue", "rutaficha4"), False)
-        if red.plays==True:
-            self.mover(red.fichas["red1"], config.getint("red", "rutaficha1"), False)
-            self.mover(red.fichas["red2"], config.getint("red", "rutaficha2"), False)
-            self.mover(red.fichas["red3"], config.getint("red", "rutaficha3"), False)
-            self.mover(red.fichas["red4"], config.getint("red", "rutaficha4"), False)
-        if green.plays==True:
-            self.mover(green.fichas["green1"], config.getint("green", "rutaficha1"), False)
-            self.mover(green.fichas["green2"], config.getint("green", "rutaficha2"), False)
-            self.mover(green.fichas["green3"], config.getint("green", "rutaficha3"), False)
-            self.mover(green.fichas["green4"], config.getint("green", "rutaficha4"), False)
-        
+        for j in self.mem.jugadores():
+            if j.plays==True:
+                j.fichas.arr[0].mover(  config.getint(j.id, "rutaficha1"), False,  True)
+                j.fichas.arr[0].mover(config.getint(j.id, "rutaficha2"), False,  True)
+                j.fichas.arr[0].mover(config.getint(j.id, "rutaficha3"), False,  True)
+                j.fichas.arr[0].mover(config.getint(j.id, "rutaficha4"), False,  True)
+#            self.mover(yellow.fichas["yellow2"], config.getint("yellow", "rutaficha2"), False)
+#            self.mover(yellow.fichas["yellow3"], config.getint("yellow", "rutaficha3"), False)
+#            self.mover(yellow.fichas["yellow4"], config.getint("yellow", "rutaficha4"), False)
+#        if blue.plays==True:
+#            self.mover(blue.fichas["blue1"], config.getint("blue", "rutaficha1"), False)
+#            self.mover(blue.fichas["blue2"], config.getint("blue", "rutaficha2"), False)
+#            self.mover(blue.fichas["blue3"], config.getint("blue", "rutaficha3"), False)
+#            self.mover(blue.fichas["blue4"], config.getint("blue", "rutaficha4"), False)
+#        if red.plays==True:
+#            self.mover(red.fichas["red1"], config.getint("red", "rutaficha1"), False)
+#            self.mover(red.fichas["red2"], config.getint("red", "rutaficha2"), False)
+#            self.mover(red.fichas["red3"], config.getint("red", "rutaficha3"), False)
+#            self.mover(red.fichas["red4"], config.getint("red", "rutaficha4"), False)
+#        if green.plays==True:
+#            self.mover(green.fichas["green1"], config.getint("green", "rutaficha1"), False)
+#            self.mover(green.fichas["green2"], config.getint("green", "rutaficha2"), False)
+#            self.mover(green.fichas["green3"], config.getint("green", "rutaficha3"), False)
+#            self.mover(green.fichas["green4"], config.getint("green", "rutaficha4"), False)
+#        
         fake=config.get("game", 'fakedice')
         if fake!="":
             for i in  fake.split(";")  :
                 self.dado.fake.append(int(i))
-        print self.dado.fake
-        self.jugadoractual=self.jugadores[config.get("game", 'playerstarts')]    
+        print (self.dado.fake)
+        self.jugadoractual=self.mem.jugadores(config.get("game", 'playerstarts'))    
         self.jugadoractual.historicodado=[]
         self.jugadoractual.movimientos_acumulados=None#Comidas ymetidas
         self.jugadoractual.LastFichaMovida=None #Se utiliza cuando se va a casa
@@ -437,8 +120,8 @@ class wdgGame(QGLWidget):
         GL.glTranslated(-31.5, -31.5,  -60)
         GL.glRotated(self.rotX, 1,0 , 0)
         self.tablero.dibujar()
-        for c in self.casillas:
-            c.dibujar()
+        for c in self.mem.casillas():
+            c.dibujar() 
             c.dibujar_fichas()
 
     def resizeGL(self, width, height):
@@ -510,7 +193,7 @@ class wdgGame(QGLWidget):
                 self.selCasilla=object(objetos[0])
                 self.selFicha=None
             elif len(objetos)==2:
-                self.selCasilla=self.casillas[object(objetos[0])]
+                self.selCasilla=self.dic_casillas[object(objetos[0])]
                 self.selFicha=self.busca_ficha(object(objetos[1]))
                 self.log(self.trUtf8("Se ha hecho click en la ficha %1").arg(self.selFicha.name))
                 
@@ -548,7 +231,7 @@ class wdgGame(QGLWidget):
         """Devuelve [] si no y [id_casillas,] si si"""
         resultado =[]
         for f in jugador.fichas:
-            casilla=self.casillas[jugador.fichas[f].id_casilla()]
+            casilla=self.dic_casillas[jugador.fichas[f].id_casilla()]
             if casilla.TieneBarrera()==True:
                 resultado.append(casilla.id)
         return resultado
@@ -598,15 +281,15 @@ class wdgGame(QGLWidget):
                 
         #Rastrea todas las casillas de paso en busca de barrera.
         for i in range(0, movimiento): 
-            id_casilla=libglparchis.ruta[ficha.ruta+i+1][ficha.jugador]
-            if self.casillas[id_casilla].TieneBarrera()==True:
+            id_casilla=ruta[ficha.ruta+i+1][ficha.jugador]
+            if self.dic_casillas[id_casilla].TieneBarrera()==True:
                 self.log(self.trUtf8(pre+"Hay una barrera"))
                 return (False, 0)
 
            
         #Comprueba si hay sitio libre
-        id_casilladestino=libglparchis.ruta[ficha.ruta+movimiento][ficha.jugador]
-        if self.casillas[id_casilladestino].haySitioEnBuzon()==False:
+        id_casilladestino=ruta[ficha.ruta+movimiento][ficha.jugador]
+        if self.dic_casillas[id_casilladestino].haySitioEnBuzon()==False:
             self.log(self.trUtf8(pre+"No hay espacio en la casilla"))
             return (False, 0)
             
@@ -624,15 +307,15 @@ class wdgGame(QGLWidget):
         if ruta>72:
             print ("en como se ha sobrepasado el 72")
             return False
-        idcasilladestino=libglparchis.ruta[ruta][ficha.jugador]
+        idcasilladestino=ruta[ruta][ficha.jugador]
         
-        if self.casillas[idcasilladestino].seguro==True:
+        if self.dic_casillas[idcasilladestino].seguro==True:
             return False
         
-        print len(self.casillas[idcasilladestino].buzon)
-        if len(self.casillas[idcasilladestino].buzon)==2:
-            ficha1=self.casillas[idcasilladestino].buzon[0]
-            ficha2=self.casillas[idcasilladestino].buzon[1]
+        print len(self.dic_casillas[idcasilladestino].buzon)
+        if len(self.dic_casillas[idcasilladestino].buzon)==2:
+            ficha1=self.dic_casillas[idcasilladestino].buzon[0]
+            ficha2=self.dic_casillas[idcasilladestino].buzon[1]
             if ficha1.jugador!=self.jugadoractual.id:
                 fichaacomer=ficha1
             elif ficha2.jugador!=self.jugadoractual.id:
@@ -663,7 +346,7 @@ class wdgGame(QGLWidget):
             if self.jugadoractual.LastFichaMovida!=None:
 #                print self.jugadoractual.LastFichaMovida.name
                 casilla=self.jugadoractual.LastFichaMovida.id_casilla()
-                if self.casillas[casilla].rampallegada==True:
+                if self.dic_casillas[casilla].rampallegada==True:
                     self.log(self.trUtf8("Han salido tres seises, no se va a casa por haber llegado a rampa de llegada"))
                 else:
                     self.log(self.trUtf8("Han salido tres seises, la última ficha movida se va a casa"))
@@ -682,10 +365,10 @@ class wdgGame(QGLWidget):
 
 
     def busca_ficha(self, id):
-        for c in libglparchis.colores:
-            for f in self.jugadores[c].fichas:
-                if self.jugadores[c].fichas[f].id==id:
-                    return self.jugadores[c].fichas[f]
+        for c in colores:
+            for f in self.dic_jugadores[c].fichas:
+                if self.dic_jugadores[c].fichas[f].id==id:
+                    return self.dic_jugadores[c].fichas[f]
 
     def after_ficha_click(self):
         puede=self.PuedeMover(self.selFicha,  self.dado.lastthrow)
@@ -734,119 +417,19 @@ class wdgGame(QGLWidget):
 
 
 
-    def mover(self, ficha, ruta, controllastficha=True):
-        idcasillaorigen=ficha.id_casilla()
-        idcasilladestino=libglparchis.ruta[ruta][ficha.jugador]        
-        ficha.last_ruta=ficha.ruta
-        try:
-            self.casillas[idcasillaorigen].buzon.remove(ficha)
-        except:
-#            print ("La ficha no estaba en el buzón de la casilla "+str(idcasillaorigen),  ficha, self.casillas[idcasillaorigen].buzon )
-            pass
-        ficha.ruta=ruta#cambia la ruta
-        self.casillas[idcasilladestino].buzon.append(ficha)
-#        print self.casillas[idcasilladestino].buzon,  ficha
-        if controllastficha==True:
-            self.jugadoractual.LastFichaMovida=ficha
-        return True
+#    def mover(self, ficha, ruta, controllastficha=True):
+#        idcasillaorigen=ficha.id_casilla()
+#        idcasilladestino=ruta[ruta][ficha.jugador]        
+#        ficha.posruta=ficha.ruta
+#        try:
+#            self.dic_casillas[idcasillaorigen].buzon.remove(ficha)
+#        except:
+##            print ("La ficha no estaba en el buzón de la casilla "+str(idcasillaorigen),  ficha, self.dic_casillas[idcasillaorigen].buzon )
+#            pass
+#        ficha.ruta=ruta#cambia la ruta
+#        self.dic_casillas[idcasilladestino].buzon.append(ficha)
+##        print self.dic_casillas[idcasilladestino].buzon,  ficha
+#        if controllastficha==True:
+#            self.jugadoractual.LastFichaMovida=ficha
+#        return True
 
-
-class Ficha(QGLWidget):
-    def __init__(self, name,  parent=None):
-        QGLWidget.__init__(self, parent)
-        self.name=name
-        self.ruta=0
-        self.last_ruta=0
-        self.color=libglparchis.qcolor(name[:-1])
-        self.colorname=name[:-1]
-        self.ficha=GLU.gluNewQuadric();
-        self.jugador=libglparchis.colorid(name[:-1])#utilizado para array ruta
-        self.id=libglparchis.fichas_name2id(name)
-
-    def id_casilla(self):
-        return libglparchis.ruta[self.ruta][self.jugador]
-        
-    def EstaEnCasa(self):
-        if self.ruta==0:
-            return True
-        return False
-        
-                
-    def EstaEnMeta(self):
-        if self.ruta==72:
-            return True
-        return False
-
-    def defineColor(self,  id):
-        if id>=0 and id<=3:
-           return QColor(255, 255, 0)        
-        elif id>=4 and id<=7:
-           return QColor(0, 0, 255)
-        elif id>=8 and id<=11:
-           return QColor(255, 0, 0 )
-        elif id>=12 and id<=15:
-           return QColor(0, 255, 0)
-
-
-    def dibujar(self, posicionBuzon):
-        GL.glInitNames();
-        GL.glPushMatrix()
-        GL.glPushName(libglparchis.Name.ficha[self.id]);
-        if posicionBuzon==None:#Para frmAcercade
-            p=(0, 0, 0)
-        else:
-            p=libglparchis.posFichas[self.id_casilla()][posicionBuzon]
-        GL.glTranslated(p[0], p[1], p[2])
-        GL.glRotated(180, 1, 0, 0)# da la vuelta a la cara
-        self.qglColor(QColor(255, 255, 0).dark())
-        GLU.gluQuadricDrawStyle (self.ficha, GLU.GLU_FILL);
-        GLU.gluQuadricNormals (self.ficha, GLU.GLU_SMOOTH);
-        GLU.gluQuadricTexture (self.ficha, True);
-        self.qglColor(self.color.dark())
-        GLU.gluCylinder (self.ficha, 1.4, 1.4, 0.5, 16, 5)
-        GL.glTranslated(0, 0, 0.5)
-        self.qglColor(QColor(70, 70, 70))
-        GLU.gluDisk(self.ficha, 0, 1.4, 16, 5)
-        self.qglColor(self.color.dark())
-        GL.glTranslated(0, 0, -0.5)
-        GL.glRotated(180, 1, 0, 0)# da la vuelta a la cara
-        GLU.gluDisk(self.ficha, 0, 1.40, 16, 5)
-        GL.glPopName();
-        GL.glPopMatrix()
-
-
-class Tablero(QGLWidget):
-    def __init__(self, parent=None):
-        QGLWidget.__init__(self, parent)
-        self.object = 1
-        self.position=(-1, -1, 0)
-
-    def quad(self, p1, p2, p3, p4, color):
-        self.qglColor(color)
-        GL.glVertex3d(p1[0], p1[1], p1[2])
-        GL.glVertex3d(p2[0], p2[1], p2[2])
-        GL.glVertex3d(p3[0], p3[1], p3[2])
-        GL.glVertex3d(p4[0], p4[1], p4[2])
-
-    def dibujar(self):
-        GL.glPushMatrix()
-        GL.glTranslated(self.position[0],  self.position[1],  self.position[2])
-        GL.glBegin(GL.GL_QUADS)
-        v1 = (0, 0, 0)
-        v2 = (65, 0, 0)
-        v3 = (65, 65, 0)
-        v4 = (0, 65, 0)
-        v5 = (0, 0, 0.5)
-        v6 = (65, 0, 0.5)
-        v7 = (65, 65, 0.5)
-        v8 = (0, 65, 0.5)
-
-        self.quad(v4, v3, v2, v1, QColor(0, 64, 64))      
-        self.quad(v5, v6, v7, v8, QColor(0, 64, 64))      
-        self.quad(v5, v8, v4, v1, QColor(0, 64, 64))      
-        self.quad(v2, v3, v7, v6, QColor(0, 64, 64))      
-        self.quad(v1, v2, v6, v5, QColor(0, 64, 64))      
-        self.quad(v8, v7, v3, v4, QColor(0, 64, 64))      
-
-        GL.glEnd()
-        GL.glPopMatrix()
