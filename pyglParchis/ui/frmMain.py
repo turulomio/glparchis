@@ -2,7 +2,7 @@
 import sys,   ConfigParser,  os,  time
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
-import libglparchis
+from libglparchis import *
 
 from Ui_frmMain import *
 from frmShowCasilla import *
@@ -20,6 +20,9 @@ class frmMain(QMainWindow, Ui_frmMain):#
         QMainWindow.__init__(self, None)
         self.setupUi(self)
         self.showMaximized()
+        
+        self.mem=Mem4()
+        self.ogl.assign_mem(self.mem)
 
         self.panel1.setColor("yellow")
         self.panel2.setColor("blue")
@@ -102,12 +105,12 @@ class frmMain(QMainWindow, Ui_frmMain):#
         a.show()
         if selFicha!=-99:
             ficha=self.ogl.busca_ficha(selFicha)
-            a=frmShowFicha(self, Qt.Popup,  ficha, self.ogl.jugadores[ficha.colorname])
+            a=frmShowFicha(self, Qt.Popup,  ficha, self.mem.jugadores[ficha.colorname])
             a. move(self.ogl.mapToGlobal(QPoint(500, 10))        )
             a.show()
 
     def lstLog_newLog(self, log):
-        self.panels[self.ogl.jugadoractual.color].newLog(log)
+        self.panels[self.ogl.jugadoractual.color.name].newLog(log)
 
     def settings_splitter_save(self):
         config = ConfigParser.ConfigParser()
@@ -200,18 +203,18 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 self.panel4.show()
                 
         #Cambia jugadoractual
-        self.panels[self.ogl.jugadoractual.color].setActivated(False)
+        self.panels[self.ogl.jugadoractual.color.name].setActivated(False)
         if self.ogl.jugadoractual.ia==True:
             time.sleep(0.2)
         while True:
             if self.ogl.jugadoractual.color=="yellow":
-                self.ogl.jugadoractual=self.ogl.jugadores["blue"]
+                self.ogl.jugadoractual=self.mem.jugadores["blue"]
             elif self.ogl.jugadoractual.color=="blue" :
-                self.ogl.jugadoractual=self.ogl.jugadores["red"]
+                self.ogl.jugadoractual=self.mem.jugadores["red"]
             elif self.ogl.jugadoractual.color=="red" :
-                self.ogl.jugadoractual=self.ogl.jugadores["green"]
+                self.ogl.jugadoractual=self.mem.jugadores["green"]
             elif self.ogl.jugadoractual.color=="green" :
-                self.ogl.jugadoractual=self.ogl.jugadores["yellow"]
+                self.ogl.jugadoractual=self.mem.jugadores["yellow"]
             if self.ogl.jugadoractual.plays:#Comprueba si el actual plays
                 break
           
@@ -220,7 +223,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.ogl.jugadoractual.movimientos_acumulados=None
         self.ogl.jugadoractual.LastFichaMovida=None
         
-        self.panels[self.ogl.jugadoractual.color].setActivated(True)
+        self.panels[self.ogl.jugadoractual.color.name].setActivated(True)
         limpia_panel(self.ogl.jugadoractual.color)
         self.on_JugadorDebeTirar()
 
@@ -229,13 +232,13 @@ class frmMain(QMainWindow, Ui_frmMain):#
         #ÐEBE SERLOCAL
         filenam=os.path.basename(libglparchis.q2s(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")))
         self.ogl.load_file(filenam)
-        self.panel1.grp.setTitle(self.ogl.jugadores['yellow'].name)
-        self.panel2.grp.setTitle(self.ogl.jugadores['blue'].name)
-        self.panel3.grp.setTitle(self.ogl.jugadores['red'].name)
-        self.panel4.grp.setTitle(self.ogl.jugadores['green'].name)
+        self.panel1.grp.setTitle(self.mem.jugadores['yellow'].name)
+        self.panel2.grp.setTitle(self.mem.jugadores['blue'].name)
+        self.panel3.grp.setTitle(self.mem.jugadores['red'].name)
+        self.panel4.grp.setTitle(self.mem.jugadores['green'].name)
 #        config = ConfigParser.ConfigParser()
 #        config.read(filenam)
-        self.panels[self.ogl.jugadoractual.color].setActivated(True)
+        self.panels[self.ogl.jugadoractual.color.name].setActivated(True)
         self.setWindowIcon(libglparchis.icoficha(self.ogl.jugadoractual.color))
         self.actionGuardarPartida.setEnabled(True)
         self.on_JugadorDebeTirar()
@@ -265,11 +268,11 @@ class frmMain(QMainWindow, Ui_frmMain):#
             config.set("green",  'name', initgame.txtGreen.text())
             config.set("green",  'plays', int(libglparchis.c2b(initgame.chkGreenPlays.checkState())))
                 
-            for color in libglparchis.colores:
-                config.set(color,  'rutaficha1', 0)
-                config.set(color,  'rutaficha2', 0)
-                config.set(color,  'rutaficha3', 0)
-                config.set(color,  'rutaficha4', 0)
+            for color in self.mem.colores():
+                config.set(color.name,  'rutaficha1', 0)
+                config.set(color.name,  'rutaficha2', 0)
+                config.set(color.name,  'rutaficha3', 0)
+                config.set(color.name,  'rutaficha4', 0)
             config.add_section("game")
             config.set("game", 'playerstarts', initgame.playerstarts)
             config.set("game", 'fakedice','')
@@ -286,55 +289,55 @@ class frmMain(QMainWindow, Ui_frmMain):#
 #        self.ogl=wdgGame(filename=libglparchis.lastfile)
         self.ogl.load_file(libglparchis.lastfile)
         
-        self.panels[self.ogl.jugadoractual.color].setActivated(True)
-        self.panel1.grp.setTitle(self.ogl.jugadores['yellow'].name)
-        self.panel2.grp.setTitle(self.ogl.jugadores['blue'].name)
-        self.panel3.grp.setTitle(self.ogl.jugadores['red'].name)
-        self.panel4.grp.setTitle(self.ogl.jugadores['green'].name)
+        self.panels[self.ogl.jugadoractual.color.name].setActivated(True)
+        self.panel1.grp.setTitle(self.mem.jugadores('yellow').name)
+        self.panel2.grp.setTitle(self.mem.jugadores('blue').name)
+        self.panel3.grp.setTitle(self.mem.jugadores('red').name)
+        self.panel4.grp.setTitle(self.mem.jugadores('green').name)
 
         self.actionGuardarPartida.setEnabled(True)
-        self.setWindowIcon(libglparchis.icoficha(self.ogl.jugadoractual.color))
+        self.setWindowIcon(libglparchis.icoficha(self.ogl.jugadoractual.color.name))
         self.on_JugadorDebeTirar()
 
 
     def save(self, filename):
         config = ConfigParser.ConfigParser()
         config.add_section("yellow")
-        config.set("yellow",  'ia', int(self.ogl.jugadores['yellow'].ia))
-        config.set("yellow",  'name', self.ogl.jugadores['yellow'].name)
-        config.set("yellow",  'plays', int(self.ogl.jugadores['yellow'].plays))
-        if self.ogl.jugadores['yellow'].plays==True:
-            config.set("yellow",  'rutaficha1', self.ogl.jugadores['yellow'].fichas["yellow1"].ruta)
-            config.set("yellow",  'rutaficha2',  self.ogl.jugadores['yellow'].fichas["yellow2"].ruta)
-            config.set("yellow",  'rutaficha3',  self.ogl.jugadores['yellow'].fichas["yellow3"].ruta)
-            config.set("yellow",  'rutaficha4',  self.ogl.jugadores['yellow'].fichas["yellow4"].ruta)
+        config.set("yellow",  'ia', int(self.mem.jugadores('yellow').ia))
+        config.set("yellow",  'name', self.mem.jugadores('yellow').name)
+        config.set("yellow",  'plays', int(self.mem.jugadores('yellow').plays))
+        if self.mem.jugadores('yellow').plays==True:
+            config.set("yellow",  'rutaficha1', self.mem.jugadores('yellow').fichas("yellow1").ruta)
+            config.set("yellow",  'rutaficha2',  self.mem.jugadores('yellow').fichas("yellow2").ruta)
+            config.set("yellow",  'rutaficha3',  self.mem.jugadores('yellow').fichas("yellow3").ruta)
+            config.set("yellow",  'rutaficha4',  self.mem.jugadores('yellow').fichas("yellow4").ruta)
         config.add_section("blue")
-        config.set("blue",  'ia', int(self.ogl.jugadores['blue'].ia))
-        config.set("blue",  'name', self.ogl.jugadores['blue'].name)
-        config.set("blue",  'plays', int(self.ogl.jugadores['blue'].plays))
-        if self.ogl.jugadores['blue'].plays==True:        
-            config.set("blue",  'rutaficha1', self.ogl.jugadores['blue'].fichas["blue1"].ruta)
-            config.set("blue",  'rutaficha2',  self.ogl.jugadores['blue'].fichas["blue2"].ruta)
-            config.set("blue",  'rutaficha3',  self.ogl.jugadores['blue'].fichas["blue3"].ruta)
-            config.set("blue",  'rutaficha4',  self.ogl.jugadores['blue'].fichas["blue4"].ruta) 
+        config.set("blue",  'ia', int(self.mem.jugadores('blue').ia))
+        config.set("blue",  'name', self.mem.jugadores('blue').name)
+        config.set("blue",  'plays', int(self.mem.jugadores('blue').plays))
+        if self.mem.jugadores('blue').plays==True:        
+            config.set("blue",  'rutaficha1', self.mem.jugadores('blue').fichas("blue1").ruta)
+            config.set("blue",  'rutaficha2',  self.mem.jugadores('blue').fichas("blue2").ruta)
+            config.set("blue",  'rutaficha3',  self.mem.jugadores('blue').fichas("blue3").ruta)
+            config.set("blue",  'rutaficha4',  self.mem.jugadores('blue').fichas("blue4").ruta) 
         config.add_section("red")
-        config.set("red",  'ia', int(self.ogl.jugadores['red'].ia))
-        config.set("red",  'name', self.ogl.jugadores['red'].name)
-        config.set("red",  'plays', int(self.ogl.jugadores['red'].plays))
-        if self.ogl.jugadores['red'].plays==True:        
-            config.set("red",  'rutaficha1', self.ogl.jugadores['red'].fichas["red1"].ruta)
-            config.set("red",  'rutaficha2',  self.ogl.jugadores['red'].fichas["red2"].ruta)
-            config.set("red",  'rutaficha3',  self.ogl.jugadores['red'].fichas["red3"].ruta)
-            config.set("red",  'rutaficha4',  self.ogl.jugadores['red'].fichas["red4"].ruta)    
+        config.set("red",  'ia', int(self.mem.jugadores('red').ia))
+        config.set("red",  'name', self.mem.jugadores('red').name)
+        config.set("red",  'plays', int(self.mem.jugadores('red').plays))
+        if self.mem.jugadores('red').plays==True:        
+            config.set("red",  'rutaficha1', self.mem.jugadores('red').fichas("red1").ruta)
+            config.set("red",  'rutaficha2',  self.mem.jugadores('red').fichas("red2").ruta)
+            config.set("red",  'rutaficha3',  self.mem.jugadores('red').fichas("red3").ruta)
+            config.set("red",  'rutaficha4',  self.mem.jugadores('red').fichas("red4").ruta)    
         config.add_section("green")
-        config.set("green",  'ia', int(self.ogl.jugadores['green'].ia))
-        config.set("green",  'name', self.ogl.jugadores['green'].name)
-        config.set("green",  'plays', int(self.ogl.jugadores['green'].plays))        
-        if self.ogl.jugadores['green'].plays==True:
-            config.set("green",  'rutaficha1', self.ogl.jugadores['green'].fichas["green1"].ruta)
-            config.set("green",  'rutaficha2',  self.ogl.jugadores['green'].fichas["green2"].ruta)
-            config.set("green",  'rutaficha3',  self.ogl.jugadores['green'].fichas["green3"].ruta)
-            config.set("green",  'rutaficha4',  self.ogl.jugadores['green'].fichas["green4"].ruta)    
+        config.set("green",  'ia', int(self.mem.jugadores('green').ia))
+        config.set("green",  'name', self.mem.jugadores('green').name)
+        config.set("green",  'plays', int(self.mem.jugadores('green').plays))        
+        if self.mem.jugadores('green').plays==True:
+            config.set("green",  'rutaficha1', self.mem.jugadores('green').fichas("green1").ruta)
+            config.set("green",  'rutaficha2',  self.mem.jugadores('green').fichas("green2").ruta)
+            config.set("green",  'rutaficha3',  self.mem.jugadores('green').fichas("green3").ruta)
+            config.set("green",  'rutaficha4',  self.mem.jugadores('green').fichas("green4").ruta)    
         config.add_section("game")
         config.set("game", 'playerstarts',self.ogl.jugadoractual.color)
         config.set("game", 'fakedice','')
