@@ -2,7 +2,7 @@
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.QtGui import *
-import ConfigParser,  random
+import ConfigParser
 from OpenGL import GL,  GLU
 from libglparchis import *
 
@@ -17,7 +17,6 @@ class wdgGame(QGLWidget):
         self.selFicha=None
         self.selCasilla=None
         self.jugadoractual=None
-        self.dado=None
 
         self.trolltechGreen = QColor.fromCmykF(0.40, 0.0, 1.0, 0.0)
         self.trolltechPurple = QColor.fromCmykF(0.39, 0.39, 0.0, 0.0)
@@ -30,7 +29,6 @@ class wdgGame(QGLWidget):
         self.lastPos = QPoint()
         self.selFicha=None
         self.selCasilla=None
-        self.dado=Dado()
         
         
         config = ConfigParser.ConfigParser()
@@ -84,8 +82,7 @@ class wdgGame(QGLWidget):
         fake=config.get("game", 'fakedice')
         if fake!="":
             for i in  fake.split(";")  :
-                self.dado.fake.append(int(i))
-        print (self.dado.fake)
+                self.mem.dado.fake.append(int(i))
         self.jugadoractual=self.mem.jugadores(config.get("game", 'playerstarts'))    
         self.jugadoractual.historicodado=[]
         self.jugadoractual.movimientos_acumulados=None#Comidas ymetidas
@@ -312,7 +309,7 @@ class wdgGame(QGLWidget):
         if self.dic_casillas[idcasilladestino].seguro==True:
             return False
         
-        print len(self.dic_casillas[idcasilladestino].buzon)
+#        print len(self.dic_casillas[idcasilladestino].buzon)
         if len(self.dic_casillas[idcasilladestino].buzon)==2:
             ficha1=self.dic_casillas[idcasilladestino].buzon[0]
             ficha2=self.dic_casillas[idcasilladestino].buzon[1]
@@ -322,7 +319,7 @@ class wdgGame(QGLWidget):
                 fichaacomer=ficha2
             else:
                 return False
-            self.mover(fichaacomer, 0, False)
+            fichaacomer.mover(0, False)
             self.jugadoractual.movimientos_acumulados=20
             self.log(self.trUtf8("He comido la ficha %1").arg(fichaacomer.name))
             return True
@@ -350,7 +347,7 @@ class wdgGame(QGLWidget):
                     self.log(self.trUtf8("Han salido tres seises, no se va a casa por haber llegado a rampa de llegada"))
                 else:
                     self.log(self.trUtf8("Han salido tres seises, la última ficha movida se va a casa"))
-                    self.mover(self.jugadoractual.LastFichaMovida, 0)
+                    self.jugadoractual.LastFichaMovida.mover(0)
             else:               
                 self.log(self.trUtf8("Después de tres seises, ya no puede volver a tirar"))
             self.emit(SIGNAL("CambiarJugador()"))

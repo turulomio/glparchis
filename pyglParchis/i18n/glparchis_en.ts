@@ -407,47 +407,47 @@
         <translation>Occupation</translation>
     </message>
     <message>
-        <location filename="ui/frmShowCasilla.py" line="12"/>
+        <location filename="ui/frmShowCasilla.py" line="11"/>
         <source>Casilla %1</source>
         <translation>Piece %1</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmShowCasilla.py" line="13"/>
+        <location filename="ui/frmShowCasilla.py" line="12"/>
         <source>%1 fichas como máximo</source>
         <translation>Maximum of %1 pieces</translation>
     </message>
     <message>
-        <location filename="ui/frmShowCasilla.py" line="15"/>
+        <location filename="ui/frmShowCasilla.py" line="14"/>
         <source>Casilla segura</source>
         <translation>Safe space</translation>
     </message>
     <message>
-        <location filename="ui/frmShowCasilla.py" line="17"/>
+        <location filename="ui/frmShowCasilla.py" line="16"/>
         <source>Casilla insegura</source>
         <translation>Unsafe space</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmShowCasilla.py" line="23"/>
+        <location filename="ui/frmShowCasilla.py" line="22"/>
         <source>Casilla vacía</source>
         <translation>Empty space</translation>
     </message>
     <message>
-        <location filename="ui/frmShowCasilla.py" line="29"/>
+        <location filename="ui/frmShowCasilla.py" line="28"/>
         <source>Ocupada con una ficha</source>
         <translation>Une piece on it</translation>
     </message>
     <message>
-        <location filename="ui/frmShowCasilla.py" line="35"/>
+        <location filename="ui/frmShowCasilla.py" line="34"/>
         <source>Ocupada con dos fichas</source>
         <translation>Two pieces on it</translation>
     </message>
     <message>
-        <location filename="ui/frmShowCasilla.py" line="41"/>
+        <location filename="ui/frmShowCasilla.py" line="40"/>
         <source>Ocupada con tres fichas</source>
         <translation>Three pieces on it</translation>
     </message>
     <message>
-        <location filename="ui/frmShowCasilla.py" line="47"/>
+        <location filename="ui/frmShowCasilla.py" line="46"/>
         <source>Casilla llena</source>
         <translation>Full space</translation>
     </message>
@@ -465,17 +465,17 @@
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="ui/frmShowFicha.py" line="14"/>
+        <location filename="ui/frmShowFicha.py" line="12"/>
         <source>Nombre: %1</source>
         <translation>Name: %1</translation>
     </message>
     <message>
-        <location filename="ui/frmShowFicha.py" line="15"/>
+        <location filename="ui/frmShowFicha.py" line="13"/>
         <source>Jugador: %1 (%2)</source>
         <translation>Player: %1 (%2)</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmShowFicha.py" line="17"/>
+        <location filename="ui/frmShowFicha.py" line="15"/>
         <source>Posición en ruta: %1</source>
         <translation>Route position: %1</translation>
     </message>
@@ -483,37 +483,37 @@
 <context encoding="UTF-8">
     <name>wdgGame</name>
     <message>
-        <location filename="ui/wdgGame.py" line="350"/>
+        <location filename="ui/wdgGame.py" line="347"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation>You got three sixes, but you don&apos;t go back home because you get your color ramp</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/wdgGame.py" line="352"/>
+        <location filename="ui/wdgGame.py" line="349"/>
         <source>Han salido tres seises, la última ficha movida se va a casa</source>
         <translation>You got three sixes, your last moved piece goes back home</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="336"/>
+        <location filename="ui/wdgGame.py" line="333"/>
         <source>He metido la ficha %1</source>
         <translation>You put the %1 piece at the goal</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/wdgGame.py" line="355"/>
+        <location filename="ui/wdgGame.py" line="352"/>
         <source>Después de tres seises, ya no puede volver a tirar</source>
         <translation>After three sixes, you can&apos;t thow again</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="327"/>
+        <location filename="ui/wdgGame.py" line="324"/>
         <source>He comido la ficha %1</source>
         <translation>%1 piece eaten</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="198"/>
+        <location filename="ui/wdgGame.py" line="195"/>
         <source>Se ha hecho click en la ficha %1</source>
         <translation>You click in the %1 piece</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="376"/>
+        <location filename="ui/wdgGame.py" line="373"/>
         <source>No puede mover esta ficha, seleccione otra</source>
         <translation>You can&apos;t move this piece. Please select other one</translation>
     </message>

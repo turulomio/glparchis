@@ -12,13 +12,13 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         if name:
             self.setObjectName(name)
         self.setupUi(self)
-        self.color=None
         self.log=[]
         self.history=[]
+        self.jugador=None
         
-    def setColor(self,  color):
-        self.color=color
-        self.lblAvatar.setPixmap(libglparchis.pixficha(self.color))       
+    def setJugador(self, jugador):
+        self.jugador=jugador
+        self.lblAvatar.setPixmap(jugador.qpixmap())      
         
         
 #    @QtCore.pyqtSlot(bool)      
