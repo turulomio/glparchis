@@ -1,14 +1,14 @@
 ## -*- coding: utf-8 -*-
 import random
-from libglparchis import pixdado
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 from Ui_frmInitGame import *
 
 class frmInitGame(QWizard, Ui_frmInitGame):
-    def __init__(self, parent = None, name = None, modal = False):
+    def __init__(self, mem,  parent = None, name = None, modal = False):
         QDialog.__init__(self, parent)
+        self.mem=mem
         if name:
             self.setObjectName(name)
         self.setupUi(self)
@@ -28,28 +28,28 @@ class frmInitGame(QWizard, Ui_frmInitGame):
     def on_cmdYellow_released(self):
         self.tirar_dado("yellow")
         print ("yellow",  self.dado['yellow'])
-        self.lblDadoYellow.setPixmap(pixdado(self.dado['yellow']))
+        self.lblDadoYellow.setPixmap(self.mem.dado.qpixmap(self.dado['yellow']))
         self.cmdYellow.setEnabled(False)
 #        self.chequea()
     
     def on_cmdBlue_released(self):
         self.tirar_dado("blue")
         print ("blue",  self.dado['blue'])
-        self.lblDadoBlue.setPixmap(pixdado(self.dado['blue']))        
+        self.lblDadoBlue.setPixmap(self.mem.dado.qpixmap(self.dado['blue']))        
         self.cmdBlue.setEnabled(False)
 #        self.chequea()
     
     def on_cmdRed_released(self):
         self.tirar_dado("red")
         print ("red",  self.dado['red'])
-        self.lblDadoRed.setPixmap(pixdado(self.dado['red']))
+        self.lblDadoRed.setPixmap(self.mem.dado.qpixmap(self.dado['red']))
         self.cmdRed.setEnabled(False)
 #        self.chequea()
     
     def on_cmdGreen_released(self):
         self.tirar_dado("green")
         print ("green",  self.dado['green'])
-        self.lblDadoGreen.setPixmap(pixdado(self.dado['green']))
+        self.lblDadoGreen.setPixmap(self.mem.dado.qpixmap(self.dado['green']))
         self.cmdGreen.setEnabled(False)
 #        self.chequea()
         
@@ -115,13 +115,13 @@ class frmInitGame(QWizard, Ui_frmInitGame):
                 self.lblPlayerStarts.setText(self.trUtf8("%1 deben tirar hasta que se aclare quién empieza la partida").arg(str(colormax)))                
                 self.dado={}
                 if 'yellow' not in colormax:
-                    self.lblDadoYellow.setPixmap(pixdado(None))
+                    self.lblDadoYellow.setPixmap(self.mem.dado.qpixmap(None))
                 if 'blue' not in colormax:
-                    self.lblDadoBlue.setPixmap(pixdado(None))
+                    self.lblDadoBlue.setPixmap(self.mem.dado.qpixmap(None))
                 if 'red' not in colormax:
-                    self.lblDadoRed.setPixmap(pixdado(None))
+                    self.lblDadoRed.setPixmap(self.mem.dado.qpixmap(None))
                 if 'green' not in colormax:
-                    self.lblDadoGreen.setPixmap(pixdado(None))
+                    self.lblDadoGreen.setPixmap(self.mem.dado.qpixmap(None))
                         
                 for c in colormax:
                     #Debe ir primero porque chequea comprueba si esta enabled

@@ -15,6 +15,7 @@ compile:
 	pyuic4 ui/frmShowCasilla.ui > ui/Ui_frmShowCasilla.py
 	pyuic4 ui/frmShowFicha.ui > ui/Ui_frmShowFicha.py
 	pyuic4 ui/wdgUserPanel.ui > ui/Ui_wdgUserPanel.py
+	pyuic4 ui/wdgGame.ui > ui/Ui_wdgGame.py
 	pyrcc4 images/glparchis.qrc > images/glparchis_rc.py
 	pylupdate4 -noobsolete glparchis.pro
 	lrelease glparchis.pro

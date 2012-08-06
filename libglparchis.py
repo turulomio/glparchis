@@ -1,10 +1,9 @@
 #-*- coding: utf-8 -*- 
 
 from OpenGL import GL,  GLU
-import os,  random
+import os,  random,  datetime,  ConfigParser
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
-
 from PyQt4.QtOpenGL import *
 #def Color(colorstr):
 #    if colorstr=="yellow":
@@ -51,46 +50,9 @@ def c2b(state):
     else:
         return False
 
-def icodado(numero):
-        ico = QIcon()
-        ico.addPixmap(pixdado(numero), QIcon.Normal, QIcon.Off) 
-        return ico
 
-def fichas_name2id(name):
-    if name=="yellow1": return 0
-    if name=="yellow2": return 1
-    if name=="yellow3": return 2
-    if name=="yellow4": return 3
-    if name=="blue1": return 4
-    if name=="blue2": return 5
-    if name=="blue3": return 6
-    if name=="blue4": return 7
-    if name=="red1": return 8
-    if name=="red2": return 9
-    if name=="red3": return 10
-    if name=="red4": return 11
-    if name=="green1": return 12
-    if name=="green2": return 13
-    if name=="green3": return 14
-    if name=="green4": return 15
 
-def pixdado(numero):
-    """Devulve un QPixmap segun el valor del numero 0-6"""
-    if numero==1:
-        pix=QPixmap(":/glparchis/cube1.png")
-    elif numero==2:
-        pix=QPixmap(":/glparchis/cube2.png")
-    elif numero==3:
-        pix=QPixmap(":/glparchis/cube3.png")
-    elif numero==4:
-        pix=QPixmap(":/glparchis/cube4.png")
-    elif numero==5:
-        pix=QPixmap(":/glparchis/cube5.png")
-    elif numero==6:
-        pix=QPixmap(":/glparchis/cube6.png")
-    elif numero==None:              
-        pix=QPixmap(":/glparchis/cube.png")
-    return pix
+
 
 version="20120805"
 cfgfile=os.environ['HOME']+ "/.glparchis/glparchis.cfg"
@@ -296,7 +258,30 @@ class Dado():
             self.lastthrow= int(random.random()*6)+1
 #            self.lastthrow= int(random.random()*2)+5
         return self.lastthrow
-    
+        
+    def qicon(self, numero):
+            ico = QIcon()
+            ico.addPixmap(self.qpixmap(numero), QIcon.Normal, QIcon.Off) 
+            return ico
+            
+    def qpixmap(self, numero):
+        """Devulve un QPixmap segun el valor del numero 0-6"""
+        if numero==1:
+            pix=QPixmap(":/glparchis/cube1.png")
+        elif numero==2:
+            pix=QPixmap(":/glparchis/cube2.png")
+        elif numero==3:
+            pix=QPixmap(":/glparchis/cube3.png")
+        elif numero==4:
+            pix=QPixmap(":/glparchis/cube4.png")
+        elif numero==5:
+            pix=QPixmap(":/glparchis/cube5.png")
+        elif numero==6:
+            pix=QPixmap(":/glparchis/cube6.png")
+        elif numero==None:              
+            pix=QPixmap(":/glparchis/cube.png")
+        return pix
+        
 class Jugadores:
     def __init__(self):
         self.actual=None
@@ -337,30 +322,34 @@ class Jugador:
         self.movimientos_acumulados=None#Comidas ymetidas, puede ser 10, 20 o None Cuando se cuenta se borra a None
         self.id=id
         self.dado=None #Enlace a objeto dado de mem
-        self.log=[]#log de turno
+        self.logturno=[]#log de turno
         self.loghistorico=[]
-#
-#    def CreaFichas(self, plays):
-#        self.fichas.arr.append()
-#        if self.plays==True:
-#            for i in range(1, 5):
-#                self.fichas[self.color+str(i)]=Ficha(self.color+str(i))
+
+    def __repr__(self):
+        return "Jugador {0}".format(self.color.name)
+
+    def log(self, l):
+        self.inittime=datetime.timedelta(days=0)#inittime actualmente esta en mem y no quiero pasrlo como parametro
+        l=str(datetime.datetime.now()-self.inittime)[2:-7]+ " " + l
+        self.logturno.append( l)
+        self.loghistorico.append(l)
         
     def TirarDado(self):
         
         return
         
-    def TodasFichasEnCasa(self):
-        for f in self.fichas:
-            if self.fichas[f].ruta!=0:
-                return False
-        return True        
-        
-    def TodasFichasFueraDeCasa(self):
-        for f in self.fichas:
-            if self.fichas[f].ruta==0:
-                return False
-        return True
+    def DeboAbrirBarrera(self):
+        """Devuelve si el jugador est´a obligado a abrir barrera"""
+        for f in self.fichas.arr:
+            if f.casilla().TieneBarrera()==True:
+                return True
+        return False
+#        if valordado==6:
+#            barreras=self.Barreras(mem.jugadoractual)
+#            if len(barreras)!=0 :
+#                if self.id_casilla() not in barreras:
+#                    self.log(self.trUtf8(pre+"No se puede mover, debes abrir barrera"))
+#                    return (False, 0)
 
     def HaGanado(self):
         for f in self.fichas:
@@ -394,6 +383,24 @@ class SetFichas:
     def __init__(self):
         self.arr=[]
 
+    def AlgunaPuedeMover(self, mem):
+        for f in self.arr:
+            if f.PuedeMover(mem, mem.dado.lastthrow, True)[0]==True:
+                return True
+        return False
+    
+    def TodasFichasEnCasa(self):
+        for f in self.arr:
+            if f.posruta!=0:
+                return False
+        return True        
+        
+    def TodasFichasFueraDeCasa(self):
+        for f in self.arr:
+            if f.posruta==0:
+                return False
+        return True
+        
 class Ficha(QGLWidget):
     def __init__(self, id, number,  color, jugador, ruta):
         """El identificador de la ficha viene dado por el nombre del color y el id (numero de creacion), se genera en la clase Mem"""
@@ -407,7 +414,68 @@ class Ficha(QGLWidget):
         self.jugador=jugador
 #        self.casilla=casilla
 #        self.id=fichas_name2id(name)
+        
+    def PuedeMover(self, mem,  valordado,  algunapuedemover=False):
+        #INTENTAR QUITAR MEM
+        if algunapuedemover==True:
+            pre="APM. "
+        else:
+            pre=""        
+            
+        #Es ficha del jugador actual
+        if  self.jugador!=mem.jugadoractual:             
+            mem.jugadoractual.logturno.append(self.trUtf8(pre+"No es del jugador actual"))
+            return (False, 0)
+        
+        #Calcula el movimiento
+        if mem.jugadoractual.movimientos_acumulados!=None:
+            movimiento=mem.jugadoractual.movimientos_acumulados
+        else:
+            movimiento=valordado
+            if self.EstaEnCasa() and valordado==5:
+                movimiento=1
+            if mem.jugadoractual.fichas.TodasFichasFueraDeCasa()==True and valordado==6:
+                movimiento=7
 
+
+
+        #Comprueba que no tenga obligación de abrir barrera
+        if mem.jugadoractual.DeboAbrirBarrera()==True:
+            mem.jugadoractual.logturno.append(self.trUtf8(pre+"No se puede mover, debes abrir barrera"))
+            return (False, 0)
+#            
+#        if valordado==6:
+#            barreras=self.Barreras(mem.jugadoractual)
+#            if len(barreras)!=0 :
+#                if self.id_casilla() not in barreras:
+            
+            
+
+        #Esta en casa y puede mover
+        if self.EstaEnCasa()==True:
+            if valordado!=5: #Saco un 5
+                mem.jugadoractual.logturno.append(self.trUtf8(pre+"Necesita sacar un 5 para mover esta ficha"))
+                return (False, 0)
+                        
+        #se ha pasado la meta
+        if self.posruta+movimiento>72:
+            mem.jugadoractual.logturno.append(self.trUtf8(pre+"Se ha pasado la meta"))
+            return (False, 0)
+                
+                
+        #Rastrea todas las casillas de paso en busca de barrera.
+        for i in range(self.posruta, self.posruta+movimiento+1): 
+            if self.ruta.arr[i].TieneBarrera()==True:
+                mem.jugadoractual.logturno.append(self.trUtf8(pre+"Hay una barrera"))
+                return (False, 0)
+
+        #Comprueba si hay sitio libre
+        if self.ruta.arr[self.posruta+movimiento].haySitioEnBuzon()==False:
+            mem.jugadoractual.logturno.append(self.trUtf8(pre+"No hay espacio en la casilla"))
+            return (False, 0)
+            
+        mem.jugadoractual.logturno.append(self.trUtf8(pre+"Puede mover %1").arg(str(movimiento)))
+        return (True, movimiento)
         
     def mover(self, ruta, controllastficha=True,  startgame=False):
         casillaorigen=self.ruta.arr[self.posruta]
@@ -419,9 +487,12 @@ class Ficha(QGLWidget):
         if startgame==False:
             casillaorigen.buzon.remove(self)
 
+    def casilla(self):
+        """Devuelve el objeto casilla en el que se encuentra la ficha"""
+        return self.ruta.arr[self.posruta]
 
-    def id_casilla(self):
-        return ruta[self.ruta][self.jugador]
+#    def id_casilla(self):
+#        return ruta[self.ruta][self.jugador]
         
     def EstaEnCasa(self):
         if self.ruta==0:
@@ -433,18 +504,35 @@ class Ficha(QGLWidget):
         if self.ruta==72:
             return True
         return False
-
-    def defineColor(self,  id):
-        if id>=0 and id<=3:
-           return Color(255, 255, 0)        
-        elif id>=4 and id<=7:
-           return Color(0, 0, 255)
-        elif id>=8 and id<=11:
-           return Color(255, 0, 0 )
-        elif id>=12 and id<=15:
-           return Color(0, 255, 0)
-
-
+#
+#    def defineColor(self,  id):
+#        if id>=0 and id<=3:
+#           return Color(255, 255, 0)        
+#        elif id>=4 and id<=7:
+#           return Color(0, 0, 255)
+#        elif id>=8 and id<=11:
+#           return Color(255, 0, 0 )
+#        elif id>=12 and id<=15:
+#           return Color(0, 255, 0)
+    
+    def fichas_name2id(self, name):
+        if name=="yellow1": return 0
+        if name=="yellow2": return 1
+        if name=="yellow3": return 2
+        if name=="yellow4": return 3
+        if name=="blue1": return 4
+        if name=="blue2": return 5
+        if name=="blue3": return 6
+        if name=="blue4": return 7
+        if name=="red1": return 8
+        if name=="red2": return 9
+        if name=="red3": return 10
+        if name=="red4": return 11
+        if name=="green1": return 12
+        if name=="green2": return 13
+        if name=="green3": return 14
+        if name=="green4": return 15
+    
     def dibujar(self, posicionBuzon):
         GL.glInitNames();
         GL.glPushMatrix()
@@ -722,6 +810,7 @@ class Casilla(QGLWidget):
 
 
     def TieneBarrera(self):
+        """Devuelve un booleano, las fichas de la barrera se pueden sacar del buz´on"""
         if self.tipo not in (0, 1):#Casilla inicio y final
             if self.maxfichas==2:
                 if len(self.buzon)==2:
@@ -733,8 +822,17 @@ class Casilla(QGLWidget):
         if len(self.buzon)<self.maxfichas:
             return True
         return False
-
-
+#
+#
+#    def hayBarrera(self, jugador):
+#        """Devuelve False si no y  una lista con las dos fichas si si"""
+#        if self.buzon
+#        resultado =[]
+#        for f in jugador.fichas:
+#            casilla=self.dic_casillas[jugador.fichas[f].id_casilla()]
+#            if casilla.TieneBarrera()==True:
+#                resultado.append(casilla.id)
+#        return resultado
 
 class Mem4:
     def __init__(self):
@@ -744,6 +842,8 @@ class Mem4:
         self.dic_colores={}
         self.dic_rutas={}
         self.dado=Dado()
+        self.jugadoractual=None
+        self.inittime=None#Tiempo inicio partida
         
         self.generar_colores()
         self.generar_jugadores()
@@ -885,6 +985,50 @@ class Mem4:
             return self.dic_fichas[str(name)]
             
             
+    def save(self, filename):
+        config = ConfigParser.ConfigParser()
+        config.add_section("yellow")
+        config.set("yellow",  'ia', int(self.jugadores('yellow').ia))
+        config.set("yellow",  'name', self.jugadores('yellow').name)
+        config.set("yellow",  'plays', int(self.jugadores('yellow').plays))
+        if self.jugadores('yellow').plays==True:
+            config.set("yellow",  'rutaficha1', self.jugadores('yellow').fichas("yellow1").ruta)
+            config.set("yellow",  'rutaficha2',  self.jugadores('yellow').fichas("yellow2").ruta)
+            config.set("yellow",  'rutaficha3',  self.jugadores('yellow').fichas("yellow3").ruta)
+            config.set("yellow",  'rutaficha4',  self.jugadores('yellow').fichas("yellow4").ruta)
+        config.add_section("blue")
+        config.set("blue",  'ia', int(self.jugadores('blue').ia))
+        config.set("blue",  'name', self.jugadores('blue').name)
+        config.set("blue",  'plays', int(self.jugadores('blue').plays))
+        if self.jugadores('blue').plays==True:        
+            config.set("blue",  'rutaficha1', self.jugadores('blue').fichas("blue1").ruta)
+            config.set("blue",  'rutaficha2',  self.jugadores('blue').fichas("blue2").ruta)
+            config.set("blue",  'rutaficha3',  self.jugadores('blue').fichas("blue3").ruta)
+            config.set("blue",  'rutaficha4',  self.jugadores('blue').fichas("blue4").ruta) 
+        config.add_section("red")
+        config.set("red",  'ia', int(self.jugadores('red').ia))
+        config.set("red",  'name', self.jugadores('red').name)
+        config.set("red",  'plays', int(self.jugadores('red').plays))
+        if self.jugadores('red').plays==True:        
+            config.set("red",  'rutaficha1', self.jugadores('red').fichas("red1").ruta)
+            config.set("red",  'rutaficha2',  self.jugadores('red').fichas("red2").ruta)
+            config.set("red",  'rutaficha3',  self.jugadores('red').fichas("red3").ruta)
+            config.set("red",  'rutaficha4',  self.jugadores('red').fichas("red4").ruta)    
+        config.add_section("green")
+        config.set("green",  'ia', int(self.jugadores('green').ia))
+        config.set("green",  'name', self.jugadores('green').name)
+        config.set("green",  'plays', int(self.jugadores('green').plays))        
+        if self.jugadores('green').plays==True:
+            config.set("green",  'rutaficha1', self.jugadores('green').fichas("green1").ruta)
+            config.set("green",  'rutaficha2',  self.jugadores('green').fichas("green2").ruta)
+            config.set("green",  'rutaficha3',  self.jugadores('green').fichas("green3").ruta)
+            config.set("green",  'rutaficha4',  self.jugadores('green').fichas("green4").ruta)    
+        config.add_section("game")
+        config.set("game", 'playerstarts',self.jugadoractual.color)
+        config.set("game", 'fakedice','')
+        with open(filename, 'w') as configfile:
+            config.write(configfile)            
+
                     
     def generar_casillas(self):
         def defineSeguro( id):
@@ -1165,6 +1309,70 @@ class Mem4:
         else:
             return self.dic_casillas[str(name)]
             
+    def load(self, filename):
+        self.rotX=0
+        self.lastPos = QPoint()
+        self.selFicha=None
+        self.selCasilla=None
+        
+        
+        config = ConfigParser.ConfigParser()
+        config.read(filename)
+
+        yellow=self.jugadores('yellow')
+        yellow.name=config.get('yellow', 'name')
+        yellow.ia=i2b(config.getint("yellow", "ia"))
+        yellow.plays=(i2b(config.getint("yellow", "plays")))
+        
+        blue=self.jugadores('blue')
+        blue.name=config.get("blue", "name")
+        blue.ia=i2b(config.getint("blue", "ia"))
+        blue.plays=(i2b(config.getint("blue", "plays")))
+        
+        red=self.jugadores('red')
+        red.name=config.get("red", "name")
+        red.ia=i2b(config.getint("red", "ia"))
+        red.plays=(i2b(config.getint("red", "plays")))
+        
+        green=self.jugadores('green')
+        green.name=config.get("green", "name")
+        green.ia=i2b(config.getint("green", "ia"))
+        green.plays=(i2b(config.getint("green", "plays")))  
+
+        for j in self.jugadores():
+            if j.plays==True:
+                j.fichas.arr[0].mover(  config.getint(j.id, "rutaficha1"), False,  True)
+                j.fichas.arr[0].mover(config.getint(j.id, "rutaficha2"), False,  True)
+                j.fichas.arr[0].mover(config.getint(j.id, "rutaficha3"), False,  True)
+                j.fichas.arr[0].mover(config.getint(j.id, "rutaficha4"), False,  True)
+#            self.mover(yellow.fichas["yellow2"], config.getint("yellow", "rutaficha2"), False)
+#            self.mover(yellow.fichas["yellow3"], config.getint("yellow", "rutaficha3"), False)
+#            self.mover(yellow.fichas["yellow4"], config.getint("yellow", "rutaficha4"), False)
+#        if blue.plays==True:
+#            self.mover(blue.fichas["blue1"], config.getint("blue", "rutaficha1"), False)
+#            self.mover(blue.fichas["blue2"], config.getint("blue", "rutaficha2"), False)
+#            self.mover(blue.fichas["blue3"], config.getint("blue", "rutaficha3"), False)
+#            self.mover(blue.fichas["blue4"], config.getint("blue", "rutaficha4"), False)
+#        if red.plays==True:
+#            self.mover(red.fichas["red1"], config.getint("red", "rutaficha1"), False)
+#            self.mover(red.fichas["red2"], config.getint("red", "rutaficha2"), False)
+#            self.mover(red.fichas["red3"], config.getint("red", "rutaficha3"), False)
+#            self.mover(red.fichas["red4"], config.getint("red", "rutaficha4"), False)
+#        if green.plays==True:
+#            self.mover(green.fichas["green1"], config.getint("green", "rutaficha1"), False)
+#            self.mover(green.fichas["green2"], config.getint("green", "rutaficha2"), False)
+#            self.mover(green.fichas["green3"], config.getint("green", "rutaficha3"), False)
+#            self.mover(green.fichas["green4"], config.getint("green", "rutaficha4"), False)
+#        
+        fake=config.get("game", 'fakedice')
+        if fake!="":
+            for i in  fake.split(";")  :
+                self.dado.fake.append(int(i))
+        self.jugadoractual=self.jugadores(config.get("game", 'playerstarts'))    
+        self.jugadoractual.historicodado=[]
+        self.jugadoractual.movimientos_acumulados=None#Comidas ymetidas
+        self.jugadoractual.LastFichaMovida=None #Se utiliza cuando se va a casa
+
             
 def dic2list(dic):
     """Función que convierte un diccionario pasado como parametro a una lista de objetos"""
@@ -1185,3 +1393,15 @@ class Name:
     for i in range(17, 122):
         casilla[i-17]=i
 #    print ficha,  tablero, casilla
+    
+    @staticmethod
+    def object(mem, id_name):
+        """Devuelve un objeto dependiendo del nombre.None si no corresponde"""
+        if id_name>=0 and id_name<=15:
+            return mem.fichas(id_name)
+        elif id_name==16:
+            return mem.tablero
+        elif id_name>=17 and id_name<=121:
+            return mem.casillas(id_name-17)
+        else:
+            return None

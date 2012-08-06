@@ -1,86 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="2.0" language="fr_FR" sourcelanguage="">
-<context encoding="UTF-8">
+<context>
     <name>frmAbout</name>
     <message>
-        <location filename="ui/Ui_frmAbout.py" line="249"/>
+        <location filename="ui/frmAbout.ui" line="43"/>
         <source>glParchis</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmAbout.py" line="251"/>
+        <location filename="ui/frmAbout.ui" line="74"/>
         <source>Licencia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmAbout.py" line="252"/>
+        <location filename="ui/frmAbout.ui" line="238"/>
         <source>Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmAbout.py" line="254"/>
+        <location filename="ui/frmAbout.ui" line="248"/>
         <source>Objetos</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmAbout.py" line="253"/>
+        <location filename="ui/frmAbout.ui" line="272"/>
         <source>Haga doble click en la imágen para ver los distintos objetos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmAbout.py" line="255"/>
+        <location filename="ui/frmAbout.ui" line="289"/>
         <source>S&amp;alir</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmAbout.py" line="248"/>
+        <location filename="ui/frmAbout.ui" line="14"/>
         <source>Acerca de</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmAbout.py" line="250"/>
+        <location filename="ui/frmAbout.ui" line="64"/>
         <source>Créditos</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmAbout.py" line="24"/>
-        <source>Versión %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmAbout.py" line="25"/>
-        <source>Este programa ha sido desarrollado por Mariano Muñoz.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmAbout.py" line="25"/>
-        <source>Ha sido traducido por:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmAbout.py" line="25"/>
-        <source>&lt;ul&gt;&lt;li&gt;Mariano Muñoz&lt;/li&gt;&lt;li&gt;Nadejda Adam&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmAbout.py" line="25"/>
-        <source>a los siguientes idiomas&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmAbout.py" line="25"/>
-        <source>Los avatares han sido extraídos de la página &lt;a href=&quot;http://www.nobleavatar.com/&quot;&gt;http://www.nobleavatar.com/&lt;/a&gt;&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmAbout.py" line="25"/>
-        <source>La página del proyecto se encuentra en &lt;a href=&quot;http://glparchis.sourceforge.net&quot;&gt;http://glparchis.sourceforge.net&lt;/a&gt;&lt;p&gt; &lt;p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmAbout.py" line="25"/>
-        <source>&lt;ul&gt;&lt;li&gt;Inglés&lt;/li&gt;&lt;li&gt;Francés&lt;/li&gt;&lt;li&gt;Español&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -185,352 +144,237 @@
 <context>
     <name>frmMain</name>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="494"/>
+        <location filename="ui/Ui_frmMain.py" line="104"/>
         <source>A&amp;yuda</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="495"/>
+        <location filename="ui/Ui_frmMain.py" line="105"/>
         <source>J&amp;ugar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="496"/>
+        <location filename="ui/Ui_frmMain.py" line="106"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="497"/>
+        <location filename="ui/Ui_frmMain.py" line="107"/>
         <source>S&amp;alir</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="498"/>
+        <location filename="ui/Ui_frmMain.py" line="108"/>
         <source>Acerca de</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="381"/>
-        <source>Juego</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/Ui_frmMain.py" line="493"/>
-        <source>Estadísticas</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmMain.py" line="499"/>
+        <location filename="ui/Ui_frmMain.py" line="109"/>
         <source>Tirar dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="500"/>
+        <location filename="ui/Ui_frmMain.py" line="110"/>
         <source>&amp;Recuperar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="501"/>
+        <location filename="ui/Ui_frmMain.py" line="111"/>
         <source>&amp;Guardar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="380"/>
-        <source>Pulsa para tirar el dado</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmMain.py" line="502"/>
+        <location filename="ui/Ui_frmMain.py" line="112"/>
         <source>&amp;Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="503"/>
+        <location filename="ui/Ui_frmMain.py" line="113"/>
         <source>Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="ui/Ui_frmMain.py" line="383"/>
-        <source>Número de tiradas</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="385"/>
-        <source>Dado saca 1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmMain.py" line="387"/>
-        <source>Dado saca 2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmMain.py" line="389"/>
-        <source>Dado saca 3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmMain.py" line="391"/>
-        <source>Dado saca 4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmMain.py" line="393"/>
-        <source>Dado saca 5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmMain.py" line="395"/>
-        <source>Dado saca 6</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmMain.py" line="397"/>
-        <source>Fichas comidas por mi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmMain.py" line="399"/>
-        <source>Fichas comidas por otro</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmMain.py" line="401"/>
-        <source>3 seises seguidos</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmMain.py" line="403"/>
-        <source>Amarillo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmMain.py" line="405"/>
-        <source>Azul</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmMain.py" line="407"/>
-        <source>Rojo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmMain.py" line="409"/>
-        <source>Verde</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmMain.py" line="491"/>
-        <source>0</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmMain.py" line="64"/>
-        <source>IA Tira el dado</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmMain.py" line="67"/>
-        <source>Tire el dado</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmMain.py" line="83"/>
-        <source>IA mueve una ficha</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmMain.py" line="91"/>
-        <source>Mueva una ficha</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmMain.py" line="73"/>
-        <source>%1 ha ganado</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/Ui_frmMain.py" line="379"/>
-        <source>glParchis 2010-2011 ©</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmMain.py" line="504"/>
+        <location filename="ui/Ui_frmMain.py" line="114"/>
         <source>Preferencias</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/Ui_frmMain.py" line="103"/>
+        <source>glParchis 2010-2012 ©</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>frmSettings</name>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmSettings.py" line="77"/>
+        <location filename="ui/frmSettings.ui" line="33"/>
         <source>Configuración de glParchis</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmSettings.py" line="78"/>
+        <location filename="ui/frmSettings.ui" line="94"/>
         <source>Selecciona el nivel de detalle en los mensajes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmSettings.py" line="79"/>
+        <location filename="ui/frmSettings.ui" line="102"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmSettings.py" line="80"/>
+        <location filename="ui/frmSettings.ui" line="107"/>
         <source>Alto</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmSettings.py" line="81"/>
+        <location filename="ui/frmSettings.ui" line="112"/>
         <source>Desarrollador</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
-<context encoding="UTF-8">
+<context>
     <name>frmShowCasilla</name>
     <message>
-        <location filename="ui/Ui_frmShowCasilla.py" line="73"/>
+        <location filename="ui/frmShowCasilla.ui" line="14"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmShowCasilla.py" line="76"/>
+        <location filename="ui/frmShowCasilla.ui" line="45"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmShowCasilla.py" line="77"/>
+        <location filename="ui/frmShowCasilla.ui" line="55"/>
         <source>Ocupación</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmShowCasilla.py" line="11"/>
-        <source>Casilla %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmShowCasilla.py" line="12"/>
-        <source>%1 fichas como máximo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmShowCasilla.py" line="14"/>
-        <source>Casilla segura</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmShowCasilla.py" line="16"/>
-        <source>Casilla insegura</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmShowCasilla.py" line="22"/>
-        <source>Casilla vacía</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmShowCasilla.py" line="28"/>
-        <source>Ocupada con una ficha</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmShowCasilla.py" line="34"/>
-        <source>Ocupada con dos fichas</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmShowCasilla.py" line="40"/>
-        <source>Ocupada con tres fichas</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmShowCasilla.py" line="46"/>
-        <source>Casilla llena</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>frmShowFicha</name>
     <message>
-        <location filename="ui/Ui_frmShowFicha.py" line="50"/>
+        <location filename="ui/frmShowFicha.ui" line="14"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmShowFicha.py" line="53"/>
+        <location filename="ui/frmShowFicha.ui" line="58"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="ui/frmShowFicha.py" line="12"/>
-        <source>Nombre: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/frmShowFicha.py" line="13"/>
-        <source>Jugador: %1 (%2)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmShowFicha.py" line="15"/>
-        <source>Posición en ruta: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
-<context encoding="UTF-8">
+<context>
     <name>wdgGame</name>
     <message>
-        <location filename="ui/wdgGame.py" line="347"/>
-        <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
+        <location filename="ui/Ui_wdgGame.py" line="305"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_wdgGame.py" line="307"/>
+        <source>Juego</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_wdgGame.py" line="306"/>
+        <source>Pulsa para tirar el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/wdgGame.py" line="349"/>
-        <source>Han salido tres seises, la última ficha movida se va a casa</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/wdgGame.py" line="333"/>
-        <source>He metido la ficha %1</source>
+        <location filename="ui/Ui_wdgGame.py" line="419"/>
+        <source>Estadísticas</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/wdgGame.py" line="352"/>
-        <source>Después de tres seises, ya no puede volver a tirar</source>
+        <location filename="ui/Ui_wdgGame.py" line="309"/>
+        <source>Número de tiradas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="324"/>
-        <source>He comido la ficha %1</source>
+        <location filename="ui/Ui_wdgGame.py" line="311"/>
+        <source>Dado saca 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="195"/>
-        <source>Se ha hecho click en la ficha %1</source>
+        <location filename="ui/Ui_wdgGame.py" line="313"/>
+        <source>Dado saca 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="373"/>
-        <source>No puede mover esta ficha, seleccione otra</source>
+        <location filename="ui/Ui_wdgGame.py" line="315"/>
+        <source>Dado saca 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_wdgGame.py" line="317"/>
+        <source>Dado saca 4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_wdgGame.py" line="319"/>
+        <source>Dado saca 5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_wdgGame.py" line="321"/>
+        <source>Dado saca 6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_wdgGame.py" line="323"/>
+        <source>Fichas comidas por mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_wdgGame.py" line="325"/>
+        <source>Fichas comidas por otro</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_wdgGame.py" line="327"/>
+        <source>3 seises seguidos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_wdgGame.py" line="329"/>
+        <source>Amarillo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_wdgGame.py" line="331"/>
+        <source>Azul</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_wdgGame.py" line="333"/>
+        <source>Rojo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_wdgGame.py" line="335"/>
+        <source>Verde</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_wdgGame.py" line="417"/>
+        <source>0</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>wdgUserPanel</name>
     <message>
-        <location filename="ui/Ui_wdgUserPanel.py" line="111"/>
+        <location filename="ui/wdgUserPanel.ui" line="35"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgUserPanel.py" line="112"/>
+        <location filename="ui/wdgUserPanel.ui" line="41"/>
         <source>Jugador</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgUserPanel.py" line="113"/>
+        <location filename="ui/wdgUserPanel.ui" line="175"/>
         <source>Muestra el historial</source>
         <translation type="unfinished"></translation>
     </message>
