@@ -4,7 +4,9 @@ SOURCES         = libglparchis.py \
                 ui/Ui_frmInitGame.py \
                 ui/frmMain.py \
                 ui/Ui_frmMain.py \
+                ui/Ui_wdgGame.py
                 ui/wdgGame.py \
+                ui/wdgOGL.py \
                 ui/wdgQT.py \
                 ui/frmAbout.py \
                 ui/Ui_frmAbout.py \
@@ -24,6 +26,7 @@ FORMS           = ui/frmAbout.ui \
                 ui/frmMain.ui \
                 ui/frmShowCasilla.ui \
                 ui/frmShowFicha.ui \
+                ui/wdgGame.ui \
                 ui/wdgUserPanel.ui \
                 ui/frmSettings.ui
 
