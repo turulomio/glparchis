@@ -11,8 +11,7 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         if name:
             self.setObjectName(name)
         self.setupUi(self)
-#        self.log=[]
-#        self.history=[]
+
         self.jugador=None
         
     def setJugador(self, jugador):
@@ -20,37 +19,22 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         self.lblAvatar.setPixmap(jugador.qpixmap())      
         self.grp.setTitle(jugador.name)
         
-    def setLabelDado(self, historicodado):
-        numero=historicodado[0]
-        numlbl=len(historicodado)
-#            #Selecciona el panel
-#            if self.mem.jugadoractual.color.name=="yellow":
-#                panel=self.panel1
-#            elif self.mem.jugadoractual.color.name=="blue":
-#                panel=self.panel2
-#            elif self.mem.jugadoractual.color.name=="red":
-#                panel=self.panel3
-#            elif self.mem.jugadoractual.color.name=="green":
-#                panel=self.panel4
+    def setLabelDado(self):
+        """Actualiza la etiqueta del ´utlimo valor de tiradaturno"""
+        numlbl=len(self.jugador.tiradaturno.arr)
         #Selecciona el label
         if numlbl==1:
-            label=self.panel().lbl1
+            label=self.lbl1
         elif numlbl==2:
-            label=self.panel().lbl2
+            label=self.lbl2
         elif numlbl==3:
-            label=self.panel().lbl3
-        label.setPixmap(jugador.dado.qpixmap(numero))
-#    @QtCore.pyqtSlot(bool)      
+            label=self.lbl3
+        label.setPixmap(self.jugador.dado.qpixmap(self.jugador.tiradaturno.arr[numlbl-1].valor))
+
     def setActivated(self, bool):
         self.grp.setEnabled(bool)
         if bool==True:
-            self.log=[]
-#
-#    def newLog(self, log):
-#        log=str(datetime.datetime.now()-self.inittime)[2:-7]+ " " + log
-#        self.history.append( log)
-#        self.log.append(log)
-#        self.on_chk_stateChanged(self.chk.checkState())
+            self.jugador.logturno=[]
 
     def on_chk_stateChanged(self, state):
         self.lst.clear()
@@ -59,8 +43,5 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
             self.lst.setCurrentRow(len(self.jugador.loghistorico)-1)
         else:
             self.lst.addItems(self.jugador.logturno)          
-            self.lst.setCurrentRow(len(self.jugador.logturno)-1)
-#            QModelIndex modelIndex = list->rootIndex(); // u have to find the model index of the first item here
-#list->setCurrentIndex(modelIndex);
-#        self.lst.selectionModel().select(len(self.log)-1, QItemSelectionModel.Select)          
+            self.lst.setCurrentRow(len(self.jugador.logturno)-1)  
         self.lst.show()            

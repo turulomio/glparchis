@@ -281,7 +281,12 @@ class Dado():
         elif numero==None:              
             pix=QPixmap(":/glparchis/cube.png")
         return pix
-        
+                    
+    def habiaSalidoSeis(self):
+        """Se usa después de movimientos acumulados"""
+        if self.lastthrow==6:
+            return True
+        return False
 class Jugadores:
     def __init__(self):
         self.actual=None
@@ -290,7 +295,8 @@ class Jugadores:
         return
         
 class TiradaHistorica:
-    """Estudio estadistico de tiradas. Lleva un array con todas los objetos TiradaJugador"""
+    """Estudio estadistico de tiradas. Lleva un array con todas los objetos TiradaTurno
+    Se graba cuando se tira ya que es un objeto TiradaTurno que se vincula en el array de TiradaHistorica"""
     def __init__(self):
         self.arr=[]
         
@@ -302,7 +308,7 @@ class Tirada:
         self.tipo=tipo#None desconocido 1 turno normal, dos por seis, tres por comer, cuatro por meter
         #EL TIPO SE PONE CUANDO SE PUEDA
 
-class TiradaJugador:
+class TiradaTurno:
     """Objeto que recoge todos las tiradas de un turno"""
     def __init__(self):
         self.jugador=None
@@ -316,7 +322,7 @@ class Jugador:
         self.plays=True
         self.fichas=SetFichas()      
         self.historicodado=[]
-        self.tirada=TiradaJugador()
+        self.tiradaturno=TiradaTurno()#TiradaJugador()
         self.tiradahistorica=TiradaHistorica()
         self.LastFichaMovida=None #Se utiliza cuando se va a casa NOne si ninguna
         self.movimientos_acumulados=None#Comidas ymetidas, puede ser 10, 20 o None Cuando se cuenta se borra a None
@@ -335,8 +341,16 @@ class Jugador:
         self.loghistorico.append(l)
         
     def TirarDado(self):
+        """Tira el dado lo almacena en tirada, tiradaturno e historico y devuelve el valor"""
+        tirada=Tirada(self, self.dado.tirar())
+        self.tiradaturno.arr.append(tirada)
+        self.tiradahistorica.arr.append(self.tiradaturno)
+        return tirada.valor
         
-        return
+    def UltimoDado(self):
+        """Devuelve el valor del dado de la ultima tirada del jugador"""
+        if len(self.tiradaturno)>0:
+            return self.tiradaturno[len(self.tiradaturno)-1].valor
         
     def DeboAbrirBarrera(self):
         """Devuelve si el jugador est´a obligado a abrir barrera"""
@@ -352,8 +366,8 @@ class Jugador:
 #                    return (False, 0)
 
     def HaGanado(self):
-        for f in self.fichas:
-            if self.fichas[f].ruta!=72:
+        for f in self.fichas.arr:
+            if f.EstaEnMeta()==False:
                 return False
         return True
         
@@ -414,6 +428,9 @@ class Ficha(QGLWidget):
         self.jugador=jugador
 #        self.casilla=casilla
 #        self.id=fichas_name2id(name)
+        
+    def __repr__(self):
+        return  "Ficha {0} del jugador {1}".format(self.id, self.jugador.id)
         
     def PuedeMover(self, mem,  valordado,  algunapuedemover=False):
         #INTENTAR QUITAR MEM
@@ -487,34 +504,61 @@ class Ficha(QGLWidget):
         if startgame==False:
             casillaorigen.buzon.remove(self)
 
+
+            
+    def come(self,  ruta):
+        """ruta, es la posición de ruta de ficha en la que come. Como ya se ha movido, come si puede y devuelve True, en caso contrario False"""
+        if ruta>72:
+            print ("en como se ha sobrepasado el 72")
+            return False
+        casilladestino=self.ruta.arr[ruta]
+        
+        if casilladestino.seguro==True:
+            return False
+        
+        if len(casilladestino.buzon)==2:
+            ficha1=casilladestino.buzon[0]
+            ficha2=casilladestino.buzon[1]
+            if ficha1.jugador!=self.mem.jugadoractual.id:
+                fichaacomer=ficha1
+            elif ficha2.jugador!=self.mem.jugadoractual.id:
+                fichaacomer=ficha2
+            else:
+                return False
+            fichaacomer.mover(0, False)
+            self.mem.jugadoractual.movimientos_acumulados=20
+            self.mem.jugadoractual.log(self.trUtf8("He comido la ficha %1").arg(fichaacomer.name))
+            return True
+                
+            
+            
+    def mete(self):
+        """r Como ya se ha movido, mete si puede y devuelve True, en caso contrario False"""      
+        if self.EstaEnMeta():
+            self.mem.jugadoractual.movimientos_acumulados=10
+            self.mem.jugadoractual.log(self.trUtf8("He metido la ficha %1").arg(self.name))
+            return True
+        return False
+
     def casilla(self):
         """Devuelve el objeto casilla en el que se encuentra la ficha"""
         return self.ruta.arr[self.posruta]
 
-#    def id_casilla(self):
-#        return ruta[self.ruta][self.jugador]
         
     def EstaEnCasa(self):
         if self.ruta==0:
             return True
         return False
         
+    def CalculaValorAMover(self, dado):
+        """Calcula el valor a mover la ficha teniendo en cuenta su posicion en la ruta, si han salido todas las fichas y el valor del dado"""
+        return
                 
     def EstaEnMeta(self):
-        if self.ruta==72:
+        if self.posruta==72:
             return True
         return False
-#
-#    def defineColor(self,  id):
-#        if id>=0 and id<=3:
-#           return Color(255, 255, 0)        
-#        elif id>=4 and id<=7:
-#           return Color(0, 0, 255)
-#        elif id>=8 and id<=11:
-#           return Color(255, 0, 0 )
-#        elif id>=12 and id<=15:
-#           return Color(0, 255, 0)
-    
+
     def fichas_name2id(self, name):
         if name=="yellow1": return 0
         if name=="yellow2": return 1
@@ -992,10 +1036,10 @@ class Mem4:
         config.set("yellow",  'name', self.jugadores('yellow').name)
         config.set("yellow",  'plays', int(self.jugadores('yellow').plays))
         if self.jugadores('yellow').plays==True:
-            config.set("yellow",  'rutaficha1', self.jugadores('yellow').fichas("yellow1").ruta)
-            config.set("yellow",  'rutaficha2',  self.jugadores('yellow').fichas("yellow2").ruta)
-            config.set("yellow",  'rutaficha3',  self.jugadores('yellow').fichas("yellow3").ruta)
-            config.set("yellow",  'rutaficha4',  self.jugadores('yellow').fichas("yellow4").ruta)
+            config.set("yellow",  'rutaficha1', self.jugadores('yellow').fichas.arr[0].posruta)
+            config.set("yellow",  'rutaficha2',  self.jugadores('yellow').fichas.arr[1].posruta)
+            config.set("yellow",  'rutaficha3',  self.jugadores('yellow').fichas.arr[2].posruta)
+            config.set("yellow",  'rutaficha4',  self.jugadores('yellow').fichas.arr[3].posruta)
         config.add_section("blue")
         config.set("blue",  'ia', int(self.jugadores('blue').ia))
         config.set("blue",  'name', self.jugadores('blue').name)
@@ -1345,25 +1389,7 @@ class Mem4:
                 j.fichas.arr[0].mover(config.getint(j.id, "rutaficha2"), False,  True)
                 j.fichas.arr[0].mover(config.getint(j.id, "rutaficha3"), False,  True)
                 j.fichas.arr[0].mover(config.getint(j.id, "rutaficha4"), False,  True)
-#            self.mover(yellow.fichas["yellow2"], config.getint("yellow", "rutaficha2"), False)
-#            self.mover(yellow.fichas["yellow3"], config.getint("yellow", "rutaficha3"), False)
-#            self.mover(yellow.fichas["yellow4"], config.getint("yellow", "rutaficha4"), False)
-#        if blue.plays==True:
-#            self.mover(blue.fichas["blue1"], config.getint("blue", "rutaficha1"), False)
-#            self.mover(blue.fichas["blue2"], config.getint("blue", "rutaficha2"), False)
-#            self.mover(blue.fichas["blue3"], config.getint("blue", "rutaficha3"), False)
-#            self.mover(blue.fichas["blue4"], config.getint("blue", "rutaficha4"), False)
-#        if red.plays==True:
-#            self.mover(red.fichas["red1"], config.getint("red", "rutaficha1"), False)
-#            self.mover(red.fichas["red2"], config.getint("red", "rutaficha2"), False)
-#            self.mover(red.fichas["red3"], config.getint("red", "rutaficha3"), False)
-#            self.mover(red.fichas["red4"], config.getint("red", "rutaficha4"), False)
-#        if green.plays==True:
-#            self.mover(green.fichas["green1"], config.getint("green", "rutaficha1"), False)
-#            self.mover(green.fichas["green2"], config.getint("green", "rutaficha2"), False)
-#            self.mover(green.fichas["green3"], config.getint("green", "rutaficha3"), False)
-#            self.mover(green.fichas["green4"], config.getint("green", "rutaficha4"), False)
-#        
+
         fake=config.get("game", 'fakedice')
         if fake!="":
             for i in  fake.split(";")  :

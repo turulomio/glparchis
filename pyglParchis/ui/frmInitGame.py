@@ -2,7 +2,7 @@
 import random
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
-
+from libglparchis import *
 from Ui_frmInitGame import *
 
 class frmInitGame(QWizard, Ui_frmInitGame):
@@ -27,28 +27,28 @@ class frmInitGame(QWizard, Ui_frmInitGame):
     
     def on_cmdYellow_released(self):
         self.tirar_dado("yellow")
-        print ("yellow",  self.dado['yellow'])
+#        print ("yellow",  self.dado['yellow'])
         self.lblDadoYellow.setPixmap(self.mem.dado.qpixmap(self.dado['yellow']))
         self.cmdYellow.setEnabled(False)
 #        self.chequea()
     
     def on_cmdBlue_released(self):
         self.tirar_dado("blue")
-        print ("blue",  self.dado['blue'])
+#        print ("blue",  self.dado['blue'])
         self.lblDadoBlue.setPixmap(self.mem.dado.qpixmap(self.dado['blue']))        
         self.cmdBlue.setEnabled(False)
 #        self.chequea()
     
     def on_cmdRed_released(self):
         self.tirar_dado("red")
-        print ("red",  self.dado['red'])
+#        print ("red",  self.dado['red'])
         self.lblDadoRed.setPixmap(self.mem.dado.qpixmap(self.dado['red']))
         self.cmdRed.setEnabled(False)
 #        self.chequea()
     
     def on_cmdGreen_released(self):
         self.tirar_dado("green")
-        print ("green",  self.dado['green'])
+#        print ("green",  self.dado['green'])
         self.lblDadoGreen.setPixmap(self.mem.dado.qpixmap(self.dado['green']))
         self.cmdGreen.setEnabled(False)
 #        self.chequea()
@@ -80,6 +80,31 @@ class frmInitGame(QWizard, Ui_frmInitGame):
                 self.chequea()
                 return False
             else:
+                #Comienza la partida
+                self.mem.jugadores('yellow').name=self.txtYellow.text()
+                self.mem.jugadores('yellow').ia=c2b(self.chkYellow.checkState())
+                self.mem.jugadores('yellow').plays=c2b(self.chkYellowPlays.checkState())
+                self.mem.jugadores('blue').name=self.txtBlue.text()
+                self.mem.jugadores('blue').ia=c2b(self.chkBlue.checkState())
+                self.mem.jugadores('blue').plays=c2b(self.chkBluePlays.checkState())
+                self.mem.jugadores('red').name=self.txtRed.text()
+                self.mem.jugadores('red').ia=c2b(self.chkRed.checkState())
+                self.mem.jugadores('red').plays=c2b(self.chkRedPlays.checkState())
+                self.mem.jugadores('green').name=self.txtGreen.text()
+                self.mem.jugadores('green').ia=c2b(self.chkGreen.checkState())
+                self.mem.jugadores('green').plays=c2b(self.chkGreenPlays.checkState())
+
+                for j in self.mem.jugadores():
+                    if j.plays==True:
+                        j.fichas.arr[0].mover(0, False,  True)
+                        j.fichas.arr[0].mover(0, False,  True)
+                        j.fichas.arr[0].mover(0, False,  True)
+                        j.fichas.arr[0].mover(0, False,  True)
+                self.mem.jugadoractual=self.mem.jugadores(self.playerstarts)    
+                self.mem.jugadoractual.historicodado=[]
+                self.mem.jugadoractual.movimientos_acumulados=None#Comidas ymetidas
+                self.mem.jugadoractual.LastFichaMovida=None #Se utiliza cuando se va a casa
+                print (self.mem.jugadoractual)
                 return True
         
     def chequea(self):
@@ -105,7 +130,7 @@ class frmInitGame(QWizard, Ui_frmInitGame):
             for color in self.dado:
                 if self.dado[color]==max:
                     colormax.append(color)
-            print (colormax)
+#            print (colormax)
             #Asigna o vuelve a tirar
             if len(colormax)==1:
                 self.playerstarts=colormax[0]

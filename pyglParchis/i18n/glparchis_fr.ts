@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="2.0" language="fr_FR" sourcelanguage="">
 <context>
+    <name>Ficha</name>
+    <message>
+        <location filename="libglparchis.py" line="530"/>
+        <source>He comido la ficha %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="539"/>
+        <source>He metido la ficha %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>frmAbout</name>
     <message>
         <location filename="ui/frmAbout.ui" line="43"/>
@@ -121,12 +134,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.py" line="112"/>
+        <location filename="ui/frmInitGame.py" line="137"/>
         <source>El jugador %1 empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmInitGame.py" line="115"/>
+        <location filename="ui/frmInitGame.py" line="140"/>
         <source>%1 deben tirar hasta que se aclare quién empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -136,7 +149,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.py" line="113"/>
+        <location filename="ui/frmInitGame.py" line="138"/>
         <source>Empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -144,62 +157,62 @@
 <context>
     <name>frmMain</name>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="104"/>
+        <location filename="ui/Ui_frmMain.py" line="107"/>
         <source>A&amp;yuda</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="105"/>
+        <location filename="ui/Ui_frmMain.py" line="108"/>
         <source>J&amp;ugar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="106"/>
+        <location filename="ui/Ui_frmMain.py" line="109"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="107"/>
+        <location filename="ui/Ui_frmMain.py" line="110"/>
         <source>S&amp;alir</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="108"/>
+        <location filename="ui/Ui_frmMain.py" line="111"/>
         <source>Acerca de</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="109"/>
+        <location filename="ui/Ui_frmMain.py" line="112"/>
         <source>Tirar dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="110"/>
+        <location filename="ui/Ui_frmMain.py" line="113"/>
         <source>&amp;Recuperar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="111"/>
+        <location filename="ui/Ui_frmMain.py" line="114"/>
         <source>&amp;Guardar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="112"/>
+        <location filename="ui/Ui_frmMain.py" line="115"/>
         <source>&amp;Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="113"/>
+        <location filename="ui/Ui_frmMain.py" line="116"/>
         <source>Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="114"/>
+        <location filename="ui/Ui_frmMain.py" line="117"/>
         <source>Preferencias</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmMain.py" line="103"/>
+        <location filename="ui/Ui_frmMain.py" line="106"/>
         <source>glParchis 2010-2012 ©</source>
         <translation type="unfinished"></translation>
     </message>
