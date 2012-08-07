@@ -16,105 +16,86 @@ from Ui_wdgGame import *
 
 class wdgGame(QWidget, Ui_wdgGame):
     """Clase principal del Juego, aquí está toda la ciencia, cuando se deba pasar al UI se crearán emits que captura qT para el UI"""
-    def __init__(self, mem,  parent=None,  filename=None):
+    def __init__(self, mem,  parent=None,  filename=None):        
+        def settings_splitter_load():
+            config = ConfigParser.ConfigParser()
+            config.read(libglparchis.cfgfile)
+            try:
+                position=config.get("frmMain", "splitter_state")
+                self.splitter.restoreState(position)
+            except:
+                print ("No hay fichero de configuración")    
         QWidget.__init__(self, parent)
         self.setupUi(self)
 
-        self.mem=Mem4()
+        self.mem=mem
         self.ogl.assign_mem(self.mem)
         self.ogl.setFocus()
 
-        self.on_JugadorDebeTirar()
         
         self.panel1.setJugador(self.mem.jugadores("yellow"))
         self.panel2.setJugador(self.mem.jugadores("blue"))
         self.panel3.setJugador(self.mem.jugadores("red"))
         self.panel4.setJugador(self.mem.jugadores("green"))
 
-
         self.panel().setActivated(True)
-
-        
-#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('newLog(QString)'), self.lstLog_newLog)  
-        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('CambiarJugador()'), self.CambiarJugador)  
-#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('volver_a_tirar()'), self.volver_a_tirar)  
-        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('showCasillaFicha(int,int)'), self.showCasillaFicha)  
-        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('JugadorDebeTirar()'), self.on_JugadorDebeTirar)  
-        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('JugadorDebeMover()'), self.on_JugadorDebeMover)  
-        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('TresSeisesSeguidos()'), self.on_TresSeisesSeguidos)  
-        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('HaGanado()'), self.on_HaGanado)  
-        self.settings_splitter_load()
+#
+#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('CambiarJugador()'), self.CambiarJugador)  
+#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('showCasillaFicha(int,int)'), self.showCasillaFicha)  
+#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('JugadorDebeTirar()'), self.on_JugadorDebeTirar)  
+#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('JugadorDebeMover()'), self.on_JugadorDebeMover)  
+#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('TresSeisesSeguidos()'), self.on_TresSeisesSeguidos)  
+#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('HaGanado()'), self.on_HaGanado)  #        
+        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('fichaClicked()'), self.after_ficha_click)  
+        settings_splitter_load()
 
         self.table.reload()
+        self.on_JugadorDebeTirar()
 
     def panel(self, jugador=None):
         """Si se pasa sin parametro da el panel del jugador actual"""
-        jugador=self.mem.jugadoractual
+        if jugador==None:
+            jugador=self.mem.jugadoractual
         if self.panel1.jugador==jugador:
-            return panel1
+            return self.panel1
         elif self.panel2.jugador==jugador:
-            return panel2
+            return self.panel2
         elif self.panel3.jugador==jugador:
-            return panel3
+            return self.panel3
         elif self.panel4.jugador==jugador:
-            return panel4
-
-    def on_TresSeisesSeguidos(self):
-            self.table.registraTres6Seguidos(self.mem.jugadoractual.color)
+            return self.panel4
+#
+#    def on_TresSeisesSeguidos(self):
+#            self.table.registraTres6Seguidos(self.mem.jugadoractual.color)
         
 
     def on_JugadorDebeTirar(self):
-        """Se ejecuta cuando se emite JugadorDebeTirar"""
+        """Se ejecuta cuando el jugador debe tirar:
+                - Inicio turno
+                - Otras situaciones"""
         self.cmdTirarDado.setEnabled(True)
         if self.mem.jugadoractual.ia==True:
-#            time.sleep(1)
             self.mem.jugadoractual.log(self.trUtf8("IA Tira el dado"))
             self.on_cmdTirarDado_clicked()
         else:
             self.mem.jugadoractual.log(self.trUtf8("Tire el dado"))
-            
 
-    def on_HaGanado(self):
-        m=QMessageBox()
-        m.setIcon(QMessageBox.Information)
-        m.setText(self.trUtf8("%1 ha ganado").arg(self.mem.jugadoractual.name))
-        m.exec_() 
-        self.tab.setCurrentIndex(1)
-        
-        
+       
     def on_JugadorDebeMover(self):
-        self.cmdTirarDado.setEnabled(False)
+        """Función que se ejecuta cuando un jugador debe mover
+        Aquí se evalua si puede mover devolviendo True en caso positivo y """
         if self.mem.jugadoractual.ia==True:
-#            time.sleep(1)
             self.mem.jugadoractual.log(self.trUtf8("IA mueve una ficha"))            
             for f in self.mem.jugadoractual.fichas.arr:
                 if f.PuedeMover(self.mem, self.mem.dado.lastthrow):
                     self.mem.selFicha=f
-                    self.ogl.after_ficha_click()
+                    self.after_ficha_click()
                     return
         else:
             self.mem.jugadoractual.log(self.trUtf8("Mueva una ficha"))
 
         
     def on_splitter_splitterMoved(self, position, index):
-        self.settings_splitter_save()
-
-#    @pyqtSignature("int")
-    def showCasillaFicha(self, selCasilla, selFicha):
-        """selCasilla y selFicha son integers"""
-        a=frmShowCasilla(self,  Qt.Popup,  self.mem.casillas(selCasilla))
-        a. move(self.ogl.mapToGlobal(QPoint(10, 10))        )
-        a.show()
-        if selFicha!=-99:
-            ficha=self.mem.fichas(selFicha)
-            a=frmShowFicha(self, Qt.Popup,  ficha)
-            a. move(self.ogl.mapToGlobal(QPoint(500, 10))        )
-            a.show()
-#
-#    def lstLog_newLog(self, log):
-#        self.panels[self.mem.jugadoractual.color.name].newLog(log)
-
-    def settings_splitter_save(self):
         config = ConfigParser.ConfigParser()
         config.read(libglparchis.cfgfile)
         if config.has_section("frmMain")==False:
@@ -122,31 +103,15 @@ class wdgGame(QWidget, Ui_wdgGame):
         config.set("frmMain",  'splitter_state', self.splitter.saveState())
         with open(libglparchis.cfgfile, 'w') as configfile:
             config.write(configfile)
-        
-    def settings_splitter_load(self):
-        config = ConfigParser.ConfigParser()
-        config.read(libglparchis.cfgfile)
-        try:
-            position=config.get("frmMain", "splitter_state")
-            self.splitter.restoreState(position)
-        except:
-            print ("No hay fichero de configuración")    
-    
-  
+
     @QtCore.pyqtSlot()      
     def on_cmdTirarDado_clicked(self):  
-        numerodado= self.mem.dado.tirar()
-        self.mem.jugadoractual.historicodado.insert(0, numerodado)        
-#        self.table.registraTirada(self.mem.jugadoractual.color, numero)
-
-        self.panel().setLabelDado(self.mem.jugadoractual.historicodado)
-        self.cmdTirarDado.setIcon(self.mem.dado.qicon(numero))
+        self.cmdTirarDado.setEnabled(False)
+        valordado=self.mem.jugadoractual.TirarDado()
+        self.panel().setLabelDado()
         
-        if numerodado==6 and len(self.mem.jugadoractual.historicodado)==3:            
-#            self.emit(SIGNAL("TresSeisesSeguidos()"))      
-#            print "Ultima ficha movida",  self.mem.jugadoractual.LastFichaMovida
+        if valordado==6 and len(self.mem.jugadoractual.tiradaturno.arr)==3:            
             if self.mem.jugadoractual.LastFichaMovida!=None:
-#                print self.mem.jugadoractual.LastFichaMovida.name
                 casilla=self.mem.jugadoractual.LastFichaMovida.casilla()
                 if casilla.rampallegada==True:
                     self.mem.jugadoractual.log(self.trUtf8("Han salido tres seises, no se va a casa por haber llegado a rampa de llegada"))
@@ -166,36 +131,61 @@ class wdgGame(QWidget, Ui_wdgGame):
                     self.CambiarJugador()
         
 
+    def after_ficha_click(self):
+        puede=self.mem.selFicha.PuedeMover(self.mem,  self.mem.dado.lastthrow)
+        if puede[0]==False:
+            self.mem.jugadoractual.log(self.trUtf8("No puede mover esta ficha, seleccione otra"))
+            return
+        
+        self.mem.selFicha.mover( self.mem.selFicha.posruta + puede[1])
+        #Quita el movimiento acumulados
+        if self.mem.jugadoractual.movimientos_acumulados in (10, 20):
+            self.mem.jugadoractual.movimientos_acumulados=None
 
-    def CambiarJugador(self):
-#        def limpia_panel(color):
-#            pix=self.mem.dado.qpixmap(None)
-#            
-#            if color=="yellow":
-#                self.panel1.lbl1.setPixmap(pix)
-#                self.panel1.lbl2.setPixmap(pix)
-#                self.panel1.lbl3.setPixmap(pix)
-#                self.panel1.show()
-#            elif color=="blue":
-#                self.panel2.lbl1.setPixmap(pix)
-#                self.panel2.lbl2.setPixmap(pix)
-#                self.panel2.lbl3.setPixmap(pix)
-#                self.panel2.show()
-#            elif color=="red":
-#                self.panel3.lbl1.setPixmap(pix)
-#                self.panel3.lbl2.setPixmap(pix)
-#                self.panel3.lbl3.setPixmap(pix)
-#                self.panel3.show()
-#            elif color=="green":
-#                self.panel4.lbl1.setPixmap(pix)
-#                self.panel4.lbl2.setPixmap(pix)
-#                self.panel4.lbl3.setPixmap(pix)
-#                self.panel4.show()
-                
-        #Cambia jugadoractual
+        #Come
+        if self.mem.selFicha.come(self.mem.selFicha.posruta)==True:
+            if self.mem.jugadoractual.fichas.AlgunaPuedeMover(self.mem)==False:
+                if self.habiaSalidoSeis()==True:
+                    self.on_JugadorDebeTirar()
+                else:
+                    self.CambiarJugador()
+            else:#si alguna puede mover
+                self.on_JugadorDebeMover()
+#        print ("No come")
+        
+        #Mete
+        if self.mem.selFicha.mete()==True:
+#            print ("mete")
+            if self.mem.jugadoractual.fichas.AlgunaPuedeMover(self.mem)==False:
+                if self.habiaSalidoSeis()==True:
+                    self.on_JugadorDebeTirar()
+                else:
+                    self.CambiarJugador()
+            else:#si alguna puede mover
+                self.on_JugadorDebeMover()
+#        print (" No mete")       
+        
+        if self.mem.dado.habiaSalidoSeis()==True:
+            self.on_JugadorDebeTirar()
+        else:
+            self.CambiarJugador()
+
+    
+
+    def CambiarJugador(self):             
+        #Comprueba si ha ganado
+        if self.mem.jugadoractual.HaGanado()==True:
+            m=QMessageBox()
+            m.setIcon(QMessageBox.Information)
+            m.setText(self.trUtf8("%1 ha ganado").arg(self.mem.jugadoractual.name))
+            m.exec_() 
+            self.tab.setCurrentIndex(1)
+            return
+        
+        
         self.panel().setActivated(False)
-        if self.mem.jugadoractual.ia==True:
-            time.sleep(0.2)
+#        if self.mem.jugadoractual.ia==True:
+#            time.sleep(0.2)
         while True:
             if self.mem.jugadoractual.color=="yellow":
                 self.mem.jugadoractual=self.mem.jugadores("blue")
@@ -207,9 +197,9 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.mem.jugadoractual=self.mem.jugadores("yellow")
             if self.mem.jugadoractual.plays:#Comprueba si el actual plays
                 break
-          
-        self.setWindowIcon(self.mem.jugadoractual.qicon())
-        self.mem.jugadoractual.historicodado=[]
+        
+        self.mem.jugadoractual.tiradaturno=TiradaTurno()#Se crea otro objeto porque as´i el anterior queda vinculada< a TiradaHistorica.
+#        self.mem.jugadoractual.historicodado=[]
         self.mem.jugadoractual.movimientos_acumulados=None
         self.mem.jugadoractual.LastFichaMovida=None
         

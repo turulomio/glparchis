@@ -33,7 +33,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
         sys.exit()
   
     def showWdgGame(self):
-        w=wdgGame(self.mem, self.wdg)
+        w=wdgGame(self.mem)
+        self.layout.addWidget(w)
         w.show()
         self.actionGuardarPartida.setEnabled(True)
 
@@ -48,52 +49,10 @@ class frmMain(QMainWindow, Ui_frmMain):#
 
     @QtCore.pyqtSlot()     
     def on_actionPartidaNueva_activated(self):
-#        def save_last_glparchis():
-#            try:
-#                os.remove(libglparchis.lastfile)
-#            except:
-#                pass
-#            config = ConfigParser.ConfigParser()
-#            config.add_section("yellow")
-#            config.set("yellow",  'ia', int(libglparchis.c2b(initgame.chkYellow.checkState())))
-#            config.set("yellow",  'name', initgame.txtYellow.text())
-#            config.set("yellow",  'plays', int(libglparchis.c2b(initgame.chkYellowPlays.checkState())))
-#            config.add_section("blue")
-#            config.set("blue",  'ia', int(libglparchis.c2b(initgame.chkBlue.checkState())))
-#            config.set("blue",  'name', initgame.txtBlue.text())
-#            config.set("blue",  'plays', int(libglparchis.c2b(initgame.chkBluePlays.checkState())))
-#            config.add_section("red")
-#            config.set("red",  'ia', int(libglparchis.c2b(initgame.chkRed.checkState())))
-#            config.set("red",  'name', initgame.txtRed.text())
-#            config.set("red",  'plays', int(libglparchis.c2b(initgame.chkRedPlays.checkState())))
-#            config.add_section("green")
-#            config.set("green",  'ia', int(libglparchis.c2b(initgame.chkGreen.checkState())))
-#            config.set("green",  'name', initgame.txtGreen.text())
-#            config.set("green",  'plays', int(libglparchis.c2b(initgame.chkGreenPlays.checkState())))
-#                
-#            for color in self.mem.colores():
-#                config.set(color.name,  'rutaficha1', 0)
-#                config.set(color.name,  'rutaficha2', 0)
-#                config.set(color.name,  'rutaficha3', 0)
-#                config.set(color.name,  'rutaficha4', 0)
-#            config.add_section("game")
-#            config.set("game", 'playerstarts', initgame.playerstarts)
-#            config.set("game", 'fakedice','')
-#            with open(libglparchis.lastfile, 'w') as configfile:
-#                config.write(configfile)            
-#                
-                
         self.mem=Mem4()
         initgame=frmInitGame(self.mem)
         initgame.exec_()
         self.showWdgGame()
-
-        #Graba fichero .glparchis/last.glparchis
-#        save_last_glparchis()
-        #Carga fichero .glparchis/last.glparchis
-#        self.ogl=wdgGame(filename=libglparchis.lastfile)
-#        self.load_file(libglparchis.lastfile)
-
 
 
 
