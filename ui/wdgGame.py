@@ -9,10 +9,7 @@ from wdgUserPanel import *
 from wdgGame import *
 from qtablestatistics import *
 from libglparchis import *
-
 from Ui_wdgGame import *
-
-
 
 class wdgGame(QWidget, Ui_wdgGame):
     """Clase principal del Juego, aquí está toda la ciencia, cuando se deba pasar al UI se crearán emits que captura qT para el UI"""
@@ -31,21 +28,15 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.mem=mem
         self.ogl.assign_mem(self.mem)
         self.ogl.setFocus()
-
         
         self.panel1.setJugador(self.mem.jugadores("yellow"))
         self.panel2.setJugador(self.mem.jugadores("blue"))
         self.panel3.setJugador(self.mem.jugadores("red"))
         self.panel4.setJugador(self.mem.jugadores("green"))
 
+        print ("Jugador actual{0}".format(self.mem.jugadoractual))
         self.panel().setActivated(True)
-#
-#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('CambiarJugador()'), self.CambiarJugador)  
-#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('showCasillaFicha(int,int)'), self.showCasillaFicha)  
-#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('JugadorDebeTirar()'), self.on_JugadorDebeTirar)  
-#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('JugadorDebeMover()'), self.on_JugadorDebeMover)  
-#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('TresSeisesSeguidos()'), self.on_TresSeisesSeguidos)  
-#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('HaGanado()'), self.on_HaGanado)  #        
+
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('fichaClicked()'), self.after_ficha_click)  
         settings_splitter_load()
 
@@ -64,10 +55,7 @@ class wdgGame(QWidget, Ui_wdgGame):
             return self.panel3
         elif self.panel4.jugador==jugador:
             return self.panel4
-#
-#    def on_TresSeisesSeguidos(self):
-#            self.table.registraTres6Seguidos(self.mem.jugadoractual.color)
-        
+
 
     def on_JugadorDebeTirar(self):
         """Se ejecuta cuando el jugador debe tirar:
@@ -87,7 +75,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         if self.mem.jugadoractual.ia==True:
             self.mem.jugadoractual.log(self.trUtf8("IA mueve una ficha"))            
             for f in self.mem.jugadoractual.fichas.arr:
-                if f.PuedeMover(self.mem, self.mem.dado.lastthrow):
+                if f.puedeMover(self.mem):
                     self.mem.selFicha=f
                     self.after_ficha_click()
                     return
@@ -106,11 +94,11 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     @QtCore.pyqtSlot()      
     def on_cmdTirarDado_clicked(self):  
+        print("dado clickeaddo")
         self.cmdTirarDado.setEnabled(False)
-        valordado=self.mem.jugadoractual.TirarDado()
         self.panel().setLabelDado()
         
-        if valordado==6 and len(self.mem.jugadoractual.tiradaturno.arr)==3:            
+        if self.mem.jugadoractual.tiradaturno.tresSeises()==True:
             if self.mem.jugadoractual.LastFichaMovida!=None:
                 casilla=self.mem.jugadoractual.LastFichaMovida.casilla()
                 if casilla.rampallegada==True:
@@ -120,19 +108,19 @@ class wdgGame(QWidget, Ui_wdgGame):
                     self.mem.jugadoractual.LastFichaMovida.mover(0)
             else:               
                 self.mem.jugadoractual.log(self.trUtf8("Después de tres seises, ya no puede volver a tirar"))
-            self.CambiarJugador()
+            self.cambiarJugador()
         else: # si no han salido 3 seises
-            if self.mem.jugadoractual.fichas.AlgunaPuedeMover(self.mem)==True:
+            if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==True:
                 self.on_JugadorDebeMover()
             else:#alguna no puede mover.
-                if self.mem.jugadoractual.historicodado[0]==6:
+                if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
                     self.on_JugadorDebeTirar()
                 else:            
-                    self.CambiarJugador()
-        
+                    self.cambiarJugador()
+        self.panel().refresh()
 
     def after_ficha_click(self):
-        puede=self.mem.selFicha.PuedeMover(self.mem,  self.mem.dado.lastthrow)
+        puede=self.mem.selFicha.puedeMover(self.mem)
         if puede[0]==False:
             self.mem.jugadoractual.log(self.trUtf8("No puede mover esta ficha, seleccione otra"))
             return
@@ -144,11 +132,11 @@ class wdgGame(QWidget, Ui_wdgGame):
 
         #Come
         if self.mem.selFicha.come(self.mem.selFicha.posruta)==True:
-            if self.mem.jugadoractual.fichas.AlgunaPuedeMover(self.mem)==False:
-                if self.habiaSalidoSeis()==True:
+            if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==False:
+                if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
                     self.on_JugadorDebeTirar()
                 else:
-                    self.CambiarJugador()
+                    self.cambiarJugador()
             else:#si alguna puede mover
                 self.on_JugadorDebeMover()
 #        print ("No come")
@@ -156,23 +144,25 @@ class wdgGame(QWidget, Ui_wdgGame):
         #Mete
         if self.mem.selFicha.mete()==True:
 #            print ("mete")
-            if self.mem.jugadoractual.fichas.AlgunaPuedeMover(self.mem)==False:
-                if self.habiaSalidoSeis()==True:
+            if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==False:
+                if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
                     self.on_JugadorDebeTirar()
                 else:
-                    self.CambiarJugador()
+                    self.cambiarJugador()
             else:#si alguna puede mover
                 self.on_JugadorDebeMover()
 #        print (" No mete")       
         
-        if self.mem.dado.habiaSalidoSeis()==True:
+        if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
             self.on_JugadorDebeTirar()
         else:
-            self.CambiarJugador()
+            self.cambiarJugador()
 
+        self.panel().refresh()
     
 
-    def CambiarJugador(self):             
+    def cambiarJugador(self):          
+        print ("{0} acaba el turno".format(self.mem.jugadoractual))
         #Comprueba si ha ganado
         if self.mem.jugadoractual.HaGanado()==True:
             m=QMessageBox()

@@ -1,19 +1,11 @@
 #-*- coding: utf-8 -*- 
 
 from OpenGL import GL,  GLU
-import os,  random,  datetime,  ConfigParser
+import os,  random,   ConfigParser
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
-#def Color(colorstr):
-#    if colorstr=="yellow":
-#       return Color(255, 255, 0)        
-#    elif colorstr=="blue":
-#       return Color(0, 0, 255)
-#    elif colorstr=="red":
-#       return Color(255, 0, 0 )
-#    elif colorstr=="green":
-#       return Color(0, 255, 0)
+
 def colorid(color):
     if color=="yellow":
         return 0
@@ -59,205 +51,18 @@ cfgfile=os.environ['HOME']+ "/.glparchis/glparchis.cfg"
 lastfile=os.environ['HOME']+ "/.glparchis/last.glparchis"
 
 
-#Es la posición física de la ficha en la casilla tanto si hay uno como si dos.
-##En casilla horizontal se suma al punto inferiro ezdo 1.5 en altura y 1.7 ala primera y 5.3 a la segunda
-##En las oblucuas a la lejana se resta 1.5 y ala siguiente 2 desde este punto
-#posFichas=[None]*105
-#posFichas[0]=((0, 0, 0), (0, 0, 0))
-#posFichas[1]=((22.7, 61.5, 0.9), (26.3, 61.5, 0.9))
-#posFichas[2]=((22.7, 58.5, 0.9), (26.3, 58.5, 0.9))
-#posFichas[3]=((22.7, 55.5, 0.9), (26.3, 55.5, 0.9))
-#posFichas[4]=((22.7, 52.5, 0.9), (26.3, 52.5, 0.9))
-#posFichas[5]=((22.7, 49.5, 0.9), (26.3, 49.5, 0.9))
-#posFichas[6]=((22.7, 46.5, 0.9), (26.3, 46.5, 0.9))
-#posFichas[7]=((22.7, 43.5, 0.9), (26.3, 43.5, 0.9))
-#posFichas[8]=((24.5, 40.5, 0.9), (26.5, 40.5, 0.9))
-#posFichas[9]=((22.5, 38.5, 0.9), (22.5, 36.5, 0.9))
-#posFichas[10]=((19.5, 40.3, 0.9), (19.5, 36.7, 0.9))
-#posFichas[11]=((16.5, 40.3, 0.9), (16.5, 36.7, 0.9))
-#posFichas[12]=((13.5, 40.3, 0.9), (13.5, 36.7, 0.9))
-#posFichas[13]=((10.5, 40.3, 0.9), (10.5, 36.7, 0.9))
-#posFichas[14]=((7.5, 40.3, 0.9), (7.5, 36.7, 0.9))
-#posFichas[15]=((4.5, 40.3, 0.9), (4.5, 36.7, 0.9))
-#posFichas[16]=((1.5, 40.3, 0.9), (1.5, 36.7, 0.9))
-#posFichas[17]=((1.5, 33.3, 0.9), (1.5, 29.7, 0.9))
-#posFichas[18]=((1.5, 26.3, 0.9), (1.5, 22.7, 0.9))
-#posFichas[19]=((4.5, 26.3, 0.9), (4.5, 22.7, 0.9))
-#posFichas[20]=((7.5, 26.3, 0.9), (7.5, 22.7, 0.9))
-#posFichas[21]=((10.5, 26.3, 0.9), (10.5, 22.7, 0.9))
-#posFichas[22]=((13.5, 26.3, 0.9), (13.5, 22.7, 0.9))
-#posFichas[23]=((16.5, 26.3, 0.9), (16.5, 22.7, 0.9))
-#posFichas[24]=((19.5, 26.3, 0.9), (19.5, 22.7, 0.9))
-#posFichas[25]=((22.5, 26.5, 0.9), (22.5, 24.5, 0.9))
-#posFichas[26]=((24.5, 22.5, 0.9), (26.5, 22.5, 0.9))
-#posFichas[27]=((22.7, 19.5, 0.9), (26.3, 19.5, 0.9))
-#posFichas[28]=((22.7, 16.5, 0.9), (26.3, 16.5, 0.9))
-#posFichas[29]=((22.7, 13.5, 0.9), (26.3, 13.5, 0.9))
-#posFichas[30]=((22.7, 10.5, 0.9), (26.3, 10.5, 0.9))
-#posFichas[31]=((22.7, 7.5, 0.9), (26.3, 7.5, 0.9))
-#posFichas[32]=((22.7, 4.5, 0.9), (26.3, 4.5, 0.9))
-#posFichas[33]=((22.7, 1.5, 0.9), (26.3, 1.5, 0.9))
-#posFichas[34]=((29.7, 1.5, 0.9), (33.3, 1.5, 0.9))
-#posFichas[35]=((36.7, 1.5, 0.9), (40.3, 1.5, 0.9))
-#posFichas[36]=((36.7, 4.5, 0.9), (40.3, 4.5, 0.9))
-#posFichas[37]=((36.7, 7.5, 0.9), (40.3, 7.5, 0.9))
-#posFichas[38]=((36.7, 10.5, 0.9), (40.3, 10.5, 0.9))
-#posFichas[39]=((36.7, 13.5, 0.9), (40.3, 13.5, 0.9))
-#posFichas[40]=((36.7, 16.5, 0.9), (40.3, 16.5, 0.9))
-#posFichas[41]=((36.7, 19.5, 0.9), (40.3, 19.5, 0.9))
-#posFichas[42]=((36.5, 22.5, 0.9), (38.5, 22.5, 0.9))
-#posFichas[43]=((40.5, 26.5, 0.9), (40.5, 24.5, 0.9))
-#posFichas[44]=((43.5, 26.3, 0.9), (43.5, 22.7, 0.9))
-#posFichas[45]=((46.5, 26.3, 0.9), (46.5, 22.7, 0.9))
-#posFichas[46]=((49.5, 26.3, 0.9), (49.5, 22.7, 0.9))
-#posFichas[47]=((52.5, 26.3, 0.9), (52.5, 22.7, 0.9))
-#posFichas[48]=((55.5, 26.3, 0.9), (55.5, 22.7, 0.9))
-#posFichas[49]=((58.5, 26.3, 0.9), (58.5, 22.7, 0.9))
-#posFichas[50]=((61.5, 26.3, 0.9), (61.5, 22.7, 0.9))
-#posFichas[51]=((61.5, 33.3, 0.9), (61.5, 29.7, 0.9))
-#posFichas[52]=((61.5, 40.3, 0.9), (61.5, 36.7, 0.9))
-#posFichas[53]=((58.5, 40.3, 0.9), (58.5, 36.7, 0.9))
-#posFichas[54]=((55.5, 40.3, 0.9), (55.5, 36.7, 0.9))
-#posFichas[55]=((52.5, 40.3, 0.9), (52.5, 36.7, 0.9))
-#posFichas[56]=((49.5, 40.3, 0.9), (49.5, 36.7, 0.9))
-#posFichas[57]=((46.5, 40.3, 0.9), (46.5, 36.7, 0.9))
-#posFichas[58]=((43.5, 40.3, 0.9), (43.5, 36.7, 0.9))
-#posFichas[59]=((40.5, 38.5, 0.9), (40.5, 36.5, 0.9))
-#posFichas[60]=((36.5, 40.5, 0.9), (38.5, 40.5, 0.9))
-#posFichas[61]=((36.7, 43.5, 0.9), (40.3, 43.5, 0.9))
-#posFichas[62]=((36.7, 46.5, 0.9), (40.3, 46.5, 0.9))
-#posFichas[63]=((36.7, 49.5, 0.9), (40.3, 49.5, 0.9))
-#posFichas[64]=((36.7, 52.5, 0.9), (40.3, 52.5, 0.9))
-#posFichas[65]=((36.7, 55.5, 0.9), (40.3, 55.5, 0.9))
-#posFichas[66]=((36.7, 58.5, 0.9), (40.3, 58.5, 0.9))
-#posFichas[67]=((36.7, 61.5, 0.9), (40.3, 61.5, 0.9))
-#posFichas[68]=((29.7, 61.5, 0.9), (33.3, 61.5, 0.9))
-#posFichas[69]=((29.7, 58.5, 0.9), (33.3, 58.5, 0.9))
-#posFichas[70]=((29.7, 55.5, 0.9), (33.3, 55.5, 0.9))
-#posFichas[71]=((29.7, 52.5, 0.9), (33.3, 52.5, 0.9))
-#posFichas[72]=((29.7, 49.5, 0.9), (33.3, 49.5, 0.9))
-#posFichas[73]=((29.7, 46.5, 0.9), (33.3, 46.5, 0.9))
-#posFichas[74]=((29.7, 43.5, 0.9), (33.3, 43.5, 0.9))
-#posFichas[75]=((29.7, 40.5, 0.9), (33.3, 40.5, 0.9))
-#posFichas[76]=((29.7, 37.5, 0.9), (33.3, 37.5, 0.9))
-#posFichas[77]=((4.5, 33.3, 0.9), (4.5, 29.7, 0.9))
-#posFichas[78]=((7.5, 33.3, 0.9), (7.5, 29.7, 0.9))
-#posFichas[79]=((10.5, 33.3, 0.9), (10.5, 29.7, 0.9))
-#posFichas[80]=((13.5, 33.3, 0.9), (13.5, 29.7, 0.9))
-#posFichas[81]=((16.5, 33.3, 0.9), (16.5, 29.7, 0.9))
-#posFichas[82]=((19.5, 33.3, 0.9), (19.5, 29.7, 0.9))
-#posFichas[83]=((22.5, 33.3, 0.9), (22.5, 29.7, 0.9))
-#posFichas[84]=((25.5, 33.3, 0.9), (25.5, 29.7, 0.9))
-#posFichas[85]=((29.7, 4.5, 0.9), (33.3, 4.5, 0.9))
-#posFichas[86]=((29.7, 7.5, 0.9), (33.3, 7.5, 0.9))
-#posFichas[87]=((29.7, 10.5, 0.9), (33.3, 10.5, 0.9))
-#posFichas[88]=((29.7, 13.5, 0.9), (33.3, 13.5, 0.9))
-#posFichas[89]=((29.7, 16.5, 0.9), (33.3, 16.5, 0.9))
-#posFichas[90]=((29.7, 19.5, 0.9), (33.3, 19.5, 0.9))
-#posFichas[91]=((29.7, 22.5, 0.9), (33.3, 22.5, 0.9))
-#posFichas[92]=((29.7, 25.5, 0.9), (33.3, 25.5, 0.9))
-#posFichas[93]=((58.5, 33.3, 0.9), (58.5, 29.7, 0.9))
-#posFichas[94]=((55.5, 33.3, 0.9), (55.5, 29.7, 0.9))
-#posFichas[95]=((52.5, 33.3, 0.9), (52.5, 29.7, 0.9))
-#posFichas[96]=((49.5, 33.3, 0.9), (49.5, 29.7, 0.9))
-#posFichas[97]=((46.5, 33.3, 0.9), (46.5, 29.7, 0.9))
-#posFichas[98]=((43.5, 33.3, 0.9), (43.5, 29.7, 0.9))
-#posFichas[99]=((40.5, 33.3, 0.9), (40.5, 29.7, 0.9))
-#posFichas[100]=((37.5, 33.3, 0.9), (37.5, 29.7, 0.9))
-#posFichas[101]=((7, 49, 0.9), (14, 49, 0.9), (14, 56, 0.9), (7, 56, 0.9))
-#posFichas[102]=((7, 7, 0.9), (14, 7, 0.9), (14, 14, 0.9), (7, 14, 0.9))
-#posFichas[103]=((49, 7, 0.9), (56, 7, 0.9), (49, 14, 0.9), (56, 14, 0.9))
-#posFichas[104]=((49, 49, 0.9), (56, 49, 0.9), (49, 56, 0.9), (56, 56, 0.9))
-
-##Muestra la casilla de la ruta del jugador0 Ruta[rita]=jug1,2,3,4
-#ruta=[None]*73
-#ruta[0]=(101, 102, 103, 104)
-#ruta[1]=(5, 22, 39, 56)
-#ruta[2]=(6, 23, 40, 57)
-#ruta[3]=(7, 24, 41, 58)
-#ruta[4]=(8, 25, 42, 59)
-#ruta[5]=(9, 26, 43, 60)
-#ruta[6]=(10, 27, 44, 61)
-#ruta[7]=(11, 28, 45, 62)
-#ruta[8]=(12, 29, 46, 63)
-#ruta[9]=(13, 30, 47, 64)
-#ruta[10]=(14, 31, 48, 65)
-#ruta[11]=(15, 32, 49, 66)
-#ruta[12]=(16, 33, 50, 67)
-#ruta[13]=(17, 34, 51, 68)
-#ruta[14]=(18, 35, 52, 1)
-#ruta[15]=(19, 36, 53, 2)
-#ruta[16]=(20, 37, 54, 3)
-#ruta[17]=(21, 38, 55, 4)
-#ruta[18]=(22, 39, 56, 5)
-#ruta[19]=(23, 40, 57, 6)
-#ruta[20]=(24, 41, 58, 7)
-#ruta[21]=(25, 42, 59, 8)
-#ruta[22]=(26, 43, 60, 9)
-#ruta[23]=(27, 44, 61, 10)
-#ruta[24]=(28, 45, 62, 11)
-#ruta[25]=(29, 46, 63, 12)
-#ruta[26]=(30, 47, 64, 13)
-#ruta[27]=(31, 48, 65, 14)
-#ruta[28]=(32, 49, 66, 15)
-#ruta[29]=(33, 50, 67, 16)
-#ruta[30]=(34, 51, 68, 17)
-#ruta[31]=(35, 52, 1, 18)
-#ruta[32]=(36, 53, 2, 19)
-#ruta[33]=(37, 54, 3, 20)
-#ruta[34]=(38, 55, 4, 21)
-#ruta[35]=(39, 56, 5, 22)
-#ruta[36]=(40, 57, 6, 23)
-#ruta[37]=(41, 58, 7, 24)
-#ruta[38]=(42, 59, 8, 25)
-#ruta[39]=(43, 60, 9, 26)
-#ruta[40]=(44, 61, 10, 27)
-#ruta[41]=(45, 62, 11, 28)
-#ruta[42]=(46, 63, 12, 29)
-#ruta[43]=(47, 64, 13, 30)
-#ruta[44]=(48, 65, 14, 31)
-#ruta[45]=(49, 66, 15,  32)
-#ruta[46]=(50, 67, 16 , 33)
-#ruta[47]=(51, 68, 17 , 34)
-#ruta[48]=(52, 1, 18 , 35)
-#ruta[49]=(53, 2, 19, 36)
-#ruta[50]=(54, 3, 20, 37)
-#ruta[51]=(55, 4, 21, 38)
-#ruta[52]=(56, 5, 22, 39)
-#ruta[53]=(57, 6, 23, 40)
-#ruta[54]=(58, 7, 24, 41)
-#ruta[55]=(59, 8, 25, 42)
-#ruta[56]=(60, 9, 26, 43)
-#ruta[57]=(61, 10, 27, 44)
-#ruta[58]=(62, 11, 28, 45)
-#ruta[59]=(63, 12, 29, 46)
-#ruta[60]=(64, 13, 30, 47)
-#ruta[61]=(65, 14, 31, 48)
-#ruta[62]=(66, 15, 32, 49)
-#ruta[63]=(67, 16, 33, 50)
-#ruta[64]=(68, 17, 34, 51)
-#ruta[65]=(69, 77, 85, 93)
-#ruta[66]=(70, 78, 86, 94)
-#ruta[67]=(71, 79, 87, 95)
-#ruta[68]=(72, 80, 88, 96)
-#ruta[69]=(73, 81, 89, 97)
-#ruta[70]=(74, 82, 90, 98)
-#ruta[71]=(75, 83, 91, 99)
-#ruta[72]=(76, 84, 92, 100)
 
 class Dado():    
     def __init__(self):
-        self.lastthrow=None
         self.fake=[]
         
     def tirar(self):
         if len(self.fake)>0:
-            self.lastthrow=self.fake[0]
+            resultado=self.fake[0]
             self.fake.remove(self.fake[0])
         else:
-            self.lastthrow= int(random.random()*6)+1
-#            self.lastthrow= int(random.random()*2)+5
-        return self.lastthrow
+            resultado= int(random.random()*6)+1
+        return resultado
         
     def qicon(self, numero):
             ico = QIcon()
@@ -282,11 +87,7 @@ class Dado():
             pix=QPixmap(":/glparchis/cube.png")
         return pix
                     
-    def habiaSalidoSeis(self):
-        """Se usa después de movimientos acumulados"""
-        if self.lastthrow==6:
-            return True
-        return False
+
 class Jugadores:
     def __init__(self):
         self.actual=None
@@ -313,6 +114,25 @@ class TiradaTurno:
     def __init__(self):
         self.jugador=None
         self.arr=[]
+        
+    def tresSeises(self):
+        """Funci´on que devuelve un booleano seg´un haya o no salido 3 seises"""
+        if len(self.arr)==3:
+            if self.arr[0].valor==6 and self.arr[1].valor==6 and self.arr[2].valor==6:
+                return True
+        return False
+        
+    def ultimoEsSeis(self):
+        if len (self.arr)>0:
+            if self.arr[len(self.arr)-1].valor==6:
+                return True
+        return False
+        
+    def ultimoValor(self):
+        if len(self.arr)>0:
+            return self.arr[len(self.arr)-1].valor
+        else:
+            return None
 
 class Jugador:
     def __init__(self, id,  color):
@@ -321,7 +141,7 @@ class Jugador:
         self.ia=False
         self.plays=True
         self.fichas=SetFichas()      
-        self.historicodado=[]
+#        self.historicodado=[]
         self.tiradaturno=TiradaTurno()#TiradaJugador()
         self.tiradahistorica=TiradaHistorica()
         self.LastFichaMovida=None #Se utiliza cuando se va a casa NOne si ninguna
@@ -330,13 +150,14 @@ class Jugador:
         self.dado=None #Enlace a objeto dado de mem
         self.logturno=[]#log de turno
         self.loghistorico=[]
+#        self.debetirardado=True#El jugador o tira dado o mueve ficha. controla este estado
 
     def __repr__(self):
         return "Jugador {0}".format(self.color.name)
 
     def log(self, l):
-        self.inittime=datetime.timedelta(days=0)#inittime actualmente esta en mem y no quiero pasrlo como parametro
-        l=str(datetime.datetime.now()-self.inittime)[2:-7]+ " " + l
+#        self.inittime=datetime.timedelta(days=0)#inittime actualmente esta en mem y no quiero pasrlo como parametro
+#        l=str(datetime.datetime.now()-self.inittime)[2:-7]+ " " + l
         self.logturno.append( l)
         self.loghistorico.append(l)
         
@@ -344,18 +165,15 @@ class Jugador:
         """Tira el dado lo almacena en tirada, tiradaturno e historico y devuelve el valor"""
         tirada=Tirada(self, self.dado.tirar())
         self.tiradaturno.arr.append(tirada)
-        self.tiradahistorica.arr.append(self.tiradaturno)
+        if self.tiradaturno not in self.tiradahistorica.arr:
+            self.tiradahistorica.arr.append(self.tiradaturno)
         return tirada.valor
-        
-    def UltimoDado(self):
-        """Devuelve el valor del dado de la ultima tirada del jugador"""
-        if len(self.tiradaturno)>0:
-            return self.tiradaturno[len(self.tiradaturno)-1].valor
+
         
     def DeboAbrirBarrera(self):
         """Devuelve si el jugador est´a obligado a abrir barrera"""
         for f in self.fichas.arr:
-            if f.casilla().TieneBarrera()==True:
+            if f.casilla().tieneBarrera()==True:
                 return True
         return False
 #        if valordado==6:
@@ -367,7 +185,7 @@ class Jugador:
 
     def HaGanado(self):
         for f in self.fichas.arr:
-            if f.EstaEnMeta()==False:
+            if f.estaEnMeta()==False:
                 return False
         return True
         
@@ -397,9 +215,9 @@ class SetFichas:
     def __init__(self):
         self.arr=[]
 
-    def AlgunaPuedeMover(self, mem):
+    def algunaPuedeMover(self, mem):
         for f in self.arr:
-            if f.PuedeMover(mem, mem.dado.lastthrow, True)[0]==True:
+            if f.puedeMover(mem)[0]==True:
                 return True
         return False
     
@@ -432,77 +250,63 @@ class Ficha(QGLWidget):
     def __repr__(self):
         return  "Ficha {0} del jugador {1}".format(self.id, self.jugador.id)
         
-    def PuedeMover(self, mem,  valordado,  algunapuedemover=False):
-        #INTENTAR QUITAR MEM
-        if algunapuedemover==True:
-            pre="APM. "
-        else:
-            pre=""        
-            
+    def puedeMover(self, mem):
         #Es ficha del jugador actual
         if  self.jugador!=mem.jugadoractual:             
-            mem.jugadoractual.logturno.append(self.trUtf8(pre+"No es del jugador actual"))
+            mem.jugadoractual.logturno.append(self.trUtf8("No es del jugador actual"))
             return (False, 0)
         
         #Calcula el movimiento
         if mem.jugadoractual.movimientos_acumulados!=None:
             movimiento=mem.jugadoractual.movimientos_acumulados
-        else:
-            movimiento=valordado
-            if self.EstaEnCasa() and valordado==5:
-                movimiento=1
-            if mem.jugadoractual.fichas.TodasFichasFueraDeCasa()==True and valordado==6:
-                movimiento=7
-
-
+        else:        
+            movimiento=self.calculaValorAMover(self.jugador.tiradaturno.ultimoValor())
+        
+        if movimiento==0:
+            return (False, 0)
 
         #Comprueba que no tenga obligación de abrir barrera
         if mem.jugadoractual.DeboAbrirBarrera()==True:
-            mem.jugadoractual.logturno.append(self.trUtf8(pre+"No se puede mover, debes abrir barrera"))
-            return (False, 0)
-#            
-#        if valordado==6:
-#            barreras=self.Barreras(mem.jugadoractual)
-#            if len(barreras)!=0 :
-#                if self.id_casilla() not in barreras:
-            
-            
+            mem.jugadoractual.logturno.append(self.trUtf8("No se puede mover, debes abrir barrera"))
+            return (False, 0)          
 
         #Esta en casa y puede mover
-        if self.EstaEnCasa()==True:
-            if valordado!=5: #Saco un 5
-                mem.jugadoractual.logturno.append(self.trUtf8(pre+"Necesita sacar un 5 para mover esta ficha"))
+        if self.estaEnCasa()==True:
+            if movimiento!=5: #Saco un 5
+                mem.jugadoractual.logturno.append(self.trUtf8("Necesita sacar un 5 para mover esta ficha"))
                 return (False, 0)
                         
         #se ha pasado la meta
         if self.posruta+movimiento>72:
-            mem.jugadoractual.logturno.append(self.trUtf8(pre+"Se ha pasado la meta"))
+            mem.jugadoractual.logturno.append(self.trUtf8("Se ha pasado la meta"))
             return (False, 0)
                 
                 
         #Rastrea todas las casillas de paso en busca de barrera.
         for i in range(self.posruta, self.posruta+movimiento+1): 
-            if self.ruta.arr[i].TieneBarrera()==True:
-                mem.jugadoractual.logturno.append(self.trUtf8(pre+"Hay una barrera"))
+            if self.ruta.arr[i].tieneBarrera()==True:
+                mem.jugadoractual.logturno.append(self.trUtf8("Hay una barrera"))
                 return (False, 0)
 
         #Comprueba si hay sitio libre
         if self.ruta.arr[self.posruta+movimiento].haySitioEnBuzon()==False:
-            mem.jugadoractual.logturno.append(self.trUtf8(pre+"No hay espacio en la casilla"))
+            mem.jugadoractual.logturno.append(self.trUtf8("No hay espacio en la casilla"))
             return (False, 0)
             
-        mem.jugadoractual.logturno.append(self.trUtf8(pre+"Puede mover %1").arg(str(movimiento)))
+        mem.jugadoractual.logturno.append(self.trUtf8("Puede mover %1").arg(str(movimiento)))
         return (True, movimiento)
         
     def mover(self, ruta, controllastficha=True,  startgame=False):
         casillaorigen=self.ruta.arr[self.posruta]
         casilladestino=self.ruta.arr[ruta]        
+#        print ("antes mover ",  self,  len(casillaorigen.buzon),  len(casilladestino.buzon))
         self.posruta=ruta
-        casilladestino.buzon.append(self)
         if controllastficha==True:
             self.jugador.LastFichaMovida=self
         if startgame==False:
             casillaorigen.buzon.remove(self)
+        casilladestino.buzon.append(self)
+#        print ("despu´es mover ",  self, len(casillaorigen.buzon),  len(casilladestino.buzon))
 
 
             
@@ -534,9 +338,9 @@ class Ficha(QGLWidget):
             
     def mete(self):
         """r Como ya se ha movido, mete si puede y devuelve True, en caso contrario False"""      
-        if self.EstaEnMeta():
-            self.mem.jugadoractual.movimientos_acumulados=10
-            self.mem.jugadoractual.log(self.trUtf8("He metido la ficha %1").arg(self.name))
+        if self.estaEnMeta():
+            self.jugador.movimientos_acumulados=10
+            self.jugador.log(self.trUtf8("He metido la ficha %1").arg(self.name))
             return True
         return False
 
@@ -545,37 +349,43 @@ class Ficha(QGLWidget):
         return self.ruta.arr[self.posruta]
 
         
-    def EstaEnCasa(self):
+    def estaEnCasa(self):
         if self.ruta==0:
             return True
         return False
         
-    def CalculaValorAMover(self, dado):
+    def calculaValorAMover(self, valordado):
         """Calcula el valor a mover la ficha teniendo en cuenta su posicion en la ruta, si han salido todas las fichas y el valor del dado"""
-        return
-                
-    def EstaEnMeta(self):
+        if self.estaEnCasa() and valordado==5:
+            return 1
+        else:
+            return 0
+        if self.jugador.fichas.TodasFichasFueraDeCasa()==True and valordado==6:
+            return 7
+        return valordado
+
+    def estaEnMeta(self):
         if self.posruta==72:
             return True
         return False
 
-    def fichas_name2id(self, name):
-        if name=="yellow1": return 0
-        if name=="yellow2": return 1
-        if name=="yellow3": return 2
-        if name=="yellow4": return 3
-        if name=="blue1": return 4
-        if name=="blue2": return 5
-        if name=="blue3": return 6
-        if name=="blue4": return 7
-        if name=="red1": return 8
-        if name=="red2": return 9
-        if name=="red3": return 10
-        if name=="red4": return 11
-        if name=="green1": return 12
-        if name=="green2": return 13
-        if name=="green3": return 14
-        if name=="green4": return 15
+#    def fichas_name2id(self, name):
+#        if name=="yellow1": return 0
+#        if name=="yellow2": return 1
+#        if name=="yellow3": return 2
+#        if name=="yellow4": return 3
+#        if name=="blue1": return 4
+#        if name=="blue2": return 5
+#        if name=="blue3": return 6
+#        if name=="blue4": return 7
+#        if name=="red1": return 8
+#        if name=="red2": return 9
+#        if name=="red3": return 10
+#        if name=="red4": return 11
+#        if name=="green1": return 12
+#        if name=="green2": return 13
+#        if name=="green3": return 14
+#        if name=="green4": return 15
     
     def dibujar(self, posicionBuzon):
         GL.glInitNames();
@@ -584,6 +394,7 @@ class Ficha(QGLWidget):
         if posicionBuzon==None:#Para frmAcercade
             p=(0, 0, 0)
         else:
+#            print ("En dibujar ficha. posicion ruta {0}. posicion buzon. posiciones de fichas {2}".format(self.posruta,  posicionBuzon, self.ruta.arr[self.posruta].posfichas))
             p=self.ruta.arr[self.posruta].posfichas[posicionBuzon]
         GL.glTranslated(p[0], p[1], p[2])
         GL.glRotated(180, 1, 0, 0)# da la vuelta a la cara
@@ -853,7 +664,7 @@ class Casilla(QGLWidget):
                 f.dibujar(i)
 
 
-    def TieneBarrera(self):
+    def tieneBarrera(self):
         """Devuelve un booleano, las fichas de la barrera se pueden sacar del buz´on"""
         if self.tipo not in (0, 1):#Casilla inicio y final
             if self.maxfichas==2:
@@ -874,7 +685,7 @@ class Casilla(QGLWidget):
 #        resultado =[]
 #        for f in jugador.fichas:
 #            casilla=self.dic_casillas[jugador.fichas[f].id_casilla()]
-#            if casilla.TieneBarrera()==True:
+#            if casilla.tieneBarrera()==True:
 #                resultado.append(casilla.id)
 #        return resultado
 
@@ -1045,30 +856,30 @@ class Mem4:
         config.set("blue",  'name', self.jugadores('blue').name)
         config.set("blue",  'plays', int(self.jugadores('blue').plays))
         if self.jugadores('blue').plays==True:        
-            config.set("blue",  'rutaficha1', self.jugadores('blue').fichas("blue1").ruta)
-            config.set("blue",  'rutaficha2',  self.jugadores('blue').fichas("blue2").ruta)
-            config.set("blue",  'rutaficha3',  self.jugadores('blue').fichas("blue3").ruta)
-            config.set("blue",  'rutaficha4',  self.jugadores('blue').fichas("blue4").ruta) 
+            config.set("blue",  'rutaficha1', self.jugadores('blue').fichas.arr[0].posruta)
+            config.set("blue",  'rutaficha2',  self.jugadores('blue').fichas.arr[1].posruta)
+            config.set("blue",  'rutaficha3',  self.jugadores('blue').fichas.arr[2].posruta)
+            config.set("blue",  'rutaficha4',  self.jugadores('blue').fichas.arr[3].posruta) 
         config.add_section("red")
         config.set("red",  'ia', int(self.jugadores('red').ia))
         config.set("red",  'name', self.jugadores('red').name)
         config.set("red",  'plays', int(self.jugadores('red').plays))
         if self.jugadores('red').plays==True:        
-            config.set("red",  'rutaficha1', self.jugadores('red').fichas("red1").ruta)
-            config.set("red",  'rutaficha2',  self.jugadores('red').fichas("red2").ruta)
-            config.set("red",  'rutaficha3',  self.jugadores('red').fichas("red3").ruta)
-            config.set("red",  'rutaficha4',  self.jugadores('red').fichas("red4").ruta)    
+            config.set("red",  'rutaficha1', self.jugadores('red').fichas.arr[0].posruta)
+            config.set("red",  'rutaficha2',  self.jugadores('red').fichas.arr[1].posruta)
+            config.set("red",  'rutaficha3',  self.jugadores('red').fichas.arr[2].posruta)
+            config.set("red",  'rutaficha4',  self.jugadores('red').fichas.arr[3].posruta)    
         config.add_section("green")
         config.set("green",  'ia', int(self.jugadores('green').ia))
         config.set("green",  'name', self.jugadores('green').name)
         config.set("green",  'plays', int(self.jugadores('green').plays))        
         if self.jugadores('green').plays==True:
-            config.set("green",  'rutaficha1', self.jugadores('green').fichas("green1").ruta)
-            config.set("green",  'rutaficha2',  self.jugadores('green').fichas("green2").ruta)
-            config.set("green",  'rutaficha3',  self.jugadores('green').fichas("green3").ruta)
-            config.set("green",  'rutaficha4',  self.jugadores('green').fichas("green4").ruta)    
+            config.set("green",  'rutaficha1', self.jugadores('green').fichas.arr[0].posruta)
+            config.set("green",  'rutaficha2',  self.jugadores('green').fichas.arr[1].posruta)
+            config.set("green",  'rutaficha3',  self.jugadores('green').fichas.arr[2].posruta)
+            config.set("green",  'rutaficha4',  self.jugadores('green').fichas.arr[3].posruta)    
         config.add_section("game")
-        config.set("game", 'playerstarts',self.jugadoractual.color)
+        config.set("game", 'playerstarts',self.jugadoractual.color.name)
         config.set("game", 'fakedice','')
         with open(filename, 'w') as configfile:
             config.write(configfile)            
@@ -1353,13 +1164,7 @@ class Mem4:
         else:
             return self.dic_casillas[str(name)]
             
-    def load(self, filename):
-        self.rotX=0
-        self.lastPos = QPoint()
-        self.selFicha=None
-        self.selCasilla=None
-        
-        
+    def load(self, filename):       
         config = ConfigParser.ConfigParser()
         config.read(filename)
 
@@ -1385,7 +1190,7 @@ class Mem4:
 
         for j in self.jugadores():
             if j.plays==True:
-                j.fichas.arr[0].mover(  config.getint(j.id, "rutaficha1"), False,  True)
+                j.fichas.arr[0].mover(config.getint(j.id, "rutaficha1"), False,  True)
                 j.fichas.arr[0].mover(config.getint(j.id, "rutaficha2"), False,  True)
                 j.fichas.arr[0].mover(config.getint(j.id, "rutaficha3"), False,  True)
                 j.fichas.arr[0].mover(config.getint(j.id, "rutaficha4"), False,  True)
@@ -1395,7 +1200,7 @@ class Mem4:
             for i in  fake.split(";")  :
                 self.dado.fake.append(int(i))
         self.jugadoractual=self.jugadores(config.get("game", 'playerstarts'))    
-        self.jugadoractual.historicodado=[]
+#        self.jugadoractual.historicodado=[]
         self.jugadoractual.movimientos_acumulados=None#Comidas ymetidas
         self.jugadoractual.LastFichaMovida=None #Se utiliza cuando se va a casa
 

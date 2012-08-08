@@ -29,7 +29,9 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
             label=self.lbl2
         elif numlbl==3:
             label=self.lbl3
-        label.setPixmap(self.jugador.dado.qpixmap(self.jugador.tiradaturno.arr[numlbl-1].valor))
+        else:
+            return
+        label.setPixmap(self.jugador.dado.qpixmap(self.jugador.tiradaturno.ultimoValor()))
 
     def setActivated(self, bool):
         self.grp.setEnabled(bool)
@@ -37,8 +39,11 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
             self.jugador.logturno=[]
 
     def on_chk_stateChanged(self, state):
+        refresh()
+        
+    def refresh(self):
         self.lst.clear()
-        if libglparchis.c2b(state)==True:
+        if libglparchis.c2b(self.chk.checkState())==True:
             self.lst.addItems(self.jugador.loghistorico)  
             self.lst.setCurrentRow(len(self.jugador.loghistorico)-1)
         else:

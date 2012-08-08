@@ -3,13 +3,48 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="530"/>
+        <location filename="libglparchis.py" line="333"/>
         <source>He comido la ficha %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="539"/>
+        <location filename="libglparchis.py" line="342"/>
         <source>He metido la ficha %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="255"/>
+        <source>No es del jugador actual</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="269"/>
+        <source>No se puede mover, debes abrir barrera</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="275"/>
+        <source>Necesita sacar un 5 para mover esta ficha</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="280"/>
+        <source>Se ha pasado la meta</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="287"/>
+        <source>Hay una barrera</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="292"/>
+        <source>No hay espacio en la casilla</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="295"/>
+        <source>Puede mover %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -134,12 +169,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.py" line="137"/>
+        <location filename="ui/frmInitGame.py" line="127"/>
         <source>El jugador %1 empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmInitGame.py" line="140"/>
+        <location filename="ui/frmInitGame.py" line="130"/>
         <source>%1 deben tirar hasta que se aclare quién empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -149,7 +184,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.py" line="138"/>
+        <location filename="ui/frmInitGame.py" line="128"/>
         <source>Empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -157,62 +192,62 @@
 <context>
     <name>frmMain</name>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="107"/>
+        <location filename="ui/Ui_frmMain.py" line="106"/>
         <source>A&amp;yuda</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="108"/>
+        <location filename="ui/Ui_frmMain.py" line="107"/>
         <source>J&amp;ugar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="109"/>
+        <location filename="ui/Ui_frmMain.py" line="108"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="110"/>
+        <location filename="ui/Ui_frmMain.py" line="109"/>
         <source>S&amp;alir</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="111"/>
+        <location filename="ui/Ui_frmMain.py" line="110"/>
         <source>Acerca de</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="112"/>
+        <location filename="ui/Ui_frmMain.py" line="111"/>
         <source>Tirar dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="113"/>
+        <location filename="ui/Ui_frmMain.py" line="112"/>
         <source>&amp;Recuperar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="114"/>
+        <location filename="ui/Ui_frmMain.py" line="113"/>
         <source>&amp;Guardar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="115"/>
+        <location filename="ui/Ui_frmMain.py" line="114"/>
         <source>&amp;Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="116"/>
+        <location filename="ui/Ui_frmMain.py" line="115"/>
         <source>Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="117"/>
+        <location filename="ui/Ui_frmMain.py" line="116"/>
         <source>Preferencias</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmMain.py" line="106"/>
+        <location filename="ui/Ui_frmMain.py" line="105"/>
         <source>glParchis 2010-2012 ©</source>
         <translation type="unfinished"></translation>
     </message>
