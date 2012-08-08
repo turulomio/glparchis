@@ -72,7 +72,6 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="separator"/>
    <addaction name="actionPartidaNueva"/>
    <addaction name="actionRecuperarPartida"/>
    <addaction name="actionGuardarPartida"/>

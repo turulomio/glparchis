@@ -101,22 +101,12 @@ class frmInitGame(QWizard, Ui_frmInitGame):
                         j.fichas.arr[0].mover(0, False,  True)
                         j.fichas.arr[0].mover(0, False,  True)
                 self.mem.jugadoractual=self.mem.jugadores(self.playerstarts)    
-                self.mem.jugadoractual.historicodado=[]
                 self.mem.jugadoractual.movimientos_acumulados=None#Comidas ymetidas
                 self.mem.jugadoractual.LastFichaMovida=None #Se utiliza cuando se va a casa
                 print (self.mem.jugadoractual)
                 return True
         
     def chequea(self):
-#        #Si hay algun AI con cmdEnabled (Por segunda tirada) lo vuelve a tirar
-#        if self.chkYellow.checkState()==Qt.Checked and self.cmdYellow.isEnabled():#IA
-#            self.on_cmdYellow_released()
-#        if self.chkBlue.checkState()==Qt.Checked and self.cmdBlue.isEnabled():#IA
-#            self.on_cmdBlue_released()
-#        if self.chkRed.checkState()==Qt.Checked and self.cmdRed.isEnabled():#IA
-#            self.on_cmdRed_released()
-#        if self.chkGreen.checkState()==Qt.Checked and self.cmdGreen.isEnabled():#IA
-#            self.on_cmdGreen_released()        
             
         #Chequea si han lanzado todos
         if self.cmdYellow.isEnabled()==False and self.cmdBlue.isEnabled()==False and self.cmdRed.isEnabled()==False and self.cmdGreen.isEnabled()==False:
