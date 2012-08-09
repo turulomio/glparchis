@@ -3,8 +3,6 @@ import ConfigParser
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.QtGui import *
-from frmShowCasilla import *
-from frmShowFicha import *
 from wdgUserPanel import *
 from wdgGame import *
 from qtablestatistics import *
@@ -118,7 +116,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                     self.on_JugadorDebeTirar()
                 else:            
                     self.cambiarJugador()
-        self.panel().refresh()
+        self.panel().refreshLog()
 
     def after_ficha_click(self):
         puede=self.mem.selFicha.puedeMover(self.mem)
@@ -159,7 +157,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         else:
             self.cambiarJugador()
 
-        self.panel().refresh()
+        self.panel().refreshLog()
     
 
     def cambiarJugador(self):          
@@ -186,7 +184,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.mem.jugadoractual=self.mem.jugadores("green")
             elif self.mem.jugadoractual.color.name=="green" :
                 self.mem.jugadoractual=self.mem.jugadores("yellow")
-            if self.mem.jugadoractual.plays:#Comprueba si el actual plays
+            if self.mem.jugadoractual.plays:#Comprueba si el actual plays y sale del bucle
                 break
         
         self.mem.jugadoractual.tiradaturno=TiradaTurno()#Se crea otro objeto porque as´i el anterior queda vinculada< a TiradaHistorica.

@@ -4,6 +4,8 @@ from PyQt4.QtOpenGL import *
 from PyQt4.QtGui import *
 from OpenGL import GL,  GLU
 from libglparchis import *
+from frmShowCasilla import *
+from frmShowFicha import *
 
 
 class wdgOGL(QGLWidget):
@@ -102,8 +104,9 @@ class wdgOGL(QGLWidget):
             """nameStack tiene la estructura minDepth, maxDepth, names"""
             objetos=[]
             for minDepth, maxDepth, names in nameStack:
+                print (names)
                 if len(names)==1:
-                   objetos.append(names[0])
+                    objetos.append(names[0])
             
             if len(objetos)==1:
                 self.mem.selFicha=None
@@ -141,10 +144,10 @@ class wdgOGL(QGLWidget):
     def showCasillaFicha(self, selCasilla, selFicha):
         """selCasilla y selFicha son objetos"""
         a=frmShowCasilla(self,  Qt.Popup,  selCasilla)
-        a. move(self.ogl.mapToGlobal(QPoint(10, 10))        )
+        a. move(self.mapToGlobal(QPoint(10, 10))        )
         a.show()
         if selFicha!=None:
             a=frmShowFicha(self, Qt.Popup,  selFicha)
-            a. move(self.ogl.mapToGlobal(QPoint(500, 10))        )
+            a. move(self.mapToGlobal(QPoint(500, 10))        )
             a.show()
 
