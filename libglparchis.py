@@ -135,22 +135,19 @@ class TiradaTurno:
             return None
 
 class Jugador:
-    def __init__(self, id,  color):
+    def __init__(self,  color):
         self.name=None
         self.color=color
         self.ia=False
         self.plays=True
-        self.fichas=SetFichas()      
-#        self.historicodado=[]
+        self.fichas=SetFichas()     
         self.tiradaturno=TiradaTurno()#TiradaJugador()
         self.tiradahistorica=TiradaHistorica()
         self.LastFichaMovida=None #Se utiliza cuando se va a casa NOne si ninguna
         self.movimientos_acumulados=None#Comidas ymetidas, puede ser 10, 20 o None Cuando se cuenta se borra a None
-        self.id=id
         self.dado=None #Enlace a objeto dado de mem
         self.logturno=[]#log de turno
         self.loghistorico=[]
-#        self.debetirardado=True#El jugador o tira dado o mueve ficha. controla este estado
 
     def __repr__(self):
         return "Jugador {0}".format(self.color.name)
@@ -248,7 +245,7 @@ class Ficha(QGLWidget):
 #        self.id=fichas_name2id(name)
         
     def __repr__(self):
-        return  "Ficha {0} del jugador {1}".format(self.id, self.jugador.id)
+        return  "Ficha {0} del jugador {1}".format(self.id, self.jugador.color.name)
         
     def puedeMover(self, mem):
         #Es ficha del jugador actual
@@ -323,9 +320,9 @@ class Ficha(QGLWidget):
         if len(casilladestino.buzon)==2:
             ficha1=casilladestino.buzon[0]
             ficha2=casilladestino.buzon[1]
-            if ficha1.jugador!=self.mem.jugadoractual.id:
+            if ficha1.jugador!=self.mem.jugadoractual:
                 fichaacomer=ficha1
-            elif ficha2.jugador!=self.mem.jugadoractual.id:
+            elif ficha2.jugador!=self.mem.jugadoractual:
                 fichaacomer=ficha2
             else:
                 return False
@@ -698,6 +695,7 @@ class Mem4:
         self.dic_rutas={}
         self.dado=Dado()
         self.jugadoractual=None
+        self.selFicha=None
         self.inittime=None#Tiempo inicio partida
         
         self.generar_colores()
@@ -813,7 +811,7 @@ class Mem4:
 
     def generar_jugadores(self):
         for c in self.colores():
-            self.dic_jugadores[str(c.name)]=Jugador(c.name, c)
+            self.dic_jugadores[str(c.name)]=Jugador(c)
             self.dic_jugadores[str(c.name)].dado=self.dado
             
     def jugadores(self, name=None):
@@ -1190,10 +1188,10 @@ class Mem4:
 
         for j in self.jugadores():
             if j.plays==True:
-                j.fichas.arr[0].mover(config.getint(j.id, "rutaficha1"), False,  True)
-                j.fichas.arr[0].mover(config.getint(j.id, "rutaficha2"), False,  True)
-                j.fichas.arr[0].mover(config.getint(j.id, "rutaficha3"), False,  True)
-                j.fichas.arr[0].mover(config.getint(j.id, "rutaficha4"), False,  True)
+                j.fichas.arr[0].mover(config.getint(j.color.name, "rutaficha1"), False,  True)
+                j.fichas.arr[0].mover(config.getint(j.color.name, "rutaficha2"), False,  True)
+                j.fichas.arr[0].mover(config.getint(j.color.name, "rutaficha3"), False,  True)
+                j.fichas.arr[0].mover(config.getint(j.color.name, "rutaficha4"), False,  True)
 
         fake=config.get("game", 'fakedice')
         if fake!="":
