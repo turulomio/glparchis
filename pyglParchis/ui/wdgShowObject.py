@@ -3,7 +3,7 @@
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.QtGui import *
-import math
+
 from OpenGL import GL
 from wdgGame import *
 
@@ -18,16 +18,15 @@ class wdgShowObject(QGLWidget):
 
         self.lastPos = QPoint()
         
-        self.trolltechGreen = QColor.fromCmykF(0.40, 0, 1.0, 0.0)
-        self.trolltechPurple = QColor.fromCmykF(0.39, 0.39, 0.0, 0.0)
+#        self.trolltechGreen = QColor.fromCmykF(0.40, 0, 1.0, 0.0)
+
         
-        #Carga el primer objeto
-        self.cas= Casilla(1)
-        self.ficha=Ficha("red1")
+        #Carga el primer objeto    
+#        def __init__(self, id, maxfichas, color,  position, rotate, rampallegada, tipo, seguro, posfichas):
+        self.cas= Casilla(1, 2, Color(255, 0, 0) , (-3.5, -1.5, 0, 0), 0, False, 3, False, (0, 0, 0))
+#            def __init__(self, id, number,  color, jugador, ruta):
+        self.ficha=Ficha(0, 1, Color(0, 255, 255), Jugador(Color(0, 255, 255)), None)
         self.tablero=Tablero()
-        self.cas.position=(-3.5, -1.5, 0, 0)
-        self.cas.tipo=3
-        self.cas.color=QColor(255, 255, 255) 
 
     
     def changeOrtho(self):
@@ -76,8 +75,8 @@ class wdgShowObject(QGLWidget):
             self.emit(SIGNAL("zRotationChanged(int)"), angle)
             self.updateGL()
 
-    def initializeGL(self):
-        self.qglClearColor(self.trolltechPurple.dark())
+    def initializeGL(self): 
+        self.qglClearColor(QColor.fromCmykF(0.39, 0.39, 0.0, 0.0).dark())
         GL.glShadeModel(GL.GL_FLAT)
         GL.glEnable(GL.GL_DEPTH_TEST)
         GL.glEnable(GL.GL_CULL_FACE)
@@ -127,36 +126,36 @@ class wdgShowObject(QGLWidget):
             self.objeto=self.objeto+1
             if self.objeto>=7:
                 self.objeto=0
-            print "Visualizando el objeto: " + str(self.objeto)
+            print ("Visualizando el objeto: " + str(self.objeto))
 
         if self.objeto==0:#normal
             self.cas.position=(-3.5, -1.5, 0, 0)
             self.cas.tipo=3
-            self.cas.color=QColor(255, 255, 255) 
+            self.cas.color=Color(0, 255, 255) 
             self.ortho=(-4.5, +4.5, +4.5, -4.5, 4.0, 15.0)
             self.changeOrtho()
         elif self.objeto==1:#inicio
             self.cas.position=(-10.5, -10.5, 0, 0)
             self.cas.tipo=0
-            self.cas.color=QColor(0, 255, 0) 
+            self.cas.color=Color(0, 255, 0) 
             self.ortho=(-15, +15, +15, -15, -10, 50.0)
             self.changeOrtho()        
         elif self.objeto==2:#oblicuoi
             self.cas.position=(-3.5, -1.5, 0, 0)
             self.cas.tipo=2
-            self.cas.color=QColor(255, 0, 0) 
+            self.cas.color=Color(255, 0, 0) 
             self.ortho=(-4.5, +4.5, +4.5, -4.5, 4.0, 15.0)
             self.changeOrtho()     
         elif self.objeto==3:#oblicuod
             self.cas.position=(-3.5, -1.5, 0, 0)
             self.cas.tipo=4
-            self.cas.color=QColor(0, 0, 255) 
+            self.cas.color=Color(0, 0, 255) 
             self.ortho=(-4.5, +4.5, +4.5, -4.5, 4.0, 15.0)
             self.changeOrtho()
         elif self.objeto==4:#final
             self.cas.position=(-7.5, -3.75, 0, 0)
             self.cas.tipo=1
-            self.cas.color=QColor(255, 255, 0) 
+            self.cas.color=Color(255, 255, 0) 
             self.ortho=(-8.5, +8.5, +8.5, -8.5, -10.0, 25.0)
             self.changeOrtho()
         elif self.objeto==5:#ficha
@@ -167,6 +166,7 @@ class wdgShowObject(QGLWidget):
             self.tablero.position=(-32.5, -32.5, 0, 0)
             self.ortho=(-53, +53, +53, -53, -60.0, 80.0)
             self.changeOrtho()
+        self.paintGL()
 
 
     def mousePressEvent(self, event):

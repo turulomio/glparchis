@@ -78,7 +78,8 @@ class wdgGame(QWidget, Ui_wdgGame):
                 if f.puedeMover(self.mem):
                     self.mem.selFicha=f
                     self.after_ficha_click()
-                    return
+                else:
+                    self.cambiarJugador()
         else:
             self.mem.jugadoractual.log(self.trUtf8("Mueva una ficha"))
 
@@ -112,7 +113,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         else: # si no han salido 3 seises
             if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==True:
                 self.on_JugadorDebeMover()
-            else:#alguna no puede mover.
+            else:#ninguna puede mover.
                 if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
                     self.on_JugadorDebeTirar()
                 else:            
@@ -177,19 +178,18 @@ class wdgGame(QWidget, Ui_wdgGame):
 #        if self.mem.jugadoractual.ia==True:
 #            time.sleep(0.2)
         while True:
-            if self.mem.jugadoractual.color=="yellow":
+            if self.mem.jugadoractual.color.name=="yellow":
                 self.mem.jugadoractual=self.mem.jugadores("blue")
-            elif self.mem.jugadoractual.color=="blue" :
+            elif self.mem.jugadoractual.color.name=="blue" :
                 self.mem.jugadoractual=self.mem.jugadores("red")
-            elif self.mem.jugadoractual.color=="red" :
+            elif self.mem.jugadoractual.color.name=="red" :
                 self.mem.jugadoractual=self.mem.jugadores("green")
-            elif self.mem.jugadoractual.color=="green" :
+            elif self.mem.jugadoractual.color.name=="green" :
                 self.mem.jugadoractual=self.mem.jugadores("yellow")
             if self.mem.jugadoractual.plays:#Comprueba si el actual plays
                 break
         
         self.mem.jugadoractual.tiradaturno=TiradaTurno()#Se crea otro objeto porque as´i el anterior queda vinculada< a TiradaHistorica.
-#        self.mem.jugadoractual.historicodado=[]
         self.mem.jugadoractual.movimientos_acumulados=None
         self.mem.jugadoractual.LastFichaMovida=None
         

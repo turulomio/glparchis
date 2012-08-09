@@ -13,18 +13,13 @@ class wdgOGL(QGLWidget):
         QGLWidget.__init__(self, parent)
         self.tablero=Tablero()
         self.rotX=0
-        self.lastPos = QPoint()
 
-        self.trolltechGreen = QColor.fromCmykF(0.40, 0.0, 1.0, 0.0)
-        self.trolltechPurple = QColor.fromCmykF(0.39, 0.39, 0.0, 0.0)
-        
     def assign_mem(self, mem):
         self.mem=mem
 
-        
     def initializeGL(self):
         print ("initializeGL")
-        self.qglClearColor(self.trolltechPurple.dark())
+        self.qglClearColor(Color(0, 0, 0).qcolor())
         GL.glShadeModel(GL.GL_FLAT)
         GL.glEnable(GL.GL_DEPTH_TEST)
         GL.glEnable(GL.GL_CULL_FACE)
