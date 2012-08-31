@@ -3,47 +3,47 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="337"/>
+        <location filename="libglparchis.py" line="365"/>
         <source>He comido la ficha %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="346"/>
+        <location filename="libglparchis.py" line="374"/>
         <source>He metido la ficha %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="259"/>
+        <location filename="libglparchis.py" line="287"/>
         <source>No es del jugador actual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="273"/>
+        <location filename="libglparchis.py" line="301"/>
         <source>No se puede mover, debes abrir barrera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="279"/>
+        <location filename="libglparchis.py" line="307"/>
         <source>Necesita sacar un 5 para mover esta ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="284"/>
+        <location filename="libglparchis.py" line="312"/>
         <source>Se ha pasado la meta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="291"/>
+        <location filename="libglparchis.py" line="319"/>
         <source>Hay una barrera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="296"/>
+        <location filename="libglparchis.py" line="324"/>
         <source>No hay espacio en la casilla</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="299"/>
+        <location filename="libglparchis.py" line="327"/>
         <source>Puede mover %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -324,92 +324,92 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="307"/>
+        <location filename="ui/Ui_wdgGame.py" line="306"/>
         <source>Juego</source>
         <translation type="unfinished">Game</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="306"/>
+        <location filename="ui/Ui_wdgGame.py" line="419"/>
         <source>Pulsa para tirar el dado</source>
         <translation type="unfinished">Click to throw dice</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_wdgGame.py" line="419"/>
+        <location filename="ui/Ui_wdgGame.py" line="418"/>
         <source>Estadísticas</source>
         <translation type="unfinished">Statistics</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_wdgGame.py" line="309"/>
+        <location filename="ui/Ui_wdgGame.py" line="308"/>
         <source>Número de tiradas</source>
         <translation type="unfinished">Number of throws</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="311"/>
+        <location filename="ui/Ui_wdgGame.py" line="310"/>
         <source>Dado saca 1</source>
         <translation type="unfinished">Dice gets 1</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="313"/>
+        <location filename="ui/Ui_wdgGame.py" line="312"/>
         <source>Dado saca 2</source>
         <translation type="unfinished">Dice gets 2</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="315"/>
+        <location filename="ui/Ui_wdgGame.py" line="314"/>
         <source>Dado saca 3</source>
         <translation type="unfinished">Dice gets 3</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="317"/>
+        <location filename="ui/Ui_wdgGame.py" line="316"/>
         <source>Dado saca 4</source>
         <translation type="unfinished">Dice gets 4</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="319"/>
+        <location filename="ui/Ui_wdgGame.py" line="318"/>
         <source>Dado saca 5</source>
         <translation type="unfinished">Dice gets 5</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="321"/>
+        <location filename="ui/Ui_wdgGame.py" line="320"/>
         <source>Dado saca 6</source>
         <translation type="unfinished">Dice gets 6</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="323"/>
+        <location filename="ui/Ui_wdgGame.py" line="322"/>
         <source>Fichas comidas por mi</source>
         <translation type="unfinished">Pieces eaten by me</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="325"/>
+        <location filename="ui/Ui_wdgGame.py" line="324"/>
         <source>Fichas comidas por otro</source>
         <translation type="unfinished">Pieces eaten by other</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="327"/>
+        <location filename="ui/Ui_wdgGame.py" line="326"/>
         <source>3 seises seguidos</source>
         <translation type="unfinished">3 sixes in a row</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="329"/>
+        <location filename="ui/Ui_wdgGame.py" line="328"/>
         <source>Amarillo</source>
         <translation type="unfinished">Yellow</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="331"/>
+        <location filename="ui/Ui_wdgGame.py" line="330"/>
         <source>Azul</source>
         <translation type="unfinished">Blue</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="333"/>
+        <location filename="ui/Ui_wdgGame.py" line="332"/>
         <source>Rojo</source>
         <translation type="unfinished">Red</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="335"/>
+        <location filename="ui/Ui_wdgGame.py" line="334"/>
         <source>Verde</source>
         <translation type="unfinished">Green</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="417"/>
+        <location filename="ui/Ui_wdgGame.py" line="416"/>
         <source>0</source>
         <translation type="unfinished">0</translation>
     </message>

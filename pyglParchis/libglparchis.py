@@ -5,16 +5,16 @@ import os,  random,   ConfigParser,  datetime
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
-
-def colorid(color):
-    if color=="yellow":
-        return 0
-    elif color=="blue":
-        return 1
-    elif color=="red":
-        return 2
-    elif color=="green":
-        return 3
+#
+#def colorid(color):
+#    if color=="yellow":
+#        return 0
+#    elif color=="blue":
+#        return 1
+#    elif color=="red":
+#        return 2
+#    elif color=="green":
+#        return 3
 
         
 def q2s(q):
@@ -104,6 +104,30 @@ class TiradaHistorica:
     Se graba cuando se tira ya que es un objeto TiradaTurno que se vincula en el array de TiradaHistorica"""
     def __init__(self):
         self.arr=[]
+    
+    def numThrows(self):
+        """Gets the number of total and historic player throws"""
+        resultado=0
+        for tt in self.arr:
+            resultado=resultado+tt.numThrows()
+        return resultado
+        
+    def numTimesDiceGetNumber(self, number):
+        """Gets the number of times that the dice gets the number"""
+        resultado=0
+        for tt in self.arr:
+            for t in tt.arr:
+                if t.valor==number:
+                    resultado=resultado+1
+        return resultado
+        
+    def numThreeSixes(self):
+        """Gets the number of times that the dice get three sixes"""
+        resultado=0
+        for tt in self.arr:
+            if tt.tresSeises()==True:
+                resultado=resultado+1
+        return resultado
         
 class Tirada:
     """Lanzamiento individual de un dado"""
@@ -137,6 +161,10 @@ class TiradaTurno:
             return self.arr[len(self.arr)-1].valor
         else:
             return None
+            
+    def numThrows(self):
+        """Gets the number of throws in the turn"""
+        return len (self.arr)
 
 class Jugador:
     def __init__(self,  color):
