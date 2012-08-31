@@ -94,6 +94,7 @@ class wdgGame(QWidget, Ui_wdgGame):
     @QtCore.pyqtSlot()      
     def on_cmdTirarDado_clicked(self):  
         print("dado clickeaddo")
+        self.mem.jugadoractual.tirarDado()
         self.cmdTirarDado.setEnabled(False)
         self.panel().setLabelDado()
         
@@ -162,6 +163,7 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     def cambiarJugador(self):          
         print ("{0} acaba el turno".format(self.mem.jugadoractual))
+        delay(1)
         #Comprueba si ha ganado
         if self.mem.jugadoractual.HaGanado()==True:
             m=QMessageBox()
