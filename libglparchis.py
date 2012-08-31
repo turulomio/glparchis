@@ -387,7 +387,8 @@ class Ficha(QGLWidget):
     def dibujar(self, posicionBuzon):
         GL.glInitNames();
         GL.glPushMatrix()
-        GL.glPushName(Name.ficha[self.id]);
+        GL.glPushName(self.id);
+        print (self.id)
         if posicionBuzon==None:#Para frmAcercade
             p=(0, 0, 0)
         else:
@@ -659,6 +660,7 @@ class Casilla(QGLWidget):
         if len(self.buzon)>0:
             for i, f in enumerate(self.buzon):       
                 f.dibujar(i)
+                print (i, f)
 
 
     def tieneBarrera(self):
@@ -829,8 +831,7 @@ class Mem4:
                 self.dic_fichas[str(id)]=Ficha(id, i, c, self.jugadores(c.name), self.rutas(c.name))
                 self.jugadores(c.name).fichas.arr.append(self.dic_fichas[str(id)])#Rellena el SetFichas del jugador
                 id=id+1
-            
-            
+
     def fichas(self, name=None):
         if name==None:
             return dic2list(self.dic_fichas)
@@ -1189,9 +1190,9 @@ class Mem4:
         for j in self.jugadores():
             if j.plays==True:
                 j.fichas.arr[0].mover(config.getint(j.color.name, "rutaficha1"), False,  True)
-                j.fichas.arr[0].mover(config.getint(j.color.name, "rutaficha2"), False,  True)
-                j.fichas.arr[0].mover(config.getint(j.color.name, "rutaficha3"), False,  True)
-                j.fichas.arr[0].mover(config.getint(j.color.name, "rutaficha4"), False,  True)
+                j.fichas.arr[1].mover(config.getint(j.color.name, "rutaficha2"), False,  True)
+                j.fichas.arr[2].mover(config.getint(j.color.name, "rutaficha3"), False,  True)
+                j.fichas.arr[3].mover(config.getint(j.color.name, "rutaficha4"), False,  True)
 
         fake=config.get("game", 'fakedice')
         if fake!="":
