@@ -39,15 +39,16 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
             self.jugador.logturno=[]
         self.show()
 
-    def on_chk_stateChanged(self, state):
-        self.refreshLog()
-        
-    def refreshLog(self):
+    def on_chk_stateChanged(self, state):        
         self.lst.clear()
-        if libglparchis.c2b(self.chk.checkState())==True:
+        if state==Qt.Checked:
             self.lst.addItems(self.jugador.loghistorico)  
             self.lst.setCurrentRow(len(self.jugador.loghistorico)-1)
         else:
             self.lst.addItems(self.jugador.logturno)          
             self.lst.setCurrentRow(len(self.jugador.logturno)-1)  
-        self.lst.show()            
+        self.lst.clearSelection()
+        
+    def refreshLog(self):
+        self.on_chk_stateChanged(self.chk.checkState())
+        

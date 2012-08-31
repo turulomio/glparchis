@@ -16,6 +16,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         QMainWindow.__init__(self, None)
         self.setupUi(self)
         self.showMaximized()
+        self.game=None
         
         
     @pyqtSignature("")
@@ -33,10 +34,13 @@ class frmMain(QMainWindow, Ui_frmMain):#
         sys.exit()
   
     def showWdgGame(self):
-        w=wdgGame(self.mem)
-        self.layout.addWidget(w)
-        w.show()
+        if self.game!=None:
+            self.layout.removeWidget(self.game)
+        self.game=wdgGame(self.mem)
+        self.layout.addWidget(self.game)
+        self.game.show()
         self.actionGuardarPartida.setEnabled(True)
+        
 
     @QtCore.pyqtSlot()     
     def on_actionRecuperarPartida_activated(self):

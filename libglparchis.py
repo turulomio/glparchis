@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*- 
 
 from OpenGL import GL,  GLU
-import os,  random,   ConfigParser
+import os,  random,   ConfigParser,  datetime
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
@@ -159,6 +159,7 @@ class Jugador:
     def log(self, l):
 #        self.inittime=datetime.timedelta(days=0)#inittime actualmente esta en mem y no quiero pasrlo como parametro
 #        l=str(datetime.datetime.now()-self.inittime)[2:-7]+ " " + l
+        l="{0} {1}".format(datetime.datetime.now().time(), l)
         self.logturno.append( l)
         self.loghistorico.append(l)
         
