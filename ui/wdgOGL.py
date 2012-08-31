@@ -65,7 +65,8 @@ class wdgOGL(QGLWidget):
             self.updateGL()
                 
     def mousePressEvent(self, event):        
-        def pickup(event):
+        def pickup(event, right):
+            """right es si el bot´on pulsado en el derecho"""
             viewport=GL.glGetIntegerv(GL.GL_VIEWPORT);
             GL.glMatrixMode(GL.GL_PROJECTION);
             GL.glPushMatrix();
@@ -78,76 +79,73 @@ class wdgOGL(QGLWidget):
             GL.glMatrixMode(GL.GL_MODELVIEW)
             self.paintGL()
             GL.glMatrixMode(GL.GL_PROJECTION);
-            process(GL.glRenderMode(GL.GL_RENDER))
+            if right==False:
+                process(GL.glRenderMode(GL.GL_RENDER))
+            else:
+                processright(GL.glRenderMode(GL.GL_RENDER))
             GL.glPopMatrix();
             GL.glMatrixMode(GL.GL_MODELVIEW);           
+ 
             
-        def pickupright(event):
-            viewport=GL.glGetIntegerv(GL.GL_VIEWPORT);
-            GL.glMatrixMode(GL.GL_PROJECTION);
-            GL.glPushMatrix();
-            GL.glSelectBuffer(512);
-            GL.glRenderMode(GL.GL_SELECT);
-            GL.glLoadIdentity();
-            GLU.gluPickMatrix(event.x(),viewport[3] -event.y(),1,1, viewport)
-            aspect=viewport[2]/viewport[3]
-            GLU.gluPerspective(60,aspect,1.0,400)
-            GL.glMatrixMode(GL.GL_MODELVIEW)
-            self.paintGL()
-            GL.glMatrixMode(GL.GL_PROJECTION);
-            processright(GL.glRenderMode(GL.GL_RENDER))
-            GL.glPopMatrix();
-            GL.glMatrixMode(GL.GL_MODELVIEW);           
-
+        def object(mem, id_name):
+            """Devuelve un objeto dependiendo del nombre.None si no corresponde"""
+            if id_name>=0 and id_name<=15: #fichas van de 0 a 15
+                return mem.fichas(id_name)
+            elif id_name==16:#tablero 16
+                return mem.tablero
+            elif id_name>=17 and id_name<=121:#casillas de 17 a 121
+                return mem.casillas(id_name-17)
+            else:
+                return None
                 
         def process(nameStack):
             """nameStack tiene la estructura minDepth, maxDepth, names"""
             objetos=[]
             for minDepth, maxDepth, names in nameStack:
-                print (names)
                 if len(names)==1:
                     objetos.append(names[0])
             
             if len(objetos)==1:
                 self.mem.selFicha=None
             elif len(objetos)==2:
-                self.mem.selFicha=Name.object(self.mem, objetos[1])
+                self.mem.selFicha=object(self.mem, objetos[1])
                 print (self.mem.selFicha)
                 
         def processright(nameStack):
             """nameStack tiene la estructura minDepth, maxDepth, names"""
             objetos=[]
             for minDepth, maxDepth, names in nameStack:
-#                print minDepth,  maxDepth,  names
                 if len(names)==1:
                    objetos.append(names[0])
-#            print len(objetos)
             if len(objetos)==1:
-                selCasilla=Name.object(self.mem, objetos[0])
-                self.showCasillaFicha (selCasilla, None)
+                selCasilla=object(self.mem, objetos[0])
+                self.showCasillaFicha (selCasilla, None,  event.pos())
             elif len(objetos)==2:
-                selCasilla=Name.object(self.mem, objetos[0])
-                selFicha=Name.object(self.mem, objetos[1])
-                self.showCasillaFicha (selCasilla, selFicha)
+                selCasilla=object(self.mem, objetos[0])
+                selFicha=object(self.mem, objetos[1])
+                self.showCasillaFicha (selCasilla, selFicha, event.pos())
                 
         #########################################
         self.setFocus()
         if event.buttons() & Qt.LeftButton:
-            pickup(event)            
+            pickup(event, False)            
             if self.mem.selFicha!=None:
                 self.mem.jugadoractual.log(self.trUtf8("Se ha hecho click en la ficha %1").arg(self.mem.selFicha.id))
                 self.emit(SIGNAL("fichaClicked()"))#No se pasa par´ametro porque es self.mem.selFicha
         elif event.buttons() & Qt.RightButton:
-            pickupright(event)                    
+            pickup(event, True)                    
         self.updateGL()
+
             
-    def showCasillaFicha(self, selCasilla, selFicha):
-        """selCasilla y selFicha son objetos"""
-        a=frmShowCasilla(self,  Qt.Popup,  selCasilla)
-        a. move(self.mapToGlobal(QPoint(10, 10))        )
-        a.show()
+    def showCasillaFicha(self, selCasilla, selFicha,  position):
+        """selCasilla y selFicha son objetos. position es un QPoint"""
+
         if selFicha!=None:
             a=frmShowFicha(self, Qt.Popup,  selFicha)
-            a. move(self.mapToGlobal(QPoint(500, 10))        )
+            a. move(self.mapToGlobal(position)        )
+            a.show()
+        else:
+            a=frmShowCasilla(self,  Qt.Popup,  selCasilla)
+            a. move(self.mapToGlobal(position)        )
             a.show()
 
