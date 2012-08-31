@@ -97,9 +97,9 @@ class frmInitGame(QWizard, Ui_frmInitGame):
                 for j in self.mem.jugadores():
                     if j.plays==True:
                         j.fichas.arr[0].mover(0, False,  True)
-                        j.fichas.arr[0].mover(0, False,  True)
-                        j.fichas.arr[0].mover(0, False,  True)
-                        j.fichas.arr[0].mover(0, False,  True)
+                        j.fichas.arr[1].mover(0, False,  True)
+                        j.fichas.arr[2].mover(0, False,  True)
+                        j.fichas.arr[3].mover(0, False,  True)
                 self.mem.jugadoractual=self.mem.jugadores(self.playerstarts)    
                 self.mem.jugadoractual.movimientos_acumulados=None#Comidas ymetidas
                 self.mem.jugadoractual.LastFichaMovida=None #Se utiliza cuando se va a casa
