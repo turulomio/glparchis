@@ -24,6 +24,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.setupUi(self)
 
         self.mem=mem
+        self.table.assign_mem(self.mem)
         self.ogl.assign_mem(self.mem)
         self.ogl.setFocus()
         
@@ -103,6 +104,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.mem.jugadoractual.tirarDado()
         self.cmdTirarDado.setEnabled(False)
         self.panel().setLabelDado()
+        self.table.reload()
         
         if self.mem.jugadoractual.tiradaturno.tresSeises()==True:
             if self.mem.jugadoractual.LastFichaMovida!=None:

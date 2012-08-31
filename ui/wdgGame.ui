@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>579</width>
+    <width>610</width>
     <height>522</height>
    </rect>
   </property>
@@ -146,13 +146,6 @@
              </property>
              <property name="focusPolicy">
               <enum>Qt::ClickFocus</enum>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QPushButton" name="cmdTirarDado">
-             <property name="text">
-              <string>Pulsa para tirar el dado</string>
              </property>
             </widget>
            </item>
@@ -618,6 +611,13 @@
            </item>
           </layout>
          </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="cmdTirarDado">
+         <property name="text">
+          <string>Pulsa para tirar el dado</string>
+         </property>
         </widget>
        </item>
       </layout>
