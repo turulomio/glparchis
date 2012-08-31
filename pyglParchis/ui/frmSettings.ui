@@ -116,6 +116,20 @@
        </item>
       </layout>
      </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Retardo entre turnos</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDial" name="dial"/>
+       </item>
+      </layout>
+     </item>
     </layout>
    </item>
    <item>

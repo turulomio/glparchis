@@ -42,6 +42,10 @@ def c2b(state):
     else:
         return False
 
+def delay(seconds):
+    dieTime= QTime.currentTime().addSecs(seconds);
+    while QTime.currentTime() < dieTime :
+        QCoreApplication.processEvents(QEventLoop.AllEvents, 100);    
 
 
 
@@ -158,7 +162,7 @@ class Jugador:
         self.logturno.append( l)
         self.loghistorico.append(l)
         
-    def TirarDado(self):
+    def tirarDado(self):
         """Tira el dado lo almacena en tirada, tiradaturno e historico y devuelve el valor"""
         tirada=Tirada(self, self.dado.tirar())
         self.tiradaturno.arr.append(tirada)
@@ -701,6 +705,7 @@ class Mem4:
         self.jugadoractual=None
         self.selFicha=None
         self.inittime=None#Tiempo inicio partida
+        self.retardoturnos=1#En segundos
         
         self.generar_colores()
         self.generar_jugadores()
@@ -1201,7 +1206,6 @@ class Mem4:
             for i in  fake.split(";")  :
                 self.dado.fake.append(int(i))
         self.jugadoractual=self.jugadores(config.get("game", 'playerstarts'))    
-#        self.jugadoractual.historicodado=[]
         self.jugadoractual.movimientos_acumulados=None#Comidas ymetidas
         self.jugadoractual.LastFichaMovida=None #Se utiliza cuando se va a casa
 
