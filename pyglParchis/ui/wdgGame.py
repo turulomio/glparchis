@@ -31,9 +31,10 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.panel2.setJugador(self.mem.jugadores("blue"))
         self.panel3.setJugador(self.mem.jugadores("red"))
         self.panel4.setJugador(self.mem.jugadores("green"))
-
-        print ("Jugador actual{0}".format(self.mem.jugadoractual))
+        
         self.panel().setActivated(True)
+        self.mem.jugadoractual.log(self.trUtf8("Empieza la partida"))
+
 
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('fichaClicked()'), self.after_ficha_click)  
         settings_splitter_load()
@@ -62,9 +63,11 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.cmdTirarDado.setEnabled(True)
         if self.mem.jugadoractual.ia==True:
             self.mem.jugadoractual.log(self.trUtf8("IA Tira el dado"))
+            self.panel().refreshLog()
             self.on_cmdTirarDado_clicked()
         else:
             self.mem.jugadoractual.log(self.trUtf8("Tire el dado"))
+            self.panel().refreshLog()
 
        
     def on_JugadorDebeMover(self):
@@ -75,11 +78,14 @@ class wdgGame(QWidget, Ui_wdgGame):
             for f in self.mem.jugadoractual.fichas.arr:
                 if f.puedeMover(self.mem):
                     self.mem.selFicha=f
+                    self.panel().refreshLog()
                     self.after_ficha_click()
                 else:
+                    self.panel().refreshLog()
                     self.cambiarJugador()
         else:
             self.mem.jugadoractual.log(self.trUtf8("Mueva una ficha"))
+            self.panel().refreshLog()
 
         
     def on_splitter_splitterMoved(self, position, index):
