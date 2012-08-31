@@ -241,6 +241,7 @@ class Ficha(QGLWidget):
         self.posruta=0#pOSICION EN LA RUTA
         self.ficha=GLU.gluNewQuadric();
         self.jugador=jugador
+        self.oglname=self.id#Nombre usado para pick por opengl
 #        self.casilla=casilla
 #        self.id=fichas_name2id(name)
         
@@ -388,7 +389,6 @@ class Ficha(QGLWidget):
         GL.glInitNames();
         GL.glPushMatrix()
         GL.glPushName(self.id);
-        print (self.id)
         if posicionBuzon==None:#Para frmAcercade
             p=(0, 0, 0)
         else:
@@ -418,6 +418,7 @@ class Tablero(QGLWidget):
         QGLWidget.__init__(self, parent)
         self.object = 1
         self.position=(-1, -1, 0)
+        self.oglname=16#Nombre usado para pick por opengl
 
 
     def dibujar(self):
@@ -478,6 +479,7 @@ class Casilla(QGLWidget):
         self.tipo=tipo
         self.seguro=seguro
         self.buzon=[]
+        self.oglname=self.id+17#Nombre usado para pick por opengl
 
     def dibujar(self):                            
         def quad(p1, p2, p3, p4, color):
@@ -498,7 +500,8 @@ class Casilla(QGLWidget):
         def tipo_inicio():        
             GL.glInitNames();
             GL.glPushMatrix()
-            GL.glPushName(Name.casilla[self.id]);
+            GL.glPushName(self.oglname);
+#            print (self.oglname)
             GL.glTranslated(self.position[0],self.position[1],self.position[2] )
             GL.glRotated(self.rotate, 0, 0, 1 )
             GL.glBegin(GL.GL_QUADS)
@@ -527,7 +530,7 @@ class Casilla(QGLWidget):
         def tipo_normal():
             GL.glInitNames();
             GL.glPushMatrix()
-            GL.glPushName(Name.casilla[self.id]);
+            GL.glPushName(self.oglname);
             GL.glTranslated(self.position[0],self.position[1],self.position[2] )
             GL.glRotated(self.rotate, 0, 0, 1 )
 
@@ -556,7 +559,7 @@ class Casilla(QGLWidget):
         def tipo_oblicuoi():
             GL.glInitNames();
             GL.glPushMatrix()
-            GL.glPushName(Name.casilla[self.id]);
+            GL.glPushName(self.oglname);
             GL.glTranslated(self.position[0],self.position[1],self.position[2] )
             GL.glRotated(self.rotate, 0, 0, 1 )
 
@@ -587,7 +590,7 @@ class Casilla(QGLWidget):
         def tipo_oblicuod():
             GL.glInitNames();
             GL.glPushMatrix()
-            GL.glPushName(Name.casilla[self.id]);
+            GL.glPushName(self.oglname);
             GL.glTranslated(self.position[0],self.position[1],self.position[2] )
             GL.glRotated(self.rotate, 0, 0, 1 )
 
@@ -617,7 +620,7 @@ class Casilla(QGLWidget):
         def tipo_final():
             GL.glInitNames();
             GL.glPushMatrix()
-            GL.glPushName(Name.casilla[self.id]);
+            GL.glPushName(self.oglname);
             GL.glTranslated(self.position[0],self.position[1],self.position[2] )
             GL.glRotated(self.rotate, 0, 0, 1 )
             
@@ -660,7 +663,6 @@ class Casilla(QGLWidget):
         if len(self.buzon)>0:
             for i, f in enumerate(self.buzon):       
                 f.dibujar(i)
-                print (i, f)
 
 
     def tieneBarrera(self):
@@ -1211,27 +1213,4 @@ def dic2list(dic):
         resultado.append(v)
     return resultado
 
-        
 
-class Name:
-    """Enumeración usada para los names de opengl"""
-    ficha=[0]*16
-    for i in range(0, 16):
-        ficha[i]=i
-    tablero=16
-    casilla=[0]*105
-    for i in range(17, 122):
-        casilla[i-17]=i
-#    print ficha,  tablero, casilla
-    
-    @staticmethod
-    def object(mem, id_name):
-        """Devuelve un objeto dependiendo del nombre.None si no corresponde"""
-        if id_name>=0 and id_name<=15:
-            return mem.fichas(id_name)
-        elif id_name==16:
-            return mem.tablero
-        elif id_name>=17 and id_name<=121:
-            return mem.casillas(id_name-17)
-        else:
-            return None
