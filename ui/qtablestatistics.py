@@ -1,7 +1,7 @@
 ## -*- coding: utf-8 -*-
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
-import libglparchis
+from libglparchis import *
 
 class QTableStatistics(QTableWidget):
     def __init__(self, parent=None):
@@ -26,13 +26,16 @@ class QTableStatistics(QTableWidget):
             elif color=="green":
                 return 3
         #########################################
+        tj=TiradaJuego(self.mem)
         for j in self.mem.jugadores():
             column=color2column(j.color.name)
             self.item(0, column).setText(str(j.tiradahistorica.numThrows()))
-            #Rellena numeros
             for i in range(2, 8):
                 self.item(i, column).setText(str(j.tiradahistorica.numTimesDiceGetNumber(i-1)))
-
             self.item(9, column).setText(str(j.comidaspormi))
             self.item(10, column).setText(str(j.comidasporotro))
             self.item(12, column).setText(str(j.tiradahistorica.numThreeSixes()))
+        self.item(0, 4).setText(str(tj.numThrows()))
+        for i in range(2, 8):
+            self.item(i, 4).setText(str(tj.numTimesDiceGetNumber(i-1)))
+        self.item(12, 4).setText(str(tj.numThreeSixes()))

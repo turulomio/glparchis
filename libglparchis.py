@@ -81,15 +81,13 @@ class Dado():
         return pix
                     
 
-class Jugadores:
+class SetJugadores:
     def __init__(self):
         self.actual=None
         self.arr=[]
-    def cambiar_jugador_actual(self):
-        return
         
 class TiradaHistorica:
-    """Estudio estadistico de tiradas. Lleva un array con todas los objetos TiradaTurno
+    """Estudio estadistico de tiradas. Lleva un array con todas los objetos TiradaTurno por cada jugador
     Se graba cuando se tira ya que es un objeto TiradaTurno que se vincula en el array de TiradaHistorica"""
     def __init__(self):
         self.arr=[]
@@ -116,6 +114,33 @@ class TiradaHistorica:
         for tt in self.arr:
             if tt.tresSeises()==True:
                 resultado=resultado+1
+        return resultado
+                
+class TiradaJuego:
+    """Estudio estadistico de tiradas globales del juego (une todos jugadores). Se usa para temas estadisticos y recorre las tiradas
+    historicas de todos los jugadores."""
+    def __init__(self, mem):
+        self.mem=mem
+    
+    def numThrows(self):
+        """Gets the number of total and historic player throws"""
+        resultado=0
+        for j in self.mem.jugadores():
+            resultado=resultado+j.tiradahistorica.numThrows()
+        return resultado
+        
+    def numTimesDiceGetNumber(self, number):
+        """Gets the number of times that the dice gets the number"""
+        resultado=0
+        for j in self.mem.jugadores():
+            resultado=resultado+j.tiradahistorica.numTimesDiceGetNumber(number)
+        return resultado
+        
+    def numThreeSixes(self):
+        """Gets the number of times that the dice get three sixes"""
+        resultado=0
+        for j in self.mem.jugadores():
+            resultado=resultado+j.tiradahistorica.numThreeSixes()
         return resultado
         
 class Tirada:

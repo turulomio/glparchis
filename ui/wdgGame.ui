@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>610</width>
-    <height>522</height>
+    <width>1221</width>
+    <height>636</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -122,7 +122,7 @@
           <enum>QTabWidget::Rounded</enum>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <property name="elideMode">
           <enum>Qt::ElideMiddle</enum>
@@ -255,6 +255,9 @@
               <property name="text">
                <string>Amarillo</string>
               </property>
+              <property name="textAlignment">
+               <set>AlignRight|AlignVCenter</set>
+              </property>
               <property name="icon">
                <iconset resource="../images/glparchis.qrc">
                 <normaloff>:/glparchis/fichaamarilla.png</normaloff>:/glparchis/fichaamarilla.png</iconset>
@@ -287,6 +290,15 @@
                 <normaloff>:/glparchis/fichaverde.png</normaloff>:/glparchis/fichaverde.png</iconset>
               </property>
              </column>
+             <column>
+              <property name="text">
+               <string>Todos</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../images/glparchis.qrc">
+                <normaloff>:/glparchis/star.png</normaloff>:/glparchis/star.png</iconset>
+              </property>
+             </column>
              <item row="0" column="0">
               <property name="text">
                <string>0</string>
@@ -312,6 +324,14 @@
               </property>
              </item>
              <item row="0" column="3">
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignRight|AlignVCenter</set>
+              </property>
+             </item>
+             <item row="0" column="4">
               <property name="text">
                <string>0</string>
               </property>
@@ -351,6 +371,14 @@
                <set>AlignRight|AlignVCenter</set>
               </property>
              </item>
+             <item row="2" column="4">
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignRight|AlignVCenter</set>
+              </property>
+             </item>
              <item row="3" column="0">
               <property name="text">
                <string>0</string>
@@ -376,6 +404,14 @@
               </property>
              </item>
              <item row="3" column="3">
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignRight|AlignVCenter</set>
+              </property>
+             </item>
+             <item row="3" column="4">
               <property name="text">
                <string>0</string>
               </property>
@@ -415,6 +451,14 @@
                <set>AlignRight|AlignVCenter</set>
               </property>
              </item>
+             <item row="4" column="4">
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignRight|AlignVCenter</set>
+              </property>
+             </item>
              <item row="5" column="0">
               <property name="text">
                <string>0</string>
@@ -440,6 +484,14 @@
               </property>
              </item>
              <item row="5" column="3">
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignRight|AlignVCenter</set>
+              </property>
+             </item>
+             <item row="5" column="4">
               <property name="text">
                <string>0</string>
               </property>
@@ -479,6 +531,14 @@
                <set>AlignRight|AlignVCenter</set>
               </property>
              </item>
+             <item row="6" column="4">
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignRight|AlignVCenter</set>
+              </property>
+             </item>
              <item row="7" column="0">
               <property name="text">
                <string>0</string>
@@ -504,6 +564,14 @@
               </property>
              </item>
              <item row="7" column="3">
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignRight|AlignVCenter</set>
+              </property>
+             </item>
+             <item row="7" column="4">
               <property name="text">
                <string>0</string>
               </property>
@@ -543,6 +611,14 @@
                <set>AlignRight|AlignVCenter</set>
               </property>
              </item>
+             <item row="9" column="4">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="textAlignment">
+               <set>AlignRight|AlignVCenter</set>
+              </property>
+             </item>
              <item row="10" column="0">
               <property name="text">
                <string>0</string>
@@ -575,6 +651,14 @@
                <set>AlignRight|AlignVCenter</set>
               </property>
              </item>
+             <item row="10" column="4">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="textAlignment">
+               <set>AlignRight|AlignVCenter</set>
+              </property>
+             </item>
              <item row="12" column="0">
               <property name="text">
                <string>0</string>
@@ -600,6 +684,14 @@
               </property>
              </item>
              <item row="12" column="3">
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignRight|AlignVCenter</set>
+              </property>
+             </item>
+             <item row="12" column="4">
               <property name="text">
                <string>0</string>
               </property>
