@@ -40,6 +40,13 @@ class wdgGame(QWidget, Ui_wdgGame):
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('fichaClicked()'), self.after_ficha_click)  
         settings_splitter_load()
 
+        self.cmdTirarDado.setGeometry(100, 100, 200, 64)
+        self.cmdTirarDado.setIconSize(QSize(80, 80 ))
+        self.cmdTirarDado.setParent(None)
+        self.cmdTirarDado.setWindowFlags(Qt.WindowStaysOnTopHint)
+        self.cmdTirarDado.setWindowTitle(self.trUtf8("Dado"))
+        self.cmdTirarDado.show()
+
         self.on_JugadorDebeTirar()
 
     def panel(self, jugador=None):
@@ -62,7 +69,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 - Otras situaciones"""
         self.cmdTirarDado.setEnabled(True)
         self.cmdTirarDado.setIcon(self.mem.dado.qicon(None))
-        self.cmdTirarDado.setText(self.trUtf8("Pulsa para tirar el dado"))
+#        self.cmdTirarDado.setText(self.trUtf8("Pulsa para tirar el dado"))
         if self.mem.jugadoractual.ia==True:
             self.mem.jugadoractual.log(self.trUtf8("IA Tira el dado"))
             delay(800)
@@ -101,6 +108,7 @@ class wdgGame(QWidget, Ui_wdgGame):
     def on_cmdTirarDado_clicked(self):  
         sound("dice")
         self.mem.jugadoractual.tirarDado()
+#        self.emit(SIGNAL("dadoClicked()"))#No se pasa par´ametro porque es self.mem.selFicha
         self.cmdTirarDado.setIcon(self.mem.dado.qicon(self.mem.jugadoractual.tiradaturno.ultimoValor()))
         self.cmdTirarDado.setEnabled(False)
         self.panel().setLabelDado()
@@ -209,3 +217,5 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.panel().show()
 
         self.on_JugadorDebeTirar()
+
+

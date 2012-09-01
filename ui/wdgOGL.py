@@ -15,9 +15,18 @@ class wdgOGL(QGLWidget):
         QGLWidget.__init__(self, parent)
         self.tablero=Tablero()
         self.rotX=0
-
+        
     def assign_mem(self, mem):
         self.mem=mem
+#        self.dado=QPushButton(self)
+#        self.dadowidth=80
+##        self.dado.setScaledContents(True)
+#        self.dado.setStyleSheet("background-color: rgba(255, 255, 255, 255);")
+#        self.dado.setIcon(self.mem.dado.qicon(5))
+#        self.dado.setIconSize(QSize(self.dadowidth-4, self.dadowidth-4 ))
+##        self.dado.setGeometry((self.width()-self.dadowidth)/2, (self.height()-self.dadowidth)/2, self.dadowidth, self.dadowidth)
+#        QtCore.QObject.connect(self.dado, QtCore.SIGNAL('clicked()'), self.showDado)  
+        
 
     def initializeGL(self):
         print ("initializeGL")
@@ -48,6 +57,7 @@ class wdgOGL(QGLWidget):
         for c in self.mem.casillas():
             c.dibujar() 
             c.dibujar_fichas()
+#        self.mem.dado.dibujar()
 
     def resizeGL(self, width, height):
         GL.glViewport(0, 0, width, height)
@@ -147,4 +157,11 @@ class wdgOGL(QGLWidget):
             a=frmShowCasilla(self,  Qt.Popup,  selCasilla)
             a. move(self.mapToGlobal(position)        )
             a.show()
+#            
+#    def showDado(self):
+#        self.dado.setIcon(self.mem.dado.qicon(self.mem.jugadoractual.tiradaturno.ultimoValor()))
+#        self.dado.setGeometry((self.width()-self.dadowidth)/2, (self.height()-self.dadowidth)/2, self.dadowidth, self.dadowidth)
+#        self.dado.setIconSize(QSize(self.dadowidth-4, self.dadowidth-4 ))
+#        self.dado.show()
+
 
