@@ -64,29 +64,25 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.cmdTirarDado.setEnabled(True)
         if self.mem.jugadoractual.ia==True:
             self.mem.jugadoractual.log(self.trUtf8("IA Tira el dado"))
-            self.panel().refreshLog()
             self.on_cmdTirarDado_clicked()
         else:
             self.mem.jugadoractual.log(self.trUtf8("Tire el dado"))
-            self.panel().refreshLog()
 
        
     def on_JugadorDebeMover(self):
         """Función que se ejecuta cuando un jugador debe mover
         Aquí se evalua si puede mover devolviendo True en caso positivo y """
+        self.cmdTirarDado.setEnabled(False)
         if self.mem.jugadoractual.ia==True:
             self.mem.jugadoractual.log(self.trUtf8("IA mueve una ficha"))            
             for f in self.mem.jugadoractual.fichas.arr:
                 if f.puedeMover(self.mem):
                     self.mem.selFicha=f
-                    self.panel().refreshLog()
                     self.after_ficha_click()
                 else:
-                    self.panel().refreshLog()
                     self.cambiarJugador()
         else:
             self.mem.jugadoractual.log(self.trUtf8("Mueva una ficha"))
-            self.panel().refreshLog()
 
         
     def on_splitter_splitterMoved(self, position, index):
@@ -100,7 +96,6 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     @QtCore.pyqtSlot()      
     def on_cmdTirarDado_clicked(self):  
-        print("dado clickeaddo")
         self.mem.jugadoractual.tirarDado()
         self.cmdTirarDado.setEnabled(False)
         self.panel().setLabelDado()
@@ -119,15 +114,17 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.cambiarJugador()
         else: # si no han salido 3 seises
             if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==True:
+                self.mem.jugadoractual.log(self.trUtf8("Mueva una ficha"))
                 self.on_JugadorDebeMover()
             else:#ninguna puede mover.
                 if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
                     self.on_JugadorDebeTirar()
                 else:            
                     self.cambiarJugador()
-        self.panel().refreshLog()
 
     def after_ficha_click(self):
+        if self.cmdTirarDado.isEnabled():#Esta esperando dado no se puede pulsar ficha para mover.
+            return
         puede=self.mem.selFicha.puedeMover(self.mem)
         if puede[0]==False:
             self.mem.jugadoractual.log(self.trUtf8("No puede mover esta ficha, seleccione otra"))
@@ -138,40 +135,46 @@ class wdgGame(QWidget, Ui_wdgGame):
         if self.mem.jugadoractual.movimientos_acumulados in (10, 20):
             self.mem.jugadoractual.movimientos_acumulados=None
 
-        #Come
-        if self.mem.selFicha.come(self.mem.selFicha.posruta)==True:
-            if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==False:
-                if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
-                    self.on_JugadorDebeTirar()
-                else:
-                    self.cambiarJugador()
-            else:#si alguna puede mover
+#        #Come
+#        if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta)==True:
+#            if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==False:
+#                if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
+#                    self.on_JugadorDebeTirar()
+#                else:
+#                    self.cambiarJugador()
+#            else:#si alguna puede mover
+#                self.on_JugadorDebeMover()
+
+        #Come o mete
+        if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta) or self.mem.selFicha.mete():
+            if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==True:
                 self.on_JugadorDebeMover()
-#        print ("No come")
-        
-        #Mete
-        if self.mem.selFicha.mete()==True:
-#            print ("mete")
-            if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==False:
-                if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
-                    self.on_JugadorDebeTirar()
-                else:
-                    self.cambiarJugador()
-            else:#si alguna puede mover
-                self.on_JugadorDebeMover()
-#        print (" No mete")       
+                return
+#            if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
+#                self.on_JugadorDebeTirar()
+#            else:
+#                self.cambiarJugador()
+#        #Mete
+#        if ==True:
+#            if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==False:
+#                if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
+#                    self.on_JugadorDebeTirar()
+#                else:
+#                    self.cambiarJugador()
+#            else:#si alguna puede mover
+#                self.on_JugadorDebeMover() 
         
         if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
             self.on_JugadorDebeTirar()
         else:
             self.cambiarJugador()
 
-        self.panel().refreshLog()
     
 
     def cambiarJugador(self):          
-        print ("{0} acaba el turno".format(self.mem.jugadoractual))
-        delay(1)
+        self.mem.jugadoractual.log ("{0} acaba el turno".format(self.mem.jugadoractual))
+        self.ogl.paintGL()
+        delay(500)
         #Comprueba si ha ganado
         if self.mem.jugadoractual.HaGanado()==True:
             m=QMessageBox()

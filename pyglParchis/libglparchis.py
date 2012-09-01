@@ -42,9 +42,9 @@ def c2b(state):
     else:
         return False
 
-def delay(seconds):
-    dieTime= QTime.currentTime().addSecs(seconds);
-    while QTime.currentTime() < dieTime :
+def delay(miliseconds):
+    dieTime= datetime.datetime.now()+datetime.timedelta(microseconds=miliseconds*1000)
+    while datetime.datetime.now()< dieTime :
         QCoreApplication.processEvents(QEventLoop.AllEvents, 100);    
 
 
@@ -200,18 +200,18 @@ class Jugador:
         return tirada.valor
 
         
-    def DeboAbrirBarrera(self):
-        """Devuelve si el jugador est´a obligado a abrir barrera"""
+    def barreras(self):
+        """Devuelve una lista con las casillas en las que el jugador tiene barrera"""
+        resultado=[]
         for f in self.fichas.arr:
             if f.casilla().tieneBarrera()==True:
-                return True
+                resultado.append(f.casilla())
+        return resultado
+        
+    def tieneBarreras(self):
+        if len(self.barreras)>0:
+            return True
         return False
-#        if valordado==6:
-#            barreras=self.Barreras(mem.jugadoractual)
-#            if len(barreras)!=0 :
-#                if self.id_casilla() not in barreras:
-#                    self.log(self.trUtf8(pre+"No se puede mover, debes abrir barrera"))
-#                    return (False, 0)
 
     def HaGanado(self):
         for f in self.fichas.arr:
@@ -282,49 +282,77 @@ class Ficha(QGLWidget):
         return  "Ficha {0} del jugador {1}".format(self.id, self.jugador.color.name)
         
     def puedeMover(self, mem):
+        """Comprueba que no tenga obligaci´on de abrir barrera el propio jugador (hace recursivo) por eso se necesita movimientoLimpio"""
+        return self.movimientoLimpio(mem)
+#        if self.movimientoLimpio(mem)[0]==True:
+#            if self.jugador.tengoBarrera() and self.jugador.tiradaturno.ultimoValor()==6:
+#                for f in mem.fichas():
+#                    if self.casilla!=f.casilla and self.movimientoLimpio(mem)[0]==True:
+#                        return (False, 0)
+#                    elif self.casilla!=f.casilla and self.movimientoLimpio(mem)[0]==False:
+#                        
+                        
+        
+    def movimientoLimpio(self, mem):
+        """
+            1 Jugador actual
+            1 Calcula el movimiento idilico
+            1 Ha acabado la ruta
+            1 Hay sitio libre
+            1 Hay barrera intermedia
+            
+            Creo que las barreras propias debe calcularse fuera
+            1 Tiene barrera otras casillas con otras fichas y pueden MOver
+                        
+        #Comprueba que no tenga obligación de abrir barrera
+        if mem.jugadoractual.tengoBarrera()==True  and self.tiradaturno.ultimoValor()==6:
+            mem.jugadoractual.log(self.trUtf8("No se puede mover, debes abrir barrera"))
+            return (False, 0)          
+
+        """
         #Es ficha del jugador actual
         if  self.jugador!=mem.jugadoractual:             
-            mem.jugadoractual.logturno.append(self.trUtf8("No es del jugador actual"))
+            mem.jugadoractual.log(self.trUtf8("No es del jugador actual"))
             return (False, 0)
-        
+            
+        #No se puede mover una ficha que est´a en casa con puntos acumulados
+        if mem.jugadoractual.movimientos_acumulados!=None and self.estaEnCasa():
+            return (False, 0)
+
         #Calcula el movimiento
         if mem.jugadoractual.movimientos_acumulados!=None:
             movimiento=mem.jugadoractual.movimientos_acumulados
-        else:        
-            movimiento=self.calculaValorAMover(self.jugador.tiradaturno.ultimoValor())
-        
+        elif self.estaEnCasa() and self.jugador.tiradaturno.ultimoValor()==5:
+            movimiento= 1
+        elif self.estaEnCasa()==True and self.jugador.tiradaturno.ultimoValor()!=5: #Saco un 5
+            movimiento=0
+        elif self.jugador.fichas.TodasFichasFueraDeCasa()==True and self.jugador.tiradaturno.ultimoValor()==6:
+            movimiento=7
+        else:
+            movimiento=self.jugador.tiradaturno.ultimoValor()
+                            
         if movimiento==0:
-            return (False, 0)
-
-        #Comprueba que no tenga obligación de abrir barrera
-        if mem.jugadoractual.DeboAbrirBarrera()==True:
-            mem.jugadoractual.logturno.append(self.trUtf8("No se puede mover, debes abrir barrera"))
-            return (False, 0)          
-
-        #Esta en casa y puede mover
-        if self.estaEnCasa()==True:
-            if movimiento!=5: #Saco un 5
-                mem.jugadoractual.logturno.append(self.trUtf8("Necesita sacar un 5 para mover esta ficha"))
-                return (False, 0)
-                        
+            mem.jugadoractual.log(self.trUtf8("No puede mover"))
+            return (False, 0)    
+           
         #se ha pasado la meta
         if self.posruta+movimiento>72:
-            mem.jugadoractual.logturno.append(self.trUtf8("Se ha pasado la meta"))
-            return (False, 0)
-                
-                
-        #Rastrea todas las casillas de paso en busca de barrera.
-        for i in range(self.posruta, self.posruta+movimiento+1): 
+            mem.jugadoractual.log(self.trUtf8("Se ha pasado la meta"))
+            return (False, 0) 
+            
+        #Rastrea todas las casillas de paso en busca de barrera. desde la siguiente
+        for i in range(self.posruta+1, self.posruta+movimiento+1): 
             if self.ruta.arr[i].tieneBarrera()==True:
-                mem.jugadoractual.logturno.append(self.trUtf8("Hay una barrera"))
+                mem.jugadoractual.log(self.trUtf8("Hay una barrera"))
                 return (False, 0)
 
+            
         #Comprueba si hay sitio libre
         if self.ruta.arr[self.posruta+movimiento].haySitioEnBuzon()==False:
-            mem.jugadoractual.logturno.append(self.trUtf8("No hay espacio en la casilla"))
+            mem.jugadoractual.log(self.trUtf8("No hay espacio en la casilla"))
             return (False, 0)
-            
-        mem.jugadoractual.logturno.append(self.trUtf8("Puede mover %1").arg(str(movimiento)))
+
+
         return (True, movimiento)
         
     def mover(self, ruta, controllastficha=True,  startgame=False):
@@ -341,11 +369,11 @@ class Ficha(QGLWidget):
 
 
             
-    def come(self,  ruta):
+    def come(self, mem,   ruta):
         """ruta, es la posición de ruta de ficha en la que come. Como ya se ha movido, come si puede y devuelve True, en caso contrario False"""
-        if ruta>72:
-            print ("en como se ha sobrepasado el 72")
-            return False
+#        if ruta>72:
+#            print ("en como se ha sobrepasado el 72")
+#            return False
         casilladestino=self.ruta.arr[ruta]
         
         if casilladestino.seguro==True:
@@ -354,15 +382,15 @@ class Ficha(QGLWidget):
         if len(casilladestino.buzon)==2:
             ficha1=casilladestino.buzon[0]
             ficha2=casilladestino.buzon[1]
-            if ficha1.jugador!=self.mem.jugadoractual:
+            if ficha1.jugador!=mem.jugadoractual:
                 fichaacomer=ficha1
-            elif ficha2.jugador!=self.mem.jugadoractual:
+            elif ficha2.jugador!=mem.jugadoractual:
                 fichaacomer=ficha2
             else:
                 return False
             fichaacomer.mover(0, False)
-            self.mem.jugadoractual.movimientos_acumulados=20
-            self.mem.jugadoractual.log(self.trUtf8("He comido la ficha %1").arg(fichaacomer.name))
+            mem.jugadoractual.movimientos_acumulados=20
+            mem.jugadoractual.log(self.trUtf8("He comido la ficha %1").arg(fichaacomer.id))
             return True
                 
             
@@ -371,7 +399,7 @@ class Ficha(QGLWidget):
         """r Como ya se ha movido, mete si puede y devuelve True, en caso contrario False"""      
         if self.estaEnMeta():
             self.jugador.movimientos_acumulados=10
-            self.jugador.log(self.trUtf8("He metido la ficha %1").arg(self.name))
+            self.jugador.log(self.trUtf8("He metido la ficha %1").arg(self.id))
             return True
         return False
 
@@ -381,19 +409,11 @@ class Ficha(QGLWidget):
 
         
     def estaEnCasa(self):
-        if self.ruta==0:
+        if self.posruta==0:
             return True
         return False
         
-    def calculaValorAMover(self, valordado):
-        """Calcula el valor a mover la ficha teniendo en cuenta su posicion en la ruta, si han salido todas las fichas y el valor del dado"""
-        if self.estaEnCasa() and valordado==5:
-            return 1
-        else:
-            return 0
-        if self.jugador.fichas.TodasFichasFueraDeCasa()==True and valordado==6:
-            return 7
-        return valordado
+
 
     def estaEnMeta(self):
         if self.posruta==72:

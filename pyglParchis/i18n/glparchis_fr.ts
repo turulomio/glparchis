@@ -3,48 +3,38 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="365"/>
+        <location filename="libglparchis.py" line="393"/>
         <source>He comido la ficha %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="374"/>
+        <location filename="libglparchis.py" line="402"/>
         <source>He metido la ficha %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="287"/>
+        <location filename="libglparchis.py" line="315"/>
         <source>No es del jugador actual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="301"/>
-        <source>No se puede mover, debes abrir barrera</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="libglparchis.py" line="307"/>
-        <source>Necesita sacar un 5 para mover esta ficha</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="libglparchis.py" line="312"/>
+        <location filename="libglparchis.py" line="340"/>
         <source>Se ha pasado la meta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="319"/>
+        <location filename="libglparchis.py" line="346"/>
         <source>Hay una barrera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="324"/>
+        <location filename="libglparchis.py" line="352"/>
         <source>No hay espacio en la casilla</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="327"/>
-        <source>Puede mover %1</source>
+        <location filename="libglparchis.py" line="335"/>
+        <source>No puede mover</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
