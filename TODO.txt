@@ -4,3 +4,4 @@
 20100525 No se muestra la ficha en los objetos de frmAbout
 20120831 Ir migrando a python3
 20120831 En las estadisticas anotar comidas por mi.
+20120831 Al meter la amarilla 3 en la casilla final peto
