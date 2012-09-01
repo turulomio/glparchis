@@ -3,37 +3,37 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="393"/>
+        <location filename="libglparchis.py" line="395"/>
         <source>He comido la ficha %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="402"/>
+        <location filename="libglparchis.py" line="406"/>
         <source>He metido la ficha %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="315"/>
+        <location filename="libglparchis.py" line="317"/>
         <source>No es del jugador actual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="340"/>
+        <location filename="libglparchis.py" line="342"/>
         <source>Se ha pasado la meta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="346"/>
+        <location filename="libglparchis.py" line="348"/>
         <source>Hay una barrera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="352"/>
+        <location filename="libglparchis.py" line="354"/>
         <source>No hay espacio en la casilla</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="335"/>
+        <location filename="libglparchis.py" line="337"/>
         <source>No puede mover</source>
         <translation type="unfinished"></translation>
     </message>

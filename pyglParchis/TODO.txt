@@ -1,7 +1,3 @@
-20100521 Generar lectura y guardado de xml
-20100525 Cuando como no corre la ficha que come ni cuenta 20.
 20100525 Meter sonidos al tirar, comer y meter
 20100525 No se muestra la ficha en los objetos de frmAbout
-20120831 Ir migrando a python3
-20120831 En las estadisticas anotar comidas por mi.
-20120831 Al meter la amarilla 3 en la casilla final peto
+20120831 Ir migrando a python3, unque opengl no est´a todav´ia
