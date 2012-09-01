@@ -67,7 +67,8 @@ class wdgGame(QWidget, Ui_wdgGame):
         """Se ejecuta cuando el jugador debe tirar:
                 - Inicio turno
                 - Otras situaciones"""
-        self.cmdTirarDado.setEnabled(True)
+        if self.mem.jugadoractual.ia==False:#Cuando es IA no debe permitir tirar dado
+            self.cmdTirarDado.setEnabled(True)
         self.cmdTirarDado.setIcon(self.mem.dado.qicon(None))
 #        self.cmdTirarDado.setText(self.trUtf8("Pulsa para tirar el dado"))
         if self.mem.jugadoractual.ia==True:
