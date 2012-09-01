@@ -131,17 +131,22 @@ class wdgGame(QWidget, Ui_wdgGame):
         if puede[0]==False:
             self.mem.jugadoractual.log(self.trUtf8("No puede mover esta ficha, seleccione otra"))
             return
-        
-        self.mem.selFicha.mover( self.mem.selFicha.posruta + puede[1])
-        #Quita el movimiento acumulados
-        if self.mem.jugadoractual.movimientos_acumulados in (10, 20):
-            self.mem.jugadoractual.movimientos_acumulados=None
-
-        #Come o mete
-        if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta) or self.mem.selFicha.mete():
+ 
+        if self.mem.selFicha.comeEnInicio():            
             if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==True:
                 self.on_JugadorDebeMover()
                 return
+        else:
+            self.mem.selFicha.mover( self.mem.selFicha.posruta + puede[1])
+            #Quita el movimiento acumulados
+            if self.mem.jugadoractual.movimientos_acumulados in (10, 20):
+                self.mem.jugadoractual.movimientos_acumulados=None
+    
+            #Come o mete
+            if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta) or self.mem.selFicha.mete():
+                if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==True:
+                    self.on_JugadorDebeMover()
+                    return
         
         if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
             self.on_JugadorDebeTirar()
