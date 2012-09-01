@@ -148,7 +148,7 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     def cambiarJugador(self):          
         self.mem.jugadoractual.log ("{0} acaba el turno".format(self.mem.jugadoractual))
-        self.ogl.paintGL()
+        self.ogl.updateGL()
         delay(500)
         #Comprueba si ha ganado
         if self.mem.jugadoractual.HaGanado()==True:

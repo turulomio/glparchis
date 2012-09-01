@@ -109,7 +109,6 @@ class wdgOGL(QGLWidget):
                 self.mem.selFicha=None
             elif len(objetos)==2:
                 self.mem.selFicha=object(self.mem, objetos[1])
-                print (self.mem.selFicha)
                 
         def processright(nameStack):
             """nameStack tiene la estructura minDepth, maxDepth, names"""
