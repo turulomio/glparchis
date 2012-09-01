@@ -14,25 +14,25 @@ class frmShowCasilla(QDialog, Ui_frmShowCasilla):
             self.lblSeguro.setText(self.trUtf8("Casilla segura"))
         else:
             self.lblSeguro.setText(self.trUtf8("Casilla insegura"))
-        if len(self.casilla.buzon)==0:
+        if self.casilla.buzon_numfichas()==0:
             self.lbl1.hide()
             self.lbl2.hide()
             self.lbl3.hide()
             self.lbl4.hide()
             self.grp.setTitle(self.trUtf8("Casilla vacía"))
-        elif len(self.casilla.buzon)==1:
+        elif self.casilla.buzon_numfichas()==1:
             self.lbl1.setPixmap(self.casilla.buzon[0].jugador.qpixmap())
             self.lbl2.hide()
             self.lbl3.hide()
             self.lbl4.hide()
             self.grp.setTitle(self.trUtf8("Ocupada con una ficha"))
-        elif len(self.casilla.buzon)==2:
+        elif self.casilla.buzon_numfichas()==2:
             self.lbl1.setPixmap(self.casilla.buzon[0].jugador.qpixmap())       
             self.lbl2.setPixmap(self.casilla.buzon[1].jugador.qpixmap())   
             self.lbl3.hide()
             self.lbl4.hide()
             self.grp.setTitle(self.trUtf8("Ocupada con dos fichas"))
-        elif len(self.casilla.buzon)==3:
+        elif self.casilla.buzon_numfichas()==3:
             self.lbl1.setPixmap(self.casilla.buzon[0].jugador.qpixmap())       
             self.lbl2.setPixmap(self.casilla.buzon[1].jugador.qpixmap())       
             self.lbl3.setPixmap(self.casilla.buzon[2].jugador.qpixmap())    
