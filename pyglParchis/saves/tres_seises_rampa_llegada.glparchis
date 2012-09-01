@@ -1,0 +1,40 @@
+[yellow]
+ia = 0
+name = Jugador amarillo
+plays = 1
+rutaficha1 = 0
+rutaficha2 = 55
+rutaficha3 = 1
+rutaficha4 = 0
+
+[blue]
+ia = 1
+name = Jugador azul
+plays = 1
+rutaficha1 = 2
+rutaficha2 = 0
+rutaficha3 = 0
+rutaficha4 = 0
+
+[red]
+ia = 1
+name = Jugador rojo
+plays = 1
+rutaficha1 = 0
+rutaficha2 = 0
+rutaficha3 = 0
+rutaficha4 = 0
+
+[green]
+ia = 1
+name = Jugador verde
+plays = 1
+rutaficha1 = 22
+rutaficha2 = 0
+rutaficha3 = 0
+rutaficha4 = 0
+
+[game]
+playerstarts = yellow
+fakedice = 6;6;6;6;6;6;6;6;6
+
