@@ -105,10 +105,14 @@ class wdgGame(QWidget, Ui_wdgGame):
                 if casilla.rampallegada==True:
                     self.mem.jugadoractual.log(self.trUtf8("Han salido tres seises, no se va a casa por haber llegado a rampa de llegada"))
                 else:
-                    self.mem.jugadoractual.log(self.trUtf8("Han salido tres seises, la última ficha movida se va a casa"))
-                    self.mem.jugadoractual.LastFichaMovida.mover(0)
+                    if self.mem.jugadoractual.LastFichaMovida.puedeMover(self.mem)[0]==True:
+                        self.mem.jugadoractual.log(self.trUtf8(u"Han salido tres seises, la ultima ficha movida se va a casa"))
+                        self.mem.jugadoractual.LastFichaMovida.mover(0)
+                    else:
+                        self.mem.jugadoractual.log(self.trUtf8(u"Han salido tres seises, pero como no puede mover no se va a casa"))
+                        
             else:               
-                self.mem.jugadoractual.log(self.trUtf8("Después de tres seises, ya no puede volver a tirar"))
+                self.mem.jugadoractual.log(self.trUtf8(u"Despues de tres seises, ya no puede volver a tirar"))
             self.cambiarJugador()
         else: # si no han salido 3 seises
             if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==True:

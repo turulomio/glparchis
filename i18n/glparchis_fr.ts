@@ -3,38 +3,43 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="395"/>
+        <location filename="libglparchis.py" line="412"/>
         <source>He comido la ficha %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="406"/>
+        <location filename="libglparchis.py" line="423"/>
         <source>He metido la ficha %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="317"/>
+        <location filename="libglparchis.py" line="329"/>
         <source>No es del jugador actual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="342"/>
+        <location filename="libglparchis.py" line="359"/>
         <source>Se ha pasado la meta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="348"/>
+        <location filename="libglparchis.py" line="365"/>
         <source>Hay una barrera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="354"/>
+        <location filename="libglparchis.py" line="371"/>
         <source>No hay espacio en la casilla</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="337"/>
+        <location filename="libglparchis.py" line="354"/>
         <source>No puede mover</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="338"/>
+        <source>No puede mover, porque hay otra ficha obligada a mover</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

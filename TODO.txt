@@ -2,3 +2,4 @@
 20100525 No se muestra la ficha en los objetos de frmAbout
 20120831 Ir migrando a python3, unque opengl no est´a todav´ia
 20120901 Cuando hay un cinco obligario a salir y cuando tiene barrera. Movimientos forzados
+20120901 Ver comer en primera casilla.

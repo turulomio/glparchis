@@ -215,6 +215,13 @@ class Jugador:
             return True
         return False
 
+    def tieneFichasEnCasa(self):
+        for f in self.fichas.arr:
+            if f.estaEnCasa()==True:
+                return True
+        return False
+        
+
     def HaGanado(self):
         for f in self.fichas.arr:
             if f.estaEnMeta()==False:
@@ -246,6 +253,12 @@ class SetFichas:
     """Agrupación de fichas"""
     def __init__(self):
         self.arr=[]
+
+    def algunaEstaObligada(self):
+        for f in self.arr:
+            if f.estaObligada()==True:
+                return True
+        return False
 
     def algunaPuedeMover(self, mem):
         for f in self.arr:
@@ -283,19 +296,22 @@ class Ficha(QGLWidget):
     def __repr__(self):
         return  "Ficha {0} del jugador {1}".format(self.id, self.jugador.color.name)
         
-    def puedeMover(self, mem):
-        """Comprueba que no tenga obligaci´on de abrir barrera el propio jugador (hace recursivo) por eso se necesita movimientoLimpio"""
-        return self.movimientoLimpio(mem)
-#        if self.movimientoLimpio(mem)[0]==True:
-#            if self.jugador.tengoBarrera() and self.jugador.tiradaturno.ultimoValor()==6:
-#                for f in mem.fichas():
-#                    if self.casilla!=f.casilla and self.movimientoLimpio(mem)[0]==True:
-#                        return (False, 0)
-#                    elif self.casilla!=f.casilla and self.movimientoLimpio(mem)[0]==False:
-#                        
-                        
+    def estaObligada(self):
+        """ESta pregunta se integra dentro de puede mover. NO DEBE HABER EN SETFICHAS ALGUNAS, YA QUE SE INTEGRAR´IA DENTRO DE ALGUNA PUEDEMOVER"""
+        if self.jugador.tiradaturno.ultimoValor()==5 and self.estaEnCasa() and self.ruta.arr[1].buzon_numfichas()<2:
+            return True
         
-    def movimientoLimpio(self, mem):
+        #dos jugadore distintos en inicio entonces come
+        if self.jugador.tiradaturno.ultimoValor()==5 and self.jugador.tieneFichasEnCasa() and self.ruta.arr[1].dosJugadoresDistintosEnRuta1():
+            return True
+        return False
+        
+#        #Comprueba que no tenga obligación de abrir barrera
+#        if mem.jugadoractual.tengoBarrera()==True  and self.tiradaturno.ultimoValor()==6:
+#            mem.jugadoractual.log(self.trUtf8("No se puede mover, debes abrir barrera"))
+#            return (False, 0)      
+        
+    def puedeMover(self, mem):
         """
             1 Jugador actual
             1 Calcula el movimiento idilico
@@ -305,13 +321,9 @@ class Ficha(QGLWidget):
             
             Creo que las barreras propias debe calcularse fuera
             1 Tiene barrera otras casillas con otras fichas y pueden MOver
-                        
-        #Comprueba que no tenga obligación de abrir barrera
-        if mem.jugadoractual.tengoBarrera()==True  and self.tiradaturno.ultimoValor()==6:
-            mem.jugadoractual.log(self.trUtf8("No se puede mover, debes abrir barrera"))
-            return (False, 0)          
-
+    
         """
+
         #Es ficha del jugador actual
         if  self.jugador!=mem.jugadoractual:             
             mem.jugadoractual.log(self.trUtf8("No es del jugador actual"))
@@ -320,7 +332,12 @@ class Ficha(QGLWidget):
         #No se puede mover una ficha que est´a en casa con puntos acumulados
         if mem.jugadoractual.movimientos_acumulados!=None and self.estaEnCasa():
             return (False, 0)
-
+        
+        if self.jugador.fichas.algunaEstaObligada() :
+            if self.estaObligada()==False:
+                mem.jugadoractual.log(self.trUtf8("No puede mover, porque hay otra ficha obligada a mover"))
+                return(False, 0)
+                
         #Calcula el movimiento
         if mem.jugadoractual.movimientos_acumulados!=None:
             movimiento=mem.jugadoractual.movimientos_acumulados
@@ -722,6 +739,14 @@ class Casilla(QGLWidget):
                 if f!=None:
                     f.dibujar(i)
 
+    def dosJugadoresDistintosEnRuta1(self):
+        if self.id not in (5, 22, 39, 56):#Casillas ruta1
+            return False
+        if self.buzon_numfichas!=2:
+            return False
+        if self.buzon[0].jugador==self.buzon[1].jugador:
+            return True
+        return False
 
     def tieneBarrera(self):
         """Devuelve un booleano, las fichas de la barrera se pueden sacar del buz´on"""
