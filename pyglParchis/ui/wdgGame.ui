@@ -122,7 +122,7 @@
           <enum>QTabWidget::Rounded</enum>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <property name="elideMode">
           <enum>Qt::ElideMiddle</enum>
@@ -708,7 +708,7 @@
        <item>
         <widget class="QPushButton" name="cmdTirarDado">
          <property name="text">
-          <string>Pulsa para tirar el dado</string>
+          <string>Tira el dado</string>
          </property>
         </widget>
        </item>

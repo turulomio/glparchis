@@ -45,9 +45,11 @@ lastfile=os.environ['HOME']+ "/.glparchis/last.glparchis"
 
 
 
-class Dado():    
-    def __init__(self):
+class Dado(QGLWidget):    
+    def __init__(self, parent=None ):
+        QGLWidget.__init__(self, parent)
         self.fake=[]
+        self.position=(65/2, 65/2, 1)
         
     def tirar(self):
         if len(self.fake)>0:
@@ -56,6 +58,144 @@ class Dado():
         else:
             resultado= int(random.random()*6)+1
         return resultado
+#        void Dado::dibujar(GLfloat x, GLfloat y , GLfloat z, GLfloat *color,float velocidad_rotacion)
+#{
+#  this->angulo_rotacion=this->angulo_rotacion+velocidad_rotacion;
+#      glInitNames();
+#      glPushName(0);
+#      glPushMatrix();
+#      glTranslatef(x,y,z);
+#      if (this->tirada==1)
+#         glRotated(-90.0f,1.0f,0.0f,0.0f);
+#      if (this->tirada==3)
+#         glRotated(180.0f,0.0f,1.0f,0.0f);
+#      if (this->tirada==4){
+#          glRotated(90.0f,1.0f,0.0f,0.0f);
+#       }
+#      if (this->tirada==5){
+#         glRotated(90.0f,1.0f,0.0f,0.0f);
+#         glRotated(90.0f,0.0f,0.0f,1.0f);
+#      }
+#      if (this->tirada==6|| this->tirada==7)
+#         glRotated(90.0f,0.0f,1.0f,0.0f);
+#      glScaled(2,2,2);
+#      glColor4f(color[0],color[1],color[2],color[3]);
+#      glPushName(DADO); 
+#
+#      if(this->angulo_rotacion!=0){
+#         glRotatef(this->angulo_rotacion,this->angulo_rotacion,this->angulo_rotacion,this->angulo_rotacion);
+#      }
+#
+#      glBindTexture(GL_TEXTURE_2D, TEX_DADO);
+#      this->cubo_con_texturas();
+#      glPopName();
+#      glPopMatrix();
+#}
+#
+#void Objeto::cubo_con_texturas(){
+#      float unter=1.0f/3.0f;
+#      float doster=2.0f/3.0f;
+#      glBegin(GL_QUADS);
+#        GLTVector3 vPoints[24]={
+#          {0.0f, 0.0f, 0.0f}, 
+#          { 1.0f, 0.0f, 0.0f}, 
+#          { 1.0f, 0.0f, 1.0f}, 
+#          {0.0f, 0.0f, 1.0f}, 
+#
+#     {0.0f, 0.0f, 1.0f},
+#     { 1.0f, 0.0f, 1.0f},
+#     { 1.0f, 1.0f, 1.0f},
+#     {0.0f, 1.0f, 1.0f},
+#
+#     {0.0f, 0.0f, 0.0f},
+#     {0.0f, 1.0f, 0.0f},
+#     { 1.0f, 1.0f, 0.0f},
+#     { 1.0f, 0.0f, 0.0f}, 
+#
+#     {0.0f, 1.0f, 0.0f}, 
+#     {0.0f, 1.0f, 1.0f}, 
+#     { 1.0f, 1.0f, 1.0f}, 
+#     { 1.0f, 1.0f, 0.0f}, 
+#
+#     { 1.0f, 0.0f, 0.0f}, 
+#     { 1.0f, 1.0f, 0.0f}, 
+#     { 1.0f, 1.0f, 1.0f}, 
+#     { 1.0f, 0.0f, 1.0f}, 
+#
+#          {0.0f, 0.0f, 1.0f}, 
+#          {0.0f, 1.0f, 1.0f}, 
+#          {0.0f, 1.0f, 0.0f},
+#          {0.0f, 0.0f, 0.0f}
+#        };
+#  GLTVector3 vNormal;
+#  gltGetNormalVector(vPoints[0],vPoints[1],vPoints[2],vNormal);
+#  glNormal3fv(vNormal);
+#  glTexCoord2f(0.0f, unter);glVertex3fv(vPoints[0]);
+#  glTexCoord2f(0.25f, unter);glVertex3fv(vPoints[1]);
+#  glTexCoord2f(0.25f, doster);glVertex3fv(vPoints[2]);
+#  glTexCoord2f(0.0f, doster);glVertex3fv(vPoints[3]);  
+#gltGetNormalVector(vPoints[4],vPoints[5],vPoints[6],vNormal);
+#  glNormal3fv(vNormal);
+#  glTexCoord2f(0.25f, doster);glVertex3fv(vPoints[4]);
+#  glTexCoord2f(0.5f, doster);glVertex3fv(vPoints[5]);
+#  glTexCoord2f(0.5f, 1.0f);glVertex3fv(vPoints[6]);
+#  glTexCoord2f(0.25f, 1.0f);glVertex3fv(vPoints[7]);  
+#gltGetNormalVector(vPoints[8],vPoints[9],vPoints[10],vNormal);
+#  glNormal3fv(vNormal);
+#  glTexCoord2f(0.25f, doster);glVertex3fv(vPoints[8]);
+#  glTexCoord2f(0.5f, doster);glVertex3fv(vPoints[9]);
+#  glTexCoord2f(0.5f, unter);glVertex3fv(vPoints[10]);
+#  glTexCoord2f(0.25, unter);glVertex3fv(vPoints[11]);  gltGetNormalVector(vPoints[12],vPoints[13],vPoints[14],vNormal);
+#  glNormal3fv(vNormal);
+#  glTexCoord2f(0.25f, 0.0f);glVertex3fv(vPoints[12]);
+#  glTexCoord2f(0.5f, 0.0f);glVertex3fv(vPoints[13]);
+#  glTexCoord2f(0.5f, unter);glVertex3fv(vPoints[14]);
+#  glTexCoord2f(0.25f, unter);glVertex3fv(vPoints[15]);  gltGetNormalVector(vPoints[16],vPoints[17],vPoints[18],vNormal);
+#  glNormal3fv(vNormal);
+#  glTexCoord2f(0.5f, unter);glVertex3fv(vPoints[16]);
+#  glTexCoord2f(0.75f, unter);glVertex3fv(vPoints[17]);
+#  glTexCoord2f(0.75f, doster);glVertex3fv(vPoints[18]);
+#  glTexCoord2f(0.5f, doster);glVertex3fv(vPoints[19]);  gltGetNormalVector(vPoints[20],vPoints[21],vPoints[22],vNormal);
+#      glNormal3fv(vNormal);
+#      glTexCoord2f(0.75f, unter);glVertex3fv(vPoints[20]);
+#      glTexCoord2f(1.0f, unter);glVertex3fv(vPoints[21]);
+#      glTexCoord2f(1.0f, doster);glVertex3fv(vPoints[22]);
+#      glTexCoord2f(0.75f, doster);glVertex3fv(vPoints[23]);
+#    glEnd();
+#}
+
+        
+        
+    def dibujar(self):
+        def quad(p1, p2, p3, p4, color):
+            self.qglColor(color.qcolor())
+    
+            GL.glVertex3d(p1[0], p1[1], p1[2])
+            GL.glVertex3d(p2[0], p2[1], p2[2])
+            GL.glVertex3d(p3[0], p3[1], p3[2])
+            GL.glVertex3d(p4[0], p4[1], p4[2])        
+        GL.glPushMatrix()
+        GL.glTranslated(self.position[0],  self.position[1],  self.position[2])
+        GL.glBegin(GL.GL_QUADS)
+        ww=5
+        v1 = (0, 0, 0)
+        v2 = (ww, 0, 0)
+        v3 = (ww, ww, 0)
+        v4 = (0, ww, 0)
+        v5 = (0, 0, ww)
+        v6 = (ww, 0, ww)
+        v7 = (ww, ww, ww)
+        v8 = (0, ww, ww)
+        color=Color(0, 90, 90)
+        quad(v4, v3, v2, v1, color)      
+        quad(v5, v6, v7, v8, color)      
+        quad(v5, v8, v4, v1, color)      
+        quad(v2, v3, v7, v6, color)      
+        quad(v1, v2, v6, v5, color)      
+        quad(v8, v7, v3, v4, color)      
+
+        GL.glEnd()
+        GL.glPopMatrix()
         
     def qicon(self, numero):
             ico = QIcon()
