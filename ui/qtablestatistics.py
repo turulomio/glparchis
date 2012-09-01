@@ -6,10 +6,13 @@ import libglparchis
 class QTableStatistics(QTableWidget):
     def __init__(self, parent=None):
         QTableWidget.__init__(self, parent)    
+
     
     def assign_mem(self, mem):
         self.mem=mem
-    
+        self.timer = QTimer()
+        QObject.connect(self.timer, SIGNAL("timeout()"), self.reload)     
+        self.timer.start(300)
 
             
     def reload(self):
@@ -30,4 +33,6 @@ class QTableStatistics(QTableWidget):
             for i in range(2, 8):
                 self.item(i, column).setText(str(j.tiradahistorica.numTimesDiceGetNumber(i-1)))
 
+            self.item(9, column).setText(str(j.comidaspormi))
+            self.item(10, column).setText(str(j.comidasporotro))
             self.item(12, column).setText(str(j.tiradahistorica.numThreeSixes()))

@@ -40,7 +40,6 @@ class wdgGame(QWidget, Ui_wdgGame):
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('fichaClicked()'), self.after_ficha_click)  
         settings_splitter_load()
 
-        self.table.reload()
         self.on_JugadorDebeTirar()
 
     def panel(self, jugador=None):
@@ -99,7 +98,6 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.mem.jugadoractual.tirarDado()
         self.cmdTirarDado.setEnabled(False)
         self.panel().setLabelDado()
-        self.table.reload()
         
         if self.mem.jugadoractual.tiradaturno.tresSeises()==True:
             if self.mem.jugadoractual.LastFichaMovida!=None:
@@ -135,34 +133,11 @@ class wdgGame(QWidget, Ui_wdgGame):
         if self.mem.jugadoractual.movimientos_acumulados in (10, 20):
             self.mem.jugadoractual.movimientos_acumulados=None
 
-#        #Come
-#        if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta)==True:
-#            if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==False:
-#                if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
-#                    self.on_JugadorDebeTirar()
-#                else:
-#                    self.cambiarJugador()
-#            else:#si alguna puede mover
-#                self.on_JugadorDebeMover()
-
         #Come o mete
         if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta) or self.mem.selFicha.mete():
             if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==True:
                 self.on_JugadorDebeMover()
                 return
-#            if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
-#                self.on_JugadorDebeTirar()
-#            else:
-#                self.cambiarJugador()
-#        #Mete
-#        if ==True:
-#            if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==False:
-#                if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
-#                    self.on_JugadorDebeTirar()
-#                else:
-#                    self.cambiarJugador()
-#            else:#si alguna puede mover
-#                self.on_JugadorDebeMover() 
         
         if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
             self.on_JugadorDebeTirar()

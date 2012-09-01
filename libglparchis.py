@@ -180,6 +180,8 @@ class Jugador:
         self.dado=None #Enlace a objeto dado de mem
         self.logturno=[]#log de turno
         self.loghistorico=[]
+        self.comidaspormi=0
+        self.comidasporotro=0
 
     def __repr__(self):
         return "Jugador {0}".format(self.color.name)
@@ -391,6 +393,8 @@ class Ficha(QGLWidget):
             fichaacomer.mover(0, False)
             mem.jugadoractual.movimientos_acumulados=20
             mem.jugadoractual.log(self.trUtf8("He comido la ficha %1").arg(fichaacomer.id))
+            self.jugador.comidaspormi=self.jugador.comidaspormi+1
+            fichaacomer.jugador.comidasporotro=fichaacomer.jugador.comidasporotro+1
             return True
                 
             
