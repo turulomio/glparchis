@@ -39,7 +39,7 @@ def delay(miliseconds):
 
 
 
-version="20120805"
+version="20120902"
 cfgfile=os.environ['HOME']+ "/.glparchis/glparchis.cfg"
 lastfile=os.environ['HOME']+ "/.glparchis/last.glparchis"
 
