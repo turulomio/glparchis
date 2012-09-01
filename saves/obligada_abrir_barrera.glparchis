@@ -3,9 +3,9 @@ ia = 0
 name = Jugador amarillo
 plays = 1
 rutaficha1 = 1
-rutaficha2 = 1
-rutaficha3 = 2
-rutaficha4 = 3
+rutaficha2 = 7
+rutaficha3 = 14
+rutaficha4 = 7
 
 [blue]
 ia = 1

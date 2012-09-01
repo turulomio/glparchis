@@ -5,18 +5,7 @@ import os,  random,   ConfigParser,  datetime
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
-#
-#def colorid(color):
-#    if color=="yellow":
-#        return 0
-#    elif color=="blue":
-#        return 1
-#    elif color=="red":
-#        return 2
-#    elif color=="green":
-#        return 3
 
-        
 def q2s(q):
     """Qstring to python string en utf8"""
     return str(QString.toUtf8(q))
@@ -211,7 +200,7 @@ class Jugador:
         return resultado
         
     def tieneBarreras(self):
-        if len(self.barreras)>0:
+        if len(self.barreras())>0:
             return True
         return False
 
@@ -304,27 +293,17 @@ class Ficha(QGLWidget):
         #dos jugadore distintos en inicio entonces come
         if self.jugador.tiradaturno.ultimoValor()==5 and self.jugador.tieneFichasEnCasa() and self.ruta.arr[1].dosJugadoresDistintosEnRuta1():
             return True
+        
+        #Comprueba que no tenga obligación de abrir barrera
+        if self.jugador.tieneBarreras()==True  and self.jugador.tiradaturno.ultimoValor()==6:
+            if self.casilla() in self.jugador.barreras():
+                return True
         return False
         
-#        #Comprueba que no tenga obligación de abrir barrera
-#        if mem.jugadoractual.tengoBarrera()==True  and self.tiradaturno.ultimoValor()==6:
-#            mem.jugadoractual.log(self.trUtf8("No se puede mover, debes abrir barrera"))
-#            return (False, 0)      
-        
     def puedeMover(self, mem):
-        """
-            1 Jugador actual
-            1 Calcula el movimiento idilico
-            1 Ha acabado la ruta
-            1 Hay sitio libre
-            1 Hay barrera intermedia
-            
-            Creo que las barreras propias debe calcularse fuera
-            1 Tiene barrera otras casillas con otras fichas y pueden MOver
-    
-        """
+        """Comprueba si la ficha puede mover"""
 
-        #Es ficha del jugador actual
+        #Es ficha del jugador actual. #A PARTIR DE AQUI SE PUEDE USAR SELF.JUGADOR EN VEZ DE MEM.JUGADORACTUAL
         if  self.jugador!=mem.jugadoractual:             
             mem.jugadoractual.log(self.trUtf8("No es del jugador actual"))
             return (False, 0)
@@ -390,9 +369,7 @@ class Ficha(QGLWidget):
             
     def come(self, mem,   ruta):
         """ruta, es la posición de ruta de ficha en la que come. Como ya se ha movido, come si puede y devuelve True, en caso contrario False"""
-#        if ruta>72:
-#            print ("en como se ha sobrepasado el 72")
-#            return False
+
         casilladestino=self.ruta.arr[ruta]
         
         if casilladestino.seguro==True:
@@ -428,37 +405,16 @@ class Ficha(QGLWidget):
         """Devuelve el objeto casilla en el que se encuentra la ficha"""
         return self.ruta.arr[self.posruta]
 
-        
     def estaEnCasa(self):
         if self.posruta==0:
             return True
         return False
-        
-
 
     def estaEnMeta(self):
         if self.posruta==72:
             return True
         return False
 
-#    def fichas_name2id(self, name):
-#        if name=="yellow1": return 0
-#        if name=="yellow2": return 1
-#        if name=="yellow3": return 2
-#        if name=="yellow4": return 3
-#        if name=="blue1": return 4
-#        if name=="blue2": return 5
-#        if name=="blue3": return 6
-#        if name=="blue4": return 7
-#        if name=="red1": return 8
-#        if name=="red2": return 9
-#        if name=="red3": return 10
-#        if name=="red4": return 11
-#        if name=="green1": return 12
-#        if name=="green2": return 13
-#        if name=="green3": return 14
-#        if name=="green4": return 15
-    
     def dibujar(self, posicionBuzon):
         GL.glInitNames();
         GL.glPushMatrix()
@@ -466,7 +422,6 @@ class Ficha(QGLWidget):
         if posicionBuzon==None:#Para frmAcercade
             p=(0, 0, 0)
         else:
-#            print ("En dibujar ficha. posicion ruta {0}. posicion buzon. posiciones de fichas {2}".format(self.posruta,  posicionBuzon, self.ruta.arr[self.posruta].posfichas))
             p=self.ruta.arr[self.posruta].posfichas[posicionBuzon]
         GL.glTranslated(p[0], p[1], p[2])
         GL.glRotated(180, 1, 0, 0)# da la vuelta a la cara
@@ -532,8 +487,6 @@ class Color:
         self.r=r
         self.g=g
         self.b=b
-#    def Color(self):
-#        return Color(self.r, self.g, self.b)      
     def glcolor(self):
         GL.glColor3d(self.r, self.g, self.b)
         
