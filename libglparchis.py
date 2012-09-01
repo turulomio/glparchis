@@ -350,7 +350,7 @@ class Ficha(QGLWidget):
 
             
         #Comprueba si hay sitio libre
-        if self.ruta.arr[self.posruta+movimiento].haySitioEnBuzon()==False:
+        if self.ruta.arr[self.posruta+movimiento].sitioEnBuzon()==-1:
             mem.jugadoractual.log(self.trUtf8("No hay espacio en la casilla"))
             return (False, 0)
 
@@ -365,8 +365,8 @@ class Ficha(QGLWidget):
         if controllastficha==True:
             self.jugador.LastFichaMovida=self
         if startgame==False:
-            casillaorigen.buzon.remove(self)
-        casilladestino.buzon.append(self)
+            casillaorigen.buzon_remove(self)
+        casilladestino.buzon_append(self)
 #        print ("despu´es mover ",  self, len(casillaorigen.buzon),  len(casilladestino.buzon))
 
 
@@ -381,7 +381,7 @@ class Ficha(QGLWidget):
         if casilladestino.seguro==True:
             return False
         
-        if len(casilladestino.buzon)==2:
+        if casilladestino.buzon_numfichas()==2:
             ficha1=casilladestino.buzon[0]
             ficha2=casilladestino.buzon[1]
             if ficha1.jugador!=mem.jugadoractual:
@@ -535,7 +535,7 @@ class Casilla(QGLWidget):
         self.rampallegada=rampallegada
         self.tipo=tipo
         self.seguro=seguro
-        self.buzon=[]
+        self.buzon=[None]*self.maxfichas #Se crean los huecos y se juega con ellos para mantener la posicion
         self.oglname=self.id+17#Nombre usado para pick por opengl
 
     def dibujar(self):                            
@@ -717,35 +717,45 @@ class Casilla(QGLWidget):
             tipo_normal()
             
     def dibujar_fichas(self):
-        if len(self.buzon)>0:
+        if self.buzon_numfichas()>0:
             for i, f in enumerate(self.buzon):       
-                f.dibujar(i)
+                if f!=None:
+                    f.dibujar(i)
 
 
     def tieneBarrera(self):
         """Devuelve un booleano, las fichas de la barrera se pueden sacar del buz´on"""
         if self.tipo not in (0, 1):#Casilla inicio y final
             if self.maxfichas==2:
-                if len(self.buzon)==2:
+                if self.buzon_numfichas()==2:
                     if self.buzon[0].jugador==self.buzon[1].jugador:
                         return True
         return False
 
-    def haySitioEnBuzon(self):
-        if len(self.buzon)<self.maxfichas:
-            return True
-        return False
-#
-#
-#    def hayBarrera(self, jugador):
-#        """Devuelve False si no y  una lista con las dos fichas si si"""
-#        if self.buzon
-#        resultado =[]
-#        for f in jugador.fichas:
-#            casilla=self.dic_casillas[jugador.fichas[f].id_casilla()]
-#            if casilla.tieneBarrera()==True:
-#                resultado.append(casilla.id)
-#        return resultado
+    def sitioEnBuzon(self):
+        """Funci´on que devuelve la posici´on de un sitio libre con un entero. En caso negativo devuelve -1"""
+        for i, p in enumerate(self.buzon):
+            if p==None:
+                return i
+        return -1
+        
+    def buzon_append(self,  ficha):
+        """No chequea debe ser comprobado antes"""
+        self.buzon[self.sitioEnBuzon()]=ficha
+            
+    def buzon_remove(self, ficha):
+        """No chequea debe ser comprobado antes"""
+        for i, f in enumerate(self.buzon):
+            if f==ficha:
+                self.buzon[i]=None
+                
+    def buzon_numfichas(self):
+        """Funci´on que devuelve el n´umero de fichas en el buz´on"""
+        resultado=0
+        for f in self.buzon:
+            if f!=None:
+                resultado=resultado+1
+        return resultado
 
 class Mem4:
     def __init__(self):
