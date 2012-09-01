@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*- 
 
 from OpenGL import GL,  GLU
-import os,  random,   ConfigParser,  datetime
+import os,  random,   ConfigParser,  datetime,  subprocess
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
@@ -1276,4 +1276,13 @@ def dic2list(dic):
         resultado.append(v)
     return resultado
 
+def sound(sound):
+    if sound=="dice":
+        cat = subprocess.check_output("/usr/bin/ogg123 /usr/share/glparchis/sounds/dice.ogg 2>/dev/null",shell=True)
+    elif sound=="click":
+        cat = subprocess.check_output("/usr/bin/ogg123 /usr/share/glparchis/sounds/click.ogg 2>/dev/null",shell=True)
+    elif sound=="comer":
+        cat = subprocess.check_output("/usr/bin/ogg123 /usr/share/glparchis/sounds/comer.ogg 2>/dev/null",shell=True)
+    elif sound=="win":
+        cat = subprocess.check_output("/usr/bin/ogg123 /usr/share/glparchis/sounds/win.ogg 2>/dev/null",shell=True)
 

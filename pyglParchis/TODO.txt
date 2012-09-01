@@ -1,4 +1,7 @@
-20100525 Meter sonidos al tirar, comer y meter, no poder mover
 20100525 No se muestra la ficha en los objetos de frmAbout
 20120831 Ir migrando a python3, unque opengl no est´a todav´ia
 20120901 Mejorar comentarios en pantallas
+20120901 Se debe mejorar el IA sobre todo cuando puede comer
+20120901 Poner total de salidas de dados. Valorar los %
+20120901 Falla al comer de salida cuando solo hay uno, puede que detecte 2 despues de mover.
+20120901 Poner en el centro del tablero aspa el dado
