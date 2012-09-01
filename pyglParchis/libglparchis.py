@@ -182,6 +182,17 @@ class Jugador:
         self.logturno.append( l)
         self.loghistorico.append(l)
         
+    def hayDosJugadoresDistintosEnRuta1(self):
+        ruta1=self.fichas.arr[0].ruta.arr[1]
+        if ruta1.id not in (5, 22, 39, 56):#Casillas ruta1
+            return False
+        if ruta1.buzon_numfichas()!=2:
+            return False
+        if ruta1.buzon[0].jugador!=ruta1.buzon[1].jugador:
+            return True
+        return False
+        
+        
     def tirarDado(self):
         """Tira el dado lo almacena en tirada, tiradaturno e historico y devuelve el valor"""
         tirada=Tirada(self, self.dado.tirar())
@@ -291,7 +302,7 @@ class Ficha(QGLWidget):
             return True
         
         #dos jugadore distintos en inicio entonces come
-        if self.jugador.tiradaturno.ultimoValor()==5 and self.jugador.tieneFichasEnCasa() and self.ruta.arr[1].dosJugadoresDistintosEnRuta1():
+        if self.jugador.tiradaturno.ultimoValor()==5 and self.estaEnCasa() and self.jugador.hayDosJugadoresDistintosEnRuta1():
             return True
         
         #Comprueba que no tenga obligación de abrir barrera
@@ -344,35 +355,30 @@ class Ficha(QGLWidget):
                 mem.jugadoractual.log(self.trUtf8("Hay una barrera"))
                 return (False, 0)
 
-            
         #Comprueba si hay sitio libre
-        if self.ruta.arr[self.posruta+movimiento].sitioEnBuzon()==-1:
-            mem.jugadoractual.log(self.trUtf8("No hay espacio en la casilla"))
-            return (False, 0)
-
-
+        casilladestino=self.ruta.arr[self.posruta+movimiento]
+        if casilladestino.posicionLibreEnBuzon()==-1:
+            if self.jugador.hayDosJugadoresDistintosEnRuta1():#COmprueeba si es primera casilla en ruta y hay otra de otro color.
+                mem.jugadoractual.log(self.trUtf8("Obligado a sacar y a comer"))
+            else:
+                mem.jugadoractual.log(self.trUtf8("No hay espacio en la casilla"))
+                return (False, 0)
         return (True, movimiento)
         
     def mover(self, ruta, controllastficha=True,  startgame=False):
         casillaorigen=self.ruta.arr[self.posruta]
         casilladestino=self.ruta.arr[ruta]        
-#        print ("antes mover ",  self,  len(casillaorigen.buzon),  len(casilladestino.buzon))
         self.posruta=ruta
         if controllastficha==True:
             self.jugador.LastFichaMovida=self
         if startgame==False:
             casillaorigen.buzon_remove(self)
         casilladestino.buzon_append(self)
-#        print ("despu´es mover ",  self, len(casillaorigen.buzon),  len(casilladestino.buzon))
 
-
-            
     def come(self, mem,   ruta):
         """ruta, es la posición de ruta de ficha en la que come. Como ya se ha movido, come si puede y devuelve True, en caso contrario False"""
-
         casilladestino=self.ruta.arr[ruta]
-        
-        if casilladestino.seguro==True:
+        if casilladestino.seguro==True and self.posruta!=1:
             return False
         
         if casilladestino.buzon_numfichas()==2:
@@ -390,9 +396,28 @@ class Ficha(QGLWidget):
             self.jugador.comidaspormi=self.jugador.comidaspormi+1
             fichaacomer.jugador.comidasporotro=fichaacomer.jugador.comidasporotro+1
             return True
-                
-            
-            
+    
+    def comeEnInicio(self):
+        #        #COMER A INICIO REQUIERE COMER FICHA EXPULSA ANTES DE MOVER SINO NO HAY HUECO            
+        casilladestino=self.ruta.arr[1]
+        if self.posruta==0 and self.jugador.tiradaturno.ultimoValor()==5 and self.jugador.hayDosJugadoresDistintosEnRuta1():
+            ficha1=casilladestino.buzon[1]
+            ficha2=casilladestino.buzon[0]
+            if ficha1.jugador!=self.jugador:
+                fichaacomer=ficha1
+            elif ficha2.jugador!=self.jugador:
+                fichaacomer=ficha2
+            else:
+                return False
+
+            fichaacomer.mover(0, False)
+            self.jugador.movimientos_acumulados=20
+            self.jugador.log(self.trUtf8("He comido la ficha %1").arg(fichaacomer.id))
+            self.jugador.comidaspormi=self.jugador.comidaspormi+1
+            fichaacomer.jugador.comidasporotro=fichaacomer.jugador.comidasporotro+1
+            self.mover(1, True)
+            return True
+
     def mete(self):
         """r Como ya se ha movido, mete si puede y devuelve True, en caso contrario False"""      
         if self.estaEnMeta():
@@ -692,14 +717,6 @@ class Casilla(QGLWidget):
                 if f!=None:
                     f.dibujar(i)
 
-    def dosJugadoresDistintosEnRuta1(self):
-        if self.id not in (5, 22, 39, 56):#Casillas ruta1
-            return False
-        if self.buzon_numfichas!=2:
-            return False
-        if self.buzon[0].jugador==self.buzon[1].jugador:
-            return True
-        return False
 
     def tieneBarrera(self):
         """Devuelve un booleano, las fichas de la barrera se pueden sacar del buz´on"""
@@ -710,7 +727,7 @@ class Casilla(QGLWidget):
                         return True
         return False
 
-    def sitioEnBuzon(self):
+    def posicionLibreEnBuzon(self):
         """Funci´on que devuelve la posici´on de un sitio libre con un entero. En caso negativo devuelve -1"""
         for i, p in enumerate(self.buzon):
             if p==None:
@@ -719,7 +736,7 @@ class Casilla(QGLWidget):
         
     def buzon_append(self,  ficha):
         """No chequea debe ser comprobado antes"""
-        self.buzon[self.sitioEnBuzon()]=ficha
+        self.buzon[self.posicionLibreEnBuzon()]=ficha
             
     def buzon_remove(self, ficha):
         """No chequea debe ser comprobado antes"""
