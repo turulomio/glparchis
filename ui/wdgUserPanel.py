@@ -13,6 +13,9 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         self.setupUi(self)
 
         self.jugador=None
+        self.timerLog = QTimer()
+        QObject.connect(self.timerLog, SIGNAL("timeout()"), self.refreshLog)     
+        self.timerLog.start(300)
         
     def setJugador(self, jugador):
         self.jugador=jugador
@@ -40,14 +43,17 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         self.show()
 
     def on_chk_stateChanged(self, state):        
-        self.lst.clear()
-        if state==Qt.Checked:
+        """Reescribe solo cuando cambia el tamaño"""
+        if state==Qt.Checked and self.lst.count()!=len(self.jugador.loghistorico):
+            self.lst.clear()
             self.lst.addItems(self.jugador.loghistorico)  
             self.lst.setCurrentRow(len(self.jugador.loghistorico)-1)
-        else:
+            self.lst.clearSelection()
+        elif state==Qt.Unchecked and self.lst.count()!=len(self.jugador.logturno):
+            self.lst.clear()
             self.lst.addItems(self.jugador.logturno)          
             self.lst.setCurrentRow(len(self.jugador.logturno)-1)  
-        self.lst.clearSelection()
+            self.lst.clearSelection()
         
     def refreshLog(self):
         self.on_chk_stateChanged(self.chk.checkState())
