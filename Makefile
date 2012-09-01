@@ -3,6 +3,7 @@ DESTDIR ?= /
 PREFIXBIN=$(DESTDIR)/usr/bin
 PREFIXLIB=$(DESTDIR)/usr/lib/glparchis
 PREFIXSHARE=$(DESTDIR)/usr/share/glparchis 
+PREFIXSOUND=$(DESTDIR)/usr/share/glparchis/sounds
 PREFIXPIXMAPS=$(DESTDIR)/usr/share/pixmaps
 PREFIXAPPLICATIONS=$(DESTDIR)/usr/share/applications
 
@@ -24,6 +25,7 @@ install:
 	install -o root -d $(PREFIXBIN)
 	install -o root -d $(PREFIXLIB)
 	install -o root -d $(PREFIXSHARE)
+	install -o root -d $(PREFIXSOUND)
 	install -o root -d $(PREFIXPIXMAPS)
 	install -o root -d $(PREFIXAPPLICATIONS)
 
@@ -36,6 +38,7 @@ install:
 	install -m 644 -o root i18n/*.qm $(PREFIXSHARE)
 	install -m 644 -o root doc/glparchis-* $(PREFIXSHARE)
 	install -m 644 -o root AUTHORS-EN.txt  AUTHORS-ES.txt  CHANGELOG-EN.txt  CHANGELOG-ES.txt  GPL-3.txt  INSTALL-EN.txt  INSTALL-ES.txt  RELEASES-EN.txt  RELEASES-ES.txt  $(PREFIXSHARE)
+	install -m 644 -o root sounds/*.ogg $(PREFIXSOUND)
 
 uninstall:
 	rm $(PREFIXBIN)/glparchis

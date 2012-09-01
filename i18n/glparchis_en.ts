@@ -328,11 +328,6 @@
         <source>Juego</source>
         <translation type="unfinished">Game</translation>
     </message>
-    <message>
-        <location filename="ui/Ui_wdgGame.py" line="419"/>
-        <source>Pulsa para tirar el dado</source>
-        <translation type="unfinished">Click to throw dice</translation>
-    </message>
     <message encoding="UTF-8">
         <location filename="ui/Ui_wdgGame.py" line="418"/>
         <source>Estadísticas</source>
@@ -412,6 +407,11 @@
         <location filename="ui/Ui_wdgGame.py" line="416"/>
         <source>0</source>
         <translation type="unfinished">0</translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_wdgGame.py" line="419"/>
+        <source>Pulsa para tirar el dado</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
