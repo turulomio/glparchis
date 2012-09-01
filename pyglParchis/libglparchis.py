@@ -1220,6 +1220,7 @@ class Mem4:
             return self.dic_casillas[str(name)]
             
     def load(self, filename):       
+        os.chdir("/home/keko/Proyectos/glparchis/pyglParchis/saves/") #SOLO DEBUGGING
         config = ConfigParser.ConfigParser()
         config.read(filename)
 
