@@ -1,12 +1,24 @@
 Requisitos
-==========
-PyQt4
-pyopengl
+=======
+El programa tiene las siguientes dependencias:
+  - PyQt4
+  - pyopengl
+  - vorbis-tools
+  - python2
 
 Procedimiento de instalación
 ============================
-make all
+Se descomprime el fichero 
+Una vez en el directorio en el que esta el Makefile se ejecuta
+  # make all
+
+Si usas la distribución Gentoo, te puedes bajar el ebuild desde
+https://xulpymoney.svn.sourceforge.net/svnroot/xulpymoney/myportage/games-board/glparchis-svn/
+
+Si eres atrevido o quieres ayudarme con el desarrollo te lo puedes bajar del subversion con el siguiente comando
+  # svn co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis
 
 Procedimiento de desinstalación
 ===============================
-make uninstall
+Con el siguiente comando se hace una desinstalación limpia
+  # make uninstall

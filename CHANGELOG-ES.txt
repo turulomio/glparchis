@@ -1,3 +1,4 @@
-XXXXXXXX
+20120902
 ========
 - Se ha dado el soporte inicial a la aplicación
+- La aplicación es plenamente funcional. Falta mejorar el IA de los jugadores virtuales

@@ -36,14 +36,8 @@ def delay(miliseconds):
     while datetime.datetime.now()< dieTime :
         QCoreApplication.processEvents(QEventLoop.AllEvents, 100);    
 
-
-
-
 version="20120902"
 cfgfile=os.environ['HOME']+ "/.glparchis/glparchis.cfg"
-lastfile=os.environ['HOME']+ "/.glparchis/last.glparchis"
-
-
 
 class Dado(QGLWidget):    
     def __init__(self, parent=None ):
@@ -220,11 +214,11 @@ class Dado(QGLWidget):
             pix=QPixmap(":/glparchis/cube.png")
         return pix
                     
-
-class SetJugadores:
-    def __init__(self):
-        self.actual=None
-        self.arr=[]
+#
+#class SetJugadores:
+#    def __init__(self):
+#        self.actual=None
+#        self.arr=[]
         
 class TiradaHistorica:
     """Estudio estadistico de tiradas. Lleva un array con todas los objetos TiradaTurno por cada jugador
@@ -298,7 +292,7 @@ class TiradaTurno:
         self.arr=[]
         
     def tresSeises(self):
-        """Funci´on que devuelve un booleano seg´un haya o no salido 3 seises"""
+        """Función que devuelve un booleano según haya o no salido 3 seises"""
         if len(self.arr)==3:
             if self.arr[0].valor==6 and self.arr[1].valor==6 and self.arr[2].valor==6:
                 return True
@@ -484,7 +478,7 @@ class Ficha(QGLWidget):
             mem.jugadoractual.log(self.trUtf8("No es del jugador actual"))
             return (False, 0)
             
-        #No se puede mover una ficha que est´a en casa con puntos acumulados
+        #No se puede mover una ficha que está en casa con puntos acumulados
         if mem.jugadoractual.movimientos_acumulados!=None and self.estaEnCasa():
             return (False, 0)
         
@@ -884,7 +878,7 @@ class Casilla(QGLWidget):
 
 
     def tieneBarrera(self):
-        """Devuelve un booleano, las fichas de la barrera se pueden sacar del buz´on"""
+        """Devuelve un booleano, las fichas de la barrera se pueden sacar del buzón"""
         if self.tipo not in (0, 1):#Casilla inicio y final
             if self.maxfichas==2:
                 if self.buzon_numfichas()==2:
@@ -893,7 +887,7 @@ class Casilla(QGLWidget):
         return False
 
     def posicionLibreEnBuzon(self):
-        """Funci´on que devuelve la posici´on de un sitio libre con un entero. En caso negativo devuelve -1"""
+        """Función que devuelve la posición de un sitio libre con un entero. En caso negativo devuelve -1"""
         for i, p in enumerate(self.buzon):
             if p==None:
                 return i
@@ -910,7 +904,7 @@ class Casilla(QGLWidget):
                 self.buzon[i]=None
                 
     def buzon_numfichas(self):
-        """Funci´on que devuelve el n´umero de fichas en el buz´on"""
+        """Función que devuelve el número de fichas en el buzón"""
         resultado=0
         for f in self.buzon:
             if f!=None:

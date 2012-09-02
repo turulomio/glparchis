@@ -1,86 +1,142 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tmx SYSTEM "tmx11.dtd">
 <tmx version="1.1">
-  <header
-    creationtool="OmegaT"
-    creationtoolversion="2.3.0_3"
-    segtype="sentence"
-    o-tmf="OmegaT TMX"
-    adminlang="EN-US"
-    srclang="ES-ES"
-    datatype="plaintext"
-  >
-  </header>
+  <header creationtool="OmegaT" o-tmf="OmegaT TMX" adminlang="EN-US" datatype="plaintext" creationtoolversion="2.5.5_1" segtype="sentence" srclang="ES-ES"/>
   <body>
+<!-- Default translations -->
+    <tu>
+      <tuv lang="ES-ES">
+        <seg># make all</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T070554Z">
+        <seg># make all</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg># make uninstall</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T070613Z">
+        <seg># make uninstall </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg># svn co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T070227Z">
+        <seg># svn co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- La aplicación es plenamente funcional.</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T064728Z">
+        <seg>- The app has all the funcionality.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- PyQt4</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T070723Z">
+        <seg>- PyQt4</seg>
+      </tuv>
+    </tu>
     <tu>
       <tuv lang="ES-ES">
         <seg>- Se ha dado el soporte inicial a la aplicación</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130439Z" changeid="root">
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T130439Z">
         <seg>- Initial support to the application</seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>Mariano Muñoz &lt;turulomio@yahoo.es&gt;</seg>
+        <seg>- pyopengl</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130048Z" changeid="root">
-        <seg>Mariano Muñoz &lt;turulomio@yahoo.es&gt; </seg>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T070729Z">
+        <seg>- pyopengl </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- python2</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T065919Z">
+        <seg>- python2</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- vorbis-tools</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T065917Z">
+        <seg>- vorbis-tools</seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
         <seg>----------</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130016Z" changeid="root">
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T130016Z">
         <seg>---------- </seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>===============================</seg>
-      </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130323Z" changeid="root">
-        <seg>=============================== </seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
         <seg>-----------------</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130003Z" changeid="root">
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T130003Z">
         <seg>----------------- </seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>Inglés: Mariano Muñoz &lt;turulomio@yahoo.es&gt;</seg>
+        <seg>1 &lt;a0&gt;Introducción&lt;/a0&gt;</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T125558Z" changeid="root">
-        <seg>English: Mariano Muñoz &lt;turulomio@yahoo.es&gt;</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>Idea y Desarrollo</seg>
-      </tuv>
-      <tuv lang="EN-GB" changedate="20111102T125529Z" changeid="root">
-        <seg>Idea and Development</seg>
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T132018Z">
+        <seg>1 &lt;a0&gt;Introduction&lt;/a0&gt;</seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>Requisitos</seg>
+        <seg>2</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130207Z" changeid="root">
-        <seg>Requirements</seg>
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T132201Z">
+        <seg>2 </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>2 &lt;a0&gt;Manual de usuario&lt;/a0&gt;</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T132036Z">
+        <seg>2 &lt;a0&gt;User guide&lt;/a0&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>20120902</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T065752Z">
+        <seg>20120902</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>=======</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T065856Z">
+        <seg>=======</seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
         <seg>========</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130026Z" changeid="root">
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T130026Z">
         <seg>======== </seg>
       </tuv>
     </tu>
@@ -88,161 +144,242 @@
       <tuv lang="ES-ES">
         <seg>============================</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130301Z" changeid="root">
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T130301Z">
         <seg>============================ </seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>Índice de contenido</seg>
+        <seg>===============================</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T132010Z" changeid="root">
-        <seg>Índice of content</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>glParchis.</seg>
-      </tuv>
-      <tuv lang="EN-GB" changedate="20111102T131519Z" changeid="root">
-        <seg>glParchis. </seg>
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T130323Z">
+        <seg>=============================== </seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>make uninstall</seg>
+        <seg>Click Dado</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130325Z" changeid="root">
-        <seg>make uninstall </seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>1 &lt;a0&gt;Introducción&lt;/a0&gt;</seg>
-      </tuv>
-      <tuv lang="EN-GB" changedate="20111102T132018Z" changeid="root">
-        <seg>1 &lt;a0&gt;Introduction&lt;/a0&gt;</seg>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T065818Z">
+        <seg>Click Dado</seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>Procedimiento de instalación</seg>
+        <seg>Click Ficha</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130250Z" changeid="root">
-        <seg>Installation procedure</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>glparchis-XXXXXXXX &lt;==&gt;  svn -r XXX co https://glparchis.svn.sourceforge.net/svnroot/glparchis pyglparchis</seg>
-      </tuv>
-      <tuv lang="EN-GB" changedate="20111102T132103Z" changeid="root">
-        <seg>glparchis-XXXXXXXX &lt;==&gt;  svn -r XXX co https://glparchis.svn.sourceforge.net/svnroot/glparchis pyglparchis </seg>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T065819Z">
+        <seg>Click Ficha</seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>2 &lt;a0&gt;Manual de usuario&lt;/a0&gt;</seg>
+        <seg>Con el siguiente comando se hace una desinstalación limpia</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T132036Z" changeid="root">
-        <seg>2 &lt;a0&gt;User guide&lt;/a0&gt;</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>Traducción</seg>
-      </tuv>
-      <tuv lang="EN-GB" changedate="20111102T125551Z" changeid="root">
-        <seg>Translation</seg>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T070257Z">
+        <seg>The next comand makes a clean uninstall of the application</seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>==========</seg>
+        <seg>El programa tiene las siguientes dependencias:</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130210Z" changeid="root">
-        <seg>========== </seg>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T065912Z">
+        <seg>The app has the following dependencies:</seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>Francés: Nadejda Adam</seg>
+        <seg>English: Mariano Muñoz &lt;turulomio@yahoo.es&gt;</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T125604Z" changeid="root">
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T065748Z">
+        <seg>English: Mariano Muñoz &lt;turulomio@yahoo.es&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Falta mejorar el IA de los jugadores virtuales</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T064852Z">
+        <seg>We need to improve the virtual players</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>French: Nadejda Adam</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T065750Z">
         <seg>French: Nadejda Adam</seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>PyQt4</seg>
+        <seg>Idea y desarrollo</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130213Z" changeid="root">
-        <seg>PyQt4 </seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>XXXXXXXX</seg>
-      </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130053Z" changeid="root">
-        <seg>XXXXXXXX </seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>Manual de usuario</seg>
-      </tuv>
-      <tuv lang="EN-GB" changedate="20111102T131450Z" changeid="root">
-        <seg>User guide</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>2</seg>
-      </tuv>
-      <tuv lang="EN-GB" changedate="20111102T132201Z" changeid="root">
-        <seg>2 </seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>Mariano Muñoz</seg>
-      </tuv>
-      <tuv lang="EN-GB" changedate="20111102T131532Z" changeid="root">
-        <seg>Mariano Muñoz </seg>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T064331Z">
+        <seg>Idea and development</seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
         <seg>Introducción</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T132047Z" changeid="root">
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T132047Z">
         <seg>Introduction</seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>make all</seg>
+        <seg>Lastdado por si 6</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130305Z" changeid="root">
-        <seg>make all </seg>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T070345Z">
+        <seg>Lastdado por si 6</seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>pyopengl</seg>
+        <seg>Manual de usuario</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130216Z" changeid="root">
-        <seg>pyopengl </seg>
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T131450Z">
+        <seg>User guide</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Mariano Muñoz</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T131532Z">
+        <seg>Mariano Muñoz </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Mariano Muñoz &lt;turulomio@yahoo.es&gt;</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T130048Z">
+        <seg>Mariano Muñoz &lt;turulomio@yahoo.es&gt; </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>No</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T065842Z">
+        <seg>No</seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
         <seg>Procedimiento de desinstalación</seg>
       </tuv>
-      <tuv lang="EN-GB" changedate="20111102T130321Z" changeid="root">
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T130321Z">
         <seg>Uninstalling procedure</seg>
       </tuv>
     </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Procedimiento de instalación</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T130250Z">
+        <seg>Installation procedure</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Requisitos</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T130207Z">
+        <seg>Requirements</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Se descomprime el fichero</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T065932Z">
+        <seg>Uncompres the file</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Si eres atrevido o quieres ayudarme con el desarrollo te lo puedes bajar del subversion con el siguiente comando</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T070212Z">
+        <seg>If you want to help me, you can get the sourcecode from Sourceforge Subversion typing:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Si usas la distribución Gentoo, te puedes bajar el ebuild desde</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T070103Z">
+        <seg>If you use Gentoo, you can download the ebuild from </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Traducción</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T125551Z">
+        <seg>Translation</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Tres seises</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T065819Z">
+        <seg>Tres seises</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Una vez en el directorio en el que esta el Makefile se ejecuta</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T070006Z">
+        <seg>Change to the directory where the Makefile is and type</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>glParchis.</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T131519Z">
+        <seg>glParchis. </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>glparchis-20120902 &lt;==&gt;  svn -r 186 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T070331Z">
+        <seg>glparchis-20120902 &lt;==&gt;  svn -r 186 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>https://xulpymoney.svn.sourceforge.net/svnroot/xulpymoney/myportage/games-board/glparchis-svn/</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T070104Z">
+        <seg>https://xulpymoney.svn.sourceforge.net/svnroot/xulpymoney/myportage/games-board/glparchis-svn/</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>tag=dado, comido, metido</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T065841Z">
+        <seg>tag=dado, comido, metido</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Índice de contenido</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T132010Z">
+        <seg>Índice of content</seg>
+      </tuv>
+    </tu>
+<!-- Alternative translations -->
   </body>
 </tmx>
