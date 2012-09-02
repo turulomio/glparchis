@@ -166,6 +166,30 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>Alguna</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074719Z">
+        <seg>Alguna</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Calcula valor movimiento 1, dado, 7</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074737Z">
+        <seg>Calcula valor movimiento 1, dado, 7</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Cambia Jugador</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074718Z">
+        <seg>Cambia Jugador</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>Click Dado</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T065818Z">
@@ -182,10 +206,26 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>Come</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074729Z">
+        <seg>Come</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>Con el siguiente comando se hace una desinstalación limpia</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T070257Z">
         <seg>The next comand makes a clean uninstall of the application</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Devuelve True o False y el valor que mueve</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074736Z">
+        <seg>Devuelve True o False y el valor que mueve</seg>
       </tuv>
     </tu>
     <tu>
@@ -198,10 +238,42 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>En rampa de llegada</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074732Z">
+        <seg>En rampa de llegada</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>English: Mariano Muñoz &lt;turulomio@yahoo.es&gt;</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T065748Z">
         <seg>English: Mariano Muñoz &lt;turulomio@yahoo.es&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Es jugador actual</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074742Z">
+        <seg>Es jugador actual</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Esta en casa</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074732Z">
+        <seg>Esta en casa</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Esta en ella</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074743Z">
+        <seg>Esta en ella</seg>
       </tuv>
     </tu>
     <tu>
@@ -226,6 +298,30 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T065750Z">
         <seg>French: Nadejda Adam</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Había salido un seis</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074728Z">
+        <seg>Había salido un seis</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Hay barrera en</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074738Z">
+        <seg>Hay barrera en</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Hay sitio libre</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074741Z">
+        <seg>Hay sitio libre</seg>
       </tuv>
     </tu>
     <tu>
@@ -262,6 +358,14 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>Jugador tiene</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074742Z">
+        <seg>Jugador tiene</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>Lastdado por si 6</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T070345Z">
@@ -294,10 +398,42 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>Mete</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074731Z">
+        <seg>Mete</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Movimiento acumulado</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074730Z">
+        <seg>Movimiento acumulado</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Mueve Ficha</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074718Z">
+        <seg>Mueve Ficha</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>No</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T065842Z">
         <seg>No</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>No puede mover</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074736Z">
+        <seg>No puede mover</seg>
       </tuv>
     </tu>
     <tu>
@@ -318,6 +454,38 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>Puede mover</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074729Z">
+        <seg>[parcial]puede mover</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Puede mover según cálculo</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074737Z">
+        <seg>Puede mover según cálculo</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Puede mover una ficha (Valor que mueve)</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074735Z">
+        <seg>Puede mover una ficha (Valor que mueve)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Pulse otra</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074729Z">
+        <seg>Pulse otra</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>PyQt4</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20111102T130213Z">
@@ -334,10 +502,42 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>Sacó un 5</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074733Z">
+        <seg>Sacó un 5</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>Se descomprime el fichero</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T065932Z">
         <seg>Uncompres the file</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Se ha movido</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074729Z">
+        <seg>Se ha movido</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Se ha pasado</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074739Z">
+        <seg>Se ha pasado</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Si</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074719Z">
+        <seg>Si</seg>
       </tuv>
     </tu>
     <tu>
@@ -354,6 +554,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T070103Z">
         <seg>If you use Gentoo, you can download the ebuild from </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Si, no importa que pregunte esá en casa, ya que se escuye en tiene barrera</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074745Z">
+        <seg>Si, no importa que pregunte esá en casa, ya que se escuye en tiene barrera</seg>
       </tuv>
     </tu>
     <tu>
@@ -390,6 +598,30 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>Y Sacó un 6</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074744Z">
+        <seg>Y Sacó un 6</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>barrera</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074743Z">
+        <seg>barrera</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>casillas paso</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074738Z">
+        <seg>casillas paso</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>glParchis.</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20111102T131519Z">
@@ -402,6 +634,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T070331Z">
         <seg>glparchis-20120902 &lt;==&gt;  svn -r 186 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>glparchis-20120902 &lt;==&gt;  svn -r 187 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074816Z">
+        <seg>glparchis-20120902 &lt;==&gt;  svn -r 187 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
       </tuv>
     </tu>
     <tu>
@@ -422,6 +662,22 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>https://xulpymoney.svn.sourceforge.net/svnroot/xulpymoney/myportage/games-board/glparchis/</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074807Z">
+        <seg>https://xulpymoney.svn.sourceforge.net/svnroot/xulpymoney/myportage/games-board/glparchis/</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>la meta</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074740Z">
+        <seg>la meta</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>make all</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20111102T130305Z">
@@ -434,6 +690,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20111102T130325Z">
         <seg>make uninstall </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>puede mover</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120902T074728Z">
+        <seg>puede mover</seg>
       </tuv>
     </tu>
     <tu>

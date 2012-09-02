@@ -1,1 +1,1 @@
-glparchis-20120902 <==>  svn -r 186 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis
+glparchis-20120902 <==>  svn -r 187 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis

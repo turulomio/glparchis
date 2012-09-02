@@ -1,50 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="en">
+<!DOCTYPE TS><TS version="2.0" language="en" sourcelanguage="">
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="580"/>
+        <location filename="libglparchis.py" line="574"/>
         <source>He comido la ficha %1</source>
         <translation>I&apos;ve eatten the piece %1</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="590"/>
+        <location filename="libglparchis.py" line="584"/>
         <source>He metido la ficha %1</source>
         <translation>Piece %1 arrived the central space </translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="484"/>
+        <location filename="libglparchis.py" line="478"/>
         <source>No es del jugador actual</source>
         <translation>It&apos;s not a current player piece</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="514"/>
+        <location filename="libglparchis.py" line="508"/>
         <source>Se ha pasado la meta</source>
         <translation>You missed the central space</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="520"/>
+        <location filename="libglparchis.py" line="514"/>
         <source>Hay una barrera</source>
         <translation>There is a blockade</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="529"/>
+        <location filename="libglparchis.py" line="523"/>
         <source>No hay espacio en la casilla</source>
         <translation>The space is bussy</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="509"/>
+        <location filename="libglparchis.py" line="503"/>
         <source>No puede mover</source>
         <translation>It can&apos;t move</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="493"/>
+        <location filename="libglparchis.py" line="487"/>
         <source>No puede mover, porque hay otra ficha obligada a mover</source>
         <translation>You can&apos;t move because there&apos;s a piece forced to move</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="527"/>
+        <location filename="libglparchis.py" line="521"/>
         <source>Obligado a sacar y a comer</source>
         <translation>You&apos;re forced to move to the first space and to eat</translation>
     </message>
@@ -76,7 +75,7 @@
         <source>Qt</source>
         <translation>Qt</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/frmAbout.ui" line="272"/>
         <source>Haga doble click en la imágen para ver los distintos objetos</source>
         <translation>Double click in the view to see the different objects</translation>
@@ -86,13 +85,13 @@
         <source>Acerca de</source>
         <translation>About</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/frmAbout.ui" line="64"/>
         <source>Créditos</source>
         <translation>Credits</translation>
     </message>
 </context>
-<context>
+<context encoding="UTF-8">
     <name>frmInitGame</name>
     <message>
         <location filename="ui/Ui_frmInitGame.py" line="270"/>
@@ -104,7 +103,7 @@
         <source>Jugador amarillo</source>
         <translation>Yellow player</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/Ui_frmInitGame.py" line="281"/>
         <source>¿Inteligencia artificial?</source>
         <translation>Artificial intelligence?</translation>
@@ -144,7 +143,7 @@
         <source>Tirar dado</source>
         <translation>Roll the dice</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/Ui_frmInitGame.py" line="269"/>
         <source>Configuración inicial de la partida</source>
         <translation>Initial setup of the game</translation>
@@ -154,7 +153,7 @@
         <source>Configurar la partida</source>
         <translation>Configure game</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/frmInitGame.py" line="16"/>
         <source>Selecciona las fichas que van a jugar y quién va a jugar con ellas</source>
         <translation>Select the pieces that will play and who will play with them</translation>
@@ -164,7 +163,7 @@
         <source>Elegir el jugador que empieza la partida</source>
         <translation>Choose the player to start the game</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/frmInitGame.py" line="19"/>
         <source>Tirar el dado de tu color. El jugador que saque la puntuación más alta, empieza la partida</source>
         <translation>Throw the dice of your color. The player with the highest score starts the game</translation>
@@ -174,12 +173,12 @@
         <source>El jugador %1 empieza la partida</source>
         <translation>The %1 pleyer starts the game</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/frmInitGame.py" line="130"/>
         <source>%1 deben tirar hasta que se aclare quién empieza la partida</source>
         <translation>%1 should thow the dice up to clarify who starts the game</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/frmInitGame.py" line="21"/>
         <source>¿Quién empieza?</source>
         <translation>Who starts?</translation>
@@ -247,7 +246,7 @@
         <source>Preferencias</source>
         <translation>Settings</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/Ui_frmMain.py" line="105"/>
         <source>glParchis 2010-2012 ©</source>
         <translation>glParchis 2010-2012 ©</translation>
@@ -255,7 +254,7 @@
 </context>
 <context>
     <name>frmSettings</name>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/frmSettings.ui" line="33"/>
         <source>Configuración de glParchis</source>
         <translation>glParchis configuration</translation>
@@ -298,7 +297,7 @@
         <source>TextLabel</source>
         <translation>TextLabel</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/frmShowCasilla.ui" line="55"/>
         <source>Ocupación</source>
         <translation>Occupation</translation>
@@ -329,12 +328,12 @@
         <source>Juego</source>
         <translation>Game</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/Ui_wdgGame.py" line="472"/>
         <source>Estadísticas</source>
         <translation>Statistics</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="ui/Ui_wdgGame.py" line="344"/>
         <source>Número de tiradas</source>
         <translation>Number of throws</translation>
