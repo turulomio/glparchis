@@ -9,6 +9,8 @@ mkdir $DIR/doc
 mkdir $DIR/i18n
 mkdir $DIR/images
 mkdir $DIR/ui
+mkdir $DIR/saves
+mkdir $DIR/sounds
 
 cp      Makefile \
 	AUTHORS-ES.txt \
@@ -23,7 +25,7 @@ cp      Makefile \
         glparchis.py \
         pyglparchis.pro \
         libglparchis.py \
-        pyglparchis.desktop \
+        glparchis.desktop \
         $DIR
 
 cp      i18n/*.ts \
@@ -41,6 +43,12 @@ cp 	ui/frm* \
 cp	images/*.png \
 	images/*.qrc \
 	$DIR/images
+
+cp 	sounds/*.ogg \
+	$DIR/sounds
+
+cp 	saves/*.glparchis \
+	$DIR/saves
 
 tar cvz $DIR -f $FILE
 rm -R $DIR

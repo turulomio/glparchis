@@ -109,7 +109,7 @@ class wdgGame(QWidget, Ui_wdgGame):
     def on_cmdTirarDado_clicked(self):  
         sound("dice")
         self.mem.jugadoractual.tirarDado()
-#        self.emit(SIGNAL("dadoClicked()"))#No se pasa par´ametro porque es self.mem.selFicha
+#        self.emit(SIGNAL("dadoClicked()"))#No se pasa parámetro porque es self.mem.selFicha
         self.cmdTirarDado.setIcon(self.mem.dado.qicon(self.mem.jugadoractual.tiradaturno.ultimoValor()))
         self.cmdTirarDado.setEnabled(False)
         self.panel().setLabelDado()
@@ -206,7 +206,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 break
         
         delay(500)
-        self.mem.jugadoractual.tiradaturno=TiradaTurno()#Se crea otro objeto porque as´i el anterior queda vinculada< a TiradaHistorica.
+        self.mem.jugadoractual.tiradaturno=TiradaTurno()#Se crea otro objeto porque así el anterior queda vinculada< a TiradaHistorica.
         self.mem.jugadoractual.movimientos_acumulados=None
         self.mem.jugadoractual.LastFichaMovida=None
         

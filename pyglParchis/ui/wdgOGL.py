@@ -9,7 +9,7 @@ from frmShowFicha import *
 
 
 class wdgOGL(QGLWidget):
-    """Clase principal del Juego, aquí está fundamentalmente la representaci´on.
+    """Clase principal del Juego, aquí está fundamentalmente la representación.
    Emite click ficha cuando se realiza"""
     def __init__(self,  parent=None,  filename=None):
         QGLWidget.__init__(self, parent)
@@ -76,7 +76,7 @@ class wdgOGL(QGLWidget):
                 
     def mousePressEvent(self, event):        
         def pickup(event, right):
-            """right es si el bot´on pulsado en el derecho"""
+            """right es si el botón pulsado en el derecho"""
             viewport=GL.glGetIntegerv(GL.GL_VIEWPORT);
             GL.glMatrixMode(GL.GL_PROJECTION);
             GL.glPushMatrix();
@@ -140,7 +140,7 @@ class wdgOGL(QGLWidget):
             pickup(event, False)            
             if self.mem.selFicha!=None:
                 self.mem.jugadoractual.log(self.trUtf8("Se ha hecho click en la ficha %1").arg(self.mem.selFicha.id))
-                self.emit(SIGNAL("fichaClicked()"))#No se pasa par´ametro porque es self.mem.selFicha
+                self.emit(SIGNAL("fichaClicked()"))#No se pasa parámetro porque es self.mem.selFicha
         elif event.buttons() & Qt.RightButton:
             pickup(event, True)                    
         self.updateGL()

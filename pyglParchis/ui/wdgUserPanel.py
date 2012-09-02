@@ -23,7 +23,7 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         self.grp.setTitle(jugador.name)
         
     def setLabelDado(self):
-        """Actualiza la etiqueta del ´utlimo valor de tiradaturno"""
+        """Actualiza la etiqueta del útlimo valor de tiradaturno"""
         numlbl=len(self.jugador.tiradaturno.arr)
         #Selecciona el label
         if numlbl==1:
