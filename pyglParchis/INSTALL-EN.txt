@@ -13,7 +13,7 @@ Change to the directory where the Makefile is and type
   # make all
 
 If you use Gentoo, you can download the ebuild from 
-https://xulpymoney.svn.sourceforge.net/svnroot/xulpymoney/myportage/games-board/glparchis-svn/
+https://xulpymoney.svn.sourceforge.net/svnroot/xulpymoney/myportage/games-board/glparchis/
 
 If you want to help me, you can get the sourcecode from Sourceforge Subversion typing:
   # svn co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis

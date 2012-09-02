@@ -23,7 +23,7 @@ cp      Makefile \
         RELEASES-EN.txt \
         RELEASES-ES.txt \
         glparchis.py \
-        pyglparchis.pro \
+        glparchis.pro \
         libglparchis.py \
         glparchis.desktop \
         $DIR
