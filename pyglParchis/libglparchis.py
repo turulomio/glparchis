@@ -543,7 +543,7 @@ class Ficha(QGLWidget):
     def come(self, mem,   ruta):
         """ruta, es la posición de ruta de ficha en la que come. Como ya se ha movido, come si puede y devuelve True, en caso contrario False"""
         casilladestino=self.ruta.arr[ruta]
-        if casilladestino.seguro==True and self.posruta!=1:
+        if casilladestino.seguro==True:
             return False
         
         if casilladestino.buzon_numfichas()==2:

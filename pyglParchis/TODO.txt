@@ -2,7 +2,5 @@
 20120831 Ir migrando a python3, unque opengl no est´a todav´ia
 20120901 Mejorar comentarios en pantallas
 20120901 Se debe mejorar el IA sobre todo cuando puede comer
-20120901 Poner total de salidas de dados. Valorar los %
-20120901 Falla al comer de salida cuando solo hay uno, puede que detecte 2 despues de mover.
 20120901 Poner en el centro del tablero aspa el dado
 20120901 Poner el testo de tirar el dado en el color del jugador actual
