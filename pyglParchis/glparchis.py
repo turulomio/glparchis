@@ -2,7 +2,8 @@
 #-*- coding: utf-8 -*- 
 
 import sys, os
-sys.path.append("/usr/lib/glparchis")
+rootdir="/usr"
+sys.path.append(rootdir+"/lib/glparchis")
 os.chdir(os.path.expanduser("~/.glparchis/"))
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -22,7 +23,7 @@ app = QApplication(sys.argv)
 translator = QTranslator(app)
 locale=QLocale()
 a=locale.system()
-translator.load("/usr/share/glparchis/glparchis_" + a.name() + ".qm")
+translator.load(rootdir+"/share/glparchis/glparchis_" + a.name() + ".qm")
 app.installTranslator(translator);
 
 frmMain = frmMain() 
