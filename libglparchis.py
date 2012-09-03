@@ -1,11 +1,13 @@
 #-*- coding: utf-8 -*- 
-
 from OpenGL import GL,  GLU
 import os,  random,   ConfigParser,  datetime,  subprocess
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 
+
+version="20120902"
+cfgfile=os.environ['HOME']+ "/.glparchis/glparchis.cfg"
 def q2s(q):
     """Qstring to python string en utf8"""
     return str(QString.toUtf8(q))
@@ -36,8 +38,6 @@ def delay(miliseconds):
     while datetime.datetime.now()< dieTime :
         QCoreApplication.processEvents(QEventLoop.AllEvents, 100);    
 
-version="20120902"
-cfgfile=os.environ['HOME']+ "/.glparchis/glparchis.cfg"
 
 class Dado(QGLWidget):    
     def __init__(self, parent=None ):
@@ -1388,7 +1388,7 @@ class Mem4:
             return self.dic_casillas[str(name)]
             
     def load(self, filename):       
-        os.chdir("/home/keko/Proyectos/glparchis/pyglParchis/saves/") #SOLO DEBUGGING
+#        os.chdir("/home/keko/Proyectos/glparchis/pyglParchis/saves/") #SOLO DEBUGGING
         config = ConfigParser.ConfigParser()
         config.read(filename)
 
@@ -1436,12 +1436,14 @@ def dic2list(dic):
     return resultado
 
 def sound(sound):
+    player="/usr/bin/ogg123"
     if sound=="dice":
-        cat = subprocess.check_output("/usr/bin/ogg123 /usr/share/glparchis/sounds/dice.ogg 2>/dev/null",shell=True)
+        subprocess.check_output("{0} /usr/share/glparchis/sounds/dice.ogg 2>/dev/null".format(player),shell=True)
     elif sound=="click":
-        cat = subprocess.check_output("/usr/bin/ogg123 /usr/share/glparchis/sounds/click.ogg 2>/dev/null",shell=True)
+        subprocess.check_output("{0} /usr/share/glparchis/sounds/click.ogg 2>/dev/null".format(player),shell=True)
     elif sound=="comer":
-        cat = subprocess.check_output("/usr/bin/ogg123 /usr/share/glparchis/sounds/comer.ogg 2>/dev/null",shell=True)
+        subprocess.check_output("{0} /usr/share/glparchis/sounds/comer.ogg 2>/dev/null".format(player),shell=True)
     elif sound=="win":
-        cat = subprocess.check_output("/usr/bin/ogg123 /usr/share/glparchis/sounds/win.ogg 2>/dev/null",shell=True)
+        subprocess.check_output("{0} /usr/share/glparchis/sounds/win.ogg 2>/dev/null".format(player),shell=True)
+
 

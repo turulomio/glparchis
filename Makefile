@@ -1,5 +1,6 @@
 DESTDIR ?= /
 
+
 PREFIXBIN=$(DESTDIR)/usr/bin
 PREFIXLIB=$(DESTDIR)/usr/lib/glparchis
 PREFIXSHARE=$(DESTDIR)/usr/share/glparchis 

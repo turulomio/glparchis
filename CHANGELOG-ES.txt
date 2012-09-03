@@ -1,3 +1,8 @@
+XXXXXXXX
+========
+- Solucionado problema con directorio de partidas guardadas
+
+
 20120902
 ========
 - Se ha dado el soporte inicial a la aplicación
