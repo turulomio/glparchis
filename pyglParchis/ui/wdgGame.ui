@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1221</width>
-    <height>636</height>
+    <width>848</width>
+    <height>633</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,6 +27,19 @@
      </property>
      <widget class="QWidget" name="layoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QPushButton" name="cmdTirarDado">
+         <property name="text">
+          <string>Tira el dado</string>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>48</width>
+           <height>48</height>
+          </size>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="wdgUserPanel" name="panel1" native="true">
          <property name="enabled">
@@ -774,13 +787,6 @@
            </item>
           </layout>
          </widget>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="cmdTirarDado">
-         <property name="text">
-          <string>Tira el dado</string>
-         </property>
         </widget>
        </item>
       </layout>

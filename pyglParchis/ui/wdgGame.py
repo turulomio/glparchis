@@ -42,12 +42,12 @@ class wdgGame(QWidget, Ui_wdgGame):
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('fichaClicked()'), self.after_ficha_click)  
         settings_splitter_load()
 
-        self.cmdTirarDado.setGeometry(100, 100, 200, 64)
-        self.cmdTirarDado.setIconSize(QSize(80, 80 ))
-        self.cmdTirarDado.setParent(None)
-        self.cmdTirarDado.setWindowFlags(Qt.WindowStaysOnTopHint)
-        self.cmdTirarDado.setWindowTitle(self.trUtf8("Dado"))
-        self.cmdTirarDado.show()
+#        self.cmdTirarDado.setGeometry(100, 100, 200, 64)
+#        self.cmdTirarDado.setIconSize(QSize(80, 80 ))
+#        self.cmdTirarDado.setParent(None)
+#        self.cmdTirarDado.setWindowFlags(Qt.WindowStaysOnTopHint)
+#        self.cmdTirarDado.setWindowTitle(self.trUtf8("Dado"))
+#        self.cmdTirarDado.show()
 
         self.on_JugadorDebeTirar()
 
