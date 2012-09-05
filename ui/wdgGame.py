@@ -217,6 +217,8 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.panel().lbl3.setPixmap(self.mem.dado.qpixmap(None))
         self.panel().show()
 
+        self.cmdTirarDado.setStyleSheet('QPushButton {color: '+self.mem.jugadoractual.color.name+'}')
+
         self.on_JugadorDebeTirar()
 
 

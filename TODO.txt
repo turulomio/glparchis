@@ -1,6 +1,5 @@
-20100525 No se muestra la ficha en los objetos de frmAbout
+20100525 No se muestra la ficha en los objetos de frmAbout en algunas tarjetas
 20120831 Ir migrando a python3, unque opengl no está todavía
 20120901 Mejorar comentarios en pantallas
 20120901 Se debe mejorar el IA sobre todo cuando puede comer
-20120901 Poner en el centro del tablero aspa el dado
-20120901 Poner el testo de tirar el dado en el color del jugador actual
+
