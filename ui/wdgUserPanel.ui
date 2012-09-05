@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>456</width>
+    <width>412</width>
     <height>250</height>
    </rect>
   </property>
@@ -96,9 +96,6 @@
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
-            <property name="margin">
-             <number>27</number>
-            </property>
            </widget>
           </item>
           <item>
@@ -106,7 +103,7 @@
             <item>
              <widget class="QLabel" name="lbl1">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -125,7 +122,7 @@
             <item>
              <widget class="QLabel" name="lbl2">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -144,7 +141,7 @@
             <item>
              <widget class="QLabel" name="lbl3">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -167,7 +164,14 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
-           <widget class="QListWidget" name="lst"/>
+           <widget class="QListWidget" name="lst">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QCheckBox" name="chk">

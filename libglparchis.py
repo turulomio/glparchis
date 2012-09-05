@@ -431,6 +431,7 @@ class SetJugadores:
         maxpunt=resultado.casillasMovidas()
         for j in self.arr:
             if j.casillasMovidas()>maxpunt:
+                maxpunt=j.casillasMovidas()
                 resultado=j
         return resultado
         
