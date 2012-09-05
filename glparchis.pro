@@ -34,4 +34,3 @@ FORMS           = ui/frmAbout.ui \
 TRANSLATIONS    = i18n/glparchis_en.ts \
                   i18n/glparchis_fr.ts \
                   i18n/glparchis_ru.ts
-                  

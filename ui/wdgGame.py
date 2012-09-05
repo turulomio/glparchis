@@ -28,10 +28,10 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.ogl.assign_mem(self.mem)
         self.ogl.setFocus()
         
-        self.panel1.setJugador(self.mem.jugadores("yellow"))
-        self.panel2.setJugador(self.mem.jugadores("blue"))
-        self.panel3.setJugador(self.mem.jugadores("red"))
-        self.panel4.setJugador(self.mem.jugadores("green"))
+        self.panel1.setJugador(self.mem.jugadores.jugador("yellow"))
+        self.panel2.setJugador(self.mem.jugadores.jugador("blue"))
+        self.panel3.setJugador(self.mem.jugadores.jugador("red"))
+        self.panel4.setJugador(self.mem.jugadores.jugador("green"))
         
         self.panel().setActivated(True)
         self.mem.jugadoractual.log(self.trUtf8("Empieza la partida"))
@@ -121,7 +121,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                     self.mem.jugadoractual.log(self.trUtf8("Han salido tres seises, no se va a casa por haber llegado a rampa de llegada"))
                 else:
                     if self.mem.jugadoractual.LastFichaMovida.puedeMover(self.mem)[0]==True:
-                        self.mem.jugadoractual.log(self.trUtf8(u"Han salido tres seises, la ultima ficha movida se va a casa"))
+                        self.mem.jugadoractual.log(self.trUtf8("Han salido tres seises, la ultima ficha movida se va a casa"))
                         self.mem.jugadoractual.LastFichaMovida.mover(0)
                     else:
                         self.mem.jugadoractual.log(self.trUtf8(u"Han salido tres seises, pero como no puede mover no se va a casa"))
@@ -174,7 +174,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         else:
             self.cambiarJugador()
 
-    
+
 
     def cambiarJugador(self):          
         self.mem.jugadoractual.log ("{0} acaba el turno".format(self.mem.jugadoractual))
@@ -195,13 +195,13 @@ class wdgGame(QWidget, Ui_wdgGame):
 #            time.sleep(0.2)
         while True:
             if self.mem.jugadoractual.color.name=="yellow":
-                self.mem.jugadoractual=self.mem.jugadores("blue")
+                self.mem.jugadoractual=self.mem.jugadores.jugador("blue")
             elif self.mem.jugadoractual.color.name=="blue" :
-                self.mem.jugadoractual=self.mem.jugadores("red")
+                self.mem.jugadoractual=self.mem.jugadores.jugador("red")
             elif self.mem.jugadoractual.color.name=="red" :
-                self.mem.jugadoractual=self.mem.jugadores("green")
+                self.mem.jugadoractual=self.mem.jugadores.jugador("green")
             elif self.mem.jugadoractual.color.name=="green" :
-                self.mem.jugadoractual=self.mem.jugadores("yellow")
+                self.mem.jugadoractual=self.mem.jugadores.jugador("yellow")
             if self.mem.jugadoractual.plays:#Comprueba si el actual plays y sale del bucle
                 break
         

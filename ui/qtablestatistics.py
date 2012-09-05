@@ -12,7 +12,7 @@ class QTableStatistics(QTableWidget):
         self.mem=mem
         self.timer = QTimer()
         QObject.connect(self.timer, SIGNAL("timeout()"), self.reload)     
-        self.timer.start(300)
+        self.timer.start(400)
 
             
     def reload(self):
@@ -27,7 +27,7 @@ class QTableStatistics(QTableWidget):
                 return 3
         #########################################
         tj=TiradaJuego(self.mem)
-        for j in self.mem.jugadores():
+        for j in self.mem.jugadores.arr:
             column=color2column(j.color.name)
             self.item(0, column).setText(str(j.tiradahistorica.numThrows()))
             for i in range(2, 8):
@@ -35,6 +35,14 @@ class QTableStatistics(QTableWidget):
             self.item(9, column).setText(str(j.comidaspormi))
             self.item(10, column).setText(str(j.comidasporotro))
             self.item(12, column).setText(str(j.tiradahistorica.numThreeSixes()))
+            item=QTableWidgetItem(str(j.casillasMovidas()))
+            item.setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
+            if j==self.mem.jugadores.vaGanando():
+                icon = QIcon()
+                icon.addPixmap(QPixmap(":/glparchis/corona.png"), QIcon.Normal, QIcon.Off)
+                item.setIcon(icon)
+            self.setItem(14, column, item)
+            
         self.item(0, 4).setText(str(tj.numThrows()))
         for i in range(2, 8):
             self.item(i, 4).setText(str(tj.numTimesDiceGetNumber(i-1)))
