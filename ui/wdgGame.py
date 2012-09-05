@@ -11,7 +11,12 @@ from Ui_wdgGame import *
 
 class wdgGame(QWidget, Ui_wdgGame):
     """Clase principal del Juego, aquí está toda la ciencia, cuando se deba pasar al UI se crearán emits que captura qT para el UI"""
-    def __init__(self, mem,  parent=None,  filename=None):        
+    def __init__(self,   parent=None,  filename=None):        
+        QWidget.__init__(self, parent)
+        self.setupUi(self)
+        self.show()
+
+    def assign_mem(self, mem):
         def settings_splitter_load():
             config = ConfigParser.ConfigParser()
             config.read(libglparchis.cfgfile)
@@ -20,9 +25,6 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.splitter.restoreState(position)
             except:
                 print ("No hay fichero de configuración")    
-        QWidget.__init__(self, parent)
-        self.setupUi(self)
-
         self.mem=mem
         self.table.assign_mem(self.mem)
         self.ogl.assign_mem(self.mem)

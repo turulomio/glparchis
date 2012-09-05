@@ -36,9 +36,9 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def showWdgGame(self):
         if self.game!=None:
             self.layout.removeWidget(self.game)
-        self.game=wdgGame(self.mem)
+        self.game=wdgGame()
         self.layout.addWidget(self.game)
-        self.game.show()
+        self.game.assign_mem(self.mem)
         self.actionGuardarPartida.setEnabled(True)
         
 

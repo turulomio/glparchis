@@ -4,6 +4,7 @@ XXXXXXXX
 - El texto del dado cambia de color según el jugador actual
 - Se ha añadido puntuación al juego teniendo en cuenta el número de casillas movidas. 
 - Se ha añadido una corona en la tabla de estadísticas al jugador que va ganando.
+- Ahora se muestra los primeros movimientos cuando empieza un jugador de AI
 
 
 20120902
