@@ -437,7 +437,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgUserPanel.ui" line="179"/>
+        <location filename="ui/wdgUserPanel.ui" line="172"/>
         <source>Muestra el historial</source>
         <translation type="unfinished"></translation>
     </message>
