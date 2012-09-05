@@ -316,7 +316,7 @@ class TiradaTurno:
 
 class Jugador:
     def __init__(self,  color):
-#        self.name=None
+        self.name=None#Es el nombre de usuario no el de color
         self.color=color
         self.ia=False
         self.plays=True
@@ -584,7 +584,7 @@ class Ficha(QGLWidget):
                 return False
             fichaacomer.mover(0, False)
             mem.jugadoractual.movimientos_acumulados=20
-            mem.jugadoractual.log(self.trUtf8("He comido la ficha %1").arg(fichaacomer.id))
+            mem.jugadoractual.log(self.trUtf8('He comido una ficha de "{0}" en la casilla {1}'.format(fichaacomer.jugador.name, casilladestino.id)))
             self.jugador.comidaspormi=self.jugador.comidaspormi+1
             fichaacomer.jugador.comidasporotro=fichaacomer.jugador.comidasporotro+1
             return True
@@ -604,7 +604,7 @@ class Ficha(QGLWidget):
 
             fichaacomer.mover(0, False)
             self.jugador.movimientos_acumulados=20
-            self.jugador.log(self.trUtf8("He comido la ficha %1").arg(fichaacomer.id))
+            mem.jugadoractual.log(self.trUtf8('He comido una ficha de "{0}" en la casilla {1}'.format(fichaacomer.jugador.name, casilladestino.id)))
             self.jugador.comidaspormi=self.jugador.comidaspormi+1
             fichaacomer.jugador.comidasporotro=fichaacomer.jugador.comidasporotro+1
             self.mover(1, True)
