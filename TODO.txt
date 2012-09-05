@@ -2,4 +2,4 @@
 20120831 Ir migrando a python3, unque opengl no está todavía
 20120901 Mejorar comentarios en pantallas
 20120901 Se debe mejorar el IA sobre todo cuando puede comer
-
+20120902 Poner se ha comido una ficha del jugador verde, en vez del número
