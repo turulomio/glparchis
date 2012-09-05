@@ -259,21 +259,21 @@ class TiradaJuego:
     def numThrows(self):
         """Gets the number of total and historic player throws"""
         resultado=0
-        for j in self.mem.jugadores():
+        for j in self.mem.jugadores.arr:
             resultado=resultado+j.tiradahistorica.numThrows()
         return resultado
         
     def numTimesDiceGetNumber(self, number):
         """Gets the number of times that the dice gets the number"""
         resultado=0
-        for j in self.mem.jugadores():
+        for j in self.mem.jugadores.arr:
             resultado=resultado+j.tiradahistorica.numTimesDiceGetNumber(number)
         return resultado
         
     def numThreeSixes(self):
         """Gets the number of times that the dice get three sixes"""
         resultado=0
-        for j in self.mem.jugadores():
+        for j in self.mem.jugadores.arr:
             resultado=resultado+j.tiradahistorica.numThreeSixes()
         return resultado
         
@@ -316,7 +316,7 @@ class TiradaTurno:
 
 class Jugador:
     def __init__(self,  color):
-        self.name=None
+#        self.name=None
         self.color=color
         self.ia=False
         self.plays=True
@@ -340,6 +340,18 @@ class Jugador:
         l="{0} {1}".format(datetime.datetime.now().time(), l)
         self.logturno.append( l)
         self.loghistorico.append(l)
+        
+    def casillasPorMover(self):
+        """Casillas que le queda al jugador hasta ganar la partida"""
+        resultado =0
+        for f in self.fichas.arr:
+            resultado=resultado+f.casillasPorMover()
+        return resultado
+            
+    def casillasMovidas(self):
+        """Casillas que ha movido el jugador, puede considerarse la puntuación del jugador"""
+        return 4*72-self.casillasPorMover()
+            
         
     def hayDosJugadoresDistintosEnRuta1(self):
         ruta1=self.fichas.arr[0].ruta.arr[1]
@@ -407,7 +419,27 @@ class Ruta:
     def __init__(self):
         self.arr=[] #Array ordenado
     
-
+    
+class SetJugadores:
+    """Agrupación de jugadores"""
+    def __init__(self):
+        self.arr=[]
+        
+    def vaGanando(self):
+        """Devuelve el objeto del jugador que va ganando"""
+        resultado=self.arr[0]#Selecciona primer jugador
+        maxpunt=resultado.casillasMovidas()
+        for j in self.arr:
+            if j.casillasMovidas()>maxpunt:
+                resultado=j
+        return resultado
+        
+    def jugador(self, colorname):
+        for j in self.arr:
+            if j.color.name==colorname:
+                return j
+        return None
+        
 class SetFichas:
     """Agrupación de fichas"""
     def __init__(self):
@@ -588,6 +620,9 @@ class Ficha(QGLWidget):
     def casilla(self):
         """Devuelve el objeto casilla en el que se encuentra la ficha"""
         return self.ruta.arr[self.posruta]
+
+    def casillasPorMover(self):
+        return 72-self.posruta
 
     def estaEnCasa(self):
         if self.posruta==0:
@@ -913,10 +948,11 @@ class Casilla(QGLWidget):
 
 class Mem4:
     def __init__(self):
-        self.dic_jugadores={}#Lista cuya posicion coincide con el id del objeto jugador que lleva dentro
+#        self.dic_jugadores={}#Lista cuya posicion coincide con el id del objeto jugador que lleva dentro
         self.dic_casillas={}#Lista cuya posicion coincide con el id del objeto jugador que lleva dentro
         self.dic_fichas={}
         self.dic_colores={}
+        self.jugadores=SetJugadores()
         self.dic_rutas={}
         self.dado=Dado()
         self.jugadoractual=None
@@ -1037,14 +1073,17 @@ class Mem4:
 
     def generar_jugadores(self):
         for c in self.colores():
-            self.dic_jugadores[str(c.name)]=Jugador(c)
-            self.dic_jugadores[str(c.name)].dado=self.dado
+            j=Jugador(c)
+            self.jugadores.arr.append(j)
+            j.dado=self.dado
+#            self.dic_jugadores[str(c.name)]=Jugador(c)
+#            self.dic_jugadores[str(c.name)].dado=self.dado
             
-    def jugadores(self, name=None):
-        if name==None:
-            return dic2list(self.dic_jugadores)
-        else:
-            return self.dic_jugadores[str(name)]
+#    def jugadores(self, name=None):
+#        if name==None:
+#            return dic2list(self.dic_jugadores)
+#        else:
+#            return self.dic_jugadores[str(name)]
         
     def generar_fichas(self):
         """Debe generarse despuñes de jugadores"""
@@ -1052,8 +1091,8 @@ class Mem4:
         id=0
         for c in self.colores():
             for i in range(4):
-                self.dic_fichas[str(id)]=Ficha(id, i, c, self.jugadores(c.name), self.rutas(c.name))
-                self.jugadores(c.name).fichas.arr.append(self.dic_fichas[str(id)])#Rellena el SetFichas del jugador
+                self.dic_fichas[str(id)]=Ficha(id, i, c, self.jugadores.jugador(c.name), self.rutas(c.name))
+                self.jugadores.jugador(c.name).fichas.arr.append(self.dic_fichas[str(id)])#Rellena el SetFichas del jugador
                 id=id+1
 
     def fichas(self, name=None):
@@ -1066,41 +1105,41 @@ class Mem4:
     def save(self, filename):
         config = ConfigParser.ConfigParser()
         config.add_section("yellow")
-        config.set("yellow",  'ia', int(self.jugadores('yellow').ia))
-        config.set("yellow",  'name', self.jugadores('yellow').name)
-        config.set("yellow",  'plays', int(self.jugadores('yellow').plays))
-        if self.jugadores('yellow').plays==True:
-            config.set("yellow",  'rutaficha1', self.jugadores('yellow').fichas.arr[0].posruta)
-            config.set("yellow",  'rutaficha2',  self.jugadores('yellow').fichas.arr[1].posruta)
-            config.set("yellow",  'rutaficha3',  self.jugadores('yellow').fichas.arr[2].posruta)
-            config.set("yellow",  'rutaficha4',  self.jugadores('yellow').fichas.arr[3].posruta)
+        config.set("yellow",  'ia', int(self.jugadores.jugador('yellow').ia))
+        config.set("yellow",  'name', self.jugadores.jugador('yellow').name)
+        config.set("yellow",  'plays', int(self.jugadores.jugador('yellow').plays))
+        if self.jugadores.jugador('yellow').plays==True:
+            config.set("yellow",  'rutaficha1', self.jugadores.jugador('yellow').fichas.arr[0].posruta)
+            config.set("yellow",  'rutaficha2',  self.jugadores.jugador('yellow').fichas.arr[1].posruta)
+            config.set("yellow",  'rutaficha3',  self.jugadores.jugador('yellow').fichas.arr[2].posruta)
+            config.set("yellow",  'rutaficha4',  self.jugadores.jugador('yellow').fichas.arr[3].posruta)
         config.add_section("blue")
-        config.set("blue",  'ia', int(self.jugadores('blue').ia))
-        config.set("blue",  'name', self.jugadores('blue').name)
-        config.set("blue",  'plays', int(self.jugadores('blue').plays))
-        if self.jugadores('blue').plays==True:        
-            config.set("blue",  'rutaficha1', self.jugadores('blue').fichas.arr[0].posruta)
-            config.set("blue",  'rutaficha2',  self.jugadores('blue').fichas.arr[1].posruta)
-            config.set("blue",  'rutaficha3',  self.jugadores('blue').fichas.arr[2].posruta)
-            config.set("blue",  'rutaficha4',  self.jugadores('blue').fichas.arr[3].posruta) 
+        config.set("blue",  'ia', int(self.jugadores.jugador('blue').ia))
+        config.set("blue",  'name', self.jugadores.jugador('blue').name)
+        config.set("blue",  'plays', int(self.jugadores.jugador('blue').plays))
+        if self.jugadores.jugador('blue').plays==True:        
+            config.set("blue",  'rutaficha1', self.jugadores.jugador('blue').fichas.arr[0].posruta)
+            config.set("blue",  'rutaficha2',  self.jugadores.jugador('blue').fichas.arr[1].posruta)
+            config.set("blue",  'rutaficha3',  self.jugadores.jugador('blue').fichas.arr[2].posruta)
+            config.set("blue",  'rutaficha4',  self.jugadores.jugador('blue').fichas.arr[3].posruta) 
         config.add_section("red")
-        config.set("red",  'ia', int(self.jugadores('red').ia))
-        config.set("red",  'name', self.jugadores('red').name)
-        config.set("red",  'plays', int(self.jugadores('red').plays))
-        if self.jugadores('red').plays==True:        
-            config.set("red",  'rutaficha1', self.jugadores('red').fichas.arr[0].posruta)
-            config.set("red",  'rutaficha2',  self.jugadores('red').fichas.arr[1].posruta)
-            config.set("red",  'rutaficha3',  self.jugadores('red').fichas.arr[2].posruta)
-            config.set("red",  'rutaficha4',  self.jugadores('red').fichas.arr[3].posruta)    
+        config.set("red",  'ia', int(self.jugadores.jugador('red').ia))
+        config.set("red",  'name', self.jugadores.jugador('red').name)
+        config.set("red",  'plays', int(self.jugadores.jugador('red').plays))
+        if self.jugadores.jugador('red').plays==True:        
+            config.set("red",  'rutaficha1', self.jugadores.jugador('red').fichas.arr[0].posruta)
+            config.set("red",  'rutaficha2',  self.jugadores.jugador('red').fichas.arr[1].posruta)
+            config.set("red",  'rutaficha3',  self.jugadores.jugador('red').fichas.arr[2].posruta)
+            config.set("red",  'rutaficha4',  self.jugadores.jugador('red').fichas.arr[3].posruta)    
         config.add_section("green")
-        config.set("green",  'ia', int(self.jugadores('green').ia))
-        config.set("green",  'name', self.jugadores('green').name)
-        config.set("green",  'plays', int(self.jugadores('green').plays))        
-        if self.jugadores('green').plays==True:
-            config.set("green",  'rutaficha1', self.jugadores('green').fichas.arr[0].posruta)
-            config.set("green",  'rutaficha2',  self.jugadores('green').fichas.arr[1].posruta)
-            config.set("green",  'rutaficha3',  self.jugadores('green').fichas.arr[2].posruta)
-            config.set("green",  'rutaficha4',  self.jugadores('green').fichas.arr[3].posruta)    
+        config.set("green",  'ia', int(self.jugadores.jugador('green').ia))
+        config.set("green",  'name', self.jugadores.jugador('green').name)
+        config.set("green",  'plays', int(self.jugadores.jugador('green').plays))        
+        if self.jugadores.jugador('green').plays==True:
+            config.set("green",  'rutaficha1', self.jugadores.jugador('green').fichas.arr[0].posruta)
+            config.set("green",  'rutaficha2',  self.jugadores.jugador('green').fichas.arr[1].posruta)
+            config.set("green",  'rutaficha3',  self.jugadores.jugador('green').fichas.arr[2].posruta)
+            config.set("green",  'rutaficha4',  self.jugadores.jugador('green').fichas.arr[3].posruta)    
         config.add_section("game")
         config.set("game", 'playerstarts',self.jugadoractual.color.name)
         config.set("game", 'fakedice','')
@@ -1392,27 +1431,27 @@ class Mem4:
         config = ConfigParser.ConfigParser()
         config.read(filename)
 
-        yellow=self.jugadores('yellow')
+        yellow=self.jugadores.jugador('yellow')
         yellow.name=config.get('yellow', 'name')
         yellow.ia=i2b(config.getint("yellow", "ia"))
         yellow.plays=(i2b(config.getint("yellow", "plays")))
         
-        blue=self.jugadores('blue')
+        blue=self.jugadores.jugador('blue')
         blue.name=config.get("blue", "name")
         blue.ia=i2b(config.getint("blue", "ia"))
         blue.plays=(i2b(config.getint("blue", "plays")))
         
-        red=self.jugadores('red')
+        red=self.jugadores.jugador('red')
         red.name=config.get("red", "name")
         red.ia=i2b(config.getint("red", "ia"))
         red.plays=(i2b(config.getint("red", "plays")))
         
-        green=self.jugadores('green')
+        green=self.jugadores.jugador('green')
         green.name=config.get("green", "name")
         green.ia=i2b(config.getint("green", "ia"))
         green.plays=(i2b(config.getint("green", "plays")))  
 
-        for j in self.jugadores():
+        for j in self.jugadores.arr:
             if j.plays==True:
                 j.fichas.arr[0].mover(config.getint(j.color.name, "rutaficha1"), False,  True)
                 j.fichas.arr[1].mover(config.getint(j.color.name, "rutaficha2"), False,  True)
@@ -1423,7 +1462,7 @@ class Mem4:
         if fake!="":
             for i in  fake.split(";")  :
                 self.dado.fake.append(int(i))
-        self.jugadoractual=self.jugadores(config.get("game", 'playerstarts'))    
+        self.jugadoractual=self.jugadores.jugador(config.get("game", 'playerstarts'))    
         self.jugadoractual.movimientos_acumulados=None#Comidas ymetidas
         self.jugadoractual.LastFichaMovida=None #Se utiliza cuando se va a casa
 

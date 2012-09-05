@@ -2,6 +2,8 @@ XXXXXXXX
 ========
 - Solucionado problema con directorio de partidas guardadas
 - El texto del dado cambia de color según el jugador actual
+- Se ha añadido puntuación al juego teniendo en cuenta el número de casillas movidas. 
+- Se ha añadido una corona en la tabla de estadísticas al jugador que va ganando.
 
 
 20120902

@@ -81,26 +81,26 @@ class frmInitGame(QWizard, Ui_frmInitGame):
                 return False
             else:
                 #Comienza la partida
-                self.mem.jugadores('yellow').name=self.txtYellow.text()
-                self.mem.jugadores('yellow').ia=c2b(self.chkYellow.checkState())
-                self.mem.jugadores('yellow').plays=c2b(self.chkYellowPlays.checkState())
-                self.mem.jugadores('blue').name=self.txtBlue.text()
-                self.mem.jugadores('blue').ia=c2b(self.chkBlue.checkState())
-                self.mem.jugadores('blue').plays=c2b(self.chkBluePlays.checkState())
-                self.mem.jugadores('red').name=self.txtRed.text()
-                self.mem.jugadores('red').ia=c2b(self.chkRed.checkState())
-                self.mem.jugadores('red').plays=c2b(self.chkRedPlays.checkState())
-                self.mem.jugadores('green').name=self.txtGreen.text()
-                self.mem.jugadores('green').ia=c2b(self.chkGreen.checkState())
-                self.mem.jugadores('green').plays=c2b(self.chkGreenPlays.checkState())
+                self.mem.jugadores.jugador('yellow').name=self.txtYellow.text()
+                self.mem.jugadores.jugador('yellow').ia=c2b(self.chkYellow.checkState())
+                self.mem.jugadores.jugador('yellow').plays=c2b(self.chkYellowPlays.checkState())
+                self.mem.jugadores.jugador('blue').name=self.txtBlue.text()
+                self.mem.jugadores.jugador('blue').ia=c2b(self.chkBlue.checkState())
+                self.mem.jugadores.jugador('blue').plays=c2b(self.chkBluePlays.checkState())
+                self.mem.jugadores.jugador('red').name=self.txtRed.text()
+                self.mem.jugadores.jugador('red').ia=c2b(self.chkRed.checkState())
+                self.mem.jugadores.jugador('red').plays=c2b(self.chkRedPlays.checkState())
+                self.mem.jugadores.jugador('green').name=self.txtGreen.text()
+                self.mem.jugadores.jugador('green').ia=c2b(self.chkGreen.checkState())
+                self.mem.jugadores.jugador('green').plays=c2b(self.chkGreenPlays.checkState())
 
-                for j in self.mem.jugadores():
+                for j in self.mem.jugadores.arr:
                     if j.plays==True:
                         j.fichas.arr[0].mover(0, False,  True)
                         j.fichas.arr[1].mover(0, False,  True)
                         j.fichas.arr[2].mover(0, False,  True)
                         j.fichas.arr[3].mover(0, False,  True)
-                self.mem.jugadoractual=self.mem.jugadores(self.playerstarts)    
+                self.mem.jugadoractual=self.mem.jugadores.jugador(self.playerstarts)    
                 self.mem.jugadoractual.movimientos_acumulados=None#Comidas ymetidas
                 self.mem.jugadoractual.LastFichaMovida=None #Se utiliza cuando se va a casa
                 print (self.mem.jugadoractual)
