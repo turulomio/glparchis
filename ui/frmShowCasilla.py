@@ -14,34 +14,37 @@ class frmShowCasilla(QDialog, Ui_frmShowCasilla):
             self.lblSeguro.setText(self.trUtf8("Casilla segura"))
         else:
             self.lblSeguro.setText(self.trUtf8("Casilla insegura"))
-        if self.casilla.buzon_numfichas()==0:
+            
+        fichas=self.casilla.buzon_fichas() #NO se puede usar buzon[0], porque puede estar en [1]
+        
+        if len(fichas)==0:
             self.lbl1.hide()
             self.lbl2.hide()
             self.lbl3.hide()
             self.lbl4.hide()
             self.grp.setTitle(self.trUtf8("Casilla vacía"))
-        elif self.casilla.buzon_numfichas()==1:
-            self.lbl1.setPixmap(self.casilla.buzon[0].jugador.qpixmap())
+        elif len(fichas)==1:
+            self.lbl1.setPixmap(fichas[0][1].jugador.qpixmap())
             self.lbl2.hide()
             self.lbl3.hide()
             self.lbl4.hide()
             self.grp.setTitle(self.trUtf8("Ocupada con una ficha"))
-        elif self.casilla.buzon_numfichas()==2:
-            self.lbl1.setPixmap(self.casilla.buzon[0].jugador.qpixmap())       
-            self.lbl2.setPixmap(self.casilla.buzon[1].jugador.qpixmap())   
+        elif len(fichas)==2:
+            self.lbl1.setPixmap(fichas[0][1].jugador.qpixmap())
+            self.lbl2.setPixmap(fichas[1][1].jugador.qpixmap())
             self.lbl3.hide()
             self.lbl4.hide()
             self.grp.setTitle(self.trUtf8("Ocupada con dos fichas"))
-        elif self.casilla.buzon_numfichas()==3:
-            self.lbl1.setPixmap(self.casilla.buzon[0].jugador.qpixmap())       
-            self.lbl2.setPixmap(self.casilla.buzon[1].jugador.qpixmap())       
-            self.lbl3.setPixmap(self.casilla.buzon[2].jugador.qpixmap())    
+        elif len(fichas)==3:
+            self.lbl1.setPixmap(fichas[0][1].jugador.qpixmap())
+            self.lbl2.setPixmap(fichas[1][1].jugador.qpixmap())     
+            self.lbl3.setPixmap(fichas[2][1].jugador.qpixmap())     
             self.lbl4.hide()
             self.grp.setTitle(self.trUtf8("Ocupada con tres fichas"))
         else:
-            self.lbl1.setPixmap(self.casilla.buzon[0].jugador.qpixmap())       
-            self.lbl2.setPixmap(self.casilla.buzon[1].jugador.qpixmap())       
-            self.lbl3.setPixmap(self.casilla.buzon[2].jugador.qpixmap())       
-            self.lbl4.setPixmap(self.casilla.buzon[3].jugador.qpixmap()) 
+            self.lbl1.setPixmap(fichas[0][1].jugador.qpixmap())
+            self.lbl2.setPixmap(fichas[1][1].jugador.qpixmap())     
+            self.lbl3.setPixmap(fichas[2][1].jugador.qpixmap())       
+            self.lbl4.setPixmap(fichas[3][1].jugador.qpixmap())       
             self.grp.setTitle(self.trUtf8("Casilla llena"))
 

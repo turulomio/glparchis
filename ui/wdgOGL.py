@@ -128,11 +128,14 @@ class wdgOGL(QGLWidget):
                    objetos.append(names[0])
             if len(objetos)==1:
                 selCasilla=object(self.mem, objetos[0])
-                self.showCasillaFicha (selCasilla, None,  event.pos())
+                a=frmShowCasilla(self,  Qt.Popup,  selCasilla)
+                a. move(self.mapToGlobal(event.pos())        )
+                a.show()
             elif len(objetos)==2:
-                selCasilla=object(self.mem, objetos[0])
                 selFicha=object(self.mem, objetos[1])
-                self.showCasillaFicha (selCasilla, selFicha, event.pos())
+                a=frmShowFicha(self, Qt.Popup,  selFicha)
+                a. move(self.mapToGlobal(event.pos())        )
+                a.show()
                 
         #########################################
         self.setFocus()
@@ -144,19 +147,13 @@ class wdgOGL(QGLWidget):
         elif event.buttons() & Qt.RightButton:
             pickup(event, True)                    
         self.updateGL()
-
-            
-    def showCasillaFicha(self, selCasilla, selFicha,  position):
-        """selCasilla y selFicha son objetos. position es un QPoint"""
-
-        if selFicha!=None:
-            a=frmShowFicha(self, Qt.Popup,  selFicha)
-            a. move(self.mapToGlobal(position)        )
-            a.show()
-        else:
-            a=frmShowCasilla(self,  Qt.Popup,  selCasilla)
-            a. move(self.mapToGlobal(position)        )
-            a.show()
+#
+#            
+#    def showCasillaFicha(self, selCasilla, selFicha,  position):
+#        """selCasilla y selFicha son objetos. position es un QPoint"""
+#
+#        if selFicha!=None:
+#        else:
 #            
 #    def showDado(self):
 #        self.dado.setIcon(self.mem.dado.qicon(self.mem.jugadoractual.tiradaturno.ultimoValor()))

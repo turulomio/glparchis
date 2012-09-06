@@ -727,6 +727,9 @@ class Casilla(QGLWidget):
         self.seguro=seguro
         self.buzon=[None]*self.maxfichas #Se crean los huecos y se juega con ellos para mantener la posicion
         self.oglname=self.id+17#Nombre usado para pick por opengl
+        
+    def __repr__(self):
+        return ("Casilla {0} con {1} fichas dentro".format(self.id, self.buzon_numfichas()))
 
     def dibujar(self):                            
         def quad(p1, p2, p3, p4, color):
@@ -938,6 +941,8 @@ class Casilla(QGLWidget):
         for i, f in enumerate(self.buzon):
             if f==ficha:
                 self.buzon[i]=None
+                return
+        print ("No se ha podido hacer buzon_remove con {0}".format(ficha))
                 
     def buzon_numfichas(self):
         """Función que devuelve el número de fichas en el buzón"""
@@ -945,6 +950,15 @@ class Casilla(QGLWidget):
         for f in self.buzon:
             if f!=None:
                 resultado=resultado+1
+        return resultado
+
+    def buzon_fichas(self):
+        """Como ahora puede haber una ficha y estar en buzon[1] se hace necesario esta funci´on.
+        Devuelve una lista de fichas con una tupla (posicion, ficha)"""
+        resultado=[]
+        for i, f in enumerate(self.buzon):
+            if f!=None:
+                resultado.append((i, f))
         return resultado
 
 class Mem4:
