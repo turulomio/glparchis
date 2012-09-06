@@ -3,47 +3,47 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="641"/>
+        <location filename="libglparchis.py" line="658"/>
         <source>He metido la ficha %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="535"/>
+        <location filename="libglparchis.py" line="552"/>
         <source>No es del jugador actual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="565"/>
+        <location filename="libglparchis.py" line="582"/>
         <source>Se ha pasado la meta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="571"/>
+        <location filename="libglparchis.py" line="588"/>
         <source>Hay una barrera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="580"/>
+        <location filename="libglparchis.py" line="597"/>
         <source>No hay espacio en la casilla</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="560"/>
+        <location filename="libglparchis.py" line="577"/>
         <source>No puede mover</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="544"/>
+        <location filename="libglparchis.py" line="561"/>
         <source>No puede mover, porque hay otra ficha obligada a mover</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="578"/>
+        <location filename="libglparchis.py" line="595"/>
         <source>Obligado a sacar y a comer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="631"/>
+        <location filename="libglparchis.py" line="648"/>
         <source>He comido una ficha de &quot;{0}&quot; en la casilla {1}</source>
         <translation type="unfinished"></translation>
     </message>
