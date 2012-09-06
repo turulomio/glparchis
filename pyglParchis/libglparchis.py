@@ -401,18 +401,34 @@ class Jugador:
         
     def IASelectFicha(self, mem):
         """Funci´on que devuelve la ficha seleccionada por la IA. Si devuelve None es que ninguna se puede mover"""
+        def azar(tope):
+            """Funci´on que saca un numero al azar de entre 1 y 100. Si es mayor del tope devuelve true. Sino devuelve false. Es decir tope 85 es una probabilidad del 85%"""
+            numero=int(random.random()*100)
+            print ("azar",  numero,  tope)
+            if numero<tope:
+                return True
+            return False
+        ####################################
         fichas=self.fichas.fichasPuedenMover(mem)
         if len(fichas)==0:
             return None
         
         # Hay porcentajes de acierto si falla pasa a la siguiente prioridad
         #1 prioridad. Puede comer IA 85%
-        #2 prioridad Asegura IA  1 mas expuesta, y 2 de ultima a primera 85%
+        #2 prioridad Asegura IA  de ultima a primera 85%
+        if azar(80):
+            print ("Azar asegurar")
+            fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)            
+            for f in fichas:
+                movimiento=f.puedeMover(mem)[1]
+                if f.casilla().seguro==False and  f.casilla(f.posruta+movimiento).seguro==True:
+                    print ("seleccionado por azar asegurar")
+                    return f
         
-#        int(random.random()*6)+1
         #3 prioridad Espera a ficha acabando en casilla asegurada 95%
-        #4 prioridad Mueve la ultima IA 100%
         
+        #4 prioridad Mueve la ultima IA 100%
+        print ("Sin azar. Ultima ficha")
         fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)
         return fichas[0]
             
@@ -642,9 +658,13 @@ class Ficha(QGLWidget):
             return True
         return False
 
-    def casilla(self):
-        """Devuelve el objeto casilla en el que se encuentra la ficha"""
-        return self.ruta.arr[self.posruta]
+    def casilla(self,  posruta=None):
+        """Devuelve el objeto casilla en el que se encuentra la ficha
+        Si se le pasa el parametro devuelve la casilla de la ruta de la ficha, en la posicion posruta"""
+        if posruta==None:
+            posruta=self.posruta
+        return self.ruta.arr[posruta]
+            
 
     def casillasPorMover(self):
         return 72-self.posruta
