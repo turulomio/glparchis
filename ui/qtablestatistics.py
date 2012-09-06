@@ -36,7 +36,7 @@ class QTableStatistics(QTableWidget):
             self.item(10, column).setText(str(j.comidasporotro))
             self.item(12, column).setText(str(j.tiradahistorica.numThreeSixes()))
             item=QTableWidgetItem(str(j.casillasMovidas()))
-            item.setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
+            item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter)
             if j==self.mem.jugadores.vaGanando():
                 icon = QIcon()
                 icon.addPixmap(QPixmap(":/glparchis/corona.png"), QIcon.Normal, QIcon.Off)
