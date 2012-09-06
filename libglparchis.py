@@ -399,6 +399,22 @@ class Jugador:
                 return False
         return True
         
+    def IASelectFicha(self, mem):
+        """Funci´on que devuelve la ficha seleccionada por la IA. Si devuelve None es que ninguna se puede mover"""
+        fichas=self.fichas.fichasPuedenMover(mem)
+        if len(fichas)==0:
+            return None
+        
+        # Hay porcentajes de acierto si falla pasa a la siguiente prioridad
+        #1 prioridad. Puede comer IA 85%
+        #2 prioridad Asegura IA  1 mas expuesta, y 2 de ultima a primera 85%
+        
+#        int(random.random()*6)+1
+        #3 prioridad Espera a ficha acabando en casilla asegurada 95%
+        #4 prioridad Mueve la ultima IA 100%
+        
+        fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)
+        return fichas[0]
             
     def qicon(self):
         ico = QIcon()
@@ -457,6 +473,14 @@ class SetFichas:
             if f.puedeMover(mem)[0]==True:
                 return True
         return False
+        
+    def fichasPuedenMover(self, mem):
+        """Devuelve un arr con las fichas que pueden mover"""
+        resultado=[]
+        for f in self.arr:
+            if f.puedeMover(mem)[0]==True:
+                resultado.append(f)
+        return resultado        
     
     def TodasFichasEnCasa(self):
         for f in self.arr:
