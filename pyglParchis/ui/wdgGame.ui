@@ -279,7 +279,7 @@
                <string>Amarillo</string>
               </property>
               <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
+               <set>AlignHCenter|AlignVCenter|AlignCenter</set>
               </property>
               <property name="icon">
                <iconset resource="../images/glparchis.qrc">
@@ -290,6 +290,9 @@
               <property name="text">
                <string>Azul</string>
               </property>
+              <property name="textAlignment">
+               <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+              </property>
               <property name="icon">
                <iconset resource="../images/glparchis.qrc">
                 <normaloff>:/glparchis/fichaazul.png</normaloff>:/glparchis/fichaazul.png</iconset>
@@ -298,6 +301,9 @@
              <column>
               <property name="text">
                <string>Rojo</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignHCenter|AlignVCenter|AlignCenter</set>
               </property>
               <property name="icon">
                <iconset resource="../images/glparchis.qrc">
@@ -308,6 +314,9 @@
               <property name="text">
                <string>Verde</string>
               </property>
+              <property name="textAlignment">
+               <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+              </property>
               <property name="icon">
                <iconset resource="../images/glparchis.qrc">
                 <normaloff>:/glparchis/fichaverde.png</normaloff>:/glparchis/fichaverde.png</iconset>
@@ -316,6 +325,9 @@
              <column>
               <property name="text">
                <string>Todos</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignHCenter|AlignVCenter|AlignCenter</set>
               </property>
               <property name="icon">
                <iconset resource="../images/glparchis.qrc">
@@ -745,7 +757,7 @@
                <string>0</string>
               </property>
               <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
+               <set>AlignHCenter|AlignVCenter|AlignCenter</set>
               </property>
              </item>
              <item row="14" column="1">
@@ -753,7 +765,7 @@
                <string>0</string>
               </property>
               <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
+               <set>AlignHCenter|AlignVCenter|AlignCenter</set>
               </property>
              </item>
              <item row="14" column="2">
@@ -761,7 +773,7 @@
                <string>0</string>
               </property>
               <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
+               <set>AlignHCenter|AlignVCenter|AlignCenter</set>
               </property>
              </item>
              <item row="14" column="3">
@@ -769,10 +781,13 @@
                <string>0</string>
               </property>
               <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
+               <set>AlignHCenter|AlignVCenter|AlignCenter</set>
               </property>
              </item>
              <item row="14" column="4">
+              <property name="text">
+               <string/>
+              </property>
               <property name="background">
                <brush brushstyle="BDiagPattern">
                 <color alpha="255">

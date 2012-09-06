@@ -319,107 +319,107 @@
 <context>
     <name>wdgGame</name>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="369"/>
+        <location filename="ui/Ui_wdgGame.py" line="373"/>
         <source>Form</source>
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="371"/>
+        <location filename="ui/Ui_wdgGame.py" line="375"/>
         <source>Juego</source>
         <translation>Game</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_wdgGame.py" line="511"/>
+        <location filename="ui/Ui_wdgGame.py" line="515"/>
         <source>Estadísticas</source>
         <translation>Statistics</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_wdgGame.py" line="373"/>
+        <location filename="ui/Ui_wdgGame.py" line="377"/>
         <source>Número de tiradas</source>
         <translation>Number of throws</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="375"/>
+        <location filename="ui/Ui_wdgGame.py" line="379"/>
         <source>Dado saca 1</source>
         <translation>Roll a 1</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="377"/>
+        <location filename="ui/Ui_wdgGame.py" line="381"/>
         <source>Dado saca 2</source>
         <translation>Dice gets 2</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="379"/>
+        <location filename="ui/Ui_wdgGame.py" line="383"/>
         <source>Dado saca 3</source>
         <translation>Dice gets 3</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="381"/>
+        <location filename="ui/Ui_wdgGame.py" line="385"/>
         <source>Dado saca 4</source>
         <translation>Dice gets 4</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="383"/>
+        <location filename="ui/Ui_wdgGame.py" line="387"/>
         <source>Dado saca 5</source>
         <translation>Dice gets 5</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="385"/>
+        <location filename="ui/Ui_wdgGame.py" line="389"/>
         <source>Dado saca 6</source>
         <translation>Dice gets 6</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="387"/>
+        <location filename="ui/Ui_wdgGame.py" line="391"/>
         <source>Fichas comidas por mi</source>
         <translation>Pieces eaten by me</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="389"/>
+        <location filename="ui/Ui_wdgGame.py" line="393"/>
         <source>Fichas comidas por otro</source>
         <translation>Pieces eaten by other</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="391"/>
+        <location filename="ui/Ui_wdgGame.py" line="395"/>
         <source>3 seises seguidos</source>
         <translation>3 sixes in a row</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="395"/>
+        <location filename="ui/Ui_wdgGame.py" line="399"/>
         <source>Amarillo</source>
         <translation>Yellow</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="397"/>
+        <location filename="ui/Ui_wdgGame.py" line="401"/>
         <source>Azul</source>
         <translation>Blue</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="399"/>
+        <location filename="ui/Ui_wdgGame.py" line="403"/>
         <source>Rojo</source>
         <translation>Red</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="401"/>
+        <location filename="ui/Ui_wdgGame.py" line="405"/>
         <source>Verde</source>
         <translation>Green</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="509"/>
+        <location filename="ui/Ui_wdgGame.py" line="513"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="403"/>
+        <location filename="ui/Ui_wdgGame.py" line="407"/>
         <source>Todos</source>
         <translation>Total</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="370"/>
+        <location filename="ui/Ui_wdgGame.py" line="374"/>
         <source>Tira el dado</source>
         <translation>Roll the dice</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_wdgGame.py" line="393"/>
+        <location filename="ui/Ui_wdgGame.py" line="397"/>
         <source>Puntuación</source>
         <translation>Score</translation>
     </message>
