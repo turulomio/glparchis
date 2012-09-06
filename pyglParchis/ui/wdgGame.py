@@ -87,13 +87,13 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.cmdTirarDado.setEnabled(False)
         if self.mem.jugadoractual.ia==True:
             self.mem.jugadoractual.log(self.trUtf8("IA mueve una ficha"))     
-            for f in self.mem.jugadoractual.fichas.arr:
-                if f.puedeMover(self.mem):
-                    self.mem.selFicha=f
-                    self.after_ficha_click()
-#                    delay(500)       
-                else:
-                    self.cambiarJugador()
+            iaficha=self.mem.jugadoractual.IASelectFicha(self.mem)
+            print (iaficha)
+            if iaficha==None:
+                self.cambiarJugador()
+            else:
+                self.mem.selFicha=iaficha
+                self.after_ficha_click()
         else:
             self.mem.jugadoractual.log(self.trUtf8("Mueva una ficha"))
 
