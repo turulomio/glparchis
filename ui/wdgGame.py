@@ -88,6 +88,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         if self.mem.jugadoractual.ia==True:
             self.mem.jugadoractual.log(self.trUtf8("IA mueve una ficha"))     
             iaficha=self.mem.jugadoractual.IASelectFicha(self.mem)
+            delay(250)
             print (iaficha)
             if iaficha==None:
                 self.cambiarJugador()
@@ -111,6 +112,7 @@ class wdgGame(QWidget, Ui_wdgGame):
     def on_cmdTirarDado_clicked(self):  
         sound("dice")
         self.mem.jugadoractual.tirarDado()
+        self.ogl.showDado()
 #        self.emit(SIGNAL("dadoClicked()"))#No se pasa parámetro porque es self.mem.selFicha
         self.cmdTirarDado.setIcon(self.mem.dado.qicon(self.mem.jugadoractual.tiradaturno.ultimoValor()))
         self.cmdTirarDado.setEnabled(False)
@@ -198,7 +200,9 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     def cambiarJugador(self):          
         self.mem.jugadoractual.log ("{0} acaba el turno".format(self.mem.jugadoractual))
-        self.ogl.updateGL()
+        self.ogl.updateGL()        
+        delay(250)
+        self.ogl.dado.hide()
         #Comprueba si ha ganado
         if self.mem.jugadoractual.HaGanado()==True:
             sound("win")
@@ -224,8 +228,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.mem.jugadoractual=self.mem.jugadores.jugador("yellow")
             if self.mem.jugadoractual.plays:#Comprueba si el actual plays y sale del bucle
                 break
-        
-        delay(500)
+
         self.mem.jugadoractual.tiradaturno=TiradaTurno()#Se crea otro objeto porque así el anterior queda vinculada< a TiradaHistorica.
         self.mem.jugadoractual.movimientos_acumulados=None
         self.mem.jugadoractual.LastFichaMovida=None
