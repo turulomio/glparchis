@@ -1,5 +1,7 @@
 20100525 No se muestra la ficha en los objetos de frmAbout en algunas tarjetas
 20120831 Ir migrando a python3, unque opengl no está todavía
 20120901 Mejorar comentarios en pantallas
-20120901 Se debe mejorar el IA sobre todo cuando puede comer
 20120905 Ver el error configparser yellow
+20120909 Mostrar dado en tablero.
+20120909 En IA si un jugador tiene alguna ficha sin asegurar no puede sacar una segura
+20120909 Se debe contabilizar el calculo de comer cuando puedo contar 10 por ficha en casa.

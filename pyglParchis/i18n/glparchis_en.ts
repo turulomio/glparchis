@@ -3,47 +3,47 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="658"/>
+        <location filename="libglparchis.py" line="752"/>
         <source>He metido la ficha %1</source>
         <translation>Piece %1 arrived the central space </translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="552"/>
+        <location filename="libglparchis.py" line="567"/>
         <source>No es del jugador actual</source>
         <translation>It&apos;s not a current player piece</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="582"/>
+        <location filename="libglparchis.py" line="597"/>
         <source>Se ha pasado la meta</source>
         <translation>You missed the central space</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="588"/>
+        <location filename="libglparchis.py" line="603"/>
         <source>Hay una barrera</source>
         <translation>There is a blockade</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="597"/>
+        <location filename="libglparchis.py" line="612"/>
         <source>No hay espacio en la casilla</source>
         <translation>The space is bussy</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="577"/>
+        <location filename="libglparchis.py" line="592"/>
         <source>No puede mover</source>
         <translation>It can&apos;t move</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="561"/>
+        <location filename="libglparchis.py" line="576"/>
         <source>No puede mover, porque hay otra ficha obligada a mover</source>
         <translation>You can&apos;t move because there&apos;s a piece forced to move</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="595"/>
+        <location filename="libglparchis.py" line="610"/>
         <source>Obligado a sacar y a comer</source>
         <translation>You&apos;re forced to move to the first space and to eat</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="648"/>
+        <location filename="libglparchis.py" line="715"/>
         <source>He comido una ficha de &quot;{0}&quot; en la casilla {1}</source>
         <translation>I&apos;ve eaten a piece of &quot;{0}&quot; in the {1} place</translation>
     </message>

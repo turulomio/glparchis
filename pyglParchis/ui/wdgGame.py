@@ -150,7 +150,9 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.mem.jugadoractual.log(self.trUtf8("No puede mover esta ficha, seleccione otra"))
             return
  
-        if self.mem.selFicha.comeEnInicio():            
+            #Come o mete
+        
+        if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta+puede[1]) or self.mem.selFicha.mete(self.mem.selFicha.posruta+puede[1]):    
             self.ogl.updateGL()
             sound("comer")
             if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==True:
@@ -159,17 +161,33 @@ class wdgGame(QWidget, Ui_wdgGame):
         else:
             self.mem.selFicha.mover( self.mem.selFicha.posruta + puede[1])    
             self.ogl.updateGL()
-            #Quita el movimiento acumulados
-            if self.mem.jugadoractual.movimientos_acumulados in (10, 20):
-                self.mem.jugadoractual.movimientos_acumulados=None
-    
-            #Come o mete
-            if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta) or self.mem.selFicha.mete():    
-                self.ogl.updateGL()
-                sound("comer")
-                if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==True:
-                    self.on_JugadorDebeMover()
-                    return
+       #Quita el movimiento acumulados
+        if self.mem.jugadoractual.movimientos_acumulados in (10, 20):
+            self.mem.jugadoractual.movimientos_acumulados=None
+
+
+ 
+#
+#        if self.mem.selFicha.comeEnInicio():            
+#            self.ogl.updateGL()
+#            sound("comer")
+#            if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==True:
+#                self.on_JugadorDebeMover()
+#                return
+#        else:
+#            self.mem.selFicha.mover( self.mem.selFicha.posruta + puede[1])    
+#            self.ogl.updateGL()
+#            #Quita el movimiento acumulados
+#            if self.mem.jugadoractual.movimientos_acumulados in (10, 20):
+#                self.mem.jugadoractual.movimientos_acumulados=None
+#    
+#            #Come o mete
+#            if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta) or self.mem.selFicha.mete():    
+#                self.ogl.updateGL()
+#                sound("comer")
+#                if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==True:
+#                    self.on_JugadorDebeMover()
+#                    return
         
         if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
             self.on_JugadorDebeTirar()
