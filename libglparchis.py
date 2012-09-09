@@ -410,24 +410,29 @@ class Jugador:
             return False
         ####################################
         fichas=self.fichas.fichasPuedenMover(mem)
+        fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)     
         if len(fichas)==0:
             return None
         
         # Hay porcentajes de acierto si falla pasa a la siguiente prioridad
         #1 prioridad. Puede comer IA 85%
+        if azar(80):
+            for f in fichas:#Recorre las que pueden mover
+                movimiento=f.puedeMover(mem)[1]
+                (puede, fichaacomer)=f.puedeComer(mem, f.posruta+movimiento)
+                if puede:
+                    print ("seleccionado por azar comer")
+                    return f
+        
         #2 prioridad Asegura IA  de ultima a primera 85%
         if azar(80):
-            print ("Azar asegurar")
-            fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)            
             for f in fichas:
                 movimiento=f.puedeMover(mem)[1]
                 if f.casilla().seguro==False and  f.casilla(f.posruta+movimiento).seguro==True:
                     print ("seleccionado por azar asegurar")
                     return f
         
-        #3 prioridad Espera a ficha acabando en casilla asegurada 95%
-        
-        #4 prioridad Mueve la ultima IA 100%
+        #3 prioridad Mueve la ultima IA 100%
         print ("Sin azar. Ultima ficha")
         fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)
         return fichas[0]
@@ -489,6 +494,17 @@ class SetFichas:
             if f.puedeMover(mem)[0]==True:
                 return True
         return False
+        
+        
+#        
+#    def fichasPuedenComer(self, mem, posruta):
+#        """Devuelve un arr con las fichas que pueden comer en la posicion posruta, No esta bien porque cada ficha es una posruta"""
+#        resultado=[]
+#        for f in self.arr:
+#            (puede, fichaacomer)=f.puedeComer(mem, posruta)
+#            if puede:
+#                resultado.append(f)
+#        return resultado        
         
     def fichasPuedenMover(self, mem):
         """Devuelve un arr con las fichas que pueden mover"""
@@ -606,53 +622,132 @@ class Ficha(QGLWidget):
         if startgame==False:
             casillaorigen.buzon_remove(self)
         casilladestino.buzon_append(self)
-
-    def come(self, mem,   ruta):
-        """ruta, es la posición de ruta de ficha en la que come. Como ya se ha movido, come si puede y devuelve True, en caso contrario False"""
-        casilladestino=self.ruta.arr[ruta]
+#    def puedeComer(self, mem, ruta):
+#        """Devuelve un (True, ficha a comer) or (False, None) si puede comer una ficha en la posici´on ruta"""
+#        casilladestino=self.ruta.arr[ruta]
+#        if casilladestino.seguro==True:
+#            return (False, None)
+#        
+#        fichasdestino=casilladestino.buzon_fichas()
+#        if len(fichasdestino)==1:#Todavia no se ha movido
+#            if fichasdestino[0][1].jugador!=mem.jugadoractual:
+#                return(True, fichasdestino[0])
+#        return (False, None)
+#                
+#                
+#    def come(self, mem,   ruta):
+#        """ruta, es la posición de ruta de ficha en la que come. Como ya se ha movido, come si puede y devuelve True, en caso contrario False"""
+#        casilladestino=self.ruta.arr[ruta]
+#        if casilladestino.seguro==True:
+#            return False
+#         
+#        if casilladestino.buzon_numfichas()==2:
+#            ficha1=casilladestino.buzon[0]
+#            ficha2=casilladestino.buzon[1]
+#            if ficha1.jugador!=mem.jugadoractual:
+#                fichaacomer=ficha1
+#            elif ficha2.jugador!=mem.jugadoractual:
+#                fichaacomer=ficha2
+#            else:
+#                return False
+#
+#            casilladestino=self.ruta.arr[ruta]
+#            fichaacomer.mover(0, False)
+#            mem.jugadoractual.movimientos_acumulados=20
+#            mem.jugadoractual.log(self.trUtf8('He comido una ficha de "{0}" en la casilla {1}'.format(fichaacomer.jugador.name, casilladestino.id)))
+#            self.jugador.comidaspormi=self.jugador.comidaspormi+1
+#            fichaacomer.jugador.comidasporotro=fichaacomer.jugador.comidasporotro+1
+#            return True
+#    
+#    def comeEnInicio(self):
+#        #        #COMER A INICIO REQUIERE COMER FICHA EXPULSA ANTES DE MOVER SINO NO HAY HUECO            
+#        casilladestino=self.ruta.arr[1]
+#        if self.posruta==0 and self.jugador.tiradaturno.ultimoValor()==5 and self.jugador.hayDosJugadoresDistintosEnRuta1():
+#            ficha1=casilladestino.buzon[1]
+#            ficha2=casilladestino.buzon[0]
+#            if ficha1.jugador!=self.jugador:
+#                fichaacomer=ficha1
+#            elif ficha2.jugador!=self.jugador:
+#                fichaacomer=ficha2
+#            else:
+#                return False
+#
+#            fichaacomer.mover(0, False)
+#            self.jugador.movimientos_acumulados=20
+#            self.jugador.log(self.trUtf8('He comido una ficha de "{0}" en la casilla {1}'.format(fichaacomer.jugador.name, casilladestino.id)))
+#            self.jugador.comidaspormi=self.jugador.comidaspormi+1
+#            fichaacomer.jugador.comidasporotro=fichaacomer.jugador.comidasporotro+1
+#            self.mover(1, True)
+#            return True
+    def puedeComer(self, mem, ruta):
+        """Devuelve un (True, ficha a comer) or (False, None) si puede comer una ficha en la posici´on ruta"""
+        casilladestino=self.casilla(ruta)
+        fichasdestino=casilladestino.buzon_fichas()
+        #debe estar primero porque es una casilla segura
+        if self.posruta==0 and self.jugador.tiradaturno.ultimoValor()==5 and self.jugador.hayDosJugadoresDistintosEnRuta1():                
+            if fichasdestino[0][1].jugador!=mem.jugadoractual:
+                return(True, fichasdestino[0][1])
+            else:# fichasdestino[1][1].jugador!=mem.jugadoractual:
+                return(True, fichasdestino[1][1])
+                
         if casilladestino.seguro==True:
-            return False
+            return (False, None)
         
-        if casilladestino.buzon_numfichas()==2:
-            ficha1=casilladestino.buzon[0]
-            ficha2=casilladestino.buzon[1]
-            if ficha1.jugador!=mem.jugadoractual:
-                fichaacomer=ficha1
-            elif ficha2.jugador!=mem.jugadoractual:
-                fichaacomer=ficha2
-            else:
-                return False
+        if len(fichasdestino)==1:#Todavia no se ha movido
+            if fichasdestino[0][1].jugador!=mem.jugadoractual:
+                return(True, fichasdestino[0][1])
+
+        return (False, None)
+                
+                
+    def come(self, mem,   ruta):
+        """ruta, es la posición de ruta de ficha en la que come. No se ha movido antes, come si puede y devuelve True, en caso contrario False"""
+        (puede, fichaacomer)=self.puedeComer(mem, ruta)
+        print (puede, fichaacomer)
+        if puede==True:
             fichaacomer.mover(0, False)
+            print (self.posruta,  "posruta")
+            if self.posruta==0:
+                self.mover(1, True)
+            else:
+                self.mover(ruta, True)
             mem.jugadoractual.movimientos_acumulados=20
-            mem.jugadoractual.log(self.trUtf8('He comido una ficha de "{0}" en la casilla {1}'.format(fichaacomer.jugador.name, casilladestino.id)))
+            mem.jugadoractual.log(self.trUtf8('He comido una ficha de "{0}" en la casilla {1}'.format(fichaacomer.jugador.name, self.casilla(ruta).id)))
             self.jugador.comidaspormi=self.jugador.comidaspormi+1
             fichaacomer.jugador.comidasporotro=fichaacomer.jugador.comidasporotro+1
             return True
+        return False
     
-    def comeEnInicio(self):
-        #        #COMER A INICIO REQUIERE COMER FICHA EXPULSA ANTES DE MOVER SINO NO HAY HUECO            
-        casilladestino=self.ruta.arr[1]
-        if self.posruta==0 and self.jugador.tiradaturno.ultimoValor()==5 and self.jugador.hayDosJugadoresDistintosEnRuta1():
-            ficha1=casilladestino.buzon[1]
-            ficha2=casilladestino.buzon[0]
-            if ficha1.jugador!=self.jugador:
-                fichaacomer=ficha1
-            elif ficha2.jugador!=self.jugador:
-                fichaacomer=ficha2
-            else:
-                return False
-
-            fichaacomer.mover(0, False)
-            self.jugador.movimientos_acumulados=20
-            mem.jugadoractual.log(self.trUtf8('He comido una ficha de "{0}" en la casilla {1}'.format(fichaacomer.jugador.name, casilladestino.id)))
-            self.jugador.comidaspormi=self.jugador.comidaspormi+1
-            fichaacomer.jugador.comidasporotro=fichaacomer.jugador.comidasporotro+1
-            self.mover(1, True)
+#    def comeEnInicio(self):
+#        #        #COMER A INICIO REQUIERE COMER FICHA EXPULSA ANTES DE MOVER SINO NO HAY HUECO            
+#        casilladestino=self.ruta.arr[1]
+#        if self.posruta==0 and self.jugador.tiradaturno.ultimoValor()==5 and self.jugador.hayDosJugadoresDistintosEnRuta1():
+#            ficha1=casilladestino.buzon[1]
+#            ficha2=casilladestino.buzon[0]
+#            if ficha1.jugador!=self.jugador:
+#                fichaacomer=ficha1
+#            elif ficha2.jugador!=self.jugador:
+#                fichaacomer=ficha2
+#            else:
+#                return False
+#
+#            fichaacomer.mover(0, False)
+#            self.jugador.movimientos_acumulados=20
+#            self.jugador.log(self.trUtf8('He comido una ficha de "{0}" en la casilla {1}'.format(fichaacomer.jugador.name, casilladestino.id)))
+#            self.jugador.comidaspormi=self.jugador.comidaspormi+1
+#            fichaacomer.jugador.comidasporotro=fichaacomer.jugador.comidasporotro+1
+#            self.mover(1, True)
+#            return True
+    def puedeMeter(self, posruta):
+        """Devuelve un booleano si puede meter la ficha en las casilla final"""
+        if posruta==72:
             return True
-
-    def mete(self):
+        return False
+        
+    def mete(self, posruta):
         """r Como ya se ha movido, mete si puede y devuelve True, en caso contrario False"""      
-        if self.estaEnMeta():
+        if self.puedeMeter(posruta):
+            self.mover(posruta, True)
             self.jugador.movimientos_acumulados=10
             self.jugador.log(self.trUtf8("He metido la ficha %1").arg(self.id))
             return True
