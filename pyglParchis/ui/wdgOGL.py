@@ -18,10 +18,10 @@ class wdgOGL(QGLWidget):
         
     def assign_mem(self, mem):
         self.mem=mem
-#        self.dado=QPushButton(self)
+        self.dado=QLabel(self)
 #        self.dadowidth=80
-##        self.dado.setScaledContents(True)
-#        self.dado.setStyleSheet("background-color: rgba(255, 255, 255, 255);")
+        self.dado.setScaledContents(True)
+        self.dado.setStyleSheet("background-color: rgba(255, 255, 255, 255);")
 #        self.dado.setIcon(self.mem.dado.qicon(5))
 #        self.dado.setIconSize(QSize(self.dadowidth-4, self.dadowidth-4 ))
 ##        self.dado.setGeometry((self.width()-self.dadowidth)/2, (self.height()-self.dadowidth)/2, self.dadowidth, self.dadowidth)
@@ -155,10 +155,21 @@ class wdgOGL(QGLWidget):
 #        if selFicha!=None:
 #        else:
 #            
-#    def showDado(self):
-#        self.dado.setIcon(self.mem.dado.qicon(self.mem.jugadoractual.tiradaturno.ultimoValor()))
-#        self.dado.setGeometry((self.width()-self.dadowidth)/2, (self.height()-self.dadowidth)/2, self.dadowidth, self.dadowidth)
-#        self.dado.setIconSize(QSize(self.dadowidth-4, self.dadowidth-4 ))
-#        self.dado.show()
+    def showDado(self):
+        xl=self.width()/6+6# xleft
+        xr=self.width()*5/6-43
+        yt=self.height()/6+3#ytop
+        yb=self.height()*5/6-43
+        if self.mem.jugadoractual.color.name=="yellow":
+            self.dado.setGeometry( xl, yt, 40, 40 )
+        elif self.mem.jugadoractual.color.name=="blue":
+            self.dado.setGeometry(xl, yb, 40, 40)
+        elif self.mem.jugadoractual.color.name=="red":
+            self.dado.setGeometry(xr, yb, 40, 40)
+        elif self.mem.jugadoractual.color.name=="green":
+            self.dado.setGeometry(xr, yt, 40, 40)
+        self.dado.setPixmap(self.mem.dado.qpixmap(self.mem.jugadoractual.tiradaturno.ultimoValor()))
+        self.dado.show()
+        self.updateGL()
 
 
