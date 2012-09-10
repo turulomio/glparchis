@@ -164,7 +164,13 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
-           <widget class="QListWidget" name="lst"/>
+           <widget class="QListWidget" name="lst">
+            <property name="font">
+             <font>
+              <pointsize>8</pointsize>
+             </font>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QCheckBox" name="chk">

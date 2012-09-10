@@ -7,6 +7,8 @@ XXXXXXXX
 - Ahora se muestra los primeros movimientos cuando empieza un jugador de AI
 - Solucionados varios bugs
 - Mejorada la inteligencia artificial de los jugadores virtuales, con un porcentaje de acierto en las decisiones
+- Se ha añadido un contador con el tiempo de partida transcurrido
+- Se ha mejorado la visualización de logs en pantalla
 
 20120902
 ========
