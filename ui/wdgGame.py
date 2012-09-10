@@ -115,7 +115,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 if casilla.rampallegada==True:
                     self.mem.jugadoractual.log(self.trUtf8("Han salido tres seises, no se va a casa por haber llegado a rampa de llegada"))
                 else:
-                    if self.mem.jugadoractual.LastFichaMovida.puedeMover(self.mem)[0]==True:
+                    if self.mem.jugadoractual.LastFichaMovida.estaAutorizadaAMover(self.mem)[0]==True:
                         self.mem.jugadoractual.log(self.trUtf8("Han salido tres seises, la ultima ficha movida se va a casa"))
                         self.mem.jugadoractual.LastFichaMovida.mover(0)
                     else:
@@ -124,7 +124,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.mem.jugadoractual.log(self.trUtf8(u"Despues de tres seises, ya no puede volver a tirar"))
             self.cambiarJugador()
         else: # si no han salido 3 seises
-            if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==True:
+            if self.mem.jugadoractual.fichas.algunaEstaAutorizadaAmover(self.mem)==True:
                 self.on_JugadorDebeMover()
             else:#ninguna puede mover.
                 if self.mem.jugadoractual.tiradaturno.ultimoEsSeis()==True:
@@ -139,28 +139,29 @@ class wdgGame(QWidget, Ui_wdgGame):
         
         ##DA ERROR INTENTANDO CAPTURARLO
 #          File "/usr/lib/glparchis/wdgGame.py", line 148, in after_ficha_click
-#    puede=self.mem.selFicha.puedeMover(self.mem)
+#    puede=self.mem.selFicha.estaAutorizadaAMover(self.mem)
 #AttributeError: 'Casilla' object has no attribute 'puedeMover'
 
         try:
-            puede=self.mem.selFicha.puedeMover(self.mem, True)
+            puede=self.mem.selFicha.estaAutorizadaAMover(self.mem, True)
         except:
             m=QMessageBox()
             m.setIcon(QMessageBox.Information)
-            m.setText("Se ha producido el error de casilla no tiene puedemover " + str(self.mem.ficha))
+            m.setText("Se ha producido el error de casilla no tiene puedemover " + str(self.mem.selFicha))
             m.exec_() 
-            
+
+                
             
         if puede[0]==False:
             if self.mem.jugadoractual.ia==False:
                 sound("click")
-#            self.mem.jugadoractual.log(self.trUtf8("No puede mover esta ficha, seleccione otra"))
             return
-        
+
+                
         if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta+puede[1]) or self.mem.selFicha.mete(self.mem.selFicha.posruta+puede[1]):    
             self.ogl.updateGL()
             sound("comer")
-            if self.mem.jugadoractual.fichas.algunaPuedeMover(self.mem)==True:
+            if self.mem.jugadoractual.fichas.algunaEstaAutorizadaAmover(self.mem)==True:
                 self.on_JugadorDebeMover()
                 return
         else:

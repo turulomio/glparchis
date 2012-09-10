@@ -409,7 +409,7 @@ class Jugador:
                 return True
             return False
         ####################################
-        fichas=self.fichas.fichasPuedenMover(mem)
+        fichas=self.fichas.fichasAutorizadasAMover(mem)
         fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)     
         if len(fichas)==0:
             return None
@@ -418,7 +418,7 @@ class Jugador:
         #1 prioridad. Puede comer IA 85%
         if azar(80):
             for f in fichas:#Recorre las que pueden mover
-                movimiento=f.puedeMover(mem)[1]
+                movimiento=f.estaAutorizadaAMover(mem)[1]
                 (puede, fichaacomer)=f.puedeComer(mem, f.posruta+movimiento)
                 if puede:
                     print ("seleccionado por azar comer")
@@ -427,7 +427,7 @@ class Jugador:
         #2 prioridad Asegura IA  de ultima a primera 85%
         if azar(80):
             for f in fichas:
-                movimiento=f.puedeMover(mem)[1]
+                movimiento=f.estaAutorizadaAMover(mem)[1]
                 if f.casilla().seguro==False and  f.casilla(f.posruta+movimiento).seguro==True:
                     print ("seleccionado por azar asegurar")
                     return f
@@ -490,16 +490,16 @@ class SetFichas:
     def __init__(self):
         self.arr=[]
 
-    def algunaEstaObligada(self):
+    def algunaEstaObligada(self, mem):
+        """Busca entre las fichas que pueden mover si alguna est´a obligada a mover"""
         for f in self.arr:
-            if f.estaObligada()==True:
+            if f.estaObligada(mem)==True:
                 return True
         return False
 
-    def algunaPuedeMover(self, mem):
-        for f in self.arr:
-            if f.puedeMover(mem)[0]==True:
-                return True
+    def algunaEstaAutorizadaAmover(self, mem):
+        if len(self.fichasAutorizadasAMover(mem))>0:
+            return True
         return False
         
         
@@ -513,11 +513,11 @@ class SetFichas:
 #                resultado.append(f)
 #        return resultado        
         
-    def fichasPuedenMover(self, mem):
+    def fichasAutorizadasAMover(self, mem):
         """Devuelve un arr con las fichas que pueden mover"""
         resultado=[]
         for f in self.arr:
-            if f.puedeMover(mem)[0]==True:
+            if f.estaAutorizadaAMover(mem)[0]==True:
                 resultado.append(f)
         return resultado        
     
@@ -551,8 +551,11 @@ class Ficha(QGLWidget):
     def __repr__(self):
         return  "Ficha {0} del jugador {1}".format(self.id, self.jugador.color.name)
         
-    def estaObligada(self):
+    def estaObligada(self, mem):        
         """ESta pregunta se integra dentro de puede mover. NO DEBE HABER EN SETFICHAS ALGUNAS, YA QUE SE INTEGRAR´IA DENTRO DE ALGUNA PUEDEMOVER"""
+        if self.puedeMover(mem)[0]==False:
+            return False
+            
         if self.jugador.tiradaturno.ultimoValor()==5 and self.estaEnCasa() and self.ruta.arr[1].buzon_numfichas()<2:
             return True
         
@@ -566,8 +569,23 @@ class Ficha(QGLWidget):
                 return True
         return False
         
+    def estaAutorizadaAMover(self, mem, log=False):
+        """PUEDE MOVER Y ESTA OBLIGADO SON DOS CONCEPTOS INDEPENDIENTES QUE NO DEBEN DE UNIRSE 
+        PORQUE GENERA RECURSIVIDADPOR ESO SE HACE AQU´I
+        
+        Autorizada significa que puede mover y no est´a obligada a hacer otras cosas"""
+        
+        (puede, movimiento)=self.puedeMover(mem, log)
+        if puede:
+            if mem.jugadoractual.fichas.algunaEstaObligada(mem) :
+                if self.estaObligada(mem)==False:
+                    if log: mem.jugadoractual.log(self.trUtf8("No puede mover, porque hay otra ficha obligada a mover"))
+                    return (False, 0)                    
+            return (puede, movimiento)
+        return (puede, movimiento)
+        
     def puedeMover(self, mem,  log=False):
-        """Comprueba si la ficha puede mover.
+        """Comprueba si la ficha puede mover. desde el punto de vista fisico
         Si log=True muestra los logs"""
 
         #Es ficha del jugador actual. #A PARTIR DE AQUI SE PUEDE USAR SELF.JUGADOR EN VEZ DE MEM.JUGADORACTUAL
@@ -578,12 +596,7 @@ class Ficha(QGLWidget):
         #No se puede mover una ficha que está en casa con puntos acumulados
         if mem.jugadoractual.movimientos_acumulados!=None and self.estaEnCasa():
             return (False, 0)
-        
-        if self.jugador.fichas.algunaEstaObligada() :
-            if self.estaObligada()==False:
-                if log: mem.jugadoractual.log(self.trUtf8("No puede mover, porque hay otra ficha obligada a mover"))
-                return(False, 0)
-                
+
         #Calcula el movimiento
         if mem.jugadoractual.movimientos_acumulados!=None:
             movimiento=mem.jugadoractual.movimientos_acumulados
@@ -619,6 +632,8 @@ class Ficha(QGLWidget):
             else:
                 if log: mem.jugadoractual.log(self.trUtf8("No hay espacio en la casilla"))
                 return (False, 0)
+                
+
         return (True, movimiento)
         
     def mover(self, ruta, controllastficha=True,  startgame=False):

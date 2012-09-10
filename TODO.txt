@@ -2,4 +2,3 @@
 20120831 Ir migrando a python3, unque opengl no está todavía
 20120905 Ver el error configparser yellow
 20120909 Se debe contabilizar el calculo de comer cuando puedo contar 10 por ficha en casa.
-20120909 Si hay una barrera sale el 6 y no puedo abrirla por haber otra barrera se pierde el seis, pudiendo mover otra ficha.
