@@ -81,7 +81,6 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.mem.jugadoractual.log(self.trUtf8("IA mueve una ficha"))     
             iaficha=self.mem.jugadoractual.IASelectFicha(self.mem)
             delay(250)
-            print (iaficha)
             if iaficha==None:
                 self.cambiarJugador()
             else:
