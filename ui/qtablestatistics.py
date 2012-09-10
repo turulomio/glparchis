@@ -2,6 +2,7 @@
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from libglparchis import *
+import datetime
 
 class QTableStatistics(QTableWidget):
     def __init__(self, parent=None):
@@ -9,12 +10,16 @@ class QTableStatistics(QTableWidget):
 
     
     def assign_mem(self, mem):
+        self.inicio=datetime.datetime.now()
         self.mem=mem
         self.timer = QTimer()
         QObject.connect(self.timer, SIGNAL("timeout()"), self.reload)     
-        self.timer.start(400)
+        self.timer.start(500)
 
-            
+    
+    def stopReloads(self):
+        self.timer.stop()
+    
     def reload(self):
         def color2column(color):
             if color=="yellow":
@@ -47,3 +52,5 @@ class QTableStatistics(QTableWidget):
         for i in range(2, 8):
             self.item(i, 4).setText(str(tj.numTimesDiceGetNumber(i-1)))
         self.item(12, 4).setText(str(tj.numThreeSixes()))
+        
+        self.item(16, 0).setText(str(datetime.datetime.now()-self.inicio).split(".")[0])

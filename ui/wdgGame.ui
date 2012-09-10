@@ -6,12 +6,9 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>848</width>
-    <height>633</height>
+    <width>1191</width>
+    <height>623</height>
    </rect>
-  </property>
-  <property name="windowTitle">
-   <string>Form</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
@@ -172,633 +169,726 @@
           <attribute name="title">
            <string>Estadísticas</string>
           </attribute>
-          <layout class="QHBoxLayout">
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
-            <widget class="QTableStatistics" name="table">
-             <row>
-              <property name="text">
-               <string>Número de tiradas</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string/>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Dado saca 1</string>
-              </property>
-              <property name="icon">
-               <iconset resource="../images/glparchis.qrc">
-                <normaloff>:/glparchis/cube1.png</normaloff>:/glparchis/cube1.png</iconset>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Dado saca 2</string>
-              </property>
-              <property name="icon">
-               <iconset resource="../images/glparchis.qrc">
-                <normaloff>:/glparchis/cube2.png</normaloff>:/glparchis/cube2.png</iconset>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Dado saca 3</string>
-              </property>
-              <property name="icon">
-               <iconset resource="../images/glparchis.qrc">
-                <normaloff>:/glparchis/cube3.png</normaloff>:/glparchis/cube3.png</iconset>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Dado saca 4</string>
-              </property>
-              <property name="icon">
-               <iconset resource="../images/glparchis.qrc">
-                <normaloff>:/glparchis/cube4.png</normaloff>:/glparchis/cube4.png</iconset>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Dado saca 5</string>
-              </property>
-              <property name="icon">
-               <iconset resource="../images/glparchis.qrc">
-                <normaloff>:/glparchis/cube5.png</normaloff>:/glparchis/cube5.png</iconset>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Dado saca 6</string>
-              </property>
-              <property name="icon">
-               <iconset resource="../images/glparchis.qrc">
-                <normaloff>:/glparchis/cube6.png</normaloff>:/glparchis/cube6.png</iconset>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string/>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Fichas comidas por mi</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Fichas comidas por otro</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string/>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>3 seises seguidos</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string/>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Puntuación</string>
-              </property>
-             </row>
-             <column>
-              <property name="text">
-               <string>Amarillo</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-              </property>
-              <property name="icon">
-               <iconset resource="../images/glparchis.qrc">
-                <normaloff>:/glparchis/fichaamarilla.png</normaloff>:/glparchis/fichaamarilla.png</iconset>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>Azul</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-              </property>
-              <property name="icon">
-               <iconset resource="../images/glparchis.qrc">
-                <normaloff>:/glparchis/fichaazul.png</normaloff>:/glparchis/fichaazul.png</iconset>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>Rojo</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-              </property>
-              <property name="icon">
-               <iconset resource="../images/glparchis.qrc">
-                <normaloff>:/glparchis/ficharoja.png</normaloff>:/glparchis/ficharoja.png</iconset>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>Verde</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-              </property>
-              <property name="icon">
-               <iconset resource="../images/glparchis.qrc">
-                <normaloff>:/glparchis/fichaverde.png</normaloff>:/glparchis/fichaverde.png</iconset>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>Todos</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-              </property>
-              <property name="icon">
-               <iconset resource="../images/glparchis.qrc">
-                <normaloff>:/glparchis/star.png</normaloff>:/glparchis/star.png</iconset>
-              </property>
-             </column>
-             <item row="0" column="0">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
+            <layout class="QVBoxLayout" name="verticalLayout_3">
+             <item>
+              <widget class="QTableStatistics" name="table">
+               <row>
+                <property name="text">
+                 <string>Número de tiradas</string>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string/>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>Dado saca 1</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../images/glparchis.qrc">
+                  <normaloff>:/glparchis/cube1.png</normaloff>:/glparchis/cube1.png</iconset>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>Dado saca 2</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../images/glparchis.qrc">
+                  <normaloff>:/glparchis/cube2.png</normaloff>:/glparchis/cube2.png</iconset>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>Dado saca 3</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../images/glparchis.qrc">
+                  <normaloff>:/glparchis/cube3.png</normaloff>:/glparchis/cube3.png</iconset>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>Dado saca 4</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../images/glparchis.qrc">
+                  <normaloff>:/glparchis/cube4.png</normaloff>:/glparchis/cube4.png</iconset>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>Dado saca 5</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../images/glparchis.qrc">
+                  <normaloff>:/glparchis/cube5.png</normaloff>:/glparchis/cube5.png</iconset>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>Dado saca 6</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../images/glparchis.qrc">
+                  <normaloff>:/glparchis/cube6.png</normaloff>:/glparchis/cube6.png</iconset>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string/>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>Fichas comidas por mi</string>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>Fichas comidas por otro</string>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string/>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>3 seises seguidos</string>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string/>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>Puntuación</string>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string/>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>Tiempo de partida</string>
+                </property>
+               </row>
+               <column>
+                <property name="text">
+                 <string>Amarillo</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+                </property>
+                <property name="icon">
+                 <iconset resource="../images/glparchis.qrc">
+                  <normaloff>:/glparchis/fichaamarilla.png</normaloff>:/glparchis/fichaamarilla.png</iconset>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Azul</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+                </property>
+                <property name="icon">
+                 <iconset resource="../images/glparchis.qrc">
+                  <normaloff>:/glparchis/fichaazul.png</normaloff>:/glparchis/fichaazul.png</iconset>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Rojo</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+                </property>
+                <property name="icon">
+                 <iconset resource="../images/glparchis.qrc">
+                  <normaloff>:/glparchis/ficharoja.png</normaloff>:/glparchis/ficharoja.png</iconset>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Verde</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+                </property>
+                <property name="icon">
+                 <iconset resource="../images/glparchis.qrc">
+                  <normaloff>:/glparchis/fichaverde.png</normaloff>:/glparchis/fichaverde.png</iconset>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Todos</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+                </property>
+                <property name="icon">
+                 <iconset resource="../images/glparchis.qrc">
+                  <normaloff>:/glparchis/star.png</normaloff>:/glparchis/star.png</iconset>
+                </property>
+               </column>
+               <item row="0" column="0">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+                <property name="background">
+                 <brush brushstyle="NoBrush">
+                  <color alpha="255">
+                   <red>0</red>
+                   <green>0</green>
+                   <blue>0</blue>
+                  </color>
+                 </brush>
+                </property>
+               </item>
+               <item row="0" column="1">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="0" column="2">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="0" column="3">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="0" column="4">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="2" column="0">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="2" column="1">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="2" column="2">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="2" column="3">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="2" column="4">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="3" column="0">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="3" column="1">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="3" column="2">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="3" column="3">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="3" column="4">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="4" column="0">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="4" column="1">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="4" column="2">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="4" column="3">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="4" column="4">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="5" column="0">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="5" column="1">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="5" column="2">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="5" column="3">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="5" column="4">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="6" column="0">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="6" column="1">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="6" column="2">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="6" column="3">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="6" column="4">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="7" column="0">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="7" column="1">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="7" column="2">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="7" column="3">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="7" column="4">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="9" column="0">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="9" column="1">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="9" column="2">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="9" column="3">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="9" column="4">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+                <property name="background">
+                 <brush brushstyle="BDiagPattern">
+                  <color alpha="255">
+                   <red>0</red>
+                   <green>0</green>
+                   <blue>0</blue>
+                  </color>
+                 </brush>
+                </property>
+               </item>
+               <item row="10" column="0">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="10" column="1">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="10" column="2">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="10" column="3">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="10" column="4">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+                <property name="background">
+                 <brush brushstyle="BDiagPattern">
+                  <color alpha="255">
+                   <red>0</red>
+                   <green>0</green>
+                   <blue>0</blue>
+                  </color>
+                 </brush>
+                </property>
+               </item>
+               <item row="12" column="0">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="12" column="1">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="12" column="2">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="12" column="3">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="12" column="4">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignRight|AlignVCenter</set>
+                </property>
+               </item>
+               <item row="14" column="0">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+                </property>
+               </item>
+               <item row="14" column="1">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+                </property>
+               </item>
+               <item row="14" column="2">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+                </property>
+               </item>
+               <item row="14" column="3">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+                </property>
+               </item>
+               <item row="14" column="4">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="background">
+                 <brush brushstyle="BDiagPattern">
+                  <color alpha="255">
+                   <red>0</red>
+                   <green>0</green>
+                   <blue>0</blue>
+                  </color>
+                 </brush>
+                </property>
+               </item>
+               <item row="16" column="0">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+                </property>
+               </item>
+               <item row="16" column="1">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="background">
+                 <brush brushstyle="BDiagPattern">
+                  <color alpha="255">
+                   <red>0</red>
+                   <green>0</green>
+                   <blue>0</blue>
+                  </color>
+                 </brush>
+                </property>
+               </item>
+               <item row="16" column="2">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="background">
+                 <brush brushstyle="BDiagPattern">
+                  <color alpha="255">
+                   <red>0</red>
+                   <green>0</green>
+                   <blue>0</blue>
+                  </color>
+                 </brush>
+                </property>
+               </item>
+               <item row="16" column="3">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="background">
+                 <brush brushstyle="BDiagPattern">
+                  <color alpha="255">
+                   <red>0</red>
+                   <green>0</green>
+                   <blue>0</blue>
+                  </color>
+                 </brush>
+                </property>
+               </item>
+               <item row="16" column="4">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="background">
+                 <brush brushstyle="BDiagPattern">
+                  <color alpha="255">
+                   <red>0</red>
+                   <green>0</green>
+                   <blue>0</blue>
+                  </color>
+                 </brush>
+                </property>
+               </item>
+              </widget>
              </item>
-             <item row="0" column="1">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="0" column="2">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="0" column="3">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="0" column="4">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="2" column="0">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="2" column="1">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="2" column="2">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="2" column="3">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="2" column="4">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="3" column="0">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="3" column="1">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="3" column="2">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="3" column="3">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="3" column="4">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="4" column="0">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="4" column="1">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="4" column="2">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="4" column="3">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="4" column="4">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="5" column="0">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="5" column="1">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="5" column="2">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="5" column="3">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="5" column="4">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="6" column="0">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="6" column="1">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="6" column="2">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="6" column="3">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="6" column="4">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="7" column="0">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="7" column="1">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="7" column="2">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="7" column="3">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="7" column="4">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="9" column="0">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="9" column="1">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="9" column="2">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="9" column="3">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="9" column="4">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-              <property name="background">
-               <brush brushstyle="BDiagPattern">
-                <color alpha="255">
-                 <red>0</red>
-                 <green>0</green>
-                 <blue>0</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
-             <item row="10" column="0">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="10" column="1">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="10" column="2">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="10" column="3">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="10" column="4">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-              <property name="background">
-               <brush brushstyle="BDiagPattern">
-                <color alpha="255">
-                 <red>0</red>
-                 <green>0</green>
-                 <blue>0</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
-             <item row="12" column="0">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="12" column="1">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="12" column="2">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="12" column="3">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="12" column="4">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignRight|AlignVCenter</set>
-              </property>
-             </item>
-             <item row="14" column="0">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-              </property>
-             </item>
-             <item row="14" column="1">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-              </property>
-             </item>
-             <item row="14" column="2">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-              </property>
-             </item>
-             <item row="14" column="3">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-              </property>
-             </item>
-             <item row="14" column="4">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="background">
-               <brush brushstyle="BDiagPattern">
-                <color alpha="255">
-                 <red>0</red>
-                 <green>0</green>
-                 <blue>0</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
-            </widget>
+            </layout>
            </item>
           </layout>
          </widget>
