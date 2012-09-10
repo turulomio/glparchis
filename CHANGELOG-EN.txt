@@ -1,3 +1,15 @@
+20120910
+======== 
+- Solved bug with saved games directory
+- Dice text changes color to the current player color
+- Score system added. It uses the number of moved places. 
+- A crown is added in statistics table to show the player is winning the game.
+- IA first movements are now showed
+- Solved several bugs
+- IA improved using probabilities.
+- A game timer has been added
+- User panel logs have been improved
+
 20120902
 ======== 
 - Initial support to the application

@@ -30,10 +30,34 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Ahora se muestra los primeros movimientos cuando empieza un jugador de AI</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120910T205840Z">
+        <seg>- IA first movements are now showed</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- El texto del dado cambia de color según el jugador actual</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120910T205708Z">
+        <seg>- Dice text changes color to the current player color</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- La aplicación es plenamente funcional.</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T064728Z">
         <seg>- The app has all the funcionality.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Mejorada la inteligencia artificial de los jugadores virtuales, con un porcentaje de acierto en las decisiones</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120910T205910Z">
+        <seg>- IA improved using probabilities.</seg>
       </tuv>
     </tu>
     <tu>
@@ -46,10 +70,58 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Se ha añadido puntuación al juego teniendo en cuenta el número de casillas movidas.</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120910T205756Z">
+        <seg>- Score system added. It uses the number of moved places.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Se ha añadido un contador con el tiempo de partida transcurrido</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120910T205931Z">
+        <seg>- A game timer has been added</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Se ha añadido una corona en la tabla de estadísticas al jugador que va ganando.</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120910T205821Z">
+        <seg>- A crown is added in statistics table to show the player is winning the game.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- Se ha dado el soporte inicial a la aplicación</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20111102T130439Z">
         <seg>- Initial support to the application</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Se ha mejorado la visualización de logs en pantalla</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120910T205957Z">
+        <seg>- User panel logs have been improved</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Solucionado problema con directorio de partidas guardadas</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120910T205606Z">
+        <seg>- Solved bug with saved games directory</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Solucionados varios bugs</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120910T205849Z">
+        <seg>- Solved several bugs</seg>
       </tuv>
     </tu>
     <tu>
@@ -122,6 +194,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T065752Z">
         <seg>20120902</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>20120910</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120910T205647Z">
+        <seg>20120910</seg>
       </tuv>
     </tu>
     <tu>
@@ -346,14 +426,6 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20111102T131450Z">
         <seg>User guide</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>Mariano Muñoz</seg>
-      </tuv>
-      <tuv lang="EN-GB" changeid="root" changedate="20111102T131532Z">
-        <seg>Mariano Muñoz </seg>
       </tuv>
     </tu>
     <tu>
@@ -586,6 +658,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T074816Z">
         <seg>glparchis-20120902 &lt;==&gt;  svn -r 187 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>glparchis-20120910 &lt;==&gt;  svn -r 209 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120910T210013Z">
+        <seg>glparchis-20120910 &lt;==&gt;  svn -r 209 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
       </tuv>
     </tu>
     <tu>

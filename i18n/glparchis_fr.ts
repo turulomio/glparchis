@@ -3,7 +3,7 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="737"/>
+        <location filename="libglparchis.py" line="736"/>
         <source>He metido la ficha %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -38,7 +38,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="700"/>
+        <location filename="libglparchis.py" line="699"/>
         <source>He comido una ficha de &quot;{0}&quot; en la casilla {1}</source>
         <translation type="unfinished"></translation>
     </message>

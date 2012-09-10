@@ -6,7 +6,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 
 
-version="20120902"
+version="20120910"
 cfgfile=os.environ['HOME']+ "/.glparchis/glparchis.cfg"
 def q2s(q):
     """Qstring to python string en utf8"""
@@ -691,7 +691,6 @@ class Ficha(QGLWidget):
         (puede, fichaacomer)=self.puedeComer(mem, ruta)
         if puede==True:
             fichaacomer.mover(0, False)
-            print (self.posruta,  "posruta")
             if self.posruta==0:
                 self.mover(1, True)
             else:
