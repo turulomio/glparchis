@@ -23,6 +23,7 @@ class frmInitGame(QWizard, Ui_frmInitGame):
         self.playerstarts=None
         
     def tirar_dado(self, color):
+        random.seed(datetime.datetime.now().microsecond)
         self.dado[color]=int(random.random()*6)+1
     
     def on_cmdYellow_released(self):

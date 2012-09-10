@@ -46,6 +46,7 @@ class Dado(QGLWidget):
         self.position=(65/2, 65/2, 1)
         
     def tirar(self):
+        random.seed(datetime.datetime.now().microsecond)
         if len(self.fake)>0:
             resultado=self.fake[0]
             self.fake.remove(self.fake[0])
@@ -403,6 +404,7 @@ class Jugador:
         """Función que devuelve la ficha seleccionada por la IA. Si devuelve None es que ninguna se puede mover"""
         def azar(tope):
             """Función que saca un numero al azar de entre 1 y 100. Si es mayor del tope devuelve true. Sino devuelve false. Es decir tope 85 es una probabilidad del 85%"""
+            random.seed(datetime.datetime.now().microsecond)
             numero=int(random.random()*100)
 #            print ("azar",  numero,  tope)
             if numero<tope:
@@ -491,7 +493,7 @@ class SetFichas:
         self.arr=[]
 
     def algunaEstaObligada(self, mem):
-        """Busca entre las fichas que pueden mover si alguna est´a obligada a mover"""
+        """Busca entre las fichas que pueden mover si alguna está obligada a mover"""
         for f in self.arr:
             if f.estaObligada(mem)==True:
                 return True
@@ -573,7 +575,7 @@ class Ficha(QGLWidget):
         """PUEDE MOVER Y ESTA OBLIGADO SON DOS CONCEPTOS INDEPENDIENTES QUE NO DEBEN DE UNIRSE 
         PORQUE GENERA RECURSIVIDADPOR ESO SE HACE AQU´I
         
-        Autorizada significa que puede mover y no est´a obligada a hacer otras cosas"""
+        Autorizada significa que puede mover y no está obligada a hacer otras cosas"""
         
         (puede, movimiento)=self.puedeMover(mem, log)
         if puede:
@@ -730,6 +732,16 @@ class Ficha(QGLWidget):
 
     def casillasPorMover(self):
         return 72-self.posruta
+        
+    def estaATiro(self, mem,  posruta=None):
+        if posruta==None:
+            posruta=self.posruta
+            
+        for j in mem.jugadores.arr:
+            if j!=self.jugador:
+                for f in j.fichas.arr:
+                    """MAL"""
+                    return
 
     def estaAsegurada(self):
         if self.casilla().seguro==True:
@@ -811,6 +823,30 @@ class Tablero(QGLWidget):
         GL.glEnd()
         GL.glPopMatrix()
         
+        
+class Circulo:
+    """Es el circulo publico por el que se mueven las fichas y pueden comerse entre ellas
+    Es un array de casillas ordenado. que se repite ciclicamente
+    numcasillas=68 para 4 jugadores"""
+    def __init__(self, mem, numcasillas):
+        self.arr=[]
+        self.numcasillas=numcasillas
+        for i in range(1, self.numcasillas+1):
+            self.arr.append(mem.casillas(i))
+    
+    def casilla(self, posicion,  desplazamiento):
+        """Calcula la casilla del circulo que tiene un desplazamiento positivo (hacia adelante) o negativo (hacia atrás) 
+        de la casilla cuya posicion (id de la casilla) se ha dado como parametro"""
+        if posicion<1 or posicion>self.numcasillas:   #Si no está en el circulo
+            return None
+            
+        destino=posicion-1+desplazamiento
+        if destino<0:
+            destino=self.numcasillas+destino
+        if destino>self.numcasillas-1:
+            destino=destino-self.numcasillas
+        print (destino, len(self.arr))
+        return self.arr[destino]
         
 class Color:
     def __init__(self,   r,  g, b, name=None):
@@ -1091,6 +1127,8 @@ class Mem4:
         self.generar_casillas()
         self.generar_rutas()
         self.generar_fichas()
+        
+        self.circulo=Circulo(self, 68)
         
     def generar_colores(self):
         self.dic_colores["red"]=Color(255, 0, 0, "red")
