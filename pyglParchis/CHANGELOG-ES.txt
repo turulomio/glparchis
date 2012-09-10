@@ -1,4 +1,4 @@
-XXXXXXXX
+20120910
 ========
 - Solucionado problema con directorio de partidas guardadas
 - El texto del dado cambia de color según el jugador actual

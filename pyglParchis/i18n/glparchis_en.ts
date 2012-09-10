@@ -3,7 +3,7 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="737"/>
+        <location filename="libglparchis.py" line="736"/>
         <source>He metido la ficha %1</source>
         <translation>Piece %1 arrived the central space </translation>
     </message>
@@ -38,7 +38,7 @@
         <translation>You&apos;re forced to move to the first space and to eat</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="700"/>
+        <location filename="libglparchis.py" line="699"/>
         <source>He comido una ficha de &quot;{0}&quot; en la casilla {1}</source>
         <translation>I&apos;ve eaten a piece of &quot;{0}&quot; in the {1} place</translation>
     </message>

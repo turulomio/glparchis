@@ -1,3 +1,3 @@
-20100525 No se muestra la ficha en los objetos de frmAbout en algunas tarjetas
 20120831 Ir migrando a python3, unque opengl no está todavía
 20120909 Se debe contabilizar el calculo de comer cuando puedo contar 10 por ficha en casa.
+20120909 Aprender a poner texturas en objetos usando el show object defrmabout

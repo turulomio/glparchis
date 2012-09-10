@@ -112,7 +112,12 @@ class wdgOGL(QGLWidget):
             if len(objetos)==1:
                 self.mem.selFicha=None
             elif len(objetos)==2:
-                self.mem.selFicha=object(self.mem, objetos[1])
+                objeto=object(self.mem, objetos[1])
+                if isinstance(objeto, Ficha):
+                    self.mem.selFicha=objeto
+                else:
+                    self.mem.selFicha=None
+                
                 
         def processright(nameStack):
             """nameStack tiene la estructura minDepth, maxDepth, names"""
@@ -122,15 +127,17 @@ class wdgOGL(QGLWidget):
                    objetos.append(names[0])
             if len(objetos)==1:
                 selCasilla=object(self.mem, objetos[0])
-                a=frmShowCasilla(self,  Qt.Popup,  selCasilla)
-                a. move(self.mapToGlobal(event.pos())        )
-                a.show()
+                if isinstance(selCasilla, Casilla):
+                    a=frmShowCasilla(self,  Qt.Popup,  selCasilla)
+                    a. move(self.mapToGlobal(event.pos())        )
+                    a.show()
             elif len(objetos)==2:
                 selFicha=object(self.mem, objetos[1])
-                print("amenazada por ",  selFicha.numFichasPuedenComer(self.mem))
-                a=frmShowFicha(self, Qt.Popup,  selFicha)
-                a. move(self.mapToGlobal(event.pos())        )
-                a.show()
+                if isinstance(selFicha, Ficha):
+                    print("amenazada por ",  selFicha.numFichasPuedenComer(self.mem))
+                    a=frmShowFicha(self, Qt.Popup,  selFicha)
+                    a. move(self.mapToGlobal(event.pos())        )
+                    a.show()
                 
         #########################################
         self.setFocus()
