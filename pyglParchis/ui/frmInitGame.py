@@ -28,31 +28,23 @@ class frmInitGame(QWizard, Ui_frmInitGame):
     
     def on_cmdYellow_released(self):
         self.tirar_dado("yellow")
-#        print ("yellow",  self.dado['yellow'])
         self.lblDadoYellow.setPixmap(self.mem.dado.qpixmap(self.dado['yellow']))
         self.cmdYellow.setEnabled(False)
-#        self.chequea()
     
     def on_cmdBlue_released(self):
         self.tirar_dado("blue")
-#        print ("blue",  self.dado['blue'])
         self.lblDadoBlue.setPixmap(self.mem.dado.qpixmap(self.dado['blue']))        
         self.cmdBlue.setEnabled(False)
-#        self.chequea()
     
     def on_cmdRed_released(self):
         self.tirar_dado("red")
-#        print ("red",  self.dado['red'])
         self.lblDadoRed.setPixmap(self.mem.dado.qpixmap(self.dado['red']))
         self.cmdRed.setEnabled(False)
-#        self.chequea()
     
     def on_cmdGreen_released(self):
         self.tirar_dado("green")
-#        print ("green",  self.dado['green'])
         self.lblDadoGreen.setPixmap(self.mem.dado.qpixmap(self.dado['green']))
         self.cmdGreen.setEnabled(False)
-#        self.chequea()
         
     def validateCurrentPage(self):
         if self.currentId()==0:

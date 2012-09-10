@@ -393,6 +393,13 @@ class Jugador:
                 return True
         return False
         
+    def tieneFichasEnRampaLlegada(self):
+        """Devuelve un booleano si el jugador tiene fichas en la rampa de llegada"""
+        for f in self.fichas.arr:
+            if f.casilla().rampallegada==True:
+                return True
+        return False
+        
 
     def HaGanado(self):
         for f in self.fichas.arr:
@@ -406,7 +413,6 @@ class Jugador:
             """Función que saca un numero al azar de entre 1 y 100. Si es mayor del tope devuelve true. Sino devuelve false. Es decir tope 85 es una probabilidad del 85%"""
             random.seed(datetime.datetime.now().microsecond)
             numero=int(random.random()*100)
-#            print ("azar",  numero,  tope)
             if numero<tope:
                 return True
             return False
@@ -423,26 +429,37 @@ class Jugador:
                 movimiento=f.estaAutorizadaAMover(mem)[1]
                 (puede, fichaacomer)=f.puedeComer(mem, f.posruta+movimiento)
                 if puede:
-                    print ("seleccionado por azar comer")
+                    print (f, "seleccionada por azar comer")
                     return f
         
-        #2 prioridad Asegura IA  de ultima a primera 85%
+        #2 prioridad. Mueve fichas que est´an m´as amenazadas y estar´an mejor en posruta+,pvo,oemt
+        # -f.numFichasPuedenComer(mem, f.posruta+movimiento) no me dejaba ponerlo en el sorted para ver si mejoraba
+        fichas=sorted(fichas, key=lambda f:f.numFichasPuedenComer(mem, f.posruta),  reverse=True)     
+        if azar(80):
+            for f in fichas:
+                if f.numFichasPuedenComer(mem, f.posruta)>0: #Debe estar amenazada
+                    print (f, "seleccionada por azar al mejorar numero de fichas la pueden comer")
+                    return f
+        
+        
+        #3 prioridad Asegura IA  de ultima a primera 85%
+        fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)     
         if azar(80):
             for f in fichas:
                 movimiento=f.estaAutorizadaAMover(mem)[1]
                 if f.casilla().seguro==False and  f.casilla(f.posruta+movimiento).seguro==True:
-                    print ("seleccionado por azar asegurar")
+                    print (f,"seleccionado por azar asegurar")
                     return f
         
-        #Alguna ficha no asegurada puede mover
+        #4 Alguna ficha no asegurada puede mover
         if azar(95):
             for f in fichas:
                 if f.estaAsegurada()==False:
-                    print("seleccionado por azar ficha no asegurada")
+                    print(f,"seleccionado por azar ficha no asegurada")
                     return f
         
-        #3 prioridad Mueve la ultima IA 100%
-        print ("Sin azar. Ultima ficha")
+        #5 prioridad Mueve la ultima IA 100%
+        print (f, "Sin azar. Ultima ficha")
         fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)
         return fichas[0]
             
@@ -672,7 +689,6 @@ class Ficha(QGLWidget):
     def come(self, mem,   ruta):
         """ruta, es la posición de ruta de ficha en la que come. No se ha movido antes, come si puede y devuelve True, en caso contrario False"""
         (puede, fichaacomer)=self.puedeComer(mem, ruta)
-        print (puede, fichaacomer)
         if puede==True:
             fichaacomer.mover(0, False)
             print (self.posruta,  "posruta")
@@ -733,15 +749,55 @@ class Ficha(QGLWidget):
     def casillasPorMover(self):
         return 72-self.posruta
         
-    def estaATiro(self, mem,  posruta=None):
+    def numFichasPuedenComer(self, mem, posruta=None):
+        """Funci´on que devuelve un array con las fichas que pueden comer a la ficha actual si la colocara en posruta"""
+        resultado=0
         if posruta==None:
             posruta=self.posruta
             
-        for j in mem.jugadores.arr:
-            if j!=self.jugador:
-                for f in j.fichas.arr:
-                    """MAL"""
-                    return
+        if posruta<0 or posruta>72:
+            return 0
+            
+        casilla=self.casilla(posruta)        #Datos casilla de posruta
+        
+        if casilla.seguro==True or casilla.rampallegada==True:
+            return 0
+            
+        if casilla.tieneBarrera():
+            return 0
+            
+        if casilla not in mem.circulo.arr:#Si la casilla no esta en el circulo devuelve 0
+            return 0
+
+        for pos, f in mem.circulo.casilla(casilla.id, -1).buzon_fichas():
+            if f.jugador!=self.jugador:
+                resultado=resultado+1
+        for pos, f in mem.circulo.casilla(casilla.id, -2).buzon_fichas():
+            if f.jugador!=self.jugador:
+                resultado=resultado+1
+        for pos, f in mem.circulo.casilla(casilla.id, -3).buzon_fichas():
+            if f.jugador!=self.jugador:
+                resultado=resultado+1
+        for pos, f in mem.circulo.casilla(casilla.id, -4).buzon_fichas():
+            if f.jugador!=self.jugador:
+                resultado=resultado+1
+        for pos, f in mem.circulo.casilla(casilla.id, -5).buzon_fichas():
+            if f.jugador!=self.jugador:
+                if f.jugador.tieneFichasEnCasa()==False:#debe sacar
+                    resultado=resultado+1
+        for pos, f in mem.circulo.casilla(casilla.id, -6).buzon_fichas():
+            if f.jugador!=self.jugador:
+                if f.jugador.tieneFichasEnCasa():
+                    resultado=resultado+1
+        for pos, f in mem.circulo.casilla(casilla.id, -7).buzon_fichas():
+            if f.jugador!=self.jugador:
+                if f.jugador.tieneFichasEnCasa()==False:
+                    resultado=resultado+1
+        for pos, f in mem.circulo.casilla(casilla.id, -10).buzon_fichas():
+            if f.jugador!=self.jugador:
+                if f.jugador.tieneFichasEnRampaLlegada():
+                    resultado=resultado+1
+        return resultado
 
     def estaAsegurada(self):
         if self.casilla().seguro==True:
@@ -845,7 +901,6 @@ class Circulo:
             destino=self.numcasillas+destino
         if destino>self.numcasillas-1:
             destino=destino-self.numcasillas
-        print (destino, len(self.arr))
         return self.arr[destino]
         
 class Color:
@@ -869,7 +924,7 @@ class Casilla(QGLWidget):
         self.color=color
         self.position=position
         self.rotate=rotate
-        self.rampallegada=rampallegada
+        self.rampallegada=rampallegada#booleano que indica si la casilla es de rampa de llegada
         self.tipo=tipo
         self.seguro=seguro
         self.buzon=[None]*self.maxfichas #Se crean los huecos y se juega con ellos para mantener la posicion
@@ -898,7 +953,6 @@ class Casilla(QGLWidget):
             GL.glInitNames();
             GL.glPushMatrix()
             GL.glPushName(self.oglname);
-#            print (self.oglname)
             GL.glTranslated(self.position[0],self.position[1],self.position[2] )
             GL.glRotated(self.rotate, 0, 0, 1 )
             GL.glBegin(GL.GL_QUADS)
