@@ -22,6 +22,7 @@ class wdgOGL(QGLWidget):
 #        self.dadowidth=80
         self.dado.setScaledContents(True)
         self.dado.setStyleSheet("background-color: rgba(255, 255, 255, 255);")
+        self.dado.hide()
 #        self.dado.setIcon(self.mem.dado.qicon(5))
 #        self.dado.setIconSize(QSize(self.dadowidth-4, self.dadowidth-4 ))
 ##        self.dado.setGeometry((self.width()-self.dadowidth)/2, (self.height()-self.dadowidth)/2, self.dadowidth, self.dadowidth)

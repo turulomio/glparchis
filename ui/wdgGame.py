@@ -145,7 +145,22 @@ class wdgGame(QWidget, Ui_wdgGame):
     def after_ficha_click(self):
         if self.cmdTirarDado.isEnabled():#Esta esperando dado no se puede pulsar ficha para mover.
             return
-        puede=self.mem.selFicha.puedeMover(self.mem)
+        
+        
+        ##DA ERROR INTENTANDO CAPTURARLO
+#          File "/usr/lib/glparchis/wdgGame.py", line 148, in after_ficha_click
+#    puede=self.mem.selFicha.puedeMover(self.mem)
+#AttributeError: 'Casilla' object has no attribute 'puedeMover'
+
+        try:
+            puede=self.mem.selFicha.puedeMover(self.mem)
+        except:
+            m=QMessageBox()
+            m.setIcon(QMessageBox.Information)
+            m.setText("Se ha producido el error de casilla no tiene puedemover " + str(self.mem.ficha))
+            m.exec_() 
+            
+            
         if puede[0]==False:
             if self.mem.jugadoractual.ia==False:
                 sound("click")

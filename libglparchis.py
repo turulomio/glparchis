@@ -404,7 +404,7 @@ class Jugador:
         def azar(tope):
             """Funci´on que saca un numero al azar de entre 1 y 100. Si es mayor del tope devuelve true. Sino devuelve false. Es decir tope 85 es una probabilidad del 85%"""
             numero=int(random.random()*100)
-            print ("azar",  numero,  tope)
+#            print ("azar",  numero,  tope)
             if numero<tope:
                 return True
             return False
@@ -430,6 +430,13 @@ class Jugador:
                 movimiento=f.puedeMover(mem)[1]
                 if f.casilla().seguro==False and  f.casilla(f.posruta+movimiento).seguro==True:
                     print ("seleccionado por azar asegurar")
+                    return f
+        
+        #Alguna ficha no asegurada puede mover
+        if azar(95):
+            for f in fichas:
+                if f.estaAsegurada()==False:
+                    print("seleccionado por azar ficha no asegurada")
                     return f
         
         #3 prioridad Mueve la ultima IA 100%
@@ -763,6 +770,11 @@ class Ficha(QGLWidget):
 
     def casillasPorMover(self):
         return 72-self.posruta
+
+    def estaAsegurada(self):
+        if self.casilla().seguro==True:
+            return True
+        return False
 
     def estaEnCasa(self):
         if self.posruta==0:
@@ -1304,6 +1316,8 @@ class Mem4:
     def generar_casillas(self):
         def defineSeguro( id):
             if id==5 or id==12 or id==17 or id==22 or id==29 or id==34 or id==39 or id==46 or id==51  or id==56 or id==63 or id==68:
+                return True
+            elif id>=69 and id<=100:#Las de la rampa de llegada tambi´en son seguras
                 return True
             else:
                 return False
