@@ -142,29 +142,30 @@ class wdgGame(QWidget, Ui_wdgGame):
 #AttributeError: 'Casilla' object has no attribute 'puedeMover'
 
         try:
-            puede=self.mem.selFicha.estaAutorizadaAMover(self.mem, True)
+            (puede, movimiento)=self.mem.selFicha.estaAutorizadaAMover(self.mem, True)
         except:
             m=QMessageBox()
             m.setIcon(QMessageBox.Information)
             m.setText("Se ha producido el error de casilla no tiene puedemover " + str(self.mem.selFicha))
             m.exec_() 
+            return
 
                 
             
-        if puede[0]==False:
+        if puede==False:
             if self.mem.jugadoractual.ia==False:
                 sound("click")
             return
 
                 
-        if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta+puede[1]) or self.mem.selFicha.mete(self.mem.selFicha.posruta+puede[1]):    
+        if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta+movimiento) or self.mem.selFicha.mete(self.mem.selFicha.posruta+movimiento):    
             self.ogl.updateGL()
             sound("comer")
             if self.mem.jugadoractual.fichas.algunaEstaAutorizadaAmover(self.mem)==True:
                 self.on_JugadorDebeMover()
                 return
         else:
-            self.mem.selFicha.mover( self.mem.selFicha.posruta + puede[1])    
+            self.mem.selFicha.mover( self.mem.selFicha.posruta + movimiento)    
             self.ogl.updateGL()
        #Quita el movimiento acumulados
         if self.mem.jugadoractual.movimientos_acumulados in (10, 20):
