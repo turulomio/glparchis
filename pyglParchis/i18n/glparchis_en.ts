@@ -3,47 +3,47 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="719"/>
+        <location filename="libglparchis.py" line="721"/>
         <source>He metido la ficha %1</source>
         <translation>Piece %1 arrived the central space </translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="593"/>
+        <location filename="libglparchis.py" line="595"/>
         <source>No es del jugador actual</source>
         <translation>It&apos;s not a current player piece</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="618"/>
+        <location filename="libglparchis.py" line="620"/>
         <source>Se ha pasado la meta</source>
         <translation>You missed the central space</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="624"/>
+        <location filename="libglparchis.py" line="626"/>
         <source>Hay una barrera</source>
         <translation>There is a blockade</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="633"/>
+        <location filename="libglparchis.py" line="635"/>
         <source>No hay espacio en la casilla</source>
         <translation>The space is bussy</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="613"/>
+        <location filename="libglparchis.py" line="615"/>
         <source>No puede mover</source>
         <translation>It can&apos;t move</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="631"/>
+        <location filename="libglparchis.py" line="633"/>
         <source>Obligado a sacar y a comer</source>
         <translation>You&apos;re forced to move to the first space and to eat</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="682"/>
+        <location filename="libglparchis.py" line="684"/>
         <source>He comido una ficha de &quot;{0}&quot; en la casilla {1}</source>
         <translation>I&apos;ve eaten a piece of &quot;{0}&quot; in the {1} place</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="582"/>
+        <location filename="libglparchis.py" line="584"/>
         <source>No puede mover, porque hay otra ficha obligada a mover</source>
         <translation type="unfinished"></translation>
     </message>
@@ -169,12 +169,12 @@
         <translation>Throw the dice of your color. The player with the highest score starts the game</translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.py" line="127"/>
+        <location filename="ui/frmInitGame.py" line="128"/>
         <source>El jugador %1 empieza la partida</source>
         <translation>The %1 pleyer starts the game</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmInitGame.py" line="130"/>
+        <location filename="ui/frmInitGame.py" line="131"/>
         <source>%1 deben tirar hasta que se aclare quién empieza la partida</source>
         <translation>%1 should thow the dice up to clarify who starts the game</translation>
     </message>
@@ -184,7 +184,7 @@
         <translation>Who starts?</translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.py" line="128"/>
+        <location filename="ui/frmInitGame.py" line="129"/>
         <source>Empieza la partida</source>
         <translation>Play the game</translation>
     </message>

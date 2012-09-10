@@ -2,3 +2,4 @@
 20120831 Ir migrando a python3, unque opengl no está todavía
 20120905 Ver el error configparser yellow
 20120909 Se debe contabilizar el calculo de comer cuando puedo contar 10 por ficha en casa.
+20120909 Hacer en IA una funci´on en que sea está a tiro teniendo encuenta6,7,10,20. Hacer otra que es me pongo a tiro
