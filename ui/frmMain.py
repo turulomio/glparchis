@@ -45,10 +45,11 @@ class frmMain(QMainWindow, Ui_frmMain):#
     @QtCore.pyqtSlot()     
     def on_actionRecuperarPartida_activated(self):
         #ÐEBE SERLOCAL
-        self.mem=Mem4()
         filenam=os.path.basename(libglparchis.q2s(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")))
-        self.mem.load(filenam)
-        self.showWdgGame()
+        if filenam!="":
+            self.mem=Mem4()
+            self.mem.load(filenam)
+            self.showWdgGame()
 
 
     @QtCore.pyqtSlot()     
@@ -63,4 +64,5 @@ class frmMain(QMainWindow, Ui_frmMain):#
     @QtCore.pyqtSlot()     
     def on_actionGuardarPartida_activated(self):
         filename=os.path.basename(libglparchis.q2s(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")))
-        self.mem.save(filename)
+        if filename!="":
+            self.mem.save(filename)
