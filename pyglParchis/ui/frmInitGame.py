@@ -21,9 +21,9 @@ class frmInitGame(QWizard, Ui_frmInitGame):
         self.setButtonText(QWizard.FinishButton, self.trUtf8("¿Quién empieza?"))
         self.dado={}
         self.playerstarts=None
+        random.seed(datetime.datetime.now().microsecond)
         
     def tirar_dado(self, color):
-        random.seed(datetime.datetime.now().microsecond)
         self.dado[color]=int(random.random()*6)+1
     
     def on_cmdYellow_released(self):

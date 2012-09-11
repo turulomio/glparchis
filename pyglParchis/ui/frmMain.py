@@ -17,11 +17,13 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.setupUi(self)
         self.showMaximized()
         self.game=None
+        self.on_actionPartidaNueva_activated()
         
-        
-    @pyqtSignature("")
+######    @pyqtSignature("")
+    @pyqtSlot()      
     def on_actionAcercaDe_activated(self):
         fr=frmAbout(self, "frmabout")
+        print("nosequepasa")
         fr.open()
         
     @QtCore.pyqtSlot()      

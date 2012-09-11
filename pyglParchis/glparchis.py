@@ -2,9 +2,7 @@
 #-*- coding: utf-8 -*- 
 
 import sys, os
-rootdir="/usr"
-sys.path.append(rootdir+"/lib/glparchis")
-os.chdir(os.path.expanduser("~/.glparchis/"))
+sys.path.append("../lib/glparchis")
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from frmMain import *
@@ -13,7 +11,7 @@ def help():
     print ("Ayuda")
 
 try:
-    os.makedirs( os.environ['HOME']+"/.glparchis/")
+    os.makedirs(os.path.expanduser("~/.glparchis/"))
 except:
     pass
 #Creamos la aplicacion principal y conectamos la señal lastWindowClosed()
@@ -26,11 +24,11 @@ app = QApplication(sys.argv)
 translator = QTranslator(app)
 locale=QLocale()
 a=locale.system()
-translator.load(rootdir+"/share/glparchis/glparchis_" + a.name() + ".qm")
+translator.load("../share/glparchis/glparchis_" + a.name() + ".qm")
 app.installTranslator(translator);
 
+os.chdir(os.path.expanduser("~/.glparchis/"))
 frmMain = frmMain() 
 frmMain.show()
-
 sys.exit(app.exec_())
 
