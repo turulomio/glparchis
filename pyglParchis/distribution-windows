@@ -49,6 +49,7 @@ cp 	ui/frm* \
 
 cp	images/*.png \
 	images/*.qrc \
+	images/*.ico \
 	$DIR/images
 
 cp 	sounds/*.ogg \
@@ -63,7 +64,6 @@ echo "
 cd bin
 c:/Python27/python.exe glparchis.py" > $DIR/glparchis.bat
 sed -i -e 's:WindowsVersion=False:WindowsVersion=True:' $DIR/libglparchis.py
-sed -i -e "s:XXXXXXXX:$VERSION:" glparchis.iss
 
 #sed -i -e "s:os.environ['HOME']:'':" $DIR/glparchis.py
 
@@ -102,19 +102,14 @@ install $DIR/i18n/*.qm $PREFIXSHARE
 install $DIR/doc/glparchis-* $PREFIXSHARE
 install $DIR/AUTHORS-EN.txt  AUTHORS-ES.txt  CHANGELOG-EN.txt  CHANGELOG-ES.txt  GPL-3.txt  INSTALL-EN.txt  INSTALL-ES.txt  RELEASES-EN.txt  RELEASES-ES.txt  $PREFIXSHARE
 install $DIR/sounds/*.ogg $PREFIXSOUND
+install $DIR/images/*.ico $PREFIXSHARE
 
-
-######### COPIAR A WINE
-WINEPATH="$HOME/.wine/drive_c/Program Files/glparchis/"
-rm -Rf  "$WINEPATH"
-mkdir -p "$WINEPATH"
-cp -Rv $DIR/dist/* "$WINEPATH"
-ls -la "$WINEPATH"
-#rsync -avzP $DIR/dist/* "$WINEPATH" --delete-after 
-######## COMPRIMIR
-#zip -r $FILE $DIR/dist/* > /dev/null
-rm -R $DIR
-#chmod 666 $FILE
-
-wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/Inno\ Setup\ 5/ISCC.exe /o. glparchis.iss
+####### binaries linux
+python pyinstaller-2.0/pyinstaller.py -o glparchis-windows-$VERSION/pyinstallerlinux -i glparchis-windows-$VERSION/dist/share/glparchis/ficharoja.ico -w -p glparchis-windows-$VERSION/dist/lib/glparchis glparchis-windows-$VERSION/dist/bin/glparchis.py
+tar cvz glparchis-windows-$VERSION/pyinstallerlinux/dist -f dist/glparchis-linux-$VERSION.tar.gz
+###### binaries windows
+wine $HOME/.wine/drive_c/Python27/python.exe  pyinstaller-2.0/pyinstaller.py -o glparchis-windows-$VERSION/pyinstallerwindows -i glparchis-windows-$VERSION/dist/share/glparchis/ficharoja.ico -w -p glparchis-windows-$VERSION/dist/lib/glparchis glparchis-windows-$VERSION/dist/bin/glparchis.py
+sed -i -e "s:XXXXXXXX:$VERSION:" glparchis.iss
+wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/Inno\ Setup\ 5/ISCC.exe /odist glparchis.iss
 sed -i -e "s:$VERSION:XXXXXXXX:" glparchis.iss #Deja en X la versión
+rm -R $DIR
