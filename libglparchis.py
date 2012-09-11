@@ -5,9 +5,9 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 
-
+WindowsVersion=False
 version="20120910"
-cfgfile=os.environ['HOME']+ "/.glparchis/glparchis.cfg"
+cfgfile=os.path.expanduser("~/.glparchis/")+ "glparchis.cfg"
 def q2s(q):
     """Qstring to python string en utf8"""
     return str(QString.toUtf8(q))
@@ -1694,14 +1694,24 @@ def dic2list(dic):
     return resultado
 
 def sound(sound):
-    player="/usr/bin/ogg123"
-    if sound=="dice":
-        subprocess.check_output("{0} /usr/share/glparchis/sounds/dice.ogg 2>/dev/null".format(player),shell=True)
-    elif sound=="click":
-        subprocess.check_output("{0} /usr/share/glparchis/sounds/click.ogg 2>/dev/null".format(player),shell=True)
-    elif sound=="comer":
-        subprocess.check_output("{0} /usr/share/glparchis/sounds/comer.ogg 2>/dev/null".format(player),shell=True)
-    elif sound=="win":
-        subprocess.check_output("{0} /usr/share/glparchis/sounds/win.ogg 2>/dev/null".format(player),shell=True)
+    if WindowsVersion==True:
+        if sound=="dice":
+            QSound.play("../share/glparchis/sounds/dice.ogg")
+        elif sound=="click":
+            QSound.play("../share/glparchis/sounds/click.ogg")
+        elif sound=="comer":
+            QSound.play("../share/glparchis/sounds/comer.ogg")
+        elif sound=="win":
+            QSound.play("../share/glparchis/sounds/win.ogg")
+    else:
+        player="/usr/bin/ogg123"
+        if sound=="dice":
+            subprocess.check_output("{0} /usr/share/glparchis/sounds/dice.ogg 2>/dev/null".format(player),shell=True)
+        elif sound=="click":
+            subprocess.check_output("{0} /usr/share/glparchis/sounds/click.ogg 2>/dev/null".format(player),shell=True)
+        elif sound=="comer":
+            subprocess.check_output("{0} /usr/share/glparchis/sounds/comer.ogg 2>/dev/null".format(player),shell=True)
+        elif sound=="win":
+            subprocess.check_output("{0} /usr/share/glparchis/sounds/win.ogg 2>/dev/null".format(player),shell=True)
 
 
