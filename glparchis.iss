@@ -5,13 +5,13 @@
 #define MyAppVersion "XXXXXXXX"
 #define MyAppPublisher "Mariano Muñoz"
 #define MyAppURL "http://glparchis.sourceforge.net"
-#define MyAppExeName "glparchis.bat"
+#define MyAppExeName "glparchis.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{99B32F0D-DC4A-4E88-BFE6-F428921D7C6A}
+AppId={{3849730B-2375-4F76-B4A5-A6677A23AB9B}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -23,8 +23,10 @@ DefaultDirName={pf}\glparchis
 DisableDirPage=yes
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
-LicenseFile=C:\Program Files\glparchis\share\glparchis\GPL-3.txt
-OutputBaseFilename=glparchis-{#MyAppVersion}
+LicenseFile=glparchis-windows-XXXXXXXX\dist\share\glparchis\GPL-3.txt
+OutputDir=dist
+OutputBaseFilename=glparchis-windows-{#MyAppVersion}
+SetupIconFile=glparchis-windows-XXXXXXXX\dist\share\glparchis\ficharoja.ico
 Compression=lzma
 SolidCompression=yes
 
@@ -39,18 +41,37 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "C:\Program Files\glparchis\glparchis.bat"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Program Files\glparchis\bin\glparchis.py"; DestDir: "{app}\bin"; Flags: ignoreversion
-Source: "C:\Program Files\glparchis\lib\glparchis\*"; DestDir: "{app}\lib\glparchis\"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Program Files\glparchis\share\glparchis\**"; DestDir: "{app}\share\glparchis\"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\glparchis.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\_ctypes.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\_hashlib.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\bz2.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\glparchis.exe.manifest"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\Microsoft.VC90.CRT.manifest"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\msvcm90.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\msvcp90.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\msvcr90.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\PyQt4.QtCore.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\PyQt4.QtGui.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\PyQt4.QtOpenGL.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\python27.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\QtCore4.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\QtGui4.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\QtOpenGL4.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\QtSvg4.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\QtXml4.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\select.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\sip.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\unicodedata.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\home\keko\Proyectos\glparchis\pyglParchis\glparchis-windows-XXXXXXXX\pyinstallerwindows\dist\glparchis\qt4_plugins\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
+Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon
 
 [Run]
-Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: shellexec postinstall skipifsilent
+Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 

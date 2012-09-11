@@ -50,6 +50,6 @@ cp 	sounds/*.ogg \
 cp 	saves/*.glparchis \
 	$DIR/saves
 
-tar cvz $DIR -f $FILE
+tar cvz $DIR -f dist/$FILE
 rm -R $DIR
-chmod 666 $FILE
+chmod 666 dist/$FILE
