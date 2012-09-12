@@ -1,3 +1,8 @@
+XXXXXXXX
+========
+- Añadida distribución de binarios en windows y linux
+- Solucionado bug al cancelar en el dialogo inicial
+
 20120910
 ========
 - Solucionado problema con directorio de partidas guardadas

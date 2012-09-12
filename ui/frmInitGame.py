@@ -23,26 +23,41 @@ class frmInitGame(QWizard, Ui_frmInitGame):
         self.playerstarts=None
         random.seed(datetime.datetime.now().microsecond)
         
-    def tirar_dado(self, color):
+    def tirar_dado(self, color, playsound):
+        if playsound:
+            sound("dice")
         self.dado[color]=int(random.random()*6)+1
     
     def on_cmdYellow_released(self):
-        self.tirar_dado("yellow")
+        if self.chkYellow.checkState()==Qt.Checked:
+            self.tirar_dado("yellow", False)
+        else:
+            self.tirar_dado("yellow", True)
+            
         self.lblDadoYellow.setPixmap(self.mem.dado.qpixmap(self.dado['yellow']))
         self.cmdYellow.setEnabled(False)
     
     def on_cmdBlue_released(self):
-        self.tirar_dado("blue")
+        if self.chkBlue.checkState()==Qt.Checked:
+            self.tirar_dado("blue", False)
+        else:
+            self.tirar_dado("blue", True)
         self.lblDadoBlue.setPixmap(self.mem.dado.qpixmap(self.dado['blue']))        
         self.cmdBlue.setEnabled(False)
     
     def on_cmdRed_released(self):
-        self.tirar_dado("red")
+        if self.chkRed.checkState()==Qt.Checked:
+            self.tirar_dado("red", False)
+        else:
+            self.tirar_dado("red", True)
         self.lblDadoRed.setPixmap(self.mem.dado.qpixmap(self.dado['red']))
         self.cmdRed.setEnabled(False)
     
     def on_cmdGreen_released(self):
-        self.tirar_dado("green")
+        if self.chkGreen.checkState()==Qt.Checked:
+            self.tirar_dado("green", False)
+        else:
+            self.tirar_dado("green", True)
         self.lblDadoGreen.setPixmap(self.mem.dado.qpixmap(self.dado['green']))
         self.cmdGreen.setEnabled(False)
         
@@ -100,7 +115,6 @@ class frmInitGame(QWizard, Ui_frmInitGame):
                 return True
         
     def chequea(self):
-            
         #Chequea si han lanzado todos
         if self.cmdYellow.isEnabled()==False and self.cmdBlue.isEnabled()==False and self.cmdRed.isEnabled()==False and self.cmdGreen.isEnabled()==False:
             #Saca el maximo de dado
@@ -113,7 +127,6 @@ class frmInitGame(QWizard, Ui_frmInitGame):
             for color in self.dado:
                 if self.dado[color]==max:
                     colormax.append(color)
-#            print (colormax)
             #Asigna o vuelve a tirar
             if len(colormax)==1:
                 self.playerstarts=colormax[0]

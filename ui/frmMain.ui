@@ -3,6 +3,9 @@
  <author>Mariano Muñoz</author>
  <class>frmMain</class>
  <widget class="QMainWindow" name="frmMain">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -96,18 +99,6 @@
    </property>
    <property name="text">
     <string>Acerca de</string>
-   </property>
-  </action>
-  <action name="actionDado">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="icon">
-    <iconset resource="../images/glparchis.qrc">
-     <normaloff>:/glparchis/cube.png</normaloff>:/glparchis/cube.png</iconset>
-   </property>
-   <property name="text">
-    <string>Tirar dado</string>
    </property>
   </action>
   <action name="actionRecuperarPartida">
