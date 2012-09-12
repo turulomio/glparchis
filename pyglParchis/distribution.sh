@@ -1,13 +1,15 @@
 #!/bin/bash
+
 ####### COPIA FILES
 VERSION=`cat libglparchis.py | grep 'version="2'| cut --delimiter='"'  -f 2`
 DIR=glparchis-$VERSION
 FILE=$DIR.zip
 echo "Este script crea el fichero $FILE para ser subido a sourceforge"
 echo "Debe tener instalado una versión de wine y sobre el haber instalado"
-#echo "  - Python 2.xx"
-#echo "  - PyQt4 (ultima version)"
-#echo "  - pyopengl (ultima version)"
+echo "  - Python 2.xx"
+echo "  - PyQt4 (ultima version)"
+echo "  - pyopengl (ultima version)"
+echo "  - pywin32 (ultima version)"
 echo "  - Inno Setup (ultima version)"
 
 mkdir $DIR
@@ -60,6 +62,7 @@ cp 	saves/*.glparchis \
 
 
 ###### sources linux. Ui se ha compilado antes
+echo "  * Comprimiendo codigo fuente..."
 tar cvz  -f dist/glparchis-src-$VERSION.tar.gz $DIR/ -C $DIR > /dev/null
 chmod 666 dist/glparchis-src-$VERSION.tar.gz
 
@@ -100,12 +103,19 @@ install $DIR/sounds/*.ogg $PREFIXSOUND
 install $DIR/images/*.py $PREFIXLIB
 install $DIR/images/*.ico $PREFIXSHARE
 
+###### install pyinstaller
+cd $DIR
+wget https://github.com/downloads/pyinstaller/pyinstaller/pyinstaller-2.0.tar.bz2
+tar xjf pyinstaller-2.0.tar.bz2
+cd ..
+
 
 ####### binaries linux
 mv $PREFIXBIN/glparchis $PREFIXBIN/glparchis.py
-python pyinstaller-2.0/pyinstaller.py -o $DIR/pyinstallerlinux -i $DIR/dist/share/glparchis/ficharoja.ico -w -p $DIR/dist/lib/glparchis $DIR/dist/bin/glparchis.py
+python $DIR/pyinstaller-2.0/pyinstaller.py -o $DIR/pyinstallerlinux -i $DIR/dist/share/glparchis/ficharoja.ico -w -p $DIR/dist/lib/glparchis $DIR/dist/bin/glparchis.py
 cd $DIR/pyinstallerlinux/dist/
-tar cvz  -f ../../../dist/glparchis-linux-$VERSION.tar.gz *
+echo "  * Comprimiendo binario linux..."
+tar cvz  -f ../../../dist/glparchis-linux-$VERSION.tar.gz * > /dev/null
 cd ../../../
 ###### binaries windows
 echo "
@@ -114,7 +124,7 @@ cd bin
 c:/Python27/python.exe glparchis.py" > $DESTDIR/glparchis.bat
 sed -i -e 's:WindowsVersion=False:WindowsVersion=True:' $PREFIXLIB/libglparchis.py
 
-wine $HOME/.wine/drive_c/Python27/python.exe  pyinstaller-2.0/pyinstaller.py -o $DIR/pyinstallerwindows -i $DIR/dist/share/glparchis/ficharoja.ico -w -p $DIR/dist/lib/glparchis $DIR/dist/bin/glparchis.py
+wine $HOME/.wine/drive_c/Python27/python.exe  $DIR/pyinstaller-2.0/pyinstaller.py -o $DIR/pyinstallerwindows -i $DIR/dist/share/glparchis/ficharoja.ico -w -p $DIR/dist/lib/glparchis $DIR/dist/bin/glparchis.py
 sed -i -e "s:XXXXXXXX:$VERSION:" glparchis.iss
 wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/Inno\ Setup\ 5/ISCC.exe /odist glparchis.iss
 sed -i -e "s:$VERSION:XXXXXXXX:" glparchis.iss #Deja en X la versión

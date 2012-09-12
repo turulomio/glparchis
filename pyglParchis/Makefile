@@ -1,12 +1,12 @@
-DESTDIR ?= /
+DESTDIR ?= /usr
 
 
-PREFIXBIN=$(DESTDIR)/usr/bin
-PREFIXLIB=$(DESTDIR)/usr/lib/glparchis
-PREFIXSHARE=$(DESTDIR)/usr/share/glparchis 
-PREFIXSOUND=$(DESTDIR)/usr/share/glparchis/sounds
-PREFIXPIXMAPS=$(DESTDIR)/usr/share/pixmaps
-PREFIXAPPLICATIONS=$(DESTDIR)/usr/share/applications
+PREFIXBIN=$(DESTDIR)/bin
+PREFIXLIB=$(DESTDIR)/lib/glparchis
+PREFIXSHARE=$(DESTDIR)/share/glparchis 
+PREFIXSOUND=$(DESTDIR)/share/glparchis/sounds
+PREFIXPIXMAPS=$(DESTDIR)/share/pixmaps
+PREFIXAPPLICATIONS=$(DESTDIR)/share/applications
 
 all: compile install
 compile:
@@ -40,6 +40,7 @@ install:
 	install -m 644 -o root doc/glparchis-* $(PREFIXSHARE)
 	install -m 644 -o root AUTHORS-EN.txt  AUTHORS-ES.txt  CHANGELOG-EN.txt  CHANGELOG-ES.txt  GPL-3.txt  INSTALL-EN.txt  INSTALL-ES.txt  RELEASES-EN.txt  RELEASES-ES.txt  $(PREFIXSHARE)
 	install -m 644 -o root sounds/*.ogg $(PREFIXSOUND)
+	install -m 644 -o root images/ficharoja.ico $(PREFIXSHARE)
 
 uninstall:
 	rm $(PREFIXBIN)/glparchis
