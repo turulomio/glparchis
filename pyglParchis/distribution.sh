@@ -92,8 +92,9 @@ echo "
 @echo off
 cd bin
 c:/Python27/python.exe glparchis.py" > $DESTDIR/glparchis.bat
-sed -i -e 's:WindowsVersion=False:WindowsVersion=True:' $DESTDIR/lib/glparchis/libglparchis.py
 
+sed -i -e 's:WindowsVersion=False:WindowsVersion=True:' $DESTDIR/lib/glparchis/libglparchis.py
+sed -i -e 's:WindowsVersion=False:WindowsVersion=True:' $DESTDIR/bin/glparchis.py
 wine $HOME/.wine/drive_c/Python27/python.exe  $DIR/pyinstaller-2.0/pyinstaller.py -o $DIR/pyinstallerwindows -i $DESTDIR/share/glparchis/ficharoja.ico -w -p $DESTDIR/lib/glparchis $DESTDIR/bin/glparchis.py
 sed -i -e "s:XXXXXXXX:$VERSION:" glparchis.iss
 wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/Inno\ Setup\ 5/ISCC.exe /odist glparchis.iss

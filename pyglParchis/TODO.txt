@@ -1,6 +1,5 @@
 20120831 Ir migrando a python3, unque opengl no está todavía
 20120909 Se debe contabilizar el calculo de comer cuando puedo contar 10 por ficha en casa.
 20120909 Aprender a poner texturas en objetos usando el show object defrmabout
-20120910 Si se da a cancel en frmInitpeta.
-20120910 Si se pulsa escape peta
+20120910 Si se pulsa escape peta en  wdgOGL
 20120911 Pasar a phonon en musica ver si funciona en windows y linux antes de hacer definitivo

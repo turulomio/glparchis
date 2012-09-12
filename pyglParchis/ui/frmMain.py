@@ -13,26 +13,24 @@ from frmSettings import *
             
 class frmMain(QMainWindow, Ui_frmMain):#    
     def __init__(self, parent = 0,  flags = False):
-        QMainWindow.__init__(self, None)
+        QMainWindow.__init__(self)
         self.setupUi(self)
         self.showMaximized()
         self.game=None
-        self.on_actionPartidaNueva_activated()
+
         
-######    @pyqtSignature("")
     @pyqtSlot()      
-    def on_actionAcercaDe_activated(self):
+    def on_actionAcercaDe_triggered(self):
         fr=frmAbout(self, "frmabout")
-        print("nosequepasa")
         fr.open()
         
-    @QtCore.pyqtSlot()      
-    def on_actionSettings_activated(self):
+    @pyqtSlot()      
+    def on_actionSettings_triggered(self):
         f=frmSettings(self)
         f.exec_()
         
-    @QtCore.pyqtSlot()      
-    def on_actionSalir_activated(self):
+    @pyqtSlot()      
+    def on_actionSalir_triggered(self):
         sys.exit()
   
     def showWdgGame(self):
@@ -44,8 +42,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.actionGuardarPartida.setEnabled(True)
         
 
-    @QtCore.pyqtSlot()     
-    def on_actionRecuperarPartida_activated(self):
+    @pyqtSlot()  
+    def on_actionRecuperarPartida_triggered(self):
         #ÐEBE SERLOCAL
         filenam=os.path.basename(libglparchis.q2s(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")))
         if filenam!="":
@@ -54,17 +52,18 @@ class frmMain(QMainWindow, Ui_frmMain):#
             self.showWdgGame()
 
 
-    @QtCore.pyqtSlot()     
-    def on_actionPartidaNueva_activated(self):
+    @pyqtSlot()  
+    def on_actionPartidaNueva_triggered(self):
         self.mem=Mem4()
         initgame=frmInitGame(self.mem)
-        initgame.exec_()
-        self.showWdgGame()
+        salida=initgame.exec_()
+        if salida==QDialog.Accepted:
+            self.showWdgGame()
 
 
 
-    @QtCore.pyqtSlot()     
-    def on_actionGuardarPartida_activated(self):
+    @pyqtSlot()     
+    def on_actionGuardarPartida_triggered(self):
         filename=os.path.basename(libglparchis.q2s(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")))
         if filename!="":
             self.mem.save(filename)

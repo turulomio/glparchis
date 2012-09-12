@@ -2,7 +2,12 @@
 #-*- coding: utf-8 -*- 
 
 import sys, os
-sys.path.append("../lib/glparchis")
+WindowsVersion=False #Hay dos una en libmyquotes y otra en glparchis
+if WindowsVersion==True:
+    sys.path.append("../lib/glparchis")
+else:
+    sys.path.append("/usr/lib/glparchis")
+
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from frmMain import *
@@ -24,7 +29,10 @@ app = QApplication(sys.argv)
 translator = QTranslator(app)
 locale=QLocale()
 a=locale.system()
-translator.load("../share/glparchis/glparchis_" + a.name() + ".qm")
+if WindowsVersion==True:
+    translator.load("../share/glparchis/glparchis_" + a.name() + ".qm")
+else:
+    translator.load("/usr/share/glparchis/glparchis_" + a.name() + ".qm")
 app.installTranslator(translator);
 
 os.chdir(os.path.expanduser("~/.glparchis/"))
