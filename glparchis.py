@@ -4,6 +4,7 @@
 import sys, os, datetime
 WindowsVersion=False #Hay dos una en libmyquotes y otra en glparchis
 so="src.linux"
+os.environ['glparchisso']=so
 #src.linux src.windows bin.linux bin.windows
 if so=="src.windows" or so=="bin.windows":
     sys.path.append("../lib/glparchis")

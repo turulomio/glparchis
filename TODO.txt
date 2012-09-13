@@ -3,3 +3,7 @@
 20120909 Aprender a poner texturas en objetos usando el show object defrmabout
 20120910 Si se pulsa escape peta en  wdgOGL
 20120910 No va el sonido en binario linux
+20120913 Cuando se redimiensiona splittter actualizar todo
+20120913 Sonido no va bien en windows y muestra dos puntuaciones de datos??
+20120913 Los label de los dados pisan las fichas en windows 
+20120913 Las fichas del panel se muestran mas grandes en windows (creo que por resoluci´on quiz´as poner m´as fijas)
