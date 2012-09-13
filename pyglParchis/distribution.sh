@@ -66,7 +66,7 @@ cp	images/*.png \
 	images/*.ico \
 	$DIRSRCLINUX/images
 
-cp 	sounds/*.ogg \
+cp 	sounds/* \
 	$DIRSRCLINUX/sounds
 
 cp 	saves/*.glparchis \
@@ -80,10 +80,21 @@ cd $CWD
 ######## 
 DESTDIR=$DIRSRCWINDOWS make all
 mv $DIRSRCWINDOWS/bin/glparchis $DIRSRCWINDOWS/bin/glparchis.py
-sed -i -e 's:WindowsVersion=False:WindowsVersion=True:' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py
-sed -i -e 's:WindowsVersion=False:WindowsVersion=True:' $DIRSRCWINDOWS/bin/glparchis.py
+sed -i -e 's:so="src.linux":so="src.windows":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py
+sed -i -e 's:so="src.linux":so="src.windows":' $DIRSRCWINDOWS/bin/glparchis.py
+cp $DIRSRCWINDOWS/lib/glparchis/libglparchis.py $DIRSRCWINDOWS/lib/glparchis/libglparchis.py.src
+cp $DIRSRCWINDOWS/bin/glparchis.py $DIRSRCWINDOWS/bin/glparchis.py.src
+
+cp $DIRSRCWINDOWS/lib/glparchis/libglparchis.py $DIRSRCWINDOWS/lib/glparchis/libglparchis.py.bin
+cp $DIRSRCWINDOWS/bin/glparchis.py $DIRSRCWINDOWS/bin/glparchis.py.bin
+sed -i -e 's:so="src.windows":so="bin.windows":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py.bin
+sed -i -e 's:so="src.windows":so="bin.windows":' $DIRSRCWINDOWS/bin/glparchis.py.bin
+
 echo "
 @echo off
+copy /Y lib\\glparchis\\libglparchis.py.src lib\\glparchis\\libglparchis.py
+copy /Y bin\\glparchis.py.src bin\\glparchis.py
+
 cd bin
 c:/Python27/python.exe glparchis.py
 pause" > $DIRSRCWINDOWS/glparchis.bat
@@ -94,12 +105,17 @@ rem Se necesita pywin32 para pyinstaller
 rem Meter glparchis.ico
 rem Cambiar ruta de pyinstaller 
 
-
+cd ..
+cd ..
+copy /Y lib\\glparchis\\libglparchis.py.bin lib\\glparchis\\libglparchis.py
+copy /Y bin\\glparchis.py.bin bin\\glparchis.py
+cd share/glparchis
 rm glparchis.spec
 rm logdict2.7.3.final.0-1.log
 rmdir /s /q build
 rmdir /s /q dist
 c:\Python27\python.exe c:\pyinstaller\pyinstaller.py -i ficharoja.ico -w -p ..\..\lib\glparchis ..\..\bin\glparchis.py
+copy /Y sounds\\*.wav dist\\glparchis\\
 pause" > $DIRSRCWINDOWS/share/glparchis/generateexe_inno.bat
 
 
@@ -117,6 +133,8 @@ git clone git://github.com/pyinstaller/pyinstaller.git
 cd $CWD
 
 ####### binaries linux
+sed -i -e 's:so="src.windows":so="bin.linux":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py
+sed -i -e 's:so="src.windows":so="bin.linux":' $DIRSRCWINDOWS/bin/glparchis.py
 python $DIR/pyinstaller/pyinstaller.py -o $DIRBINLINUX -i $DIRSRCWINDOWS/share/glparchis/ficharoja.ico -w -p $DIRSRCWINDOWS/lib/glparchis $DIRSRCWINDOWS/bin/glparchis.py
 echo "Execute glparchis and play" > $DIRBINLINUX/dist/README.txt
 echo "  * Comprimiendo binario linux..."
@@ -125,7 +143,10 @@ tar cvz  -f $CWD/dist/glparchis-bin-linux-$VERSION.tar.gz * -C $DIRBINLINUX/dist
 cd $CWD
 
 ###### binaries windows
+sed -i -e 's:so="bin.linux":so="bin.windows":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py
+sed -i -e 's:so="bin.linux":so="bin.windows":' $DIRSRCWINDOWS/bin/glparchis.py
 wine $HOME/.wine/drive_c/Python27/python.exe  $DIR/pyinstaller/pyinstaller.py -o $DIRBINWINDOWS -i $DIRSRCWINDOWS/share/glparchis/ficharoja.ico -w -p $DIRSRCWINDOWS/lib/glparchis $DIRSRCWINDOWS/bin/glparchis.py
+cp $DIRSRCLINUX/sounds/*.wav $DIRBINWINDOWS/dist/glparchis
 cp $CWD/glparchis.iss $DIRBINWINDOWS
 sed -i -e "s:XXXXXXXX:$VERSION:" $DIRBINWINDOWS/glparchis.iss
 cd $DIRBINWINDOWS

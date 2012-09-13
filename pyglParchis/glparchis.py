@@ -3,9 +3,11 @@
 
 import sys, os
 WindowsVersion=False #Hay dos una en libmyquotes y otra en glparchis
-if WindowsVersion==True:
+so="src.linux"
+#src.linux src.windows bin.linux bin.windows
+if so=="src.windows" or so=="bin.windows":
     sys.path.append("../lib/glparchis")
-else:
+elif so=="src.linux" or so=="bin.linux":
     sys.path.append("/usr/lib/glparchis")
 
 from PyQt4.QtCore import *
@@ -24,7 +26,6 @@ except:
 
 sys.setrecursionlimit(50000)
 
-rootdir="/usr/"
 # en src windows s ejecuta desde bat seria rootdir="" para que fuera share/... relativo
 # en bin windows se ejecuta 
 app = QApplication(sys.argv)
@@ -39,9 +40,9 @@ except ImportError:
 translator = QTranslator(app)
 locale=QLocale()
 a=locale.system()
-if WindowsVersion==True:
+if so=="src.windows":
     translator.load("share/glparchis/glparchis_" + a.name() + ".qm")
-else:
+elif so=="src.linux":
     translator.load("/usr/share/glparchis/glparchis_" + a.name() + ".qm")
 app.installTranslator(translator);
 

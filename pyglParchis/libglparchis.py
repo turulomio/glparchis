@@ -5,7 +5,7 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.phonon import Phonon
-WindowsVersion=False
+so="src.linux"
 version="20120910"
 cfgfile=os.path.expanduser("~/.glparchis/")+ "glparchis.cfg"
 def q2s(q):
@@ -1188,10 +1188,14 @@ class Mem4:
     def play(self, sound):
         self.delayedInit()
         #self.m_media.setCurrentSource(self.m_model.filePath(index))#    
-        if WindowsVersion==True:
-            url="share/glparchis/sounds/dice.wav"
+        if so=="bin.windows":
+            url="dice.wav"
+            print(os.getcwd(), url)
+        elif so=="src.windows":
+            url="../share/glparchis/sounds/dice.wav"
+            print(os.getcwd(), url)
             #poner todo en wav no funciona en xp con ogg
-        else:
+        elif so=="src.linux" or so=="bin.linux":
             url="/usr/share/glparchis/sounds/"+sound+".ogg"
         self.m_media.setCurrentSource(Phonon.MediaSource(url))
         self.m_media.play()
@@ -1199,7 +1203,6 @@ class Mem4:
     def delayedInit(self):
         if not self.m_media:
             parent=QCoreApplication.instance()
-            QCoreApplication.setApplicationName("glparchis")
             self.m_media = Phonon.MediaObject(parent)
             audioOutput = Phonon.AudioOutput(Phonon.MusicCategory, parent)
             Phonon.createPath(self.m_media, audioOutput)
