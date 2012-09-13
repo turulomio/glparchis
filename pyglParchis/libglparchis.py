@@ -1189,7 +1189,8 @@ class Mem4:
         self.delayedInit()
         #self.m_media.setCurrentSource(self.m_model.filePath(index))#    
         if WindowsVersion==True:
-            url="../share/glparchis/sounds/"+sound+".ogg"
+            url="share/glparchis/sounds/dice.wav"
+            #poner todo en wav no funciona en xp con ogg
         else:
             url="/usr/share/glparchis/sounds/"+sound+".ogg"
         self.m_media.setCurrentSource(Phonon.MediaSource(url))
@@ -1340,6 +1341,8 @@ class Mem4:
             
             
     def save(self, filename):
+        cwd=os.getcwd()
+        os.chdir(os.path.expanduser("~/.glparchis/"))
         config = ConfigParser.ConfigParser()
         config.add_section("yellow")
         config.set("yellow",  'ia', int(self.jugadores.jugador('yellow').ia))
@@ -1382,6 +1385,7 @@ class Mem4:
         config.set("game", 'fakedice','')
         with open(filename, 'w') as configfile:
             config.write(configfile)            
+        os.chdir(cwd)
 
                     
     def generar_casillas(self):
@@ -1667,6 +1671,8 @@ class Mem4:
             
     def load(self, filename):       
 #        os.chdir("/home/keko/Proyectos/glparchis/pyglParchis/saves/") #SOLO DEBUGGING
+        cwd=os.getcwd()
+        os.chdir(os.path.expanduser("~/.glparchis/"))
         config = ConfigParser.ConfigParser()
         config.read(filename)
 
@@ -1705,6 +1711,7 @@ class Mem4:
         self.jugadoractual.movimientos_acumulados=None#Comidas ymetidas
         self.jugadoractual.LastFichaMovida=None #Se utiliza cuando se va a casa
 
+        os.chdir(cwd)
             
 def dic2list(dic):
     """Función que convierte un diccionario pasado como parametro a una lista de objetos"""
@@ -1770,7 +1777,7 @@ def dic2list(dic):
 #        #self.m_media.setCurrentSource(self.m_model.filePath(index))
 #        self.m_media.setCurrentSource(
 #            Phonon.MediaSource(self.m_model.filePath(index)))
-#        self.m_media.play()
+#        self.m_media.play())
 # 
 #    def delayedInit(self):
 #        if not self.m_media:

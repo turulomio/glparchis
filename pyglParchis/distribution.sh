@@ -2,8 +2,18 @@
 
 ####### COPIA FILES
 VERSION=`cat libglparchis.py | grep 'version="2'| cut --delimiter='"'  -f 2`
-DIR=glparchis-$VERSION
-FILE=$DIR.zip
+TIME=`date +%Y%m%d%H%M%S`
+CWD=`pwd`
+DIR=/tmp/glparchis-$VERSION-$TIME
+DIRSRCLINUX=$DIR/src.linux/glparchis-$VERSION/ # Se instala con un makefile
+DIRSRCWINDOWS=$DIR/src.windows/glparchis-$VERSION/ # Se necesita la instalción de pyqt, python, opengl, se ejecuta con bat. Habra un bat para compilar con pyinstaller y generar con innosetup el exe
+DIRBINLINUX=$DIR/bin.linux/glparchis-$VERSION # Es un directorio con el ejecutable
+DIRBINWINDOWS=$DIR/bin.windows #Es un instalador windows, generado con wine, para generarlo con windows en srcwindows habrá un bat
+mkdir -p $DIRSRCLINUX
+mkdir -p $DIRSRCWINDOWS
+mkdir -p $DIRBINLINUX
+mkdir -p $DIRBINWINDOWS
+
 echo "Este script crea el fichero $FILE para ser subido a sourceforge"
 echo "Debe tener instalado una versión de wine y sobre el haber instalado"
 echo "  - Python 2.xx"
@@ -12,17 +22,16 @@ echo "  - pyopengl (ultima version)"
 echo "  - pywin32 (ultima version)"
 echo "  - Inno Setup (ultima version)"
 
-#Genera los Ui_ y resto
-make compile
+rm $CWD/dist/*
 
-#Copia los fuentes
-mkdir $DIR
-mkdir $DIR/doc
-mkdir $DIR/i18n
-mkdir $DIR/images
-mkdir $DIR/ui
-mkdir $DIR/saves
-mkdir $DIR/sounds
+#GENERA SRC LINUX
+make compile
+mkdir $DIRSRCLINUX/doc
+mkdir $DIRSRCLINUX/i18n
+mkdir $DIRSRCLINUX/images
+mkdir $DIRSRCLINUX/ui
+mkdir $DIRSRCLINUX/saves
+mkdir $DIRSRCLINUX/sounds
 
 cp      Makefile \
 	AUTHORS-ES.txt \
@@ -38,67 +47,88 @@ cp      Makefile \
         glparchis.pro \
         libglparchis.py \
         glparchis.desktop \
-        $DIR
+        $DIRSRCLINUX
 
 cp      i18n/*.ts \
-        $DIR/i18n
+        $DIRSRCLINUX/i18n
 
 cp 	doc/*.odt \
 	doc/*.odg \
-        $DIR/doc
+        $DIRSRCLINUX/doc
 
 cp 	ui/frm* \
 	ui/wdg* \
 	ui/q* \
-	$DIR/ui
+	$DIRSRCLINUX/ui
 
 cp	images/*.png \
 	images/*.qrc \
 	images/*.ico \
-	$DIR/images
+	$DIRSRCLINUX/images
 
 cp 	sounds/*.ogg \
-	$DIR/sounds
+	$DIRSRCLINUX/sounds
 
 cp 	saves/*.glparchis \
-	$DIR/saves
+	$DIRSRCLINUX/saves
 
-###### sources linux. Ui se ha compilado antes
-echo "  * Comprimiendo codigo fuente..."
-tar cvz  -f dist/glparchis-src-$VERSION.tar.gz $DIR/ -C $DIR > /dev/null
-chmod 666 dist/glparchis-src-$VERSION.tar.gz
+echo "  * Comprimiendo codigo fuente linux..."
+cd $DIR/src.linux
+tar cvz  -f $CWD/dist/glparchis-src-linux-$VERSION.tar.gz * -C $DIR/src.linux > /dev/null
+cd $CWD
 
-######## INSTALA
-DESTDIR=$DIR/dist
-DESTDIR=$DESTDIR make all
-
-###### install pyinstaller
-cd $DIR
-wget https://github.com/downloads/pyinstaller/pyinstaller/pyinstaller-2.0.tar.bz2
-tar xjf pyinstaller-2.0.tar.bz2
-cd ..
-
-
-####### binaries linux
-mv $DESTDIR/bin/glparchis $DESTDIR/bin/glparchis.py
-python $DIR/pyinstaller-2.0/pyinstaller.py -o $DIR/pyinstallerlinux -i $DESTDIR/share/glparchis/ficharoja.ico -w -p $DESTDIR/lib/glparchis $DESTDIR/bin/glparchis.py
-cd $DIR/pyinstallerlinux/dist/
-echo "Execute glparchis and play" > README.txt
-echo "  * Comprimiendo binario linux..."
-tar cvz  -f ../../../dist/glparchis-linux-$VERSION.tar.gz * > /dev/null
-cd ../../../
-###### binaries windows
+######## 
+DESTDIR=$DIRSRCWINDOWS make all
+mv $DIRSRCWINDOWS/bin/glparchis $DIRSRCWINDOWS/bin/glparchis.py
+sed -i -e 's:WindowsVersion=False:WindowsVersion=True:' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py
+sed -i -e 's:WindowsVersion=False:WindowsVersion=True:' $DIRSRCWINDOWS/bin/glparchis.py
 echo "
 @echo off
 cd bin
-c:/Python27/python.exe glparchis.py" > $DESTDIR/glparchis.bat
+c:/Python27/python.exe glparchis.py
+pause" > $DIRSRCWINDOWS/glparchis.bat
+echo "
+rem Solo con x86 no hay opengl 64
+rem Instalar pyinstaller directorio en c:\ solo una vez
+rem Se necesita pywin32 para pyinstaller 
+rem Meter glparchis.ico
+rem Cambiar ruta de pyinstaller 
 
-sed -i -e 's:WindowsVersion=False:WindowsVersion=True:' $DESTDIR/lib/glparchis/libglparchis.py
-sed -i -e 's:WindowsVersion=False:WindowsVersion=True:' $DESTDIR/bin/glparchis.py
-wine $HOME/.wine/drive_c/Python27/python.exe  $DIR/pyinstaller-2.0/pyinstaller.py -o $DIR/pyinstallerwindows -i $DESTDIR/share/glparchis/ficharoja.ico -w -p $DESTDIR/lib/glparchis $DESTDIR/bin/glparchis.py
-sed -i -e "s:XXXXXXXX:$VERSION:" glparchis.iss
-wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/Inno\ Setup\ 5/ISCC.exe /odist glparchis.iss
-sed -i -e "s:$VERSION:XXXXXXXX:" glparchis.iss #Deja en X la versión
 
-##### limpia directorio
-rm -R $DIR
+rm glparchis.spec
+rm logdict2.7.3.final.0-1.log
+rmdir /s /q build
+rmdir /s /q dist
+c:\Python27\python.exe c:\pyinstaller\pyinstaller.py -i ficharoja.ico -w -p ..\..\lib\glparchis ..\..\bin\glparchis.py
+pause" > $DIRSRCWINDOWS/share/glparchis/generateexe_inno.bat
+
+
+
+echo "  * Comprimiendo codigo fuente windows..."
+cd $DIR/src.windows
+zip -r $CWD/dist/glparchis-src-windows-$VERSION.zip ./ >/dev/null
+cd $CWD
+
+###### install pyinstaller
+cd $DIR
+#wget https://github.com/downloads/pyinstaller/pyinstaller/pyinstaller-2.0.tar.bz2
+#tar xjf pyinstaller-2.0.tar.bz2
+git clone git://github.com/pyinstaller/pyinstaller.git
+cd $CWD
+
+####### binaries linux
+python $DIR/pyinstaller/pyinstaller.py -o $DIRBINLINUX -i $DIRSRCWINDOWS/share/glparchis/ficharoja.ico -w -p $DIRSRCWINDOWS/lib/glparchis $DIRSRCWINDOWS/bin/glparchis.py
+echo "Execute glparchis and play" > $DIRBINLINUX/dist/README.txt
+echo "  * Comprimiendo binario linux..."
+cd $DIRBINLINUX/dist
+tar cvz  -f $CWD/dist/glparchis-bin-linux-$VERSION.tar.gz * -C $DIRBINLINUX/dist > /dev/null
+cd $CWD
+
+###### binaries windows
+wine $HOME/.wine/drive_c/Python27/python.exe  $DIR/pyinstaller/pyinstaller.py -o $DIRBINWINDOWS -i $DIRSRCWINDOWS/share/glparchis/ficharoja.ico -w -p $DIRSRCWINDOWS/lib/glparchis $DIRSRCWINDOWS/bin/glparchis.py
+cp $CWD/glparchis.iss $DIRBINWINDOWS
+sed -i -e "s:XXXXXXXX:$VERSION:" $DIRBINWINDOWS/glparchis.iss
+cd $DIRBINWINDOWS
+wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/Inno\ Setup\ 5/ISCC.exe /o$CWD/dist glparchis.iss
+cd $CWD
+
