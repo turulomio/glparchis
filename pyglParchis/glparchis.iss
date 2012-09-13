@@ -42,7 +42,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 
 [Files]
 Source: "dist\glparchis\glparchis.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "dist\glparchis\dice.wav"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\glparchis\*.wav"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\_ctypes.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\_hashlib.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\bz2.pyd"; DestDir: "{app}"; Flags: ignoreversion

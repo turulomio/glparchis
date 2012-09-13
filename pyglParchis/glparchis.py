@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*- 
 
-import sys, os
+import sys, os, datetime
 WindowsVersion=False #Hay dos una en libmyquotes y otra en glparchis
 so="src.linux"
 #src.linux src.windows bin.linux bin.windows
@@ -29,7 +29,7 @@ sys.setrecursionlimit(50000)
 # en src windows s ejecuta desde bat seria rootdir="" para que fuera share/... relativo
 # en bin windows se ejecuta 
 app = QApplication(sys.argv)
-app.setApplicationName("glParchis")
+app.setApplicationName("glParchis {0}".format(str(datetime.datetime.now())))
 app.setQuitOnLastWindowClosed(True)
 try:
     from PyQt4.phonon import Phonon

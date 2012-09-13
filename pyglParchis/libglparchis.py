@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*- 
 from OpenGL import GL,  GLU
-import os,  random,   ConfigParser,  datetime,  subprocess
+import os,  random,   ConfigParser,  datetime,  subprocess, time
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
@@ -1174,7 +1174,7 @@ class Mem4:
         self.selFicha=None
         self.inittime=None#Tiempo inicio partida
         self.retardoturnos=1#En segundos
-        self.m_media = None
+        self.mediaObject = None
         
         
         self.generar_colores()
@@ -1184,29 +1184,27 @@ class Mem4:
         self.generar_fichas()
         
         self.circulo=Circulo(self, 68)
-       # 
+
     def play(self, sound):
         self.delayedInit()
-        #self.m_media.setCurrentSource(self.m_model.filePath(index))#    
-        if so=="bin.windows":
-            url="dice.wav"
-            print(os.getcwd(), url)
+        if so=="bin.windows" or so=="bin.linux":
+            url= sound + ".wav"
         elif so=="src.windows":
-            url="../share/glparchis/sounds/dice.wav"
-            print(os.getcwd(), url)
-            #poner todo en wav no funciona en xp con ogg
-        elif so=="src.linux" or so=="bin.linux":
+            url="../share/glparchis/sounds/"+sound+".wav"
+        elif so=="src.linux":
             url="/usr/share/glparchis/sounds/"+sound+".ogg"
-        self.m_media.setCurrentSource(Phonon.MediaSource(url))
-        self.m_media.play()
+        print(os.getcwd(), url)
+        self.mediaObject.setCurrentSource(Phonon.MediaSource(url))
+        self.mediaObject.play()
+        time.sleep(0.3)
  
     def delayedInit(self):
-        if not self.m_media:
+        if not self.mediaObject:
             parent=QCoreApplication.instance()
-            self.m_media = Phonon.MediaObject(parent)
+            self.mediaObject = Phonon.MediaObject(parent)
             audioOutput = Phonon.AudioOutput(Phonon.MusicCategory, parent)
-            Phonon.createPath(self.m_media, audioOutput)
- 
+            Phonon.createPath(self.mediaObject, audioOutput)
+
     def generar_colores(self):
         self.dic_colores["red"]=Color(255, 0, 0, "red")
         self.dic_colores["yellow"]=Color( 255, 255, 0, "yellow")
@@ -1725,8 +1723,8 @@ def dic2list(dic):
 
 #
 #def sound(mem, sound): 
-#    mem.m_media.setCurrentSource(Phonon.MediaSource("/usr/share/glparchis/sounds/dice.ogg"))
-#    mem.m_media.play()
+#    mem.mediaObject.setCurrentSource(Phonon.MediaSource("/usr/share/glparchis/sounds/dice.ogg"))
+#    mem.mediaObject.play()
 # 
 #    def delayedInit(self):
 #    player=Phonon.createPlayer(Phonon.MusicCategory,Phonon.MediaSource("/usr/share/glparchis/sounds/dice.ogg"))
@@ -1766,7 +1764,7 @@ def dic2list(dic):
 #    def __init__(self):
 #        QMainWindow.__init__(self)
 #        self.m_fileView = QColumnView(self)
-#        self.m_media = None
+#        self.mediaObject = None
 # 
 #        self.setCentralWidget(self.m_fileView)
 #        self.m_fileView.setModel(self.m_model)
@@ -1777,16 +1775,16 @@ def dic2list(dic):
 # 
 #    def play(self, index):
 #        self.delayedInit()
-#        #self.m_media.setCurrentSource(self.m_model.filePath(index))
-#        self.m_media.setCurrentSource(
+#        #self.mediaObject.setCurrentSource(self.m_model.filePath(index))
+#        self.mediaObject.setCurrentSource(
 #            Phonon.MediaSource(self.m_model.filePath(index)))
-#        self.m_media.play())
+#        self.mediaObject.play())
 # 
 #    def delayedInit(self):
-#        if not self.m_media:
-#            self.m_media = Phonon.MediaObject(self)
+#        if not self.mediaObject:
+#            self.mediaObject = Phonon.MediaObject(self)
 #            audioOutput = Phonon.AudioOutput(Phonon.MusicCategory, self)
-#            Phonon.createPath(self.m_media, audioOutput)
+#            Phonon.createPath(self.mediaObject, audioOutput)
 # 
 #def main():
 #    app = QApplication(sys.argv)
