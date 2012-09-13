@@ -3,3 +3,4 @@
 20120909 Aprender a poner texturas en objetos usando el show object defrmabout
 20120910 Si se pulsa escape peta en  wdgOGL
 20120911 Pasar a phonon en musica ver si funciona en windows y linux antes de hacer definitivo
+20120911 Quitar ogg
