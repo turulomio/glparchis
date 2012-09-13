@@ -17,6 +17,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.setupUi(self)
         self.showMaximized()
         self.game=None
+        print (os.getcwd())
 
         
     @pyqtSlot()      

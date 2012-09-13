@@ -3,4 +3,6 @@
 20120909 Aprender a poner texturas en objetos usando el show object defrmabout
 20120910 Si se pulsa escape peta en  wdgOGL
 20120911 Pasar a phonon en musica ver si funciona en windows y linux antes de hacer definitivo
+20120913 Si no funciona el phonon con wine hay que hacerlo con windows directamente, en ese caso hay que generar las fuentes en el /tmp con hora y segundos
+	 con los bat correspondientes, en vez de borrarlos
 20120911 Quitar ogg

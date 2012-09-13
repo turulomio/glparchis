@@ -39,7 +39,7 @@ install:
 	install -m 644 -o root i18n/*.qm $(PREFIXSHARE)
 	install -m 644 -o root doc/glparchis-* $(PREFIXSHARE)
 	install -m 644 -o root AUTHORS-EN.txt  AUTHORS-ES.txt  CHANGELOG-EN.txt  CHANGELOG-ES.txt  GPL-3.txt  INSTALL-EN.txt  INSTALL-ES.txt  RELEASES-EN.txt  RELEASES-ES.txt  $(PREFIXSHARE)
-	install -m 644 -o root sounds/*.ogg $(PREFIXSOUND)
+	install -m 644 -o root sounds/* $(PREFIXSOUND)
 	install -m 644 -o root images/ficharoja.ico $(PREFIXSHARE)
 
 uninstall:
