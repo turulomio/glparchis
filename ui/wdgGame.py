@@ -101,7 +101,7 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     @QtCore.pyqtSlot()      
     def on_cmdTirarDado_clicked(self):  
-        sound("dice")
+        self.mem.play("dice")
         self.mem.jugadoractual.tirarDado()
         self.ogl.showDado()
         self.cmdTirarDado.setIcon(self.mem.dado.qicon(self.mem.jugadoractual.tiradaturno.ultimoValor()))
@@ -143,13 +143,13 @@ class wdgGame(QWidget, Ui_wdgGame):
             
         if puede==False:
             if self.mem.jugadoractual.ia==False:
-                sound("click")
+                self.mem.play("click")
             return
 
                 
         if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta+movimiento) or self.mem.selFicha.mete(self.mem.selFicha.posruta+movimiento):    
             self.ogl.updateGL()
-            sound("comer")
+            self.mem.play("comer")
             if self.mem.jugadoractual.fichas.algunaEstaAutorizadaAmover(self.mem)==True:
                 self.on_JugadorDebeMover()
                 return
@@ -172,7 +172,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.ogl.dado.hide()
         #Comprueba si ha ganado
         if self.mem.jugadoractual.HaGanado()==True:
-            sound("win")
+            self.mem.play("win")
             self.table.stopReloads()
             m=QMessageBox()
             m.setIcon(QMessageBox.Information)

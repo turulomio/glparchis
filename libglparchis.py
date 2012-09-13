@@ -1174,6 +1174,8 @@ class Mem4:
         self.selFicha=None
         self.inittime=None#Tiempo inicio partida
         self.retardoturnos=1#En segundos
+        self.m_media = None
+        
         
         self.generar_colores()
         self.generar_jugadores()
@@ -1182,7 +1184,25 @@ class Mem4:
         self.generar_fichas()
         
         self.circulo=Circulo(self, 68)
-        
+       # 
+    def play(self, sound):
+        self.delayedInit()
+        #self.m_media.setCurrentSource(self.m_model.filePath(index))#    
+        if WindowsVersion==True:
+            url="../share/glparchis/sounds/"+sound+".ogg"
+        else:
+            url="/usr/share/glparchis/sounds/"+sound+".ogg"
+        self.m_media.setCurrentSource(Phonon.MediaSource(url))
+        self.m_media.play()
+ 
+    def delayedInit(self):
+        if not self.m_media:
+            parent=QCoreApplication.instance()
+            QCoreApplication.setApplicationName("glparchis")
+            self.m_media = Phonon.MediaObject(parent)
+            audioOutput = Phonon.AudioOutput(Phonon.MusicCategory, parent)
+            Phonon.createPath(self.m_media, audioOutput)
+ 
     def generar_colores(self):
         self.dic_colores["red"]=Color(255, 0, 0, "red")
         self.dic_colores["yellow"]=Color( 255, 255, 0, "yellow")
@@ -1693,8 +1713,14 @@ def dic2list(dic):
         resultado.append(v)
     return resultado
 
-def sound(sound):
-    Phonon.createPlayer(Phonon.MusicCategory,Phonon.MediaSource("/usr/share/glparchis/sounds/dice.ogg"))
+#
+#def sound(mem, sound): 
+#    mem.m_media.setCurrentSource(Phonon.MediaSource("/usr/share/glparchis/sounds/dice.ogg"))
+#    mem.m_media.play()
+# 
+#    def delayedInit(self):
+#    player=Phonon.createPlayer(Phonon.MusicCategory,Phonon.MediaSource("/usr/share/glparchis/sounds/dice.ogg"))
+#    player.play()
 #     music->play();
 #    if WindowsVersion==True:
 #        if sound=="dice":

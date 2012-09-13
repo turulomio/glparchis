@@ -35,7 +35,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
   
     def showWdgGame(self):
         if self.game!=None:
-            self.layout.removeWidget(self.game)
+            self.layout.removeWidget(self.game)      
         self.game=wdgGame()
         self.layout.addWidget(self.game)
         self.game.assign_mem(self.mem)

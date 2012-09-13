@@ -25,7 +25,7 @@ class frmInitGame(QWizard, Ui_frmInitGame):
         
     def tirar_dado(self, color, playsound):
         if playsound:
-            sound("dice")
+            self.mem.play("dice")
         self.dado[color]=int(random.random()*6)+1
     
     def on_cmdYellow_released(self):
