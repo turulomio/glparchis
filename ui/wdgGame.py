@@ -101,12 +101,12 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     @QtCore.pyqtSlot()      
     def on_cmdTirarDado_clicked(self):  
-        self.mem.play("dice")
         self.mem.jugadoractual.tirarDado()
         self.ogl.showDado()
         self.cmdTirarDado.setIcon(self.mem.dado.qicon(self.mem.jugadoractual.tiradaturno.ultimoValor()))
         self.cmdTirarDado.setEnabled(False)
         self.panel().setLabelDado()
+        self.mem.play("dice")
         
         if self.mem.jugadoractual.tiradaturno.tresSeises()==True:
             if self.mem.jugadoractual.LastFichaMovida!=None:

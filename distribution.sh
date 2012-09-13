@@ -127,9 +127,10 @@ cd $CWD
 
 ###### install pyinstaller
 cd $DIR
-#wget https://github.com/downloads/pyinstaller/pyinstaller/pyinstaller-2.0.tar.bz2
-#tar xjf pyinstaller-2.0.tar.bz2
-git clone git://github.com/pyinstaller/pyinstaller.git
+wget https://github.com/downloads/pyinstaller/pyinstaller/pyinstaller-2.0.tar.bz2
+tar xjf pyinstaller-2.0.tar.bz2
+#git clone git://github.com/pyinstaller/pyinstaller.git
+mv pyinstaller-2.0 pyinstaller
 cd $CWD
 
 ####### binaries linux
@@ -137,6 +138,7 @@ sed -i -e 's:so="src.windows":so="bin.linux":' $DIRSRCWINDOWS/lib/glparchis/libg
 sed -i -e 's:so="src.windows":so="bin.linux":' $DIRSRCWINDOWS/bin/glparchis.py
 python $DIR/pyinstaller/pyinstaller.py -o $DIRBINLINUX -i $DIRSRCWINDOWS/share/glparchis/ficharoja.ico -w -p $DIRSRCWINDOWS/lib/glparchis $DIRSRCWINDOWS/bin/glparchis.py
 echo "Execute glparchis and play" > $DIRBINLINUX/dist/README.txt
+cp $DIRSRCLINUX/sounds/*.wav $DIRBINLINUX/dist/glparchis
 echo "  * Comprimiendo binario linux..."
 cd $DIRBINLINUX/dist
 tar cvz  -f $CWD/dist/glparchis-bin-linux-$VERSION.tar.gz * -C $DIRBINLINUX/dist > /dev/null

@@ -24,9 +24,9 @@ class frmInitGame(QWizard, Ui_frmInitGame):
         random.seed(datetime.datetime.now().microsecond)
         
     def tirar_dado(self, color, playsound):
+        self.dado[color]=int(random.random()*6)+1
         if playsound:
             self.mem.play("dice")
-        self.dado[color]=int(random.random()*6)+1
     
     def on_cmdYellow_released(self):
         if self.chkYellow.checkState()==Qt.Checked:
