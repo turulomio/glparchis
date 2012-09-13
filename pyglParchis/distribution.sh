@@ -80,19 +80,18 @@ cd $CWD
 ######## 
 DESTDIR=$DIRSRCWINDOWS make all
 mv $DIRSRCWINDOWS/bin/glparchis $DIRSRCWINDOWS/bin/glparchis.py
-sed -i -e 's:so="src.linux":so="src.windows":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py
+#sed -i -e 's:so="src.linux":so="src.windows":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py
 sed -i -e 's:so="src.linux":so="src.windows":' $DIRSRCWINDOWS/bin/glparchis.py
-cp $DIRSRCWINDOWS/lib/glparchis/libglparchis.py $DIRSRCWINDOWS/lib/glparchis/libglparchis.py.src
+#cp $DIRSRCWINDOWS/lib/glparchis/libglparchis.py $DIRSRCWINDOWS/lib/glparchis/libglparchis.py.src
 cp $DIRSRCWINDOWS/bin/glparchis.py $DIRSRCWINDOWS/bin/glparchis.py.src
 
-cp $DIRSRCWINDOWS/lib/glparchis/libglparchis.py $DIRSRCWINDOWS/lib/glparchis/libglparchis.py.bin
+#cp $DIRSRCWINDOWS/lib/glparchis/libglparchis.py $DIRSRCWINDOWS/lib/glparchis/libglparchis.py.bin
 cp $DIRSRCWINDOWS/bin/glparchis.py $DIRSRCWINDOWS/bin/glparchis.py.bin
-sed -i -e 's:so="src.windows":so="bin.windows":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py.bin
+#sed -i -e 's:so="src.windows":so="bin.windows":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py.bin
 sed -i -e 's:so="src.windows":so="bin.windows":' $DIRSRCWINDOWS/bin/glparchis.py.bin
 
 echo "
 @echo off
-copy /Y lib\\glparchis\\libglparchis.py.src lib\\glparchis\\libglparchis.py
 copy /Y bin\\glparchis.py.src bin\\glparchis.py
 
 cd bin
@@ -107,7 +106,6 @@ rem Cambiar ruta de pyinstaller
 
 cd ..
 cd ..
-copy /Y lib\\glparchis\\libglparchis.py.bin lib\\glparchis\\libglparchis.py
 copy /Y bin\\glparchis.py.bin bin\\glparchis.py
 cd share/glparchis
 rm glparchis.spec
@@ -134,7 +132,7 @@ mv pyinstaller-2.0 pyinstaller
 cd $CWD
 
 ####### binaries linux
-sed -i -e 's:so="src.windows":so="bin.linux":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py
+#sed -i -e 's:so="src.windows":so="bin.linux":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py
 sed -i -e 's:so="src.windows":so="bin.linux":' $DIRSRCWINDOWS/bin/glparchis.py
 python $DIR/pyinstaller/pyinstaller.py -o $DIRBINLINUX -i $DIRSRCWINDOWS/share/glparchis/ficharoja.ico -w -p $DIRSRCWINDOWS/lib/glparchis $DIRSRCWINDOWS/bin/glparchis.py
 echo "Execute glparchis and play" > $DIRBINLINUX/dist/README.txt
@@ -145,7 +143,7 @@ tar cvz  -f $CWD/dist/glparchis-bin-linux-$VERSION.tar.gz * -C $DIRBINLINUX/dist
 cd $CWD
 
 ###### binaries windows
-sed -i -e 's:so="bin.linux":so="bin.windows":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py
+#sed -i -e 's:so="bin.linux":so="bin.windows":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py
 sed -i -e 's:so="bin.linux":so="bin.windows":' $DIRSRCWINDOWS/bin/glparchis.py
 wine $HOME/.wine/drive_c/Python27/python.exe  $DIR/pyinstaller/pyinstaller.py -o $DIRBINWINDOWS -i $DIRSRCWINDOWS/share/glparchis/ficharoja.ico -w -p $DIRSRCWINDOWS/lib/glparchis $DIRSRCWINDOWS/bin/glparchis.py
 cp $DIRSRCLINUX/sounds/*.wav $DIRBINWINDOWS/dist/glparchis

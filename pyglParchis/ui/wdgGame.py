@@ -98,15 +98,16 @@ class wdgGame(QWidget, Ui_wdgGame):
         config.set("frmMain",  'splitter_state', self.splitter.saveState())
         with open(cfgfile, 'w') as configfile:
             config.write(configfile)
+        self.repaint()
 
     @QtCore.pyqtSlot()      
     def on_cmdTirarDado_clicked(self):  
+        self.mem.play("dice")
         self.mem.jugadoractual.tirarDado()
         self.ogl.showDado()
         self.cmdTirarDado.setIcon(self.mem.dado.qicon(self.mem.jugadoractual.tiradaturno.ultimoValor()))
         self.cmdTirarDado.setEnabled(False)
         self.panel().setLabelDado()
-        self.mem.play("dice")
         
         if self.mem.jugadoractual.tiradaturno.tresSeises()==True:
             if self.mem.jugadoractual.LastFichaMovida!=None:
@@ -169,6 +170,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.mem.jugadoractual.log (self.trUtf8("Fin de turno"))
         self.ogl.updateGL()        
         delay(250)
+        self.ogl.dado.setPixmap(self.mem.dado.qpixmap(None))
         self.ogl.dado.hide()
         #Comprueba si ha ganado
         if self.mem.jugadoractual.HaGanado()==True:

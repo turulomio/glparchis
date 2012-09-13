@@ -5,7 +5,6 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.phonon import Phonon
-so="src.linux"
 version="20120910"
 cfgfile=os.path.expanduser("~/.glparchis/")+ "glparchis.cfg"
 def q2s(q):
@@ -1187,6 +1186,7 @@ class Mem4:
 
     def play(self, sound):
         self.delayedInit()
+        so=os.environ['glparchisso']
         if so=="bin.windows" or so=="bin.linux":
             url= sound + ".wav"
         elif so=="src.windows":
