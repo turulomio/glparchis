@@ -42,6 +42,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 
 [Files]
 Source: "dist\glparchis\glparchis.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\glparchis\dice.wav"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\_ctypes.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\_hashlib.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\bz2.pyd"; DestDir: "{app}"; Flags: ignoreversion
@@ -53,7 +54,9 @@ Source: "dist\glparchis\msvcr90.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\PyQt4.QtCore.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\PyQt4.QtGui.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\PyQt4.QtOpenGL.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\glparchis\PyQt4.phonon.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\python27.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\glparchis\phonon4.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\QtCore4.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\QtGui4.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\QtOpenGL4.dll"; DestDir: "{app}"; Flags: ignoreversion
