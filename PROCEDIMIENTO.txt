@@ -8,8 +8,9 @@ Nueva release
 6) Crear un nuevo ebuild con la nueva versión
 8) Subirlo al subversion del portage
 9) Modificar la pagina web
-   - Modificar sqlite
-   - Añadir el releas svn e en la página
+   - Crear objeto de Noticia
+   - Añadir el release a la página
    - Subirla a internet
+10) Subirlo a la mula
 10) Comprobar enlaces
 11) Publicar news en sourceforge con el CHANGELOG-EN

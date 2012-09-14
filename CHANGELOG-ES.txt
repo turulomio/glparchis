@@ -1,7 +1,8 @@
-XXXXXXXX
+20120914
 ========
 - Añadida distribución de binarios en windows y linux
 - Solucionado bug al cancelar en el dialogo inicial
+- Solucionados numeros bugs
 
 20120910
 ========
