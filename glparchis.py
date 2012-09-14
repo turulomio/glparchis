@@ -31,9 +31,10 @@ sys.setrecursionlimit(50000)
 # en bin windows se ejecuta 
 app = QApplication(sys.argv)
 app.setApplicationName("glParchis {0}".format(str(datetime.datetime.now())))
-app.setQuitOnLastWindowClosed(True)
+#app.setQuitOnLastWindowClosed(True)
 try:
     from PyQt4.phonon import Phonon
+    borrar= Phonon.MediaObject(app)
 except ImportError:
     QMessageBox.critical(None, "glParchis",  "Tu instalaci´on QT no tiene soporte Phonon")
     sys.exit(1)

@@ -7,3 +7,8 @@
 20120913 Sonido no va bien en windows y muestra dos puntuaciones de datos??
 20120913 Los label de los dados pisan las fichas en windows 
 20120913 Las fichas del panel se muestran mas grandes en windows (creo que por resoluci´on quiz´as poner m´as fijas)
+Quitar recetas de MyWeb·
+Los showficha casilla de la parte derecha deben mostrarse a la izquierda del cursor para que no se salgan
+Hacer el delay entre la tirada del dado y el movimiento mayor
+Las casilas deben cambiar de tamaño según la altura del widget frmogl, también los dados por ejemplo TV 
+splitter no se ve sin fichcero configuraci´on

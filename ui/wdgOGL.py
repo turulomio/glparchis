@@ -151,20 +151,26 @@ class wdgOGL(QGLWidget):
         self.updateGL()
 
     def showDado(self):
+        if self.height()>700:
+            dadowidth=40
+        else:
+            dadowidth=20
         xl=self.width()/6+6# xleft
         xr=self.width()*5/6-43
         yt=self.height()/6+3#ytop
         yb=self.height()*5/6-43
         if self.mem.jugadoractual.color.name=="yellow":
-            self.dado.setGeometry( xl, yt, 40, 40 )
+            self.dado.setGeometry( xl, yt, dadowidth, dadowidth )
         elif self.mem.jugadoractual.color.name=="blue":
-            self.dado.setGeometry(xl, yb, 40, 40)
+            self.dado.setGeometry(xl, yb, dadowidth, dadowidth)
         elif self.mem.jugadoractual.color.name=="red":
-            self.dado.setGeometry(xr, yb, 40, 40)
+            self.dado.setGeometry(xr, yb, dadowidth, dadowidth)
         elif self.mem.jugadoractual.color.name=="green":
-            self.dado.setGeometry(xr, yt, 40, 40)
+            self.dado.setGeometry(xr, yt, dadowidth, dadowidth)
         self.dado.setPixmap(self.mem.dado.qpixmap(self.mem.jugadoractual.tiradaturno.ultimoValor()))
-        self.dado.show()
+        self.dado.repaint()
+        self.dado.update()
         self.updateGL()
+        self.dado.show()
 
 
