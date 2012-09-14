@@ -1,3 +1,9 @@
+20120914
+======== 
+- Windows and Linux binary distribution
+- Solved bug when pressing cancel at initial dialog
+- Solved several bugs
+
 20120910
 ======== 
 - Solved bug with saved games directory
