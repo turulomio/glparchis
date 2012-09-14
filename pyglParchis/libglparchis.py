@@ -5,7 +5,7 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.phonon import Phonon
-version="20120910"
+version="20120914"
 cfgfile=os.path.expanduser("~/.glparchis/")+ "glparchis.cfg"
 def q2s(q):
     """Qstring to python string en utf8"""

@@ -141,7 +141,7 @@ mkdir $DIRBINLINUX/dist/glparchis/phonon_backend/
 cp /usr/lib64/kde4/plugins/phonon_backend/phonon_gstreamer.so $DIRBINLINUX/dist/glparchis/phonon_backend/
 echo "  * Comprimiendo binario linux..."
 cd $DIRBINLINUX/dist
-tar cvz  -f $CWD/dist/glparchis-bin-linux-$VERSION.tar.gz * -C $DIRBINLINUX/dist
+tar cvz  -f $CWD/dist/glparchis-bin-linux-$VERSION.tar.gz * -C $DIRBINLINUX/dist > /dev/null
 cd $CWD
 
 ###### binaries windows
