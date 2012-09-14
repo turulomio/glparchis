@@ -69,6 +69,7 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.mem.jugadoractual.log(self.trUtf8("IA Tira el dado"))
             delay(800)
             self.on_cmdTirarDado_clicked()
+            delay(800)
         else:
             self.mem.jugadoractual.log(self.trUtf8("Tire el dado"))
 
@@ -98,7 +99,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         config.set("frmMain",  'splitter_state', self.splitter.saveState())
         with open(cfgfile, 'w') as configfile:
             config.write(configfile)
-        self.repaint()
+        self.update()
 
     @QtCore.pyqtSlot()      
     def on_cmdTirarDado_clicked(self):  
@@ -150,7 +151,8 @@ class wdgGame(QWidget, Ui_wdgGame):
                 
         if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta+movimiento) or self.mem.selFicha.mete(self.mem.selFicha.posruta+movimiento):    
             self.ogl.updateGL()
-            self.mem.play("comer")
+            self.mem.play("comer")            
+            delay(800)
             if self.mem.jugadoractual.fichas.algunaEstaAutorizadaAmover(self.mem)==True:
                 self.on_JugadorDebeMover()
                 return
@@ -170,7 +172,6 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.mem.jugadoractual.log (self.trUtf8("Fin de turno"))
         self.ogl.updateGL()        
         delay(250)
-        self.ogl.dado.setPixmap(self.mem.dado.qpixmap(None))
         self.ogl.dado.hide()
         #Comprueba si ha ganado
         if self.mem.jugadoractual.HaGanado()==True:

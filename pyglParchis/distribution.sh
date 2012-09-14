@@ -137,15 +137,17 @@ sed -i -e 's:so="src.windows":so="bin.linux":' $DIRSRCWINDOWS/bin/glparchis.py
 python $DIR/pyinstaller/pyinstaller.py -o $DIRBINLINUX -i $DIRSRCWINDOWS/share/glparchis/ficharoja.ico -w -p $DIRSRCWINDOWS/lib/glparchis $DIRSRCWINDOWS/bin/glparchis.py
 echo "Execute glparchis and play" > $DIRBINLINUX/dist/README.txt
 cp $DIRSRCLINUX/sounds/*.wav $DIRBINLINUX/dist/glparchis
+mkdir $DIRBINLINUX/dist/glparchis/phonon_backend/
+cp /usr/lib64/kde4/plugins/phonon_backend/phonon_gstreamer.so $DIRBINLINUX/dist/glparchis/phonon_backend/
 echo "  * Comprimiendo binario linux..."
 cd $DIRBINLINUX/dist
-tar cvz  -f $CWD/dist/glparchis-bin-linux-$VERSION.tar.gz * -C $DIRBINLINUX/dist > /dev/null
+tar cvz  -f $CWD/dist/glparchis-bin-linux-$VERSION.tar.gz * -C $DIRBINLINUX/dist
 cd $CWD
 
 ###### binaries windows
 #sed -i -e 's:so="bin.linux":so="bin.windows":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py
 sed -i -e 's:so="bin.linux":so="bin.windows":' $DIRSRCWINDOWS/bin/glparchis.py
-wine $HOME/.wine/drive_c/Python27/python.exe  $DIR/pyinstaller/pyinstaller.py -o $DIRBINWINDOWS -i $DIRSRCWINDOWS/share/glparchis/ficharoja.ico -w -p $DIRSRCWINDOWS/lib/glparchis $DIRSRCWINDOWS/bin/glparchis.py
+wine $HOME/.wine/drive_c/Python27/python.exe  $DIR/pyinstaller/pyinstaller.py -o $DIRBINWINDOWS -i $DIRSRCWINDOWS/share/glparchis/ficharoja.ico -p $DIRSRCWINDOWS/lib/glparchis $DIRSRCWINDOWS/bin/glparchis.py
 cp $DIRSRCLINUX/sounds/*.wav $DIRBINWINDOWS/dist/glparchis
 cp $CWD/glparchis.iss $DIRBINWINDOWS
 sed -i -e "s:XXXXXXXX:$VERSION:" $DIRBINWINDOWS/glparchis.iss

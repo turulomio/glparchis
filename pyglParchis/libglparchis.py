@@ -458,8 +458,8 @@ class Jugador:
                     return f
         
         #5 prioridad Mueve la ultima IA 100%
-        print (f, "Sin azar. Ultima ficha")
         fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)
+        print (fichas[0], "Sin azar. Ultima ficha")
         return fichas[0]
             
     def qicon(self):
@@ -1193,7 +1193,7 @@ class Mem4:
             url="../share/glparchis/sounds/"+sound+".wav"
         elif so=="src.linux":
             url="/usr/share/glparchis/sounds/"+sound+".ogg"
-        print(os.getcwd(), url)
+#        print(os.getcwd(), url)
         self.mediaObject.setCurrentSource(Phonon.MediaSource(url))
         self.mediaObject.play()
         time.sleep(0.3)
