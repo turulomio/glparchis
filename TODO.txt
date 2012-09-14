@@ -6,3 +6,4 @@
     Las casilas deben cambiar de tamaño según la altura del widget frmogl, también los dados por ejemplo TV 
 20120914Los showficha casilla de la parte derecha deben mostrarse a la izquierda del cursor para que no se salgan
 20120914splitter no se ve sin fichcero configuraci´on
+20120915 Traducción en window sy binario linxu

@@ -38,6 +38,14 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Añadida distribución de binarios en windows y linux</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120914T150831Z">
+        <seg>- Windows and Linux binary distribution</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- El texto del dado cambia de color según el jugador actual</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120910T205708Z">
@@ -110,10 +118,26 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Solucionado bug al cancelar en el dialogo inicial</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120914T150859Z">
+        <seg>- Solved bug when pressing cancel at initial dialog</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- Solucionado problema con directorio de partidas guardadas</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120910T205606Z">
         <seg>- Solved bug with saved games directory</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Solucionados numeros bugs</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120914T150907Z">
+        <seg>- Solved several bugs</seg>
       </tuv>
     </tu>
     <tu>
@@ -202,6 +226,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120910T205647Z">
         <seg>20120910</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>20120914</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120914T150812Z">
+        <seg>20120914</seg>
       </tuv>
     </tu>
     <tu>
@@ -666,6 +698,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120910T210013Z">
         <seg>glparchis-20120910 &lt;==&gt;  svn -r 209 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>glparchis-20120914 &lt;==&gt;  svn -r 224 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120914T150924Z">
+        <seg>glparchis-20120914 &lt;==&gt;  svn -r 224 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
       </tuv>
     </tu>
     <tu>
