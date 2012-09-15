@@ -4,10 +4,9 @@
 20120913 Las fichas del panel se muestran mas grandes en windows (creo que por resolución quizás poner más fijas)
     Las casilas deben cambiar de tamaño según la altura del widget frmogl, también los dados por ejemplo TV 
 20120914Los showficha casilla de la parte derecha deben mostrarse a la izquierda del cursor para que no se salgan
-20120915 En windows si pongo todo en automatico y cierro la ventana sigue jugando hay ruido. Ver si con closelastwindows
 20120915 Poner instrucciones con F1, muestre las reglas
 20120915 Calcular cuando pasa de mnos a mas numero atacantes
 20120915 Las traducciones de textos no salen bien traducidas
-20120916 Al cerrar ventana vincular boton salir
 20120916 El sonido va fatal en windows
+20120916 El update que lo haga cada 7 dias
 

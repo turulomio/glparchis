@@ -74,7 +74,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         web.readline()        
     @pyqtSlot()      
     def on_actionSalir_triggered(self):
-        sys.exit()
+        QtCore.QCoreApplication.instance().quit()
   
     def showWdgGame(self):
         self.actionSound.setEnabled(True)
