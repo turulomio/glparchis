@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>509</width>
-    <height>179</height>
+    <height>233</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -91,42 +91,49 @@
        <item>
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>Selecciona el nivel de detalle en los mensajes</string>
+          <string>Selecciona un idioma</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="cmdVerbosity">
+        <widget class="QComboBox" name="cmbLanguage">
          <item>
           <property name="text">
-           <string>Normal</string>
+           <string>English</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../images/glparchis.qrc">
+            <normaloff>:/flags/uk.png</normaloff>:/flags/uk.png</iconset>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>Alto</string>
+           <string>Español</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../images/glparchis.qrc">
+            <normaloff>:/flags/spain.png</normaloff>:/flags/spain.png</iconset>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>Desarrollador</string>
+           <string>France</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../images/glparchis.qrc">
+            <normaloff>:/flags/france.png</normaloff>:/flags/france.png</iconset>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Ruso</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../images/glparchis.qrc">
+            <normaloff>:/flags/rusia.png</normaloff>:/flags/rusia.png</iconset>
           </property>
          </item>
         </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_5">
-       <item>
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>Retardo entre turnos</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QDial" name="dial"/>
        </item>
       </layout>
      </item>

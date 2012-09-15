@@ -147,8 +147,9 @@ cd $CWD
 ###### binaries windows
 #sed -i -e 's:so="bin.linux":so="bin.windows":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py
 sed -i -e 's:so="bin.linux":so="bin.windows":' $DIRSRCWINDOWS/bin/glparchis.py
-wine $HOME/.wine/drive_c/Python27/python.exe  $DIR/pyinstaller/pyinstaller.py -o $DIRBINWINDOWS -i $DIRSRCWINDOWS/share/glparchis/ficharoja.ico -w -p $DIRSRCWINDOWS/lib/glparchis $DIRSRCWINDOWS/bin/glparchis.py
+wine $HOME/.wine/drive_c/Python27/python.exe  $DIR/pyinstaller/pyinstaller.py -o $DIRBINWINDOWS -i $DIRSRCWINDOWS/share/glparchis/ficharoja.ico -p $DIRSRCWINDOWS/lib/glparchis $DIRSRCWINDOWS/bin/glparchis.py
 cp $DIRSRCLINUX/sounds/*.wav $DIRBINWINDOWS/dist/glparchis
+cp $DIRSRCWINDOWS/share/glparchis/*.qm $DIRBINWINDOWS/dist/glparchis
 cp $CWD/glparchis.iss $DIRBINWINDOWS
 sed -i -e "s:XXXXXXXX:$VERSION:" $DIRBINWINDOWS/glparchis.iss
 cd $DIRBINWINDOWS

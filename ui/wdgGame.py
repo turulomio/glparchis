@@ -25,6 +25,11 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.splitter.restoreState(position)
             except:
                 print ("No hay fichero de configuración")    
+                currentSizes = self.splitter.sizes()
+                currentSizes[0]=self.width()-self.ogl.height()-100
+                currentSizes[1]=self.width()-currentSizes[0]
+                self.splitter.setSizes(currentSizes);
+
         self.mem=mem
         self.table.assign_mem(self.mem)
         self.ogl.assign_mem(self.mem)
