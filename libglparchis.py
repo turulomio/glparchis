@@ -917,6 +917,10 @@ class ConfigFile:
         self.file=file
         self.splitterstate=None
         self.language="en"
+        self.yellowname=None
+        self.redname=None
+        self.bluename=None
+        self.greenname=None
         self.config=ConfigParser.ConfigParser()
         self.load()
         
@@ -925,6 +929,10 @@ class ConfigFile:
         try:
             self.splitterstate=self.config.get("frmMain", "splitter_state")
             self.language=self.config.get("frmSettings", "language")
+            self.yellowname=self.config.get("frmInitGame", "yellowname")
+            self.redname=self.config.get("frmInitGame", "redname")
+            self.bluename=self.config.get("frmInitGame", "bluename")
+            self.greenname=self.config.get("frmInitGame", "greenname")
         except:
             print ("No hay fichero de configuración")    
         
@@ -933,8 +941,14 @@ class ConfigFile:
             self.config.add_section("frmMain")
         if self.config.has_section("frmSettings")==False:
             self.config.add_section("frmSettings")
+        if self.config.has_section("frmInitGame")==False:
+            self.config.add_section("frmInitGame")
         self.config.set("frmSettings",  'language', self.language)
         self.config.set("frmMain",  'splitter_state', self.splitterstate)
+        self.config.set("frmInitGame",  'yellowname', self.yellowname)
+        self.config.set("frmInitGame",  'redname', self.redname)
+        self.config.set("frmInitGame",  'bluename', self.bluename)
+        self.config.set("frmInitGame",  'greenname', self.greenname)
         with open(self.file, 'w') as configfile:
             self.config.write(configfile)
             

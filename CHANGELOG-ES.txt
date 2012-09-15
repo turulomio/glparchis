@@ -5,6 +5,7 @@ XXXXXXXX
 - Enlaces de ayuda ahora son clickables
 - Nueva opción de menú que busca actualizaciones
 - Ahora el splitter muestra el ogl por defecto
+- Ahora el idioma por defecto es el ingl´es , pero en settings se puede cambiar el idioma y se graba en fichero de configuraci´on
 
 20120914
 ========

@@ -22,6 +22,12 @@ class frmInitGame(QWizard, Ui_frmInitGame):
         self.dado={}
         self.playerstarts=None
         random.seed(datetime.datetime.now().microsecond)
+        if self.mem.cfgfile.yellowname!=None:
+            self.txtYellow.setText(self.mem.cfgfile.yellowname)
+            self.txtBlue.setText(self.mem.cfgfile.bluename)
+            self.txtRed.setText(self.mem.cfgfile.redname)
+            self.txtGreen.setText(self.mem.cfgfile.greenname)
+            
         
     def tirar_dado(self, color, playsound):
         self.dado[color]=int(random.random()*6)+1
@@ -101,6 +107,13 @@ class frmInitGame(QWizard, Ui_frmInitGame):
                 self.mem.jugadores.jugador('green').name=self.txtGreen.text()
                 self.mem.jugadores.jugador('green').ia=c2b(self.chkGreen.checkState())
                 self.mem.jugadores.jugador('green').plays=c2b(self.chkGreenPlays.checkState())
+                
+                self.mem.cfgfile.yellowname=self.txtYellow.text()
+                self.mem.cfgfile.redname=self.txtRed.text()
+                self.mem.cfgfile.bluename=self.txtBlue.text()
+                self.mem.cfgfile.greenname=self.txtGreen.text()
+                self.mem.cfgfile.save()
+
 
                 for j in self.mem.jugadores.arr:
                     if j.plays==True:

@@ -16,9 +16,9 @@ class frmSettings(QDialog, Ui_frmSettings):
         elif self.language=="es":
             self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText(QString(u'Espa\xf1ol')))
         elif self.language=="fr":
-            self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText("France"))
+            self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText(QString(u'Fran\xe7ais')))
         elif self.language=="ru":
-            self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText("Ruso"))
+            self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText(QString(u'\u0420\u0443\u0441\u0441\u043a\u0438\u0439')))#ruso
 
     @pyqtSlot(QString)      
     def on_cmbLanguage_currentIndexChanged(self, stri):
@@ -26,9 +26,9 @@ class frmSettings(QDialog, Ui_frmSettings):
             self.language="en"
         elif stri==QString(u'Espa\xf1ol'):#problemas con unicode en python2
             self.language="es"
-        elif stri==QString(u"France"):
+        elif stri==QString(u'Fran\xe7ais'):
             self.language="fr"
-        elif stri==QString(u"Ruso"):
+        elif stri==QString(QString(u'\u0420\u0443\u0441\u0441\u043a\u0438\u0439')):#ruso
             self.language="ru"
         
         libglparchis.cargarQTranslator(self.language)
