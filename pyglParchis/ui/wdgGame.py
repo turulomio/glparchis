@@ -17,19 +17,6 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.show()
 
     def assign_mem(self, mem):
-        def settings_splitter_load():
-            config = ConfigParser.ConfigParser()
-            config.read(cfgfile)
-            try:
-                position=config.get("frmMain", "splitter_state")
-                self.splitter.restoreState(position)
-            except:
-                print ("No hay fichero de configuración")    
-                currentSizes = self.splitter.sizes()
-                currentSizes[0]=self.width()-self.ogl.height()-100
-                currentSizes[1]=self.width()-currentSizes[0]
-                self.splitter.setSizes(currentSizes);
-
         self.mem=mem
         self.table.assign_mem(self.mem)
         self.ogl.assign_mem(self.mem)
@@ -45,7 +32,13 @@ class wdgGame(QWidget, Ui_wdgGame):
 
 
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('fichaClicked()'), self.after_ficha_click)  
-        settings_splitter_load()
+        if self.mem.cfgfile.splitterstate==None:
+            currentSizes = self.splitter.sizes()
+            currentSizes[0]=self.width()-self.ogl.height()-100
+            currentSizes[1]=self.width()-currentSizes[0]
+            self.splitter.setSizes(currentSizes)
+        else:
+            self.splitter.restoreState(self.mem.cfgfile.splitterstate)
 
         self.on_JugadorDebeTirar()
 
@@ -97,13 +90,8 @@ class wdgGame(QWidget, Ui_wdgGame):
 
         
     def on_splitter_splitterMoved(self, position, index):
-        config = ConfigParser.ConfigParser()
-        config.read(cfgfile)
-        if config.has_section("frmMain")==False:
-            config.add_section("frmMain")
-        config.set("frmMain",  'splitter_state', self.splitter.saveState())
-        with open(cfgfile, 'w') as configfile:
-            config.write(configfile)
+        self.mem.cfgfile.splitterstate=self.splitter.saveState()
+        self.mem.cfgfile.save()
         self.update()
 
     @QtCore.pyqtSlot()      

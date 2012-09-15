@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import os
+import os,  libglparchis
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -30,17 +30,8 @@ class frmSettings(QDialog, Ui_frmSettings):
             self.language="fr"
         elif stri==QString(u"Ruso"):
             self.language="ru"
-        translator = QTranslator(qApp)
-        so=os.environ['glparchisso']
-        if so=="src.linux":
-            translator.load("/usr/share/glparchis/glparchis_" + self.language + ".qm")
-        elif so=="src.windows":
-            translator.load("../share/glparchis/glparchis_" + self.language + ".qm")
-        elif so=="bin.linux":
-            translator.load("../share/glparchis/glparchis_" + self.language + ".qm")
-        elif so=="bin.windows":
-            translator.load("glparchis_" + self.language + ".qm")
-        qApp.installTranslator(translator)
+        
+        libglparchis.cargarQTranslator(self.language)
         self.retranslateUi(self)
         
     def on_buttonBox_accepted(self):

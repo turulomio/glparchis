@@ -12,12 +12,12 @@ from frmSettings import *
 
             
 class frmMain(QMainWindow, Ui_frmMain):#    
-    def __init__(self, parent = 0,  flags = False):
+    def __init__(self, cfgfile, parent = 0,  flags = False):
         QMainWindow.__init__(self)
+        self.cfgfile=cfgfile
         self.setupUi(self)
         self.showMaximized()
         self.game=None
-        self.language=None
         print (os.getcwd())
 
         
@@ -28,12 +28,10 @@ class frmMain(QMainWindow, Ui_frmMain):#
         
     @pyqtSlot()      
     def on_actionSettings_triggered(self):
-        if self.language==None:
-            print ("lenguage era None y se ha pasado a es")
-            self.language="es"
-        f=frmSettings(self.language,  self)
+        f=frmSettings(self.cfgfile.language,  self)
         f.exec_()
-        self.language=f.language
+        self.cfgfile.language=f.language
+        self.cfgfile.save()
         self.retranslateUi(self)
         
     @pyqtSlot()      
@@ -89,6 +87,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         filenam=os.path.basename(libglparchis.q2s(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")))
         if filenam!="":
             self.mem=Mem4()
+            self.mem.cfgfile=self.cfgfile
             self.mem.load(filenam)
             self.showWdgGame()
         os.chdir(cwd)
@@ -97,6 +96,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
     @pyqtSlot()  
     def on_actionPartidaNueva_triggered(self):
         self.mem=Mem4()
+        self.mem.cfgfile=self.cfgfile
         initgame=frmInitGame(self.mem)
         salida=initgame.exec_()
         if salida==QDialog.Accepted:

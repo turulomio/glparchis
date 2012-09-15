@@ -29,9 +29,7 @@ class frmAbout(QDialog, Ui_frmAbout):
             self.trUtf8("<ul><li>Mariano Muñoz</li><li>Nadejda Adam</li></ul><p>\n")+
             self.trUtf8("a los siguientes idiomas<p>")+
             self.trUtf8("<ul><li>Inglés</li><li>Francés</li><li>Español</li></ul><p>")+
-            self.trUtf8("Los avatares han sido extraídos de la página <a href=\"http://www.nobleavatar.com/\">http://www.nobleavatar.com/</a><p>")+
-            self.trUtf8("Esta aplicación se está ejecutando para el lenguage:{0}".format(QLocale().system().name())))
-        
+            self.trUtf8("Los avatares han sido extraídos de la página <a href=\"http://www.nobleavatar.com/\">http://www.nobleavatar.com/</a><p>"))
         self.connect(self.cmd, SIGNAL("clicked()"), self.on_cmd_clicked)
     @pyqtSignature("")
     def on_cmd_clicked(self):

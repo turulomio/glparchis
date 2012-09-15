@@ -6,7 +6,6 @@ from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.phonon import Phonon
 version="20120914+"
-cfgfile=os.path.expanduser("~/.glparchis/")+ "glparchis.cfg"
 def q2s(q):
     """Qstring to python string en utf8"""
     return str(QString.toUtf8(q))
@@ -924,21 +923,20 @@ class ConfigFile:
     def load(self):
         self.config.read(self.file)
         try:
-            self.splitterstate=config.get("frmMain", "splitter_state")
-            self.language=config.get("frmSettings", "language")
-            #self.splitter.restoreState(position)
+            self.splitterstate=self.config.get("frmMain", "splitter_state")
+            self.language=self.config.get("frmSettings", "language")
         except:
             print ("No hay fichero de configuración")    
         
     def save(self):
-        if config.has_section("frmMain")==False:
-            config.add_section("frmMain")
-        if config.has_section("frmSettings")==False:
-            config.add_section("frmSettings")
-        config.set("frmSettings",  'language', self.language)
-        config.set("frmMain",  'splitter_state', self.splitterstate)
+        if self.config.has_section("frmMain")==False:
+            self.config.add_section("frmMain")
+        if self.config.has_section("frmSettings")==False:
+            self.config.add_section("frmSettings")
+        self.config.set("frmSettings",  'language', self.language)
+        self.config.set("frmMain",  'splitter_state', self.splitterstate)
         with open(self.file, 'w') as configfile:
-            config.write(configfile)
+            self.config.write(configfile)
             
 class Casilla(QGLWidget):
     def __init__(self, id, maxfichas, color,  position, rotate, rampallegada, tipo, seguro, posfichas):
@@ -1202,6 +1200,7 @@ class Mem4:
         self.retardoturnos=1#En segundos
         self.mediaObject = None
         self.sound=True#Enciende o apaga el sonido
+        self.cfgfile=None#fichero configuraci´on que se crea en glparchis.py
         
         
         self.generar_colores()
@@ -1826,4 +1825,16 @@ def dic2list(dic):
 #if __name__ == '__main__':
 #    main()
 
-
+def cargarQTranslator(language):  
+    """language es un string"""
+    so=os.environ['glparchisso']
+    translator = QTranslator(qApp)
+    if so=="src.linux":
+        translator.load("/usr/share/glparchis/glparchis_" + language + ".qm")
+    elif so=="src.windows":
+        translator.load("../share/glparchis/glparchis_" + language + ".qm")
+    elif so=="bin.linux":
+        translator.load("../share/glparchis/glparchis_" + language + ".qm")
+    elif so=="bin.windows":
+        translator.load("glparchis_" + language + ".qm")
+    qApp.installTranslator(translator);
