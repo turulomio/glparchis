@@ -32,7 +32,14 @@ class frmMain(QMainWindow, Ui_frmMain):#
         f.exec_()
         self.cfgfile.language=f.language
         self.cfgfile.save()
+        if self.game!=None:
+            self.game.retranslateUi(self)
+            self.game.panel1.retranslateUi(self)
+            self.game.panel2.retranslateUi(self)
+            self.game.panel3.retranslateUi(self)
+            self.game.panel4.retranslateUi(self)
         self.retranslateUi(self)
+        self.repaint()
         
     @pyqtSlot()      
     def on_actionSound_triggered(self):

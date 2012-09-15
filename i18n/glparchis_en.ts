@@ -292,22 +292,22 @@
         <translation>Sound switched on</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="43"/>
+        <location filename="ui/frmMain.py" line="50"/>
         <source>Sonido apagado</source>
         <translation>Sound switched off</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="51"/>
+        <location filename="ui/frmMain.py" line="58"/>
         <source>No se ha podido comprobar si hay actualizaciones. Inténtelo más tarde.</source>
         <translation>I couldn&apos;t look for updates. Try it later.</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="65"/>
+        <location filename="ui/frmMain.py" line="72"/>
         <source>Dispone de la última versión del juego</source>
         <translation>You have the last version game</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="60"/>
+        <location filename="ui/frmMain.py" line="67"/>
         <source>Hay una nueva versión del programa. Bájatela de &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt;</source>
         <translation>There is a new version. You can download it from &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt;</translation>
     </message>
@@ -337,12 +337,12 @@
     <message encoding="UTF-8">
         <location filename="ui/frmSettings.ui" line="120"/>
         <source>Français</source>
-        <translation type="unfinished"></translation>
+        <translation>Français</translation>
     </message>
     <message encoding="UTF-8">
         <location filename="ui/frmSettings.ui" line="129"/>
         <source>Русский</source>
-        <translation type="unfinished"></translation>
+        <translation>Русский</translation>
     </message>
 </context>
 <context>
@@ -401,27 +401,27 @@
     <message>
         <location filename="ui/Ui_wdgGame.py" line="417"/>
         <source>Dado saca 2</source>
-        <translation>Dice gets 2</translation>
+        <translation>Roll a 2</translation>
     </message>
     <message>
         <location filename="ui/Ui_wdgGame.py" line="419"/>
         <source>Dado saca 3</source>
-        <translation>Dice gets 3</translation>
+        <translation>Roll a 3</translation>
     </message>
     <message>
         <location filename="ui/Ui_wdgGame.py" line="421"/>
         <source>Dado saca 4</source>
-        <translation>Dice gets 4</translation>
+        <translation>Roll a 4</translation>
     </message>
     <message>
         <location filename="ui/Ui_wdgGame.py" line="423"/>
         <source>Dado saca 5</source>
-        <translation>Dice gets 5</translation>
+        <translation>Roll a 5</translation>
     </message>
     <message>
         <location filename="ui/Ui_wdgGame.py" line="425"/>
         <source>Dado saca 6</source>
-        <translation>Dice gets 6</translation>
+        <translation>Roll a 6</translation>
     </message>
     <message>
         <location filename="ui/Ui_wdgGame.py" line="427"/>
