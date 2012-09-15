@@ -17,18 +17,24 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.setupUi(self)
         self.showMaximized()
         self.game=None
+        self.language=None
         print (os.getcwd())
 
         
     @pyqtSlot()      
     def on_actionAcercaDe_triggered(self):
-        fr=frmAbout(self, "frmabout")
+        fr=frmAbout(self,"frmabout")
         fr.open()
         
     @pyqtSlot()      
     def on_actionSettings_triggered(self):
-        f=frmSettings(self)
+        if self.language==None:
+            print ("lenguage era None y se ha pasado a es")
+            self.language="es"
+        f=frmSettings(self.language,  self)
         f.exec_()
+        self.language=f.language
+        self.retranslateUi(self)
         
     @pyqtSlot()      
     def on_actionSound_triggered(self):
@@ -66,6 +72,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         sys.exit()
   
     def showWdgGame(self):
+        self.actionSound.setEnabled(True)
         if self.game!=None:
             self.layout.removeWidget(self.game)      
         self.game=wdgGame()

@@ -31,7 +31,7 @@ sys.setrecursionlimit(50000)
 # en bin windows se ejecuta 
 app = QApplication(sys.argv)
 app.setApplicationName("glParchis {0}".format(str(datetime.datetime.now())))
-#app.setQuitOnLastWindowClosed(True)
+app.setQuitOnLastWindowClosed(True)
 try:
     from PyQt4.phonon import Phonon
     borrar= Phonon.MediaObject(app)
@@ -40,15 +40,23 @@ except ImportError:
     sys.exit(1)
 
 translator = QTranslator(app)
-locale=QLocale()
-a=locale.system()
-if so=="src.windows":
-    translator.load("share/glparchis/glparchis_" + a.name() + ".qm")
-elif so=="src.linux":
-    translator.load("/usr/share/glparchis/glparchis_" + a.name() + ".qm")
+language=QLocale.system().name().split("_")[0]
+
+"""Para poner un language distinto en windows     C:\ set LANG=English_USA.1252"""
+
+if so=="src.linux":
+    translator.load("/usr/share/glparchis/glparchis_" + language + ".qm")
+elif so=="src.windows":
+    translator.load("../share/glparchis/glparchis_" + language + ".qm")
+elif so=="bin.linux":
+    translator.load("../share/glparchis/glparchis_" + language + ".qm")
+elif so=="bin.windows":
+    translator.load("glparchis_" + language + ".qm")
+print("Ejecutándose en", so,  "con language",  language, "desde", os.getcwd())
 app.installTranslator(translator);
 
 frmMain = frmMain() 
+frmMain.language=language
 frmMain.show()
 sys.exit(app.exec_())
 

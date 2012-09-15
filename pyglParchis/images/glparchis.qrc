@@ -26,4 +26,10 @@
     <file>keko.png</file>
     <file>star.png</file>
   </qresource>
+  <qresource prefix="flags">
+    <file>france.png</file>
+    <file>spain.png</file>
+    <file>rusia.png</file>
+    <file>uk.png</file>
+  </qresource>
 </RCC>

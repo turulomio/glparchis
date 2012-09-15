@@ -183,6 +183,9 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../images/glparchis.qrc">
      <normaloff>:/glparchis/sound.png</normaloff>:/glparchis/sound.png</iconset>

@@ -913,6 +913,33 @@ class Color:
     def qcolor(self):
         return QColor(self.r, self.g, self.b, 125)
         
+class ConfigFile:
+    def __init__(self, file):
+        self.file=file
+        self.splitterstate=None
+        self.language="en"
+        self.config=ConfigParser.ConfigParser()
+        self.load()
+        
+    def load(self):
+        self.config.read(self.file)
+        try:
+            self.splitterstate=config.get("frmMain", "splitter_state")
+            self.language=config.get("frmSettings", "language")
+            #self.splitter.restoreState(position)
+        except:
+            print ("No hay fichero de configuración")    
+        
+    def save(self):
+        if config.has_section("frmMain")==False:
+            config.add_section("frmMain")
+        if config.has_section("frmSettings")==False:
+            config.add_section("frmSettings")
+        config.set("frmSettings",  'language', self.language)
+        config.set("frmMain",  'splitter_state', self.splitterstate)
+        with open(self.file, 'w') as configfile:
+            config.write(configfile)
+            
 class Casilla(QGLWidget):
     def __init__(self, id, maxfichas, color,  position, rotate, rampallegada, tipo, seguro, posfichas):
         QGLWidget.__init__(self)

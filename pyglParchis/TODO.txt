@@ -4,7 +4,6 @@
 20120913 Las fichas del panel se muestran mas grandes en windows (creo que por resolución quizás poner más fijas)
     Las casilas deben cambiar de tamaño según la altura del widget frmogl, también los dados por ejemplo TV 
 20120914Los showficha casilla de la parte derecha deben mostrarse a la izquierda del cursor para que no se salgan
-20120914splitter no se ve sin fichcero configuración
 20120915 Traducción en window sy binario linxu
     - C:\ set LANG=English_USA.1252
     C:\ set LANG=English_USA.1252
