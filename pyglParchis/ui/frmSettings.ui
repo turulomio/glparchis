@@ -117,7 +117,7 @@
          </item>
          <item>
           <property name="text">
-           <string>France</string>
+           <string>Français</string>
           </property>
           <property name="icon">
            <iconset resource="../images/glparchis.qrc">
@@ -126,7 +126,7 @@
          </item>
          <item>
           <property name="text">
-           <string>Ruso</string>
+           <string>Русский</string>
           </property>
           <property name="icon">
            <iconset resource="../images/glparchis.qrc">

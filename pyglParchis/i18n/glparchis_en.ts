@@ -169,12 +169,12 @@
         <translation>Throw the dice of your color. The player with the highest score starts the game</translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.py" line="133"/>
+        <location filename="ui/frmInitGame.py" line="146"/>
         <source>El jugador %1 empieza la partida</source>
         <translation>The %1 pleyer starts the game</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmInitGame.py" line="136"/>
+        <location filename="ui/frmInitGame.py" line="149"/>
         <source>%1 deben tirar hasta que se aclare quién empieza la partida</source>
         <translation>%1 should thow the dice up to clarify who starts the game</translation>
     </message>
@@ -184,7 +184,7 @@
         <translation>Who starts?</translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.py" line="134"/>
+        <location filename="ui/frmInitGame.py" line="147"/>
         <source>Empieza la partida</source>
         <translation>Play the game</translation>
     </message>
@@ -334,15 +334,15 @@
         <source>Español</source>
         <translation>Español</translation>
     </message>
-    <message>
+    <message encoding="UTF-8">
         <location filename="ui/frmSettings.ui" line="120"/>
-        <source>France</source>
-        <translation>France</translation>
+        <source>Français</source>
+        <translation type="unfinished"></translation>
     </message>
-    <message>
+    <message encoding="UTF-8">
         <location filename="ui/frmSettings.ui" line="129"/>
-        <source>Ruso</source>
-        <translation>Ruso</translation>
+        <source>Русский</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

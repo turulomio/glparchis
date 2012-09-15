@@ -89,6 +89,10 @@ class frmMain(QMainWindow, Ui_frmMain):#
             self.mem=Mem4()
             self.mem.cfgfile=self.cfgfile
             self.mem.load(filenam)
+            self.mem.jugadores.jugador("yellow").name=self.cfgfile.yellowname
+            self.mem.jugadores.jugador("blue").name=self.cfgfile.bluename
+            self.mem.jugadores.jugador("red").name=self.cfgfile.redname
+            self.mem.jugadores.jugador("green").name=self.cfgfile.greenname
             self.showWdgGame()
         os.chdir(cwd)
 
