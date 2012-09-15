@@ -3,47 +3,47 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="735"/>
+        <location filename="libglparchis.py" line="734"/>
         <source>He metido la ficha %1</source>
         <translation>Piece %1 arrived the central space </translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="611"/>
+        <location filename="libglparchis.py" line="610"/>
         <source>No es del jugador actual</source>
         <translation>It&apos;s not a current player piece</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="636"/>
+        <location filename="libglparchis.py" line="635"/>
         <source>Se ha pasado la meta</source>
         <translation>You missed the central space</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="642"/>
+        <location filename="libglparchis.py" line="641"/>
         <source>Hay una barrera</source>
         <translation>There is a blockade</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="651"/>
+        <location filename="libglparchis.py" line="650"/>
         <source>No hay espacio en la casilla</source>
         <translation>The space is bussy</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="631"/>
+        <location filename="libglparchis.py" line="630"/>
         <source>No puede mover</source>
         <translation>It can&apos;t move</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="649"/>
+        <location filename="libglparchis.py" line="648"/>
         <source>Obligado a sacar y a comer</source>
         <translation>You&apos;re forced to move to the first space and to eat</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="698"/>
+        <location filename="libglparchis.py" line="697"/>
         <source>He comido una ficha de &quot;{0}&quot; en la casilla {1}</source>
         <translation>I&apos;ve eaten a piece of &quot;{0}&quot; in the {1} place</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="600"/>
+        <location filename="libglparchis.py" line="599"/>
         <source>No puede mover, porque hay otra ficha obligada a mover</source>
         <translation>It can&apos;t move, because there is another piece forced to move</translation>
     </message>
@@ -292,22 +292,22 @@
         <translation>Sound switched on</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="45"/>
+        <location filename="ui/frmMain.py" line="43"/>
         <source>Sonido apagado</source>
         <translation>Sound switched off</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="53"/>
+        <location filename="ui/frmMain.py" line="51"/>
         <source>No se ha podido comprobar si hay actualizaciones. Inténtelo más tarde.</source>
         <translation>I couldn&apos;t look for updates. Try it later.</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="67"/>
+        <location filename="ui/frmMain.py" line="65"/>
         <source>Dispone de la última versión del juego</source>
         <translation>You have the last version game</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="62"/>
+        <location filename="ui/frmMain.py" line="60"/>
         <source>Hay una nueva versión del programa. Bájatela de &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt;</source>
         <translation>There is a new version. You can download it from &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt;</translation>
     </message>
