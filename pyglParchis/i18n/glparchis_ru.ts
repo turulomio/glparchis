@@ -78,7 +78,7 @@
     <message>
         <location filename="ui/frmAbout.ui" line="293"/>
         <source>S&amp;alir</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">В&amp;ыход</translation>
     </message>
     <message>
         <location filename="ui/frmAbout.ui" line="14"/>
@@ -194,12 +194,12 @@
     <message>
         <location filename="ui/Ui_frmMain.py" line="124"/>
         <source>A&amp;yuda</source>
-        <translation type="unfinished"></translation>
+        <translation>С&amp;правка</translation>
     </message>
     <message>
         <location filename="ui/Ui_frmMain.py" line="125"/>
         <source>J&amp;ugar</source>
-        <translation type="unfinished">&amp;играть</translation>
+        <translation>И&amp;грать</translation>
     </message>
     <message>
         <location filename="ui/Ui_frmMain.py" line="126"/>
@@ -209,7 +209,7 @@
     <message>
         <location filename="ui/Ui_frmMain.py" line="127"/>
         <source>S&amp;alir</source>
-        <translation type="unfinished"></translation>
+        <translation>В&amp;ыход</translation>
     </message>
     <message>
         <location filename="ui/Ui_frmMain.py" line="129"/>
@@ -229,7 +229,7 @@
     <message>
         <location filename="ui/Ui_frmMain.py" line="132"/>
         <source>&amp;Partida Nueva</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Новая игра</translation>
     </message>
     <message>
         <location filename="ui/Ui_frmMain.py" line="133"/>
@@ -239,7 +239,7 @@
     <message>
         <location filename="ui/Ui_frmMain.py" line="134"/>
         <source>Preferencias</source>
-        <translation type="unfinished"></translation>
+        <translation>Предпочтения</translation>
     </message>
     <message encoding="UTF-8">
         <location filename="ui/Ui_frmMain.py" line="123"/>
@@ -254,7 +254,7 @@
     <message>
         <location filename="ui/Ui_frmMain.py" line="135"/>
         <source>Ayuda del juego</source>
-        <translation type="unfinished"></translation>
+        <translation>Помощь игры</translation>
     </message>
     <message>
         <location filename="ui/Ui_frmMain.py" line="136"/>
@@ -292,22 +292,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="43"/>
+        <location filename="ui/frmMain.py" line="50"/>
         <source>Sonido apagado</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="51"/>
+        <location filename="ui/frmMain.py" line="58"/>
         <source>No se ha podido comprobar si hay actualizaciones. Inténtelo más tarde.</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="65"/>
+        <location filename="ui/frmMain.py" line="72"/>
         <source>Dispone de la última versión del juego</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="60"/>
+        <location filename="ui/frmMain.py" line="67"/>
         <source>Hay una nueva versión del programa. Bájatela de &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>

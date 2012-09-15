@@ -292,22 +292,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="43"/>
+        <location filename="ui/frmMain.py" line="50"/>
         <source>Sonido apagado</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="51"/>
+        <location filename="ui/frmMain.py" line="58"/>
         <source>No se ha podido comprobar si hay actualizaciones. Inténtelo más tarde.</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="65"/>
+        <location filename="ui/frmMain.py" line="72"/>
         <source>Dispone de la última versión del juego</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="60"/>
+        <location filename="ui/frmMain.py" line="67"/>
         <source>Hay una nueva versión del programa. Bájatela de &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
