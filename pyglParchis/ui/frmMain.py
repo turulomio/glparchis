@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import sys,    os
+import sys, os, urllib2
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from libglparchis import *
@@ -30,6 +30,37 @@ class frmMain(QMainWindow, Ui_frmMain):#
         f=frmSettings(self)
         f.exec_()
         
+    @pyqtSlot()      
+    def on_actionSound_triggered(self):
+        self.game.mem.sound=not self.game.mem.sound
+        if self.game.mem.sound:
+            self.actionSound.setText(self.trUtf8("Sonido encendido"))
+        else:
+            self.actionSound.setText(self.trUtf8("Sonido apagado"))
+        
+    @pyqtSlot()      
+    def on_actionUpdates_triggered(self):
+        web=urllib2.urlopen('http://glparchis.svn.sourceforge.net/viewvc/glparchis/pyglParchis/libglparchis.py?revision=225&content-type=text%2Fplain')
+        if web==None:
+            m=QMessageBox()
+            m.setIcon(QMessageBox.Information)
+            m.setText(self.trUtf8("No se ha podido comprobar si hay actualizaciones. Inténtelo más tarde."))
+            m.exec_() 
+        for line in web.readlines():
+            if line.find('version="')!=-1:
+                remoteversion=line.split('"')[1]
+                if version!=remoteversion:
+                    m=QMessageBox()
+                    m.setIcon(QMessageBox.Information)
+                    m.setTextFormat(Qt.RichText)#this is what makes the links clickable
+                    m.setText(self.trUtf8("Hay una nueva versión del programa. Bájatela de <a href='http://glparchis.sourceforge.net'>http://glparchis.sourceforge.net</a>"))
+                    m.exec_() 
+                else:
+                    m=QMessageBox()
+                    m.setIcon(QMessageBox.Information)
+                    m.setText(self.trUtf8("Dispone de la última versión del juego"))
+                    m.exec_() 
+        web.readline()        
     @pyqtSlot()      
     def on_actionSalir_triggered(self):
         sys.exit()

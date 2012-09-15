@@ -1,3 +1,10 @@
+XXXXXXXX
+========
+- Solucionado bug al pulsar la tecla ESCAPE. Ahora sale de la aplicación
+- Añadido apagar / encender sonido
+- Enlaces de ayuda ahora son clickables
+- Nueva opción de menú que busca actualizaciones
+
 20120914
 ========
 - Añadida distribución de binarios en windows y linux

@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="/glparchis">
+    <file>update.png</file>
+    <file>help.png</file>
     <file>configure.png</file>
     <file>open.png</file>
     <file>save.png</file>
@@ -18,6 +20,7 @@
     <file>ficharoja.png</file>
     <file>kbabel.png</file>
     <file>keka.png</file>
+    <file>sound.png</file>
     <file>keke.png</file>
     <file>keki.png</file>
     <file>keko.png</file>
