@@ -10,8 +10,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>582</width>
-    <height>226</height>
+    <width>995</width>
+    <height>568</height>
    </rect>
   </property>
   <property name="cursor">
@@ -39,14 +39,18 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>582</width>
-     <height>20</height>
+     <width>995</width>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAyuda">
     <property name="title">
      <string>A&amp;yuda</string>
     </property>
+    <addaction name="actionHelp"/>
+    <addaction name="separator"/>
+    <addaction name="actionUpdates"/>
+    <addaction name="separator"/>
     <addaction name="actionAcercaDe"/>
    </widget>
    <widget class="QMenu" name="menuJugar">
@@ -58,6 +62,7 @@
     <addaction name="actionRecuperarPartida"/>
     <addaction name="actionGuardarPartida"/>
     <addaction name="separator"/>
+    <addaction name="actionSound"/>
     <addaction name="actionSettings"/>
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
@@ -79,8 +84,9 @@
    <addaction name="actionRecuperarPartida"/>
    <addaction name="actionGuardarPartida"/>
    <addaction name="separator"/>
-   <addaction name="actionSalir"/>
+   <addaction name="actionSound"/>
    <addaction name="separator"/>
+   <addaction name="actionSalir"/>
   </widget>
   <widget class="QStatusBar" name="status"/>
   <action name="actionSalir">
@@ -90,6 +96,9 @@
    </property>
    <property name="text">
     <string>S&amp;alir</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
    </property>
   </action>
   <action name="actionAcercaDe">
@@ -141,6 +150,51 @@
    </property>
    <property name="text">
     <string>Preferencias</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/help.png</normaloff>:/glparchis/help.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ayuda del juego</string>
+   </property>
+   <property name="toolTip">
+    <string>Muestra la ayuda del juego</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="actionUpdates">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/update.png</normaloff>:/glparchis/update.png</iconset>
+   </property>
+   <property name="text">
+    <string>Buscar actualizaciones</string>
+   </property>
+   <property name="toolTip">
+    <string>Busca actualizaciones en Internet</string>
+   </property>
+  </action>
+  <action name="actionSound">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/sound.png</normaloff>:/glparchis/sound.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sonido encendido</string>
+   </property>
+   <property name="toolTip">
+    <string>Enciende o apaga el sonido</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
    </property>
   </action>
  </widget>

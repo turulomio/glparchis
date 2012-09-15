@@ -56,27 +56,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmAbout.ui" line="74"/>
+        <location filename="ui/frmAbout.ui" line="78"/>
         <source>Licencia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmAbout.ui" line="238"/>
+        <location filename="ui/frmAbout.ui" line="242"/>
         <source>Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmAbout.ui" line="248"/>
+        <location filename="ui/frmAbout.ui" line="252"/>
         <source>Objetos</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmAbout.ui" line="272"/>
+        <location filename="ui/frmAbout.ui" line="276"/>
         <source>Haga doble click en la imágen para ver los distintos objetos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmAbout.ui" line="289"/>
+        <location filename="ui/frmAbout.ui" line="293"/>
         <source>S&amp;alir</source>
         <translation type="unfinished"></translation>
     </message>
@@ -192,58 +192,123 @@
 <context>
     <name>frmMain</name>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="101"/>
+        <location filename="ui/Ui_frmMain.py" line="123"/>
         <source>A&amp;yuda</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="102"/>
+        <location filename="ui/Ui_frmMain.py" line="124"/>
         <source>J&amp;ugar</source>
         <translation type="unfinished">&amp;играть</translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="103"/>
+        <location filename="ui/Ui_frmMain.py" line="125"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="104"/>
+        <location filename="ui/Ui_frmMain.py" line="126"/>
         <source>S&amp;alir</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="105"/>
+        <location filename="ui/Ui_frmMain.py" line="128"/>
         <source>Acerca de</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="106"/>
+        <location filename="ui/Ui_frmMain.py" line="129"/>
         <source>&amp;Recuperar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="107"/>
+        <location filename="ui/Ui_frmMain.py" line="130"/>
         <source>&amp;Guardar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="108"/>
+        <location filename="ui/Ui_frmMain.py" line="131"/>
         <source>&amp;Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="109"/>
+        <location filename="ui/Ui_frmMain.py" line="132"/>
         <source>Partida Nueva</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmMain.py" line="110"/>
+        <location filename="ui/Ui_frmMain.py" line="133"/>
         <source>Preferencias</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmMain.py" line="100"/>
+        <location filename="ui/Ui_frmMain.py" line="122"/>
         <source>glParchis 2010-2012 ©</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmMain.py" line="127"/>
+        <source>Esc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmMain.py" line="134"/>
+        <source>Ayuda del juego</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmMain.py" line="135"/>
+        <source>Muestra la ayuda del juego</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmMain.py" line="136"/>
+        <source>F1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmMain.py" line="137"/>
+        <source>Buscar actualizaciones</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmMain.py" line="138"/>
+        <source>Busca actualizaciones en Internet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmMain.py" line="140"/>
+        <source>Enciende o apaga el sonido</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmMain.py" line="141"/>
+        <source>F5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmMain.py" line="139"/>
+        <source>Sonido encendido</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmMain.py" line="39"/>
+        <source>Sonido apagado</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmMain.py" line="47"/>
+        <source>No se ha podido comprobar si hay actualizaciones. Inténtelo más tarde.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmMain.py" line="61"/>
+        <source>Dispone de la última versión del juego</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmMain.py" line="56"/>
+        <source>Hay una nueva versión del programa. Bajela de &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

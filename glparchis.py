@@ -36,7 +36,7 @@ try:
     from PyQt4.phonon import Phonon
     borrar= Phonon.MediaObject(app)
 except ImportError:
-    QMessageBox.critical(None, "glParchis",  "Tu instalaci´on QT no tiene soporte Phonon")
+    QMessageBox.critical(None, "glParchis",  "Tu instalación QT no tiene soporte Phonon")
     sys.exit(1)
 
 translator = QTranslator(app)

@@ -5,7 +5,7 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.phonon import Phonon
-version="20120914"
+version="20120914+"
 cfgfile=os.path.expanduser("~/.glparchis/")+ "glparchis.cfg"
 def q2s(q):
     """Qstring to python string en utf8"""
@@ -431,7 +431,7 @@ class Jugador:
                     print (f, "seleccionada por azar comer")
                     return f
         
-        #2 prioridad. Mueve fichas que est´an m´as amenazadas y estar´an mejor en posruta+,pvo,oemt
+        #2 prioridad. Mueve fichas que están más amenazadas y estarán mejor en posruta+,pvo,oemt
         # -f.numFichasPuedenComer(mem, f.posruta+movimiento) no me dejaba ponerlo en el sorted para ver si mejoraba
         fichas=sorted(fichas, key=lambda f:f.numFichasPuedenComer(mem, f.posruta),  reverse=True)     
         if azar(80):
@@ -570,7 +570,7 @@ class Ficha(QGLWidget):
         return  "Ficha {0} del jugador {1}".format(self.id, self.jugador.color.name)
         
     def estaObligada(self, mem):        
-        """ESta pregunta se integra dentro de puede mover. NO DEBE HABER EN SETFICHAS ALGUNAS, YA QUE SE INTEGRAR´IA DENTRO DE ALGUNA PUEDEMOVER"""
+        """ESta pregunta se integra dentro de puede mover. NO DEBE HABER EN SETFICHAS ALGUNAS, YA QUE SE INTEGRARíA DENTRO DE ALGUNA PUEDEMOVER"""
         if self.puedeMover(mem)[0]==False:
             return False
             
@@ -589,7 +589,7 @@ class Ficha(QGLWidget):
         
     def estaAutorizadaAMover(self, mem, log=False):
         """PUEDE MOVER Y ESTA OBLIGADO SON DOS CONCEPTOS INDEPENDIENTES QUE NO DEBEN DE UNIRSE 
-        PORQUE GENERA RECURSIVIDADPOR ESO SE HACE AQU´I
+        PORQUE GENERA RECURSIVIDADPOR ESO SE HACE AQUí
         
         Autorizada significa que puede mover y no está obligada a hacer otras cosas"""
         
@@ -1174,6 +1174,7 @@ class Mem4:
         self.inittime=None#Tiempo inicio partida
         self.retardoturnos=1#En segundos
         self.mediaObject = None
+        self.sound=True#Enciende o apaga el sonido
         
         
         self.generar_colores()
@@ -1185,25 +1186,27 @@ class Mem4:
         self.circulo=Circulo(self, 68)
 
     def play(self, sound):
-        self.delayedInit()
-        so=os.environ['glparchisso']
-        if so=="bin.windows" or so=="bin.linux":
-            url= sound + ".wav"
-        elif so=="src.windows":
-            url="../share/glparchis/sounds/"+sound+".wav"
-        elif so=="src.linux":
-            url="/usr/share/glparchis/sounds/"+sound+".ogg"
-#        print(os.getcwd(), url)
-        self.mediaObject.setCurrentSource(Phonon.MediaSource(url))
-        self.mediaObject.play()
-        time.sleep(0.3)
+        def delayedInit():
+            if not self.mediaObject:
+                parent=QCoreApplication.instance()
+                self.mediaObject = Phonon.MediaObject(parent)
+                audioOutput = Phonon.AudioOutput(Phonon.MusicCategory, parent)
+                Phonon.createPath(self.mediaObject, audioOutput)
+        delayedInit()
+        if self.sound==True:
+            so=os.environ['glparchisso']
+            if so=="bin.windows" or so=="bin.linux":
+                url= sound + ".wav"
+            elif so=="src.windows":
+                url="../share/glparchis/sounds/"+sound+".wav"
+            elif so=="src.linux":
+                url="/usr/share/glparchis/sounds/"+sound+".ogg"
+    #        print(os.getcwd(), url)
+            self.mediaObject.setCurrentSource(Phonon.MediaSource(url))
+            self.mediaObject.play()
+            time.sleep(0.3)
  
-    def delayedInit(self):
-        if not self.mediaObject:
-            parent=QCoreApplication.instance()
-            self.mediaObject = Phonon.MediaObject(parent)
-            audioOutput = Phonon.AudioOutput(Phonon.MusicCategory, parent)
-            Phonon.createPath(self.mediaObject, audioOutput)
+
 
     def generar_colores(self):
         self.dic_colores["red"]=Color(255, 0, 0, "red")
@@ -1393,7 +1396,7 @@ class Mem4:
         def defineSeguro( id):
             if id==5 or id==12 or id==17 or id==22 or id==29 or id==34 or id==39 or id==46 or id==51  or id==56 or id==63 or id==68:
                 return True
-            elif id>=69 and id<=100:#Las de la rampa de llegada tambi´en son seguras
+            elif id>=69 and id<=100:#Las de la rampa de llegada también son seguras
                 return True
             else:
                 return False
