@@ -927,16 +927,16 @@ class ConfigFile:
         
     def load(self):
         self.config.read(self.file)
-#        try:
-        self.splitterstate=self.config.get("frmMain", "splitter_state")
-        self.language=self.config.get("frmSettings", "language")
-        self.yellowname=self.config.get("frmInitGame", "yellowname")
-        self.redname=self.config.get("frmInitGame", "redname")
-        self.bluename=self.config.get("frmInitGame", "bluename")
-        self.greenname=self.config.get("frmInitGame", "greenname")
-        self.lastupdate=self.config.getint("frmMain", "lastupdate")
-#        except:
-#            print ("No hay fichero de configuración")    
+        try:
+            self.splitterstate=self.config.get("frmMain", "splitter_state")
+            self.language=self.config.get("frmSettings", "language")
+            self.yellowname=self.config.get("frmInitGame", "yellowname")
+            self.redname=self.config.get("frmInitGame", "redname")
+            self.bluename=self.config.get("frmInitGame", "bluename")
+            self.greenname=self.config.get("frmInitGame", "greenname")
+            self.lastupdate=self.config.getint("frmMain", "lastupdate")
+        except:
+            print ("No hay fichero de configuración")    
         
     def save(self):
         if self.config.has_section("frmMain")==False:
