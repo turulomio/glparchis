@@ -28,7 +28,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.panel4.setJugador(self.mem.jugadores.jugador("green"))
         
         self.panel().setActivated(True)
-        self.mem.jugadoractual.log(self.trUtf8("Empieza la partida"))
+        self.mem.jugadoractual.log(self.tr("Empieza la partida"))
 
 
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('fichaClicked()'), self.after_ficha_click)  
@@ -64,6 +64,9 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.cmdTirarDado.setEnabled(True)
         self.cmdTirarDado.setIcon(self.mem.dado.qicon(None))
         if self.mem.jugadoractual.ia==True:
+#            self.mem.jugadoractual.log(self.trUtf8("IA Tira el dado"))
+#            a=QString()
+#            a.trUTF8("IA Tira el dado")
             self.mem.jugadoractual.log(self.trUtf8("IA Tira el dado"))
             delay(800)
             self.on_cmdTirarDado_clicked()
@@ -73,7 +76,7 @@ class wdgGame(QWidget, Ui_wdgGame):
 
        
     def on_JugadorDebeMover(self):
-        """Función que se ejecuta cuando un jugador debe mover
+        u"""Función que se ejecuta cuando un jugador debe mover
         Aquí se evalua si puede mover devolviendo True en caso positivo y """
         self.cmdTirarDado.setEnabled(False)
         if self.mem.jugadoractual.ia==True:

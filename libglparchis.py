@@ -694,7 +694,7 @@ class Ficha(QGLWidget):
             else:
                 self.mover(ruta, True)
             mem.jugadoractual.movimientos_acumulados=20
-            mem.jugadoractual.log(self.trUtf8('He comido una ficha de "{0}" en la casilla {1}'.format(fichaacomer.jugador.name, self.casilla(ruta).id)))
+            mem.jugadoractual.log(self.trUtf8('He comido una ficha de %1 en la casilla %2').arg(fichaacomer.jugador.name).arg(self.casilla(ruta).id))
             self.jugador.comidaspormi=self.jugador.comidaspormi+1
             fichaacomer.jugador.comidasporotro=fichaacomer.jugador.comidasporotro+1
             return True
@@ -1842,16 +1842,15 @@ def dic2list(dic):
 #if __name__ == '__main__':
 #    main()
 
-def cargarQTranslator(language):  
+def cargarQTranslator(cfgfile):  
     """language es un string"""
     so=os.environ['glparchisso']
-    translator = QTranslator(qApp)
     if so=="src.linux":
-        translator.load("/usr/share/glparchis/glparchis_" + language + ".qm")
+        cfgfile.qtranslator.load("/usr/share/glparchis/glparchis_" + cfgfile.language + ".qm")
     elif so=="src.windows":
-        translator.load("../share/glparchis/glparchis_" + language + ".qm")
+        cfgfile.qtranslator.load("../share/glparchis/glparchis_" + cfgfile.language + ".qm")
     elif so=="bin.linux":
-        translator.load("../share/glparchis/glparchis_" + language + ".qm")
+        cfgfile.qtranslator.load("../share/glparchis/glparchis_" + cfgfile.language + ".qm")
     elif so=="bin.windows":
-        translator.load("glparchis_" + language + ".qm")
-    qApp.installTranslator(translator);
+        cfgfile.qtranslator.load("glparchis_" + language + ".qm")
+    qApp.installTranslator(cfgfile.qtranslator);

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>509</width>
-    <height>233</height>
+    <width>367</width>
+    <height>155</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -54,10 +54,22 @@
        </item>
        <item>
         <widget class="QLabel" name="lblPixmap">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>48</width>
+           <height>48</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
-           <width>70</width>
-           <height>70</height>
+           <width>48</width>
+           <height>48</height>
           </size>
          </property>
          <property name="pixmap">

@@ -6,6 +6,5 @@
 20120914Los showficha casilla de la parte derecha deben mostrarse a la izquierda del cursor para que no se salgan
 20120915 Poner instrucciones con F1, muestre las reglas
 20120915 Calcular cuando pasa de mnos a mas numero atacantes
-20120915 Las traducciones de textos no salen bien traducidas
 20120916 El sonido va fatal en windows
 

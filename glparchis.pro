@@ -4,7 +4,7 @@ SOURCES         = libglparchis.py \
                 ui/Ui_frmInitGame.py \
                 ui/frmMain.py \
                 ui/Ui_frmMain.py \
-                ui/Ui_wdgGame.py
+                ui/Ui_wdgGame.py \
                 ui/wdgGame.py \
                 ui/wdgOGL.py \
                 ui/wdgQT.py \

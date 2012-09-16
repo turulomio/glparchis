@@ -29,16 +29,18 @@ class frmMain(QMainWindow, Ui_frmMain):#
         
     @pyqtSlot()      
     def on_actionSettings_triggered(self):
-        f=frmSettings(self.cfgfile.language,  self)
+        f=frmSettings(self.cfgfile,   self)
         f.exec_()
-        self.cfgfile.language=f.language
-        self.cfgfile.save()
         if self.game!=None:
             self.game.retranslateUi(self)
             self.game.panel1.retranslateUi(self)
             self.game.panel2.retranslateUi(self)
             self.game.panel3.retranslateUi(self)
             self.game.panel4.retranslateUi(self)
+            self.game.panel1.setJugador(self.mem.jugadores.jugador("yellow"))
+            self.game.panel2.setJugador(self.mem.jugadores.jugador("blue"))
+            self.game.panel3.setJugador(self.mem.jugadores.jugador("red"))
+            self.game.panel4.setJugador(self.mem.jugadores.jugador("green"))
         self.retranslateUi(self)
         self.repaint()
         
@@ -74,9 +76,14 @@ class frmMain(QMainWindow, Ui_frmMain):#
                     m.exec_() 
         self.cfgfile.lastupdate=datetime.date.today().toordinal()
         self.cfgfile.save()
+        
     @pyqtSlot()      
     def on_actionSalir_triggered(self):
-        QtCore.QCoreApplication.instance().quit()
+        print("saliendo")
+        qApp.exit()
+        
+    def closeEvent(self,event):
+        self.on_actionSalir_triggered()
   
     def showWdgGame(self):
         self.actionSound.setEnabled(True)
