@@ -8,5 +8,4 @@
 20120915 Calcular cuando pasa de mnos a mas numero atacantes
 20120915 Las traducciones de textos no salen bien traducidas
 20120916 El sonido va fatal en windows
-20120916 El update que lo haga cada 7 dias
 
