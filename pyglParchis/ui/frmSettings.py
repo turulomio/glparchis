@@ -7,32 +7,33 @@ from Ui_frmSettings import *
 from wdgQT import *
 
 class frmSettings(QDialog, Ui_frmSettings):
-    def __init__(self, language, parent = None, name = None, modal = False):
+    def __init__(self, cfgfile, parent = None, name = None, modal = False):
         QDialog.__init__(self, parent)
-        self.language=language
+        self.cfgfile=cfgfile
         self.setupUi(self)
-        if self.language=="en":
+        if self.cfgfile.language=="en":
             self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText("English"))
-        elif self.language=="es":
+        elif self.cfgfile.language=="es":
             self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText(QString(u'Espa\xf1ol')))
-        elif self.language=="fr":
+        elif self.cfgfile.language=="fr":
             self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText(QString(u'Fran\xe7ais')))
-        elif self.language=="ru":
+        elif self.cfgfile.language=="ru":
             self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText(QString(u'\u0420\u0443\u0441\u0441\u043a\u0438\u0439')))#ruso
 
     @pyqtSlot(QString)      
     def on_cmbLanguage_currentIndexChanged(self, stri):
         if stri==QString(u"English"):
-            self.language="en"
+            self.cfgfile.language="en"
         elif stri==QString(u'Espa\xf1ol'):#problemas con unicode en python2
-            self.language="es"
+            self.cfgfile.language="es"
         elif stri==QString(u'Fran\xe7ais'):
-            self.language="fr"
+            self.cfgfile.language="fr"
         elif stri==QString(QString(u'\u0420\u0443\u0441\u0441\u043a\u0438\u0439')):#ruso
-            self.language="ru"
+            self.cfgfile.language="ru"
         
-        libglparchis.cargarQTranslator(self.language)
+        libglparchis.cargarQTranslator(self.cfgfile)
         self.retranslateUi(self)
         
     def on_buttonBox_accepted(self):
         self.on_cmbLanguage_currentIndexChanged(self.cmbLanguage.currentText())
+        self.cfgfile.save()

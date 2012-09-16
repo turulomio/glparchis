@@ -41,7 +41,8 @@ except ImportError:
     sys.exit(1)
 
 from libglparchis import cargarQTranslator
-cargarQTranslator(cfgfile.language)
+cfgfile.qtranslator=QTranslator()
+cargarQTranslator(cfgfile)
 
 frmMain = frmMain(cfgfile) 
 frmMain.show()
