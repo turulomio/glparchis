@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import sys, os, urllib2
+import sys, os, urllib2,  datetime
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from libglparchis import *
@@ -18,8 +18,9 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.setupUi(self)
         self.showMaximized()
         self.game=None
-        print (os.getcwd())
-
+        if datetime.date.today()-datetime.date.fromordinal(self.cfgfile.lastupdate)>=datetime.timedelta(days=7):
+            print ("ACtualizando")
+            self.on_actionUpdates_triggered()
         
     @pyqtSlot()      
     def on_actionAcercaDe_triggered(self):
@@ -71,7 +72,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
                     m.setIcon(QMessageBox.Information)
                     m.setText(self.trUtf8("Dispone de la última versión del juego"))
                     m.exec_() 
-        web.readline()        
+        self.cfgfile.lastupdate=datetime.date.today().toordinal()
+        self.cfgfile.save()
     @pyqtSlot()      
     def on_actionSalir_triggered(self):
         QtCore.QCoreApplication.instance().quit()
