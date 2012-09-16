@@ -18,6 +18,7 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     def assign_mem(self, mem):
         self.mem=mem
+        self.stopthegame=False
         self.table.assign_mem(self.mem)
         self.ogl.assign_mem(self.mem)
         self.ogl.setFocus()
@@ -60,6 +61,8 @@ class wdgGame(QWidget, Ui_wdgGame):
         """Se ejecuta cuando el jugador debe tirar:
                 - Inicio turno
                 - Otras situaciones"""
+        if self.stopthegame==True:
+            return
         if self.mem.jugadoractual.ia==False:#Cuando es IA no debe permitir tirar dado
             self.cmdTirarDado.setEnabled(True)
         self.cmdTirarDado.setIcon(self.mem.dado.qicon(None))

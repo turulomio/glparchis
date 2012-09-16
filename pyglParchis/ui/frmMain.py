@@ -41,6 +41,10 @@ class frmMain(QMainWindow, Ui_frmMain):#
             self.game.panel2.setJugador(self.mem.jugadores.jugador("blue"))
             self.game.panel3.setJugador(self.mem.jugadores.jugador("red"))
             self.game.panel4.setJugador(self.mem.jugadores.jugador("green"))
+            self.game.panel1.repaint()
+            self.game.panel2.repaint()
+            self.game.panel3.repaint()
+            self.game.panel4.repaint()
         self.retranslateUi(self)
         self.repaint()
         
@@ -79,9 +83,12 @@ class frmMain(QMainWindow, Ui_frmMain):#
         
     @pyqtSlot()      
     def on_actionSalir_triggered(self):
-        print("saliendo")
+        if self.game:
+            self.game.stopthegame=True
+        qApp.closeAllWindows()
         qApp.exit()
         
+    @pyqtSlot()   
     def closeEvent(self,event):
         self.on_actionSalir_triggered()
   
@@ -89,7 +96,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.actionSound.setEnabled(True)
         if self.game!=None:
             self.layout.removeWidget(self.game)      
-        self.game=wdgGame()
+        self.game=wdgGame(self)
         self.layout.addWidget(self.game)
         self.game.assign_mem(self.mem)
         self.actionGuardarPartida.setEnabled(True)
@@ -117,7 +124,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def on_actionPartidaNueva_triggered(self):
         self.mem=Mem4()
         self.mem.cfgfile=self.cfgfile
-        initgame=frmInitGame(self.mem)
+        initgame=frmInitGame(self.mem,  self)
         salida=initgame.exec_()
         if salida==QDialog.Accepted:
             self.showWdgGame()

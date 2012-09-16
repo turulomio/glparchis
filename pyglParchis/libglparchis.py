@@ -430,9 +430,8 @@ class Jugador:
                     print (f, "seleccionada por azar comer")
                     return f
         
-        #2 prioridad. Mueve fichas que están más amenazadas y estarán mejor en posruta+,pvo,oemt
-        # -f.numFichasPuedenComer(mem, f.posruta+movimiento) no me dejaba ponerlo en el sorted para ver si mejoraba
-        fichas=sorted(fichas, key=lambda f:f.numFichasPuedenComer(mem, f.posruta),  reverse=True)     
+        #2 prioridad. Mueve fichas que disminuyen en número de amenazas en la nueva posicion
+        fichas=sorted(fichas, key=lambda f:f.numeroAmenazasMejora(mem),  reverse=True)     
         if azar(80):
             for f in fichas:
                 if f.numFichasPuedenComer(mem, f.posruta)>0: #Debe estar amenazada
@@ -448,13 +447,13 @@ class Jugador:
                 if f.casilla().seguro==False and  f.casilla(f.posruta+movimiento).seguro==True:
                     print (f,"seleccionado por azar asegurar")
                     return f
-        
-        #4 Alguna ficha no asegurada puede mover
-        if azar(95):
-            for f in fichas:
-                if f.estaAsegurada()==False:
-                    print(f,"seleccionado por azar ficha no asegurada")
-                    return f
+#        
+#        #4 Alguna ficha no asegurada puede mover
+#        if azar(95):
+#            for f in fichas:
+#                if f.estaAsegurada()==False:
+#                    print(f,"seleccionado por azar ficha no asegurada")
+#                    return f
         
         #5 prioridad Mueve la ultima IA 100%
         fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)
@@ -746,6 +745,14 @@ class Ficha(QGLWidget):
     def casillasPorMover(self):
         return 72-self.posruta
         
+    def numeroAmenazasMejora(self, mem):
+        """Si devuelve un positivo es que ha disminuido en ese valor el numero de fichas que le amenzaban"""
+        movimiento=self.estaAutorizadaAMover(mem)[1]
+        antes=self.numFichasPuedenComer(mem, self.posruta)
+        despues=self.numFichasPuedenComer(mem, self.posruta+movimiento)
+#        print ("Amenazas en casilla {0}: {1}. En casilla {2}: {3}".format(self.casilla(self.posruta).id, antes, self.casilla(self.posruta+movimiento).id, despues))
+        return antes-despues
+
     def numFichasPuedenComer(self, mem, posruta=None):
         """Función que devuelve un array con las fichas que pueden comer a la ficha actual si la colocara en posruta"""
         resultado=0
@@ -1217,7 +1224,7 @@ class Mem4:
         self.retardoturnos=1#En segundos
         self.mediaObject = None
         self.sound=True#Enciende o apaga el sonido
-        self.cfgfile=None#fichero configuraci´on que se crea en glparchis.py
+        self.cfgfile=None#fichero configuración que se crea en glparchis.py
         
         
         self.generar_colores()
@@ -1247,7 +1254,7 @@ class Mem4:
     #        print(os.getcwd(), url)
             self.mediaObject.setCurrentSource(Phonon.MediaSource(url))
             self.mediaObject.play()
-            time.sleep(0.3)
+            time.sleep(0.6)
  
 
 
@@ -1852,5 +1859,5 @@ def cargarQTranslator(cfgfile):
     elif so=="bin.linux":
         cfgfile.qtranslator.load("../share/glparchis/glparchis_" + cfgfile.language + ".qm")
     elif so=="bin.windows":
-        cfgfile.qtranslator.load("glparchis_" + language + ".qm")
+        cfgfile.qtranslator.load("glparchis_" + cfgfile.language + ".qm")
     qApp.installTranslator(cfgfile.qtranslator);

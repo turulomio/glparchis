@@ -134,7 +134,6 @@ class wdgOGL(QGLWidget):
             elif len(objetos)==2:
                 selFicha=object(self.mem, objetos[1])
                 if isinstance(selFicha, Ficha):
-                    print("amenazada por ",  selFicha.numFichasPuedenComer(self.mem))
                     a=frmShowFicha(self, Qt.Popup,  selFicha)
                     a. move(self.mapToGlobal(event.pos())        )
                     a.show()
