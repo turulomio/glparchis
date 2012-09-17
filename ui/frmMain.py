@@ -65,7 +65,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
     @pyqtSlot()      
     def on_actionUpdates_triggered(self):
         try:
-            web=urllib2.urlopen('http://glparchis.svn.sourceforge.net/viewvc/glparchis/pyglParchis/libglparchis.py?revision=225&content-type=text%2Fplain')
+            web=urllib2.urlopen('http://glparchis.svn.sourceforge.net/viewvc/glparchis/pyglParchis/libglparchis.py?content-type=text%2Fplain')
         except:
             web=None
         if web==None:
