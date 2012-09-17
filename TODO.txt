@@ -4,5 +4,8 @@
 20120909 Aprender a poner texturas en objetos usando el show object defrmabout
 20120914Los showficha casilla de la parte derecha deben mostrarse a la izquierda del cursor para que no se salgan
 20120915 Poner instrucciones con F1, muestre las reglas
-
-
+20120916 Comprobar 6, metida, 6,6
+20120916 Cuando acaba el pararbucle no permite volver ajugar
+20120917 Al desactivar panel se debe poder consultar historico y mover listado
+20120917 Antes del sonido comer tarda un poco·
+20120917 Proteger una ficha de menos a mas debe ser del 96

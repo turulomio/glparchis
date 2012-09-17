@@ -71,7 +71,7 @@ class wdgGame(QWidget, Ui_wdgGame):
 #            a=QString()
 #            a.trUTF8("IA Tira el dado")
             self.mem.jugadoractual.log(self.trUtf8("IA Tira el dado"))
-            delay(800)
+            delay(400)
             self.on_cmdTirarDado_clicked()
             delay(800)
         else:
@@ -85,7 +85,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         if self.mem.jugadoractual.ia==True:
             self.mem.jugadoractual.log(self.trUtf8("IA mueve una ficha"))     
             iaficha=self.mem.jugadoractual.IASelectFicha(self.mem)
-            delay(250)
+            delay(400)
             if iaficha==None:
                 self.cambiarJugador()
             else:
@@ -170,7 +170,7 @@ class wdgGame(QWidget, Ui_wdgGame):
     def cambiarJugador(self):          
         self.mem.jugadoractual.log (self.trUtf8("Fin de turno"))
         self.ogl.updateGL()        
-        delay(250)
+        delay(400)
         self.ogl.dado.hide()
         #Comprueba si ha ganado
         if self.mem.jugadoractual.HaGanado()==True:
