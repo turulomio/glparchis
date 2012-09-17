@@ -113,12 +113,12 @@
     <message encoding="UTF-8">
         <location filename="ui/frmAbout.py" line="23"/>
         <source>La página del proyecto se encuentra en &lt;a href=&quot;http://glparchis.sourceforge.net&quot;&gt;http://glparchis.sourceforge.net&lt;/a&gt;&lt;p&gt; &lt;p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>The project web page is at &lt;a href=&quot;http://glparchis.sourceforge.net&quot;&gt;http://glparchis.sourceforge.net&lt;/a&gt;&lt;p&gt; &lt;p&gt;</translation>
     </message>
     <message>
         <location filename="ui/Ui_frmAbout.py" line="251"/>
         <source>Acerca de glParchis</source>
-        <translation type="unfinished"></translation>
+        <translation>About glParchis</translation>
     </message>
 </context>
 <context>
@@ -126,27 +126,27 @@
     <message>
         <location filename="ui/Ui_frmHelp.py" line="65"/>
         <source>Ayuda de glParchis</source>
-        <translation type="unfinished"></translation>
+        <translation>glParchis Help</translation>
     </message>
     <message>
         <location filename="ui/frmHelp.py" line="19"/>
         <source>&lt;h2&gt;Historia&lt;/h2&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;History&lt;/h2&gt;</translation>
     </message>
     <message>
         <location filename="ui/frmHelp.py" line="19"/>
         <source>&lt;h2&gt;Reglas de juego&lt;/h2&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;Game rules&lt;/h2&gt;</translation>
     </message>
     <message>
         <location filename="ui/frmHelp.py" line="19"/>
         <source>&lt;h3&gt;Reglas de juego en glParchis&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;glParchis game rules&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="ui/frmHelp.py" line="19"/>
         <source>&lt;h2&gt;Interfaz de usuario&lt;/h2&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;User interface&lt;/h2&gt;</translation>
     </message>
     <message encoding="UTF-8">
         <location filename="ui/frmHelp.py" line="19"/>

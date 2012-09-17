@@ -95,7 +95,6 @@ class frmMain(QMainWindow, Ui_frmMain):#
         print ("salidendo")
         if self.game:
             self.game.stopthegame=True
-            delay(1000)
             del (self.game)
             self.game=None
         qApp.closeAllWindows()

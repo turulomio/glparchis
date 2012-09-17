@@ -11,6 +11,7 @@ Nueva release
 9) Modificar la pagina web
    - Crear objeto de Noticia
    - Añadir el release a la página
+   - Modificar todos los enlaces ojo no cambiar muchas versiones si hago un replace
    - Subirla a internet con bash publicar.sh
 10) Subirlo a la mula
 10) Comprobar enlaces
