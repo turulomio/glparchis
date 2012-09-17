@@ -2,10 +2,11 @@ XXXXXXXX
 ========
 - Solucionado bug al pulsar la tecla ESCAPE. Ahora sale de la aplicación
 - Añadido apagar / encender sonido
-- Enlaces de ayuda ahora son clickables
+- Enlaces de pantalla ahora son clickables
 - Nueva opción de menú que busca actualizaciones de forma manual o cada 7 dias
 - Ahora el splitter muestra el ogl por defecto
 - Ahora el idioma por defecto es el inglés , pero en settings se puede cambiar el idioma y se graba en fichero de configuración
+- Se ha añadido un pequeño manual de ayuda al juego. Se puede acceder pulsando F1
 
 20120914
 ========
