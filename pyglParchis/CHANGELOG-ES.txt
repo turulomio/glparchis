@@ -7,6 +7,7 @@ XXXXXXXX
 - Ahora el splitter muestra el ogl por defecto
 - Ahora el idioma por defecto es el inglés , pero en settings se puede cambiar el idioma y se graba en fichero de configuración
 - Se ha añadido un pequeño manual de ayuda al juego. Se puede acceder pulsando F1
+- Los popup no se salen de la pantalla.
 
 20120914
 ========
