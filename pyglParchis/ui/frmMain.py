@@ -9,6 +9,7 @@ from wdgGame import *
 from frmAbout import *
 from frmInitGame import *
 from frmSettings import *
+from frmHelp import *
 
             
 class frmMain(QMainWindow, Ui_frmMain):#    
@@ -19,12 +20,17 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.showMaximized()
         self.game=None
         if datetime.date.today()-datetime.date.fromordinal(self.cfgfile.lastupdate)>=datetime.timedelta(days=7):
-            print ("ACtualizando")
+            print ("Actualizando")
             self.on_actionUpdates_triggered()
         
     @pyqtSlot()      
     def on_actionAcercaDe_triggered(self):
         fr=frmAbout(self,"frmabout")
+        fr.open()
+                
+    @pyqtSlot()      
+    def on_actionHelp_triggered(self):
+        fr=frmHelp(self,"frmHelp")
         fr.open()
         
     @pyqtSlot()      
@@ -58,7 +64,10 @@ class frmMain(QMainWindow, Ui_frmMain):#
         
     @pyqtSlot()      
     def on_actionUpdates_triggered(self):
-        web=urllib2.urlopen('http://glparchis.svn.sourceforge.net/viewvc/glparchis/pyglParchis/libglparchis.py?revision=225&content-type=text%2Fplain')
+        try:
+            web=urllib2.urlopen('http://glparchis.svn.sourceforge.net/viewvc/glparchis/pyglParchis/libglparchis.py?revision=225&content-type=text%2Fplain')
+        except:
+            web=None
         if web==None:
             m=QMessageBox()
             m.setIcon(QMessageBox.Information)

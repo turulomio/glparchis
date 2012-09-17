@@ -18,12 +18,10 @@ class frmAbout(QDialog, Ui_frmAbout):
         QDialog.__init__(self, parent)
         if name:
             self.setObjectName(name)
-        self.setModal(True)
         self.setupUi(self)
-        self.showMaximized()
         self.lblVersion.setText(self.trUtf8("Versión %1").arg(libglparchis.version))
         self.textBrowser.setHtml(
-            self.trUtf8("La página del proyecto se encuentra en <a targe='_blank' href=\"http://glparchis.sourceforge.net\">http://glparchis.sourceforge.net</a><p> <p>")+
+            self.trUtf8("La página del proyecto se encuentra en <a href=\"http://glparchis.sourceforge.net\">http://glparchis.sourceforge.net</a><p> <p>")+
             self.trUtf8("Este programa ha sido desarrollado por Mariano Muñoz.<p>")+
             self.trUtf8("Ha sido traducido por:")+
             u"<ul><li>Mariano Muñoz</li><li>Nadejda Adam</li></ul><p>\n"+
@@ -31,6 +29,7 @@ class frmAbout(QDialog, Ui_frmAbout):
             u"<ul><li>English</li><li>Fran\xe7ais</li><li>Espa\xf1ol</li><li>\u0420\u0443\u0441\u0441\u043a\u0438\u0439</li></ul><p>"+
             self.trUtf8("Los avatares han sido extraídos de la página <a href=\"http://www.nobleavatar.com/\">http://www.nobleavatar.com/</a><p>"))
         self.connect(self.cmd, SIGNAL("clicked()"), self.on_cmd_clicked)
+        
     @pyqtSignature("")
     def on_cmd_clicked(self):
         """

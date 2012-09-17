@@ -11,6 +11,7 @@ PREFIXAPPLICATIONS=$(DESTDIR)/share/applications
 all: compile install
 compile:
 	pyuic4 ui/frmAbout.ui > ui/Ui_frmAbout.py
+	pyuic4 ui/frmHelp.ui > ui/Ui_frmHelp.py
 	pyuic4 ui/frmInitGame.ui > ui/Ui_frmInitGame.py
 	pyuic4 ui/frmMain.ui > ui/Ui_frmMain.py
 	pyuic4 ui/frmSettings.ui > ui/Ui_frmSettings.py

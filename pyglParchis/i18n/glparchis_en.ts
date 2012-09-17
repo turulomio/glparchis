@@ -51,74 +51,147 @@
 <context>
     <name>frmAbout</name>
     <message>
-        <location filename="ui/Ui_frmAbout.py" line="256"/>
+        <location filename="ui/Ui_frmAbout.py" line="258"/>
         <source>S&amp;alir</source>
         <translation>E&amp;xit</translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmAbout.py" line="252"/>
+        <location filename="ui/Ui_frmAbout.py" line="254"/>
         <source>Licencia</source>
         <translation>License</translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmAbout.py" line="255"/>
+        <location filename="ui/Ui_frmAbout.py" line="257"/>
         <source>Objetos</source>
         <translation>Objects</translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmAbout.py" line="250"/>
+        <location filename="ui/Ui_frmAbout.py" line="252"/>
         <source>glParchis</source>
         <translation>glParchis</translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmAbout.py" line="253"/>
+        <location filename="ui/Ui_frmAbout.py" line="255"/>
         <source>Qt</source>
         <translation>Qt</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmAbout.py" line="254"/>
+        <location filename="ui/Ui_frmAbout.py" line="256"/>
         <source>Haga doble click en la imágen para ver los distintos objetos</source>
         <translation>Double click in the view to see the different objects</translation>
     </message>
-    <message>
-        <location filename="ui/Ui_frmAbout.py" line="249"/>
-        <source>Acerca de</source>
-        <translation>About</translation>
-    </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmAbout.py" line="251"/>
+        <location filename="ui/Ui_frmAbout.py" line="253"/>
         <source>Créditos</source>
         <translation>Credits</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmAbout.py" line="24"/>
+        <location filename="ui/frmAbout.py" line="22"/>
         <source>Versión %1</source>
         <translation>Version %1</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmAbout.py" line="25"/>
-        <source>La página del proyecto se encuentra en &lt;a targe=&apos;_blank&apos; href=&quot;http://glparchis.sourceforge.net&quot;&gt;http://glparchis.sourceforge.net&lt;/a&gt;&lt;p&gt; &lt;p&gt;</source>
-        <translation>The project web page is at &lt;a targe=&apos;_blank&apos; href=&quot;http://glparchis.sourceforge.net&quot;&gt;http://glparchis.sourceforge.net&lt;/a&gt;&lt;p&gt; &lt;p&gt; </translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmAbout.py" line="25"/>
+        <location filename="ui/frmAbout.py" line="23"/>
         <source>Este programa ha sido desarrollado por Mariano Muñoz.&lt;p&gt;</source>
         <translation>This game has been developed by Mariano Muñoz &lt;p&gt;</translation>
     </message>
     <message>
-        <location filename="ui/frmAbout.py" line="25"/>
+        <location filename="ui/frmAbout.py" line="23"/>
         <source>Ha sido traducido por:</source>
         <translation>It has been translated by:</translation>
     </message>
     <message>
-        <location filename="ui/frmAbout.py" line="25"/>
+        <location filename="ui/frmAbout.py" line="23"/>
         <source>a los siguientes idiomas&lt;p&gt;</source>
         <translation>to the following languages&lt;p&gt;</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmAbout.py" line="25"/>
+        <location filename="ui/frmAbout.py" line="23"/>
         <source>Los avatares han sido extraídos de la página &lt;a href=&quot;http://www.nobleavatar.com/&quot;&gt;http://www.nobleavatar.com/&lt;/a&gt;&lt;p&gt;</source>
         <translation>Avatars have been generated at &lt;a href=&quot;http://www.nobleavatar.com/&quot;&gt;http://www.nobleavatar.com/&lt;/a&gt;&lt;p&gt; </translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmAbout.py" line="23"/>
+        <source>La página del proyecto se encuentra en &lt;a href=&quot;http://glparchis.sourceforge.net&quot;&gt;http://glparchis.sourceforge.net&lt;/a&gt;&lt;p&gt; &lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/Ui_frmAbout.py" line="251"/>
+        <source>Acerca de glParchis</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>frmHelp</name>
+    <message>
+        <location filename="ui/Ui_frmHelp.py" line="65"/>
+        <source>Ayuda de glParchis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>&lt;h2&gt;Historia&lt;/h2&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>&lt;h2&gt;Reglas de juego&lt;/h2&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>&lt;h3&gt;Reglas de juego en glParchis&lt;/h3&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>&lt;h2&gt;Interfaz de usuario&lt;/h2&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>Hay muchas variantes del juego, dependiendo fundamentalmente del lugar en el que se juega. España ha sido uno de los países en los que más arraigo ha tenido el juego. Es por ello que glParchis utiliza las normas más comunes de juego en España</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>Cuando una ficha llega a la casilla final, el jugador obtiene el derecho de mover 10 puntos.&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>Cuando dos fichas del mismo color están en una misma casilla, se produce una barrera. Este hecho impide que el resto de jugadores puedan avanzar por ella. El jugador está obligado a abrir la barrera cuando obtiene un 6 con el dado.&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>Cuando un jugador tiene todas sus fichas fuera de casa (casilla inicial) y obtiene un 6, contará 7 casillas de movimiento en el tablero.&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>El juego del Parchís es una variación del Parchisi, un juego que tiene su origen en la India (Siglo XVI). Más información puede obtenerla en la &lt;a href=&apos;http://es.wikipedia.org/wiki/Parchis&apos;&gt;Wikipedia&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>Cada jugador dispone de 4 fichas que deberá mover por el tablero usando un dado y siguiendo un turno entre los distintos jugadores.&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>Cada ficha partirá de una casilla inicial, de la que sólo podrá salir con un 5. Recorrerá una ruta con un número de casillas igual para todos los jugadores, que termina en una rampa de llegada de su color y una casilla final. Este movimiento lo realizará en sentido contrario a las agujas del reloj&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>Existen unas casillas seguras (casillas de color y grises), en las que dos fichas de distintos jugadores pueden convivir. En el resto (casillas blancas), la ficha que llega en segundo lugar come (manda a la casilla inicial) a la que llegó en primer lugar y obtiene el derecho de mover 20 casillas.&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>Existe un splitter entre los paneles de usuario y el tablero de parchís, que podrá ser movido según las preferencias del usuario. En algunas resoluciones de pantalla, al empezar el juego, el tablero aparece en negro hasta que se utiliza el splitter para darle el tamaño mínimo necesario.&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context encoding="UTF-8">
@@ -322,22 +395,22 @@
         <translation>Sound switched on</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="57"/>
+        <location filename="ui/frmMain.py" line="63"/>
         <source>Sonido apagado</source>
         <translation>Sound switched off</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="65"/>
+        <location filename="ui/frmMain.py" line="74"/>
         <source>No se ha podido comprobar si hay actualizaciones. Inténtelo más tarde.</source>
         <translation>I couldn&apos;t check for new update. Try it later.</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="74"/>
+        <location filename="ui/frmMain.py" line="83"/>
         <source>Hay una nueva versión del programa. Bájatela de &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt;</source>
         <translation>There is a new version of the game. Download it from &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt; </translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="79"/>
+        <location filename="ui/frmMain.py" line="88"/>
         <source>Dispone de la última versión del juego</source>
         <translation>You have the last version of the game</translation>
     </message>

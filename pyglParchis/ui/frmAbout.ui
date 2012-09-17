@@ -2,20 +2,26 @@
 <ui version="4.0">
  <class>frmAbout</class>
  <widget class="QDialog" name="frmAbout">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1085</width>
-    <height>849</height>
+    <width>548</width>
+    <height>606</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Acerca de</string>
+   <string>Acerca de glParchis</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../images/glparchis.qrc">
     <normaloff>:/glparchis/ficharoja.png</normaloff>:/glparchis/ficharoja.png</iconset>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
   </property>
   <layout class="QVBoxLayout">
    <item>
@@ -57,7 +63,7 @@
      <item>
       <widget class="QTabWidget" name="tab">
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tabGLParchis">
         <attribute name="title">
