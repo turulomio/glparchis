@@ -1254,8 +1254,8 @@ class Mem4:
     #        print(os.getcwd(), url)
             self.mediaObject.setCurrentSource(Phonon.MediaSource(url))
             self.mediaObject.play()
-            time.sleep(0.6)
- 
+            time.sleep(0.4)
+            QCoreApplication.processEvents();    
 
 
     def generar_colores(self):

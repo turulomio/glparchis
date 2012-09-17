@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>414</height>
+    <width>1085</width>
+    <height>849</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,7 +57,7 @@
      <item>
       <widget class="QTabWidget" name="tab">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tabGLParchis">
         <attribute name="title">
@@ -81,7 +81,7 @@
          <item>
           <widget class="QTextBrowser" name="txtLicense">
            <property name="lineWrapMode">
-            <enum>QTextEdit::NoWrap</enum>
+            <enum>QTextEdit::WidgetWidth</enum>
            </property>
            <property name="lineWrapColumnOrWidth">
             <number>80</number>

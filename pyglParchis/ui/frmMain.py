@@ -83,20 +83,27 @@ class frmMain(QMainWindow, Ui_frmMain):#
         
     @pyqtSlot()      
     def on_actionSalir_triggered(self):
+        print ("salidendo")
         if self.game:
             self.game.stopthegame=True
+            delay(1000)
+            del (self.game)
+            self.game=None
         qApp.closeAllWindows()
         qApp.exit()
+        sys.exit(0)
         
-    @pyqtSlot()   
+    @pyqtSlot(QEvent)   
     def closeEvent(self,event):
         self.on_actionSalir_triggered()
   
     def showWdgGame(self):
         self.actionSound.setEnabled(True)
         if self.game!=None:
-            self.layout.removeWidget(self.game)      
+            self.layout.removeWidget(self.game)    
+            del self.game 
         self.game=wdgGame(self)
+        self.game.stopthegame=False
         self.layout.addWidget(self.game)
         self.game.assign_mem(self.mem)
         self.actionGuardarPartida.setEnabled(True)
