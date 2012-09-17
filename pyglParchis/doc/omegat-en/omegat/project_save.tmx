@@ -30,6 +30,22 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Ahora el idioma por defecto es el inglés , pero en settings se puede cambiar el idioma y se graba en fichero de configuración</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120917T133226Z">
+        <seg>- English is the default language. You can change the language at Settings. Settings will be saved for the next execution</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Ahora el splitter muestra el ogl por defecto</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120917T133133Z">
+        <seg>- The splitter now shows the board by default</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- Ahora se muestra los primeros movimientos cuando empieza un jugador de AI</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120910T205840Z">
@@ -46,10 +62,26 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Añadido apagar / encender sonido</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120917T133019Z">
+        <seg>- Switch off / on sound added</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- El texto del dado cambia de color según el jugador actual</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120910T205708Z">
         <seg>- Dice text changes color to the current player color</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Enlaces de pantalla ahora son clickables</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120917T133039Z">
+        <seg>- Screen hyperlinks are now clickable.</seg>
       </tuv>
     </tu>
     <tu>
@@ -62,10 +94,26 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Los popup no se salen de la pantalla.</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120917T133311Z">
+        <seg>- All popups are now inside the screen</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- Mejorada la inteligencia artificial de los jugadores virtuales, con un porcentaje de acierto en las decisiones</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120910T205910Z">
         <seg>- IA improved using probabilities.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Nueva opción de menú que busca actualizaciones de forma manual o cada 7 dias</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120917T133111Z">
+        <seg>- New menu option to look for update manually or each 7 days</seg>
       </tuv>
     </tu>
     <tu>
@@ -90,6 +138,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120910T205931Z">
         <seg>- A game timer has been added</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Se ha añadido un pequeño manual de ayuda al juego.</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120917T133245Z">
+        <seg>- A game handbook have been added</seg>
       </tuv>
     </tu>
     <tu>
@@ -122,6 +178,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120914T150859Z">
         <seg>- Solved bug when pressing cancel at initial dialog</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Solucionado bug al pulsar la tecla ESCAPE.</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120917T132942Z">
+        <seg>- Bug solved when pressing ESCAPE.</seg>
       </tuv>
     </tu>
     <tu>
@@ -238,6 +302,14 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>20120917</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120917T132856Z">
+        <seg>20120917</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>=======</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T065856Z">
@@ -274,6 +346,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20111102T130323Z">
         <seg>=============================== </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Ahora sale de la aplicación</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120917T132956Z">
+        <seg>Now it exists the game</seg>
       </tuv>
     </tu>
     <tu>
@@ -646,6 +726,14 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>Se puede acceder pulsando F1</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120917T133254Z">
+        <seg>To read press F1</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>Si</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T074719Z">
@@ -770,6 +858,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120914T150924Z">
         <seg>glparchis-20120914 &lt;==&gt;  svn -r 224 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>glparchis-20120917 &lt;==&gt;  svn -r 241 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120917T133317Z">
+        <seg>glparchis-20120917 &lt;==&gt;  svn -r 241 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
       </tuv>
     </tu>
     <tu>

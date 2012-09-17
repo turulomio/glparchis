@@ -1,4 +1,4 @@
 glparchis-20120902 <==>  svn -r 187 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis
 glparchis-20120910 <==>  svn -r 209 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis
 glparchis-20120914 <==>  svn -r 224 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis
-
+glparchis-20120917 <==>  svn -r 241 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis

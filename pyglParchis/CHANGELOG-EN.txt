@@ -1,3 +1,14 @@
+20120917
+======== 
+- Bug solved when pressing ESCAPE. Now it exists the game
+- Switch off / on sound added
+- Screen hyperlinks are now clickable.
+- New menu option to look for update manually or each 7 days
+- The splitter now shows the board by default
+- English is the default language. You can change the language at Settings. Settings will be saved for the next execution
+- A game handbook have been added To read press F1
+- All popups are now inside the screen
+
 20120914
 ======== 
 - Windows and Linux binary distribution

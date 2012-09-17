@@ -1,4 +1,4 @@
-XXXXXXXX
+20120917
 ========
 - Solucionado bug al pulsar la tecla ESCAPE. Ahora sale de la aplicación
 - Añadido apagar / encender sonido
