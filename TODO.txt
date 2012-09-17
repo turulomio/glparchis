@@ -2,6 +2,3 @@
 20120909 Se debe contabilizar el calculo de comer cuando puedo contar 10 por ficha en casa, también si hay barreras o 
                     si una barrera es la que quiere comer a una ficha, no debería contabilizar doble
 20120909 Aprender a poner texturas en objetos usando el show object defrmabout
-20120914Los showficha casilla de la parte derecha deben mostrarse a la izquierda del cursor para que no se salgan
-20120916 Comprobar 6, metida, 6,6
-

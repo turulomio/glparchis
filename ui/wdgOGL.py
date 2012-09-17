@@ -121,6 +121,14 @@ class wdgOGL(QGLWidget):
                 
         def processright(nameStack):
             """nameStack tiene la estructura minDepth, maxDepth, names"""
+            def placePopUp():
+                resultado=QPoint(event.x(), event.y())
+                if event.x()>self.width()-a.width():
+                    resultado.setX(event.x()-a.width())
+                if event.y()>self.height()-a.height():
+                    resultado.setY(event.y()-a.height())
+                return resultado
+            ############################333
             objetos=[]
             for minDepth, maxDepth, names in nameStack:
                 if len(names)==1:
@@ -129,13 +137,13 @@ class wdgOGL(QGLWidget):
                 selCasilla=object(self.mem, objetos[0])
                 if isinstance(selCasilla, Casilla):
                     a=frmShowCasilla(self,  Qt.Popup,  selCasilla)
-                    a. move(self.mapToGlobal(event.pos())        )
+                    a. move(self.mapToGlobal(placePopUp() ))
                     a.show()
             elif len(objetos)==2:
                 selFicha=object(self.mem, objetos[1])
                 if isinstance(selFicha, Ficha):
                     a=frmShowFicha(self, Qt.Popup,  selFicha)
-                    a. move(self.mapToGlobal(event.pos())        )
+                    a. move(self.mapToGlobal(placePopUp()))
                     a.show()
                 
         #########################################
