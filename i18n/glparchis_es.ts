@@ -469,107 +469,107 @@
 <context>
     <name>wdgGame</name>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="411"/>
+        <location filename="ui/Ui_wdgGame.py" line="407"/>
         <source>Juego</source>
         <translation>Juego</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_wdgGame.py" line="553"/>
+        <location filename="ui/Ui_wdgGame.py" line="549"/>
         <source>Estadísticas</source>
         <translation>Estadísticas</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_wdgGame.py" line="413"/>
+        <location filename="ui/Ui_wdgGame.py" line="409"/>
         <source>Número de tiradas</source>
         <translation>Número de tiradas</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="415"/>
+        <location filename="ui/Ui_wdgGame.py" line="411"/>
         <source>Dado saca 1</source>
         <translation>Dado saca 1</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="417"/>
+        <location filename="ui/Ui_wdgGame.py" line="413"/>
         <source>Dado saca 2</source>
         <translation>Dado saca 2</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="419"/>
+        <location filename="ui/Ui_wdgGame.py" line="415"/>
         <source>Dado saca 3</source>
         <translation>Dado saca 3</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="421"/>
+        <location filename="ui/Ui_wdgGame.py" line="417"/>
         <source>Dado saca 4</source>
         <translation>Dado saca 4</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="423"/>
+        <location filename="ui/Ui_wdgGame.py" line="419"/>
         <source>Dado saca 5</source>
         <translation>Dado saca 5</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="425"/>
+        <location filename="ui/Ui_wdgGame.py" line="421"/>
         <source>Dado saca 6</source>
         <translation>Dado saca 6</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="427"/>
+        <location filename="ui/Ui_wdgGame.py" line="423"/>
         <source>Fichas comidas por mi</source>
         <translation>Fichas comidas por mi</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="429"/>
+        <location filename="ui/Ui_wdgGame.py" line="425"/>
         <source>Fichas comidas por otro</source>
         <translation>Fichas comidas por otro</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="431"/>
+        <location filename="ui/Ui_wdgGame.py" line="427"/>
         <source>3 seises seguidos</source>
         <translation>3 seises seguidos</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="437"/>
+        <location filename="ui/Ui_wdgGame.py" line="433"/>
         <source>Amarillo</source>
         <translation>Amarillo</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="439"/>
+        <location filename="ui/Ui_wdgGame.py" line="435"/>
         <source>Azul</source>
         <translation>Azul</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="441"/>
+        <location filename="ui/Ui_wdgGame.py" line="437"/>
         <source>Rojo</source>
         <translation>Rojo</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="443"/>
+        <location filename="ui/Ui_wdgGame.py" line="439"/>
         <source>Verde</source>
         <translation>Verde</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="551"/>
+        <location filename="ui/Ui_wdgGame.py" line="547"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="445"/>
+        <location filename="ui/Ui_wdgGame.py" line="441"/>
         <source>Todos</source>
         <translation>Todos</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="410"/>
+        <location filename="ui/Ui_wdgGame.py" line="406"/>
         <source>Tira el dado</source>
         <translation>Tira el dado</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_wdgGame.py" line="433"/>
+        <location filename="ui/Ui_wdgGame.py" line="429"/>
         <source>Puntuación</source>
         <translation>Puntuación</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="435"/>
+        <location filename="ui/Ui_wdgGame.py" line="431"/>
         <source>Tiempo de partida</source>
         <translation>Tiempo de partida</translation>
     </message>
@@ -645,17 +645,17 @@
 <context>
     <name>wdgUserPanel</name>
     <message>
-        <location filename="ui/Ui_wdgUserPanel.py" line="113"/>
+        <location filename="ui/Ui_wdgUserPanel.py" line="118"/>
         <source>Form</source>
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgUserPanel.py" line="114"/>
+        <location filename="ui/Ui_wdgUserPanel.py" line="119"/>
         <source>Jugador</source>
         <translation>Jugador</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgUserPanel.py" line="115"/>
+        <location filename="ui/Ui_wdgUserPanel.py" line="120"/>
         <source>Muestra el historial</source>
         <translation>Muestra el historial</translation>
     </message>

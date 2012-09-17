@@ -36,7 +36,10 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         label.setPixmap(self.jugador.dado.qpixmap(self.jugador.tiradaturno.ultimoValor()))
 
     def setActivated(self, bool):
-        self.setEnabled(bool)
+        self.lbl1.setEnabled(bool)
+        self.lbl2.setEnabled(bool)
+        self.lbl3.setEnabled(bool)
+        self.lblAvatar.setEnabled(bool)
         if bool==True:
             self.jugador.logturno=[]
         self.show()

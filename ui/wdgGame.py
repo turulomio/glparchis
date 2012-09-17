@@ -70,16 +70,16 @@ class wdgGame(QWidget, Ui_wdgGame):
 #            self.mem.jugadoractual.log(self.trUtf8("IA Tira el dado"))
 #            a=QString()
 #            a.trUTF8("IA Tira el dado")
-            self.mem.jugadoractual.log(self.trUtf8("IA Tira el dado"))
+            self.mem.jugadoractual.log(self.trUtf8(u"IA Tira el dado"))
             delay(400)
             self.on_cmdTirarDado_clicked()
             delay(800)
         else:
-            self.mem.jugadoractual.log(self.trUtf8("Tire el dado"))
+            self.mem.jugadoractual.log(self.trUtf8(u"Tire el dado"))
 
        
     def on_JugadorDebeMover(self):
-        u"""Función que se ejecuta cuando un jugador debe mover
+        """Función que se ejecuta cuando un jugador debe mover
         Aquí se evalua si puede mover devolviendo True en caso positivo y """
         self.cmdTirarDado.setEnabled(False)
         if self.mem.jugadoractual.ia==True:
@@ -151,7 +151,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta+movimiento) or self.mem.selFicha.mete(self.mem.selFicha.posruta+movimiento):    
             self.ogl.updateGL()
             self.mem.play("comer")            
-            delay(800)
+            delay(600)
             if self.mem.jugadoractual.fichas.algunaEstaAutorizadaAmover(self.mem)==True:
                 self.on_JugadorDebeMover()
                 return
