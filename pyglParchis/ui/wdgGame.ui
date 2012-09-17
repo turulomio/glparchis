@@ -39,9 +39,6 @@
        </item>
        <item>
         <widget class="wdgUserPanel" name="panel1" native="true">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -58,9 +55,6 @@
        </item>
        <item>
         <widget class="wdgUserPanel" name="panel2" native="true">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -77,9 +71,6 @@
        </item>
        <item>
         <widget class="wdgUserPanel" name="panel3" native="true">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -96,9 +87,6 @@
        </item>
        <item>
         <widget class="wdgUserPanel" name="panel4" native="true">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
            <horstretch>0</horstretch>

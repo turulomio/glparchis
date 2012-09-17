@@ -52,10 +52,6 @@ cp      Makefile \
 cp      i18n/*.ts \
         $DIRSRCLINUX/i18n
 
-cp 	doc/*.odt \
-	doc/*.odg \
-        $DIRSRCLINUX/doc
-
 cp 	ui/frm* \
 	ui/wdg* \
 	ui/q* \
@@ -137,6 +133,7 @@ sed -i -e 's:so="src.windows":so="bin.linux":' $DIRSRCWINDOWS/bin/glparchis.py
 python $DIR/pyinstaller/pyinstaller.py -o $DIRBINLINUX -i $DIRSRCWINDOWS/share/glparchis/ficharoja.ico -w -p $DIRSRCWINDOWS/lib/glparchis $DIRSRCWINDOWS/bin/glparchis.py
 echo "Execute glparchis and play" > $DIRBINLINUX/dist/README.txt
 cp $DIRSRCLINUX/sounds/*.wav $DIRBINLINUX/dist/glparchis
+cp $DIRSRCWINDOWS/share/glparchis/*.qm $DIRBINLINUX/dist/glparchis
 mkdir $DIRBINLINUX/dist/glparchis/phonon_backend/
 cp /usr/lib64/kde4/plugins/phonon_backend/phonon_gstreamer.so $DIRBINLINUX/dist/glparchis/phonon_backend/
 echo "  * Comprimiendo binario linux..."

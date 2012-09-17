@@ -2,9 +2,6 @@
 <ui version="4.0">
  <class>wdgUserPanel</class>
  <widget class="QWidget" name="wdgUserPanel">
-  <property name="enabled">
-   <bool>false</bool>
-  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -37,6 +34,9 @@
   <layout class="QVBoxLayout">
    <item>
     <widget class="QGroupBox" name="grp">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="title">
       <string>Jugador</string>
      </property>
@@ -47,6 +47,9 @@
          <layout class="QVBoxLayout" name="_3">
           <item>
            <widget class="QLabel" name="lblAvatar">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="palette">
              <palette>
               <active>
@@ -102,6 +105,9 @@
            <layout class="QHBoxLayout" name="_4">
             <item>
              <widget class="QLabel" name="lbl1">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -121,6 +127,9 @@
             </item>
             <item>
              <widget class="QLabel" name="lbl2">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -140,6 +149,9 @@
             </item>
             <item>
              <widget class="QLabel" name="lbl3">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -165,6 +177,9 @@
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
            <widget class="QListWidget" name="lst">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="font">
              <font>
               <pointsize>8</pointsize>

@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*- 
 from OpenGL import GL,  GLU
-import os,  random,   ConfigParser,  datetime,  subprocess, time
+import os,  random,   ConfigParser,  datetime,  time
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
@@ -336,7 +336,7 @@ class Jugador:
     def log(self, l):
 #        self.inittime=datetime.timedelta(days=0)#inittime actualmente esta en mem y no quiero pasrlo como parametro
 #        l=str(datetime.datetime.now()-self.inittime)[2:-7]+ " " + l
-        l="{0} {1}".format(str(datetime.datetime.now().time()).split(".")[0], l)
+        l=u"{0} {1}".format(str(datetime.datetime.now().time()).split(".")[0], l)
         self.logturno.append( l)
         self.loghistorico.append(l)
         
@@ -432,7 +432,7 @@ class Jugador:
         
         #2 prioridad. Mueve fichas que disminuyen en número de amenazas en la nueva posicion
         fichas=sorted(fichas, key=lambda f:f.numeroAmenazasMejora(mem),  reverse=True)     
-        if azar(80):
+        if azar(95):
             for f in fichas:
                 if f.numFichasPuedenComer(mem, f.posruta)>0: #Debe estar amenazada
                     print (f, "seleccionada por azar al mejorar numero de fichas la pueden comer")
@@ -1234,15 +1234,13 @@ class Mem4:
         self.generar_fichas()
         
         self.circulo=Circulo(self, 68)
+        parent=QCoreApplication.instance()
+        self.mediaObject = Phonon.MediaObject(parent)
+        audioOutput = Phonon.AudioOutput(Phonon.MusicCategory, parent)
+        Phonon.createPath(self.mediaObject, audioOutput)
 
     def play(self, sound):
-        def delayedInit():
-            if not self.mediaObject:
-                parent=QCoreApplication.instance()
-                self.mediaObject = Phonon.MediaObject(parent)
-                audioOutput = Phonon.AudioOutput(Phonon.MusicCategory, parent)
-                Phonon.createPath(self.mediaObject, audioOutput)
-        delayedInit()
+
         if self.sound==True:
             so=os.environ['glparchisso']
             if so=="bin.windows" or so=="bin.linux":
@@ -1856,8 +1854,6 @@ def cargarQTranslator(cfgfile):
         cfgfile.qtranslator.load("/usr/share/glparchis/glparchis_" + cfgfile.language + ".qm")
     elif so=="src.windows":
         cfgfile.qtranslator.load("../share/glparchis/glparchis_" + cfgfile.language + ".qm")
-    elif so=="bin.linux":
-        cfgfile.qtranslator.load("../share/glparchis/glparchis_" + cfgfile.language + ".qm")
-    elif so=="bin.windows":
+    elif so=="bin.windows" or so=="bin.linux":
         cfgfile.qtranslator.load("glparchis_" + cfgfile.language + ".qm")
     qApp.installTranslator(cfgfile.qtranslator);
