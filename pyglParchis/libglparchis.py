@@ -5,7 +5,7 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.phonon import Phonon
-version="20120917"
+version="20120917+"
 def q2s(q):
     """Qstring to python string en utf8"""
     return str(QString.toUtf8(q))
