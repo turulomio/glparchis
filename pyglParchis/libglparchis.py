@@ -987,6 +987,8 @@ class Casilla(QGLWidget):
         self.seguro=seguro# No se debe usar directamente ya que en ruta 1 solo es seguro si el jugador no tiene en casa
         self.buzon=[None]*self.maxfichas #Se crean los huecos y se juega con ellos para mantener la posicion
         self.oglname=self.id+17#Nombre usado para pick por opengl
+        self.texturas=[]
+        self.texturas.append(self.bindTexture(QPixmap(':/glparchis/keke.png')))
         
     def __repr__(self):
         return ("Casilla {0} con {1} fichas dentro".format(self.id, self.buzon_numfichas()))
@@ -1026,10 +1028,23 @@ class Casilla(QGLWidget):
     def dibujar(self):                            
         def quad(p1, p2, p3, p4, color):
             self.qglColor(color.qcolor())
+#            GL.glNormal3f(1, 1, 1)
+            GL.glTexCoord2f(0.0,0.0)
             GL.glVertex3d(p1[0], p1[1], p1[2])
+            GL.glTexCoord2f(1.0,0.0)
             GL.glVertex3d(p2[0], p2[1], p2[2])
+            GL.glTexCoord2f(1.0,1.0)
             GL.glVertex3d(p3[0], p3[1], p3[2])
+            GL.glTexCoord2f(0.0,1.0)
             GL.glVertex3d(p4[0], p4[1], p4[2])
+            """"            GL.glTexCoord2f(0.0,0.0)
+            GL.glVertex3d(0, 0, 10)
+            GL.glTexCoord2f(1.0,0.0)
+            GL.glVertex3d(10, 0, 10)
+            GL.glTexCoord2f(10.0,1.0)
+            GL.glVertex3d(10, 10, 10)
+            GL.glTexCoord2f(0.0,1.0)
+            GL.glVertex3d(0, 10, 10)"""
             
         def border(a, b, c, d, color):    
             GL.glBegin(GL.GL_LINE_LOOP)
@@ -1073,8 +1088,16 @@ class Casilla(QGLWidget):
             GL.glPushMatrix()
             GL.glPushName(self.oglname);
             GL.glTranslated(self.position[0],self.position[1],self.position[2] )
-            GL.glRotated(self.rotate, 0, 0, 1 )
+            GL.glRotated(self.rotate, 0, 0, 1 )            
+            GL.glEnable(GL.GL_TEXTURE_2D);
+            texturas=self.bindTexture(QPixmap(':/glparchis/keke.png'))
+            GL.glBindTexture(GL.GL_TEXTURE_2D, texturas)
 
+            GL.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, GL.GL_LINEAR_MIPMAP_LINEAR);
+            GL.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, GL.GL_LINEAR);
+            GL.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, GL.GL_CLAMP);
+            GL.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, GL.GL_CLAMP);
+            print ("·aholra")
             GL.glBegin(GL.GL_QUADS)
             v1 = (0, 0, 0)
             v2 = (7, 0, 0)
@@ -1251,9 +1274,8 @@ class Casilla(QGLWidget):
                 resultado.append((i, f))
         return resultado
 
-class Mem4:
-    def __init__(self):
-#        self.dic_jugadores={}#Lista cuya posicion coincide con el id del objeto jugador que lleva dentro
+class Mem:
+    def __init__(self):     
         self.dic_casillas={}#Lista cuya posicion coincide con el id del objeto jugador que lleva dentro
         self.dic_fichas={}
         self.dic_colores={}
@@ -1263,19 +1285,10 @@ class Mem4:
         self.jugadoractual=None
         self.selFicha=None
         self.inittime=None#Tiempo inicio partida
-        self.retardoturnos=1#En segundos
+        self.cfgfile=None#fichero configuración que se crea en glparchis.py
+           
         self.mediaObject = None
         self.sound=True#Enciende o apaga el sonido
-        self.cfgfile=None#fichero configuración que se crea en glparchis.py
-        
-        
-        self.generar_colores()
-        self.generar_jugadores()
-        self.generar_casillas()
-        self.generar_rutas()
-        self.generar_fichas()
-        
-        self.circulo=Circulo(self, 68)
         parent=QCoreApplication.instance()
         self.mediaObject = Phonon.MediaObject(parent)
         audioOutput = Phonon.AudioOutput(Phonon.MusicCategory, parent)
@@ -1297,6 +1310,61 @@ class Mem4:
             time.sleep(0.4)
             QCoreApplication.processEvents();    
 
+    def colores(self, name=None):
+        if name==None:
+            return dic2list(self.dic_colores)
+        else:
+            return self.dic_colores[str(name)]
+            
+    def rutas(self, name=None):
+        if name==None:
+            return dic2list(self.dic_rutas)
+        else:
+            return self.dic_rutas[str(name)]
+
+        
+    def generar_fichas(self):
+        """Debe generarse despuñes de jugadores"""
+        id=0
+        for c in self.colores():
+            for i in range(4):
+                self.dic_fichas[str(id)]=Ficha(id, i, c, self.jugadores.jugador(c.name), self.rutas(c.name))
+                self.jugadores.jugador(c.name).fichas.arr.append(self.dic_fichas[str(id)])#Rellena el SetFichas del jugador
+                id=id+1
+
+            
+    def generar_jugadores(self):
+        for c in self.colores():
+            j=Jugador(c)
+            self.jugadores.arr.append(j)
+            j.dado=self.dado
+
+    def fichas(self, name=None):
+        if name==None:
+            return dic2list(self.dic_fichas)
+        else:
+            return self.dic_fichas[str(name)]
+
+    def casillas(self, name=None):
+        if name==None:
+            return dic2list(self.dic_casillas)
+        else:
+            return self.dic_casillas[str(name)]
+            
+            
+
+class Mem6(Mem):    
+    def __init__(self):
+        Mem.__init__(self)
+        self.generar_colores()
+        self.generar_jugadores()
+        self.generar_casillas()
+        self.generar_rutas()
+        self.generar_fichas()
+        
+        self.circulo=Circulo(self, 68)
+
+
 
     def generar_colores(self):
         self.dic_colores["red"]=Color(255, 0, 0, "red")
@@ -1304,11 +1372,31 @@ class Mem4:
         self.dic_colores["blue"]=Color(0, 0, 255, "blue")
         self.dic_colores["green"]=Color(0, 255, 0, "green")
 
-    def colores(self, name=None):
-        if name==None:
-            return dic2list(self.dic_colores)
-        else:
-            return self.dic_colores[str(name)]
+    def generar_rutas(self):
+        return
+
+    def generar_casillas(self):
+        return
+
+class Mem4(Mem):
+    def __init__(self):
+        Mem.__init__(self)
+        
+        self.generar_colores()
+        self.generar_jugadores()
+        self.generar_casillas()
+        self.generar_rutas()
+        self.generar_fichas()
+        
+        self.circulo=Circulo(self, 68)
+
+
+
+    def generar_colores(self):
+        self.dic_colores["red"]=Color(255, 0, 0, "red")
+        self.dic_colores["yellow"]=Color( 255, 255, 0, "yellow")
+        self.dic_colores["blue"]=Color(0, 0, 255, "blue")
+        self.dic_colores["green"]=Color(0, 255, 0, "green")
 
     def generar_rutas(self):
         ruta=[None]*73
@@ -1395,44 +1483,8 @@ class Mem4:
             self.dic_rutas["red"].arr.append(self.casillas(r[2]))
             self.dic_rutas['blue'].arr.append(self.casillas(r[1]))
             self.dic_rutas['green'].arr.append(self.casillas(r[3]))
-            
-    def rutas(self, name=None):
-        if name==None:
-            return dic2list(self.dic_rutas)
-        else:
-            return self.dic_rutas[str(name)]
 
 
-    def generar_jugadores(self):
-        for c in self.colores():
-            j=Jugador(c)
-            self.jugadores.arr.append(j)
-            j.dado=self.dado
-#            self.dic_jugadores[str(c.name)]=Jugador(c)
-#            self.dic_jugadores[str(c.name)].dado=self.dado
-            
-#    def jugadores(self, name=None):
-#        if name==None:
-#            return dic2list(self.dic_jugadores)
-#        else:
-#            return self.dic_jugadores[str(name)]
-        
-    def generar_fichas(self):
-        """Debe generarse despuñes de jugadores"""
-
-        id=0
-        for c in self.colores():
-            for i in range(4):
-                self.dic_fichas[str(id)]=Ficha(id, i, c, self.jugadores.jugador(c.name), self.rutas(c.name))
-                self.jugadores.jugador(c.name).fichas.arr.append(self.dic_fichas[str(id)])#Rellena el SetFichas del jugador
-                id=id+1
-
-    def fichas(self, name=None):
-        if name==None:
-            return dic2list(self.dic_fichas)
-        else:
-            return self.dic_fichas[str(name)]
-            
             
     def save(self, filename):
         cwd=os.getcwd()
@@ -1757,11 +1809,6 @@ class Mem4:
             self.dic_casillas[str(i)]=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i])
             
             
-    def casillas(self, name=None):
-        if name==None:
-            return dic2list(self.dic_casillas)
-        else:
-            return self.dic_casillas[str(name)]
             
     def load(self, filename):       
 #        os.chdir("/home/keko/Proyectos/glparchis/pyglParchis/saves/") #SOLO DEBUGGING

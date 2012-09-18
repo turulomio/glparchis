@@ -710,7 +710,7 @@
 <context>
     <name>wdgOGL</name>
     <message>
-        <location filename="ui/wdgOGL.py" line="155"/>
+        <location filename="ui/wdgOGL.py" line="156"/>
         <source>Se ha hecho click en la ficha %1</source>
         <translation>I clicked on the %1 piece</translation>
     </message>

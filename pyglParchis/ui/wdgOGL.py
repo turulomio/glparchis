@@ -26,12 +26,13 @@ class wdgOGL(QGLWidget):
     def initializeGL(self):
         print ("initializeGL")
         self.qglClearColor(Color(0, 0, 0).qcolor())
-        GL.glShadeModel(GL.GL_FLAT)
+#        GL.glShadeModel(GL.GL_SMOOTH)
         GL.glEnable(GL.GL_DEPTH_TEST)
         GL.glEnable(GL.GL_CULL_FACE)
         
         GL.glFrontFace(GL.GL_CCW);
 
+        GL.glEnable(GL.GL_TEXTURE_2D);
         light_ambient =  (0.3, 0.3, 0.3, 0.1);
 
         GL.glEnable(GL.GL_LIGHTING)
