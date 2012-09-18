@@ -422,7 +422,7 @@ class Jugador:
         
         # Hay porcentajes de acierto si falla pasa a la siguiente prioridad
         #1 prioridad. Puede comer IA 85%
-        if azar(80):
+        if azar(90):
             for f in fichas:#Recorre las que pueden mover
                 movimiento=f.estaAutorizadaAMover(mem)[1]
                 (puede, fichaacomer)=f.puedeComer(mem, f.posruta+movimiento)
@@ -434,7 +434,7 @@ class Jugador:
         fichas=sorted(fichas, key=lambda f:f.numeroAmenazasMejora(mem),  reverse=True)     
         if azar(95):
             for f in fichas:
-                if f.numFichasPuedenComer(mem, f.posruta)>0: #Debe estar amenazada
+                if f.numeroAmenazasMejora(mem)>0 and  f.numFichasPuedenComer(mem, f.posruta)>0: #Debe estar amenazada
                     print (f, "seleccionada por azar al mejorar numero de fichas la pueden comer")
                     return f
         
@@ -444,16 +444,16 @@ class Jugador:
         if azar(80):
             for f in fichas:
                 movimiento=f.estaAutorizadaAMover(mem)[1]
-                if f.casilla().seguro==False and  f.casilla(f.posruta+movimiento).seguro==True:
+                if f.casilla().esUnSeguroParaJugador(mem, self)==False  and  f.casilla(f.posruta+movimiento).seguro==True:
                     print (f,"seleccionado por azar asegurar")
                     return f
-#        
-#        #4 Alguna ficha no asegurada puede mover
-#        if azar(95):
-#            for f in fichas:
-#                if f.estaAsegurada()==False:
-#                    print(f,"seleccionado por azar ficha no asegurada")
-#                    return f
+        
+        #4 Alguna ficha no asegurada puede mover
+        if azar(95):
+            for f in fichas:
+                if f.casilla().esUnSeguroParaJugador(mem, f.jugador)==False:
+                    print(f,"seleccionado por azar ficha no asegurada")
+                    return f
         
         #5 prioridad Mueve la ultima IA 100%
         fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)
@@ -500,6 +500,14 @@ class SetJugadores:
             if j.color.name==colorname:
                 return j
         return None
+        
+class SetCasillas:
+    """Conjunto de casillas"""
+    def __init__(self):
+        pass
+        
+    def rutas1(self):
+        pass
         
 class SetFichas:
     """Agrupación de fichas"""
@@ -625,7 +633,7 @@ class Ficha(QGLWidget):
         else:
             movimiento=self.jugador.tiradaturno.ultimoValor()
                             
-        if movimiento==0:
+        if movimiento==0 or movimiento==None:
             if log: mem.jugadoractual.log(self.trUtf8("No puede mover"))
             return (False, 0)    
            
@@ -764,7 +772,7 @@ class Ficha(QGLWidget):
             
         casilla=self.casilla(posruta)        #Datos casilla de posruta
         
-        if casilla.seguro==True or casilla.rampallegada==True:
+        if casilla.esUnSeguroParaJugador(mem, self.jugador)==True or casilla.rampallegada==True:
             return 0
             
         if casilla.tieneBarrera():
@@ -772,6 +780,9 @@ class Ficha(QGLWidget):
             
         if casilla not in mem.circulo.arr:#Si la casilla no esta en el circulo devuelve 0
             return 0
+            
+        #anota comer por cinco en ruta1    
+        
 
         for pos, f in mem.circulo.casilla(casilla.id, -1).buzon_fichas():
             if f.jugador!=self.jugador:
@@ -802,11 +813,11 @@ class Ficha(QGLWidget):
                 if f.jugador.tieneFichasEnRampaLlegada():
                     resultado=resultado+1
         return resultado
-
-    def estaAsegurada(self):
-        if self.casilla().seguro==True:
-            return True
-        return False
+#
+#    def estaAsegurada(self):
+#        if self.casilla().seguro==True:
+#            return True
+#        return False
 
     def estaEnCasa(self):
         if self.posruta==0:
@@ -973,12 +984,44 @@ class Casilla(QGLWidget):
         self.rotate=rotate
         self.rampallegada=rampallegada#booleano que indica si la casilla es de rampa de llegada
         self.tipo=tipo
-        self.seguro=seguro
+        self.seguro=seguro# No se debe usar directamente ya que en ruta 1 solo es seguro si el jugador no tiene en casa
         self.buzon=[None]*self.maxfichas #Se crean los huecos y se juega con ellos para mantener la posicion
         self.oglname=self.id+17#Nombre usado para pick por opengl
         
     def __repr__(self):
         return ("Casilla {0} con {1} fichas dentro".format(self.id, self.buzon_numfichas()))
+
+
+    def jugadorPropietario(self, mem):
+        #Rutas 1
+        if self.id==5:
+            return mem.jugadores.jugador("yellow")
+        elif self.id==22:
+            return mem.jugadores.jugador("blue")
+        elif self.id==39:
+            return mem.jugadores.jugador("red")
+        elif self.id==56:
+            return mem.jugadores.jugador("green")
+        else:
+            return None
+
+    def esUnSeguroParaJugador(self, mem,  jugador):
+        """Devuelve si la casilla es segura para el jugador pasado como par´ametro ante un posible moviiento"""
+        if self.id in (5, 22, 39, 56):#Ruta1
+            propietario=self.jugadorPropietario(mem)
+            if jugador==propietario:
+                return True
+            else:#color distinto
+                if propietario.tieneFichasEnCasa() and self.buzon_numfichas()>0:
+                    return False
+                else:
+                    return True
+        else:
+            if self.seguro==True:
+                return True
+            else:
+                return False
+            
 
     def dibujar(self):                            
         def quad(p1, p2, p3, p4, color):
@@ -1162,7 +1205,6 @@ class Casilla(QGLWidget):
             for i, f in enumerate(self.buzon):       
                 if f!=None:
                     f.dibujar(i)
-
 
     def tieneBarrera(self):
         """Devuelve un booleano, las fichas de la barrera se pueden sacar del buzón"""
