@@ -135,6 +135,7 @@ class wdgOGL(QGLWidget):
                    objetos.append(names[0])
             if len(objetos)==1:
                 selCasilla=object(self.mem, objetos[0])
+                print ("Es segura para el jugadoractual", selCasilla.esUnSeguroParaJugador(self.mem, self.mem.jugadoractual))
                 if isinstance(selCasilla, Casilla):
                     a=frmShowCasilla(self,  Qt.Popup,  selCasilla)
                     a. move(self.mapToGlobal(placePopUp() ))

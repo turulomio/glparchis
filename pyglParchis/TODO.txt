@@ -2,3 +2,6 @@
 20120909 Se debe contabilizar el calculo de comer cuando puedo contar 10 por ficha en casa, también si hay barreras o 
                     si una barrera es la que quiere comer a una ficha, no debería contabilizar doble
 20120909 Aprender a poner texturas en objetos usando el show object defrmabout
+20120918 Cuando sace un cinco y tenga que muestre en log que debe sacar
+20120918 Se puede hacer doble click al dado y hace dos tiradas
+20120918 Si se acaba el juego con un 6 hay que volver a tirar antes de que acabe
