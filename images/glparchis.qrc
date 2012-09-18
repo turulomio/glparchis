@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/glparchis">
+    <file>1.png</file>
     <file>update.png</file>
     <file>help.png</file>
     <file>configure.png</file>
