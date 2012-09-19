@@ -15,7 +15,8 @@ class wdgOGL(QGLWidget):
     def __init__(self,  parent=None,  filename=None):
         QGLWidget.__init__(self, parent)
         self.tablero=Tablero()
-        self.texturas=[]
+        self.texNumeros=[]
+        self.texDecor=[]
         self.rotX=0
         
     def assign_mem(self, mem):
@@ -28,16 +29,19 @@ class wdgOGL(QGLWidget):
 
     def initializeGL(self):
         #LAS TEXTURAS SE DEBEN CRAR AQUÍ ES LO PRIMERO QUE SE EJECUTA
-        self.texturas.append(self.bindTexture(QtGui.QPixmap(':/glparchis/0.png')))
-        self.texturas.append(self.bindTexture(QtGui.QPixmap(':/glparchis/1.png')))
-        self.texturas.append(self.bindTexture(QtGui.QPixmap(':/glparchis/2.png')))
-        self.texturas.append(self.bindTexture(QtGui.QPixmap(':/glparchis/3.png')))
-        self.texturas.append(self.bindTexture(QtGui.QPixmap(':/glparchis/4.png')))
-        self.texturas.append(self.bindTexture(QtGui.QPixmap(':/glparchis/5.png')))
-        self.texturas.append(self.bindTexture(QtGui.QPixmap(':/glparchis/6.png')))
-        self.texturas.append(self.bindTexture(QtGui.QPixmap(':/glparchis/7.png')))
-        self.texturas.append(self.bindTexture(QtGui.QPixmap(':/glparchis/8.png')))
-        self.texturas.append(self.bindTexture(QtGui.QPixmap(':/glparchis/9.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/0.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/1.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/2.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/3.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/4.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/5.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/6.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/7.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/8.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/9.png')))
+        
+        self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/casillainicial.png')))
+        self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/wood.png')))
 
         print ("initializeGL")
         glEnable(GL_TEXTURE_2D);
@@ -72,7 +76,7 @@ class wdgOGL(QGLWidget):
         self.tablero.dibujar()
         for c in self.mem.casillas():
             c.dibujar(self) 
-            c.dibujar_fichas()
+            c.dibujar_fichas(self)
 
     def resizeGL(self, width, height):
         glViewport(0, 0, width, height)
@@ -150,6 +154,7 @@ class wdgOGL(QGLWidget):
                     resultado.setY(event.y()-a.height())
                 return resultado
             ############################333
+            self.rotX=self.rotX+30
             objetos=[]
             for minDepth, maxDepth, names in nameStack:
                 if len(names)==1:

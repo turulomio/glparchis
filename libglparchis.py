@@ -558,7 +558,7 @@ class SetFichas:
                 return False
         return True
         
-class Ficha(QGLWidget):
+class Ficha(QObject):
     def __init__(self, id, number,  color, jugador, ruta):
         """El identificador de la ficha viene dado por el nombre del color y el id (numero de creacion), se genera en la clase Mem"""
         QGLWidget.__init__(self)
@@ -830,7 +830,7 @@ class Ficha(QGLWidget):
             return True
         return False
 
-    def dibujar(self, posicionBuzon):
+    def dibujar(self, ogl,  posicionBuzon):
         glInitNames();
         glPushMatrix()
         glPushName(self.id);
@@ -840,21 +840,24 @@ class Ficha(QGLWidget):
             p=self.ruta.arr[self.posruta].posfichas[posicionBuzon]
         glTranslated(p[0], p[1], p[2])
         glRotated(180, 1, 0, 0)# da la vuelta a la cara
-        self.qglColor(Color(255, 255, 0).qcolor().dark())
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, ogl.texDecor[1])
+        ogl.qglColor(Color(255, 255, 0).qcolor())
         gluQuadricDrawStyle (self.ficha, GLU_FILL);
         gluQuadricNormals (self.ficha, GLU_SMOOTH);
         gluQuadricTexture (self.ficha, True);
-        self.qglColor(self.color.qcolor().dark())
+        ogl.qglColor(self.color.qcolor())
         gluCylinder (self.ficha, 1.4, 1.4, 0.5, 16, 5)
         glTranslated(0, 0, 0.5)
-        self.qglColor(Color(70, 70, 70).qcolor())
+        ogl.qglColor(Color(70, 70, 70).qcolor())
         gluDisk(self.ficha, 0, 1.4, 16, 5)
-        self.qglColor(self.color.qcolor().dark())
+        ogl.qglColor(self.color.qcolor())
         glTranslated(0, 0, -0.5)
         glRotated(180, 1, 0, 0)# da la vuelta a la cara
         gluDisk(self.ficha, 0, 1.40, 16, 5)
         glPopName();
         glPopMatrix()
+        glDisable(GL_TEXTURE_2D);
 
 
 class Tablero(QGLWidget):
@@ -1038,10 +1041,11 @@ class Casilla(QObject):
             glTexCoord2f(1.0,1.0)
             glVertex3d(p3[0], p3[1], p3[2])
             glTexCoord2f(0.0,1.0)
-            glVertex3d(p4[0], p4[1], p4[2])               
+            glVertex3d(p4[0], p4[1], p4[2])          
+            
         def panelnumerico():
-            if self.buzon_numfichas()!=0:
-                return
+#            if self.buzon_numfichas()!=0:
+#                return
             if self.color.r!=255 or self.color.g!=255 or self.color.b!=255:
                 return
             #Cada cuadrante estar´a a 3x7 estara a 1x1 de ancho
@@ -1056,39 +1060,39 @@ class Casilla(QObject):
             glEnable(GL_TEXTURE_2D);
             #PRIMERO
             if primero!=None:
-                glBindTexture(GL_TEXTURE_2D, ogl.texturas[primero])
+                glBindTexture(GL_TEXTURE_2D, ogl.texNumeros[primero])
                 glPushMatrix()
                 glTranslated(self.position[0],self.position[1],self.position[2] )
                 glRotated(self.rotate, 0, 0, 1 )            
                 glBegin(GL_QUADS)
                 ogl.qglColor(self.color.qcolor())
                 glTexCoord2f(0.0,0.0)
-                glVertex3d(2.5, 1, 0.21)
+                glVertex3d(2.5, 1, 0.10)
                 glTexCoord2f(1.0,0.0)
-                glVertex3d(3.5, 1, 0.21)
+                glVertex3d(3.5, 1, 0.10)
                 glTexCoord2f(1.0,1.0)
-                glVertex3d(3.5, 2, 0.21)
+                glVertex3d(3.5, 2, 0.10)
                 glTexCoord2f(0.0,1.0)
-                glVertex3d(2.5, 2, 0.21)
+                glVertex3d(2.5, 2, 0.10)
                 glEnd()
                 glPopMatrix()
                 
                 
             #SEGUNDO
-            glBindTexture(GL_TEXTURE_2D, ogl.texturas[segundo])
+            glBindTexture(GL_TEXTURE_2D, ogl.texNumeros[segundo])
             glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )            
             glBegin(GL_QUADS)
             ogl.qglColor(self.color.qcolor())
             glTexCoord2f(0.0,0.0)
-            glVertex3d(3.5, 1, 0.21)
+            glVertex3d(3.5, 1, 0.1)
             glTexCoord2f(1.0,0.0)
-            glVertex3d(4.5, 1, 0.21)
+            glVertex3d(4.5, 1, 0.1)
             glTexCoord2f(1.0,1.0)
-            glVertex3d(4.5, 2, 0.21)
+            glVertex3d(4.5, 2, 0.1)
             glTexCoord2f(0.0,1.0)
-            glVertex3d(3.5, 2, 0.21)
+            glVertex3d(3.5, 2, 0.1)
             glEnd()
             glPopMatrix()
             
@@ -1117,6 +1121,8 @@ class Casilla(QObject):
             glPushName(self.oglname);
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
+            glEnable(GL_TEXTURE_2D);
+            glBindTexture(GL_TEXTURE_2D, ogl.texDecor[0])
             glBegin(GL_QUADS)
             v1 = (0, 0, 0)
             v2 = (21, 0, 0)
@@ -1138,6 +1144,7 @@ class Casilla(QObject):
     
             glPopName();
             glPopMatrix()
+            glDisable(GL_TEXTURE_2D);
     
         def tipo_normal():
             glInitNames();
@@ -1200,6 +1207,7 @@ class Casilla(QObject):
     
             glPopName();
             glPopMatrix()
+            panelnumerico()
     
         def tipo_oblicuod():
             glInitNames();
@@ -1230,6 +1238,7 @@ class Casilla(QObject):
     
             glPopName();
             glPopMatrix()
+            panelnumerico()
             
         def tipo_final():
             glInitNames();
@@ -1273,11 +1282,11 @@ class Casilla(QObject):
         else:
             tipo_normal()
             
-    def dibujar_fichas(self):
+    def dibujar_fichas(self, ogl):
         if self.buzon_numfichas()>0:
             for i, f in enumerate(self.buzon):       
                 if f!=None:
-                    f.dibujar(i)
+                    f.dibujar(ogl, i)
 
     def tieneBarrera(self):
         """Devuelve un booleano, las fichas de la barrera se pueden sacar del buzón"""
