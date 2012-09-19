@@ -1,5 +1,6 @@
 #-*- coding: utf-8 -*- 
-from OpenGL import GL,  GLU
+from OpenGL.GL import *
+from OpenGL.GLU import *
 import os,  random,   ConfigParser,  datetime,  time
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
@@ -163,13 +164,13 @@ class Dado(QGLWidget):
         def quad(p1, p2, p3, p4, color):
             self.qglColor(color.qcolor())
     
-            GL.glVertex3d(p1[0], p1[1], p1[2])
-            GL.glVertex3d(p2[0], p2[1], p2[2])
-            GL.glVertex3d(p3[0], p3[1], p3[2])
-            GL.glVertex3d(p4[0], p4[1], p4[2])        
-        GL.glPushMatrix()
-        GL.glTranslated(self.position[0],  self.position[1],  self.position[2])
-        GL.glBegin(GL.GL_QUADS)
+            glVertex3d(p1[0], p1[1], p1[2])
+            glVertex3d(p2[0], p2[1], p2[2])
+            glVertex3d(p3[0], p3[1], p3[2])
+            glVertex3d(p4[0], p4[1], p4[2])        
+        glPushMatrix()
+        glTranslated(self.position[0],  self.position[1],  self.position[2])
+        glBegin(GL_QUADS)
         ww=5
         v1 = (0, 0, 0)
         v2 = (ww, 0, 0)
@@ -187,8 +188,8 @@ class Dado(QGLWidget):
         quad(v1, v2, v6, v5, color)      
         quad(v8, v7, v3, v4, color)      
 
-        GL.glEnd()
-        GL.glPopMatrix()
+        glEnd()
+        glPopMatrix()
         
     def qicon(self, numero):
             ico = QIcon()
@@ -566,7 +567,7 @@ class Ficha(QGLWidget):
         self.number=number#indice dentro de las fichas de mismo color.
         self.ruta=ruta
         self.posruta=0#pOSICION EN LA RUTA
-        self.ficha=GLU.gluNewQuadric();
+        self.ficha=gluNewQuadric();
         self.jugador=jugador
         self.oglname=self.id#Nombre usado para pick por opengl
 #        self.casilla=casilla
@@ -830,30 +831,30 @@ class Ficha(QGLWidget):
         return False
 
     def dibujar(self, posicionBuzon):
-        GL.glInitNames();
-        GL.glPushMatrix()
-        GL.glPushName(self.id);
+        glInitNames();
+        glPushMatrix()
+        glPushName(self.id);
         if posicionBuzon==None:#Para frmAcercade
             p=(0, 0, 0)
         else:
             p=self.ruta.arr[self.posruta].posfichas[posicionBuzon]
-        GL.glTranslated(p[0], p[1], p[2])
-        GL.glRotated(180, 1, 0, 0)# da la vuelta a la cara
+        glTranslated(p[0], p[1], p[2])
+        glRotated(180, 1, 0, 0)# da la vuelta a la cara
         self.qglColor(Color(255, 255, 0).qcolor().dark())
-        GLU.gluQuadricDrawStyle (self.ficha, GLU.GLU_FILL);
-        GLU.gluQuadricNormals (self.ficha, GLU.GLU_SMOOTH);
-        GLU.gluQuadricTexture (self.ficha, True);
+        gluQuadricDrawStyle (self.ficha, GLU_FILL);
+        gluQuadricNormals (self.ficha, GLU_SMOOTH);
+        gluQuadricTexture (self.ficha, True);
         self.qglColor(self.color.qcolor().dark())
-        GLU.gluCylinder (self.ficha, 1.4, 1.4, 0.5, 16, 5)
-        GL.glTranslated(0, 0, 0.5)
+        gluCylinder (self.ficha, 1.4, 1.4, 0.5, 16, 5)
+        glTranslated(0, 0, 0.5)
         self.qglColor(Color(70, 70, 70).qcolor())
-        GLU.gluDisk(self.ficha, 0, 1.4, 16, 5)
+        gluDisk(self.ficha, 0, 1.4, 16, 5)
         self.qglColor(self.color.qcolor().dark())
-        GL.glTranslated(0, 0, -0.5)
-        GL.glRotated(180, 1, 0, 0)# da la vuelta a la cara
-        GLU.gluDisk(self.ficha, 0, 1.40, 16, 5)
-        GL.glPopName();
-        GL.glPopMatrix()
+        glTranslated(0, 0, -0.5)
+        glRotated(180, 1, 0, 0)# da la vuelta a la cara
+        gluDisk(self.ficha, 0, 1.40, 16, 5)
+        glPopName();
+        glPopMatrix()
 
 
 class Tablero(QGLWidget):
@@ -868,13 +869,13 @@ class Tablero(QGLWidget):
         def quad(p1, p2, p3, p4, color):
             self.qglColor(color.qcolor())
     
-            GL.glVertex3d(p1[0], p1[1], p1[2])
-            GL.glVertex3d(p2[0], p2[1], p2[2])
-            GL.glVertex3d(p3[0], p3[1], p3[2])
-            GL.glVertex3d(p4[0], p4[1], p4[2])        
-        GL.glPushMatrix()
-        GL.glTranslated(self.position[0],  self.position[1],  self.position[2])
-        GL.glBegin(GL.GL_QUADS)
+            glVertex3d(p1[0], p1[1], p1[2])
+            glVertex3d(p2[0], p2[1], p2[2])
+            glVertex3d(p3[0], p3[1], p3[2])
+            glVertex3d(p4[0], p4[1], p4[2])        
+        glPushMatrix()
+        glTranslated(self.position[0],  self.position[1],  self.position[2])
+        glBegin(GL_QUADS)
         v1 = (0, 0, 0)
         v2 = (65, 0, 0)
         v3 = (65, 65, 0)
@@ -891,8 +892,8 @@ class Tablero(QGLWidget):
         quad(v1, v2, v6, v5, color)      
         quad(v8, v7, v3, v4, color)      
 
-        GL.glEnd()
-        GL.glPopMatrix()
+        glEnd()
+        glPopMatrix()
         
         
 class Circulo:
@@ -925,7 +926,7 @@ class Color:
         self.g=g
         self.b=b
     def glcolor(self):
-        GL.glColor3d(self.r, self.g, self.b)
+        glColor3d(self.r, self.g, self.b)
         
     def qcolor(self):
         return QColor(self.r, self.g, self.b, 125)
@@ -973,9 +974,9 @@ class ConfigFile:
         with open(self.file, 'w') as configfile:
             self.config.write(configfile)
             
-class Casilla(QGLWidget):
+class Casilla(QObject):
     def __init__(self, id, maxfichas, color,  position, rotate, rampallegada, tipo, seguro, posfichas):
-        QGLWidget.__init__(self)
+        QObject.__init__(self)
         self.id=id
         self.maxfichas=maxfichas
         self.posfichas=posfichas#es un array de vectores 3d de tamaño maxfichas
@@ -987,8 +988,8 @@ class Casilla(QGLWidget):
         self.seguro=seguro# No se debe usar directamente ya que en ruta 1 solo es seguro si el jugador no tiene en casa
         self.buzon=[None]*self.maxfichas #Se crean los huecos y se juega con ellos para mantener la posicion
         self.oglname=self.id+17#Nombre usado para pick por opengl
-        self.texturas=[]
-        self.texturas.append(self.bindTexture(QPixmap(':/glparchis/keke.png')))
+#        self.texturas=[]
+#        self.texturas.append(self.bindTexture(QPixmap(':/glparchis/keke.png')))
         
     def __repr__(self):
         return ("Casilla {0} con {1} fichas dentro".format(self.id, self.buzon_numfichas()))
@@ -1025,42 +1026,98 @@ class Casilla(QGLWidget):
                 return False
             
 
-    def dibujar(self):                            
+    def dibujar(self, ogl):             
         def quad(p1, p2, p3, p4, color):
-            self.qglColor(color.qcolor())
-#            GL.glNormal3f(1, 1, 1)
-            GL.glTexCoord2f(0.0,0.0)
-            GL.glVertex3d(p1[0], p1[1], p1[2])
-            GL.glTexCoord2f(1.0,0.0)
-            GL.glVertex3d(p2[0], p2[1], p2[2])
-            GL.glTexCoord2f(1.0,1.0)
-            GL.glVertex3d(p3[0], p3[1], p3[2])
-            GL.glTexCoord2f(0.0,1.0)
-            GL.glVertex3d(p4[0], p4[1], p4[2])
-            """"            GL.glTexCoord2f(0.0,0.0)
-            GL.glVertex3d(0, 0, 10)
-            GL.glTexCoord2f(1.0,0.0)
-            GL.glVertex3d(10, 0, 10)
-            GL.glTexCoord2f(10.0,1.0)
-            GL.glVertex3d(10, 10, 10)
-            GL.glTexCoord2f(0.0,1.0)
-            GL.glVertex3d(0, 10, 10)"""
+            ogl.qglColor(color.qcolor())
+#            glNormal3f(1, 1, 1)
+#            glColor3d(color.r, color.g, color.b)
+            glTexCoord2f(0.0,0.0)
+            glVertex3d(p1[0], p1[1], p1[2])
+            glTexCoord2f(1.0,0.0)
+            glVertex3d(p2[0], p2[1], p2[2])
+            glTexCoord2f(1.0,1.0)
+            glVertex3d(p3[0], p3[1], p3[2])
+            glTexCoord2f(0.0,1.0)
+            glVertex3d(p4[0], p4[1], p4[2])               
+        def panelnumerico():
+            if self.buzon_numfichas()!=0:
+                return
+            if self.color.r!=255 or self.color.g!=255 or self.color.b!=255:
+                return
+            #Cada cuadrante estar´a a 3x7 estara a 1x1 de ancho
+            if len(str(self.id))==1:
+                primero=None
+                segundo=int(str(self.id)[0])
+            if len(str(self.id))==2:
+                primero=int(str(self.id)[0])
+                segundo=int(str(self.id)[1])
+            
+            
+            glEnable(GL_TEXTURE_2D);
+            #PRIMERO
+            if primero!=None:
+                glBindTexture(GL_TEXTURE_2D, ogl.texturas[primero])
+                glPushMatrix()
+                glTranslated(self.position[0],self.position[1],self.position[2] )
+                glRotated(self.rotate, 0, 0, 1 )            
+                glBegin(GL_QUADS)
+                ogl.qglColor(self.color.qcolor())
+                glTexCoord2f(0.0,0.0)
+                glVertex3d(2.5, 1, 0.21)
+                glTexCoord2f(1.0,0.0)
+                glVertex3d(3.5, 1, 0.21)
+                glTexCoord2f(1.0,1.0)
+                glVertex3d(3.5, 2, 0.21)
+                glTexCoord2f(0.0,1.0)
+                glVertex3d(2.5, 2, 0.21)
+                glEnd()
+                glPopMatrix()
+                
+                
+            #SEGUNDO
+            glBindTexture(GL_TEXTURE_2D, ogl.texturas[segundo])
+            glPushMatrix()
+            glTranslated(self.position[0],self.position[1],self.position[2] )
+            glRotated(self.rotate, 0, 0, 1 )            
+            glBegin(GL_QUADS)
+            ogl.qglColor(self.color.qcolor())
+            glTexCoord2f(0.0,0.0)
+            glVertex3d(3.5, 1, 0.21)
+            glTexCoord2f(1.0,0.0)
+            glVertex3d(4.5, 1, 0.21)
+            glTexCoord2f(1.0,1.0)
+            glVertex3d(4.5, 2, 0.21)
+            glTexCoord2f(0.0,1.0)
+            glVertex3d(3.5, 2, 0.21)
+            glEnd()
+            glPopMatrix()
+            
+            glDisable(GL_TEXTURE_2D);
+            """"            glTexCoord2f(0.0,0.0)
+            glVertex3d(0, 0, 10)
+            glTexCoord2f(1.0,0.0)
+            glVertex3d(10, 0, 10)
+            glTexCoord2f(10.0,1.0)
+            glVertex3d(10, 10, 10)
+            glTexCoord2f(0.0,1.0)
+            glVertex3d(0, 10, 10)"""
             
         def border(a, b, c, d, color):    
-            GL.glBegin(GL.GL_LINE_LOOP)
-            self.qglColor(color.qcolor())
-            GL.glVertex3d(a[0], a[1], a[2]+0.0001)
-            GL.glVertex3d(b[0], b[1], b[2]+0.0001)
-            GL.glVertex3d(c[0], c[1], c[2]+0.0001)
-            GL.glVertex3d(d[0], d[1], d[2]+0.0001)
-            GL.glEnd()
+            glBegin(GL_LINE_LOOP)
+#            self.qglColor(color.qcolor())
+            glColor3d(color.r, color.g, color.b)
+            glVertex3d(a[0], a[1], a[2]+0.0001)
+            glVertex3d(b[0], b[1], b[2]+0.0001)
+            glVertex3d(c[0], c[1], c[2]+0.0001)
+            glVertex3d(d[0], d[1], d[2]+0.0001)
+            glEnd()
         def tipo_inicio():        
-            GL.glInitNames();
-            GL.glPushMatrix()
-            GL.glPushName(self.oglname);
-            GL.glTranslated(self.position[0],self.position[1],self.position[2] )
-            GL.glRotated(self.rotate, 0, 0, 1 )
-            GL.glBegin(GL.GL_QUADS)
+            glInitNames();
+            glPushMatrix()
+            glPushName(self.oglname);
+            glTranslated(self.position[0],self.position[1],self.position[2] )
+            glRotated(self.rotate, 0, 0, 1 )
+            glBegin(GL_QUADS)
             v1 = (0, 0, 0)
             v2 = (21, 0, 0)
             v3 = (21, 21, 0)
@@ -1076,29 +1133,21 @@ class Casilla(QGLWidget):
             quad(v6, v7, v3, v2, Color(170, 170, 170))      
             quad(v5, v6, v2, v1, Color(170, 170, 170))      
             quad(v4, v3, v7, v8, Color(170, 170, 170))      
-    
-            GL.glEnd()
+            glEnd()
             border(v5, v6, v7, v8, Color(0, 0, 0))
     
-            GL.glPopName();
-            GL.glPopMatrix()
+            glPopName();
+            glPopMatrix()
     
         def tipo_normal():
-            GL.glInitNames();
-            GL.glPushMatrix()
-            GL.glPushName(self.oglname);
-            GL.glTranslated(self.position[0],self.position[1],self.position[2] )
-            GL.glRotated(self.rotate, 0, 0, 1 )            
-            GL.glEnable(GL.GL_TEXTURE_2D);
-            texturas=self.bindTexture(QPixmap(':/glparchis/keke.png'))
-            GL.glBindTexture(GL.GL_TEXTURE_2D, texturas)
-
-            GL.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, GL.GL_LINEAR_MIPMAP_LINEAR);
-            GL.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, GL.GL_LINEAR);
-            GL.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, GL.GL_CLAMP);
-            GL.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, GL.GL_CLAMP);
-            print ("·aholra")
-            GL.glBegin(GL.GL_QUADS)
+            glInitNames();
+            glPushMatrix()
+            glPushName(self.oglname);
+            glTranslated(self.position[0],self.position[1],self.position[2] )
+            glRotated(self.rotate, 0, 0, 1 )            
+#            glEnable(GL_TEXTURE_2D);
+#            glBindTexture(GL_TEXTURE_2D, ogl.texturas[0])
+            glBegin(GL_QUADS)
             v1 = (0, 0, 0)
             v2 = (7, 0, 0)
             v3 = (7, 3, 0)
@@ -1115,19 +1164,20 @@ class Casilla(QGLWidget):
             quad(v5, v6, v2, v1, Color(170, 170, 170) )      
             quad(v4, v3, v7, v8, Color(170, 170, 170))      
     
-            GL.glEnd()
+            glEnd()
             border(v5, v6, v7, v8, Color(0, 0, 0))
-            GL.glPopName();
-            GL.glPopMatrix()
+            glPopName();
+            glPopMatrix()
+            panelnumerico()
     
         def tipo_oblicuoi():
-            GL.glInitNames();
-            GL.glPushMatrix()
-            GL.glPushName(self.oglname);
-            GL.glTranslated(self.position[0],self.position[1],self.position[2] )
-            GL.glRotated(self.rotate, 0, 0, 1 )
+            glInitNames();
+            glPushMatrix()
+            glPushName(self.oglname);
+            glTranslated(self.position[0],self.position[1],self.position[2] )
+            glRotated(self.rotate, 0, 0, 1 )
 
-            GL.glBegin(GL.GL_QUADS)
+            glBegin(GL_QUADS)
             v1 = (0, 0, 0)
             v2 = (7, 0, 0)
             v3 = (7, 3, 0)
@@ -1144,21 +1194,21 @@ class Casilla(QGLWidget):
             quad(v5, v6, v2, v1, Color(170, 170, 170) )      
             quad(v4, v3, v7, v8, Color(170, 170, 170))      
     
-            GL.glEnd()
+            glEnd()
 
             border(v5, v6, v7, v8, Color(0, 0, 0))
     
-            GL.glPopName();
-            GL.glPopMatrix()
+            glPopName();
+            glPopMatrix()
     
         def tipo_oblicuod():
-            GL.glInitNames();
-            GL.glPushMatrix()
-            GL.glPushName(self.oglname);
-            GL.glTranslated(self.position[0],self.position[1],self.position[2] )
-            GL.glRotated(self.rotate, 0, 0, 1 )
+            glInitNames();
+            glPushMatrix()
+            glPushName(self.oglname);
+            glTranslated(self.position[0],self.position[1],self.position[2] )
+            glRotated(self.rotate, 0, 0, 1 )
 
-            GL.glBegin(GL.GL_QUADS)
+            glBegin(GL_QUADS)
             v1 = (0, 0, 0)
             v2 = (7, 0, 0)
             v3 = (4, 3, 0)
@@ -1175,20 +1225,20 @@ class Casilla(QGLWidget):
             quad(v5, v6, v2, v1, Color(170, 170, 170) )      
             quad(v4, v3, v7, v8, Color(170, 170, 170))      
 
-            GL.glEnd()
+            glEnd()
             border(v5, v6, v7, v8, Color(0, 0, 0))
     
-            GL.glPopName();
-            GL.glPopMatrix()
+            glPopName();
+            glPopMatrix()
             
         def tipo_final():
-            GL.glInitNames();
-            GL.glPushMatrix()
-            GL.glPushName(self.oglname);
-            GL.glTranslated(self.position[0],self.position[1],self.position[2] )
-            GL.glRotated(self.rotate, 0, 0, 1 )
+            glInitNames();
+            glPushMatrix()
+            glPushName(self.oglname);
+            glTranslated(self.position[0],self.position[1],self.position[2] )
+            glRotated(self.rotate, 0, 0, 1 )
             
-            GL.glBegin(GL.GL_QUADS)
+            glBegin(GL_QUADS)
             v1 = (0, 0, 0)
             v2 = (0,  0, 0)
             v3 = (15, 0, 0)
@@ -1205,12 +1255,12 @@ class Casilla(QGLWidget):
             quad(v5, v6, v2, v1, Color(170, 170, 170) )      
             quad(v4, v3, v7, v8, Color(170, 170, 170))      
     
-            GL.glEnd()
+            glEnd()
 
             border(v5, v6, v7, v8, Color(0, 0, 0))
     
-            GL.glPopName();
-            GL.glPopMatrix()
+            glPopName();
+            glPopMatrix()
         ##################################
         if self.tipo==0:
             tipo_inicio()
