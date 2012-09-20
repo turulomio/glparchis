@@ -113,8 +113,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.game=wdgGame(self)
         self.game.stopthegame=False
         self.layout.addWidget(self.game)
-        self.game.assign_mem(self.mem)
         self.actionGuardarPartida.setEnabled(True)
+        self.game.assign_mem(self.mem)
         
 
     @pyqtSlot()  

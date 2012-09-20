@@ -739,7 +739,7 @@ class Ficha(QObject):
         if self.puedeMeter(posruta):
             self.mover(posruta, True)
             self.jugador.movimientos_acumulados=10
-            self.jugador.log(self.trUtf8("He metido la ficha %1").arg(self.id))
+            self.jugador.log(self.trUtf8("He metido una ficha en casa"))
             return True
         return False
 
@@ -1369,7 +1369,7 @@ class Mem:
             elif so=="src.windows":
                 url="../share/glparchis/sounds/"+sound+".wav"
             elif so=="src.linux":
-                url="/usr/share/glparchis/sounds/"+sound+".ogg"
+                url="/usr/share/glparchis/sounds/"+sound+".wav"
     #        print(os.getcwd(), url)
             self.mediaObject.setCurrentSource(Phonon.MediaSource(url))
             self.mediaObject.play()
@@ -1927,80 +1927,6 @@ def dic2list(dic):
         resultado.append(v)
     return resultado
 
-#
-#def sound(mem, sound): 
-#    mem.mediaObject.setCurrentSource(Phonon.MediaSource("/usr/share/glparchis/sounds/dice.ogg"))
-#    mem.mediaObject.play()
-# 
-#    def delayedInit(self):
-#    player=Phonon.createPlayer(Phonon.MusicCategory,Phonon.MediaSource("/usr/share/glparchis/sounds/dice.ogg"))
-#    player.play()
-#     music->play();
-#    if WindowsVersion==True:
-#        if sound=="dice":
-#            QSound.play("../share/glparchis/sounds/dice.ogg")
-#        elif sound=="click":
-#            QSound.play("../share/glparchis/sounds/click.ogg")
-#        elif sound=="comer":
-#            QSound.play("../share/glparchis/sounds/comer.ogg")
-#        elif sound=="win":
-#            QSound.play("../share/glparchis/sounds/win.ogg")
-#    else:
-#        player="/usr/bin/ogg123"
-#        if sound=="dice":
-#            subprocess.check_output("{0} /usr/share/glparchis/sounds/dice.ogg 2>/dev/null".format(player),shell=True)
-#        elif sound=="click":
-#            subprocess.check_output("{0} /usr/share/glparchis/sounds/click.ogg 2>/dev/null".format(player),shell=True)
-#        elif sound=="comer":
-#            subprocess.check_output("{0} /usr/share/glparchis/sounds/comer.ogg 2>/dev/null".format(player),shell=True)
-#        elif sound=="win":
-#            subprocess.check_output("{0} /usr/share/glparchis/sounds/win.ogg 2>/dev/null".format(player),shell=True)
-
-#import sys
-# 
-#from PyQt4.QtGui import QApplication, QMainWindow, QDirModel, QColumnView
-#from PyQt4.QtGui import QFrame
-#from PyQt4.QtCore import SIGNAL
-#from PyQt4.phonon import Phonon
-# 
-#class MainWindow(QMainWindow):
-# 
-#    m_model = QDirModel()
-# 
-#    def __init__(self):
-#        QMainWindow.__init__(self)
-#        self.m_fileView = QColumnView(self)
-#        self.mediaObject = None
-# 
-#        self.setCentralWidget(self.m_fileView)
-#        self.m_fileView.setModel(self.m_model)
-#        self.m_fileView.setFrameStyle(QFrame.NoFrame)
-# 
-#        self.connect(self.m_fileView,
-#            SIGNAL("updatePreviewWidget(const QModelIndex &)"), self.play)
-# 
-#    def play(self, index):
-#        self.delayedInit()
-#        #self.mediaObject.setCurrentSource(self.m_model.filePath(index))
-#        self.mediaObject.setCurrentSource(
-#            Phonon.MediaSource(self.m_model.filePath(index)))
-#        self.mediaObject.play())
-# 
-#    def delayedInit(self):
-#        if not self.mediaObject:
-#            self.mediaObject = Phonon.MediaObject(self)
-#            audioOutput = Phonon.AudioOutput(Phonon.MusicCategory, self)
-#            Phonon.createPath(self.mediaObject, audioOutput)
-# 
-#def main():
-#    app = QApplication(sys.argv)
-#    QApplication.setApplicationName("Phonon Tutorial 2 (Python)")
-#    mw = MainWindow()
-#    mw.show()
-#    sys.exit(app.exec_())
-# 
-#if __name__ == '__main__':
-#    main()
 
 def cargarQTranslator(cfgfile):  
     """language es un string"""
