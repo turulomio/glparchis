@@ -117,6 +117,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 else:
                     if self.mem.jugadoractual.LastFichaMovida.estaAutorizadaAMover(self.mem)[0]==True:
                         self.mem.jugadoractual.log(self.trUtf8("Han salido tres seises, la ultima ficha movida se va a casa"))
+                        self.mem.play("comer")
                         self.mem.jugadoractual.LastFichaMovida.mover(0)
                     else:
                         self.mem.jugadoractual.log(self.trUtf8(u"Han salido tres seises, pero como no puede mover no se va a casa"))
@@ -150,7 +151,10 @@ class wdgGame(QWidget, Ui_wdgGame):
                 
         if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta+movimiento) or self.mem.selFicha.mete(self.mem.selFicha.posruta+movimiento):    
             self.ogl.updateGL()
-            self.mem.play("comer")            
+            if self.mem.jugadoractual.movimientos_acumulados==10:
+                self.mem.play("meter")
+            else:
+                self.mem.play("comer")            
             delay(600)
             if self.mem.jugadoractual.fichas.algunaEstaAutorizadaAmover(self.mem)==True:
                 self.on_JugadorDebeMover()

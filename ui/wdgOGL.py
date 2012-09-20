@@ -18,6 +18,7 @@ class wdgOGL(QGLWidget):
         self.texNumeros=[]
         self.texDecor=[]
         self.rotX=0
+        self.visualizacion=0
         
     def assign_mem(self, mem):
         print ("assignmem")
@@ -92,9 +93,16 @@ class wdgOGL(QGLWidget):
 #            self.close()
 
         if event.key() == Qt.Key_M: # toggle mode
-            self.rotX=self.rotX+30
+            if self.visualizacion==0:
+                self.rotX=0
+            elif self.visualizacion==1:
+                self.rotX=340
             self.updateGL()
-                
+            
+            if self.visualizacion==1:
+                self.visualizacion=0
+            else:
+                self.visualizacion=self.visualizacion+1
     def mousePressEvent(self, event):        
         def pickup(event, right):
             """right es si el botón pulsado en el derecho"""

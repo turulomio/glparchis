@@ -15,6 +15,8 @@ class wdgShowObject(QGLWidget):
         self.yRot = 0
         self.zRot = 0
         self.objeto=0
+        self.texNumeros=[]
+        self.texDecor=[]
 
         self.lastPos = QPoint()
         
@@ -23,7 +25,7 @@ class wdgShowObject(QGLWidget):
         
         #Carga el primer objeto    
 #        def __init__(self, id, maxfichas, color,  position, rotate, rampallegada, tipo, seguro, posfichas):
-        self.cas= Casilla(1, 2, Color(255, 0, 0) , (-3.5, -1.5, 0, 0), 0, False, 3, False, (0, 0, 0))
+        self.cas= Casilla(1, 2, Color(255, 255, 255) , (-3.5, -1.5, 0, 0), 0, False, 3,  False, (0, 0, 0))
 #            def __init__(self, id, number,  color, jugador, ruta):
         self.ficha=Ficha(0, 1, Color(0, 255, 255), Jugador(Color(0, 255, 255)), None)
         self.tablero=Tablero()
@@ -76,6 +78,20 @@ class wdgShowObject(QGLWidget):
             self.updateGL()
 
     def initializeGL(self): 
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/0.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/1.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/2.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/3.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/4.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/5.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/6.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/7.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/8.png')))
+        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/9.png')))
+        
+        self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/casillainicial.png')))
+        self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/wood.png')))
+        self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/seguro.png')))
         self.qglClearColor(QColor.fromCmykF(0.39, 0.39, 0.0, 0.0).dark())
         GL.glShadeModel(GL.GL_FLAT)
         GL.glEnable(GL.GL_DEPTH_TEST)
@@ -97,19 +113,19 @@ class wdgShowObject(QGLWidget):
         GL.glRotated(self.zRot / 16.0, 0.0, 0.0, 1.0)
         #Aquí no añadir calculos hacerlo en dobleclick
         if self.objeto==0:
-            self.cas.dibujar()
+            self.cas.dibujar(self)
         elif self.objeto==1:
-            self.cas.dibujar()
+            self.cas.dibujar(self)
         elif self.objeto==2:
-            self.cas.dibujar()
+            self.cas.dibujar(self)
         elif self.objeto==3:
-            self.cas.dibujar()
+            self.cas.dibujar(self)
         elif self.objeto==4:
-            self.cas.dibujar()
+            self.cas.dibujar(self)
         elif self.objeto==5:
-            self.ficha.dibujar(None)
+            self.ficha.dibujar(self, None)
         elif self.objeto==6:
-            self.tablero.dibujar()
+            self.tablero.dibujar(self)
 
 
     def resizeGL(self, width, height):

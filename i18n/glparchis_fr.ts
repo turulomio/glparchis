@@ -3,11 +3,6 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="742"/>
-        <source>He metido la ficha %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="libglparchis.py" line="618"/>
         <source>No es del jugador actual</source>
         <translation type="unfinished"></translation>
@@ -45,6 +40,11 @@
     <message>
         <location filename="libglparchis.py" line="705"/>
         <source>He comido una ficha de %1 en la casilla %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="742"/>
+        <source>He metido una ficha en casa</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -672,27 +672,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="122"/>
+        <location filename="ui/wdgGame.py" line="123"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="124"/>
+        <location filename="ui/wdgGame.py" line="125"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="137"/>
+        <location filename="ui/wdgGame.py" line="138"/>
         <source>Seleccione una ficha...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="171"/>
+        <location filename="ui/wdgGame.py" line="175"/>
         <source>Fin de turno</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="181"/>
+        <location filename="ui/wdgGame.py" line="185"/>
         <source>%1 ha ganado</source>
         <translation type="unfinished"></translation>
     </message>
@@ -710,7 +710,7 @@
 <context>
     <name>wdgOGL</name>
     <message>
-        <location filename="ui/wdgOGL.py" line="182"/>
+        <location filename="ui/wdgOGL.py" line="190"/>
         <source>Se ha hecho click en la ficha %1</source>
         <translation type="unfinished"></translation>
     </message>

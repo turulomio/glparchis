@@ -2,6 +2,9 @@ XXXXXXXX
 ========
 - Solucionado error al buscar si hay actualizaci´on disponible
 - Agregadas texturas num´ericas a las casillas
+- Emite un sonido si se va por 3 seises a casa.
+- Ahora permite guardar la partida cuando est´a con todos jugadores IA
+- Se han modificado los sonidos del juego
 
 20120917
 ========
