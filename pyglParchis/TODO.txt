@@ -5,3 +5,6 @@
 20120918 Cuando sace un cinco y tenga que muestre en log que debe sacar
 20120918 Se puede hacer doble click al dado y hace dos tiradas
 20120918 Si se acaba el juego con un 6 hay que volver a tirar antes de que acabe
+20120920 Cuando todos los jugadores son AI no deja grabar. Valorar conveniencia·
+20120920 Al meter una ficha no poner el número sino el nombre del jugadorÇ
+20120920 Cuando se va a casa por 3 seises hacer fiue

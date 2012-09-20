@@ -860,7 +860,7 @@ class Ficha(QObject):
         glDisable(GL_TEXTURE_2D);
 
 
-class Tablero(QGLWidget):
+class Tablero(QObject):
     def __init__(self, parent=None):
         QGLWidget.__init__(self, parent)
         self.object = 1
@@ -868,15 +868,20 @@ class Tablero(QGLWidget):
         self.oglname=16#Nombre usado para pick por opengl
 
 
-    def dibujar(self):
+    def dibujar(self, ogl):
         def quad(p1, p2, p3, p4, color):
-            self.qglColor(color.qcolor())
-    
+            ogl.qglColor(color.qcolor())
+            glTexCoord2f(0.0,0.0)
             glVertex3d(p1[0], p1[1], p1[2])
+            glTexCoord2f(1.0,0.0)
             glVertex3d(p2[0], p2[1], p2[2])
+            glTexCoord2f(1.0,1.0)
             glVertex3d(p3[0], p3[1], p3[2])
-            glVertex3d(p4[0], p4[1], p4[2])        
+            glTexCoord2f(0.0,1.0)
+            glVertex3d(p4[0], p4[1], p4[2])              
         glPushMatrix()
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, ogl.texDecor[1])
         glTranslated(self.position[0],  self.position[1],  self.position[2])
         glBegin(GL_QUADS)
         v1 = (0, 0, 0)
@@ -887,7 +892,7 @@ class Tablero(QGLWidget):
         v6 = (65, 0, 0.5)
         v7 = (65, 65, 0.5)
         v8 = (0, 65, 0.5)
-        color=Color(0, 64, 64)
+        color=Color(255, 255, 255)
         quad(v4, v3, v2, v1, color)      
         quad(v5, v6, v7, v8, color)      
         quad(v5, v8, v4, v1, color)      
@@ -897,6 +902,7 @@ class Tablero(QGLWidget):
 
         glEnd()
         glPopMatrix()
+        glDisable(GL_TEXTURE_2D)
         
         
 class Circulo:
@@ -1044,9 +1050,36 @@ class Casilla(QObject):
             glVertex3d(p4[0], p4[1], p4[2])          
             
         def panelnumerico():
-#            if self.buzon_numfichas()!=0:
-#                return
-            if self.color.r!=255 or self.color.g!=255 or self.color.b!=255:
+            def cuadrito(x, texture, rotation):
+                glBindTexture(GL_TEXTURE_2D, texture)                
+                glPushMatrix()
+                glTranslated(self.position[0],self.position[1],self.position[2] )
+                glRotated(self.rotate, 0, 0, 1 )            
+                glBegin(GL_QUADS)
+                ogl.qglColor(self.color.qcolor())
+                if rotation==0:
+                    glTexCoord2f(0.0,0.0)
+                    glVertex3d(x, 1, 0.10)
+                    glTexCoord2f(1.0,0.0)
+                    glVertex3d(x+1, 1, 0.10)
+                    glTexCoord2f(1.0,1.0)
+                    glVertex3d(x+1, 2, 0.10)
+                    glTexCoord2f(0.0,1.0)
+                    glVertex3d(x, 2, 0.10)
+                else:
+                    glTexCoord2f(0.0,0.0)
+                    glVertex3d(x+1, 2, 0.10)
+                    glTexCoord2f(1.0,0.0)
+                    glVertex3d(x, 2, 0.10)
+                    glTexCoord2f(1.0,1.0)
+                    glVertex3d(x, 1, 0.10)
+                    glTexCoord2f(0.0,1.0)
+                    glVertex3d(x+1, 1, 0.10)
+                    
+                glEnd()
+                glPopMatrix()
+            ################################
+            if self.seguro==True:
                 return
             #Cada cuadrante estar´a a 3x7 estara a 1x1 de ancho
             if len(str(self.id))==1:
@@ -1056,55 +1089,27 @@ class Casilla(QObject):
                 primero=int(str(self.id)[0])
                 segundo=int(str(self.id)[1])
             
+            #dos cuadrantes
+            if self.id in (60,  10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 ):
+                rotation=180
+                tmp=primero
+                primero=segundo
+                segundo=tmp
+            else:
+                #un cuadrantes
+                if self.id in (8,):
+                    rotation=180
+                else:
+                    rotation=0
             
             glEnable(GL_TEXTURE_2D);
             #PRIMERO
-            if primero!=None:
-                glBindTexture(GL_TEXTURE_2D, ogl.texNumeros[primero])
-                glPushMatrix()
-                glTranslated(self.position[0],self.position[1],self.position[2] )
-                glRotated(self.rotate, 0, 0, 1 )            
-                glBegin(GL_QUADS)
-                ogl.qglColor(self.color.qcolor())
-                glTexCoord2f(0.0,0.0)
-                glVertex3d(2.5, 1, 0.10)
-                glTexCoord2f(1.0,0.0)
-                glVertex3d(3.5, 1, 0.10)
-                glTexCoord2f(1.0,1.0)
-                glVertex3d(3.5, 2, 0.10)
-                glTexCoord2f(0.0,1.0)
-                glVertex3d(2.5, 2, 0.10)
-                glEnd()
-                glPopMatrix()
-                
-                
-            #SEGUNDO
-            glBindTexture(GL_TEXTURE_2D, ogl.texNumeros[segundo])
-            glPushMatrix()
-            glTranslated(self.position[0],self.position[1],self.position[2] )
-            glRotated(self.rotate, 0, 0, 1 )            
-            glBegin(GL_QUADS)
-            ogl.qglColor(self.color.qcolor())
-            glTexCoord2f(0.0,0.0)
-            glVertex3d(3.5, 1, 0.1)
-            glTexCoord2f(1.0,0.0)
-            glVertex3d(4.5, 1, 0.1)
-            glTexCoord2f(1.0,1.0)
-            glVertex3d(4.5, 2, 0.1)
-            glTexCoord2f(0.0,1.0)
-            glVertex3d(3.5, 2, 0.1)
-            glEnd()
-            glPopMatrix()
-            
+            if primero==None:
+                cuadrito(3, ogl.texNumeros[segundo], rotation)
+            else:
+                cuadrito(2.5, ogl.texNumeros[primero], rotation)
+                cuadrito(3.5, ogl.texNumeros[segundo], rotation)
             glDisable(GL_TEXTURE_2D);
-            """"            glTexCoord2f(0.0,0.0)
-            glVertex3d(0, 0, 10)
-            glTexCoord2f(1.0,0.0)
-            glVertex3d(10, 0, 10)
-            glTexCoord2f(10.0,1.0)
-            glVertex3d(10, 10, 10)
-            glTexCoord2f(0.0,1.0)
-            glVertex3d(0, 10, 10)"""
             
         def border(a, b, c, d, color):    
             glBegin(GL_LINE_LOOP)
@@ -1121,8 +1126,8 @@ class Casilla(QObject):
             glPushName(self.oglname);
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
-            glEnable(GL_TEXTURE_2D);
-            glBindTexture(GL_TEXTURE_2D, ogl.texDecor[0])
+#            glEnable(GL_TEXTURE_2D);
+#            glBindTexture(GL_TEXTURE_2D, ogl.texDecor[0])
             glBegin(GL_QUADS)
             v1 = (0, 0, 0)
             v2 = (21, 0, 0)
@@ -1144,7 +1149,7 @@ class Casilla(QObject):
     
             glPopName();
             glPopMatrix()
-            glDisable(GL_TEXTURE_2D);
+#            glDisable(GL_TEXTURE_2D);
     
         def tipo_normal():
             glInitNames();
@@ -1152,8 +1157,9 @@ class Casilla(QObject):
             glPushName(self.oglname);
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )            
-#            glEnable(GL_TEXTURE_2D);
-#            glBindTexture(GL_TEXTURE_2D, ogl.texturas[0])
+            if self.id in (5, 12, 17,  22, 29, 34, 39, 46, 51, 56, 63, 68):
+                glEnable(GL_TEXTURE_2D);
+                glBindTexture(GL_TEXTURE_2D, ogl.texDecor[2])
             glBegin(GL_QUADS)
             v1 = (0, 0, 0)
             v2 = (7, 0, 0)
@@ -1175,6 +1181,7 @@ class Casilla(QObject):
             border(v5, v6, v7, v8, Color(0, 0, 0))
             glPopName();
             glPopMatrix()
+            glDisable(GL_TEXTURE_2D)
             panelnumerico()
     
         def tipo_oblicuoi():
@@ -1634,8 +1641,8 @@ class Mem4(Mem):
                return Color(30, 30, 255)#azul
             elif id==56 or (id>=93 and id<=100) or id==104:
                return Color(30, 255, 30) #verde
-            elif id==68 or  id==63 or  id==51 or id==46 or id==34 or  id==29 or  id==17 or   id==12:  
-               return Color(128, 128, 128)
+#            elif id==68 or  id==63 or  id==51 or id==46 or id==34 or  id==29 or  id==17 or   id==12:  
+#               return Color(128, 128, 128)#gris
             else:
                 return Color(255, 255, 255)            
                 

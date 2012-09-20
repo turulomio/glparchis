@@ -1,6 +1,7 @@
 XXXXXXXX
 ========
 - Solucionado error al buscar si hay actualizaci´on disponible
+- Agregadas texturas num´ericas a las casillas
 
 20120917
 ========

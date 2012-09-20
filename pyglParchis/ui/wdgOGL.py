@@ -42,6 +42,7 @@ class wdgOGL(QGLWidget):
         
         self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/casillainicial.png')))
         self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/wood.png')))
+        self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/seguro.png')))
 
         print ("initializeGL")
         glEnable(GL_TEXTURE_2D);
@@ -73,7 +74,7 @@ class wdgOGL(QGLWidget):
         glTranslated(-31.5, -31.5,  -60)
         glRotated(self.rotX, 1,0 , 0)
 
-        self.tablero.dibujar()
+        self.tablero.dibujar(self)
         for c in self.mem.casillas():
             c.dibujar(self) 
             c.dibujar_fichas(self)
@@ -87,10 +88,11 @@ class wdgOGL(QGLWidget):
         glMatrixMode(GL_MODELVIEW)
 
     def keyPressEvent(self, event):
-        if (event.key() == Qt.Key_Escape) or (event.key() == Qt.Key_Q):
-            self.close()
+#        if (event.key() == Qt.Key_Escape) or (event.key() == Qt.Key_Q):
+#            self.close()
 
-        if event.key() == Qt.Key_Q: # toggle mode
+        if event.key() == Qt.Key_M: # toggle mode
+            self.rotX=self.rotX+30
             self.updateGL()
                 
     def mousePressEvent(self, event):        
@@ -154,7 +156,6 @@ class wdgOGL(QGLWidget):
                     resultado.setY(event.y()-a.height())
                 return resultado
             ############################333
-            self.rotX=self.rotX+30
             objetos=[]
             for minDepth, maxDepth, names in nameStack:
                 if len(names)==1:
