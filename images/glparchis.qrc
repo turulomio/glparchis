@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/glparchis">
+    <file>seguro.png</file>
     <file>wood.png</file>
     <file>casillainicial.png</file>
     <file>0.png</file>
