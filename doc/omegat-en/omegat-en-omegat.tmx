@@ -30,6 +30,14 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Agregadas texturas numéricas a las casillas</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120921T152138Z">
+        <seg>- Numerical textures added to places</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- Ahora el idioma por defecto es el inglés , pero en settings se puede cambiar el idioma y se graba en fichero de configuración</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120917T133226Z">
@@ -42,6 +50,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120917T133133Z">
         <seg>- The splitter now shows the board by default</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Ahora permite guardar la partida cuando está con todos jugadores IA</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120921T152305Z">
+        <seg>- You can save the game even when all the players are IA</seg>
       </tuv>
     </tu>
     <tu>
@@ -74,6 +90,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120910T205708Z">
         <seg>- Dice text changes color to the current player color</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Emite un sonido si se va por 3 seises a casa.</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120921T152242Z">
+        <seg>- A sound plays after rolling 3 sixes, if you go home.</seg>
       </tuv>
     </tu>
     <tu>
@@ -174,6 +198,22 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Se ha puesto la visualización del dado en 3D</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120921T152402Z">
+        <seg>- The dice is now in 3D</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Se han modificado los sonidos del juego</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120921T152320Z">
+        <seg>- Game sounds updated</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- Solucionado bug al cancelar en el dialogo inicial</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120914T150859Z">
@@ -190,10 +230,26 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Solucionado error al buscar si hay actualización disponible</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120921T152109Z">
+        <seg>- Bug solved looking for game updates</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- Solucionado problema con directorio de partidas guardadas</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120910T205606Z">
         <seg>- Solved bug with saved games directory</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Solucionado problema de un doble click en el dado</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120921T152340Z">
+        <seg>- Dice double click bug solved</seg>
       </tuv>
     </tu>
     <tu>
@@ -282,6 +338,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120917T132856Z">
         <seg>20120917</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>20120921</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120921T152041Z">
+        <seg>20120921</seg>
       </tuv>
     </tu>
     <tu>
@@ -482,6 +546,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120917T133317Z">
         <seg>glparchis-20120917 &lt;==&gt;  svn -r 241 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>glparchis-20120921 &lt;==&gt;  svn -r 250 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20120921T152410Z">
+        <seg>glparchis-20120921 &lt;==&gt;  svn -r 250 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
       </tuv>
     </tu>
     <tu>

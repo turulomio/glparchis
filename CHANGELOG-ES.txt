@@ -1,10 +1,12 @@
-XXXXXXXX
+20120921
 ========
-- Solucionado error al buscar si hay actualizaci´on disponible
-- Agregadas texturas num´ericas a las casillas
+- Solucionado error al buscar si hay actualización disponible
+- Agregadas texturas numéricas a las casillas
 - Emite un sonido si se va por 3 seises a casa.
-- Ahora permite guardar la partida cuando est´a con todos jugadores IA
+- Ahora permite guardar la partida cuando está con todos jugadores IA
 - Se han modificado los sonidos del juego
+- Solucionado problema de un doble click en el dado
+- Se ha puesto la visualización del dado en 3D
 
 20120917
 ========

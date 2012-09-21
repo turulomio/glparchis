@@ -23,11 +23,7 @@ class wdgOGL(QGLWidget):
     def assign_mem(self, mem):
         print ("assignmem")
         self.mem=mem
-        self.dado=QLabel(self)
-        self.dado.setScaledContents(True)
-        self.dado.setStyleSheet("background-color: rgba(255, 255, 255, 255);")
-        self.dado.hide()
-
+        
     def initializeGL(self):
         #LAS TEXTURAS SE DEBEN CRAR AQUÍ ES LO PRIMERO QUE SE EJECUTA
         self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/0.png')))
@@ -44,6 +40,8 @@ class wdgOGL(QGLWidget):
         self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/casillainicial.png')))
         self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/wood.png')))
         self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/seguro.png')))
+        self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/dado_desplegado.png')))
+        
 
         print ("initializeGL")
         glEnable(GL_TEXTURE_2D);
@@ -79,6 +77,7 @@ class wdgOGL(QGLWidget):
         for c in self.mem.casillas():
             c.dibujar(self) 
             c.dibujar_fichas(self)
+        self.mem.dado.dibujar(self)
 
     def resizeGL(self, width, height):
         glViewport(0, 0, width, height)
@@ -97,9 +96,11 @@ class wdgOGL(QGLWidget):
                 self.rotX=0
             elif self.visualizacion==1:
                 self.rotX=340
+            elif self.visualizacion==2:
+                self.rotX=275
             self.updateGL()
             
-            if self.visualizacion==1:
+            if self.visualizacion==2:
                 self.visualizacion=0
             else:
                 self.visualizacion=self.visualizacion+1
@@ -134,6 +135,8 @@ class wdgOGL(QGLWidget):
                 return mem.tablero
             elif id_name>=17 and id_name<=121:#casillas de 17 a 121
                 return mem.casillas(id_name-17)
+            elif id_name==122:#casillas de 17 a 121
+                return mem.dado
             else:
                 return None
                 
@@ -192,28 +195,29 @@ class wdgOGL(QGLWidget):
         elif event.buttons() & Qt.RightButton:
             pickup(event, True)                    
         self.updateGL()
-
-    def showDado(self):
-        if self.height()>700:
-            dadowidth=40
-        else:
-            dadowidth=20
-        xl=self.width()/6+6# xleft
-        xr=self.width()*5/6-43
-        yt=self.height()/6+3#ytop
-        yb=self.height()*5/6-43
-        if self.mem.jugadoractual.color.name=="yellow":
-            self.dado.setGeometry( xl, yt, dadowidth, dadowidth )
-        elif self.mem.jugadoractual.color.name=="blue":
-            self.dado.setGeometry(xl, yb, dadowidth, dadowidth)
-        elif self.mem.jugadoractual.color.name=="red":
-            self.dado.setGeometry(xr, yb, dadowidth, dadowidth)
-        elif self.mem.jugadoractual.color.name=="green":
-            self.dado.setGeometry(xr, yt, dadowidth, dadowidth)
-        self.dado.setPixmap(self.mem.dado.qpixmap(self.mem.jugadoractual.tiradaturno.ultimoValor()))
-        self.dado.repaint()
-        self.dado.update()
-        self.updateGL()
-        self.dado.show()
+#
+#    def showDado(self):
+#        self.mem.dado.showing=True
+##        if self.height()>700:
+##            dadowidth=40
+##        else:
+##            dadowidth=20
+##        xl=self.width()/6+6# xleft
+##        xr=self.width()*5/6-43
+##        yt=self.height()/6+3#ytop
+##        yb=self.height()*5/6-43
+##        if self.mem.jugadoractual.color.name=="yellow":
+##            self.dado.setGeometry( xl, yt, dadowidth, dadowidth )
+##        elif self.mem.jugadoractual.color.name=="blue":
+##            self.dado.setGeometry(xl, yb, dadowidth, dadowidth)
+##        elif self.mem.jugadoractual.color.name=="red":
+##            self.dado.setGeometry(xr, yb, dadowidth, dadowidth)
+##        elif self.mem.jugadoractual.color.name=="green":
+##            self.dado.setGeometry(xr, yt, dadowidth, dadowidth)
+##        self.dado.setPixmap(self.mem.dado.qpixmap(self.mem.jugadoractual.tiradaturno.ultimoValor()))
+##        self.dado.repaint()
+##        self.dado.update()
+##        self.updateGL()
+##        self.dado.show()
 
 

@@ -1,3 +1,13 @@
+20120921
+======== 
+- Bug solved looking for game updates
+- Numerical textures added to places
+- A sound plays after rolling 3 sixes, if you go home.
+- You can save the game even when all the players are IA
+- Game sounds updated
+- Dice double click bug solved
+- The dice is now in 3D
+
 20120917
 ======== 
 - Bug solved when pressing ESCAPE. Now it exists the game
