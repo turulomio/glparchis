@@ -102,11 +102,14 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     @QtCore.pyqtSlot()      
     def on_cmdTirarDado_clicked(self):  
+        self.cmdTirarDado.setEnabled(False)
         self.mem.play("dice")
         self.mem.jugadoractual.tirarDado()
-        self.ogl.showDado()
+        self.mem.dado.showing=True
+        self.ogl.updateGL()
+        self.ogl.updateGL()
+#        self.ogl.showDado()
         self.cmdTirarDado.setIcon(self.mem.dado.qicon(self.mem.jugadoractual.tiradaturno.ultimoValor()))
-        self.cmdTirarDado.setEnabled(False)
         self.panel().setLabelDado()
         
         if self.mem.jugadoractual.tiradaturno.tresSeises()==True:
@@ -175,7 +178,8 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.mem.jugadoractual.log (self.trUtf8("Fin de turno"))
         self.ogl.updateGL()        
         delay(400)
-        self.ogl.dado.hide()
+        self.mem.dado.showing=False
+        self.ogl.updateGL()        
         #Comprueba si ha ganado
         if self.mem.jugadoractual.HaGanado()==True:
             self.mem.play("win")

@@ -65,7 +65,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
     @pyqtSlot()      
     def on_actionUpdates_triggered(self):
         try:
-            web=urllib2.urlopen('http://glparchis.svn.sourceforge.net/viewvc/glparchis/pyglParchis/libglparchis.py?content-type=text%2Fplain')
+            web=urllib2.urlopen('https://sourceforge.net/projects/glparchis/files/glparchis/').read()
         except:
             web=None
         if web==None:
@@ -73,20 +73,22 @@ class frmMain(QMainWindow, Ui_frmMain):#
             m.setIcon(QMessageBox.Information)
             m.setText(self.trUtf8("No se ha podido comprobar si hay actualizaciones. Inténtelo más tarde."))
             m.exec_() 
-        for line in web.readlines():
-            if line.find('version="')!=-1:
-                remoteversion=line.split('"')[1]
+        for line in web.split("\n"):
+            if line.find('folder warn')!=-1:
+                remoteversion=line.split('glparchis-')[1].split('"') [0]
+                print ("Remote version",  remoteversion)
                 if version!=remoteversion:
                     m=QMessageBox()
                     m.setIcon(QMessageBox.Information)
                     m.setTextFormat(Qt.RichText)#this is what makes the links clickable
-                    m.setText(self.trUtf8("Hay una nueva versión del programa. Bájatela de <a href='http://glparchis.sourceforge.net'>http://glparchis.sourceforge.net</a>"))
+                    m.setText(self.trUtf8("Hay una nueva versión del programa. Bájatela de la página web del proyecto <a href='http://glparchis.sourceforge.net'>http://glparchis.sourceforge.net</a> o directamente desde <a href='https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-")+remoteversion+"/'>Sourceforge</a>")
                     m.exec_() 
                 else:
                     m=QMessageBox()
                     m.setIcon(QMessageBox.Information)
                     m.setText(self.trUtf8("Dispone de la última versión del juego"))
                     m.exec_() 
+                break
         self.cfgfile.lastupdate=datetime.date.today().toordinal()
         self.cfgfile.save()
         
