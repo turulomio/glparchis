@@ -17,17 +17,22 @@ class frmSettings(QDialog, Ui_frmSettings):
             self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText(QString(u'Espa\xf1ol')))
         elif self.cfgfile.language=="fr":
             self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText(QString(u'Fran\xe7ais')))
+        elif self.cfgfile.language=="ro":
+            self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText(QString(u'Rom\xe2n')))
         elif self.cfgfile.language=="ru":
             self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText(QString(u'\u0420\u0443\u0441\u0441\u043a\u0438\u0439')))#ruso
 
     @pyqtSlot(QString)      
     def on_cmbLanguage_currentIndexChanged(self, stri):
+        print (QString(stri),  "hola")
         if stri==QString(u"English"):
             self.cfgfile.language="en"
         elif stri==QString(u'Espa\xf1ol'):#problemas con unicode en python2
             self.cfgfile.language="es"
         elif stri==QString(u'Fran\xe7ais'):
             self.cfgfile.language="fr"
+        elif stri==QString(u'Rom\xe2n'):
+            self.cfgfile.language="ro"
         elif stri==QString(QString(u'\u0420\u0443\u0441\u0441\u043a\u0438\u0439')):#ruso
             self.cfgfile.language="ru"
         
