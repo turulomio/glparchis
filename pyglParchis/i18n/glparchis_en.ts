@@ -3,47 +3,47 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="570"/>
+        <location filename="libglparchis.py" line="572"/>
         <source>No es del jugador actual</source>
         <translation>It&apos;s not a current player piece</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="595"/>
+        <location filename="libglparchis.py" line="597"/>
         <source>Se ha pasado la meta</source>
         <translation>You missed the central space</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="601"/>
+        <location filename="libglparchis.py" line="603"/>
         <source>Hay una barrera</source>
         <translation>There is a blockade</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="610"/>
+        <location filename="libglparchis.py" line="612"/>
         <source>No hay espacio en la casilla</source>
         <translation>The space is bussy</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="590"/>
+        <location filename="libglparchis.py" line="592"/>
         <source>No puede mover</source>
         <translation>It can&apos;t move</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="608"/>
+        <location filename="libglparchis.py" line="610"/>
         <source>Obligado a sacar y a comer</source>
         <translation>You&apos;re forced to move to the first space and to eat</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="559"/>
+        <location filename="libglparchis.py" line="561"/>
         <source>No puede mover, porque hay otra ficha obligada a mover</source>
         <translation>It can&apos;t move, because there is another piece forced to move</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="657"/>
+        <location filename="libglparchis.py" line="659"/>
         <source>He comido una ficha de %1 en la casilla %2</source>
         <translation>I&apos;ve eaten a %1 piece at the %2 place</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="674"/>
+        <location filename="libglparchis.py" line="676"/>
         <source>He metido una ficha en casa</source>
         <translation>Piece arrived to central space</translation>
     </message>
@@ -192,6 +192,16 @@
         <location filename="ui/frmHelp.py" line="19"/>
         <source>Existen unas casillas seguras (casillas con circulo gris), en las que dos fichas de distintos jugadores pueden convivir. En el resto (casillas blancas), la ficha que llega en segundo lugar come (manda a la casilla inicial) a la que llegó en primer lugar y obtiene el derecho de mover 20 casillas.&lt;p&gt;</source>
         <translation>There are some safe places (with gray circle), in which two different players cards can coexist. In the rest (white squares), the piece comes second eats (sends the initial square) the one which arrived first and wins the right to move 20 places.&lt;p&gt;</translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>Para tirar el dado se puede hacer click en el botón &apos;Tirar el dado&apos; o hacer doble-click encima del tablero, cuando le toque a un jugador humano.&lt;p&gt;</source>
+        <translation>To roll the dice you can click on the &apos;roll the dice&apos; button or double-click on the board, when it&apos;s your turn.&lt;p&gt;</translation>
+    </message>
+    <message>
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>Se puede cambiar la vista del tablero pulsando la tecla &apos;m&apos;.&lt;p&gt;</source>
+        <translation>You can change the board view pressing &apos;m&apos; key.&lt;p&gt;</translation>
     </message>
 </context>
 <context encoding="UTF-8">
@@ -632,7 +642,7 @@
         <translation>Total</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="113"/>
+        <location filename="ui/wdgGame.py" line="119"/>
         <source>Tira el dado</source>
         <translation>Roll the dice</translation>
     </message>
@@ -647,75 +657,75 @@
         <translation>Game time</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="43"/>
+        <location filename="ui/wdgGame.py" line="44"/>
         <source>Empieza la partida</source>
         <translation>The game starts</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="123"/>
+        <location filename="ui/wdgGame.py" line="129"/>
         <source>Tire el dado</source>
         <translation>Roll the dice</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="136"/>
+        <location filename="ui/wdgGame.py" line="142"/>
         <source>IA mueve una ficha</source>
         <translation>IA moves a piece</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="168"/>
+        <location filename="ui/wdgGame.py" line="174"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation>You got three sixes, but you don&apos;t go home because you got the arrival ramp</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="171"/>
+        <location filename="ui/wdgGame.py" line="177"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation>You got three sixes. Your last moved piece goes home</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="175"/>
+        <location filename="ui/wdgGame.py" line="181"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation>You got three sixes, but as you can&apos;t move, you don&apos;t go home</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="177"/>
+        <location filename="ui/wdgGame.py" line="183"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation>After three sixes, you can&apos;t roll the dice again</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="190"/>
+        <location filename="ui/wdgGame.py" line="196"/>
         <source>Seleccione una ficha...</source>
         <translation>Select a piece...</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="227"/>
+        <location filename="ui/wdgGame.py" line="233"/>
         <source>Fin de turno</source>
         <translation>End of turn</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="108"/>
+        <location filename="ui/wdgGame.py" line="114"/>
         <source>%1 ha ganado</source>
         <translation>%1 has won the game</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="118"/>
+        <location filename="ui/wdgGame.py" line="124"/>
         <source>IA Tira el dado</source>
         <translation>IA rolls the dice</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="145"/>
+        <location filename="ui/wdgGame.py" line="151"/>
         <source>Mueva una ficha</source>
         <translation>Move a piece</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="98"/>
+        <location filename="ui/wdgGame.py" line="104"/>
         <source>Has ganado la partida</source>
-        <translation type="unfinished"></translation>
+        <translation>You won the game</translation>
     </message>
 </context>
 <context>
     <name>wdgOGL</name>
     <message>
-        <location filename="ui/wdgOGL.py" line="186"/>
+        <location filename="ui/wdgOGL.py" line="194"/>
         <source>Se ha hecho click en la ficha %1</source>
         <translation>I clicked on the %1 piece</translation>
     </message>
