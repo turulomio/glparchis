@@ -24,7 +24,6 @@ class frmSettings(QDialog, Ui_frmSettings):
 
     @pyqtSlot(QString)      
     def on_cmbLanguage_currentIndexChanged(self, stri):
-        print (QString(stri),  "hola")
         if stri==QString(u"English"):
             self.cfgfile.language="en"
         elif stri==QString(u'Espa\xf1ol'):#problemas con unicode en python2

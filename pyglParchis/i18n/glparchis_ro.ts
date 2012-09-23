@@ -131,7 +131,7 @@
     <message>
         <location filename="ui/frmHelp.py" line="19"/>
         <source>&lt;h2&gt;Historia&lt;/h2&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;Istorie&lt;/h2&gt;</translation>
     </message>
     <message>
         <location filename="ui/frmHelp.py" line="19"/>
@@ -460,7 +460,7 @@
     <message encoding="UTF-8">
         <location filename="ui/Ui_frmSettings.py" line="100"/>
         <source>Român</source>
-        <translation type="unfinished"></translation>
+        <translation>Român</translation>
     </message>
 </context>
 <context encoding="UTF-8">
@@ -478,7 +478,7 @@
     <message encoding="UTF-8">
         <location filename="ui/Ui_frmShowCasilla.py" line="77"/>
         <source>Ocupación</source>
-        <translation>Оккупация</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui/frmShowCasilla.py" line="11"/>
@@ -559,12 +559,12 @@
     <message>
         <location filename="ui/Ui_wdgGame.py" line="407"/>
         <source>Juego</source>
-        <translation>Игра</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
         <location filename="ui/Ui_wdgGame.py" line="549"/>
         <source>Estadísticas</source>
-        <translation>Статистика</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
         <location filename="ui/Ui_wdgGame.py" line="409"/>
@@ -619,22 +619,22 @@
     <message>
         <location filename="ui/Ui_wdgGame.py" line="433"/>
         <source>Amarillo</source>
-        <translation>Жёлтый</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui/Ui_wdgGame.py" line="435"/>
         <source>Azul</source>
-        <translation>Синий</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui/Ui_wdgGame.py" line="437"/>
         <source>Rojo</source>
-        <translation>Красный</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui/Ui_wdgGame.py" line="439"/>
         <source>Verde</source>
-        <translation>Грин</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui/Ui_wdgGame.py" line="547"/>
@@ -644,7 +644,7 @@
     <message>
         <location filename="ui/Ui_wdgGame.py" line="441"/>
         <source>Todos</source>
-        <translation>Все</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui/wdgGame.py" line="119"/>
@@ -654,7 +654,7 @@
     <message encoding="UTF-8">
         <location filename="ui/Ui_wdgGame.py" line="429"/>
         <source>Puntuación</source>
-        <translation>Оценка</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui/Ui_wdgGame.py" line="431"/>
@@ -745,12 +745,12 @@
     <message>
         <location filename="ui/Ui_wdgUserPanel.py" line="119"/>
         <source>Jugador</source>
-        <translation type="unfinished"></translation>
+        <translation>Jucator</translation>
     </message>
     <message>
         <location filename="ui/Ui_wdgUserPanel.py" line="120"/>
         <source>Muestra el historial</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostreaza istorialul</translation>
     </message>
 </context>
 </TS>
