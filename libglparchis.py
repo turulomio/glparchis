@@ -382,7 +382,7 @@ class Jugador:
         
         # Hay porcentajes de acierto si falla pasa a la siguiente prioridad
         #1 prioridad. Puede comer IA 85%
-        if azar(90):
+        if azar(95):
             for f in fichas:#Recorre las que pueden mover
                 movimiento=f.estaAutorizadaAMover(mem)[1]
                 (puede, fichaacomer)=f.puedeComer(mem, f.posruta+movimiento)
@@ -392,16 +392,18 @@ class Jugador:
         
         #2 prioridad. Mueve fichas que disminuyen en número de amenazas en la nueva posicion
         fichas=sorted(fichas, key=lambda f:f.numeroAmenazasMejora(mem),  reverse=True)     
+#        for f in fichas:
+#            print (f, f.numeroAmenazasMejora(mem), f.numFichasPuedenComer(mem, f.posruta), f.numFichasPuedenComer(mem, f.posruta+f.estaAutorizadaAMover(mem)[1]))
         if azar(95):
             for f in fichas:
-                if f.numeroAmenazasMejora(mem)>0 and  f.numFichasPuedenComer(mem, f.posruta)>0: #Debe estar amenazada
+                if f.numeroAmenazasMejora(mem)>=0 and  f.numFichasPuedenComer(mem, f.posruta+f.estaAutorizadaAMover(mem)[1])>0: #Debe estar amenazada
                     print (f, "seleccionada por azar al mejorar numero de fichas la pueden comer")
                     return f
         
         
         #3 prioridad Asegura IA  de ultima a primera 85%
         fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)     
-        if azar(80):
+        if azar(95):
             for f in fichas:
                 movimiento=f.estaAutorizadaAMover(mem)[1]
                 if f.casilla().esUnSeguroParaJugador(mem, self)==False  and  f.casilla(f.posruta+movimiento).seguro==True:
@@ -687,7 +689,11 @@ class Ficha(QObject):
         return 72-self.posruta
         
     def numeroAmenazasMejora(self, mem):
-        """Si devuelve un positivo es que ha disminuido en ese valor el numero de fichas que le amenzaban"""
+        """Si devuelve un positivo es que ha disminuido en ese valor el numero de fichas que le amenzaban
+        Si antes 0 y luego 1 tendra  -1
+        Si antes 1 y luego 0 tendra 1
+        Si antes 1 y luego 1 tendra 0
+        Si antes 0 y luego o tendra 0"""
         movimiento=self.estaAutorizadaAMover(mem)[1]
         antes=self.numFichasPuedenComer(mem, self.posruta)
         despues=self.numFichasPuedenComer(mem, self.posruta+movimiento)
@@ -716,7 +722,10 @@ class Ficha(QObject):
             
         #anota comer por cinco en ruta1    
         
-
+        
+        
+        
+        #fichas que se encuentran a una distancia en casillas
         for pos, f in mem.circulo.casilla(casilla.id, -1).buzon_fichas():
             if f.jugador!=self.jugador:
                 resultado=resultado+1
@@ -731,10 +740,10 @@ class Ficha(QObject):
                 resultado=resultado+1
         for pos, f in mem.circulo.casilla(casilla.id, -5).buzon_fichas():
             if f.jugador!=self.jugador:
-                if f.jugador.tieneFichasEnCasa()==False:#debe sacar
+                if f.jugador.tieneFichasEnCasa()==False:#no tiene que scar por lo que cuenta como un 5 normal
                     resultado=resultado+1
         for pos, f in mem.circulo.casilla(casilla.id, -6).buzon_fichas():
-            if f.jugador!=self.jugador:
+            if f.jugador!=self.jugador: #Son fichas enemigas
                 if f.jugador.tieneFichasEnCasa():
                     resultado=resultado+1
         for pos, f in mem.circulo.casilla(casilla.id, -7).buzon_fichas():

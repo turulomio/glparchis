@@ -97,6 +97,10 @@ class wdgOGL(QGLWidget):
                 self.visualizacion=0
             else:
                 self.visualizacion=self.visualizacion+1
+    
+    def mouseDoubleClickEvent(self, event):
+        self.emit(SIGNAL("doubleClicked()"))
+                
     def mousePressEvent(self, event):        
         def pickup(event, right):
             """right es si el botón pulsado en el derecho"""
@@ -166,7 +170,11 @@ class wdgOGL(QGLWidget):
                    objetos.append(names[0])
             if len(objetos)==1:
                 selCasilla=object(self.mem, objetos[0])
-                print ("Es segura para el jugadoractual", selCasilla.esUnSeguroParaJugador(self.mem, self.mem.jugadoractual))
+                fichas=self.mem.jugadoractual.fichas.fichasAutorizadasAMover(self.mem)
+                fichas=sorted(fichas, key=lambda f:f.numeroAmenazasMejora(self.mem),  reverse=True)     
+                for f in fichas:
+                    print (f, f.numeroAmenazasMejora(self.mem), f.numFichasPuedenComer(self.mem, f.posruta), f.numFichasPuedenComer(self.mem, f.posruta+f.estaAutorizadaAMover(self.mem)[1]))
+
                 if isinstance(selCasilla, Casilla):
                     a=frmShowCasilla(self,  Qt.Popup,  selCasilla)
                     a. move(self.mapToGlobal(placePopUp() ))

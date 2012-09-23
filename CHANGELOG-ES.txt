@@ -2,6 +2,7 @@ XXXXXXXX
 ========
 - Ahora se muestra un dado en Acerca De
 - Mejorado el cmdDado
+- Ahora se puede tirar el dado haciendo doble click encima del tablero.
 
 
 20120921

@@ -15,6 +15,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         QWidget.__init__(self, parent)
         self.setupUi(self)
         self.show()
+        
     
     def __del__(self):
         print ("Destructor wdgGame")
@@ -51,8 +52,13 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.splitter.setSizes(currentSizes)
         else:
             self.splitter.restoreState(self.mem.cfgfile.splitterstate)
-
+        self.connect(self.ogl, SIGNAL("doubleClicked()"), self.on_ogl_doubleClicked)
         self.on_JugadorDebeTirar()
+
+    def on_ogl_doubleClicked(self):
+        if self.cmdTirarDado.isEnabled()==False:
+            return
+        self.on_cmdTirarDado_clicked()
 
     def panel(self, jugador=None):
         """Si se pasa sin parametro da el panel del jugador actual"""
