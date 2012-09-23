@@ -41,6 +41,7 @@
     <file>star.png</file>
   </qresource>
   <qresource prefix="flags">
+    <file>rumania.png</file>
     <file>france.png</file>
     <file>spain.png</file>
     <file>rusia.png</file>

@@ -138,6 +138,15 @@
          </item>
          <item>
           <property name="text">
+           <string>Român</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../images/glparchis.qrc">
+            <normaloff>:/flags/rumania.png</normaloff>:/flags/rumania.png</iconset>
+          </property>
+         </item>
+         <item>
+          <property name="text">
            <string>Русский</string>
           </property>
           <property name="icon">

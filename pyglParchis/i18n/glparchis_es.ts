@@ -428,34 +428,39 @@
 <context encoding="UTF-8">
     <name>frmSettings</name>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmSettings.py" line="92"/>
+        <location filename="ui/Ui_frmSettings.py" line="95"/>
         <source>Configuración de glParchis</source>
         <translation>Configuración de glParchis</translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmSettings.py" line="93"/>
+        <location filename="ui/Ui_frmSettings.py" line="96"/>
         <source>Selecciona un idioma</source>
         <translation>Selecciona un idioma</translation>
     </message>
     <message>
-        <location filename="ui/Ui_frmSettings.py" line="94"/>
+        <location filename="ui/Ui_frmSettings.py" line="97"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmSettings.py" line="95"/>
+        <location filename="ui/Ui_frmSettings.py" line="98"/>
         <source>Español</source>
         <translation>Español</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmSettings.py" line="96"/>
+        <location filename="ui/Ui_frmSettings.py" line="99"/>
         <source>Français</source>
         <translation>Français</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmSettings.py" line="97"/>
+        <location filename="ui/Ui_frmSettings.py" line="101"/>
         <source>Русский</source>
         <translation>Русский</translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/Ui_frmSettings.py" line="100"/>
+        <source>Român</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context encoding="UTF-8">
