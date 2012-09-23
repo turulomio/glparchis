@@ -3,47 +3,47 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="564"/>
+        <location filename="libglparchis.py" line="570"/>
         <source>No es del jugador actual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="589"/>
+        <location filename="libglparchis.py" line="595"/>
         <source>Se ha pasado la meta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="595"/>
+        <location filename="libglparchis.py" line="601"/>
         <source>Hay una barrera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="604"/>
+        <location filename="libglparchis.py" line="610"/>
         <source>No hay espacio en la casilla</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="584"/>
+        <location filename="libglparchis.py" line="590"/>
         <source>No puede mover</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="602"/>
+        <location filename="libglparchis.py" line="608"/>
         <source>Obligado a sacar y a comer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="553"/>
+        <location filename="libglparchis.py" line="559"/>
         <source>No puede mover, porque hay otra ficha obligada a mover</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="651"/>
+        <location filename="libglparchis.py" line="657"/>
         <source>He comido una ficha de %1 en la casilla %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="668"/>
+        <location filename="libglparchis.py" line="674"/>
         <source>He metido una ficha en casa</source>
         <translation type="unfinished"></translation>
     </message>
@@ -632,7 +632,7 @@
         <translation>Все</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="94"/>
+        <location filename="ui/wdgGame.py" line="113"/>
         <source>Tira el dado</source>
         <translation type="unfinished"></translation>
     </message>
@@ -652,62 +652,62 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="104"/>
+        <location filename="ui/wdgGame.py" line="123"/>
         <source>Tire el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="112"/>
+        <location filename="ui/wdgGame.py" line="136"/>
         <source>IA mueve una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="144"/>
+        <location filename="ui/wdgGame.py" line="168"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="147"/>
+        <location filename="ui/wdgGame.py" line="171"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="151"/>
+        <location filename="ui/wdgGame.py" line="175"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="153"/>
+        <location filename="ui/wdgGame.py" line="177"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="166"/>
+        <location filename="ui/wdgGame.py" line="190"/>
         <source>Seleccione una ficha...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="203"/>
+        <location filename="ui/wdgGame.py" line="227"/>
         <source>Fin de turno</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="89"/>
+        <location filename="ui/wdgGame.py" line="108"/>
         <source>%1 ha ganado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="99"/>
+        <location filename="ui/wdgGame.py" line="118"/>
         <source>IA Tira el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="121"/>
+        <location filename="ui/wdgGame.py" line="145"/>
         <source>Mueva una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="79"/>
+        <location filename="ui/wdgGame.py" line="98"/>
         <source>Has ganado la partida</source>
         <translation type="unfinished"></translation>
     </message>

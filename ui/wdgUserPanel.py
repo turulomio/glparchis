@@ -45,7 +45,7 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
             self.lbl1.setPixmap(self.jugador.dado.qpixmap(None))
             self.lbl2.setPixmap(self.jugador.dado.qpixmap(None))
             self.lbl3.setPixmap(self.jugador.dado.qpixmap(None))
-            self.grp.setStyleSheet('QGroupBox {font: bold; color: '+self.jugador.color.name+';}')
+            self.grp.setStyleSheet('QGroupBox {font: bold ; color: '+self.jugador.color.name+';}')#'background-color: rgb(170, 170, 170);}')
             self.jugador.logturno=[]
         else:
             self.grp.setStyleSheet('QGroupBox {font: Normal; color: '+self.jugador.color.name+';}')
@@ -53,7 +53,7 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         self.lbl2.setEnabled(bool)
         self.lbl3.setEnabled(bool)
         self.lblAvatar.setEnabled(bool)
-        self.repaint()
+        
 
     def on_chk_stateChanged(self, state):        
         """Reescribe solo cuando cambia el tamaño"""

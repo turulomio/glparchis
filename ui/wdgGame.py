@@ -39,7 +39,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.panel4.setJugador(self.mem.jugadores.jugador("green"))
         
         self.panel().setActivated(True)
-        self.cmdTirarDado.setStyleSheet('QPushButton {color: '+self.mem.jugadoractual.color.name+'; font: bold 36px}')
+        self.cmdTirarDado.setStyleSheet('QPushButton {color: '+self.mem.jugadoractual.color.name+'; font: bold 30px; background-color: rgb(170, 170, 170);}')
         self.mem.jugadoractual.log(self.tr("Empieza la partida"))
 
 
@@ -67,6 +67,21 @@ class wdgGame(QWidget, Ui_wdgGame):
         elif self.panel4.jugador==jugador:
             return self.panel4
 
+    def afterWinning(self):
+        self.mem.jugadoractual.log(self.trUtf8("Has ganado la partida"))
+        self.mem.play("win")
+        self.table.stopReloads()
+        self.stopthegame=True
+        self.panel1.stopTimerLog()
+        self.panel2.stopTimerLog()
+        self.panel3.stopTimerLog()
+        self.panel4.stopTimerLog()
+        m=QMessageBox()
+        m.setIcon(QMessageBox.Information)
+        m.setText(self.trUtf8("%1 ha ganado").arg(self.mem.jugadoractual.name))
+        m.exec_() 
+        self.tab.setCurrentIndex(1)
+
 
     def on_JugadorDebeTirar(self):
         """Se ejecuta cuando el jugador debe tirar:
@@ -74,6 +89,10 @@ class wdgGame(QWidget, Ui_wdgGame):
                 - Otras situaciones"""
         if self.stopthegame==True:
             return
+        if self.mem.jugadores.alguienHaGanado()==True:
+            self.afterWinning()
+            return
+            
         #Comprueba si ha ganado
         if self.mem.jugadoractual.HaGanado()==True:
             self.mem.jugadoractual.log(self.trUtf8("Has ganado la partida"))
@@ -94,7 +113,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.cmdTirarDado.setText(self.trUtf8("Tira el dado"))
         if self.mem.jugadoractual.ia==False:#Cuando es IA no debe permitir tirar dado
             self.cmdTirarDado.setEnabled(True)
-        self.cmdTirarDado.setIcon(self.mem.dado.qicon(None))
+#        self.cmdTirarDado.setIcon(self.mem.dado.qicon(None))
         if self.mem.jugadoractual.ia==True:
             self.mem.jugadoractual.log(self.trUtf8(u"IA Tira el dado"))
             delay(400)
@@ -107,6 +126,11 @@ class wdgGame(QWidget, Ui_wdgGame):
     def on_JugadorDebeMover(self):
         """Función que se ejecuta cuando un jugador debe mover
         Aquí se evalua si puede mover devolviendo True en caso positivo y """
+        
+        if self.mem.jugadores.alguienHaGanado()==True:
+            self.afterWinning()
+            return
+        
         self.cmdTirarDado.setEnabled(False)
         if self.mem.jugadoractual.ia==True:
             self.mem.jugadoractual.log(self.trUtf8("IA mueve una ficha"))     
@@ -134,7 +158,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.mem.jugadoractual.tirarDado()
         self.mem.dado.showing=True
         self.ogl.updateGL()
-        self.cmdTirarDado.setIcon(self.mem.dado.qicon(self.mem.jugadoractual.tiradaturno.ultimoValor()))
+#        self.cmdTirarDado.setIcon(self.mem.dado.qicon(self.mem.jugadoractual.tiradaturno.ultimoValor()))
         self.panel().setLabelDado()
         
         if self.mem.jugadoractual.tiradaturno.tresSeises()==True:
@@ -206,8 +230,9 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.mem.dado.showing=False
         self.ogl.updateGL()        
 
-        
         self.panel().setActivated(False)
+        self.panel().grp.update()
+        
         while True:
             if self.mem.jugadoractual.color.name=="yellow":
                 self.mem.jugadoractual=self.mem.jugadores.jugador("blue")
@@ -225,9 +250,9 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.mem.jugadoractual.LastFichaMovida=None
     
         self.panel().setActivated(True) #Activa y limpia panel
+        self.panel().grp.update()
 
-        self.cmdTirarDado.setStyleSheet('QPushButton {color: '+self.mem.jugadoractual.color.name+'; font: bold 36px}')
-
+        self.cmdTirarDado.setStyleSheet('QPushButton {color: '+self.mem.jugadoractual.color.name+'; font: bold 30px; background-color: rgb(170, 170, 170);}')
         self.on_JugadorDebeTirar()
 
 
