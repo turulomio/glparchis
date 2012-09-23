@@ -16,9 +16,13 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         QObject.connect(self.timerLog, SIGNAL("timeout()"), self.refreshLog)     
         self.timerLog.start(300)
         
+    def stopTimerLog(self):
+        self.timerLog.stop()
+        
     def setJugador(self, jugador):
         self.jugador=jugador
         self.lblAvatar.setPixmap(jugador.qpixmap())      
+        self.grp.setStyleSheet('QGroupBox {color: '+self.jugador.color.name+'}')
         self.grp.setTitle(jugador.name)
         
     def setLabelDado(self):
@@ -36,13 +40,20 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         label.setPixmap(self.jugador.dado.qpixmap(self.jugador.tiradaturno.ultimoValor()))
 
     def setActivated(self, bool):
+        """Función que se ejecuta para activar un panel. Al hacerlo se cambia el log de turno y se limpian los dados"""
+        if bool==True:
+            self.lbl1.setPixmap(self.jugador.dado.qpixmap(None))
+            self.lbl2.setPixmap(self.jugador.dado.qpixmap(None))
+            self.lbl3.setPixmap(self.jugador.dado.qpixmap(None))
+            self.grp.setStyleSheet('QGroupBox {font: bold; color: '+self.jugador.color.name+';}')
+            self.jugador.logturno=[]
+        else:
+            self.grp.setStyleSheet('QGroupBox {font: Normal; color: '+self.jugador.color.name+';}')
         self.lbl1.setEnabled(bool)
         self.lbl2.setEnabled(bool)
         self.lbl3.setEnabled(bool)
         self.lblAvatar.setEnabled(bool)
-        if bool==True:
-            self.jugador.logturno=[]
-        self.show()
+        self.repaint()
 
     def on_chk_stateChanged(self, state):        
         """Reescribe solo cuando cambia el tamaño"""

@@ -4,7 +4,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.QtGui import *
 
-from OpenGL import GL
+from OpenGL.GL import *
 from wdgGame import *
 
 class wdgShowObject(QGLWidget):
@@ -19,26 +19,24 @@ class wdgShowObject(QGLWidget):
         self.texDecor=[]
 
         self.lastPos = QPoint()
-        
-#        self.trolltechGreen = QColor.fromCmykF(0.40, 0, 1.0, 0.0)
-
-        
+               
         #Carga el primer objeto    
-#        def __init__(self, id, maxfichas, color,  position, rotate, rampallegada, tipo, seguro, posfichas):
         self.cas= Casilla(1, 2, Color(255, 255, 255) , (-3.5, -1.5, 0, 0), 0, False, 3,  False, (0, 0, 0))
-#            def __init__(self, id, number,  color, jugador, ruta):
-        self.ficha=Ficha(0, 1, Color(0, 255, 255), Jugador(Color(0, 255, 255)), None)
+        self.ficha=Ficha(0, 1, Color(255, 0, 0), Jugador(Color(255, 0, 0)), None)
         self.tablero=Tablero()
+        self.dado=Dado()
+        self.dado.showing=True
+        self.lasttirada=5
 
     
     def changeOrtho(self):
         side = min(self.width(), self.height())
-        GL.glViewport((self.width() - side) / 2, (self.height() - side) / 2, side, side)      
+        glViewport((self.width() - side) / 2, (self.height() - side) / 2, side, side)      
         self.updateOverlayGL()                          
-        GL.glMatrixMode(GL.GL_PROJECTION)
-        GL.glLoadIdentity()
-        GL.glOrtho(self.ortho[0], self.ortho[1], self.ortho[2], self.ortho[3], self.ortho[4], self.ortho[5] )
-        GL.glMatrixMode(GL.GL_MODELVIEW)
+        glMatrixMode(GL_PROJECTION)
+        glLoadIdentity()
+        glOrtho(self.ortho[0], self.ortho[1], self.ortho[2], self.ortho[3], self.ortho[4], self.ortho[5] )
+        glMatrixMode(GL_MODELVIEW)
         self.updateGL()         
 
     def xRotation(self):
@@ -92,10 +90,11 @@ class wdgShowObject(QGLWidget):
         self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/casillainicial.png')))
         self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/wood.png')))
         self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/seguro.png')))
+        self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/dado_desplegado.png')))
         self.qglClearColor(QColor.fromCmykF(0.39, 0.39, 0.0, 0.0).dark())
-        GL.glShadeModel(GL.GL_FLAT)
-        GL.glEnable(GL.GL_DEPTH_TEST)
-        GL.glEnable(GL.GL_CULL_FACE)
+        glShadeModel(GL_FLAT)
+        glEnable(GL_DEPTH_TEST)
+        glEnable(GL_CULL_FACE)
         
     def normalizeAngle(self, angle):
         while angle < 0:
@@ -105,14 +104,15 @@ class wdgShowObject(QGLWidget):
         return angle
 
     def paintGL(self):
-        GL.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT)
-        GL.glLoadIdentity()
-        GL.glTranslated(0.0, 0.0, -10.0)
-        GL.glRotated(self.xRot / 16.0, 1.0, 0.0, 0.0)
-        GL.glRotated(self.yRot / 16.0, 0.0, 1.0, 0.0)
-        GL.glRotated(self.zRot / 16.0, 0.0, 0.0, 1.0)
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+        glLoadIdentity()
+        glTranslated(0.0, 0.0, -10.0)
+        glRotated(self.xRot / 16.0, 1.0, 0.0, 0.0)
+        glRotated(self.yRot / 16.0, 0.0, 1.0, 0.0)
+        glRotated(self.zRot / 16.0, 0.0, 0.0, 1.0)
         #Aquí no añadir calculos hacerlo en dobleclick
         if self.objeto==0:
+            self.cas.color=Color(255, 255, 255)
             self.cas.dibujar(self)
         elif self.objeto==1:
             self.cas.dibujar(self)
@@ -123,24 +123,28 @@ class wdgShowObject(QGLWidget):
         elif self.objeto==4:
             self.cas.dibujar(self)
         elif self.objeto==5:
+            glScaled(3, 3, 3)
             self.ficha.dibujar(self, None)
         elif self.objeto==6:
             self.tablero.dibujar(self)
+        elif self.objeto==7:
+            glScaled(8, 8,8)
+            self.dado.dibujar(self, True)
 
 
     def resizeGL(self, width, height):
         side = min(width, height)
-        GL.glViewport((width - side) / 2, (height - side) / 2, side, side)
+        glViewport((width - side) / 2, (height - side) / 2, side, side)
 
-        GL.glMatrixMode(GL.GL_PROJECTION)
-        GL.glLoadIdentity()
-        GL.glOrtho(self.ortho[0], self.ortho[1], self.ortho[2], self.ortho[3], self.ortho[4], self.ortho[5] )
-        GL.glMatrixMode(GL.GL_MODELVIEW)
+        glMatrixMode(GL_PROJECTION)
+        glLoadIdentity()
+        glOrtho(self.ortho[0], self.ortho[1], self.ortho[2], self.ortho[3], self.ortho[4], self.ortho[5] )
+        glMatrixMode(GL_MODELVIEW)
 
     def mouseDoubleClickEvent(self, event): 
         if event.buttons() & Qt.LeftButton:
             self.objeto=self.objeto+1
-            if self.objeto>=7:
+            if self.objeto>=8:
                 self.objeto=0
             print ("Visualizando el objeto: " + str(self.objeto))
 
@@ -180,6 +184,10 @@ class wdgShowObject(QGLWidget):
             self.changeOrtho()
         elif self.objeto==6:#tablero
             self.tablero.position=(-32.5, -32.5, 0, 0)
+            self.ortho=(-53, +53, +53, -53, -60.0, 80.0)
+            self.changeOrtho()
+        elif self.objeto==7:#dado
+            self.dado.position=(-1, -1, -1, 0)
             self.ortho=(-53, +53, +53, -53, -60.0, 80.0)
             self.changeOrtho()
         self.paintGL()

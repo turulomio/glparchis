@@ -15,9 +15,6 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from frmMain import *
 
-def help():
-    print ("Ayuda")
-
 try:
     os.makedirs(os.path.expanduser("~/.glparchis/"))
 except:
@@ -28,7 +25,6 @@ sys.setrecursionlimit(50000)
 
 cfgfile=ConfigFile(os.path.expanduser("~/.glparchis/")+ "glparchis.cfg")
 cfgfile.save()
-print (cfgfile.language)
 
 app = QApplication(sys.argv)
 app.setApplicationName("glParchis {0}".format(str(datetime.datetime.now())))

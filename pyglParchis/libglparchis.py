@@ -6,7 +6,7 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.phonon import Phonon
-version="20120921"
+version="20120921+"
 def q2s(q):
     """Qstring to python string en utf8"""
     return str(QString.toUtf8(q))
@@ -57,21 +57,23 @@ class Dado(QObject):
         self.lasttirada=resultado
         return resultado
         
-    def dibujar(self, ogl):
+    def dibujar(self, ogl, alone=False):
+        """Cuando se dibuja alone, no tiene en cuenta los jugadores es para showobject"""
         if self.showing==False:
             return
         glInitNames();
         glPushName(self.oglname);
         glPushMatrix();
-        if ogl.mem.jugadoractual==ogl.mem.jugadores.jugador("yellow"):
-            self.position=(10, 51, 1)
-        elif ogl.mem.jugadoractual==ogl.mem.jugadores.jugador("blue"):
-            self.position=(9, 10, 1)
-        elif ogl.mem.jugadoractual==ogl.mem.jugadores.jugador("red"):
-            self.position=(50, 10, 1)
-        elif ogl.mem.jugadoractual==ogl.mem.jugadores.jugador("green"):
-            self.position=(50, 51, 1)
-        glTranslatef(self.position[0],self.position[1],self.position[2]);
+        if alone==False:
+            if ogl.mem.jugadoractual==ogl.mem.jugadores.jugador("yellow"):
+                self.position=(10, 51, 1)
+            elif ogl.mem.jugadoractual==ogl.mem.jugadores.jugador("blue"):
+                self.position=(9, 10, 1)
+            elif ogl.mem.jugadoractual==ogl.mem.jugadores.jugador("red"):
+                self.position=(50, 10, 1)
+            elif ogl.mem.jugadoractual==ogl.mem.jugadores.jugador("green"):
+                self.position=(50, 51, 1)
+            glTranslatef(self.position[0],self.position[1],self.position[2]);
         if self.lasttirada==1:
             glTranslated(0, 0, 3)
             glRotated(-90.0,1.0,0.0,0.0);
@@ -179,11 +181,6 @@ class Dado(QObject):
             pix=QPixmap(":/glparchis/cube.png")
         return pix
                     
-#
-#class SetJugadores:
-#    def __init__(self):
-#        self.actual=None
-#        self.arr=[]
         
 class TiradaHistorica:
     """Estudio estadistico de tiradas. Lleva un array con todas los objetos TiradaTurno por cada jugador
@@ -248,7 +245,6 @@ class Tirada:
         self.jugador=jugador
         self.valor=valor
         self.tipo=tipo#None desconocido 1 turno normal, dos por seis, tres por comer, cuatro por meter
-        #EL TIPO SE PONE CUANDO SE PUEDA
 
 class TiradaTurno:
     """Objeto que recoge todos las tiradas de un turno"""
@@ -300,8 +296,6 @@ class Jugador:
         return "Jugador {0}".format(self.color.name)
 
     def log(self, l):
-#        self.inittime=datetime.timedelta(days=0)#inittime actualmente esta en mem y no quiero pasrlo como parametro
-#        l=str(datetime.datetime.now()-self.inittime)[2:-7]+ " " + l
         l=u"{0} {1}".format(str(datetime.datetime.now().time()).split(".")[0], l)
         self.logturno.append( l)
         self.loghistorico.append(l)
@@ -492,17 +486,6 @@ class SetFichas:
             return True
         return False
         
-        
-#        
-#    def fichasPuedenComer(self, mem, posruta):
-#        """Devuelve un arr con las fichas que pueden comer en la posicion posruta, No esta bien porque cada ficha es una posruta"""
-#        resultado=[]
-#        for f in self.arr:
-#            (puede, fichaacomer)=f.puedeComer(mem, posruta)
-#            if puede:
-#                resultado.append(f)
-#        return resultado        
-        
     def fichasAutorizadasAMover(self, mem):
         """Devuelve un arr con las fichas que pueden mover"""
         resultado=[]
@@ -535,8 +518,6 @@ class Ficha(QObject):
         self.ficha=gluNewQuadric();
         self.jugador=jugador
         self.oglname=self.id#Nombre usado para pick por opengl
-#        self.casilla=casilla
-#        self.id=fichas_name2id(name)
         
     def __repr__(self):
         return  "Ficha {0} del jugador {1}".format(self.id, self.jugador.color.name)
@@ -672,27 +653,7 @@ class Ficha(QObject):
             fichaacomer.jugador.comidasporotro=fichaacomer.jugador.comidasporotro+1
             return True
         return False
-    
-#    def comeEnInicio(self):
-#        #        #COMER A INICIO REQUIERE COMER FICHA EXPULSA ANTES DE MOVER SINO NO HAY HUECO            
-#        casilladestino=self.ruta.arr[1]
-#        if self.posruta==0 and self.jugador.tiradaturno.ultimoValor()==5 and self.jugador.hayDosJugadoresDistintosEnRuta1():
-#            ficha1=casilladestino.buzon[1]
-#            ficha2=casilladestino.buzon[0]
-#            if ficha1.jugador!=self.jugador:
-#                fichaacomer=ficha1
-#            elif ficha2.jugador!=self.jugador:
-#                fichaacomer=ficha2
-#            else:
-#                return False
-#
-#            fichaacomer.mover(0, False)
-#            self.jugador.movimientos_acumulados=20
-#            self.jugador.log(self.trUtf8('He comido una ficha de "{0}" en la casilla {1}'.format(fichaacomer.jugador.name, casilladestino.id)))
-#            self.jugador.comidaspormi=self.jugador.comidaspormi+1
-#            fichaacomer.jugador.comidasporotro=fichaacomer.jugador.comidasporotro+1
-#            self.mover(1, True)
-#            return True
+
     def puedeMeter(self, posruta):
         """Devuelve un booleano si puede meter la ficha en las casilla final"""
         if posruta==72:
@@ -779,11 +740,6 @@ class Ficha(QObject):
                 if f.jugador.tieneFichasEnRampaLlegada():
                     resultado=resultado+1
         return resultado
-#
-#    def estaAsegurada(self):
-#        if self.casilla().seguro==True:
-#            return True
-#        return False
 
     def estaEnCasa(self):
         if self.posruta==0:
@@ -859,11 +815,13 @@ class Tablero(QObject):
         v8 = (0, 65, 0.5)
         color=Color(255, 255, 255)
         quad(v4, v3, v2, v1, color)      
-        quad(v5, v6, v7, v8, color)      
+        color=Color(70, 70, 70)
+        quad(v5, v6, v7, v8, color)   
+        color=Color(255, 255, 255)   
         quad(v5, v8, v4, v1, color)      
         quad(v2, v3, v7, v6, color)      
         quad(v1, v2, v6, v5, color)      
-        quad(v8, v7, v3, v4, color)      
+        quad(v8, v7, v3, v4, color)          
 
         glEnd()
         glPopMatrix()
