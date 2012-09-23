@@ -461,6 +461,12 @@ class SetJugadores:
                 return j
         return None
         
+    def alguienHaGanado(self):
+        for j in self.arr:
+            if j.HaGanado()==True:
+                return True
+        return False
+        
 class SetCasillas:
     """Conjunto de casillas"""
     def __init__(self):

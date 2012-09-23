@@ -96,9 +96,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def on_actionSalir_triggered(self):
         print ("salidendo")
         if self.game:
-            self.game.stopthegame=True
-            del (self.game)
-            self.game=None
+            self.game.__del__()
+#            self.game.deleteLater()
         qApp.closeAllWindows()
         qApp.exit()
         sys.exit(0)
@@ -111,7 +110,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.actionSound.setEnabled(True)
         if self.game!=None:
             self.layout.removeWidget(self.game)    
-            del self.game 
+            self.game.__del__()
+#            self.game.deleteLater()
         self.game=wdgGame(self)
         self.game.stopthegame=False
         self.layout.addWidget(self.game)
