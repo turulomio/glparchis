@@ -15,6 +15,16 @@ class wdgGame(QWidget, Ui_wdgGame):
         QWidget.__init__(self, parent)
         self.setupUi(self)
         self.show()
+    
+    def __del__(self):
+        print ("Destructor wdgGame")
+        self.stopthegame=True
+        self.table.stopReloads()
+        self.panel1.stopTimerLog()
+        self.panel2.stopTimerLog()
+        self.panel3.stopTimerLog()
+        self.panel4.stopTimerLog()
+        
 
     def assign_mem(self, mem):
         self.mem=mem
@@ -29,6 +39,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.panel4.setJugador(self.mem.jugadores.jugador("green"))
         
         self.panel().setActivated(True)
+        self.cmdTirarDado.setStyleSheet('QPushButton {color: '+self.mem.jugadoractual.color.name+'; font: bold 36px}')
         self.mem.jugadoractual.log(self.tr("Empieza la partida"))
 
 
@@ -63,13 +74,28 @@ class wdgGame(QWidget, Ui_wdgGame):
                 - Otras situaciones"""
         if self.stopthegame==True:
             return
+        #Comprueba si ha ganado
+        if self.mem.jugadoractual.HaGanado()==True:
+            self.mem.jugadoractual.log(self.trUtf8("Has ganado la partida"))
+            self.mem.play("win")
+            self.table.stopReloads()
+            self.stopthegame=True
+            self.panel1.stopTimerLog()
+            self.panel2.stopTimerLog()
+            self.panel3.stopTimerLog()
+            self.panel4.stopTimerLog()
+            m=QMessageBox()
+            m.setIcon(QMessageBox.Information)
+            m.setText(self.trUtf8("%1 ha ganado").arg(self.mem.jugadoractual.name))
+            m.exec_() 
+            self.tab.setCurrentIndex(1)
+            return           
+            
+        self.cmdTirarDado.setText(self.trUtf8("Tira el dado"))
         if self.mem.jugadoractual.ia==False:#Cuando es IA no debe permitir tirar dado
             self.cmdTirarDado.setEnabled(True)
         self.cmdTirarDado.setIcon(self.mem.dado.qicon(None))
         if self.mem.jugadoractual.ia==True:
-#            self.mem.jugadoractual.log(self.trUtf8("IA Tira el dado"))
-#            a=QString()
-#            a.trUTF8("IA Tira el dado")
             self.mem.jugadoractual.log(self.trUtf8(u"IA Tira el dado"))
             delay(400)
             self.on_cmdTirarDado_clicked()
@@ -103,12 +129,11 @@ class wdgGame(QWidget, Ui_wdgGame):
     @QtCore.pyqtSlot()      
     def on_cmdTirarDado_clicked(self):  
         self.cmdTirarDado.setEnabled(False)
+        self.cmdTirarDado.setText("")
         self.mem.play("dice")
         self.mem.jugadoractual.tirarDado()
         self.mem.dado.showing=True
         self.ogl.updateGL()
-        self.ogl.updateGL()
-#        self.ogl.showDado()
         self.cmdTirarDado.setIcon(self.mem.dado.qicon(self.mem.jugadoractual.tiradaturno.ultimoValor()))
         self.panel().setLabelDado()
         
@@ -180,16 +205,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         delay(400)
         self.mem.dado.showing=False
         self.ogl.updateGL()        
-        #Comprueba si ha ganado
-        if self.mem.jugadoractual.HaGanado()==True:
-            self.mem.play("win")
-            self.table.stopReloads()
-            m=QMessageBox()
-            m.setIcon(QMessageBox.Information)
-            m.setText(self.trUtf8("%1 ha ganado").arg(self.mem.jugadoractual.name))
-            m.exec_() 
-            self.tab.setCurrentIndex(1)
-            return
+
         
         self.panel().setActivated(False)
         while True:
@@ -207,15 +223,10 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.mem.jugadoractual.tiradaturno=TiradaTurno()#Se crea otro objeto porque así el anterior queda vinculada< a TiradaHistorica.
         self.mem.jugadoractual.movimientos_acumulados=None
         self.mem.jugadoractual.LastFichaMovida=None
-        
-        #Activa y limpia
-        self.panel().setActivated(True)
-        self.panel().lbl1.setPixmap(self.mem.dado.qpixmap(None))
-        self.panel().lbl2.setPixmap(self.mem.dado.qpixmap(None))
-        self.panel().lbl3.setPixmap(self.mem.dado.qpixmap(None))
-        self.panel().show()
+    
+        self.panel().setActivated(True) #Activa y limpia panel
 
-        self.cmdTirarDado.setStyleSheet('QPushButton {color: '+self.mem.jugadoractual.color.name+'}')
+        self.cmdTirarDado.setStyleSheet('QPushButton {color: '+self.mem.jugadoractual.color.name+'; font: bold 36px}')
 
         self.on_JugadorDebeTirar()
 

@@ -1,3 +1,9 @@
+XXXXXXXX
+========
+- Ahora se muestra un dado en Acerca De
+- Mejorado el cmdDado
+
+
 20120921
 ========
 - Solucionado error al buscar si hay actualización disponible

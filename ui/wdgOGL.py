@@ -21,7 +21,6 @@ class wdgOGL(QGLWidget):
         self.visualizacion=0
         
     def assign_mem(self, mem):
-        print ("assignmem")
         self.mem=mem
         
     def initializeGL(self):
@@ -42,12 +41,9 @@ class wdgOGL(QGLWidget):
         self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/seguro.png')))
         self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/dado_desplegado.png')))
         
-
         print ("initializeGL")
         glEnable(GL_TEXTURE_2D);
         glShadeModel (GL_SMOOTH);
-#        self.qglClearColor(Color(0, 0, 0).qcolor())
-#        glShadeModel(GL_SMOOTH)
         glEnable(GL_DEPTH_TEST)
         glEnable(GL_CULL_FACE)
         
@@ -88,9 +84,6 @@ class wdgOGL(QGLWidget):
         glMatrixMode(GL_MODELVIEW)
 
     def keyPressEvent(self, event):
-#        if (event.key() == Qt.Key_Escape) or (event.key() == Qt.Key_Q):
-#            self.close()
-
         if event.key() == Qt.Key_M: # toggle mode
             if self.visualizacion==0:
                 self.rotX=0
@@ -195,29 +188,4 @@ class wdgOGL(QGLWidget):
         elif event.buttons() & Qt.RightButton:
             pickup(event, True)                    
         self.updateGL()
-#
-#    def showDado(self):
-#        self.mem.dado.showing=True
-##        if self.height()>700:
-##            dadowidth=40
-##        else:
-##            dadowidth=20
-##        xl=self.width()/6+6# xleft
-##        xr=self.width()*5/6-43
-##        yt=self.height()/6+3#ytop
-##        yb=self.height()*5/6-43
-##        if self.mem.jugadoractual.color.name=="yellow":
-##            self.dado.setGeometry( xl, yt, dadowidth, dadowidth )
-##        elif self.mem.jugadoractual.color.name=="blue":
-##            self.dado.setGeometry(xl, yb, dadowidth, dadowidth)
-##        elif self.mem.jugadoractual.color.name=="red":
-##            self.dado.setGeometry(xr, yb, dadowidth, dadowidth)
-##        elif self.mem.jugadoractual.color.name=="green":
-##            self.dado.setGeometry(xr, yt, dadowidth, dadowidth)
-##        self.dado.setPixmap(self.mem.dado.qpixmap(self.mem.jugadoractual.tiradaturno.ultimoValor()))
-##        self.dado.repaint()
-##        self.dado.update()
-##        self.updateGL()
-##        self.dado.show()
-
 

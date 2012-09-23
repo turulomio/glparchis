@@ -1,13 +1,13 @@
 Requisitos
-=======
+==========
 El programa tiene las siguientes dependencias:
   - PyQt4
   - pyopengl
-  - vorbis-tools
   - python2
 
-Procedimiento de instalación
-============================
+Procedimiento de instalación para fuentes linux
+===============================================
+
 Se descomprime el fichero 
 Una vez en el directorio en el que esta el Makefile se ejecuta
   # make all
@@ -18,7 +18,14 @@ https://xulpymoney.svn.sourceforge.net/svnroot/xulpymoney/myportage/games-board/
 Si eres atrevido o quieres ayudarme con el desarrollo te lo puedes bajar del subversion con el siguiente comando
   # svn co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis
 
-Procedimiento de desinstalación
-===============================
-Con el siguiente comando se hace una desinstalación limpia
+Para desinstalar utiliza el siguiente comando hace una desinstalación limpia
   # make uninstall
+
+Procedimiento de instalación para binarios linux
+================================================
+
+Procedimiento de instalación para binarios windows
+==================================================
+
+Procedimiento de instalación para fuentes windows
+=================================================
