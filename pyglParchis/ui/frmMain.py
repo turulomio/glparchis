@@ -77,16 +77,16 @@ class frmMain(QMainWindow, Ui_frmMain):#
             if line.find('folder warn')!=-1:
                 remoteversion=line.split('glparchis-')[1].split('"') [0]
                 print ("Remote version",  remoteversion)
-                if version!=remoteversion:
+                if remoteversion==version or remoteversion+"+"==version:
                     m=QMessageBox()
                     m.setIcon(QMessageBox.Information)
-                    m.setTextFormat(Qt.RichText)#this is what makes the links clickable
-                    m.setText(self.trUtf8("Hay una nueva versión del programa. Bájatela de la página web del proyecto <a href='http://glparchis.sourceforge.net'>http://glparchis.sourceforge.net</a> o directamente desde <a href='https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-")+remoteversion+"/'>Sourceforge</a>")
+                    m.setText(self.trUtf8("Dispone de la última versión del juego"))
                     m.exec_() 
                 else:
                     m=QMessageBox()
                     m.setIcon(QMessageBox.Information)
-                    m.setText(self.trUtf8("Dispone de la última versión del juego"))
+                    m.setTextFormat(Qt.RichText)#this is what makes the links clickable
+                    m.setText(self.trUtf8("Hay una nueva versión del programa. Bájatela de la página web del proyecto <a href='http://glparchis.sourceforge.net'>http://glparchis.sourceforge.net</a> o directamente desde <a href='https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-")+remoteversion+"/'>Sourceforge</a>")
                     m.exec_() 
                 break
         self.cfgfile.lastupdate=datetime.date.today().toordinal()

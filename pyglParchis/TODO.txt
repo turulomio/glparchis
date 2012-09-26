@@ -5,3 +5,5 @@
 20120918 Hacer sistema para jugar en red
 20120918 Mostrar sistema de gr´aficos de 6 jugadores
 20120918 Mostrar sistema de gr´aficos de 8 jugadores
+20120925 Al meter dice en casa y deber´ia decir ha llegado a la meta
+20120925 Cuando sale un 6 y con el 6 meto, corro 10 luego no me deja volver a tirar y tengo que mover otros 6

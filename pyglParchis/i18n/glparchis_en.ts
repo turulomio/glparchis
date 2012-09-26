@@ -415,12 +415,12 @@
         <translation>I couldn&apos;t check for new update. Try it later.</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="89"/>
+        <location filename="ui/frmMain.py" line="83"/>
         <source>Dispone de la última versión del juego</source>
         <translation>You have the last version of the game</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="84"/>
+        <location filename="ui/frmMain.py" line="89"/>
         <source>Hay una nueva versión del programa. Bájatela de la página web del proyecto &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt; o directamente desde &lt;a href=&apos;https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-</source>
         <translation>There is a new version of the game. You can download it from the project web page &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt; o directly from &lt;a href=&apos;https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-</translation>
     </message>
