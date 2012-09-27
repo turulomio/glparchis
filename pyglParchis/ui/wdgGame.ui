@@ -26,6 +26,9 @@
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QPushButton" name="cmdTirarDado">
+         <property name="toolTip">
+          <string>Pulsa este botón o haga doble click en el tablero para tirar el dado</string>
+         </property>
          <property name="text">
           <string>Tira el dado</string>
          </property>
