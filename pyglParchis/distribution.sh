@@ -41,8 +41,7 @@ cp      Makefile \
         GPL-3.txt \
         INSTALL-EN.txt \
         INSTALL-ES.txt \
-        RELEASES-EN.txt \
-        RELEASES-ES.txt \
+        RELEASES.txt \
         glparchis.py \
         glparchis.pro \
         libglparchis.py \
