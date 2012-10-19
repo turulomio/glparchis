@@ -5,8 +5,7 @@ rm -Rf doc/omegat-en/target/
 mkdir -p doc/omegat-en/source
 mkdir -p doc/omegat-en/target
 cp INSTALL-ES.txt doc/omegat-en/source/INSTALL-EN.txt
-cp RELEASES-ES.txt doc/omegat-en/source/RELEASES-EN.txt
-cp AUTHORS-ES.txt doc/omegat-en/source/AUTHORS-EN.txt        
+cp AUTHORS-ES.txt doc/omegat-en/source/AUTHORS-EN.txt
 cp CHANGELOG-ES.txt doc/omegat-en/source/CHANGELOG-EN.txt
 omegat doc/omegat-en
 
