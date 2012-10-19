@@ -15,16 +15,15 @@ class wdgGame(QWidget, Ui_wdgGame):
         QWidget.__init__(self, parent)
         self.setupUi(self)
         self.show()
+        self.panels=[]
         
     
     def __del__(self):
         print ("Destructor wdgGame")
         self.stopthegame=True
         self.table.stopReloads()
-        self.panel1.stopTimerLog()
-        self.panel2.stopTimerLog()
-        self.panel3.stopTimerLog()
-        self.panel4.stopTimerLog()
+        for p in self.panels:
+            p.stopTimerLog()
         
 
     def assign_mem(self, mem):
@@ -34,10 +33,12 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.ogl.assign_mem(self.mem)
         self.ogl.setFocus()
         
-        self.panel1.setJugador(self.mem.jugadores.jugador("yellow"))
-        self.panel2.setJugador(self.mem.jugadores.jugador("blue"))
-        self.panel3.setJugador(self.mem.jugadores.jugador("red"))
-        self.panel4.setJugador(self.mem.jugadores.jugador("green"))
+        for j in self.mem.jugadores.arr:
+            print (j.color.name)
+            p=wdgUserPanel(self)
+            self.panelScrollLayout.addWidget(p)
+            p.setJugador(j)
+            self.panels.append(p)
         
         self.panel().setActivated(True)
         self.cmdTirarDado.setStyleSheet('QPushButton {color: '+self.mem.jugadoractual.color.name+'; font: bold 30px; background-color: rgb(170, 170, 170);}')
@@ -64,24 +65,17 @@ class wdgGame(QWidget, Ui_wdgGame):
         """Si se pasa sin parametro da el panel del jugador actual"""
         if jugador==None:
             jugador=self.mem.jugadoractual
-        if self.panel1.jugador==jugador:
-            return self.panel1
-        elif self.panel2.jugador==jugador:
-            return self.panel2
-        elif self.panel3.jugador==jugador:
-            return self.panel3
-        elif self.panel4.jugador==jugador:
-            return self.panel4
+        for p in self.panels:
+            if p.jugador==jugador:
+                return p
 
     def afterWinning(self):
         self.mem.jugadoractual.log(self.trUtf8("Has ganado la partida"))
         self.mem.play("win")
         self.table.stopReloads()
         self.stopthegame=True
-        self.panel1.stopTimerLog()
-        self.panel2.stopTimerLog()
-        self.panel3.stopTimerLog()
-        self.panel4.stopTimerLog()
+        for p in self.panels:
+            p.stopTimerLog()
         m=QMessageBox()
         m.setIcon(QMessageBox.Information)
         m.setText(self.trUtf8("%1 ha ganado").arg(self.mem.jugadoractual.name))
@@ -105,10 +99,8 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.mem.play("win")
             self.table.stopReloads()
             self.stopthegame=True
-            self.panel1.stopTimerLog()
-            self.panel2.stopTimerLog()
-            self.panel3.stopTimerLog()
-            self.panel4.stopTimerLog()
+            for p in self.panels:
+                p.stopTimerLog()
             m=QMessageBox()
             m.setIcon(QMessageBox.Information)
             m.setText(self.trUtf8("%1 ha ganado").arg(self.mem.jugadoractual.name))
@@ -255,6 +247,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.mem.jugadoractual.movimientos_acumulados=None
         self.mem.jugadoractual.LastFichaMovida=None
     
+        self.panelScroll.ensureWidgetVisible(self.panel())
         self.panel().setActivated(True) #Activa y limpia panel
         self.panel().grp.update()
 

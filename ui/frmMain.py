@@ -21,7 +21,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.game=None
         if datetime.date.today()-datetime.date.fromordinal(self.cfgfile.lastupdate)>=datetime.timedelta(days=7):
             print ("Actualizando")
-            self.on_actionUpdates_triggered()
+            self.checkUpdates(False)
         
     @pyqtSlot()      
     def on_actionAcercaDe_triggered(self):
@@ -64,40 +64,53 @@ class frmMain(QMainWindow, Ui_frmMain):#
         
     @pyqtSlot()      
     def on_actionUpdates_triggered(self):
+        self.checkUpdates(True)
+        
+    def checkUpdates(self, showdialogwhennoupdates=False):
+        #Chequea en Internet
         try:
             web=urllib2.urlopen('https://sourceforge.net/projects/glparchis/files/glparchis/').read()
         except:
             web=None
+        #Si hay error de internet avisa
         if web==None:
-            m=QMessageBox()
-            m.setIcon(QMessageBox.Information)
-            m.setText(self.trUtf8("No se ha podido comprobar si hay actualizaciones. Inténtelo más tarde."))
-            m.exec_() 
+            if showdialogwhennoupdates==True:
+                m=QMessageBox()
+                m.setIcon(QMessageBox.Information)
+                m.setText(self.trUtf8("No se ha podido comprobar si hay actualizaciones. Inténtelo más tarde."))
+                m.exec_() 
+            return
+        #Saca la version de internet
+        remoteversion=None
         for line in web.split("\n"):
             if line.find('folder warn')!=-1:
                 remoteversion=line.split('glparchis-')[1].split('"') [0]
-                print ("Remote version",  remoteversion)
-                if remoteversion==version or remoteversion+"+"==version:
-                    m=QMessageBox()
-                    m.setIcon(QMessageBox.Information)
-                    m.setText(self.trUtf8("Dispone de la última versión del juego"))
-                    m.exec_() 
-                else:
-                    m=QMessageBox()
-                    m.setIcon(QMessageBox.Information)
-                    m.setTextFormat(Qt.RichText)#this is what makes the links clickable
-                    m.setText(self.trUtf8("Hay una nueva versión del programa. Bájatela de la página web del proyecto <a href='http://glparchis.sourceforge.net'>http://glparchis.sourceforge.net</a> o directamente desde <a href='https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-")+remoteversion+"/'>Sourceforge</a>")
-                    m.exec_() 
                 break
+        #Si no hay version sale
+        print ("Remote version",  remoteversion)
+        if remoteversion==None:
+            return
+                
+        if remoteversion==version.replace("+", ""):#Quita el más de desarrollo 
+            if showdialogwhennoupdates==True:
+                m=QMessageBox()
+                m.setIcon(QMessageBox.Information)
+                m.setText(self.trUtf8("Dispone de la última versión del juego"))
+                m.exec_() 
+        else:
+            m=QMessageBox()
+            m.setIcon(QMessageBox.Information)
+            m.setTextFormat(Qt.RichText)#this is what makes the links clickable
+            m.setText(self.trUtf8("Hay una nueva versión del programa. Bájatela de la página web del proyecto <a href='http://glparchis.sourceforge.net'>http://glparchis.sourceforge.net</a> o directamente desde <a href='https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-")+remoteversion+"/'>Sourceforge</a>")
+            m.exec_()                 
         self.cfgfile.lastupdate=datetime.date.today().toordinal()
         self.cfgfile.save()
         
     @pyqtSlot()      
     def on_actionSalir_triggered(self):
-        print ("salidendo")
+        print ("saliendo")
         if self.game:
             self.game.__del__()
-#            self.game.deleteLater()
         qApp.closeAllWindows()
         qApp.exit()
         sys.exit(0)
@@ -138,12 +151,50 @@ class frmMain(QMainWindow, Ui_frmMain):#
 
 
     @pyqtSlot()  
-    def on_actionPartidaNueva_triggered(self):
+    def on_actionPartidaNueva4_triggered(self):
         self.mem=Mem4()
         self.mem.cfgfile=self.cfgfile
         initgame=frmInitGame(self.mem,  self)
         salida=initgame.exec_()
         if salida==QDialog.Accepted:
+            self.showWdgGame()
+
+    @pyqtSlot()  
+    def on_actionPartidaNueva6_triggered(self):
+        if developing()==True:
+            self.mem=Mem6()
+            self.mem.cfgfile=self.cfgfile
+            pos=0
+            posicion=0
+            for j in self.mem.jugadores.arr:
+                j.name=j.color.name
+                j.plays=True
+                j.ia=False
+                self.mem.jugadoractual=j
+                if pos>=3:
+                    posicion=72
+                for f in j.fichas.arr:
+                    f.mover(posicion, False,  True)
+                    pos=pos+1
+            self.showWdgGame()
+
+    @pyqtSlot()  
+    def on_actionPartidaNueva8_triggered(self):
+        if developing()==True:
+            self.mem=Mem8()
+            self.mem.cfgfile=self.cfgfile
+            pos=0
+            posicion=0
+            for j in self.mem.jugadores.arr:
+                j.name=j.color.name
+                j.plays=True
+                j.ia=False
+                self.mem.jugadoractual=j
+                if pos>=3:
+                    posicion=72
+                for f in j.fichas.arr:
+                    f.mover(posicion, False,  True)
+                    pos=pos+1
             self.showWdgGame()
 
 

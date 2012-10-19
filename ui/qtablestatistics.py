@@ -31,6 +31,8 @@ class QTableStatistics(QTableWidget):
             elif color=="green":
                 return 3
         #########################################
+        if self.mem.maxplayers!=4:
+            return
         tj=TiradaJuego(self.mem)
         for j in self.mem.jugadores.arr:
             column=color2column(j.color.name)
