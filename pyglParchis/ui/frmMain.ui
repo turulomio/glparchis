@@ -40,7 +40,7 @@
      <x>0</x>
      <y>0</y>
      <width>995</width>
-     <height>25</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAyuda">
@@ -57,7 +57,9 @@
     <property name="title">
      <string>J&amp;ugar</string>
     </property>
-    <addaction name="actionPartidaNueva"/>
+    <addaction name="actionPartidaNueva4"/>
+    <addaction name="actionPartidaNueva6"/>
+    <addaction name="actionPartidaNueva8"/>
     <addaction name="separator"/>
     <addaction name="actionRecuperarPartida"/>
     <addaction name="actionGuardarPartida"/>
@@ -80,7 +82,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionPartidaNueva"/>
+   <addaction name="actionPartidaNueva4"/>
    <addaction name="actionRecuperarPartida"/>
    <addaction name="actionGuardarPartida"/>
    <addaction name="separator"/>
@@ -131,16 +133,19 @@
     <string>&amp;Guardar partida</string>
    </property>
   </action>
-  <action name="actionPartidaNueva">
+  <action name="actionPartidaNueva4">
    <property name="icon">
     <iconset resource="../images/glparchis.qrc">
      <normaloff>:/glparchis/star.png</normaloff>:/glparchis/star.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Partida Nueva</string>
+    <string>Partida de &amp;4 jugadores</string>
    </property>
    <property name="toolTip">
-    <string>Partida Nueva</string>
+    <string>Partida de 4 jugadores</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+4</string>
    </property>
   </action>
   <action name="actionSettings">
@@ -198,6 +203,36 @@
    </property>
    <property name="shortcut">
     <string>F5</string>
+   </property>
+  </action>
+  <action name="actionPartidaNueva6">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/6.png</normaloff>:/glparchis/6.png</iconset>
+   </property>
+   <property name="text">
+    <string>Partida de &amp;6 jugadores</string>
+   </property>
+   <property name="toolTip">
+    <string>Partida de 6 jugadores</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+6</string>
+   </property>
+  </action>
+  <action name="actionPartidaNueva8">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/8.png</normaloff>:/glparchis/8.png</iconset>
+   </property>
+   <property name="text">
+    <string>Partida de &amp;8 jugadores</string>
+   </property>
+   <property name="toolTip">
+    <string>Partida de 8 jugadores</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+8</string>
    </property>
   </action>
  </widget>
