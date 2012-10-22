@@ -2,6 +2,7 @@ import math
 def poscasillas8(maxcasillas):
     a=7*math.sqrt(2)/2
     b=3*math.sqrt(2)/2
+    c=3*math.tan(math.pi/8)
     posCasillas=[None]*maxcasillas
     posCasillas[0]=(0, 0, 0)
     posCasillas[1]=(21, 60, 0.7)
@@ -12,8 +13,8 @@ def poscasillas8(maxcasillas):
     posCasillas[6]=(21, 45, 0.7)
     posCasillas[7]=(21, 42, 0.7)
     
-    posCasillas[8]=(-30,  -30, 0.7)
-    posCasillas[9]=posCasillas[8]
+    posCasillas[8]=(28, 42, 0.7)
+    posCasillas[9]=(21, 42,  0.7)
     
     posCasillas[10]=(21-a, 42-a, 0.7)
     posCasillas[11]=(21-a-b, 42-a+b, 0.7)
@@ -31,8 +32,8 @@ def poscasillas8(maxcasillas):
     posCasillas[23]=(21-3*a-b*1, 42-3*a+b*1, 0.7)
     posCasillas[24]=(21-3*a-b*0, 42-3*a+b*0, 0.7)
     
-    posCasillas[25]=posCasillas[8]
-    posCasillas[26]=posCasillas[8]
+    posCasillas[25]=(posCasillas[24][0]+a, posCasillas[24][1]+7-b, 0.7)
+    posCasillas[26]=(posCasillas[24][0], posCasillas[24][1], 0.7)
     
     posCasillas[27]=(posCasillas[24][0], posCasillas[24][1]-7, 0.7)
     posCasillas[28]=(posCasillas[24][0]-1*3, posCasillas[24][1]-7, 0.7)
@@ -49,8 +50,10 @@ def poscasillas8(maxcasillas):
     posCasillas[39]=(posCasillas[24][0]-2*3, posCasillas[24][1]-7*3, 0.7)
     posCasillas[40]=(posCasillas[24][0]-1*3, posCasillas[24][1]-7*3, 0.7)
     posCasillas[41]=(posCasillas[24][0]-0*3, posCasillas[24][1]-7*3, 0.7)
-    posCasillas[42]=posCasillas[8]
-    posCasillas[43]=posCasillas[8]
+    
+    posCasillas[42]=(posCasillas[41][0], posCasillas[41][1]+7, 0.7)
+    posCasillas[43]=(posCasillas[41][0], posCasillas[41][1], 0.7)
+    
     posCasillas[44]=(posCasillas[41][0]+1*a, posCasillas[41][1]-1*a, 0.7)
     posCasillas[45]=(posCasillas[41][0]+1*a-1*b, posCasillas[41][1]-1*a-1*b, 0.7)
     posCasillas[46]=(posCasillas[41][0]+1*a-2*b, posCasillas[41][1]-1*a-2*b, 0.7)
@@ -66,8 +69,9 @@ def poscasillas8(maxcasillas):
     posCasillas[56]=(posCasillas[41][0]+3*a-2*b, posCasillas[41][1]-3*a-2*b, 0.7)
     posCasillas[57]=(posCasillas[41][0]+3*a-1*b, posCasillas[41][1]-3*a-1*b, 0.7)
     posCasillas[58]=(posCasillas[41][0]+3*a-0*b, posCasillas[41][1]-3*a-0*b, 0.7)
-    posCasillas[59]=posCasillas[8]
-    posCasillas[60]=posCasillas[8]
+    
+    posCasillas[59]=(posCasillas[58][0]-a, posCasillas[58][1]+a, 0.7)
+    posCasillas[60]=(posCasillas[58][0], posCasillas[58][1]-0*3, 0.7)
     
     posCasillas[61]=(posCasillas[58][0]+0*7, posCasillas[58][1]-1*3, 0.7)
     posCasillas[62]=(posCasillas[58][0]+0*7, posCasillas[58][1]-2*3, 0.7)
@@ -85,8 +89,8 @@ def poscasillas8(maxcasillas):
     posCasillas[74]=(posCasillas[58][0]+2*7, posCasillas[58][1]-2*3, 0.7)
     posCasillas[75]=(posCasillas[58][0]+2*7, posCasillas[58][1]-1*3, 0.7)
     
-    posCasillas[76]=posCasillas[8]
-    posCasillas[77]=posCasillas[8]
+    posCasillas[76]=(posCasillas[58][0]+2*7, posCasillas[58][1]-0*3, 0.7)
+    posCasillas[77]=(posCasillas[76][0]+7, posCasillas[76][1], 0.7)
 
 
     posCasillas[78]=(posCasillas[75][0]+7+1*a, posCasillas[75][1]+3+1*a, 0.7)
@@ -105,8 +109,8 @@ def poscasillas8(maxcasillas):
     posCasillas[91]=(posCasillas[75][0]+7+3*a+1*b, posCasillas[75][1]+3+3*a-1*b, 0.7)
     posCasillas[92]=(posCasillas[75][0]+7+3*a+0*b, posCasillas[75][1]+3+3*a-0*b, 0.7)
     
-    posCasillas[93]=posCasillas[8]
-    posCasillas[94]=posCasillas[8]
+    posCasillas[93]=(posCasillas[92][0]-a, posCasillas[92][1]-a, 0.7)
+    posCasillas[94]=(posCasillas[92][0], posCasillas[92][1], 0.7)
     
     posCasillas[95]=(posCasillas[92][0]+0*3, posCasillas[92][1]+7*1, 0.7)
     posCasillas[96]=(posCasillas[92][0]+1*3, posCasillas[92][1]+7*1, 0.7)
@@ -124,8 +128,9 @@ def poscasillas8(maxcasillas):
     posCasillas[108]=(posCasillas[92][0]+1*3, posCasillas[92][1]+7*3, 0.7)
     posCasillas[109]=(posCasillas[92][0]+0*3, posCasillas[92][1]+7*3, 0.7)
     
-    posCasillas[110]=posCasillas[8]
-    posCasillas[111]=posCasillas[8]
+    posCasillas[110]=(posCasillas[92][0], posCasillas[92][1]+2*7, 0.7)
+    posCasillas[111]=(posCasillas[109][0], posCasillas[109][1], 0.7)
+    
     posCasillas[112]=(posCasillas[109][0]-1*a+0*b, posCasillas[109][1]+1*a+0*b, 0.7)
     posCasillas[113]=(posCasillas[109][0]-1*a+1*b, posCasillas[109][1]+1*a+1*b, 0.7)
     posCasillas[114]=(posCasillas[109][0]-1*a+2*b, posCasillas[109][1]+1*a+2*b, 0.7)
@@ -142,8 +147,8 @@ def poscasillas8(maxcasillas):
     posCasillas[125]=(posCasillas[109][0]-3*a+1*b, posCasillas[109][1]+3*a+1*b, 0.7)
     posCasillas[126]=(posCasillas[109][0]-3*a+0*b, posCasillas[109][1]+3*a+0*b, 0.7)
     
-    posCasillas[127]=posCasillas[8]
-    posCasillas[128]=posCasillas[8]
+    posCasillas[127]=(posCasillas[109][0]-2*a, posCasillas[109][1]+2*a, 0.7)
+    posCasillas[128]=(posCasillas[7][0]+3*7, posCasillas[7][1]+0*3, 0.7)
     
     posCasillas[129]=(posCasillas[7][0]+2*7, posCasillas[7][1]+0*3, 0.7)
     posCasillas[130]=(posCasillas[7][0]+2*7, posCasillas[7][1]+1*3, 0.7)
@@ -162,7 +167,7 @@ def poscasillas8(maxcasillas):
     posCasillas[141]=(posCasillas[7][0]+1*7, posCasillas[7][1]+1*3, 0.7)
     posCasillas[142]=(posCasillas[7][0]+1*7, posCasillas[7][1]+0*3, 0.7)
     posCasillas[143]=(posCasillas[7][0]+1*7, posCasillas[7][1]-1*3, 0.7)
-    posCasillas[144]=(posCasillas[7][0]+1*7, posCasillas[7][1]-2*3, 0.7)#Central
+    posCasillas[144]=(posCasillas[7][0]+3*7-c, posCasillas[7][1]-1*3, 0.7)#Central
     
     #Rampa azul
     posCasillas[145]=(21-2*a-b*5, 42-2*a+b*5, 0.7)
@@ -172,7 +177,7 @@ def poscasillas8(maxcasillas):
     posCasillas[149]=(21-2*a-b*1, 42-2*a+b*1, 0.7)
     posCasillas[150]=(21-2*a-b*0, 42-2*a+b*0, 0.7)
     posCasillas[151]=(21-2*a+b*1, 42-2*a-b*1, 0.7)
-    posCasillas[152]=(21-2*a+b*2, 42-2*a-b*2, 0.7)#Central
+    posCasillas[152]=(posCasillas[7][0]+c, 42-3, 0.7)#Central
     
     #Rampa roja
     posCasillas[153]=(posCasillas[34][0]+1*3, posCasillas[34][1], 0.7)
@@ -182,7 +187,7 @@ def poscasillas8(maxcasillas):
     posCasillas[157]=(posCasillas[34][0]+5*3, posCasillas[34][1], 0.7)
     posCasillas[158]=(posCasillas[34][0]+6*3, posCasillas[34][1], 0.7)
     posCasillas[159]=(posCasillas[34][0]+7*3, posCasillas[34][1], 0.7)
-    posCasillas[160]=(posCasillas[34][0]+8*3, posCasillas[34][1], 0.7)#Central
+    posCasillas[160]=(posCasillas[34][0]+7*3, posCasillas[34][1]+2*7-c, 0.7)#Central
     
     #Rampa verde
     posCasillas[161]=(posCasillas[41][0]+2*a-5*b, posCasillas[41][1]-2*a-5*b, 0.7)
@@ -192,7 +197,7 @@ def poscasillas8(maxcasillas):
     posCasillas[165]=(posCasillas[41][0]+2*a-1*b, posCasillas[41][1]-2*a-1*b, 0.7)
     posCasillas[166]=(posCasillas[41][0]+2*a-0*b, posCasillas[41][1]-2*a-0*b, 0.7)
     posCasillas[167]=(posCasillas[41][0]+2*a+1*b, posCasillas[41][1]-2*a+1*b, 0.7)
-    posCasillas[168]=(posCasillas[41][0]+2*a+2*b, posCasillas[41][1]-2*a+2*b, 0.7)#Central
+    posCasillas[168]=(posCasillas[41][0]+3, posCasillas[42][1]-7+c,  0.7)#Central
     
     #Rampa gris
     posCasillas[169]=(posCasillas[58][0]+1*7, posCasillas[58][1]-6*3, 0.7)
@@ -202,7 +207,7 @@ def poscasillas8(maxcasillas):
     posCasillas[173]=(posCasillas[58][0]+1*7, posCasillas[58][1]-2*3, 0.7)
     posCasillas[174]=(posCasillas[58][0]+1*7, posCasillas[58][1]-1*3, 0.7)
     posCasillas[175]=(posCasillas[58][0]+1*7, posCasillas[58][1]-0*3, 0.7)
-    posCasillas[176]=(posCasillas[58][0]+1*7, posCasillas[58][1]+1*3, 0.7)#Central
+    posCasillas[176]=(posCasillas[58][0]+c, posCasillas[58][1]+3, 0.7)#Central
     
     #Rampa pink
     posCasillas[177]=(posCasillas[75][0]+7+2*a+5*b, posCasillas[75][1]+3+2*a-5*b, 0.7)
@@ -212,7 +217,7 @@ def poscasillas8(maxcasillas):
     posCasillas[181]=(posCasillas[75][0]+7+2*a+1*b, posCasillas[75][1]+3+2*a-1*b, 0.7)
     posCasillas[182]=(posCasillas[75][0]+7+2*a+0*b, posCasillas[75][1]+3+2*a-0*b, 0.7)
     posCasillas[183]=(posCasillas[75][0]+7+2*a-1*b, posCasillas[75][1]+3+2*a+1*b, 0.7)
-    posCasillas[184]=(posCasillas[75][0]+7+2*a-2*b, posCasillas[75][1]+3+2*a+2*b, 0.7)#Central
+    posCasillas[184]=(posCasillas[76][0]+7-c, posCasillas[76][1]+3, 0.7)#Central
     
     #Rampa orange
     posCasillas[185]=(posCasillas[92][0]+5*3, posCasillas[92][1]+7*2, 0.7)
@@ -222,7 +227,7 @@ def poscasillas8(maxcasillas):
     posCasillas[189]=(posCasillas[92][0]+1*3, posCasillas[92][1]+7*2, 0.7)
     posCasillas[190]=(posCasillas[92][0]+0*3, posCasillas[92][1]+7*2, 0.7)
     posCasillas[191]=(posCasillas[92][0]-1*3, posCasillas[92][1]+7*2, 0.7)
-    posCasillas[192]=(posCasillas[92][0]-2*3, posCasillas[92][1]+7*2, 0.7)#Central
+    posCasillas[192]=(posCasillas[92][0]-1*3, posCasillas[92][1]+c, 0.7)#Central
     
     #Rampa cyan
     posCasillas[193]=(posCasillas[109][0]-2*a+5*b, posCasillas[109][1]+2*a+5*b, 0.7)
@@ -232,15 +237,15 @@ def poscasillas8(maxcasillas):
     posCasillas[197]=(posCasillas[109][0]-2*a+1*b, posCasillas[109][1]+2*a+1*b, 0.7)
     posCasillas[198]=(posCasillas[109][0]-2*a+0*b, posCasillas[109][1]+2*a+0*b, 0.7)
     posCasillas[199]=(posCasillas[109][0]-2*a-1*b, posCasillas[109][1]+2*a-1*b, 0.7)
-    posCasillas[200]=(posCasillas[109][0]-2*a-2*b, posCasillas[109][1]+2*a-2*b, 0.7)#Central
+    posCasillas[200]=(posCasillas[110][0]-3, posCasillas[109][1]-c, 0.7)#Central
     
     #Casillas iniciales
-    posCasillas[201]=posCasillas[8]
-    posCasillas[202]=posCasillas[8]
-    posCasillas[203]=posCasillas[8]
-    posCasillas[204]=posCasillas[8]
-    posCasillas[205]=posCasillas[8]
-    posCasillas[206]=posCasillas[8]
-    posCasillas[207]=posCasillas[8]
-    posCasillas[208]=posCasillas[8]
+    posCasillas[201]=(-40, -40, 0.7)
+    posCasillas[202]=posCasillas[201]
+    posCasillas[203]=posCasillas[201]
+    posCasillas[204]=posCasillas[201]
+    posCasillas[205]=posCasillas[201]
+    posCasillas[206]=posCasillas[201]
+    posCasillas[207]=posCasillas[201]
+    posCasillas[208]=posCasillas[201]
     return posCasillas
