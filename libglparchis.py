@@ -1,6 +1,8 @@
 #-*- coding: utf-8 -*- 
 from OpenGL.GL import *
 from OpenGL.GLU import *
+from poscasillas8 import *
+from posfichas8 import *
 import os,  random,   ConfigParser,  datetime,  time,  sys
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
@@ -45,7 +47,7 @@ class Dado(QObject):
         self.fake=[]
         self.showing=False
         self.position=(65/2, 65/2, 1)
-        self.oglname=122
+        self.oglname=17
         self.lasttirada=None
         
     def tirar(self):
@@ -442,13 +444,18 @@ class Jugador:
             return QPixmap(":/glparchis/fichaverde.png")
         elif self.color.name=="pink":
             return QPixmap(":/glparchis/ficharoja.png")
-        elif self.color.name=="violet":
+        elif self.color.name=="orange":
             return QPixmap(":/glparchis/fichaverde.png")
         elif self.color.name=="cyan":
             return QPixmap(":/glparchis/ficharoja.png")
 class Ruta:
     def __init__(self):
         self.arr=[] #Array ordenado
+        
+    def append_id(self,  mem, arr):
+        """Funci´on que recibe un arr con los id de la ruta"""
+        for id in arr:
+            self.arr.append(mem.casillas(id))
     
     
 class SetColores:
@@ -465,7 +472,7 @@ class SetColores:
             self.arr.append(Color(64, 64, 64, "gray"))
             self.arr.append(Color(255, 0, 255, "pink"))
         if maxplayers>6:# Para 8
-            self.arr.append(Color(255, 192, 255, "violet"))
+            self.arr.append(Color(255, 128, 0, "orange"))
             self.arr.append(Color(0, 255, 255, "cyan"))
             
     def color(self, colo):
@@ -958,7 +965,7 @@ class ConfigFile:
             self.config.write(configfile)
             
 class Casilla(QObject):
-    def __init__(self, id, maxfichas, color,  position, rotate, rampallegada, tipo, seguro, posfichas):
+    def __init__(self, id, maxfichas, color,  position, rotate, rotatepn,  rampallegada, tipo, seguro, posfichas):
         QObject.__init__(self)
         self.id=id
         self.maxfichas=maxfichas
@@ -966,11 +973,12 @@ class Casilla(QObject):
         self.color=color
         self.position=position
         self.rotate=rotate
+        self.rotatepn=rotatepn #Rotar panel numerico
         self.rampallegada=rampallegada#booleano que indica si la casilla es de rampa de llegada
         self.tipo=tipo
         self.seguro=seguro# No se debe usar directamente ya que en ruta 1 solo es seguro si el jugador no tiene en casa
         self.buzon=[None]*self.maxfichas #Se crean los huecos y se juega con ellos para mantener la posicion
-        self.oglname=self.id+17#Nombre usado para pick por opengl
+        self.oglname=self.id+18#Nombre usado para pick por opengl
 #        self.texturas=[]
 #        self.texturas.append(self.bindTexture(QPixmap(':/glparchis/keke.png')))
         
@@ -1049,7 +1057,6 @@ class Casilla(QObject):
                     glVertex3d(x, 1, 0.10)
                     glTexCoord2f(0.0,1.0)
                     glVertex3d(x+1, 1, 0.10)
-                    
                 glEnd()
                 glPopMatrix()
             ################################
@@ -1057,32 +1064,43 @@ class Casilla(QObject):
                 return
             #Cada cuadrante estará a 3x7 estara a 1x1 de ancho
             if len(str(self.id))==1:
-                primero=None
-                segundo=int(str(self.id)[0])
+                primero=int(str(self.id)[0])
             if len(str(self.id))==2:
                 primero=int(str(self.id)[0])
                 segundo=int(str(self.id)[1])
+            if len(str(self.id))==3:
+                primero=int(str(self.id)[0])
+                segundo=int(str(self.id)[1])
+                tercero=int(str(self.id)[2])
             
             #dos cuadrantes
-            if self.id in (60,  10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 ):
+            if self.rotatepn==True and len(str(self.id))==2:
                 rotation=180
                 tmp=primero
                 primero=segundo
                 segundo=tmp
+            elif self.rotatepn==True and len(str(self.id))==1:
+                rotation=180
+            elif self.rotatepn==True and len(str(self.id))==3:
+                rotation=180
+                tmp=primero
+                primero=tercero
+                tercero=tmp
             else:
-                #un cuadrantes
-                if self.id in (8,):
-                    rotation=180
-                else:
-                    rotation=0
+                rotation=0
             
             glEnable(GL_TEXTURE_2D);
             #PRIMERO
-            if primero==None:
-                cuadrito(3, ogl.texNumeros[segundo], rotation)
-            else:
+            if len(str(self.id))==1:
+                cuadrito(3, ogl.texNumeros[primero], rotation)
+            elif len(str(self.id))==2:
                 cuadrito(2.5, ogl.texNumeros[primero], rotation)
                 cuadrito(3.5, ogl.texNumeros[segundo], rotation)
+            elif len(str(self.id))==3:
+                cuadrito(2, ogl.texNumeros[primero], rotation)
+                cuadrito(3, ogl.texNumeros[segundo], rotation)
+                cuadrito(4, ogl.texNumeros[tercero], rotation)
+                
             glDisable(GL_TEXTURE_2D);
             
         def border(a, b, c, d, color):    
@@ -1131,7 +1149,7 @@ class Casilla(QObject):
             glPushName(self.oglname);
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )            
-            if self.id in (5, 12, 17,  22, 29, 34, 39, 46, 51, 56, 63, 68):
+            if self.seguro==True and self.rampallegada==False:
                 glEnable(GL_TEXTURE_2D);
                 glBindTexture(GL_TEXTURE_2D, ogl.texDecor[2])
             glBegin(GL_QUADS)
@@ -1158,7 +1176,7 @@ class Casilla(QObject):
             glDisable(GL_TEXTURE_2D)
             panelnumerico()
     
-        def tipo_oblicuoi():
+        def tipo_oblicuoi(lado):
             glInitNames();
             glPushMatrix()
             glPushName(self.oglname);
@@ -1169,11 +1187,11 @@ class Casilla(QObject):
             v1 = (0, 0, 0)
             v2 = (7, 0, 0)
             v3 = (7, 3, 0)
-            v4 = (3, 3, 0)
+            v4 = (lado, 3, 0)
             v5 = (0, 0, 0.2)
             v6 = (7, 0, 0.2)
             v7 = (7, 3, 0.2)
-            v8 = (3, 3, 0.2)
+            v8 = (lado, 3, 0.2)
     
             quad(v1, v2, v3, v4, self.color)      
             quad(v8, v7, v6, v5, Color(70, 70, 70))      
@@ -1190,7 +1208,8 @@ class Casilla(QObject):
             glPopMatrix()
             panelnumerico()
     
-        def tipo_oblicuod():
+        def tipo_oblicuod(lado):
+            """Como parametro se recibe el lado recortado"""
             glInitNames();
             glPushMatrix()
             glPushName(self.oglname);
@@ -1200,11 +1219,11 @@ class Casilla(QObject):
             glBegin(GL_QUADS)
             v1 = (0, 0, 0)
             v2 = (7, 0, 0)
-            v3 = (4, 3, 0)
+            v3 = (lado, 3, 0)
             v4 = (0, 3, 0)
             v5 = (0, 0, 0.2)
             v6 = (7, 0, 0.2)
-            v7 = (4, 3, 0.2)
+            v7 = (lado, 3, 0.2)
             v8 = (0, 3, 0.2)
     
             quad(v1, v2, v3, v4,self.color )      
@@ -1257,9 +1276,9 @@ class Casilla(QObject):
         elif self.tipo==1:
             tipo_final()
         elif self.tipo==2:
-            tipo_oblicuoi()
+            tipo_oblicuoi(3)
         elif self.tipo==4:
-            tipo_oblicuod()
+            tipo_oblicuod(4)
         else:
             tipo_normal()
             
@@ -1392,386 +1411,115 @@ class Mem:
 class Mem8(Mem):    
     def __init__(self):
         Mem.__init__(self, 8)
-        self.maxcasillas=105
+        
+        self.maxcasillas=209
         self.colores.generar_colores(self.maxplayers)
         self.generar_jugadores()
         self.generar_casillas()
         self.generar_rutas()
         self.generar_fichas()
         
-        self.circulo=Circulo(self, 68)
+        self.circulo=Circulo(self, 136)
 
             
 
-    def generar_rutas(self):
-        ruta=[None]*73
-        ruta[0]=(101, 102, 103, 104)
-        ruta[1]=(5, 22, 39, 56)
-        ruta[2]=(6, 23, 40, 57)
-        ruta[3]=(7, 24, 41, 58)
-        ruta[4]=(8, 25, 42, 59)
-        ruta[5]=(9, 26, 43, 60)
-        ruta[6]=(10, 27, 44, 61)
-        ruta[7]=(11, 28, 45, 62)
-        ruta[8]=(12, 29, 46, 63)
-        ruta[9]=(13, 30, 47, 64)
-        ruta[10]=(14, 31, 48, 65)
-        ruta[11]=(15, 32, 49, 66)
-        ruta[12]=(16, 33, 50, 67)
-        ruta[13]=(17, 34, 51, 68)
-        ruta[14]=(18, 35, 52, 1)
-        ruta[15]=(19, 36, 53, 2)
-        ruta[16]=(20, 37, 54, 3)
-        ruta[17]=(21, 38, 55, 4)
-        ruta[18]=(22, 39, 56, 5)
-        ruta[19]=(23, 40, 57, 6)
-        ruta[20]=(24, 41, 58, 7)
-        ruta[21]=(25, 42, 59, 8)
-        ruta[22]=(26, 43, 60, 9)
-        ruta[23]=(27, 44, 61, 10)
-        ruta[24]=(28, 45, 62, 11)
-        ruta[25]=(29, 46, 63, 12)
-        ruta[26]=(30, 47, 64, 13)
-        ruta[27]=(31, 48, 65, 14)
-        ruta[28]=(32, 49, 66, 15)
-        ruta[29]=(33, 50, 67, 16)
-        ruta[30]=(34, 51, 68, 17)
-        ruta[31]=(35, 52, 1, 18)
-        ruta[32]=(36, 53, 2, 19)
-        ruta[33]=(37, 54, 3, 20)
-        ruta[34]=(38, 55, 4, 21)
-        ruta[35]=(39, 56, 5, 22)
-        ruta[36]=(40, 57, 6, 23)
-        ruta[37]=(41, 58, 7, 24)
-        ruta[38]=(42, 59, 8, 25)
-        ruta[39]=(43, 60, 9, 26)
-        ruta[40]=(44, 61, 10, 27)
-        ruta[41]=(45, 62, 11, 28)
-        ruta[42]=(46, 63, 12, 29)
-        ruta[43]=(47, 64, 13, 30)
-        ruta[44]=(48, 65, 14, 31)
-        ruta[45]=(49, 66, 15,  32)
-        ruta[46]=(50, 67, 16 , 33)
-        ruta[47]=(51, 68, 17 , 34)
-        ruta[48]=(52, 1, 18 , 35)
-        ruta[49]=(53, 2, 19, 36)
-        ruta[50]=(54, 3, 20, 37)
-        ruta[51]=(55, 4, 21, 38)
-        ruta[52]=(56, 5, 22, 39)
-        ruta[53]=(57, 6, 23, 40)
-        ruta[54]=(58, 7, 24, 41)
-        ruta[55]=(59, 8, 25, 42)
-        ruta[56]=(60, 9, 26, 43)
-        ruta[57]=(61, 10, 27, 44)
-        ruta[58]=(62, 11, 28, 45)
-        ruta[59]=(63, 12, 29, 46)
-        ruta[60]=(64, 13, 30, 47)
-        ruta[61]=(65, 14, 31, 48)
-        ruta[62]=(66, 15, 32, 49)
-        ruta[63]=(67, 16, 33, 50)
-        ruta[64]=(68, 17, 34, 51)
-        ruta[65]=(69, 77, 85, 93)
-        ruta[66]=(70, 78, 86, 94)
-        ruta[67]=(71, 79, 87, 95)
-        ruta[68]=(72, 80, 88, 96)
-        ruta[69]=(73, 81, 89, 97)
-        ruta[70]=(74, 82, 90, 98)
-        ruta[71]=(75, 83, 91, 99)
-        ruta[72]=(76, 84, 92, 100)
-        
+    def generar_rutas(self):    
         self.dic_rutas["yellow"]=Ruta()
+        self.dic_rutas["yellow"].append_id(self, range(5, 144+1))
         self.dic_rutas["red"]=Ruta()
+        self.dic_rutas["red"].append_id(self, range(39, 136+1)+range(1, 34+1)+range(153, 160+1))
         self.dic_rutas['blue']=Ruta()
+        self.dic_rutas["blue"].append_id(self, range(22, 136+1)+range(1, 17+1)+range(145, 152+1))
         self.dic_rutas['green']=Ruta()
+        self.dic_rutas["green"].append_id(self, range(56, 136+1)+range(1, 51+1)+range(161, 168+1))
         self.dic_rutas['gray']=Ruta()
+        self.dic_rutas["gray"].append_id(self, range(73, 136+1)+range(1, 68+1)+range(169, 176+1))
         self.dic_rutas['pink']=Ruta()
-        self.dic_rutas['violet']=Ruta()
+        self.dic_rutas["pink"].append_id(self, range(90, 136+1)+range(1, 85+1)+range(177, 184+1))
+        self.dic_rutas['orange']=Ruta()
+        self.dic_rutas["orange"].append_id(self, range(107, 136+1)+range(1, 102+1)+range(185, 192+1))
         self.dic_rutas['cyan']=Ruta()
-        for r in ruta:
-            self.dic_rutas["yellow"].arr.append(self.casillas(r[0]))
-            self.dic_rutas["red"].arr.append(self.casillas(r[2]))
-            self.dic_rutas['blue'].arr.append(self.casillas(r[1]))
-            self.dic_rutas['green'].arr.append(self.casillas(r[3]))
-            self.dic_rutas['gray'].arr.append(self.casillas(r[0]))
-            self.dic_rutas['pink'].arr.append(self.casillas(r[2]))
-            self.dic_rutas['violet'].arr.append(self.casillas(r[1]))
-            self.dic_rutas['cyan'].arr.append(self.casillas(r[3]))
+        self.dic_rutas["cyan"].append_id(self, range(124, 136+1)+range(1, 119+1)+range(193, 200+1))
 
 
                     
     def generar_casillas(self):
         def defineSeguro( id):
-            if id==5 or id==12 or id==17 or id==22 or id==29 or id==34 or id==39 or id==46 or id==51  or id==56 or id==63 or id==68:
-                return True
-            elif id>=69 and id<=100:#Las de la rampa de llegada también son seguras
+            if id  in (5, 12, 17, 22, 29, 34, 39, 46, 51, 56, 63, 68, 73, 80, 85, 90, 97, 102, 107, 114, 119, 124, 131, 136) or id>=137:
                 return True
             else:
                 return False
     
         def defineMaxFichas( id):
-            if id==101 or id==102 or id==103 or id==104 or id==76 or id==84 or id==92 or id==100:
+            if id in (144, 152, 160, 168, 176, 184, 192, 200,  201, 202, 203, 204, 205, 206, 207, 208):
                 return 4
             else:
                 return 2
     
         def defineRampaLlegada(id):
-            if id>=69 and id<= 100:
+            if id>=137 and id<= 200:
                return True
             return False
     
         def defineTipo( id):
-            if id==101 or id==102 or id==103 or id==104:
+            if id in (201, 202, 203, 204, 205, 206, 207, 208):
                return 0 #Casilla inicial
-            elif id==76 or id==84 or id==92 or id==100:
+            elif id in (144, 152, 160, 168, 176, 184, 192, 200):
                return 1 #Casilla final
-            elif id==9 or  id==26 or  id==43 or  id==60:  
+            elif id==9 or  id==26 or  id==43 or  id==60 or id==77:  
                return 2 #Casilla oblicuai
-            elif id==8 or  id==25 or  id==42 or  id==59:  
+            elif id==8 or  id==25 or  id==42 or  id==59 or id==76:  
                return 4 #Casilla oblicuad
             else:
                 return 3 #Casilla Normal
     
         def defineColor( id):
-            if id==5 or (id>=69 and id<=76) or id==101:
-               return Color(255, 255, 30)       #amarillo 
-            elif id==39 or (id>=85 and id<=92) or id==103:
-               return Color(255, 30, 30)#rojo
-            elif id==22 or (id>=77 and id<=84) or id==102:
-               return Color(30, 30, 255)#azul
-            elif id==56 or (id>=93 and id<=100) or id==104:
-               return Color(30, 255, 30) #verde
-#            elif id==68 or  id==63 or  id==51 or id==46 or id==34 or  id==29 or  id==17 or   id==12:  
-#               return Color(128, 128, 128)#gris
+            if id in (5, 136, 137, 138, 139, 140, 141, 142, 143, 144) :
+               return self.colores.colorbyname("yellow")
+            elif id in (39, 153, 154,  155, 156, 157, 158, 159, 160) :
+               return self.colores.colorbyname("red")
+            elif id in (22, 145, 146, 147, 148, 149, 150, 151, 152):
+               return self.colores.colorbyname("blue")
+            elif id in (56, 161, 162, 163, 164, 165, 166, 167, 168):
+               return self.colores.colorbyname("green")
+            elif id in (73, 169, 170, 171, 172, 173, 174, 175, 176):
+               return self.colores.colorbyname("gray")
+            elif id in (90, 177, 178, 179, 180, 181, 182, 183, 184):
+               return self.colores.colorbyname("pink")
+            elif id in (107, 185, 186, 187, 188, 189, 190, 191, 192) :
+               return self.colores.colorbyname("orange")
+            elif id in (124, 193, 194, 195, 196, 197, 198, 199, 200) :
+               return self.colores.colorbyname("cyan")
             else:
                 return Color(255, 255, 255)            
                 
+        def defineRotatePN(id):
+            """EStablece si debe rotar el panel numerico"""
+            if id>=61 and id<=75:
+                return False
+            return True
+            
         def defineRotate( id):
-            if (id>=10 and id<=24) or (id>=77 and id<=83) or(id>=43 and id <=59) or (id>=93 and id<=100):
-               return 90
-            if id==60 or id==8 or id==76:
-                return 180
-            if id==9 or id==25 or id==84:
+            if (id>=10 and id<=24) or (id>=145 and id <=152):
+                return 45
+            if (id>=27 and id<=41) or (id>=153 and id <=160):
+                return 90
+            if (id>=44 and id<=58) or (id>=161 and id <=168):
+                return 135
+            if (id>=78 and id<=92) or (id>=177 and id <=184):
+                return 225
+            if (id>=94 and id<=109) or (id>=185 and id <=192):
                 return 270
+            if (id>=110 and id<=126) or (id>=193 and id <=200):
+                return 315
             else:
                 return 0        
                 
         ##############################        
-        posFichas=[None]*self.maxcasillas
-        posFichas[0]=((0, 0, 0), (0, 0, 0))
-        posFichas[1]=((22.7, 61.5, 0.9), (26.3, 61.5, 0.9))
-        posFichas[2]=((22.7, 58.5, 0.9), (26.3, 58.5, 0.9))
-        posFichas[3]=((22.7, 55.5, 0.9), (26.3, 55.5, 0.9))
-        posFichas[4]=((22.7, 52.5, 0.9), (26.3, 52.5, 0.9))
-        posFichas[5]=((22.7, 49.5, 0.9), (26.3, 49.5, 0.9))
-        posFichas[6]=((22.7, 46.5, 0.9), (26.3, 46.5, 0.9))
-        posFichas[7]=((22.7, 43.5, 0.9), (26.3, 43.5, 0.9))
-        posFichas[8]=((24.5, 40.5, 0.9), (26.5, 40.5, 0.9))
-        posFichas[9]=((22.5, 38.5, 0.9), (22.5, 36.5, 0.9))
-        posFichas[10]=((19.5, 40.3, 0.9), (19.5, 36.7, 0.9))
-        posFichas[11]=((16.5, 40.3, 0.9), (16.5, 36.7, 0.9))
-        posFichas[12]=((13.5, 40.3, 0.9), (13.5, 36.7, 0.9))
-        posFichas[13]=((10.5, 40.3, 0.9), (10.5, 36.7, 0.9))
-        posFichas[14]=((7.5, 40.3, 0.9), (7.5, 36.7, 0.9))
-        posFichas[15]=((4.5, 40.3, 0.9), (4.5, 36.7, 0.9))
-        posFichas[16]=((1.5, 40.3, 0.9), (1.5, 36.7, 0.9))
-        posFichas[17]=((1.5, 33.3, 0.9), (1.5, 29.7, 0.9))
-        posFichas[18]=((1.5, 26.3, 0.9), (1.5, 22.7, 0.9))
-        posFichas[19]=((4.5, 26.3, 0.9), (4.5, 22.7, 0.9))
-        posFichas[20]=((7.5, 26.3, 0.9), (7.5, 22.7, 0.9))
-        posFichas[21]=((10.5, 26.3, 0.9), (10.5, 22.7, 0.9))
-        posFichas[22]=((13.5, 26.3, 0.9), (13.5, 22.7, 0.9))
-        posFichas[23]=((16.5, 26.3, 0.9), (16.5, 22.7, 0.9))
-        posFichas[24]=((19.5, 26.3, 0.9), (19.5, 22.7, 0.9))
-        posFichas[25]=((22.5, 26.5, 0.9), (22.5, 24.5, 0.9))
-        posFichas[26]=((24.5, 22.5, 0.9), (26.5, 22.5, 0.9))
-        posFichas[27]=((22.7, 19.5, 0.9), (26.3, 19.5, 0.9))
-        posFichas[28]=((22.7, 16.5, 0.9), (26.3, 16.5, 0.9))
-        posFichas[29]=((22.7, 13.5, 0.9), (26.3, 13.5, 0.9))
-        posFichas[30]=((22.7, 10.5, 0.9), (26.3, 10.5, 0.9))
-        posFichas[31]=((22.7, 7.5, 0.9), (26.3, 7.5, 0.9))
-        posFichas[32]=((22.7, 4.5, 0.9), (26.3, 4.5, 0.9))
-        posFichas[33]=((22.7, 1.5, 0.9), (26.3, 1.5, 0.9))
-        posFichas[34]=((29.7, 1.5, 0.9), (33.3, 1.5, 0.9))
-        posFichas[35]=((36.7, 1.5, 0.9), (40.3, 1.5, 0.9))
-        posFichas[36]=((36.7, 4.5, 0.9), (40.3, 4.5, 0.9))
-        posFichas[37]=((36.7, 7.5, 0.9), (40.3, 7.5, 0.9))
-        posFichas[38]=((36.7, 10.5, 0.9), (40.3, 10.5, 0.9))
-        posFichas[39]=((36.7, 13.5, 0.9), (40.3, 13.5, 0.9))
-        posFichas[40]=((36.7, 16.5, 0.9), (40.3, 16.5, 0.9))
-        posFichas[41]=((36.7, 19.5, 0.9), (40.3, 19.5, 0.9))
-        posFichas[42]=((36.5, 22.5, 0.9), (38.5, 22.5, 0.9))
-        posFichas[43]=((40.5, 26.5, 0.9), (40.5, 24.5, 0.9))
-        posFichas[44]=((43.5, 26.3, 0.9), (43.5, 22.7, 0.9))
-        posFichas[45]=((46.5, 26.3, 0.9), (46.5, 22.7, 0.9))
-        posFichas[46]=((49.5, 26.3, 0.9), (49.5, 22.7, 0.9))
-        posFichas[47]=((52.5, 26.3, 0.9), (52.5, 22.7, 0.9))
-        posFichas[48]=((55.5, 26.3, 0.9), (55.5, 22.7, 0.9))
-        posFichas[49]=((58.5, 26.3, 0.9), (58.5, 22.7, 0.9))
-        posFichas[50]=((61.5, 26.3, 0.9), (61.5, 22.7, 0.9))
-        posFichas[51]=((61.5, 33.3, 0.9), (61.5, 29.7, 0.9))
-        posFichas[52]=((61.5, 40.3, 0.9), (61.5, 36.7, 0.9))
-        posFichas[53]=((58.5, 40.3, 0.9), (58.5, 36.7, 0.9))
-        posFichas[54]=((55.5, 40.3, 0.9), (55.5, 36.7, 0.9))
-        posFichas[55]=((52.5, 40.3, 0.9), (52.5, 36.7, 0.9))
-        posFichas[56]=((49.5, 40.3, 0.9), (49.5, 36.7, 0.9))
-        posFichas[57]=((46.5, 40.3, 0.9), (46.5, 36.7, 0.9))
-        posFichas[58]=((43.5, 40.3, 0.9), (43.5, 36.7, 0.9))
-        posFichas[59]=((40.5, 38.5, 0.9), (40.5, 36.5, 0.9))
-        posFichas[60]=((36.5, 40.5, 0.9), (38.5, 40.5, 0.9))
-        posFichas[61]=((36.7, 43.5, 0.9), (40.3, 43.5, 0.9))
-        posFichas[62]=((36.7, 46.5, 0.9), (40.3, 46.5, 0.9))
-        posFichas[63]=((36.7, 49.5, 0.9), (40.3, 49.5, 0.9))
-        posFichas[64]=((36.7, 52.5, 0.9), (40.3, 52.5, 0.9))
-        posFichas[65]=((36.7, 55.5, 0.9), (40.3, 55.5, 0.9))
-        posFichas[66]=((36.7, 58.5, 0.9), (40.3, 58.5, 0.9))
-        posFichas[67]=((36.7, 61.5, 0.9), (40.3, 61.5, 0.9))
-        posFichas[68]=((29.7, 61.5, 0.9), (33.3, 61.5, 0.9))
-        posFichas[69]=((29.7, 58.5, 0.9), (33.3, 58.5, 0.9))
-        posFichas[70]=((29.7, 55.5, 0.9), (33.3, 55.5, 0.9))
-        posFichas[71]=((29.7, 52.5, 0.9), (33.3, 52.5, 0.9))
-        posFichas[72]=((29.7, 49.5, 0.9), (33.3, 49.5, 0.9))
-        posFichas[73]=((29.7, 46.5, 0.9), (33.3, 46.5, 0.9))
-        posFichas[74]=((29.7, 43.5, 0.9), (33.3, 43.5, 0.9))
-        posFichas[75]=((29.7, 40.5, 0.9), (33.3, 40.5, 0.9))
-        posFichas[76]=((28.5, 37.5, 0.9), (31.5, 37.5, 0.9),  (34.5, 37.5, 0.9),  (31.5, 34.5, 0.9))
-        posFichas[77]=((4.5, 33.3, 0.9), (4.5, 29.7, 0.9))
-        posFichas[78]=((7.5, 33.3, 0.9), (7.5, 29.7, 0.9))
-        posFichas[79]=((10.5, 33.3, 0.9), (10.5, 29.7, 0.9))
-        posFichas[80]=((13.5, 33.3, 0.9), (13.5, 29.7, 0.9))
-        posFichas[81]=((16.5, 33.3, 0.9), (16.5, 29.7, 0.9))
-        posFichas[82]=((19.5, 33.3, 0.9), (19.5, 29.7, 0.9))
-        posFichas[83]=((22.5, 33.3, 0.9), (22.5, 29.7, 0.9))
-        posFichas[84]=((25.5, 31.5, 0.9), (25.5, 28.5, 0.9), (25.5, 34.5, 0.9), (28.5, 31.5, 0.9))
-        posFichas[85]=((29.7, 4.5, 0.9), (33.3, 4.5, 0.9))
-        posFichas[86]=((29.7, 7.5, 0.9), (33.3, 7.5, 0.9))
-        posFichas[87]=((29.7, 10.5, 0.9), (33.3, 10.5, 0.9))
-        posFichas[88]=((29.7, 13.5, 0.9), (33.3, 13.5, 0.9))
-        posFichas[89]=((29.7, 16.5, 0.9), (33.3, 16.5, 0.9))
-        posFichas[90]=((29.7, 19.5, 0.9), (33.3, 19.5, 0.9))
-        posFichas[91]=((29.7, 22.5, 0.9), (33.3, 22.5, 0.9))
-        posFichas[92]=((28.5, 25.5, 0.9), (31.5, 25.5, 0.9), (34.5, 25.5, 0.9),  (31.5, 28.5, 0.9))
-        posFichas[93]=((58.5, 33.3, 0.9), (58.5, 29.7, 0.9))
-        posFichas[94]=((55.5, 33.3, 0.9), (55.5, 29.7, 0.9))
-        posFichas[95]=((52.5, 33.3, 0.9), (52.5, 29.7, 0.9))
-        posFichas[96]=((49.5, 33.3, 0.9), (49.5, 29.7, 0.9))
-        posFichas[97]=((46.5, 33.3, 0.9), (46.5, 29.7, 0.9))
-        posFichas[98]=((43.5, 33.3, 0.9), (43.5, 29.7, 0.9))
-        posFichas[99]=((40.5, 33.3, 0.9), (40.5, 29.7, 0.9))
-        posFichas[100]=((37.5, 31.5, 0.9), (37.5, 28.5, 0.9), (37.5, 34.5, 0.9), (34.5, 31.5, 0.9))
-        posFichas[101]=((7, 49, 0.9), (14, 49, 0.9), (14, 56, 0.9), (7, 56, 0.9))
-        posFichas[102]=((7, 7, 0.9), (14, 7, 0.9), (14, 14, 0.9), (7, 14, 0.9))
-        posFichas[103]=((49, 7, 0.9), (56, 7, 0.9), (49, 14, 0.9), (56, 14, 0.9))
-        posFichas[104]=((49, 49, 0.9), (56, 49, 0.9), (49, 56, 0.9), (56, 56, 0.9))        
-        
-        
-        posCasillas=[None]*self.maxcasillas
-        posCasillas[0]=(0, 0, 0)
-        posCasillas[1]=(21, 60, 0.7)
-        posCasillas[2]=(21, 57, 0.7)
-        posCasillas[3]=(21, 54, 0.7)
-        posCasillas[4]=(21, 51, 0.7)
-        posCasillas[5]=(21, 48, 0.7)
-        posCasillas[6]=(21, 45, 0.7)
-        posCasillas[7]=(21, 42, 0.7)
-        posCasillas[8]=(28,  42, 0.7)
-        posCasillas[9]=(21, 42, 0.7)
-        posCasillas[10]=(21, 35, 0.7)
-        posCasillas[11]=(18, 35, 0.7)
-        posCasillas[12]=(15, 35, 0.7)
-        posCasillas[13]=(12, 35, 0.7)
-        posCasillas[14]=(9, 35, 0.7)
-        posCasillas[15]=(6, 35, 0.7)
-        posCasillas[16]=(3, 35, 0.7)
-        posCasillas[17]=(3, 28, 0.7)
-        posCasillas[18]=(3, 21, 0.7)
-        posCasillas[19]=(6, 21, 0.7)
-        posCasillas[20]=(9, 21, 0.7)
-        posCasillas[21]=(12, 21, 0.7)
-        posCasillas[22]=(15, 21, 0.7)
-        posCasillas[23]=(18, 21, 0.7)
-        posCasillas[24]=(21, 21, 0.7)
-        posCasillas[25]=(21, 28, 0.7)
-        posCasillas[26]=(21, 21, 0.7)
-        posCasillas[27]=(21, 18, 0.7)
-        posCasillas[28]=(21, 15, 0.7)
-        posCasillas[29]=(21, 12, 0.7)
-        posCasillas[30]=(21, 9, 0.7)
-        posCasillas[31]=(21, 6, 0.7)
-        posCasillas[32]=(21, 3, 0.7)
-        posCasillas[33]=(21, 0, 0.7)
-        posCasillas[34]=(28, 0, 0.7)
-        posCasillas[35]=(35, 0, 0.7)
-        posCasillas[36]=(35, 3, 0.7)
-        posCasillas[37]=(35, 6, 0.7)
-        posCasillas[38]=(35, 9, 0.7)
-        posCasillas[39]=(35, 12, 0.7)
-        posCasillas[40]=(35, 15, 0.7)
-        posCasillas[41]=(35, 18, 0.7)
-        posCasillas[42]=(35, 21, 0.7)
-        posCasillas[43]=(42, 21, 0.7)
-        posCasillas[44]=(45, 21, 0.7)
-        posCasillas[45]=(48, 21, 0.7)
-        posCasillas[46]=(51, 21, 0.7)
-        posCasillas[47]=(54, 21, 0.7)
-        posCasillas[48]=(57, 21, 0.7)
-        posCasillas[49]=(60, 21, 0.7)
-        posCasillas[50]=(63, 21, 0.7)
-        posCasillas[51]=(63, 28, 0.7)
-        posCasillas[52]=(63, 35, 0.7)
-        posCasillas[53]=(60, 35, 0.7)
-        posCasillas[54]=(57, 35, 0.7)
-        posCasillas[55]=(54, 35, 0.7)
-        posCasillas[56]=(51, 35, 0.7)
-        posCasillas[57]=(48, 35, 0.7)
-        posCasillas[58]=(45, 35, 0.7)
-        posCasillas[59]=(42, 35, 0.7)
-        posCasillas[60]=(42 ,42, 0.7)
-        posCasillas[61]=(35, 42, 0.7)
-        posCasillas[62]=(35, 45, 0.7)
-        posCasillas[63]=(35, 48, 0.7)
-        posCasillas[64]=(35, 51, 0.7)
-        posCasillas[65]=(35, 54, 0.7)
-        posCasillas[66]=(35, 57, 0.7)
-        posCasillas[67]=(35, 60, 0.7)
-        posCasillas[68]=(28, 60, 0.7)
-        posCasillas[69]=(28, 57, 0.7)
-        posCasillas[70]=(28, 54, 0.7)
-        posCasillas[71]=(28, 51, 0.7)
-        posCasillas[72]=(28, 48, 0.7)
-        posCasillas[73]=(28, 45, 0.7)
-        posCasillas[74]=(28, 42, 0.7)
-        posCasillas[75]=(28, 39, 0.7)
-        posCasillas[76]=(39, 39, 0.7)
-        posCasillas[77]=(6, 28, 0.7)
-        posCasillas[78]=(9, 28, 0.7)
-        posCasillas[79]=(12, 28, 0.7)
-        posCasillas[80]=(15, 28, 0.7)
-        posCasillas[81]=(18, 28, 0.7)
-        posCasillas[82]=(21, 28, 0.7)
-        posCasillas[83]=(24, 28, 0.7)
-        posCasillas[84]=(24, 39, 0.7)
-        posCasillas[85]=(28, 3, 0.7)
-        posCasillas[86]=(28, 6, 0.7)
-        posCasillas[87]=(28, 9, 0.7)
-        posCasillas[88]=(28, 12, 0.7)
-        posCasillas[89]=(28, 15, 0.7)
-        posCasillas[90]=(28, 18, 0.7)
-        posCasillas[91]=(28, 21, 0.7)
-        posCasillas[92]=(24, 24, 0.7)
-        posCasillas[93]=(60, 28, 0.7)
-        posCasillas[94]=(57, 28, 0.7)
-        posCasillas[95]=(54, 28, 0.7)
-        posCasillas[96]=(51, 28, 0.7)
-        posCasillas[97]=(48, 28, 0.7)
-        posCasillas[98]=(45, 28, 0.7)
-        posCasillas[99]=(42, 28, 0.7)
-        posCasillas[100]=(39, 24, 0.7)
-        posCasillas[101]=(0, 42, 0.7)
-        posCasillas[102]=(0, 0, 0.7)
-        posCasillas[103]=(42, 0, 0.7)
-        posCasillas[104]=(42,  42, 0.7)
+        posCasillas=poscasillas8(self.maxcasillas)
+        posFichas=posfichas8(self.maxcasillas)
         for i in range(0, self.maxcasillas):#Se debe inializar Antes que las fichas
-            self.dic_casillas[str(i)]=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i])
+            self.dic_casillas[str(i)]=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i])
             
 
 class Mem6(Mem):    
@@ -2152,7 +1900,7 @@ class Mem6(Mem):
         posCasillas[103]=(42, 0, 0.7)
         posCasillas[104]=(42,  42, 0.7)
         for i in range(0, self.maxcasillas):#Se debe inializar Antes que las fichas
-            self.dic_casillas[str(i)]=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i])
+            self.dic_casillas[str(i)]=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i) , defineRotatePN(i),  defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i])
             
 
 class Mem4(Mem):
@@ -2353,6 +2101,12 @@ class Mem4(Mem):
             else:
                 return Color(255, 255, 255)            
                 
+        def defineRotatePN(id):
+            """EStablece si debe rotar el panel numerico"""
+            if id in (8, 60,  10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 ):
+                return True
+            return False
+                 
         def defineRotate( id):
             if (id>=10 and id<=24) or (id>=77 and id<=83) or(id>=43 and id <=59) or (id>=93 and id<=100):
                return 90
@@ -2579,7 +2333,7 @@ class Mem4(Mem):
         posCasillas[103]=(42, 0, 0.7)
         posCasillas[104]=(42,  42, 0.7)
         for i in range(0, self.maxcasillas):#Se debe inializar Antes que las fichas
-            self.dic_casillas[str(i)]=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i])
+            self.dic_casillas[str(i)]=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i])
             
             
             

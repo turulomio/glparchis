@@ -183,18 +183,15 @@ class frmMain(QMainWindow, Ui_frmMain):#
         if developing()==True:
             self.mem=Mem8()
             self.mem.cfgfile=self.cfgfile
-            pos=0
             posicion=0
             for j in self.mem.jugadores.arr:
                 j.name=j.color.name
                 j.plays=True
                 j.ia=False
                 self.mem.jugadoractual=j
-                if pos>3:
-                    posicion=72
+
                 for f in j.fichas.arr:
                     f.mover(posicion, False,  True)
-                pos=pos+1
             self.showWdgGame()
 
 
