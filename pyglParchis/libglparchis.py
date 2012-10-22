@@ -1300,8 +1300,6 @@ class Casilla(QObject):
     def tieneBarrera(self):
         """Devuelve un booleano, las fichas de la barrera se pueden sacar del buzón"""
         if self.tipo not in (0, 1):#Casilla inicio y final
-            if ogl.mem.maxplayers==8:
-                glScaled((21-2*3*math.tan(math.pi/8))/15.0, ((10.5/math.tan(math.pi/8))-3)/7.5, 1)
             if self.maxfichas==2:
                 if self.buzon_numfichas()==2:
                     if self.buzon[0].jugador==self.buzon[1].jugador:
