@@ -1246,6 +1246,9 @@ class Casilla(QObject):
             glPushName(self.oglname);
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
+            if ogl.mem.maxplayers==8:
+                glScaled((21-2*3*math.tan(math.pi/8))/15.0, ((10.5/math.tan(math.pi/8))-3)/7.5, 1)
+            
             
             glBegin(GL_QUADS)
             v1 = (0, 0, 0)
@@ -1276,9 +1279,15 @@ class Casilla(QObject):
         elif self.tipo==1:
             tipo_final()
         elif self.tipo==2:
-            tipo_oblicuoi(3)
+            if ogl.mem.maxplayers==4:
+                tipo_oblicuoi(3)
+            elif ogl.mem.maxplayers==8:
+                tipo_oblicuoi(3.0*math.tan(math.pi/8))
         elif self.tipo==4:
-            tipo_oblicuod(4)
+            if ogl.mem.maxplayers==4:
+                tipo_oblicuod(4)
+            elif ogl.mem.maxplayers==8:
+                tipo_oblicuod(7-3.0*math.tan(math.pi/8))
         else:
             tipo_normal()
             
@@ -1291,6 +1300,8 @@ class Casilla(QObject):
     def tieneBarrera(self):
         """Devuelve un booleano, las fichas de la barrera se pueden sacar del buzón"""
         if self.tipo not in (0, 1):#Casilla inicio y final
+            if ogl.mem.maxplayers==8:
+                glScaled((21-2*3*math.tan(math.pi/8))/15.0, ((10.5/math.tan(math.pi/8))-3)/7.5, 1)
             if self.maxfichas==2:
                 if self.buzon_numfichas()==2:
                     if self.buzon[0].jugador==self.buzon[1].jugador:
@@ -1466,9 +1477,9 @@ class Mem8(Mem):
                return 0 #Casilla inicial
             elif id in (144, 152, 160, 168, 176, 184, 192, 200):
                return 1 #Casilla final
-            elif id==9 or  id==26 or  id==43 or  id==60 or id==77:  
+            elif id in (9, 26, 43, 60, 77, 94, 111, 128):  
                return 2 #Casilla oblicuai
-            elif id==8 or  id==25 or  id==42 or  id==59 or id==76:  
+            elif id in (8, 25, 42, 59, 76, 93, 110, 127):  
                return 4 #Casilla oblicuad
             else:
                 return 3 #Casilla Normal
@@ -1495,22 +1506,25 @@ class Mem8(Mem):
                 
         def defineRotatePN(id):
             """EStablece si debe rotar el panel numerico"""
-            if id>=61 and id<=75:
+            if (id>=61 and id<=75) or id in(8, 9, 25, 26, 42, 43, 59, 60,  76, 77, 93, 94, 110, 111, 127, 128):
                 return False
             return True
             
         def defineRotate( id):
-            if (id>=10 and id<=24) or (id>=145 and id <=152):
+            if (id>=10 and id<=24) or (id>=145 and id <=151) or id in (77, 93, 184):
                 return 45
-            if (id>=27 and id<=41) or (id>=153 and id <=160):
+            if (id>=27 and id<=41) or (id>=153 and id <=159) or id in (94, 110, 192):
                 return 90
-            if (id>=44 and id<=58) or (id>=161 and id <=168):
+            if (id>=44 and id<=58) or (id>=161 and id <=167)  or id in (111, 127, 200):
                 return 135
-            if (id>=78 and id<=92) or (id>=177 and id <=184):
+            if id in (128, 8 ,144):
+                return 180
+                
+            if (id>=78 and id<=92) or (id>=177 and id <=183) or id in(25,9, 152):
                 return 225
-            if (id>=94 and id<=109) or (id>=185 and id <=192):
+            if (id>=94 and id<=109) or (id>=185 and id <=191) or id in (26, 42, 160  ):
                 return 270
-            if (id>=110 and id<=126) or (id>=193 and id <=200):
+            if (id>=110 and id<=126) or (id>=193 and id <=199) or id in (43, 59, 168):
                 return 315
             else:
                 return 0        
