@@ -171,11 +171,11 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 j.plays=True
                 j.ia=False
                 self.mem.jugadoractual=j
-                if pos>=3:
+                if pos>3:
                     posicion=72
                 for f in j.fichas.arr:
                     f.mover(posicion, False,  True)
-                    pos=pos+1
+                pos=pos+1
             self.showWdgGame()
 
     @pyqtSlot()  
@@ -190,11 +190,11 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 j.plays=True
                 j.ia=False
                 self.mem.jugadoractual=j
-                if pos>=3:
+                if pos>3:
                     posicion=72
                 for f in j.fichas.arr:
                     f.mover(posicion, False,  True)
-                    pos=pos+1
+                pos=pos+1
             self.showWdgGame()
 
 

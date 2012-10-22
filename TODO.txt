@@ -6,5 +6,7 @@
 20120918 Mostrar sistema de gráficos de 6 jugadores
 20120918 Mostrar sistema de gráficos de 8 jugadores
 20120925 Cuando sale un 6 y con el 6 meto, corro 10 luego no me deja volver a tirar y tengo que mover otros 6
+20120930 Poner en cfg la versón de creacion del cfg para hacer migraciones
+20120930 El mensaje de final no tiene icono puede que todos popups
 20121019 Cuando se gane, hacer que el tablero gire y suba y baje
 20121019 Adaptar frmInitGame a varios jugadores

@@ -438,13 +438,13 @@ class Jugador:
             return QPixmap(":/glparchis/fichaverde.png")
         elif self.color.name=="red":
             return QPixmap(":/glparchis/ficharoja.png")
-        elif self.color.name=="orange":
+        elif self.color.name=="gray":
             return QPixmap(":/glparchis/fichaverde.png")
         elif self.color.name=="pink":
             return QPixmap(":/glparchis/ficharoja.png")
         elif self.color.name=="violet":
             return QPixmap(":/glparchis/fichaverde.png")
-        elif self.color.name=="brown":
+        elif self.color.name=="cyan":
             return QPixmap(":/glparchis/ficharoja.png")
 class Ruta:
     def __init__(self):
@@ -462,7 +462,7 @@ class SetColores:
         self.arr.append(Color(255, 0, 0, "red"))
         self.arr.append(Color(0, 255, 0, "green"))
         if maxplayers>4:#Para 6
-            self.arr.append(Color(255, 128, 0, "orange"))
+            self.arr.append(Color(64, 64, 64, "gray"))
             self.arr.append(Color(255, 0, 255, "pink"))
         if maxplayers>6:# Para 8
             self.arr.append(Color(255, 192, 255, "violet"))
@@ -1483,7 +1483,7 @@ class Mem8(Mem):
         self.dic_rutas["red"]=Ruta()
         self.dic_rutas['blue']=Ruta()
         self.dic_rutas['green']=Ruta()
-        self.dic_rutas['orange']=Ruta()
+        self.dic_rutas['gray']=Ruta()
         self.dic_rutas['pink']=Ruta()
         self.dic_rutas['violet']=Ruta()
         self.dic_rutas['cyan']=Ruta()
@@ -1492,8 +1492,8 @@ class Mem8(Mem):
             self.dic_rutas["red"].arr.append(self.casillas(r[2]))
             self.dic_rutas['blue'].arr.append(self.casillas(r[1]))
             self.dic_rutas['green'].arr.append(self.casillas(r[3]))
-            self.dic_rutas['orange'].arr.append(self.casillas(r[1]))
-            self.dic_rutas['pink'].arr.append(self.casillas(r[3]))
+            self.dic_rutas['gray'].arr.append(self.casillas(r[0]))
+            self.dic_rutas['pink'].arr.append(self.casillas(r[2]))
             self.dic_rutas['violet'].arr.append(self.casillas(r[1]))
             self.dic_rutas['cyan'].arr.append(self.casillas(r[3]))
 
@@ -1868,14 +1868,14 @@ class Mem6(Mem):
         self.dic_rutas["red"]=Ruta()
         self.dic_rutas['blue']=Ruta()
         self.dic_rutas['green']=Ruta()
-        self.dic_rutas['orange']=Ruta()
+        self.dic_rutas['gray']=Ruta()
         self.dic_rutas['pink']=Ruta()
         for r in ruta:
             self.dic_rutas["yellow"].arr.append(self.casillas(r[0]))
             self.dic_rutas["red"].arr.append(self.casillas(r[2]))
             self.dic_rutas['blue'].arr.append(self.casillas(r[1]))
             self.dic_rutas['green'].arr.append(self.casillas(r[3]))
-            self.dic_rutas['orange'].arr.append(self.casillas(r[1]))
+            self.dic_rutas['gray'].arr.append(self.casillas(r[1]))
             self.dic_rutas['pink'].arr.append(self.casillas(r[3]))
 
 

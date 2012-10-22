@@ -88,7 +88,7 @@ class wdgShowObject(QGLWidget):
         self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/9.png')))
         
         self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/casillainicial.png')))
-        self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/wood.png')))
+        self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/transwood.png')))
         self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/seguro.png')))
         self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/dado_desplegado.png')))
         self.qglClearColor(QColor.fromCmykF(0.39, 0.39, 0.0, 0.0).dark())
