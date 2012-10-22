@@ -66,12 +66,16 @@ class wdgOGL(QGLWidget):
         self.qglClearColor(QColor())
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-        glTranslated(-31.5, -31.5,  -60)
+        if self.mem.maxplayers==8:
+            glTranslated(-31.5, -17,  -85)
+        elif self.mem.maxplayers==4:
+            glTranslated(-31.5, -31.5,  -60)
+            
         glRotated(self.rotX, 1,0 , 0)
-
-        self.tablero.dibujar(self)
+        if self.mem.maxplayers==4:
+            self.tablero.dibujar(self)
         for c in self.mem.casillas():
-            c.dibujar(self) 
+            c.dibujar(self)
             c.dibujar_fichas(self)
         self.mem.dado.dibujar(self)
 
@@ -130,10 +134,10 @@ class wdgOGL(QGLWidget):
                 return mem.fichas(id_name)
             elif id_name==16:#tablero 16
                 return mem.tablero
-            elif id_name>=17 and id_name<=121:#casillas de 17 a 121
-                return mem.casillas(id_name-17)
-            elif id_name==122:#casillas de 17 a 121
+            elif id_name==17:#casillas de 17 a 121
                 return mem.dado
+            elif id_name>=18 and id_name<=18+self.mem.maxcasillas:#casillas de 17 a 121
+                return mem.casillas(id_name-18)
             else:
                 return None
                 
