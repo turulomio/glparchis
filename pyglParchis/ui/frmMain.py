@@ -164,35 +164,33 @@ class frmMain(QMainWindow, Ui_frmMain):#
         if developing()==True:
             self.mem=Mem6()
             self.mem.cfgfile=self.cfgfile
-            pos=0
-            posicion=0
-            for j in self.mem.jugadores.arr:
-                j.name=j.color.name
-                j.plays=True
-                j.ia=False
-                self.mem.jugadoractual=j
-                if pos>3:
-                    posicion=72
-                for f in j.fichas.arr:
-                    f.mover(posicion, False,  True)
-                pos=pos+1
-            self.showWdgGame()
+            initgame=frmInitGame(self.mem,  self)
+            salida=initgame.exec_()
+            if salida==QDialog.Accepted:
+                self.showWdgGame()
 
     @pyqtSlot()  
     def on_actionPartidaNueva8_triggered(self):
         if developing()==True:
             self.mem=Mem8()
             self.mem.cfgfile=self.cfgfile
-            posicion=0
-            for j in self.mem.jugadores.arr:
-                j.name=j.color.name
-                j.plays=True
-                j.ia=False
-                self.mem.jugadoractual=j
-
-                for f in j.fichas.arr:
-                    f.mover(posicion, False,  True)
-            self.showWdgGame()
+            initgame=frmInitGame(self.mem,  self)
+            salida=initgame.exec_()
+            if salida==QDialog.Accepted:
+                self.showWdgGame()
+#        if developing()==True:
+#            self.mem=Mem8()
+#            self.mem.cfgfile=self.cfgfile
+#            posicion=0
+#            for j in self.mem.jugadores.arr:
+#                j.name=j.color.name
+#                j.plays=True
+#                j.ia=False
+#                self.mem.jugadoractual=j
+#
+#                for f in j.fichas.arr:
+#                    f.mover(posicion, False,  True)
+#            self.showWdgGame()
 
 
 

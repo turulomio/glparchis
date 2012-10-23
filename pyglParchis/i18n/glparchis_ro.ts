@@ -214,98 +214,48 @@
 </context>
 <context encoding="UTF-8">
     <name>frmInitGame</name>
-    <message>
-        <location filename="ui/Ui_frmInitGame.py" line="270"/>
-        <source>Datos jugador amarillo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmInitGame.py" line="271"/>
-        <source>Jugador amarillo</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmInitGame.py" line="281"/>
-        <source>¿Inteligencia artificial?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmInitGame.py" line="273"/>
-        <source>Datos jugador azul</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmInitGame.py" line="274"/>
-        <source>Jugador azul</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmInitGame.py" line="276"/>
-        <source>Datos jugador rojo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmInitGame.py" line="277"/>
-        <source>Jugador rojo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmInitGame.py" line="279"/>
-        <source>Datos jugador verde</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmInitGame.py" line="280"/>
-        <source>Jugador verde</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ui/Ui_frmInitGame.py" line="285"/>
-        <source>Tirar dado</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="ui/Ui_frmInitGame.py" line="269"/>
+        <location filename="ui/Ui_frmInitGame.py" line="76"/>
         <source>Configuración inicial de la partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.py" line="15"/>
+        <location filename="ui/frmInitGame.py" line="19"/>
         <source>Configurar la partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmInitGame.py" line="16"/>
+        <location filename="ui/frmInitGame.py" line="20"/>
         <source>Selecciona las fichas que van a jugar y quién va a jugar con ellas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.py" line="18"/>
+        <location filename="ui/frmInitGame.py" line="22"/>
         <source>Elegir el jugador que empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmInitGame.py" line="19"/>
+        <location filename="ui/frmInitGame.py" line="23"/>
         <source>Tirar el dado de tu color. El jugador que saque la puntuación más alta, empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmInitGame.py" line="21"/>
+        <location filename="ui/frmInitGame.py" line="25"/>
         <source>¿Quién empieza?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.py" line="146"/>
+        <location filename="ui/frmInitGame.py" line="140"/>
         <source>El jugador %1 empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.py" line="147"/>
+        <location filename="ui/frmInitGame.py" line="141"/>
         <source>Empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmInitGame.py" line="149"/>
+        <location filename="ui/frmInitGame.py" line="143"/>
         <source>%1 deben tirar hasta que se aclare quién empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -468,7 +418,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="1852"/>
+        <location filename="libglparchis.py" line="1856"/>
         <source>Esta opción se está desarrollando</source>
         <translation type="unfinished"></translation>
     </message>
@@ -755,6 +705,57 @@
     <message>
         <location filename="ui/wdgOGL.py" line="198"/>
         <source>Se ha hecho click en la ficha %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>wdgPlayer</name>
+    <message>
+        <location filename="ui/wdgPlayer.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <location filename="ui/wdgPlayer.ui" line="22"/>
+        <source>Seleccionalo si quieres activar al jugador</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/wdgPlayer.ui" line="57"/>
+        <source>Datos jugador amarillo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/wdgPlayer.ui" line="67"/>
+        <source>Introduce el nombre del jugador</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/wdgPlayer.ui" line="70"/>
+        <source>Nombre del Jugador</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/wdgPlayer.ui" line="80"/>
+        <source>Selecciona si quieres que el jugador lo controle el ordenador</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/wdgPlayer.ui" line="83"/>
+        <source>¿Inteligencia artificial?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>wdgPlayerDado</name>
+    <message>
+        <location filename="ui/wdgPlayerDado.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <location filename="ui/wdgPlayerDado.ui" line="72"/>
+        <source>Tirar dado</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
