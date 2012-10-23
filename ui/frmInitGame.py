@@ -3,15 +3,19 @@ import random
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from libglparchis import *
+from wdgPlayer import *
+from wdgPlayerDado import *
 from Ui_frmInitGame import *
 
 class frmInitGame(QWizard, Ui_frmInitGame):
     def __init__(self, mem,  parent = None, name = None, modal = False):
         QDialog.__init__(self, parent)
+        
         self.mem=mem
         if name:
             self.setObjectName(name)
         self.setupUi(self)
+        self.setGeometry(parent.width()*0.1/2, parent.height()*0.1/2, parent.width()*0.9,  parent.height()*0.9)
         self.wizardPage1.setTitle(self.tr("Configurar la partida"))
         self.wizardPage1.setSubTitle(self.trUtf8("Selecciona las fichas que van a jugar y quién va a jugar con ellas"))
 
@@ -22,99 +26,65 @@ class frmInitGame(QWizard, Ui_frmInitGame):
         self.dado={}
         self.playerstarts=None
         random.seed(datetime.datetime.now().microsecond)
-        if self.mem.cfgfile.yellowname!=None:
-            self.txtYellow.setText(self.mem.cfgfile.yellowname)
-            self.txtBlue.setText(self.mem.cfgfile.bluename)
-            self.txtRed.setText(self.mem.cfgfile.redname)
-            self.txtGreen.setText(self.mem.cfgfile.greenname)
-            
+        self.wdgplayers=[]
+        self.wdgplayersdado=[]
         
-    def tirar_dado(self, color, playsound):
-        self.dado[color]=int(random.random()*6)+1
-        if playsound:
-            self.mem.play("dice")
-    
-    def on_cmdYellow_released(self):
-        if self.chkYellow.checkState()==Qt.Checked:
-            self.tirar_dado("yellow", False)
-        else:
-            self.tirar_dado("yellow", True)
-            
-        self.lblDadoYellow.setPixmap(self.mem.dado.qpixmap(self.dado['yellow']))
-        self.cmdYellow.setEnabled(False)
-    
-    def on_cmdBlue_released(self):
-        if self.chkBlue.checkState()==Qt.Checked:
-            self.tirar_dado("blue", False)
-        else:
-            self.tirar_dado("blue", True)
-        self.lblDadoBlue.setPixmap(self.mem.dado.qpixmap(self.dado['blue']))        
-        self.cmdBlue.setEnabled(False)
-    
-    def on_cmdRed_released(self):
-        if self.chkRed.checkState()==Qt.Checked:
-            self.tirar_dado("red", False)
-        else:
-            self.tirar_dado("red", True)
-        self.lblDadoRed.setPixmap(self.mem.dado.qpixmap(self.dado['red']))
-        self.cmdRed.setEnabled(False)
-    
-    def on_cmdGreen_released(self):
-        if self.chkGreen.checkState()==Qt.Checked:
-            self.tirar_dado("green", False)
-        else:
-            self.tirar_dado("green", True)
-        self.lblDadoGreen.setPixmap(self.mem.dado.qpixmap(self.dado['green']))
-        self.cmdGreen.setEnabled(False)
+        for j in self.mem.jugadores.arr:
+            p=wdgPlayer(self)
+            self.scrollPlayer.addWidget(p)
+            p.setJugador(j)
+            self.wdgplayers.append(p)
+
+            d=wdgPlayerDado(mem, j,  self)
+            self.scrollPlayerDado.addWidget(d)
+            self.wdgplayersdado.append(d)
+        
+        
+        if self.mem.cfgfile.yellowname!=None:
+            if self.mem.maxplayers>=4:
+                self.wdgplayers[0].txt.setText(self.mem.cfgfile.yellowname)
+                self.wdgplayers[1].txt.setText(self.mem.cfgfile.bluename)
+                self.wdgplayers[2].txt.setText(self.mem.cfgfile.redname)
+                self.wdgplayers[3].txt.setText(self.mem.cfgfile.greenname)
+            if self.mem.maxplayers>=6:
+                self.wdgplayers[4].txt.setText(self.mem.cfgfile.grayname)
+                self.wdgplayers[5].txt.setText(self.mem.cfgfile.pinkname)
+            if self.mem.maxplayers>=8:
+                self.wdgplayers[4].txt.setText(self.mem.cfgfile.orangename)
+                self.wdgplayers[5].txt.setText(self.mem.cfgfile.cyanname)
+                
+        #Pone juega ordenador en todos menos el primero
+        for i in range (1, self.mem.maxplayers):
+            self.wdgplayers[i].chkIA.setCheckState(Qt.Checked)
         
     def validateCurrentPage(self):
         if self.currentId()==0:
             #Desactiva el cmd si no juega
-            if self.chkYellowPlays.checkState()==Qt.Unchecked:
-                self.cmdYellow.setEnabled(False)
-            if self.chkBluePlays.checkState()==Qt.Unchecked:
-                self.cmdBlue.setEnabled(False)
-            if self.chkRedPlays.checkState()==Qt.Unchecked:
-                self.cmdRed.setEnabled(False)
-            if self.chkGreenPlays.checkState()==Qt.Unchecked:
-                self.cmdGreen.setEnabled(False)
-            #Tira el dado de IA si juega y si es AI
-            if self.chkYellow.checkState()==Qt.Checked and self.chkYellowPlays.checkState()==Qt.Checked:#IA
-                self.on_cmdYellow_released()
-            if self.chkBlue.checkState()==Qt.Checked and self.chkBluePlays.checkState()==Qt.Checked:#IA
-                self.on_cmdBlue_released()
-            if self.chkRed.checkState()==Qt.Checked and self.chkRedPlays.checkState()==Qt.Checked:#IA
-                self.on_cmdRed_released()
-            if self.chkGreen.checkState()==Qt.Checked and self.chkGreenPlays.checkState()==Qt.Checked:#IA
-                self.on_cmdGreen_released()
+            for i,  w in enumerate(self.wdgplayers):
+                if w.chkPlays.checkState()==Qt.Unchecked:
+                    self.wdgplayersdado[i].cmd.setEnabled(False)
+                if w.chkIA.checkState()==Qt.Checked and w.chkPlays.checkState()==Qt.Checked:#IA#Tira el dado de IA si juega y si es AI
+                    self.wdgplayersdado[i].on_cmd_released()
+                w.commit()
+                if self.mem.maxplayers>=4:
+                    self.mem.cfgfile.yellowname=self.wdgplayers[0].txt.text()
+                    self.mem.cfgfile.bluename=self.wdgplayers[1].txt.text()
+                    self.mem.cfgfile.redname=self.wdgplayers[2].txt.text()
+                    self.mem.cfgfile.greenname=self.wdgplayers[3].txt.text()
+                if self.mem.maxplayers>=6:
+                    self.mem.cfgfile.grayname=self.wdgplayers[4].txt.text()
+                    self.mem.cfgfile.pinkname=self.wdgplayers[5].txt.text()
+                if self.mem.maxplayers>=8:
+                    self.mem.cfgfile.orangename=self.wdgplayers[6].txt.text()
+                    self.mem.cfgfile.cyanname=self.wdgplayers[7].txt.text()
+                self.mem.cfgfile.save()
             self.currentPage().setCommitPage(True)#Ya no se puede cambiar nada
             return True
-        else:
+        else:#Pagina 1
             if self.playerstarts==None:
                 self.chequea()
                 return False
-            else:
-                #Comienza la partida
-                self.mem.jugadores.jugador('yellow').name=self.txtYellow.text()
-                self.mem.jugadores.jugador('yellow').ia=c2b(self.chkYellow.checkState())
-                self.mem.jugadores.jugador('yellow').plays=c2b(self.chkYellowPlays.checkState())
-                self.mem.jugadores.jugador('blue').name=self.txtBlue.text()
-                self.mem.jugadores.jugador('blue').ia=c2b(self.chkBlue.checkState())
-                self.mem.jugadores.jugador('blue').plays=c2b(self.chkBluePlays.checkState())
-                self.mem.jugadores.jugador('red').name=self.txtRed.text()
-                self.mem.jugadores.jugador('red').ia=c2b(self.chkRed.checkState())
-                self.mem.jugadores.jugador('red').plays=c2b(self.chkRedPlays.checkState())
-                self.mem.jugadores.jugador('green').name=self.txtGreen.text()
-                self.mem.jugadores.jugador('green').ia=c2b(self.chkGreen.checkState())
-                self.mem.jugadores.jugador('green').plays=c2b(self.chkGreenPlays.checkState())
-                
-                self.mem.cfgfile.yellowname=self.txtYellow.text()
-                self.mem.cfgfile.redname=self.txtRed.text()
-                self.mem.cfgfile.bluename=self.txtBlue.text()
-                self.mem.cfgfile.greenname=self.txtGreen.text()
-                self.mem.cfgfile.save()
-
-
+            else:                
                 for j in self.mem.jugadores.arr:
                     if j.plays==True:
                         j.fichas.arr[0].mover(0, False,  True)
@@ -127,52 +97,55 @@ class frmInitGame(QWizard, Ui_frmInitGame):
                 print (self.mem.jugadoractual)
                 return True
         
+    def hanTiradoTodos(self):
+        """Funci´on que comprueba si han tirado todos"""
+        resultado=True
+        for w in self.wdgplayersdado:
+            if w.cmd.isEnabled():
+                resultado=False
+        return resultado
+        
+    def maximaPuntuacion(self):
+        resultado=0
+        for w in self.wdgplayersdado:
+            if w.tirada>resultado:
+                resultado=w.tirada
+        return resultado
+        
+    def wdgPlayerDado_maximapuntuacion(self, maxima):
+        resultado=[]
+        for w in self.wdgplayersdado:
+            if w.tirada==maxima:
+                resultado.append(w)
+        return resultado
+        
+    def maxplayers2colors(self, maxplayers):
+        resultado=[]
+        for w in maxplayers:
+            resultado.append(w.jugador.color.name)
+        return resultado
+    
+        
+        
     def chequea(self):
         #Chequea si han lanzado todos
-        if self.cmdYellow.isEnabled()==False and self.cmdBlue.isEnabled()==False and self.cmdRed.isEnabled()==False and self.cmdGreen.isEnabled()==False:
+        if self.hanTiradoTodos():
             #Saca el maximo de dado
-            max=0
-            for color in self.dado:
-                if self.dado[color]>max:
-                    max=self.dado[color]
+            max=self.maximaPuntuacion()
             #Busca que colores tienen el maximo
-            colormax=[]
-            for color in self.dado:
-                if self.dado[color]==max:
-                    colormax.append(color)
+            maxplayers=self.wdgPlayerDado_maximapuntuacion(max)
             #Asigna o vuelve a tirar
-            if len(colormax)==1:
-                self.playerstarts=colormax[0]
+            if len(maxplayers)==1:
+                self.playerstarts=maxplayers[0].jugador.color.name
                 self.lblPlayerStarts.setText(self.trUtf8("El jugador %1 empieza la partida").arg(self.playerstarts))      
                 self.setButtonText(QWizard.FinishButton, self.trUtf8("Empieza la partida"))          
             else:
-                self.lblPlayerStarts.setText(self.trUtf8("%1 deben tirar hasta que se aclare quién empieza la partida").arg(str(colormax)))                
-                self.dado={}
-                if 'yellow' not in colormax:
-                    self.lblDadoYellow.setPixmap(self.mem.dado.qpixmap(None))
-                if 'blue' not in colormax:
-                    self.lblDadoBlue.setPixmap(self.mem.dado.qpixmap(None))
-                if 'red' not in colormax:
-                    self.lblDadoRed.setPixmap(self.mem.dado.qpixmap(None))
-                if 'green' not in colormax:
-                    self.lblDadoGreen.setPixmap(self.mem.dado.qpixmap(None))
-                        
-                for c in colormax:
-                    #Debe ir primero porque chequea comprueba si esta enabled
-                    if c=='yellow' and self.chkYellow.checkState()==Qt.Unchecked:
-                        self.cmdYellow.setEnabled(True)
-                    if c=='blue' and self.chkBlue.checkState()==Qt.Unchecked:
-                        self.cmdBlue.setEnabled(True)
-                    if c=='green' and self.chkGreen.checkState()==Qt.Unchecked:
-                        self.cmdGreen.setEnabled(True)
-                    if c=='red' and self.chkRed.checkState()==Qt.Unchecked:
-                        self.cmdRed.setEnabled(True)   
+                self.lblPlayerStarts.setText(self.trUtf8("%1 deben tirar hasta que se aclare quién empieza la partida").arg(str(self.maxplayers2colors(maxplayers))))                
+                for w in self.wdgplayersdado:
+                    if w not in maxplayers:
+                        w.lblDado.setPixmap(self.mem.dado.qpixmap(None))
+                    else:
+                        w.cmd.setEnabled(True)
+                        if w.jugador.ia==True:
+                            w.on_cmd_released()
                     
-                    if c=='yellow'and self.chkYellow.checkState()==Qt.Checked:
-                        self.on_cmdYellow_released()
-                    if c=='blue' and self.chkBlue.checkState()==Qt.Checked:
-                        self.on_cmdBlue_released()
-                    if c=='red' and self.chkRed.checkState()==Qt.Checked:
-                        self.on_cmdRed_released()
-                    if c=='green' and self.chkGreen.checkState()==Qt.Checked:
-                        self.on_cmdGreen_released()

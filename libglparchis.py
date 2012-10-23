@@ -941,6 +941,10 @@ class ConfigFile:
         self.redname=None
         self.bluename=None
         self.greenname=None
+        self.grayname="Gray"
+        self.pinkname="Pink"
+        self.orangename="Orange"
+        self.cyanname="Cyan"
         self.lastupdate=datetime.date.today().toordinal()
         self.config=ConfigParser.ConfigParser()
         self.load()
