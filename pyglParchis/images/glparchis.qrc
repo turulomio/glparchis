@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="/glparchis">
+    <file>fichacyan.png</file>
+    <file>fichagris.png</file>
+    <file>fichanaranja.png</file>
+    <file>ficharosa.png</file>
     <file>dado_desplegado.png</file>
     <file>seguro.png</file>
     <file>wood.png</file>
