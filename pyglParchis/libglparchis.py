@@ -485,6 +485,12 @@ class SetColores:
             if c.name==name:
                 return c
                 
+    def index(self, color):
+        """Funci´on que devuelve un orden de color seg´un se ha insertado en el array"""
+        for i, c in enumerate(self.arr):
+            if c==color:
+                return i
+    
 class SetJugadores:
     """Agrupación de jugadores"""
     def __init__(self):
