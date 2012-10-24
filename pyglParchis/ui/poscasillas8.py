@@ -240,12 +240,12 @@ def poscasillas8(maxcasillas):
     posCasillas[200]=(posCasillas[110][0]-3, posCasillas[109][1]-c, 0.7)#Central
     
     #Casillas iniciales
-    posCasillas[201]=(-40, -40, 0.7)
-    posCasillas[202]=posCasillas[201]
-    posCasillas[203]=posCasillas[201]
-    posCasillas[204]=posCasillas[201]
-    posCasillas[205]=posCasillas[201]
-    posCasillas[206]=posCasillas[201]
-    posCasillas[207]=posCasillas[201]
-    posCasillas[208]=posCasillas[201]
+    posCasillas[201]=(21, 63, 0.7)
+    posCasillas[202]=(21-3*a-b*7, 42-3*a+b*7, 0.7)
+    posCasillas[203]=(posCasillas[24][0]-7*3, posCasillas[24][1]-7*3, 0.7)
+    posCasillas[204]=(posCasillas[41][0]+3*a-7*b, posCasillas[41][1]-3*a-7*b, 0.7)
+    posCasillas[205]=(posCasillas[58][0]+3*7, posCasillas[58][1]-7*3, 0.7)
+    posCasillas[206]=(posCasillas[75][0]+7+3*a+7*b, posCasillas[75][1]+3+3*a-7*b, 0.7)
+    posCasillas[207]=(posCasillas[92][0]+7*3, posCasillas[92][1]+7*3, 0.7)
+    posCasillas[208]=(posCasillas[109][0]-3*a+7*b, posCasillas[109][1]+3*a+7*b, 0.7)
     return posCasillas

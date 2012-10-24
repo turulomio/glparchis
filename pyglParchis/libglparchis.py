@@ -72,13 +72,13 @@ class Dado(QObject):
         glPushName(self.oglname);
         glPushMatrix();
         if alone==False:
-            if ogl.mem.jugadoractual==ogl.mem.jugadores.jugador("yellow"):
+            if ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("yellow"):
                 self.position=(10, 51, 1)
-            elif ogl.mem.jugadoractual==ogl.mem.jugadores.jugador("blue"):
+            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("blue"):
                 self.position=(9, 10, 1)
-            elif ogl.mem.jugadoractual==ogl.mem.jugadores.jugador("red"):
+            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("red"):
                 self.position=(50, 10, 1)
-            elif ogl.mem.jugadoractual==ogl.mem.jugadores.jugador("green"):
+            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("green"):
                 self.position=(50, 51, 1)
             glTranslatef(self.position[0],self.position[1],self.position[2]);
         if self.lasttirada==1:
@@ -500,6 +500,24 @@ class SetJugadores:
     """Agrupación de jugadores"""
     def __init__(self):
         self.arr=[]
+        self.actual=None
+        
+    def index(self, jugador):
+        """Devuelve la posicion en self.arr del jugador"""
+        for i, j in enumerate(self.arr):
+            if j==jugador:
+                return i
+        
+    def cambiarJugador(self):        
+        index=self.index(self.actual)
+        if index==len(self.arr)-1:
+            self.actual=self.arr[0]
+        else:
+            self.actual=self.arr[index+1]
+
+        self.actual.tiradaturno=TiradaTurno()#Se crea otro objeto porque así el anterior queda vinculada< a TiradaHistorica.
+        self.actual.movimientos_acumulados=None
+        self.actual.LastFichaMovida=None
         
     def vaGanando(self):
         """Devuelve el objeto del jugador que va ganando"""
@@ -610,9 +628,9 @@ class Ficha(QObject):
         
         (puede, movimiento)=self.puedeMover(mem, log)
         if puede:
-            if mem.jugadoractual.fichas.algunaEstaObligada(mem) :
+            if mem.jugadores.actual.fichas.algunaEstaObligada(mem) :
                 if self.estaObligada(mem)==False:
-                    if log: mem.jugadoractual.log(self.trUtf8("No puede mover, porque hay otra ficha obligada a mover"))
+                    if log: mem.jugadores.actual.log(self.trUtf8("No puede mover, porque hay otra ficha obligada a mover"))
                     return (False, 0)                    
             return (puede, movimiento)
         return (puede, movimiento)
@@ -621,18 +639,18 @@ class Ficha(QObject):
         """Comprueba si la ficha puede mover. desde el punto de vista fisico
         Si log=True muestra los logs"""
 
-        #Es ficha del jugador actual. #A PARTIR DE AQUI SE PUEDE USAR SELF.JUGADOR EN VEZ DE MEM.JUGADORACTUAL
-        if  self.jugador!=mem.jugadoractual:             
-            if log: mem.jugadoractual.log(self.trUtf8("No es del jugador actual"))
+        #Es ficha del jugador actual. #A PARTIR DE AQUI SE PUEDE USAR SELF.JUGADOR EN VEZ DE MEM.jugadores.actual
+        if  self.jugador!=mem.jugadores.actual:             
+            if log: mem.jugadores.actual.log(self.trUtf8("No es del jugador actual"))
             return (False, 0)
             
         #No se puede mover una ficha que está en casa con puntos acumulados
-        if mem.jugadoractual.movimientos_acumulados!=None and self.estaEnCasa():
+        if mem.jugadores.actual.movimientos_acumulados!=None and self.estaEnCasa():
             return (False, 0)
 
         #Calcula el movimiento
-        if mem.jugadoractual.movimientos_acumulados!=None:
-            movimiento=mem.jugadoractual.movimientos_acumulados
+        if mem.jugadores.actual.movimientos_acumulados!=None:
+            movimiento=mem.jugadores.actual.movimientos_acumulados
         elif self.estaEnCasa() and self.jugador.tiradaturno.ultimoValor()==5:
             movimiento= 1
         elif self.estaEnCasa()==True and self.jugador.tiradaturno.ultimoValor()!=5: #Saco un 5
@@ -643,27 +661,27 @@ class Ficha(QObject):
             movimiento=self.jugador.tiradaturno.ultimoValor()
                             
         if movimiento==0 or movimiento==None:
-            if log: mem.jugadoractual.log(self.trUtf8("No puede mover"))
+            if log: mem.jugadores.actual.log(self.trUtf8("No puede mover"))
             return (False, 0)    
            
         #se ha pasado la meta
         if self.posruta+movimiento>72:
-            if log: mem.jugadoractual.log(self.trUtf8("Se ha pasado la meta"))
+            if log: mem.jugadores.actual.log(self.trUtf8("Se ha pasado la meta"))
             return (False, 0) 
             
         #Rastrea todas las casillas de paso en busca de barrera. desde la siguiente
         for i in range(self.posruta+1, self.posruta+movimiento+1): 
             if self.ruta.arr[i].tieneBarrera()==True:
-                if log: mem.jugadoractual.log(self.trUtf8("Hay una barrera"))
+                if log: mem.jugadores.actual.log(self.trUtf8("Hay una barrera"))
                 return (False, 0)
 
         #Comprueba si hay sitio libre
         casilladestino=self.ruta.arr[self.posruta+movimiento]
         if casilladestino.posicionLibreEnBuzon()==-1:
             if self.jugador.hayDosJugadoresDistintosEnRuta1():#COmprueeba si es primera casilla en ruta y hay otra de otro color.
-                if log: mem.jugadoractual.log(self.trUtf8("Obligado a sacar y a comer"))
+                if log: mem.jugadores.actual.log(self.trUtf8("Obligado a sacar y a comer"))
             else:
-                if log: mem.jugadoractual.log(self.trUtf8("No hay espacio en la casilla"))
+                if log: mem.jugadores.actual.log(self.trUtf8("No hay espacio en la casilla"))
                 return (False, 0)
                 
 
@@ -685,16 +703,16 @@ class Ficha(QObject):
         fichasdestino=casilladestino.buzon_fichas()
         #debe estar primero porque es una casilla segura
         if self.posruta==0 and self.jugador.tiradaturno.ultimoValor()==5 and self.jugador.hayDosJugadoresDistintosEnRuta1():                
-            if fichasdestino[0][1].jugador!=mem.jugadoractual:
+            if fichasdestino[0][1].jugador!=mem.jugadores.actual:
                 return(True, fichasdestino[0][1])
-            else:# fichasdestino[1][1].jugador!=mem.jugadoractual:
+            else:# fichasdestino[1][1].jugador!=mem.jugadores.actual:
                 return(True, fichasdestino[1][1])
                 
         if casilladestino.seguro==True:
             return (False, None)
         
         if len(fichasdestino)==1:#Todavia no se ha movido
-            if fichasdestino[0][1].jugador!=mem.jugadoractual:
+            if fichasdestino[0][1].jugador!=mem.jugadores.actual:
                 return(True, fichasdestino[0][1])
 
         return (False, None)
@@ -709,8 +727,8 @@ class Ficha(QObject):
                 self.mover(1, True)
             else:
                 self.mover(ruta, True)
-            mem.jugadoractual.movimientos_acumulados=20
-            mem.jugadoractual.log(self.trUtf8('He comido una ficha de %1 en la casilla %2').arg(fichaacomer.jugador.name).arg(self.casilla(ruta).id))
+            mem.jugadores.actual.movimientos_acumulados=20
+            mem.jugadores.actual.log(self.trUtf8('He comido una ficha de %1 en la casilla %2').arg(fichaacomer.jugador.name).arg(self.casilla(ruta).id))
             self.jugador.comidaspormi=self.jugador.comidaspormi+1
             fichaacomer.jugador.comidasporotro=fichaacomer.jugador.comidasporotro+1
             return True
@@ -1120,12 +1138,11 @@ class Casilla(QObject):
             
         def border(a, b, c, d, color):    
             glBegin(GL_LINE_LOOP)
-#            self.qglColor(color.qcolor())
             glColor3d(color.r, color.g, color.b)
-            glVertex3d(a[0], a[1], a[2]+0.0001)
-            glVertex3d(b[0], b[1], b[2]+0.0001)
-            glVertex3d(c[0], c[1], c[2]+0.0001)
-            glVertex3d(d[0], d[1], d[2]+0.0001)
+            glVertex3d(a[0], a[1], a[2])
+            glVertex3d(b[0], b[1], b[2])
+            glVertex3d(c[0], c[1], c[2])
+            glVertex3d(d[0], d[1], d[2])
             glEnd()
         def tipo_inicio():        
             glInitNames();
@@ -1133,8 +1150,6 @@ class Casilla(QObject):
             glPushName(self.oglname);
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
-#            glEnable(GL_TEXTURE_2D);
-#            glBindTexture(GL_TEXTURE_2D, ogl.texDecor[0])
             glBegin(GL_QUADS)
             v1 = (0, 0, 0)
             v2 = (21, 0, 0)
@@ -1156,7 +1171,38 @@ class Casilla(QObject):
     
             glPopName();
             glPopMatrix()
-#            glDisable(GL_TEXTURE_2D);
+            
+        def tipo_inicio8():        
+            glInitNames();
+            glPushMatrix()
+            glPushName(self.oglname);
+            glTranslated(self.position[0],self.position[1],self.position[2] )
+            glRotated(self.rotate, 0, 0, 1 )
+            glBegin(GL_QUADS)
+            a22c5=math.pi/8
+            a=21*math.sin(a22c5)
+            c=21*math.tan(a22c5)*math.sin(a22c5)
+            h=21/math.cos(a22c5)
+            v1 = (0, 0, 0)
+            v2 = (a, -c, 0)
+            v3 = (2*a, 0, 0)
+            v4 = (a, h-c, 0)
+            v5 = (0, 0, 0.2)
+            v6 = (a, -c, 0.2)
+            v7 = (2*a, 0, 0.2)
+            v8 = (a, h-c, 0.2)
+    
+            quad(v1, v2, v3, v4, self.color)      
+            quad(v8, v7, v6, v5, Color(70, 70, 70))      
+            quad(v1, v4, v8, v5, Color(170, 170, 170))      
+            quad(v6, v7, v3, v2, Color(170, 170, 170))      
+            quad(v5, v6, v2, v1, Color(170, 170, 170))      
+            quad(v4, v3, v7, v8, Color(170, 170, 170))      
+            glEnd()
+            border(v5, v6, v7, v8, Color(0, 0, 0))
+    
+            glPopName();
+            glPopMatrix()            
     
         def tipo_normal():
             glInitNames();
@@ -1290,7 +1336,10 @@ class Casilla(QObject):
             glPopMatrix()
         ##################################
         if self.tipo==0:
-            tipo_inicio()
+            if ogl.mem.maxplayers==4:
+                tipo_inicio()
+            elif ogl.mem.maxplayers==8:
+                tipo_inicio8()
         elif self.tipo==1:
             tipo_final()
         elif self.tipo==2:
@@ -1366,7 +1415,6 @@ class Mem:
         self.jugadores=SetJugadores()
         self.dic_rutas={}
         self.dado=Dado()
-        self.jugadoractual=None
         self.selFicha=None
         self.inittime=None#Tiempo inicio partida
         self.cfgfile=None#fichero configuración que se crea en glparchis.py
@@ -1498,21 +1546,21 @@ class Mem8(Mem):
                 return 3 #Casilla Normal
     
         def defineColor( id):
-            if id in (5, 136, 137, 138, 139, 140, 141, 142, 143, 144) :
+            if id in (5, 136, 137, 138, 139, 140, 141, 142, 143, 144, 201) :
                return self.colores.colorbyname("yellow")
-            elif id in (39, 153, 154,  155, 156, 157, 158, 159, 160) :
-               return self.colores.colorbyname("red")
-            elif id in (22, 145, 146, 147, 148, 149, 150, 151, 152):
+            elif id in (22, 145, 146, 147, 148, 149, 150, 151, 152, 202):
                return self.colores.colorbyname("blue")
-            elif id in (56, 161, 162, 163, 164, 165, 166, 167, 168):
+            elif id in (39, 153, 154,  155, 156, 157, 158, 159, 160, 203) :
+               return self.colores.colorbyname("red")
+            elif id in (56, 161, 162, 163, 164, 165, 166, 167, 168, 204):
                return self.colores.colorbyname("green")
-            elif id in (73, 169, 170, 171, 172, 173, 174, 175, 176):
+            elif id in (73, 169, 170, 171, 172, 173, 174, 175, 176, 205):
                return self.colores.colorbyname("gray")
-            elif id in (90, 177, 178, 179, 180, 181, 182, 183, 184):
+            elif id in (90, 177, 178, 179, 180, 181, 182, 183, 184, 206):
                return self.colores.colorbyname("pink")
-            elif id in (107, 185, 186, 187, 188, 189, 190, 191, 192) :
+            elif id in (107, 185, 186, 187, 188, 189, 190, 191, 192, 207) :
                return self.colores.colorbyname("orange")
-            elif id in (124, 193, 194, 195, 196, 197, 198, 199, 200) :
+            elif id in (124, 193, 194, 195, 196, 197, 198, 199, 200, 208) :
                return self.colores.colorbyname("cyan")
             else:
                 return Color(255, 255, 255)            
@@ -1524,21 +1572,36 @@ class Mem8(Mem):
             return True
             
         def defineRotate( id):
+            if id==205:
+                return 22.5
             if (id>=10 and id<=24) or (id>=145 and id <=151) or id in (77, 93, 184):
                 return 45
+            if id==206:
+                return 67.5
             if (id>=27 and id<=41) or (id>=153 and id <=159) or id in (94, 110, 192):
                 return 90
+            if id==207:
+                return 112.5
             if (id>=44 and id<=58) or (id>=161 and id <=167)  or id in (111, 127, 200):
                 return 135
+            if id==208:
+                return 157.5
             if id in (128, 8 ,144):
                 return 180
-                
+            if id==201:
+                return 202.5
             if (id>=78 and id<=92) or (id>=177 and id <=183) or id in(25,9, 152):
                 return 225
+            if id==202:
+                return 247.5
             if (id>=94 and id<=109) or (id>=185 and id <=191) or id in (26, 42, 160  ):
                 return 270
+            if id==203:
+                return 292.5
             if (id>=110 and id<=126) or (id>=193 and id <=199) or id in (43, 59, 168):
                 return 315
+            if id==204:
+                return 337.5
             else:
                 return 0        
                 
@@ -1552,7 +1615,7 @@ class Mem8(Mem):
 class Mem6(Mem):    
     def __init__(self):
         Mem.__init__(self, 6)
-        self.maxcasillas=105
+        self.maxcasillas=199
         self.colores.generar_colores(self.maxplayers)
         self.generar_jugadores()
         self.generar_casillas()
@@ -1708,7 +1771,7 @@ class Mem4(Mem):
             config.set("green",  'rutaficha3',  self.jugadores.jugador('green').fichas.arr[2].posruta)
             config.set("green",  'rutaficha4',  self.jugadores.jugador('green').fichas.arr[3].posruta)    
         config.add_section("game")
-        config.set("game", 'playerstarts',self.jugadoractual.color.name)
+        config.set("game", 'playerstarts',self.jugadores.actual.color.name)
         config.set("game", 'fakedice','')
         with open(filename, 'w') as configfile:
             config.write(configfile)            
@@ -1823,9 +1886,9 @@ class Mem4(Mem):
         if fake!="":
             for i in  fake.split(";")  :
                 self.dado.fake.append(int(i))
-        self.jugadoractual=self.jugadores.jugador(config.get("game", 'playerstarts'))    
-        self.jugadoractual.movimientos_acumulados=None#Comidas ymetidas
-        self.jugadoractual.LastFichaMovida=None #Se utiliza cuando se va a casa
+        self.jugadores.actual=self.jugadores.jugador(config.get("game", 'playerstarts'))    
+        self.jugadores.actual.movimientos_acumulados=None#Comidas ymetidas
+        self.jugadores.actual.LastFichaMovida=None #Se utiliza cuando se va a casa
 
         os.chdir(cwd)
             
