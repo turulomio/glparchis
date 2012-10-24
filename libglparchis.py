@@ -1454,7 +1454,7 @@ class Mem:
         """Debe generarse despuñes de jugadores"""
         id=0
         for c in self.colores.arr:
-            for i in range(4):
+            for i in range(18*2):
                 self.dic_fichas[str(id)]=Ficha(id, i, c, self.jugadores.jugador(c.name), self.rutas(c.name))
                 self.jugadores.jugador(c.name).fichas.arr.append(self.dic_fichas[str(id)])#Rellena el SetFichas del jugador
                 id=id+1
@@ -1497,21 +1497,21 @@ class Mem8(Mem):
 
     def generar_rutas(self):    
         self.dic_rutas["yellow"]=Ruta()
-        self.dic_rutas["yellow"].append_id(self, range(5, 144+1))
+        self.dic_rutas["yellow"].append_id(self, [201]+range(5, 144+1))
         self.dic_rutas["red"]=Ruta()
-        self.dic_rutas["red"].append_id(self, range(39, 136+1)+range(1, 34+1)+range(153, 160+1))
+        self.dic_rutas["red"].append_id(self, [202]+range(39, 136+1)+range(1, 34+1)+range(153, 160+1))
         self.dic_rutas['blue']=Ruta()
-        self.dic_rutas["blue"].append_id(self, range(22, 136+1)+range(1, 17+1)+range(145, 152+1))
+        self.dic_rutas["blue"].append_id(self, [203]+range(22, 136+1)+range(1, 17+1)+range(145, 152+1))
         self.dic_rutas['green']=Ruta()
-        self.dic_rutas["green"].append_id(self, range(56, 136+1)+range(1, 51+1)+range(161, 168+1))
+        self.dic_rutas["green"].append_id(self, [204]+range(56, 136+1)+range(1, 51+1)+range(161, 168+1))
         self.dic_rutas['gray']=Ruta()
-        self.dic_rutas["gray"].append_id(self, range(73, 136+1)+range(1, 68+1)+range(169, 176+1))
+        self.dic_rutas["gray"].append_id(self, [205]+range(73, 136+1)+range(1, 68+1)+range(169, 176+1))
         self.dic_rutas['pink']=Ruta()
-        self.dic_rutas["pink"].append_id(self, range(90, 136+1)+range(1, 85+1)+range(177, 184+1))
+        self.dic_rutas["pink"].append_id(self, [206]+range(90, 136+1)+range(1, 85+1)+range(177, 184+1))
         self.dic_rutas['orange']=Ruta()
-        self.dic_rutas["orange"].append_id(self, range(107, 136+1)+range(1, 102+1)+range(185, 192+1))
+        self.dic_rutas["orange"].append_id(self, [207]+range(107, 136+1)+range(1, 102+1)+range(185, 192+1))
         self.dic_rutas['cyan']=Ruta()
-        self.dic_rutas["cyan"].append_id(self, range(124, 136+1)+range(1, 119+1)+range(193, 200+1))
+        self.dic_rutas["cyan"].append_id(self, [208]+range(124, 136+1)+range(1, 119+1)+range(193, 200+1))
 
 
                     
@@ -1607,7 +1607,7 @@ class Mem8(Mem):
                 
         ##############################        
         posCasillas=poscasillas8(self.maxcasillas)
-        posFichas=posfichas8(self.maxcasillas)
+        posFichas=posfichas8(self.maxcasillas, posCasillas)
         for i in range(0, self.maxcasillas):#Se debe inializar Antes que las fichas
             self.dic_casillas[str(i)]=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i])
             
