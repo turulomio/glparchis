@@ -91,10 +91,10 @@ class frmInitGame(QWizard, Ui_frmInitGame):
                         j.fichas.arr[1].mover(0, False,  True)
                         j.fichas.arr[2].mover(0, False,  True)
                         j.fichas.arr[3].mover(0, False,  True)
-                self.mem.jugadoractual=self.mem.jugadores.jugador(self.playerstarts)    
-                self.mem.jugadoractual.movimientos_acumulados=None#Comidas ymetidas
-                self.mem.jugadoractual.LastFichaMovida=None #Se utiliza cuando se va a casa
-                print (self.mem.jugadoractual)
+                self.mem.jugadores.actual=self.mem.jugadores.jugador(self.playerstarts)    
+                self.mem.jugadores.actual.movimientos_acumulados=None#Comidas ymetidas
+                self.mem.jugadores.actual.LastFichaMovida=None #Se utiliza cuando se va a casa
+                print (self.mem.jugadores.actual)
                 return True
         
     def hanTiradoTodos(self):
@@ -144,6 +144,7 @@ class frmInitGame(QWizard, Ui_frmInitGame):
                 for w in self.wdgplayersdado:
                     if w not in maxplayers:
                         w.lblDado.setPixmap(self.mem.dado.qpixmap(None))
+                        w.tirada=0
                     else:
                         w.cmd.setEnabled(True)
                         if w.jugador.ia==True:

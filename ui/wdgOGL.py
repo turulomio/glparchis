@@ -174,7 +174,7 @@ class wdgOGL(QGLWidget):
                    objetos.append(names[0])
             if len(objetos)==1:
                 selCasilla=object(self.mem, objetos[0])
-                fichas=self.mem.jugadoractual.fichas.fichasAutorizadasAMover(self.mem)
+                fichas=self.mem.jugadores.actual.fichas.fichasAutorizadasAMover(self.mem)
                 fichas=sorted(fichas, key=lambda f:f.numeroAmenazasMejora(self.mem),  reverse=True)     
                 for f in fichas:
                     print (f, f.numeroAmenazasMejora(self.mem), f.numFichasPuedenComer(self.mem, f.posruta), f.numFichasPuedenComer(self.mem, f.posruta+f.estaAutorizadaAMover(self.mem)[1]))
@@ -195,7 +195,7 @@ class wdgOGL(QGLWidget):
         if event.buttons() & Qt.LeftButton:
             pickup(event, False)            
             if self.mem.selFicha!=None:
-                self.mem.jugadoractual.log(self.trUtf8("Se ha hecho click en la ficha %1").arg(self.mem.selFicha.id))
+                self.mem.jugadores.actual.log(self.trUtf8("Se ha hecho click en la ficha %1").arg(self.mem.selFicha.id))
                 self.emit(SIGNAL("fichaClicked()"))#No se pasa parámetro porque es self.mem.selFicha
         elif event.buttons() & Qt.RightButton:
             pickup(event, True)                    

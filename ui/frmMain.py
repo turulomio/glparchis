@@ -186,7 +186,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
 #                j.name=j.color.name
 #                j.plays=True
 #                j.ia=False
-#                self.mem.jugadoractual=j
+#                self.mem.jugadores.actual=j
 #
 #                for f in j.fichas.arr:
 #                    f.mover(posicion, False,  True)
