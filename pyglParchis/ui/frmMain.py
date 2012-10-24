@@ -171,26 +171,32 @@ class frmMain(QMainWindow, Ui_frmMain):#
 
     @pyqtSlot()  
     def on_actionPartidaNueva8_triggered(self):
-        if developing()==True:
-            self.mem=Mem8()
-            self.mem.cfgfile=self.cfgfile
-            initgame=frmInitGame(self.mem,  self)
-            salida=initgame.exec_()
-            if salida==QDialog.Accepted:
-                self.showWdgGame()
 #        if developing()==True:
 #            self.mem=Mem8()
 #            self.mem.cfgfile=self.cfgfile
-#            posicion=0
-#            for j in self.mem.jugadores.arr:
-#                j.name=j.color.name
-#                j.plays=True
-#                j.ia=False
-#                self.mem.jugadores.actual=j
-#
-#                for f in j.fichas.arr:
-#                    f.mover(posicion, False,  True)
-#            self.showWdgGame()
+#            initgame=frmInitGame(self.mem,  self)
+#            salida=initgame.exec_()
+#            if salida==QDialog.Accepted:
+#                self.showWdgGame()
+        if developing()==True:
+            self.mem=Mem8()
+            self.mem.cfgfile=self.cfgfile
+            for j in self.mem.jugadores.arr:
+                j.name=j.color.name
+                j.plays=True
+                j.ia=False
+                self.mem.jugadores.actual=j
+                posicion=0
+                count=0
+
+                for f in j.fichas.arr:
+                    f.mover(posicion, False,  True)
+                    if count==1:
+                        posicion=posicion+1
+                        count=0
+                    else:
+                        count=count+1
+            self.showWdgGame()
 
 
 
