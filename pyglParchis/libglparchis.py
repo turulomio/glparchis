@@ -72,14 +72,33 @@ class Dado(QObject):
         glPushName(self.oglname);
         glPushMatrix();
         if alone==False:
-            if ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("yellow"):
-                self.position=(10, 51, 1)
-            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("blue"):
-                self.position=(9, 10, 1)
-            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("red"):
-                self.position=(50, 10, 1)
-            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("green"):
-                self.position=(50, 51, 1)
+            if ogl.mem.maxplayers==4:
+                if ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("yellow"):
+                    self.position=(10, 51, 1)
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("blue"):
+                    self.position=(9, 10, 1)
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("red"):
+                    self.position=(50, 10, 1)
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("green"):
+                    self.position=(50, 51, 1)
+            else:
+                if ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("yellow"):
+                    self.position=(30, 30, .9)
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("blue"):
+                    self.position=(19, 27, 1)
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("red"):
+                    self.position=(15, 15, 1)
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("green"):
+                    self.position=(19, 3, 1)
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("gray"):
+                    self.position=(30, 0, 1)
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("pink"):
+                    self.position=(40, 3, 1)
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("orange"):
+                    self.position=(44, 15, 1)
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("cyan"):
+                    self.position=(40, 27, 1)
+            
             glTranslatef(self.position[0],self.position[1],self.position[2]);
         if self.lasttirada==1:
             glTranslated(0, 0, 3)
@@ -1454,7 +1473,7 @@ class Mem:
         """Debe generarse despuñes de jugadores"""
         id=0
         for c in self.colores.arr:
-            for i in range(18*2):
+            for i in range(4):
                 self.dic_fichas[str(id)]=Ficha(id, i, c, self.jugadores.jugador(c.name), self.rutas(c.name))
                 self.jugadores.jugador(c.name).fichas.arr.append(self.dic_fichas[str(id)])#Rellena el SetFichas del jugador
                 id=id+1
@@ -1498,10 +1517,10 @@ class Mem8(Mem):
     def generar_rutas(self):    
         self.dic_rutas["yellow"]=Ruta()
         self.dic_rutas["yellow"].append_id(self, [201]+range(5, 144+1))
-        self.dic_rutas["red"]=Ruta()
-        self.dic_rutas["red"].append_id(self, [202]+range(39, 136+1)+range(1, 34+1)+range(153, 160+1))
         self.dic_rutas['blue']=Ruta()
-        self.dic_rutas["blue"].append_id(self, [203]+range(22, 136+1)+range(1, 17+1)+range(145, 152+1))
+        self.dic_rutas["blue"].append_id(self, [202]+range(22, 136+1)+range(1, 17+1)+range(145, 152+1))
+        self.dic_rutas["red"]=Ruta()
+        self.dic_rutas["red"].append_id(self, [203]+range(39, 136+1)+range(1, 34+1)+range(153, 160+1))
         self.dic_rutas['green']=Ruta()
         self.dic_rutas["green"].append_id(self, [204]+range(56, 136+1)+range(1, 51+1)+range(161, 168+1))
         self.dic_rutas['gray']=Ruta()
