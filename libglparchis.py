@@ -489,7 +489,7 @@ class SetColores:
     
     def generar_colores(self, maxplayers):
         self.arr.append(Color( 255, 255, 0, "yellow"))
-        self.arr.append(Color(0, 0, 255, "blue"))
+        self.arr.append(Color(50, 60, 180, "blue"))
         self.arr.append(Color(255, 0, 0, "red"))
         self.arr.append(Color(0, 255, 0, "green"))
         if maxplayers>4:#Para 6
@@ -878,7 +878,7 @@ class Ficha(QObject):
         glTranslated(0, 0, 0.5)
         ogl.qglColor(Color(70, 70, 70).qcolor())
         gluDisk(self.ficha, 0, 1.4, 16, 5)
-        ogl.qglColor(self.color.qcolor())
+        ogl.qglColor(self.color.dark().qcolor())
         glTranslated(0, 0, -0.5)
         glRotated(180, 1, 0, 0)# da la vuelta a la cara
         gluDisk(self.ficha, 0, 1.40, 16, 5)
@@ -968,6 +968,15 @@ class Color:
         
     def qcolor(self):
         return QColor(self.r, self.g, self.b, 125)
+        
+    def dark(self):
+        """Suma al color el incremento"""
+        inc=30
+        dark=Color(self.r-inc, self.g-inc,  self.b-inc)
+        if dark.r<0: dark.r=0
+        if dark.g<0: dark.g=0
+        if dark.b<0: dark.b=0
+        return dark
         
 class ConfigFile:
     def __init__(self, file):
