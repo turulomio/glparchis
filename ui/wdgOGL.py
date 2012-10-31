@@ -74,7 +74,7 @@ class wdgOGL(QGLWidget):
         glRotated(self.rotX, 1,0 , 0)
         if self.mem.maxplayers==4:
             self.tablero.dibujar(self)
-        for c in self.mem.casillas():
+        for c in self.mem.casillas.arr:
             c.dibujar(self)
             c.dibujar_fichas(self)
         self.mem.dado.dibujar(self)
@@ -136,8 +136,8 @@ class wdgOGL(QGLWidget):
                 return mem.tablero
             elif id_name==17:#casillas de 17 a 121
                 return mem.dado
-            elif id_name>=18 and id_name<=18+self.mem.maxcasillas:#casillas de 17 a 121
-                return mem.casillas(id_name-18)
+            elif id_name>=18 and id_name<=18+self.mem.casillas.number:#casillas de 17 a 121
+                return mem.casillas.casilla(id_name-18)
             else:
                 return None
                 

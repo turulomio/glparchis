@@ -56,15 +56,25 @@ class frmInitGame(QWizard, Ui_frmInitGame):
         #Pone juega ordenador en todos menos el primero
         for i in range (1, self.mem.maxplayers):
             self.wdgplayers[i].chkIA.setCheckState(Qt.Checked)
-        
+            
+        QObject.connect(self, SIGNAL("currentIdChanged(int)"), self.on_currentIdChanged)                 
+            
+    def on_currentIdChanged(self, id):
+        QCoreApplication.processEvents();   
+        self.repaint()
+        QCoreApplication.processEvents();   
+        if id==1:
+            time.sleep(1)
+            for i,  w in enumerate(self.wdgplayers):
+                if w.chkIA.checkState()==Qt.Checked and w.chkPlays.checkState()==Qt.Checked:#IA#Tira el dado de IA si juega y si es AI
+                    self.wdgplayersdado[i].on_cmd_released()
+
     def validateCurrentPage(self):
         if self.currentId()==0:
             #Desactiva el cmd si no juega
             for i,  w in enumerate(self.wdgplayers):
                 if w.chkPlays.checkState()==Qt.Unchecked:
                     self.wdgplayersdado[i].cmd.setEnabled(False)
-                if w.chkIA.checkState()==Qt.Checked and w.chkPlays.checkState()==Qt.Checked:#IA#Tira el dado de IA si juega y si es AI
-                    self.wdgplayersdado[i].on_cmd_released()
                 w.commit()
                 if self.mem.maxplayers>=4:
                     self.mem.cfgfile.yellowname=self.wdgplayers[0].txt.text()

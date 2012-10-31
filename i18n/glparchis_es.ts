@@ -3,47 +3,47 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="663"/>
+        <location filename="libglparchis.py" line="1029"/>
         <source>No es del jugador actual</source>
         <translation>No es del jugador actual</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="688"/>
+        <location filename="libglparchis.py" line="1054"/>
         <source>Se ha pasado la meta</source>
         <translation>Se ha pasado la meta</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="694"/>
+        <location filename="libglparchis.py" line="1060"/>
         <source>Hay una barrera</source>
         <translation>Hay una barrera</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="703"/>
+        <location filename="libglparchis.py" line="1069"/>
         <source>No hay espacio en la casilla</source>
         <translation>No hay espacio en la casilla</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="683"/>
+        <location filename="libglparchis.py" line="1049"/>
         <source>No puede mover</source>
         <translation>No puede mover</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="701"/>
+        <location filename="libglparchis.py" line="1067"/>
         <source>Obligado a sacar y a comer</source>
         <translation>Obligado a sacar y a comer</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="652"/>
+        <location filename="libglparchis.py" line="1018"/>
         <source>No puede mover, porque hay otra ficha obligada a mover</source>
         <translation>No puede mover, porque hay otra ficha obligada a mover</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="750"/>
+        <location filename="libglparchis.py" line="1116"/>
         <source>He comido una ficha de %1 en la casilla %2</source>
         <translation>He comido una ficha de %1 en la casilla %2</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="767"/>
+        <location filename="libglparchis.py" line="1133"/>
         <source>Una ficha a llegado a la meta</source>
         <translation type="unfinished"></translation>
     </message>
@@ -51,7 +51,7 @@
 <context>
     <name>QTableStatistics</name>
     <message>
-        <location filename="ui/qtablestatistics.py" line="38"/>
+        <location filename="ui/qtablestatistics.py" line="22"/>
         <source>Total</source>
         <translation type="unfinished"></translation>
     </message>
@@ -215,7 +215,7 @@
 <context encoding="UTF-8">
     <name>frmInitGame</name>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_frmInitGame.py" line="76"/>
+        <location filename="ui/Ui_frmInitGame.py" line="83"/>
         <source>Configuración inicial de la partida</source>
         <translation>Configuración inicial de la partida</translation>
     </message>
@@ -245,17 +245,17 @@
         <translation>¿Quién empieza?</translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.py" line="140"/>
+        <location filename="ui/frmInitGame.py" line="150"/>
         <source>El jugador %1 empieza la partida</source>
         <translation>El jugador %1 empieza la partida</translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.py" line="141"/>
+        <location filename="ui/frmInitGame.py" line="151"/>
         <source>Empieza la partida</source>
         <translation>Empieza la partida</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmInitGame.py" line="143"/>
+        <location filename="ui/frmInitGame.py" line="153"/>
         <source>%1 deben tirar hasta que se aclare quién empieza la partida</source>
         <translation>%1 deben tirar hasta que se aclare quién empieza la partida</translation>
     </message>
@@ -418,7 +418,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="1947"/>
+        <location filename="libglparchis.py" line="2039"/>
         <source>Esta opción se está desarrollando</source>
         <translation type="unfinished"></translation>
     </message>
@@ -716,32 +716,32 @@
         <translation type="unfinished">Form</translation>
     </message>
     <message>
-        <location filename="ui/wdgPlayer.ui" line="22"/>
+        <location filename="ui/wdgPlayer.ui" line="31"/>
         <source>Seleccionalo si quieres activar al jugador</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgPlayer.ui" line="57"/>
+        <location filename="ui/wdgPlayer.ui" line="66"/>
         <source>Datos jugador amarillo</source>
         <translation type="unfinished">Datos jugador amarillo</translation>
     </message>
     <message>
-        <location filename="ui/wdgPlayer.ui" line="67"/>
+        <location filename="ui/wdgPlayer.ui" line="76"/>
         <source>Introduce el nombre del jugador</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgPlayer.ui" line="70"/>
+        <location filename="ui/wdgPlayer.ui" line="79"/>
         <source>Nombre del Jugador</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgPlayer.ui" line="80"/>
+        <location filename="ui/wdgPlayer.ui" line="89"/>
         <source>Selecciona si quieres que el jugador lo controle el ordenador</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/wdgPlayer.ui" line="83"/>
+        <location filename="ui/wdgPlayer.ui" line="92"/>
         <source>¿Inteligencia artificial?</source>
         <translation type="unfinished">¿Inteligencia artificial?</translation>
     </message>
@@ -754,7 +754,7 @@
         <translation type="unfinished">Form</translation>
     </message>
     <message>
-        <location filename="ui/wdgPlayerDado.ui" line="72"/>
+        <location filename="ui/wdgPlayerDado.ui" line="81"/>
         <source>Tirar dado</source>
         <translation type="unfinished">Tirar dado</translation>
     </message>
