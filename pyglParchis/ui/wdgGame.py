@@ -34,11 +34,11 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.ogl.setFocus()
         
         for j in self.mem.jugadores.arr:
-            print (j.color.name)
-            p=wdgUserPanel(self)
-            self.panelScrollLayout.addWidget(p)
-            p.setJugador(j)
-            self.panels.append(p)
+            if j.plays:
+                p=wdgUserPanel(self)
+                self.panelScrollLayout.addWidget(p)
+                p.setJugador(j)
+                self.panels.append(p)
         
         self.panel().setActivated(True)
         self.cmdTirarDado.setStyleSheet('QPushButton {color: '+self.mem.jugadores.actual.color.name+'; font: bold 30px; background-color: rgb(170, 170, 170);}')

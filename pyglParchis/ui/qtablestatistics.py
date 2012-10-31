@@ -9,22 +9,6 @@ class QTableStatistics(QTableWidget):
         QTableWidget.__init__(self, parent)    
 
 
-
-#
-#        self.table.setObjectName(_fromUtf8("table"))
-#        self.table.setColumnCount(5)
-#        self.table.setRowCount(17)
-#        item = QTableWidgetItem()
-#        self.table.setVerticalHeaderItem(0, item)
-#        item = QTableWidgetItem()
-#        self.table.setVerticalHeaderItem(1, item)
-#        item = QTableWidgetItem()
-#        icon1 = QIcon()
-#        icon1.addPixmap(QPixmap(_fromUtf8(":/glparchis/cube1.png")), QIcon.Normal, QIcon.Off)
-#        item.setIcon(icon1)
-#        self.table.setVerticalHeaderItem(2, item)
-
-
     def assign_mem(self, mem):
         self.inicio=datetime.datetime.now()
         self.mem=mem
@@ -85,9 +69,6 @@ class QTableStatistics(QTableWidget):
         self.timer.stop()
     
     def reload(self):
-        #########################################
-        if self.mem.maxplayers!=4:
-            return
         tj=TiradaJuego(self.mem)
         for j in self.mem.jugadores.arr:
             column=self.mem.colores.index(j.color)
@@ -105,9 +86,9 @@ class QTableStatistics(QTableWidget):
                 item.setIcon(icon)
             self.setItem(14, column, item)
             
-        self.item(0, 4).setText(str(tj.numThrows()))
+        self.item(0, self.mem.maxplayers).setText(str(tj.numThrows()))
         for i in range(2, 8):
-            self.item(i, 4).setText(str(tj.numTimesDiceGetNumber(i-1)))
-        self.item(12, 4).setText(str(tj.numThreeSixes()))
+            self.item(i, self.mem.maxplayers).setText(str(tj.numTimesDiceGetNumber(i-1)))
+        self.item(12, self.mem.maxplayers).setText(str(tj.numThreeSixes()))
         
         self.item(16, 0).setText(str(datetime.datetime.now()-self.inicio).split(".")[0])

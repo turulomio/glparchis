@@ -317,6 +317,7 @@ class Jugador:
         self.loghistorico=[]
         self.comidaspormi=0
         self.comidasporotro=0
+        self.ruta=None#Se apunta
 
     def __repr__(self):
         return "Jugador {0}".format(self.color.name)
@@ -335,12 +336,12 @@ class Jugador:
             
     def casillasMovidas(self):
         """Casillas que ha movido el jugador, puede considerarse la puntuación del jugador"""
-        return 4*72-self.casillasPorMover()
+        return 4*self.fichas.arr[0].ruta.length()-self.casillasPorMover()
             
         
     def hayDosJugadoresDistintosEnRuta1(self):
-        ruta1=self.fichas.arr[0].ruta.arr[1]
-        if ruta1.id not in (5, 22, 39, 56):#Casillas ruta1
+        ruta1=self.ruta.ruta1()
+        if ruta1 not in self.ruta.mem.rutas.rutas1():#Casillas ruta1
             return False
         if ruta1.buzon_numfichas()!=2:
             return False
@@ -473,13 +474,22 @@ class Jugador:
             return QPixmap(":/glparchis/fichacyan.png")
             
 class Ruta:
-    def __init__(self):
+    def __init__(self, color, mem):
         self.arr=[] #Array ordenado
+        self.color=color
+        self.mem=mem
         
-    def append_id(self,  mem, arr):
+    def append_id(self,  arr):
         """Funci´on que recibe un arr con los id de la ruta"""
         for id in arr:
-            self.arr.append(mem.casillas(id))
+            self.arr.append(self.mem.casillas.casilla(id))
+            
+    def length(self):
+        """Saca el n´umero de casillas """
+        return len(self.arr)
+        
+    def ruta1(self):
+        return self.arr[1]
     
     
 class SetColores:
@@ -533,10 +543,13 @@ class SetJugadores:
             self.actual=self.arr[0]
         else:
             self.actual=self.arr[index+1]
-
-        self.actual.tiradaturno=TiradaTurno()#Se crea otro objeto porque así el anterior queda vinculada< a TiradaHistorica.
-        self.actual.movimientos_acumulados=None
-        self.actual.LastFichaMovida=None
+            
+        if self.actual.plays==False:
+            self.cambiarJugador()
+        else:
+            self.actual.tiradaturno=TiradaTurno()#Se crea otro objeto porque así el anterior queda vinculada< a TiradaHistorica.
+            self.actual.movimientos_acumulados=None
+            self.actual.LastFichaMovida=None
         
     def vaGanando(self):
         """Devuelve el objeto del jugador que va ganando"""
@@ -560,14 +573,367 @@ class SetJugadores:
                 return True
         return False
         
-class SetCasillas:
-    """Conjunto de casillas"""
-    def __init__(self):
-        pass
+        
+class SetRutas:        
+    def __init__(self, numplayers,  mem):
+        """Mem se necesita para identificar los colores"""
+        self.arr=[]
+        self.mem=mem
+        self.generar_rutas(numplayers)
+        
+    def ruta(self, id):        
+        """id es el mismo que el orden de los colores"""
+        return self.arr[id]
         
     def rutas1(self):
-        pass
+        """Funci´on que devuelve un arr con punteros a las casillas que est´an en ruta1
+        Para poder saber de que color son, se puede usar casilla.color"""
+        resultado=[]
+        for r in self.arr:
+            resultado.append(r.ruta1())
+        return resultado
+
         
+    def generar_rutas(self, numplayers):
+        if numplayers==4:
+            self.generar_rutas4()
+        elif numplayers==6:
+            self.generar_rutas6()
+        elif numplayers==8:
+            self.generar_rutas8()
+
+    def generar_rutas4(self):    
+        r=Ruta(self.mem.colores.colorbyname("yellow"), self.mem)
+        r.append_id( [101]+range(5, 76+1))
+        self.arr.append(r)
+        r=Ruta(self.mem.colores.colorbyname("blue"), self.mem)
+        r.append_id([102]+ range(22, 68+1)+range(1, 17+1)+range(77, 84+1))
+        self.arr.append(r)
+        r=Ruta(self.mem.colores.colorbyname("red"), self.mem)
+        r.append_id( [103]+range(39, 68+1)+range(1, 34+1)+range(85, 92+1))
+        self.arr.append(r) 
+        r=Ruta(self.mem.colores.colorbyname("green"), self.mem)
+        r.append_id([104]+range(56, 68+1)+range(1, 51+1)+range(93, 100+1))
+        self.arr.append(r)        
+            
+
+    def generar_rutas6(self):    
+        self.dic_rutas["yellow"]=Ruta()
+        self.dic_rutas["yellow"].append_id(self, range(5, 144+1))
+        self.dic_rutas["red"]=Ruta()
+        self.dic_rutas["red"].append_id(self, range(39, 136+1)+range(1, 34+1)+range(153, 160+1))
+        self.dic_rutas['blue']=Ruta()
+        self.dic_rutas["blue"].append_id(self, range(22, 136+1)+range(1, 17+1)+range(145, 152+1))
+        self.dic_rutas['green']=Ruta()
+        self.dic_rutas["green"].append_id(self, range(56, 136+1)+range(1, 51+1)+range(161, 168+1))
+        self.dic_rutas['gray']=Ruta()
+        self.dic_rutas["gray"].append_id(self, range(73, 136+1)+range(1, 68+1)+range(169, 176+1))
+        self.dic_rutas['pink']=Ruta()
+        self.dic_rutas["pink"].append_id(self, range(90, 136+1)+range(1, 85+1)+range(177, 184+1))
+    def generar_rutas8(self):    
+        r=Ruta(self.mem.colores.colorbyname("yellow"), self.mem)
+        r.append_id([201]+range(5, 144+1))
+        self.arr.append(r)
+        r=Ruta(self.mem.colores.colorbyname("blue"), self.mem)
+        r.append_id([202]+range(22, 136+1)+range(1, 17+1)+range(145, 152+1))
+        self.arr.append(r)
+        r=Ruta(self.mem.colores.colorbyname("red"), self.mem)
+        r.append_id( [203]+range(39, 136+1)+range(1, 34+1)+range(153, 160+1))
+        self.arr.append(r) 
+        r=Ruta(self.mem.colores.colorbyname("green"), self.mem)
+        r.append_id([204]+range(56, 136+1)+range(1, 51+1)+range(161, 168+1))
+        self.arr.append(r)            
+        r=Ruta(self.mem.colores.colorbyname("gray"), self.mem)
+        r.append_id([205]+range(73, 136+1)+range(1, 68+1)+range(169, 176+1))
+        self.arr.append(r)
+        r=Ruta(self.mem.colores.colorbyname("pink"), self.mem)
+        r.append_id([206]+range(90, 136+1)+range(1, 85+1)+range(177, 184+1))
+        self.arr.append(r)
+        r=Ruta(self.mem.colores.colorbyname("orange"), self.mem)
+        r.append_id([207]+range(107, 136+1)+range(1, 102+1)+range(185, 192+1))
+        self.arr.append(r) 
+        r=Ruta(self.mem.colores.colorbyname("cyan"), self.mem)
+        r.append_id([208]+range(124, 136+1)+range(1, 119+1)+range(193, 200+1))
+        self.arr.append(r)    
+
+class SetCasillas:
+    """Conjunto de casillas. Si es 209 es para 8 jugadores, Si es 105 es para 4 jugadores y 1 para 6 jugadores"""
+    def __init__(self, numcasillas, mem):
+        """Mem se necesita para identificar los colores"""
+        self.arr=[]
+        self.mem=mem
+        self.number=numcasillas
+        self.generar_casillas()
+        
+    def casilla(self, id):
+        return self.arr[id]
+        
+    def rutas1(self):
+        """Funci´on que devuelve un arr con punteros a las casillas que est´an en ruta1
+        Para poder saber de que color son, se puede usar casilla.color"""
+        resultado=[]
+        if self.number==1:
+            resultado.append(self.arr[5])
+            resultado.append(self.arr[22])
+            resultado.append(self.arr[39])
+            resultado.append(self.arr[56])
+        elif self.number==209:
+            resultado.append(self.arr[5])
+            resultado.append(self.arr[22])
+            resultado.append(self.arr[39])
+            resultado.append(self.arr[56])
+            resultado.append(self.arr[73])
+            resultado.append(self.arr[90])
+            resultado.append(self.arr[105])
+            resultado.append(self.arr[122])
+        elif self.number==105:       
+            resultado.append(self.arr[5])
+            resultado.append(self.arr[22])
+            resultado.append(self.arr[39])
+            resultado.append(self.arr[56])
+        return resultado
+        
+            
+    def generar_casillas(self):
+        if self.number==1:
+            self.generar_casillas6()
+        elif self.number==209:
+            self.generar_casillas8()
+        elif self.number==105:
+            self.generar_casillas4()
+                                
+    def generar_casillas4(self):
+        def defineSeguro( id):
+            if id==5 or id==12 or id==17 or id==22 or id==29 or id==34 or id==39 or id==46 or id==51  or id==56 or id==63 or id==68:
+                return True
+            elif id>=69 and id<=100:#Las de la rampa de llegada también son seguras
+                return True
+            else:
+                return False
+    
+        def defineMaxFichas( id):
+            if id==101 or id==102 or id==103 or id==104 or id==76 or id==84 or id==92 or id==100:
+                return 4
+            else:
+                return 2
+    
+        def defineRampaLlegada(id):
+            if id>=69 and id<= 100:
+               return True
+            return False
+    
+        def defineTipo( id):
+            if id==101 or id==102 or id==103 or id==104:
+               return 0 #Casilla inicial
+            elif id==76 or id==84 or id==92 or id==100:
+               return 1 #Casilla final
+            elif id==9 or  id==26 or  id==43 or  id==60:  
+               return 2 #Casilla oblicuai
+            elif id==8 or  id==25 or  id==42 or  id==59:  
+               return 4 #Casilla oblicuad
+            else:
+                return 3 #Casilla Normal
+    
+        def defineColor( id):
+            if id==5 or (id>=69 and id<=76) or id==101:
+               return self.mem.colores.colorbyname("yellow")
+            elif id==22 or (id>=77 and id<=84) or id==102:
+               return self.mem.colores.colorbyname("blue")
+            elif id==39 or (id>=85 and id<=92) or id==103:
+               return self.mem.colores.colorbyname("red")
+            elif id==56 or (id>=93 and id<=100) or id==104:
+               return self.mem.colores.colorbyname("green")
+#            elif id==68 or  id==63 or  id==51 or id==46 or id==34 or  id==29 or  id==17 or   id==12:  
+#               return Color(128, 128, 128)#gris
+            else:
+                return Color(255, 255, 255)            
+                
+        def defineRotatePN(id):
+            """EStablece si debe rotar el panel numerico"""
+            if id in (8, 60,  10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 ):
+                return True
+            return False
+                 
+        def defineRotate( id):
+            if (id>=10 and id<=24) or (id>=77 and id<=83) or(id>=43 and id <=59) or (id>=93 and id<=100):
+               return 90
+            if id==60 or id==8 or id==76:
+                return 180
+            if id==9 or id==25 or id==84:
+                return 270
+            else:
+                return 0        
+                
+        ##############################       
+        posCasillas=poscasillas4(self.number)
+        posFichas=posfichas4(self.number)
+        for i in range(0, self.number):#Se debe inializar Antes que las fichas
+            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i]))
+            
+    def generar_casillas6(self):
+        def defineSeguro( id):
+            if id==5 or id==12 or id==17 or id==22 or id==29 or id==34 or id==39 or id==46 or id==51  or id==56 or id==63 or id==68:
+                return True
+            elif id>=69 and id<=100:#Las de la rampa de llegada también son seguras
+                return True
+            else:
+                return False
+    
+        def defineMaxFichas( id):
+            if id==101 or id==102 or id==103 or id==104 or id==76 or id==84 or id==92 or id==100:
+                return 4
+            else:
+                return 2
+    
+        def defineRampaLlegada(id):
+            if id>=69 and id<= 100:
+               return True
+            return False
+    
+        def defineTipo( id):
+            if id==101 or id==102 or id==103 or id==104:
+               return 0 #Casilla inicial
+            elif id==76 or id==84 or id==92 or id==100:
+               return 1 #Casilla final
+            elif id==9 or  id==26 or  id==43 or  id==60:  
+               return 2 #Casilla oblicuai
+            elif id==8 or  id==25 or  id==42 or  id==59:  
+               return 4 #Casilla oblicuad
+            else:
+                return 3 #Casilla Normal
+    
+        def defineColor( id):
+            if id==5 or (id>=69 and id<=76) or id==101:
+               return Color(255, 255, 30)       #amarillo 
+            elif id==39 or (id>=85 and id<=92) or id==103:
+               return Color(255, 30, 30)#rojo
+            elif id==22 or (id>=77 and id<=84) or id==102:
+               return Color(30, 30, 255)#azul
+            elif id==56 or (id>=93 and id<=100) or id==104:
+               return Color(30, 255, 30) #verde
+#            elif id==68 or  id==63 or  id==51 or id==46 or id==34 or  id==29 or  id==17 or   id==12:  
+#               return Color(128, 128, 128)#gris
+            else:
+                return Color(255, 255, 255)            
+                                
+        def defineRotatePN(id):
+            """EStablece si debe rotar el panel numerico"""
+            if (id>=61 and id<=75) or id in(8, 9, 25, 26, 42, 43, 59, 60,  76, 77, 93, 94, 110, 111, 127, 128):
+                return False
+            return True
+        def defineRotate( id):
+            if (id>=10 and id<=24) or (id>=77 and id<=83) or(id>=43 and id <=59) or (id>=93 and id<=100):
+               return 90
+            if id==60 or id==8 or id==76:
+                return 180
+            if id==9 or id==25 or id==84:
+                return 270
+            else:
+                return 0        
+                
+        ##############################        
+        posCasillas=poscasillas6(self.number)
+        posFichas=posfichas6(self.number)
+        for i in range(0, self.number):#Se debe inializar Antes que las fichas
+            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i) , defineRotatePN(i),  defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i]))
+            
+ 
+    def generar_casillas8(self):
+        def defineSeguro( id):
+            if id  in (5, 12, 17, 22, 29, 34, 39, 46, 51, 56, 63, 68, 73, 80, 85, 90, 97, 102, 107, 114, 119, 124, 131, 136) or id>=137:
+                return True
+            else:
+                return False
+    
+        def defineMaxFichas( id):
+            if id in (144, 152, 160, 168, 176, 184, 192, 200,  201, 202, 203, 204, 205, 206, 207, 208):
+                return 4
+            else:
+                return 2
+    
+        def defineRampaLlegada(id):
+            if id>=137 and id<= 200:
+               return True
+            return False
+    
+        def defineTipo( id):
+            if id in (201, 202, 203, 204, 205, 206, 207, 208):
+               return 0 #Casilla inicial
+            elif id in (144, 152, 160, 168, 176, 184, 192, 200):
+               return 1 #Casilla final
+            elif id in (9, 26, 43, 60, 77, 94, 111, 128):  
+               return 2 #Casilla oblicuai
+            elif id in (8, 25, 42, 59, 76, 93, 110, 127):  
+               return 4 #Casilla oblicuad
+            else:
+                return 3 #Casilla Normal
+    
+        def defineColor( id):
+            if id in (5, 136, 137, 138, 139, 140, 141, 142, 143, 144, 201) :
+               return self.mem.colores.colorbyname("yellow")
+            elif id in (22, 145, 146, 147, 148, 149, 150, 151, 152, 202):
+               return self.mem.colores.colorbyname("blue")
+            elif id in (39, 153, 154,  155, 156, 157, 158, 159, 160, 203) :
+               return self.mem.colores.colorbyname("red")
+            elif id in (56, 161, 162, 163, 164, 165, 166, 167, 168, 204):
+               return self.mem.colores.colorbyname("green")
+            elif id in (73, 169, 170, 171, 172, 173, 174, 175, 176, 205):
+               return self.mem.colores.colorbyname("gray")
+            elif id in (90, 177, 178, 179, 180, 181, 182, 183, 184, 206):
+               return self.mem.colores.colorbyname("pink")
+            elif id in (107, 185, 186, 187, 188, 189, 190, 191, 192, 207) :
+               return self.mem.colores.colorbyname("orange")
+            elif id in (124, 193, 194, 195, 196, 197, 198, 199, 200, 208) :
+               return self.mem.colores.colorbyname("cyan")
+            else:
+                return Color(255, 255, 255)            
+                
+        def defineRotatePN(id):
+            """EStablece si debe rotar el panel numerico"""
+            if (id>=61 and id<=75) or id in(8, 9, 25, 26, 42, 43, 59, 60,  76, 77, 93, 94, 110, 111, 127, 128):
+                return False
+            return True
+            
+        def defineRotate( id):
+            if id==205:
+                return 22.5
+            if (id>=10 and id<=24) or (id>=145 and id <=151) or id in (77, 93, 184):
+                return 45
+            if id==206:
+                return 67.5
+            if (id>=27 and id<=41) or (id>=153 and id <=159) or id in (94, 110, 192):
+                return 90
+            if id==207:
+                return 112.5
+            if (id>=44 and id<=58) or (id>=161 and id <=167)  or id in (111, 127, 200):
+                return 135
+            if id==208:
+                return 157.5
+            if id in (128, 8 ,144):
+                return 180
+            if id==201:
+                return 202.5
+            if (id>=78 and id<=92) or (id>=177 and id <=183) or id in(25,9, 152):
+                return 225
+            if id==202:
+                return 247.5
+            if (id>=94 and id<=109) or (id>=185 and id <=191) or id in (26, 42, 160  ):
+                return 270
+            if id==203:
+                return 292.5
+            if (id>=110 and id<=126) or (id>=193 and id <=199) or id in (43, 59, 168):
+                return 315
+            if id==204:
+                return 337.5
+            else:
+                return 0        
+                
+        ##############################        
+        posCasillas=poscasillas8(self.number)
+        posFichas=posfichas8(self.number, posCasillas)
+        for i in range(0, self.number):#Se debe inializar Antes que las fichas
+            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i]))
+            
 class SetFichas:
     """Agrupación de fichas"""
     def __init__(self):
@@ -684,7 +1050,7 @@ class Ficha(QObject):
             return (False, 0)    
            
         #se ha pasado la meta
-        if self.posruta+movimiento>72:
+        if self.posruta+movimiento>self.ruta.length()-1:
             if log: mem.jugadores.actual.log(self.trUtf8("Se ha pasado la meta"))
             return (False, 0) 
             
@@ -755,7 +1121,7 @@ class Ficha(QObject):
 
     def puedeMeter(self, posruta):
         """Devuelve un booleano si puede meter la ficha en las casilla final"""
-        if posruta==72:
+        if posruta==len(self.ruta.arr)-1:
             return True
         return False
         
@@ -777,7 +1143,7 @@ class Ficha(QObject):
             
 
     def casillasPorMover(self):
-        return 72-self.posruta
+        return self.ruta.length()-self.posruta
         
     def numeroAmenazasMejora(self, mem):
         """Si devuelve un positivo es que ha disminuido en ese valor el numero de fichas que le amenzaban
@@ -797,7 +1163,7 @@ class Ficha(QObject):
         if posruta==None:
             posruta=self.posruta
             
-        if posruta<0 or posruta>72:
+        if posruta<0 or posruta>self.ruta.length()-1:
             return 0
             
         casilla=self.casilla(posruta)        #Datos casilla de posruta
@@ -853,7 +1219,7 @@ class Ficha(QObject):
         return False
 
     def estaEnMeta(self):
-        if self.posruta==72:
+        if self.posruta==len(self.ruta.arr)-1:
             return True
         return False
 
@@ -942,7 +1308,7 @@ class Circulo:
         self.arr=[]
         self.numcasillas=numcasillas
         for i in range(1, self.numcasillas+1):
-            self.arr.append(mem.casillas(i))
+            self.arr.append(mem.casillas.casilla(i))
     
     def casilla(self, posicion,  desplazamiento):
         """Calcula la casilla del circulo que tiene un desplazamiento positivo (hacia adelante) o negativo (hacia atrás) 
@@ -1062,7 +1428,7 @@ class Casilla(QObject):
 
     def esUnSeguroParaJugador(self, mem,  jugador):
         """Devuelve si la casilla es segura para el jugador pasado como parámetro ante un posible moviiento"""
-        if self.id in (5, 22, 39, 56):#Ruta1
+        if self.id in mem.rutas.rutas1():
             propietario=self.jugadorPropietario(mem)
             if jugador==propietario:
                 return True
@@ -1437,7 +1803,7 @@ class Casilla(QObject):
 class Mem:
     def __init__(self, maxplayers):     
         self.maxplayers=maxplayers
-        self.dic_casillas={}#Lista cuya posicion coincide con el id del objeto jugador que lleva dentro
+#        self.casillas=None#Lista cuya posicion coincide con el id del objeto jugador que lleva dentro
         self.dic_fichas={}
         self.colores=SetColores()
         self.jugadores=SetJugadores()
@@ -1469,22 +1835,24 @@ class Mem:
             time.sleep(0.4)
             QCoreApplication.processEvents();    
 
-
-            
-    def rutas(self, name=None):
-        if name==None:
-            return dic2list(self.dic_rutas)
-        else:
-            return self.dic_rutas[str(name)]
+#
+#            
+#    def rutas(self, name=None):
+#        if name==None:
+#            return dic2list(self.dic_rutas)
+#        else:
+#            return self.dic_rutas[str(name)]
 
         
     def generar_fichas(self):
         """Debe generarse despuñes de jugadores"""
         id=0
-        for c in self.colores.arr:
+        for ic, c in enumerate(self.colores.arr):
+            j=self.jugadores.jugador(c.name)
+            j.ruta=self.rutas.ruta(ic)
             for i in range(4):
-                self.dic_fichas[str(id)]=Ficha(id, i, c, self.jugadores.jugador(c.name), self.rutas(c.name))
-                self.jugadores.jugador(c.name).fichas.arr.append(self.dic_fichas[str(id)])#Rellena el SetFichas del jugador
+                self.dic_fichas[str(id)]=Ficha(id, i, c, self.jugadores.jugador(c.name), j.ruta)
+                j.fichas.arr.append(self.dic_fichas[str(id)])#Rellena el SetFichas del jugador
                 id=id+1
 
             
@@ -1499,264 +1867,56 @@ class Mem:
             return dic2list(self.dic_fichas)
         else:
             return self.dic_fichas[str(name)]
-
-    def casillas(self, name=None):
-        if name==None:
-            return dic2list(self.dic_casillas)
-        else:
-            return self.dic_casillas[str(name)]
-            
+#
+#    def casillas(self, name=None):
+#        if name==None:
+#            return dic2list(self.dic_casillas)
+#        else:
+#            return self.dic_casillas[str(name)]
+#            
                         
 
 class Mem8(Mem):    
     def __init__(self):
         Mem.__init__(self, 8)
-        
-        self.maxcasillas=209
         self.colores.generar_colores(self.maxplayers)
         self.generar_jugadores()
-        self.generar_casillas()
-        self.generar_rutas()
+        self.casillas=SetCasillas(209, self)
+        self.rutas=SetRutas(self.maxplayers, self)
         self.generar_fichas()
         
         self.circulo=Circulo(self, 136)
 
-            
-
-    def generar_rutas(self):    
-        self.dic_rutas["yellow"]=Ruta()
-        self.dic_rutas["yellow"].append_id(self, [201]+range(5, 144+1))
-        self.dic_rutas['blue']=Ruta()
-        self.dic_rutas["blue"].append_id(self, [202]+range(22, 136+1)+range(1, 17+1)+range(145, 152+1))
-        self.dic_rutas["red"]=Ruta()
-        self.dic_rutas["red"].append_id(self, [203]+range(39, 136+1)+range(1, 34+1)+range(153, 160+1))
-        self.dic_rutas['green']=Ruta()
-        self.dic_rutas["green"].append_id(self, [204]+range(56, 136+1)+range(1, 51+1)+range(161, 168+1))
-        self.dic_rutas['gray']=Ruta()
-        self.dic_rutas["gray"].append_id(self, [205]+range(73, 136+1)+range(1, 68+1)+range(169, 176+1))
-        self.dic_rutas['pink']=Ruta()
-        self.dic_rutas["pink"].append_id(self, [206]+range(90, 136+1)+range(1, 85+1)+range(177, 184+1))
-        self.dic_rutas['orange']=Ruta()
-        self.dic_rutas["orange"].append_id(self, [207]+range(107, 136+1)+range(1, 102+1)+range(185, 192+1))
-        self.dic_rutas['cyan']=Ruta()
-        self.dic_rutas["cyan"].append_id(self, [208]+range(124, 136+1)+range(1, 119+1)+range(193, 200+1))
 
 
-                    
-    def generar_casillas(self):
-        def defineSeguro( id):
-            if id  in (5, 12, 17, 22, 29, 34, 39, 46, 51, 56, 63, 68, 73, 80, 85, 90, 97, 102, 107, 114, 119, 124, 131, 136) or id>=137:
-                return True
-            else:
-                return False
-    
-        def defineMaxFichas( id):
-            if id in (144, 152, 160, 168, 176, 184, 192, 200,  201, 202, 203, 204, 205, 206, 207, 208):
-                return 4
-            else:
-                return 2
-    
-        def defineRampaLlegada(id):
-            if id>=137 and id<= 200:
-               return True
-            return False
-    
-        def defineTipo( id):
-            if id in (201, 202, 203, 204, 205, 206, 207, 208):
-               return 0 #Casilla inicial
-            elif id in (144, 152, 160, 168, 176, 184, 192, 200):
-               return 1 #Casilla final
-            elif id in (9, 26, 43, 60, 77, 94, 111, 128):  
-               return 2 #Casilla oblicuai
-            elif id in (8, 25, 42, 59, 76, 93, 110, 127):  
-               return 4 #Casilla oblicuad
-            else:
-                return 3 #Casilla Normal
-    
-        def defineColor( id):
-            if id in (5, 136, 137, 138, 139, 140, 141, 142, 143, 144, 201) :
-               return self.colores.colorbyname("yellow")
-            elif id in (22, 145, 146, 147, 148, 149, 150, 151, 152, 202):
-               return self.colores.colorbyname("blue")
-            elif id in (39, 153, 154,  155, 156, 157, 158, 159, 160, 203) :
-               return self.colores.colorbyname("red")
-            elif id in (56, 161, 162, 163, 164, 165, 166, 167, 168, 204):
-               return self.colores.colorbyname("green")
-            elif id in (73, 169, 170, 171, 172, 173, 174, 175, 176, 205):
-               return self.colores.colorbyname("gray")
-            elif id in (90, 177, 178, 179, 180, 181, 182, 183, 184, 206):
-               return self.colores.colorbyname("pink")
-            elif id in (107, 185, 186, 187, 188, 189, 190, 191, 192, 207) :
-               return self.colores.colorbyname("orange")
-            elif id in (124, 193, 194, 195, 196, 197, 198, 199, 200, 208) :
-               return self.colores.colorbyname("cyan")
-            else:
-                return Color(255, 255, 255)            
-                
-        def defineRotatePN(id):
-            """EStablece si debe rotar el panel numerico"""
-            if (id>=61 and id<=75) or id in(8, 9, 25, 26, 42, 43, 59, 60,  76, 77, 93, 94, 110, 111, 127, 128):
-                return False
-            return True
-            
-        def defineRotate( id):
-            if id==205:
-                return 22.5
-            if (id>=10 and id<=24) or (id>=145 and id <=151) or id in (77, 93, 184):
-                return 45
-            if id==206:
-                return 67.5
-            if (id>=27 and id<=41) or (id>=153 and id <=159) or id in (94, 110, 192):
-                return 90
-            if id==207:
-                return 112.5
-            if (id>=44 and id<=58) or (id>=161 and id <=167)  or id in (111, 127, 200):
-                return 135
-            if id==208:
-                return 157.5
-            if id in (128, 8 ,144):
-                return 180
-            if id==201:
-                return 202.5
-            if (id>=78 and id<=92) or (id>=177 and id <=183) or id in(25,9, 152):
-                return 225
-            if id==202:
-                return 247.5
-            if (id>=94 and id<=109) or (id>=185 and id <=191) or id in (26, 42, 160  ):
-                return 270
-            if id==203:
-                return 292.5
-            if (id>=110 and id<=126) or (id>=193 and id <=199) or id in (43, 59, 168):
-                return 315
-            if id==204:
-                return 337.5
-            else:
-                return 0        
-                
-        ##############################        
-        posCasillas=poscasillas8(self.maxcasillas)
-        posFichas=posfichas8(self.maxcasillas, posCasillas)
-        for i in range(0, self.maxcasillas):#Se debe inializar Antes que las fichas
-            self.dic_casillas[str(i)]=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i])
-            
+
+                   
 
 class Mem6(Mem):    
     def __init__(self):
         Mem.__init__(self, 6)
-        self.maxcasillas=199
         self.colores.generar_colores(self.maxplayers)
         self.generar_jugadores()
-        self.generar_casillas()
-        self.generar_rutas()
+        self.casillas=SetCasillas(199, self)
+        self.rutas=SetRutas(self.maxplayers, self)
         self.generar_fichas()
         
         self.circulo=Circulo(self, 68)
 
-    def generar_rutas(self):    
-        self.dic_rutas["yellow"]=Ruta()
-        self.dic_rutas["yellow"].append_id(self, range(5, 144+1))
-        self.dic_rutas["red"]=Ruta()
-        self.dic_rutas["red"].append_id(self, range(39, 136+1)+range(1, 34+1)+range(153, 160+1))
-        self.dic_rutas['blue']=Ruta()
-        self.dic_rutas["blue"].append_id(self, range(22, 136+1)+range(1, 17+1)+range(145, 152+1))
-        self.dic_rutas['green']=Ruta()
-        self.dic_rutas["green"].append_id(self, range(56, 136+1)+range(1, 51+1)+range(161, 168+1))
-        self.dic_rutas['gray']=Ruta()
-        self.dic_rutas["gray"].append_id(self, range(73, 136+1)+range(1, 68+1)+range(169, 176+1))
-        self.dic_rutas['pink']=Ruta()
-        self.dic_rutas["pink"].append_id(self, range(90, 136+1)+range(1, 85+1)+range(177, 184+1))
                     
-    def generar_casillas(self):
-        def defineSeguro( id):
-            if id==5 or id==12 or id==17 or id==22 or id==29 or id==34 or id==39 or id==46 or id==51  or id==56 or id==63 or id==68:
-                return True
-            elif id>=69 and id<=100:#Las de la rampa de llegada también son seguras
-                return True
-            else:
-                return False
-    
-        def defineMaxFichas( id):
-            if id==101 or id==102 or id==103 or id==104 or id==76 or id==84 or id==92 or id==100:
-                return 4
-            else:
-                return 2
-    
-        def defineRampaLlegada(id):
-            if id>=69 and id<= 100:
-               return True
-            return False
-    
-        def defineTipo( id):
-            if id==101 or id==102 or id==103 or id==104:
-               return 0 #Casilla inicial
-            elif id==76 or id==84 or id==92 or id==100:
-               return 1 #Casilla final
-            elif id==9 or  id==26 or  id==43 or  id==60:  
-               return 2 #Casilla oblicuai
-            elif id==8 or  id==25 or  id==42 or  id==59:  
-               return 4 #Casilla oblicuad
-            else:
-                return 3 #Casilla Normal
-    
-        def defineColor( id):
-            if id==5 or (id>=69 and id<=76) or id==101:
-               return Color(255, 255, 30)       #amarillo 
-            elif id==39 or (id>=85 and id<=92) or id==103:
-               return Color(255, 30, 30)#rojo
-            elif id==22 or (id>=77 and id<=84) or id==102:
-               return Color(30, 30, 255)#azul
-            elif id==56 or (id>=93 and id<=100) or id==104:
-               return Color(30, 255, 30) #verde
-#            elif id==68 or  id==63 or  id==51 or id==46 or id==34 or  id==29 or  id==17 or   id==12:  
-#               return Color(128, 128, 128)#gris
-            else:
-                return Color(255, 255, 255)            
-                                
-        def defineRotatePN(id):
-            """EStablece si debe rotar el panel numerico"""
-            if (id>=61 and id<=75) or id in(8, 9, 25, 26, 42, 43, 59, 60,  76, 77, 93, 94, 110, 111, 127, 128):
-                return False
-            return True
-        def defineRotate( id):
-            if (id>=10 and id<=24) or (id>=77 and id<=83) or(id>=43 and id <=59) or (id>=93 and id<=100):
-               return 90
-            if id==60 or id==8 or id==76:
-                return 180
-            if id==9 or id==25 or id==84:
-                return 270
-            else:
-                return 0        
-                
-        ##############################        
-        posCasillas=poscasillas6(self.maxcasillas)
-        posFichas=posfichas6(self.maxcasillas)
-        for i in range(0, self.maxcasillas):#Se debe inializar Antes que las fichas
-            self.dic_casillas[str(i)]=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i) , defineRotatePN(i),  defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i])
-            
 
 class Mem4(Mem):
     def __init__(self):
         Mem.__init__(self, 4)
-        self.maxcasillas=105
-        
         self.colores.generar_colores(self.maxplayers)
         self.generar_jugadores()
-        self.generar_casillas()
-        self.generar_rutas()
+        self.casillas=SetCasillas(105, self)
+        self.rutas=SetRutas(self.maxplayers, self)
         self.generar_fichas()
         
         self.circulo=Circulo(self, 68)
 
 
-    def generar_rutas(self):    
-        self.dic_rutas["yellow"]=Ruta()
-        self.dic_rutas["yellow"].append_id(self, [101]+range(5, 76+1))
-        self.dic_rutas['blue']=Ruta()
-        self.dic_rutas["blue"].append_id(self,[102]+ range(22, 68+1)+range(1, 17+1)+range(77, 84+1))
-        self.dic_rutas["red"]=Ruta()
-        self.dic_rutas["red"].append_id(self, [103]+range(39, 68+1)+range(1, 34+1)+range(85, 92+1))
-        self.dic_rutas['green']=Ruta()
-        self.dic_rutas["green"].append_id(self, [104]+range(56, 68+1)+range(1, 51+1)+range(93, 100+1))
             
     def save(self, filename):
         cwd=os.getcwd()
@@ -1805,75 +1965,7 @@ class Mem4(Mem):
             config.write(configfile)            
         os.chdir(cwd)
 
-                    
-    def generar_casillas(self):
-        def defineSeguro( id):
-            if id==5 or id==12 or id==17 or id==22 or id==29 or id==34 or id==39 or id==46 or id==51  or id==56 or id==63 or id==68:
-                return True
-            elif id>=69 and id<=100:#Las de la rampa de llegada también son seguras
-                return True
-            else:
-                return False
-    
-        def defineMaxFichas( id):
-            if id==101 or id==102 or id==103 or id==104 or id==76 or id==84 or id==92 or id==100:
-                return 4
-            else:
-                return 2
-    
-        def defineRampaLlegada(id):
-            if id>=69 and id<= 100:
-               return True
-            return False
-    
-        def defineTipo( id):
-            if id==101 or id==102 or id==103 or id==104:
-               return 0 #Casilla inicial
-            elif id==76 or id==84 or id==92 or id==100:
-               return 1 #Casilla final
-            elif id==9 or  id==26 or  id==43 or  id==60:  
-               return 2 #Casilla oblicuai
-            elif id==8 or  id==25 or  id==42 or  id==59:  
-               return 4 #Casilla oblicuad
-            else:
-                return 3 #Casilla Normal
-    
-        def defineColor( id):
-            if id==5 or (id>=69 and id<=76) or id==101:
-               return Color(255, 255, 30)       #amarillo 
-            elif id==39 or (id>=85 and id<=92) or id==103:
-               return Color(255, 30, 30)#rojo
-            elif id==22 or (id>=77 and id<=84) or id==102:
-               return Color(30, 30, 255)#azul
-            elif id==56 or (id>=93 and id<=100) or id==104:
-               return Color(30, 255, 30) #verde
-#            elif id==68 or  id==63 or  id==51 or id==46 or id==34 or  id==29 or  id==17 or   id==12:  
-#               return Color(128, 128, 128)#gris
-            else:
-                return Color(255, 255, 255)            
-                
-        def defineRotatePN(id):
-            """EStablece si debe rotar el panel numerico"""
-            if id in (8, 60,  10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 ):
-                return True
-            return False
-                 
-        def defineRotate( id):
-            if (id>=10 and id<=24) or (id>=77 and id<=83) or(id>=43 and id <=59) or (id>=93 and id<=100):
-               return 90
-            if id==60 or id==8 or id==76:
-                return 180
-            if id==9 or id==25 or id==84:
-                return 270
-            else:
-                return 0        
-                
-        ##############################       
-        posCasillas=poscasillas4(self.maxcasillas)
-        posFichas=posfichas4(self.maxcasillas)
-        for i in range(0, self.maxcasillas):#Se debe inializar Antes que las fichas
-            self.dic_casillas[str(i)]=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i])
-            
+
             
             
     def load(self, filename):       
