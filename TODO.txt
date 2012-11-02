@@ -1,13 +1,14 @@
-20120831 Ir migrando a python3, unque opengl no está todavía, ojo con strings, urlliib...
 20120909 Se debe contabilizar el calculo de comer cuando puedo contar 10 por ficha en casa, también si hay barreras o 
                     si una barrera es la que quiere comer a una ficha, no debería contabilizar doble
 20120918 Cuando saque un cinco y tenga que muestre en log que debe sacar
 20120918 Hacer sistema para jugar en red
 20120918 Mostrar sistema de gráficos de 6 jugadores
 20120925 Cuando sale un 6 y con el 6 meto, corro 10 luego no me deja volver a tirar y tengo que mover otros 6
-20120930 Poner en cfg la versón de creacion del cfg para hacer migraciones
 20120930 El mensaje de final no tiene icono puede que todos popups
 20121019 Cuando se gane, hacer que el tablero gire y suba y baje
-20121025 Puede haber en rutas1 datos estaticos
-20121031 Hacer high scores
-20121031 Falta grabar para 6 y 8
+20121031 Hacer high scores solo para humanos
+20121031 Grabar tambi´en el medio.glparchis tiempo de partida, comidas por mi y otros, seises
+20121101 Si muevo el scroll que se desactive el update hasta siguiente turno humano
+20121101 Cuando se come en ruta1 se debe comer al último que llego
+20121101 Dependiendo del numero de jugador actual mostrar por defecto el tab del highscore
+20121101 COnfigParser no graba en utf-8

@@ -17,7 +17,7 @@ class QTableStatistics(QTableWidget):
         for i, j in enumerate(self.mem.jugadores.arr):
             item = QTableWidgetItem(j.color.name)
             item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter|Qt.AlignCenter)
-            item.setIcon(j.qicon())
+            item.setIcon(j.color.qicon())
             self.setHorizontalHeaderItem(i, item)
         item = QTableWidgetItem(self.trUtf8("Total"))
         item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter|Qt.AlignCenter)

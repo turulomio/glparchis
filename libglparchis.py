@@ -7,7 +7,7 @@ from poscasillas4 import *
 from posfichas4 import *
 from poscasillas6 import *
 from posfichas6 import *
-import os,  random,   ConfigParser,  datetime,  time,  sys
+import os,  random,   ConfigParser,  datetime,  time,  sys,  codecs
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
@@ -301,6 +301,50 @@ class TiradaTurno:
         """Gets the number of throws in the turn"""
         return len (self.arr)
 
+
+class HighScore:
+    """Clase que calcula gestiona todo lo relacionado con el highscore. Sólo debe usarse cuando haya acabado la partida
+    y haya un winner"""
+    def __init__(self, mem, players):
+        self.players=players
+        self.mem=mem
+        self.arr=[]#Cada item tendrá la fecha en ordinal, nombre, tiempo de partida, color, el score
+        self.load()
+
+    def score(self):
+        """Saca la puntuación del jugador, se usa para el highscore y tiene en cuenta el tiempo 
+        y lo lejos que han acabado los jugadores de la partida,
+       Además se sumará la diferencia de comidas y comidas por otro *20 """
+        resultado=0
+        for j in  self.mem.jugadores.arr:
+            if j != self.mem.jugadores.winner:
+                resultado=resultado+j.casillasPorMover()
+        resultado=resultado+(self.mem.jugadores.winner.comidaspormi-self.mem.jugadores.winner.comidasporotro)*20
+        return resultado
+        
+    def insert(self):
+        """Solo se puede ejecutar, cuando haya un winner"""
+        self.arr.append((datetime.date.today().toordinal(), self.mem.jugadores.winner.name, (datetime.datetime.now()-self.mem.inittime).seconds, self.mem.jugadores.winner.color.name,  str(self.score())))
+        self.arr=sorted(self.arr, key=lambda a:a[4],  reverse=True)     
+
+    def load(self):
+        try:
+            f=codecs.open(os.path.expanduser("~/.glparchis/")+ "highscores"+str(self.players), "r", "utf-8")
+            for line in f.readlines():
+                a=line[:-1].split(";")
+                self.arr.append((a[0], a[1], a[2], a[3],  a[4]))
+            f.close()
+        except:
+            print("I couldn't load highscores")
+        
+    def save(self):        
+        f=codecs.open(os.path.expanduser("~/.glparchis/")+ "highscores"+str(self.players), "w", "utf-8")
+        s=""
+        for a in self.arr[:10]:
+            s=s+"{0};{1};{2};{3};{4}\n".format(a[0], a[1],  a[2], a[3], a[4])
+        f.write(s)
+        f.close()
+                
 class Jugador:
     def __init__(self,  color):
         self.name=None#Es el nombre de usuario no el de color
@@ -358,6 +402,8 @@ class Jugador:
             self.tiradahistorica.arr.append(self.tiradaturno)
         return tirada.valor
 
+        
+        
         
     def barreras(self):
         """Devuelve una lista con las casillas en las que el jugador tiene barrera"""
@@ -448,30 +494,7 @@ class Jugador:
         fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)
         print (fichas[0], "Sin azar. Ultima ficha")
         return fichas[0]
-            
-    def qicon(self):
-        ico = QIcon()
-        ico.addPixmap(self.qpixmap(), QIcon.Normal, QIcon.Off) 
-        return ico
-    
-    def qpixmap(self):
-        """Devuelve un pixmap del color de la ficha"""
-        if self.color.name=="yellow":
-            return QPixmap(":/glparchis/fichaamarilla.png")
-        elif self.color.name=="blue":
-            return QPixmap(":/glparchis/fichaazul.png")
-        elif self.color.name=="green":
-            return QPixmap(":/glparchis/fichaverde.png")
-        elif self.color.name=="red":
-            return QPixmap(":/glparchis/ficharoja.png")
-        elif self.color.name=="gray":
-            return QPixmap(":/glparchis/fichagris.png")
-        elif self.color.name=="pink":
-            return QPixmap(":/glparchis/ficharosa.png")
-        elif self.color.name=="orange":
-            return QPixmap(":/glparchis/fichanaranja.png")
-        elif self.color.name=="cyan":
-            return QPixmap(":/glparchis/fichacyan.png")
+
             
 class Ruta:
     def __init__(self, color, mem):
@@ -480,12 +503,12 @@ class Ruta:
         self.mem=mem
         
     def append_id(self,  arr):
-        """Funci´on que recibe un arr con los id de la ruta"""
+        """Función que recibe un arr con los id de la ruta"""
         for id in arr:
             self.arr.append(self.mem.casillas.casilla(id))
             
     def length(self):
-        """Saca el n´umero de casillas """
+        """Saca el número de casillas """
         return len(self.arr)
         
     def ruta1(self):
@@ -498,16 +521,16 @@ class SetColores:
         self.arr=[]    
     
     def generar_colores(self, maxplayers):
-        self.arr.append(Color( 255, 255, 0, "yellow"))
+        self.arr.append(Color( 255, 255, 50, "yellow"))
         self.arr.append(Color(50, 60, 180, "blue"))
-        self.arr.append(Color(255, 0, 0, "red"))
-        self.arr.append(Color(0, 255, 0, "green"))
+        self.arr.append(Color(255, 50, 50, "red"))
+        self.arr.append(Color(50, 255, 50, "green"))
         if maxplayers>4:#Para 6
             self.arr.append(Color(64, 64, 64, "gray"))
-            self.arr.append(Color(255, 0, 255, "pink"))
+            self.arr.append(Color(255, 50, 255, "pink"))
         if maxplayers>6:# Para 8
-            self.arr.append(Color(255, 128, 0, "orange"))
-            self.arr.append(Color(0, 255, 255, "cyan"))
+            self.arr.append(Color(255, 128, 50, "orange"))
+            self.arr.append(Color(50, 255, 255, "cyan"))
             
     def color(self, colo):
         for c in self.arr:
@@ -520,7 +543,7 @@ class SetColores:
                 return c
                 
     def index(self, color):
-        """Funci´on que devuelve un orden de color seg´un se ha insertado en el array"""
+        """Función que devuelve un orden de color según se ha insertado en el array"""
         for i, c in enumerate(self.arr):
             if c==color:
                 return i
@@ -530,6 +553,7 @@ class SetJugadores:
     def __init__(self):
         self.arr=[]
         self.actual=None
+        self.winner=None
         
     def index(self, jugador):
         """Devuelve la posicion en self.arr del jugador"""
@@ -586,7 +610,7 @@ class SetRutas:
         return self.arr[id]
         
     def rutas1(self):
-        """Funci´on que devuelve un arr con punteros a las casillas que est´an en ruta1
+        """Función que devuelve un arr con punteros a las casillas que están en ruta1
         Para poder saber de que color son, se puede usar casilla.color"""
         resultado=[]
         for r in self.arr:
@@ -669,7 +693,7 @@ class SetCasillas:
         return self.arr[id]
         
     def rutas1(self):
-        """Funci´on que devuelve un arr con punteros a las casillas que est´an en ruta1
+        """Función que devuelve un arr con punteros a las casillas que están en ruta1
         Para poder saber de que color son, se puede usar casilla.color"""
         resultado=[]
         if self.number==1:
@@ -869,7 +893,7 @@ class SetCasillas:
                 return 3 #Casilla Normal
     
         def defineColor( id):
-            if id in (5, 136, 137, 138, 139, 140, 141, 142, 143, 144, 201) :
+            if id in (5,  137, 138, 139, 140, 141, 142, 143, 144, 201) :
                return self.mem.colores.colorbyname("yellow")
             elif id in (22, 145, 146, 147, 148, 149, 150, 151, 152, 202):
                return self.mem.colores.colorbyname("blue")
@@ -1343,33 +1367,66 @@ class Color:
         if dark.g<0: dark.g=0
         if dark.b<0: dark.b=0
         return dark
-        
+                    
+    def qicon(self):
+        ico = QIcon()
+        ico.addPixmap(self.qpixmap(), QIcon.Normal, QIcon.Off) 
+        return ico
+    
+    def qpixmap(self):
+        """Devuelve un pixmap del color de la ficha"""
+        if self.name=="yellow":
+            return QPixmap(":/glparchis/fichaamarilla.png")
+        elif self.name=="blue":
+            return QPixmap(":/glparchis/fichaazul.png")
+        elif self.name=="green":
+            return QPixmap(":/glparchis/fichaverde.png")
+        elif self.name=="red":
+            return QPixmap(":/glparchis/ficharoja.png")
+        elif self.name=="gray":
+            return QPixmap(":/glparchis/fichagris.png")
+        elif self.name=="pink":
+            return QPixmap(":/glparchis/ficharosa.png")
+        elif self.name=="orange":
+            return QPixmap(":/glparchis/fichanaranja.png")
+        elif self.name=="cyan":
+            return QPixmap(":/glparchis/fichacyan.png")
 class ConfigFile:
     def __init__(self, file):
         self.file=file
         self.splitterstate=None
         self.language="en"
-        self.yellowname=None
-        self.redname=None
-        self.bluename=None
-        self.greenname=None
-        self.grayname="Gray"
-        self.pinkname="Pink"
-        self.orangename="Orange"
-        self.cyanname="Cyan"
+        self.names=[]#Es un array separado de ##=##=## y siempre habr´a 8
+        self.names.append("Yellowy")
+        self.names.append("Bluey")
+        self.names.append("Redy")
+        self.names.append("Greeny")
+        self.names.append("Graye")
+        self.names.append("Pinky")
+        self.names.append("Orangy")
+        self.names.append("Cyanny")
+#        self.yellowname=None
+#        self.redname=None
+#        self.bluename=None
+#        self.greenname=None
+#        self.grayname="Gray"
+#        self.pinkname="Pink"
+#        self.orangename="Orange"
+#        self.cyanname="Cyan"
         self.lastupdate=datetime.date.today().toordinal()
         self.config=ConfigParser.ConfigParser()
         self.load()
         
     def load(self):
-        self.config.read(self.file)
         try:
+            self.config.readfp(codecs.open(self.file, "r", "utf8"))
             self.splitterstate=self.config.get("frmMain", "splitter_state")
             self.language=self.config.get("frmSettings", "language")
-            self.yellowname=self.config.get("frmInitGame", "yellowname")
-            self.redname=self.config.get("frmInitGame", "redname")
-            self.bluename=self.config.get("frmInitGame", "bluename")
-            self.greenname=self.config.get("frmInitGame", "greenname")
+            self.names=self.config.get("frmInitGame", "names").split("##=##=##")
+#            self.yellowname=self.config.get("frmInitGame", "yellowname")
+#            self.redname=self.config.get("frmInitGame", "redname")
+#            self.bluename=self.config.get("frmInitGame", "bluename")
+#            self.greenname=self.config.get("frmInitGame", "greenname")
             self.lastupdate=self.config.getint("frmMain", "lastupdate")
         except:
             print ("No hay fichero de configuración")    
@@ -1384,11 +1441,16 @@ class ConfigFile:
         self.config.set("frmSettings",  'language', self.language)
         self.config.set("frmMain",  'splitter_state', self.splitterstate)
         self.config.set("frmMain",  'lastupdate', self.lastupdate)
-        self.config.set("frmInitGame",  'yellowname', self.yellowname)
-        self.config.set("frmInitGame",  'redname', self.redname)
-        self.config.set("frmInitGame",  'bluename', self.bluename)
-        self.config.set("frmInitGame",  'greenname', self.greenname)
-        with open(self.file, 'w') as configfile:
+        cadena=""
+        for n in self.names:
+            cadena=cadena+n+"##=##=##"
+        print cadena.encode('utf-8')
+        self.config.set("frmInitGame",  'names', cadena[:-8].decode('utf-8'))
+#        self.config.set("frmInitGame",  'yellowname', self.yellowname)
+#        self.config.set("frmInitGame",  'redname', self.redname)
+#        self.config.set("frmInitGame",  'bluename', self.bluename)
+#        self.config.set("frmInitGame",  'greenname', self.greenname)
+        with codecs.open(self.file, 'w', 'utf-8') as configfile:
             self.config.write(configfile)
             
 class Casilla(QObject):
@@ -1876,6 +1938,79 @@ class Mem:
 #            
                         
 
+            
+    def save(self, filename):
+        cwd=os.getcwd()
+        os.chdir(os.path.expanduser("~/.glparchis/"))
+        config = ConfigParser.ConfigParser()
+        
+        config.add_section("game")
+        config.set("game", 'playerstarts',self.jugadores.actual.color.name)
+        config.set("game",  "numplayers",  self.maxplayers)
+        config.set("game", 'fakedice','')
+        config.set("game", 'fileversion','1.0')
+        for i, j in enumerate(self.jugadores.arr):
+            config.add_section("jugador{0}".format(i))
+            config.set("jugador{0}".format(i),  'ia', int(j.ia))
+            config.set("jugador{0}".format(i),  'name', j.name)
+            config.set("jugador{0}".format(i),  'plays', int(j.plays))
+            if self.jugadores.jugador('yellow').plays==True:
+                config.set("jugador{0}".format(i),  'rutaficha1', j.fichas.arr[0].posruta)
+                config.set("jugador{0}".format(i),  'rutaficha2',  j.fichas.arr[1].posruta)
+                config.set("jugador{0}".format(i),  'rutaficha3',  j.fichas.arr[2].posruta)
+                config.set("jugador{0}".format(i),  'rutaficha4',  j.fichas.arr[3].posruta)
+        with open(filename, 'w') as configfile:
+            config.write(configfile)            
+        os.chdir(cwd)
+
+
+            
+            
+    def load(self, filename):       
+        def error():           
+            QMessageBox.information(None, "glParchis", QApplication.translate("glparchis", u"Este fichero es de una versión antigua o está estropeado. No puede ser cargado.", None, QApplication.UnicodeUTF8))
+            print("Error loading file")
+            os.chdir(cwd)
+
+        cwd=os.getcwd()
+        os.chdir(os.path.expanduser("~/.glparchis/"))
+        config = ConfigParser.ConfigParser()
+        config.read(filename)
+        
+        try:
+            fileversion=config.get("game", "fileversion")
+            self.maxplayers=config.getint("game",  "numplayers")
+        except:
+            fileversion=None
+            error()
+            return False
+        if fileversion!="1.0":#Ir cambiando según necesidades
+            error()
+            return False
+        
+        for i, j in enumerate(self.jugadores.arr):
+            j.name=config.get("jugador{0}".format(i), "name")
+            j.ia=i2b(config.getint("jugador{0}".format(i), "ia"))
+            j.plays=i2b(config.getint("jugador{0}".format(i), "plays"))
+            
+            if j.plays==True:
+                j.fichas.arr[0].mover(config.getint("jugador{0}".format(i), "rutaficha1"), False,  True)
+                j.fichas.arr[1].mover(config.getint("jugador{0}".format(i), "rutaficha2"), False,  True)
+                j.fichas.arr[2].mover(config.getint("jugador{0}".format(i), "rutaficha3"), False,  True)
+                j.fichas.arr[3].mover(config.getint("jugador{0}".format(i), "rutaficha4"), False,  True)
+
+        fake=config.get("game", 'fakedice')
+        if fake!="":
+            for i in  fake.split(";")  :
+                self.dado.fake.append(int(i))
+
+        self.jugadores.actual=self.jugadores.jugador(config.get("game", 'playerstarts'))    
+        self.jugadores.actual.movimientos_acumulados=None#Comidas ymetidas
+        self.jugadores.actual.LastFichaMovida=None #Se utiliza cuando se va a casa
+
+        os.chdir(cwd)
+        return True
+
 class Mem8(Mem):    
     def __init__(self):
         Mem.__init__(self, 8)
@@ -1915,102 +2050,103 @@ class Mem4(Mem):
         self.generar_fichas()
         
         self.circulo=Circulo(self, 68)
-
-
-            
-    def save(self, filename):
-        cwd=os.getcwd()
-        os.chdir(os.path.expanduser("~/.glparchis/"))
-        config = ConfigParser.ConfigParser()
-        config.add_section("yellow")
-        config.set("yellow",  'ia', int(self.jugadores.jugador('yellow').ia))
-        config.set("yellow",  'name', self.jugadores.jugador('yellow').name)
-        config.set("yellow",  'plays', int(self.jugadores.jugador('yellow').plays))
-        if self.jugadores.jugador('yellow').plays==True:
-            config.set("yellow",  'rutaficha1', self.jugadores.jugador('yellow').fichas.arr[0].posruta)
-            config.set("yellow",  'rutaficha2',  self.jugadores.jugador('yellow').fichas.arr[1].posruta)
-            config.set("yellow",  'rutaficha3',  self.jugadores.jugador('yellow').fichas.arr[2].posruta)
-            config.set("yellow",  'rutaficha4',  self.jugadores.jugador('yellow').fichas.arr[3].posruta)
-        config.add_section("blue")
-        config.set("blue",  'ia', int(self.jugadores.jugador('blue').ia))
-        config.set("blue",  'name', self.jugadores.jugador('blue').name)
-        config.set("blue",  'plays', int(self.jugadores.jugador('blue').plays))
-        if self.jugadores.jugador('blue').plays==True:        
-            config.set("blue",  'rutaficha1', self.jugadores.jugador('blue').fichas.arr[0].posruta)
-            config.set("blue",  'rutaficha2',  self.jugadores.jugador('blue').fichas.arr[1].posruta)
-            config.set("blue",  'rutaficha3',  self.jugadores.jugador('blue').fichas.arr[2].posruta)
-            config.set("blue",  'rutaficha4',  self.jugadores.jugador('blue').fichas.arr[3].posruta) 
-        config.add_section("red")
-        config.set("red",  'ia', int(self.jugadores.jugador('red').ia))
-        config.set("red",  'name', self.jugadores.jugador('red').name)
-        config.set("red",  'plays', int(self.jugadores.jugador('red').plays))
-        if self.jugadores.jugador('red').plays==True:        
-            config.set("red",  'rutaficha1', self.jugadores.jugador('red').fichas.arr[0].posruta)
-            config.set("red",  'rutaficha2',  self.jugadores.jugador('red').fichas.arr[1].posruta)
-            config.set("red",  'rutaficha3',  self.jugadores.jugador('red').fichas.arr[2].posruta)
-            config.set("red",  'rutaficha4',  self.jugadores.jugador('red').fichas.arr[3].posruta)    
-        config.add_section("green")
-        config.set("green",  'ia', int(self.jugadores.jugador('green').ia))
-        config.set("green",  'name', self.jugadores.jugador('green').name)
-        config.set("green",  'plays', int(self.jugadores.jugador('green').plays))        
-        if self.jugadores.jugador('green').plays==True:
-            config.set("green",  'rutaficha1', self.jugadores.jugador('green').fichas.arr[0].posruta)
-            config.set("green",  'rutaficha2',  self.jugadores.jugador('green').fichas.arr[1].posruta)
-            config.set("green",  'rutaficha3',  self.jugadores.jugador('green').fichas.arr[2].posruta)
-            config.set("green",  'rutaficha4',  self.jugadores.jugador('green').fichas.arr[3].posruta)    
-        config.add_section("game")
-        config.set("game", 'playerstarts',self.jugadores.actual.color.name)
-        config.set("game", 'fakedice','')
-        with open(filename, 'w') as configfile:
-            config.write(configfile)            
-        os.chdir(cwd)
-
-
-            
-            
-    def load(self, filename):       
-#        os.chdir("/home/keko/Proyectos/glparchis/pyglParchis/saves/") #SOLO DEBUGGING
-        cwd=os.getcwd()
-        os.chdir(os.path.expanduser("~/.glparchis/"))
-        config = ConfigParser.ConfigParser()
-        config.read(filename)
-
-        yellow=self.jugadores.jugador('yellow')
-        yellow.name=config.get('yellow', 'name')
-        yellow.ia=i2b(config.getint("yellow", "ia"))
-        yellow.plays=(i2b(config.getint("yellow", "plays")))
-        
-        blue=self.jugadores.jugador('blue')
-        blue.name=config.get("blue", "name")
-        blue.ia=i2b(config.getint("blue", "ia"))
-        blue.plays=(i2b(config.getint("blue", "plays")))
-        
-        red=self.jugadores.jugador('red')
-        red.name=config.get("red", "name")
-        red.ia=i2b(config.getint("red", "ia"))
-        red.plays=(i2b(config.getint("red", "plays")))
-        
-        green=self.jugadores.jugador('green')
-        green.name=config.get("green", "name")
-        green.ia=i2b(config.getint("green", "ia"))
-        green.plays=(i2b(config.getint("green", "plays")))  
-
-        for j in self.jugadores.arr:
-            if j.plays==True:
-                j.fichas.arr[0].mover(config.getint(j.color.name, "rutaficha1"), False,  True)
-                j.fichas.arr[1].mover(config.getint(j.color.name, "rutaficha2"), False,  True)
-                j.fichas.arr[2].mover(config.getint(j.color.name, "rutaficha3"), False,  True)
-                j.fichas.arr[3].mover(config.getint(j.color.name, "rutaficha4"), False,  True)
-
-        fake=config.get("game", 'fakedice')
-        if fake!="":
-            for i in  fake.split(";")  :
-                self.dado.fake.append(int(i))
-        self.jugadores.actual=self.jugadores.jugador(config.get("game", 'playerstarts'))    
-        self.jugadores.actual.movimientos_acumulados=None#Comidas ymetidas
-        self.jugadores.actual.LastFichaMovida=None #Se utiliza cuando se va a casa
-
-        os.chdir(cwd)
+#
+#
+#            
+#    def save(self, filename):
+#        cwd=os.getcwd()
+#        os.chdir(os.path.expanduser("~/.glparchis/"))
+#        config = ConfigParser.ConfigParser()
+#        config.add_section("yellow")
+#        config.set("yellow",  'ia', int(self.jugadores.jugador('yellow').ia))
+#        config.set("yellow",  'name', self.jugadores.jugador('yellow').name)
+#        config.set("yellow",  'plays', int(self.jugadores.jugador('yellow').plays))
+#        if self.jugadores.jugador('yellow').plays==True:
+#            config.set("yellow",  'rutaficha1', self.jugadores.jugador('yellow').fichas.arr[0].posruta)
+#            config.set("yellow",  'rutaficha2',  self.jugadores.jugador('yellow').fichas.arr[1].posruta)
+#            config.set("yellow",  'rutaficha3',  self.jugadores.jugador('yellow').fichas.arr[2].posruta)
+#            config.set("yellow",  'rutaficha4',  self.jugadores.jugador('yellow').fichas.arr[3].posruta)
+#        config.add_section("blue")
+#        config.set("blue",  'ia', int(self.jugadores.jugador('blue').ia))
+#        config.set("blue",  'name', self.jugadores.jugador('blue').name)
+#        config.set("blue",  'plays', int(self.jugadores.jugador('blue').plays))
+#        if self.jugadores.jugador('blue').plays==True:        
+#            config.set("blue",  'rutaficha1', self.jugadores.jugador('blue').fichas.arr[0].posruta)
+#            config.set("blue",  'rutaficha2',  self.jugadores.jugador('blue').fichas.arr[1].posruta)
+#            config.set("blue",  'rutaficha3',  self.jugadores.jugador('blue').fichas.arr[2].posruta)
+#            config.set("blue",  'rutaficha4',  self.jugadores.jugador('blue').fichas.arr[3].posruta) 
+#        config.add_section("red")
+#        config.set("red",  'ia', int(self.jugadores.jugador('red').ia))
+#        config.set("red",  'name', self.jugadores.jugador('red').name)
+#        config.set("red",  'plays', int(self.jugadores.jugador('red').plays))
+#        if self.jugadores.jugador('red').plays==True:        
+#            config.set("red",  'rutaficha1', self.jugadores.jugador('red').fichas.arr[0].posruta)
+#            config.set("red",  'rutaficha2',  self.jugadores.jugador('red').fichas.arr[1].posruta)
+#            config.set("red",  'rutaficha3',  self.jugadores.jugador('red').fichas.arr[2].posruta)
+#            config.set("red",  'rutaficha4',  self.jugadores.jugador('red').fichas.arr[3].posruta)    
+#        config.add_section("green")
+#        config.set("green",  'ia', int(self.jugadores.jugador('green').ia))
+#        config.set("green",  'name', self.jugadores.jugador('green').name)
+#        config.set("green",  'plays', int(self.jugadores.jugador('green').plays))        
+#        if self.jugadores.jugador('green').plays==True:
+#            config.set("green",  'rutaficha1', self.jugadores.jugador('green').fichas.arr[0].posruta)
+#            config.set("green",  'rutaficha2',  self.jugadores.jugador('green').fichas.arr[1].posruta)
+#            config.set("green",  'rutaficha3',  self.jugadores.jugador('green').fichas.arr[2].posruta)
+#            config.set("green",  'rutaficha4',  self.jugadores.jugador('green').fichas.arr[3].posruta)    
+#        config.add_section("game")
+#        config.set("game", 'playerstarts',self.jugadores.actual.color.name)
+#        config.set("game",  "numplayers",  self.maxplayers)
+#        config.set("game", 'fakedice','')
+#        with open(filename, 'w') as configfile:
+#            config.write(configfile)            
+#        os.chdir(cwd)
+#
+#
+#            
+#            
+#    def load(self, filename):       
+##        os.chdir("/home/keko/Proyectos/glparchis/pyglParchis/saves/") #SOLO DEBUGGING
+#        cwd=os.getcwd()
+#        os.chdir(os.path.expanduser("~/.glparchis/"))
+#        config = ConfigParser.ConfigParser()
+#        config.read(filename)
+#
+#        yellow=self.jugadores.jugador('yellow')
+#        yellow.name=config.get('yellow', 'name')
+#        yellow.ia=i2b(config.getint("yellow", "ia"))
+#        yellow.plays=(i2b(config.getint("yellow", "plays")))
+#        
+#        blue=self.jugadores.jugador('blue')
+#        blue.name=config.get("blue", "name")
+#        blue.ia=i2b(config.getint("blue", "ia"))
+#        blue.plays=(i2b(config.getint("blue", "plays")))
+#        
+#        red=self.jugadores.jugador('red')
+#        red.name=config.get("red", "name")
+#        red.ia=i2b(config.getint("red", "ia"))
+#        red.plays=(i2b(config.getint("red", "plays")))
+#        
+#        green=self.jugadores.jugador('green')
+#        green.name=config.get("green", "name")
+#        green.ia=i2b(config.getint("green", "ia"))
+#        green.plays=(i2b(config.getint("green", "plays")))  
+#
+#        for j in self.jugadores.arr:
+#            if j.plays==True:
+#                j.fichas.arr[0].mover(config.getint(j.color.name, "rutaficha1"), False,  True)
+#                j.fichas.arr[1].mover(config.getint(j.color.name, "rutaficha2"), False,  True)
+#                j.fichas.arr[2].mover(config.getint(j.color.name, "rutaficha3"), False,  True)
+#                j.fichas.arr[3].mover(config.getint(j.color.name, "rutaficha4"), False,  True)
+#
+#        fake=config.get("game", 'fakedice')
+#        if fake!="":
+#            for i in  fake.split(";")  :
+#                self.dado.fake.append(int(i))
+#        self.jugadores.actual=self.jugadores.jugador(config.get("game", 'playerstarts'))    
+#        self.jugadores.actual.movimientos_acumulados=None#Comidas ymetidas
+#        self.jugadores.actual.LastFichaMovida=None #Se utiliza cuando se va a casa
+#
+#        os.chdir(cwd)
             
 def dic2list(dic):
     """Función que convierte un diccionario pasado como parametro a una lista de objetos"""
@@ -2032,7 +2168,7 @@ def cargarQTranslator(cfgfile):
     qApp.installTranslator(cfgfile.qtranslator);
     
 def developing():
-    """Funci´on que permite avanzar si hay un parametro y da un aviso e interrumpe si no, se debe poner un if en donde se use"""
+    """Función que permite avanzar si hay un parametro y da un aviso e interrumpe si no, se debe poner un if en donde se use"""
     if len (sys.argv)==1:
         m=QMessageBox()
         m.setIcon(QMessageBox.Information)

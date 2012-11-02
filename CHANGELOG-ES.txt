@@ -4,6 +4,8 @@ XXXXXXXX
 - Mejorado el cmdDado
 - Ahora se puede tirar el dado haciendo doble click encima del tablero.
 - Solucionando problema con el sistema de consultar actualizaciones
+- Se ha añadido soporte para highscores
+- Se ha añadido juegos de 6 y 8 jugadores
 
 
 20120921

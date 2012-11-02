@@ -21,7 +21,7 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         
     def setJugador(self, jugador):
         self.jugador=jugador
-        self.lblAvatar.setPixmap(jugador.qpixmap())      
+        self.lblAvatar.setPixmap(jugador.color.qpixmap())      
         self.grp.setStyleSheet('QGroupBox {color: '+self.jugador.color.name+'}')
         self.grp.setTitle(jugador.name)
         

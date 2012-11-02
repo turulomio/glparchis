@@ -32,6 +32,10 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.table.assign_mem(self.mem)
         self.ogl.assign_mem(self.mem)
         self.ogl.setFocus()
+        self.hs4=HighScore(self.mem, 4)
+        self.hs6=HighScore(self.mem, 6)
+        self.hs8=HighScore(self.mem, 8)
+        self.highscoresUpdate()
         
         for j in self.mem.jugadores.arr:
             if j.plays:
@@ -54,6 +58,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         else:
             self.splitter.restoreState(self.mem.cfgfile.splitterstate)
         self.connect(self.ogl, SIGNAL("doubleClicked()"), self.on_ogl_doubleClicked)
+        self.mem.inittime=datetime.datetime.now()
         self.on_JugadorDebeTirar()
 
     def on_ogl_doubleClicked(self):
@@ -71,11 +76,23 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     def afterWinning(self):
         self.mem.jugadores.actual.log(self.trUtf8("Has ganado la partida"))
+        self.mem.jugadores.winner=self.mem.jugadores.actual
         self.mem.play("win")
         self.table.stopReloads()
         self.stopthegame=True
         for p in self.panels:
             p.stopTimerLog()
+        if self.mem.maxplayers==4:
+            self.hs4.insert()
+            self.hs4.save()
+        elif self.mem.maxplayers==6:
+            self.hs6.insert()
+            self.hs6.save()
+        elif self.mem.maxplayers==8:
+            self.hs8.insert()
+            self.hs8.save()           
+        self.highscoresUpdate()
+        
         m=QMessageBox()
         m.setIcon(QMessageBox.Information)
         m.setText(self.trUtf8("%1 ha ganado").arg(self.mem.jugadores.actual.name))
@@ -91,22 +108,7 @@ class wdgGame(QWidget, Ui_wdgGame):
             return
         if self.mem.jugadores.alguienHaGanado()==True:
             self.afterWinning()
-            return
-            
-        #Comprueba si ha ganado
-        if self.mem.jugadores.actual.HaGanado()==True:
-            self.mem.jugadores.actual.log(self.trUtf8("Has ganado la partida"))
-            self.mem.play("win")
-            self.table.stopReloads()
-            self.stopthegame=True
-            for p in self.panels:
-                p.stopTimerLog()
-            m=QMessageBox()
-            m.setIcon(QMessageBox.Information)
-            m.setText(self.trUtf8("%1 ha ganado").arg(self.mem.jugadores.actual.name))
-            m.exec_() 
-            self.tab.setCurrentIndex(1)
-            return           
+            return  
             
         self.cmdTirarDado.setText(self.trUtf8("Tira el dado"))
         if self.mem.jugadores.actual.ia==False:#Cuando es IA no debe permitir tirar dado
@@ -240,4 +242,25 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.cmdTirarDado.setStyleSheet('QPushButton {color: '+self.mem.jugadores.actual.color.name+'; font: bold 30px; background-color: rgb(170, 170, 170);}')
         self.on_JugadorDebeTirar()
 
-
+    def highscoresUpdate(self):
+        def updateTable(hs, table): 
+            table.verticalHeader().setResizeMode(QHeaderView.ResizeToContents)
+            table.horizontalHeader().setResizeMode(QHeaderView.ResizeToContents)
+            table.setRowCount(len(hs.arr))        
+            for i,  a in enumerate(hs.arr):
+                table.setItem(i, 0, QTableWidgetItem(str(datetime.date.fromordinal(int(a[0])))))
+                item = QTableWidgetItem(a[1])
+                item.setIcon(colores.colorbyname(a[3]).qicon())                
+                table.setItem(i, 1, QTableWidgetItem(item))
+                item = QTableWidgetItem(str(datetime.timedelta(seconds=int(a[2]))))
+                item.setTextAlignment(Qt.AlignRight)
+                table.setItem(i, 2, item)
+                item = QTableWidgetItem(a[4])
+                item.setTextAlignment(Qt.AlignRight)
+                table.setItem(i, 3, item)
+        #############################
+        colores=SetColores()
+        colores.generar_colores(8)
+        updateTable(self.hs4, self.tblHighScores4)
+        updateTable(self.hs6, self.tblHighScores6)
+        updateTable(self.hs8, self.tblHighScores8)

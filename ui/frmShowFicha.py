@@ -8,7 +8,7 @@ class frmShowFicha(QDialog, Ui_frmShowFicha):
         QDialog.__init__(self, parent, flags)
         self.ficha=ficha
         self.setupUi(self)
-        self.lblFicha.setPixmap(self.ficha.jugador.qpixmap())       
+        self.lblFicha.setPixmap(self.ficha.jugador.color.qpixmap())       
         self.lblName.setText(self.trUtf8("Nombre: %1").arg(self.ficha.id))
         self.lblJugador.setText(self.trUtf8("Jugador: %1 (%2)").arg(str(self.ficha.jugador.name)).arg(self.ficha.jugador.color.name))
 #        self.lblPosicion.setText(self.trUtf8("Posición en casilla: %1").arg(str(self.ficha.numposicion)))

@@ -60,6 +60,13 @@ class wdgOGL(QGLWidget):
         glColorMaterial(GL_FRONT,GL_AMBIENT_AND_DIFFUSE);
 
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+        
+        #Antialiasing
+#        glEnable (GL_LINE_SMOOTH);
+#        glEnable (GL_POINT_SMOOTH);
+#        glEnable (GL_POLYGON_SMOOTH);
+#        glHint (GL_LINE_SMOOTH_HINT, GL_NICEST);
+#        glLineWidth (1.5)
 
     def paintGL(self):   
         glLoadIdentity()
