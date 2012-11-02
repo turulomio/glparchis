@@ -17,3 +17,8 @@ Nueva release
 10) Subirlo a la mula
 10) Comprobar enlaces
 11) Publicar news en sourceforge con el CHANGELOG-EN
+
+
+=======================================
+Pruebas:
+    - Borrar el .glparchis

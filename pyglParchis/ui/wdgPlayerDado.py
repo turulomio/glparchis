@@ -16,7 +16,11 @@ class wdgPlayerDado(QWidget, Ui_wdgPlayerDado):
 
         self.jugador=jugador
         self.tirada=0
-        self.pixmap.setPixmap(self.jugador.qpixmap())
+        self.pixmap.setPixmap(self.jugador.color.qpixmap())
+
+    def setName(self, name):
+        """Se hace as´i porque al principio no se sabe el name del jugador"""
+        self.lblName.setText(name)
 
     def on_cmd_released(self):
         self.tirada=int(random.random()*6)+1

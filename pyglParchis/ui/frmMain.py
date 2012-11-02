@@ -139,15 +139,44 @@ class frmMain(QMainWindow, Ui_frmMain):#
         #ÐEBE SERLOCAL
         filenam=os.path.basename(libglparchis.q2s(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")))
         if filenam!="":
-            self.mem=Mem4()
+            #Busca si es de 4,6,8
+            self.mem=self.selectMem(filenam)
+            #Lo carga
             self.mem.cfgfile=self.cfgfile
-            self.mem.load(filenam)
-            self.mem.jugadores.jugador("yellow").name=self.cfgfile.yellowname
-            self.mem.jugadores.jugador("blue").name=self.cfgfile.bluename
-            self.mem.jugadores.jugador("red").name=self.cfgfile.redname
-            self.mem.jugadores.jugador("green").name=self.cfgfile.greenname
+            if self.mem.load(filenam)==False:
+                self.mem=None
+                return
+            for i, j in enumerate(self.mem.jugadores.arr):
+                j.name=self.cfgfile.names[i]
+#            self.mem.jugadores.jugador("yellow").name=self.cfgfile.yellowname
+#            self.mem.jugadores.jugador("blue").name=self.cfgfile.bluename
+#            self.mem.jugadores.jugador("red").name=self.cfgfile.redname
+#            self.mem.jugadores.jugador("green").name=self.cfgfile.greenname
             self.showWdgGame()
         os.chdir(cwd)
+
+    def selectMem(self, filename):
+        resultado=None
+        cwd=os.getcwd()
+        os.chdir(os.path.expanduser("~/.glparchis/"))
+        config = ConfigParser.ConfigParser()
+        config.read(filename)
+        try:
+            self.maxplayers=int(config.get("game",  "numplayers"))
+        except:
+            resultado=Mem4()
+            os.chdir(cwd)
+            return resultado            
+        os.chdir(cwd)
+            
+        if self.maxplayers==4:
+            resultado=Mem4()
+        elif self.maxplayers==6:
+            resultado=Mem6()
+        elif self.maxplayers==8:
+            resultado=Mem8()
+        return resultado
+
 
 
     @pyqtSlot()  

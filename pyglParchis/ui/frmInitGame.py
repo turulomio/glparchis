@@ -29,7 +29,7 @@ class frmInitGame(QWizard, Ui_frmInitGame):
         self.wdgplayers=[]
         self.wdgplayersdado=[]
         
-        for j in self.mem.jugadores.arr:
+        for i, j in enumerate(self.mem.jugadores.arr):
             p=wdgPlayer(self)
             self.scrollPlayer.addWidget(p)
             p.setJugador(j)
@@ -38,20 +38,8 @@ class frmInitGame(QWizard, Ui_frmInitGame):
             d=wdgPlayerDado(mem, j,  self)
             self.scrollPlayerDado.addWidget(d)
             self.wdgplayersdado.append(d)
-        
-        
-        if self.mem.cfgfile.yellowname!=None:
-            if self.mem.maxplayers>=4:
-                self.wdgplayers[0].txt.setText(self.mem.cfgfile.yellowname)
-                self.wdgplayers[1].txt.setText(self.mem.cfgfile.bluename)
-                self.wdgplayers[2].txt.setText(self.mem.cfgfile.redname)
-                self.wdgplayers[3].txt.setText(self.mem.cfgfile.greenname)
-            if self.mem.maxplayers>=6:
-                self.wdgplayers[4].txt.setText(self.mem.cfgfile.grayname)
-                self.wdgplayers[5].txt.setText(self.mem.cfgfile.pinkname)
-            if self.mem.maxplayers>=8:
-                self.wdgplayers[4].txt.setText(self.mem.cfgfile.orangename)
-                self.wdgplayers[5].txt.setText(self.mem.cfgfile.cyanname)
+            self.wdgplayers[i].txt.setText(self.mem.cfgfile.names[i])
+
                 
         #Pone juega ordenador en todos menos el primero
         for i in range (1, self.mem.maxplayers):
@@ -76,18 +64,20 @@ class frmInitGame(QWizard, Ui_frmInitGame):
                 if w.chkPlays.checkState()==Qt.Unchecked:
                     self.wdgplayersdado[i].cmd.setEnabled(False)
                 w.commit()
-                if self.mem.maxplayers>=4:
-                    self.mem.cfgfile.yellowname=self.wdgplayers[0].txt.text()
-                    self.mem.cfgfile.bluename=self.wdgplayers[1].txt.text()
-                    self.mem.cfgfile.redname=self.wdgplayers[2].txt.text()
-                    self.mem.cfgfile.greenname=self.wdgplayers[3].txt.text()
-                if self.mem.maxplayers>=6:
-                    self.mem.cfgfile.grayname=self.wdgplayers[4].txt.text()
-                    self.mem.cfgfile.pinkname=self.wdgplayers[5].txt.text()
-                if self.mem.maxplayers>=8:
-                    self.mem.cfgfile.orangename=self.wdgplayers[6].txt.text()
-                    self.mem.cfgfile.cyanname=self.wdgplayers[7].txt.text()
-                self.mem.cfgfile.save()
+                self.mem.cfgfile.names[i]=q2s(self.wdgplayers[i].txt.text())
+                self.wdgplayersdado[i].setName(self.wdgplayers[i].txt.text())
+#                if self.mem.maxplayers>=4:
+#                    self.mem.cfgfile.yellowname=self.wdgplayers[0].txt.text()
+#                    self.mem.cfgfile.bluename=self.wdgplayers[1].txt.text()
+#                    self.mem.cfgfile.redname=self.wdgplayers[2].txt.text()
+#                    self.mem.cfgfile.greenname=self.wdgplayers[3].txt.text()
+#                if self.mem.maxplayers>=6:
+#                    self.mem.cfgfile.grayname=self.wdgplayers[4].txt.text()
+#                    self.mem.cfgfile.pinkname=self.wdgplayers[5].txt.text()
+#                if self.mem.maxplayers>=8:
+#                    self.mem.cfgfile.orangename=self.wdgplayers[6].txt.text()
+#                    self.mem.cfgfile.cyanname=self.wdgplayers[7].txt.text()
+            self.mem.cfgfile.save()
             self.currentPage().setCommitPage(True)#Ya no se puede cambiar nada
             return True
         else:#Pagina 1
@@ -108,7 +98,7 @@ class frmInitGame(QWizard, Ui_frmInitGame):
                 return True
         
     def hanTiradoTodos(self):
-        """Funci´on que comprueba si han tirado todos"""
+        """Función que comprueba si han tirado todos"""
         resultado=True
         for w in self.wdgplayersdado:
             if w.cmd.isEnabled():

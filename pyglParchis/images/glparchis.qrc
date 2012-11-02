@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="/glparchis">
+    <file>game8.png</file>
+    <file>game6.png</file>
+    <file>game4.png</file>
     <file>fichacyan.png</file>
     <file>fichagris.png</file>
     <file>fichanaranja.png</file>

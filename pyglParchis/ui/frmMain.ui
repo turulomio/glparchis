@@ -40,7 +40,7 @@
      <x>0</x>
      <y>0</y>
      <width>995</width>
-     <height>20</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAyuda">
@@ -64,17 +64,32 @@
     <addaction name="actionRecuperarPartida"/>
     <addaction name="actionGuardarPartida"/>
     <addaction name="separator"/>
-    <addaction name="actionSound"/>
-    <addaction name="actionSettings"/>
-    <addaction name="separator"/>
     <addaction name="actionSalir"/>
    </widget>
+   <widget class="QMenu" name="menuConfiguraci_n">
+    <property name="title">
+     <string>Con&amp;figuración</string>
+    </property>
+    <addaction name="actionSound"/>
+    <addaction name="separator"/>
+    <addaction name="actionSettings"/>
+   </widget>
    <addaction name="menuJugar"/>
+   <addaction name="menuConfiguraci_n"/>
    <addaction name="menuAyuda"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
     <string>toolBar</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>36</width>
+     <height>36</height>
+    </size>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonIconOnly</enum>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -83,6 +98,9 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionPartidaNueva4"/>
+   <addaction name="actionPartidaNueva6"/>
+   <addaction name="actionPartidaNueva8"/>
+   <addaction name="separator"/>
    <addaction name="actionRecuperarPartida"/>
    <addaction name="actionGuardarPartida"/>
    <addaction name="separator"/>
@@ -136,7 +154,7 @@
   <action name="actionPartidaNueva4">
    <property name="icon">
     <iconset resource="../images/glparchis.qrc">
-     <normaloff>:/glparchis/star.png</normaloff>:/glparchis/star.png</iconset>
+     <normaloff>:/glparchis/game4.png</normaloff>:/glparchis/game4.png</iconset>
    </property>
    <property name="text">
     <string>Partida de &amp;4 jugadores</string>
@@ -208,7 +226,7 @@
   <action name="actionPartidaNueva6">
    <property name="icon">
     <iconset resource="../images/glparchis.qrc">
-     <normaloff>:/glparchis/6.png</normaloff>:/glparchis/6.png</iconset>
+     <normaloff>:/glparchis/game6.png</normaloff>:/glparchis/game6.png</iconset>
    </property>
    <property name="text">
     <string>Partida de &amp;6 jugadores</string>
@@ -223,7 +241,7 @@
   <action name="actionPartidaNueva8">
    <property name="icon">
     <iconset resource="../images/glparchis.qrc">
-     <normaloff>:/glparchis/8.png</normaloff>:/glparchis/8.png</iconset>
+     <normaloff>:/glparchis/game8.png</normaloff>:/glparchis/game8.png</iconset>
    </property>
    <property name="text">
     <string>Partida de &amp;8 jugadores</string>

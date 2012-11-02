@@ -16,7 +16,7 @@ class wdgPlayer(QWidget, Ui_wdgPlayer):
 
     def setJugador(self, j):
         self.jugador=j
-        self.pixmap.setPixmap(j.qpixmap())
+        self.pixmap.setPixmap(j.color.qpixmap())
         self.label.setText(self.trUtf8("Datos del jugador %1").arg(j.color.name))
         
     def commit(self):
