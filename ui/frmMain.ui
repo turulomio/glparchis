@@ -98,7 +98,9 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionPartidaNueva4"/>
+   <addaction name="separator"/>
    <addaction name="actionPartidaNueva6"/>
+   <addaction name="separator"/>
    <addaction name="actionPartidaNueva8"/>
    <addaction name="separator"/>
    <addaction name="actionRecuperarPartida"/>

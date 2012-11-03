@@ -120,10 +120,10 @@ cd $CWD
 
 ###### install pyinstaller
 cd $DIR
-wget https://github.com/downloads/pyinstaller/pyinstaller/pyinstaller-2.0.tar.bz2
-tar xjf pyinstaller-2.0.tar.bz2
-#git clone git://github.com/pyinstaller/pyinstaller.git
-mv pyinstaller-2.0 pyinstaller
+#wget https://github.com/downloads/pyinstaller/pyinstaller/pyinstaller-2.0.tar.bz2
+#tar xjf pyinstaller-2.0.tar.bz2
+git clone git://github.com/pyinstaller/pyinstaller.git
+#mv pyinstaller-2.0 pyinstaller
 cd $CWD
 
 ####### binaries linux

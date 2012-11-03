@@ -603,7 +603,8 @@ class SetRutas:
         """Mem se necesita para identificar los colores"""
         self.arr=[]
         self.mem=mem
-        self.generar_rutas(numplayers)
+        self.numplayers=numplayers
+        self.generar_rutas()
         
     def ruta(self, id):        
         """id es el mismo que el orden de los colores"""
@@ -618,12 +619,12 @@ class SetRutas:
         return resultado
 
         
-    def generar_rutas(self, numplayers):
-        if numplayers==4:
+    def generar_rutas(self):
+        if self.numplayers==4:
             self.generar_rutas4()
-        elif numplayers==6:
+        elif self.numplayers==6:
             self.generar_rutas6()
-        elif numplayers==8:
+        elif self.numplayers==8:
             self.generar_rutas8()
 
     def generar_rutas4(self):    
@@ -642,18 +643,25 @@ class SetRutas:
             
 
     def generar_rutas6(self):    
-        self.dic_rutas["yellow"]=Ruta()
-        self.dic_rutas["yellow"].append_id(self, range(5, 144+1))
-        self.dic_rutas["red"]=Ruta()
-        self.dic_rutas["red"].append_id(self, range(39, 136+1)+range(1, 34+1)+range(153, 160+1))
-        self.dic_rutas['blue']=Ruta()
-        self.dic_rutas["blue"].append_id(self, range(22, 136+1)+range(1, 17+1)+range(145, 152+1))
-        self.dic_rutas['green']=Ruta()
-        self.dic_rutas["green"].append_id(self, range(56, 136+1)+range(1, 51+1)+range(161, 168+1))
-        self.dic_rutas['gray']=Ruta()
-        self.dic_rutas["gray"].append_id(self, range(73, 136+1)+range(1, 68+1)+range(169, 176+1))
-        self.dic_rutas['pink']=Ruta()
-        self.dic_rutas["pink"].append_id(self, range(90, 136+1)+range(1, 85+1)+range(177, 184+1))
+        r=Ruta(self.mem.colores.colorbyname("yellow"), self.mem)
+        r.append_id([150]+range(5, 110+1))
+        self.arr.append(r)
+        r=Ruta(self.mem.colores.colorbyname("blue"), self.mem)
+        r.append_id([151]+range(22, 110+1)+range(1, 17+1)+range(111, 118+1))
+        self.arr.append(r)
+        r=Ruta(self.mem.colores.colorbyname("red"), self.mem)
+        r.append_id( [152]+range(39, 110+1)+range(1, 34+1)+range(119, 126+1))
+        self.arr.append(r) 
+        r=Ruta(self.mem.colores.colorbyname("green"), self.mem)
+        r.append_id([153]+range(56, 110+1)+range(1, 51+1)+range(127, 134+1))
+        self.arr.append(r)            
+        r=Ruta(self.mem.colores.colorbyname("gray"), self.mem)
+        r.append_id([154]+range(73, 110+1)+range(1, 68+1)+range(135, 142+1))
+        self.arr.append(r)
+        r=Ruta(self.mem.colores.colorbyname("pink"), self.mem)
+        r.append_id([155]+range(90, 110+1)+range(1, 85+1)+range(143, 150+1))
+        self.arr.append(r)        
+
     def generar_rutas8(self):    
         r=Ruta(self.mem.colores.colorbyname("yellow"), self.mem)
         r.append_id([201]+range(5, 144+1))
@@ -682,11 +690,17 @@ class SetRutas:
 
 class SetCasillas:
     """Conjunto de casillas. Si es 209 es para 8 jugadores, Si es 105 es para 4 jugadores y 1 para 6 jugadores"""
-    def __init__(self, numcasillas, mem):
+    def __init__(self, numplayers, mem):
         """Mem se necesita para identificar los colores"""
         self.arr=[]
         self.mem=mem
-        self.number=numcasillas
+        self.numplayers=numplayers
+        if self.numplayers==4:
+            self.number=105
+        elif self.numplayers==6:
+            self.number=156
+        elif self.numplayers==8:
+            self.number=209
         self.generar_casillas()
         
     def casilla(self, id):
@@ -696,12 +710,14 @@ class SetCasillas:
         """Función que devuelve un arr con punteros a las casillas que están en ruta1
         Para poder saber de que color son, se puede usar casilla.color"""
         resultado=[]
-        if self.number==1:
+        if self.numplayers==6:
             resultado.append(self.arr[5])
             resultado.append(self.arr[22])
             resultado.append(self.arr[39])
             resultado.append(self.arr[56])
-        elif self.number==209:
+            resultado.append(self.arr[73])
+            resultado.append(self.arr[90])
+        elif self.numplayers==8:
             resultado.append(self.arr[5])
             resultado.append(self.arr[22])
             resultado.append(self.arr[39])
@@ -710,7 +726,7 @@ class SetCasillas:
             resultado.append(self.arr[90])
             resultado.append(self.arr[105])
             resultado.append(self.arr[122])
-        elif self.number==105:       
+        elif self.numplayers==4:       
             resultado.append(self.arr[5])
             resultado.append(self.arr[22])
             resultado.append(self.arr[39])
@@ -719,11 +735,11 @@ class SetCasillas:
         
             
     def generar_casillas(self):
-        if self.number==1:
+        if self.numplayers==6:
             self.generar_casillas6()
-        elif self.number==209:
+        elif self.numplayers==8:
             self.generar_casillas8()
-        elif self.number==105:
+        elif self.numplayers==4:
             self.generar_casillas4()
                                 
     def generar_casillas4(self):
@@ -795,29 +811,27 @@ class SetCasillas:
             self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i]))
             
     def generar_casillas6(self):
-        def defineSeguro( id):
-            if id==5 or id==12 or id==17 or id==22 or id==29 or id==34 or id==39 or id==46 or id==51  or id==56 or id==63 or id==68:
-                return True
-            elif id>=69 and id<=100:#Las de la rampa de llegada también son seguras
+        def defineSeguro( id):           
+            if id  in (5, 12, 17, 22, 29, 34, 39, 46, 51, 56, 63, 68, 73, 80, 85, 90, 97, 102) or id>=103:
                 return True
             else:
                 return False
     
         def defineMaxFichas( id):
-            if id==101 or id==102 or id==103 or id==104 or id==76 or id==84 or id==92 or id==100:
+            if id in (150, 151, 152, 153, 154, 155):
                 return 4
             else:
                 return 2
     
         def defineRampaLlegada(id):
-            if id>=69 and id<= 100:
+            if id>=103 and id<= 149:
                return True
             return False
     
         def defineTipo( id):
-            if id==101 or id==102 or id==103 or id==104:
+            if id==1010 or id==1020 or id==1030 or id==1040:
                return 0 #Casilla inicial
-            elif id==76 or id==84 or id==92 or id==100:
+            elif id==110 or id==118 or id==126 or id==134 or id==142 or id==150 :
                return 1 #Casilla final
             elif id==9 or  id==26 or  id==43 or  id==60:  
                return 2 #Casilla oblicuai
@@ -827,31 +841,37 @@ class SetCasillas:
                 return 3 #Casilla Normal
     
         def defineColor( id):
-            if id==5 or (id>=69 and id<=76) or id==101:
-               return Color(255, 255, 30)       #amarillo 
-            elif id==39 or (id>=85 and id<=92) or id==103:
-               return Color(255, 30, 30)#rojo
-            elif id==22 or (id>=77 and id<=84) or id==102:
-               return Color(30, 30, 255)#azul
-            elif id==56 or (id>=93 and id<=100) or id==104:
-               return Color(30, 255, 30) #verde
-#            elif id==68 or  id==63 or  id==51 or id==46 or id==34 or  id==29 or  id==17 or   id==12:  
-#               return Color(128, 128, 128)#gris
+            if id==5 or (id>=103 and id<=110) or id==150:
+               return self.mem.colores.colorbyname("yellow")
+            elif id==22 or (id>=111 and id<=118) or id==151:
+               return self.mem.colores.colorbyname("blue")
+            elif id==39 or (id>=119 and id<=126) or id==152:
+               return self.mem.colores.colorbyname("red")
+            elif id==56 or (id>=127 and id<=134) or id==153:
+               return self.mem.colores.colorbyname("green")
+            elif id==73 or (id>=135 and id<=142) or id==154:
+               return self.mem.colores.colorbyname("gray")
+            elif id==90 or (id>=143 and id<=150) or id==155:
+               return self.mem.colores.colorbyname("pink")
             else:
                 return Color(255, 255, 255)            
                                 
         def defineRotatePN(id):
             """EStablece si debe rotar el panel numerico"""
-            if (id>=61 and id<=75) or id in(8, 9, 25, 26, 42, 43, 59, 60,  76, 77, 93, 94, 110, 111, 127, 128):
+            if id in(8, 9, 25, 26, 42, 43, 59, 60,  76, 77, 93, 94, 110, 111, 127, 128):
                 return False
             return True
         def defineRotate( id):
-            if (id>=10 and id<=24) or (id>=77 and id<=83) or(id>=43 and id <=59) or (id>=93 and id<=100):
-               return 90
-            if id==60 or id==8 or id==76:
+            if (id>=10 and id<=24) or (id>=111 and id<=118) :
+               return 60
+            if(id>=27 and id<=41) or (id>=119 and id<=126) :
+                return 120
+            if(id>=44 and id<=58) or (id>=127 and id<=134) :
                 return 180
-            if id==9 or id==25 or id==84:
-                return 270
+            if(id>=61 and id<=75) or (id>=135 and id<=142) :
+                return 240
+            if(id>=78 and id<=92) or (id>=143 and id<=150) :
+                return 300
             else:
                 return 0        
                 
@@ -2016,7 +2036,7 @@ class Mem8(Mem):
         Mem.__init__(self, 8)
         self.colores.generar_colores(self.maxplayers)
         self.generar_jugadores()
-        self.casillas=SetCasillas(209, self)
+        self.casillas=SetCasillas(8, self)
         self.rutas=SetRutas(self.maxplayers, self)
         self.generar_fichas()
         
@@ -2032,11 +2052,11 @@ class Mem6(Mem):
         Mem.__init__(self, 6)
         self.colores.generar_colores(self.maxplayers)
         self.generar_jugadores()
-        self.casillas=SetCasillas(199, self)
+        self.casillas=SetCasillas(6, self)
         self.rutas=SetRutas(self.maxplayers, self)
         self.generar_fichas()
         
-        self.circulo=Circulo(self, 68)
+        self.circulo=Circulo(self, 102)
 
                     
 
@@ -2045,7 +2065,7 @@ class Mem4(Mem):
         Mem.__init__(self, 4)
         self.colores.generar_colores(self.maxplayers)
         self.generar_jugadores()
-        self.casillas=SetCasillas(105, self)
+        self.casillas=SetCasillas(4, self)
         self.rutas=SetRutas(self.maxplayers, self)
         self.generar_fichas()
         
