@@ -58,9 +58,15 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def on_actionSound_triggered(self):
         self.game.mem.sound=not self.game.mem.sound
         if self.game.mem.sound:
-            self.actionSound.setText(self.trUtf8("Sonido encendido"))
+            self.actionSound.setText(self.trUtf8("Sonido encendido"))       
+            icon8 = QtGui.QIcon()
+            icon8.addPixmap(QtGui.QPixmap(":/glparchis/sound.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.actionSound.setIcon(icon8)
         else:
             self.actionSound.setText(self.trUtf8("Sonido apagado"))
+            icon8 = QtGui.QIcon()
+            icon8.addPixmap(QtGui.QPixmap(":/glparchis/soundoff.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.actionSound.setIcon(icon8)
         
     @pyqtSlot()      
     def on_actionUpdates_triggered(self):
