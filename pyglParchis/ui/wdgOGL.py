@@ -77,6 +77,8 @@ class wdgOGL(QGLWidget):
             glTranslated(-31.5, -17,  -85)
         elif self.mem.maxplayers==4:
             glTranslated(-31.5, -31.5,  -60)
+        elif self.mem.maxplayers==6:
+            glTranslated(-31.5, -24,  -72)
             
         glRotated(self.rotX, 1,0 , 0)
         if self.mem.maxplayers==4:

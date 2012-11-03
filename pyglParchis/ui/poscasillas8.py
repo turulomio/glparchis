@@ -1,5 +1,6 @@
 import math
 def poscasillas8(maxcasillas):
+
     a=7*math.sqrt(2)/2
     b=3*math.sqrt(2)/2
     c=3*math.tan(math.pi/8)

@@ -11,4 +11,5 @@
 20121101 Si muevo el scroll que se desactive el update hasta siguiente turno humano
 20121101 Cuando se come en ruta1 se debe comer al último que llego
 20121101 Dependiendo del numero de jugador actual mostrar por defecto el tab del highscore
-20121101 COnfigParser no graba en utf-8
+20121101 ConfigParser no graba en utf-8
+20121101 Poner icono apagado y encendido m´as intuitivo
