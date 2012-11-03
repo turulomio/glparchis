@@ -164,4 +164,10 @@ def poscasillas6(maxcasillas):
     posCasillas[153]=(42,  42, 0.7)
     posCasillas[154]=(42,  42, 0.7)
     posCasillas[155]=(42,  42, 0.7)
+    posCasillas[156]=(42,  42, 0.7)
+    posCasillas[157]=(42,  42, 0.7)
+    posCasillas[158]=(42,  42, 0.7)
+    posCasillas[159]=(42,  42, 0.7)
+    posCasillas[160]=(42,  42, 0.7)
+    posCasillas[161]=(42,  42, 0.7)
     return posCasillas

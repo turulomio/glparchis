@@ -698,7 +698,7 @@ class SetCasillas:
         if self.numplayers==4:
             self.number=105
         elif self.numplayers==6:
-            self.number=156
+            self.number=162
         elif self.numplayers==8:
             self.number=209
         self.generar_casillas()
@@ -783,8 +783,6 @@ class SetCasillas:
                return self.mem.colores.colorbyname("red")
             elif id==56 or (id>=93 and id<=100) or id==104:
                return self.mem.colores.colorbyname("green")
-#            elif id==68 or  id==63 or  id==51 or id==46 or id==34 or  id==29 or  id==17 or   id==12:  
-#               return Color(128, 128, 128)#gris
             else:
                 return Color(255, 255, 255)            
                 
@@ -818,7 +816,7 @@ class SetCasillas:
                 return False
     
         def defineMaxFichas( id):
-            if id in (150, 151, 152, 153, 154, 155):
+            if id>=156 or id in (110, 118, 126, 134, 142, 150):
                 return 4
             else:
                 return 2
@@ -829,9 +827,9 @@ class SetCasillas:
             return False
     
         def defineTipo( id):
-            if id==1010 or id==1020 or id==1030 or id==1040:
+            if id>=156:
                return 0 #Casilla inicial
-            elif id==110 or id==118 or id==126 or id==134 or id==142 or id==150 :
+            elif id in  (110, 118, 126, 134, 142, 150):
                return 1 #Casilla final
             elif id==9 or  id==26 or  id==43 or  id==60:  
                return 2 #Casilla oblicuai
