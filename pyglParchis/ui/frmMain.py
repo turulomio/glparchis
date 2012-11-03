@@ -39,18 +39,10 @@ class frmMain(QMainWindow, Ui_frmMain):#
         f.exec_()
         if self.game!=None:
             self.game.retranslateUi(self)
-            self.game.panel1.retranslateUi(self)
-            self.game.panel2.retranslateUi(self)
-            self.game.panel3.retranslateUi(self)
-            self.game.panel4.retranslateUi(self)
-            self.game.panel1.setJugador(self.mem.jugadores.jugador("yellow"))
-            self.game.panel2.setJugador(self.mem.jugadores.jugador("blue"))
-            self.game.panel3.setJugador(self.mem.jugadores.jugador("red"))
-            self.game.panel4.setJugador(self.mem.jugadores.jugador("green"))
-            self.game.panel1.repaint()
-            self.game.panel2.repaint()
-            self.game.panel3.repaint()
-            self.game.panel4.repaint()
+            for p in self.game.panels:
+                p.retranslateUi(self)
+                p.repaint()
+                p.setJugador(p.jugador)#Se repinta
         self.retranslateUi(self)
         self.repaint()
         
