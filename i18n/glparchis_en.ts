@@ -353,22 +353,22 @@
         <translation>Sound switched on</translation>
     </message>
     <message>
-        <location filename="ui/frmMain.py" line="63"/>
+        <location filename="ui/frmMain.py" line="66"/>
         <source>Sonido apagado</source>
         <translation>Sound switched off</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="80"/>
+        <location filename="ui/frmMain.py" line="86"/>
         <source>No se ha podido comprobar si hay actualizaciones. Inténtelo más tarde.</source>
         <translation>I couldn&apos;t check for new update. Try it later.</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="98"/>
+        <location filename="ui/frmMain.py" line="104"/>
         <source>Dispone de la última versión del juego</source>
         <translation>You have the last version of the game</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmMain.py" line="104"/>
+        <location filename="ui/frmMain.py" line="110"/>
         <source>Hay una nueva versión del programa. Bájatela de la página web del proyecto &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt; o directamente desde &lt;a href=&apos;https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-</source>
         <translation>There is a new version of the game. You can download it from the project web page &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt; o directly from &lt;a href=&apos;https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-</translation>
     </message>
