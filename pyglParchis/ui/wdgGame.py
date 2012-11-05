@@ -82,16 +82,17 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.stopthegame=True
         for p in self.panels:
             p.stopTimerLog()
-        if self.mem.maxplayers==4:
-            self.hs4.insert()
-            self.hs4.save()
-        elif self.mem.maxplayers==6:
-            self.hs6.insert()
-            self.hs6.save()
-        elif self.mem.maxplayers==8:
-            self.hs8.insert()
-            self.hs8.save()           
-        self.highscoresUpdate()
+        if self.mem.jugadores.winner.ia==False:#Solo se genera hs cuando es un humano
+            if self.mem.maxplayers==4:
+                self.hs4.insert()
+                self.hs4.save()
+            elif self.mem.maxplayers==6:
+                self.hs6.insert()
+                self.hs6.save()
+            elif self.mem.maxplayers==8:
+                self.hs8.insert()
+                self.hs8.save()           
+            self.highscoresUpdate()
         
         m=QMessageBox()
         m.setIcon(QMessageBox.Information)

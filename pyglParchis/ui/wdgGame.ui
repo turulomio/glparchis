@@ -251,134 +251,161 @@
           </attribute>
           <layout class="QHBoxLayout" name="horizontalLayout_3">
            <item>
-            <widget class="QTabWidget" name="tabHS6">
-             <property name="tabPosition">
-              <enum>QTabWidget::West</enum>
-             </property>
-             <property name="currentIndex">
-              <number>0</number>
-             </property>
-             <widget class="QWidget" name="tab_5">
-              <attribute name="icon">
-               <iconset resource="../images/glparchis.qrc">
-                <normaloff>:/glparchis/game4.png</normaloff>:/glparchis/game4.png</iconset>
-              </attribute>
-              <attribute name="title">
-               <string>Partida de 4 jugadores</string>
-              </attribute>
-              <layout class="QHBoxLayout" name="horizontalLayout_4">
-               <item>
-                <widget class="QTableWidget" name="tblHighScores4">
-                 <attribute name="verticalHeaderVisible">
-                  <bool>false</bool>
-                 </attribute>
-                 <column>
-                  <property name="text">
-                   <string>Fecha</string>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Nombre</string>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Tiempo de partida</string>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Puntuación</string>
-                  </property>
-                 </column>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-             <widget class="QWidget" name="tab_3">
-              <attribute name="icon">
-               <iconset resource="../images/glparchis.qrc">
-                <normaloff>:/glparchis/game6.png</normaloff>:/glparchis/game6.png</iconset>
-              </attribute>
-              <attribute name="title">
-               <string>Partida de 6 jugadores</string>
-              </attribute>
-              <layout class="QHBoxLayout" name="horizontalLayout_5">
-               <item>
-                <widget class="QTableWidget" name="tblHighScores6">
-                 <property name="selectionMode">
-                  <enum>QAbstractItemView::SingleSelection</enum>
-                 </property>
-                 <property name="selectionBehavior">
-                  <enum>QAbstractItemView::SelectRows</enum>
-                 </property>
-                 <attribute name="verticalHeaderVisible">
-                  <bool>false</bool>
-                 </attribute>
-                 <column>
-                  <property name="text">
-                   <string>Fecha</string>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Nombre</string>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Tiempo de partida</string>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Puntuación</string>
-                  </property>
-                 </column>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-             <widget class="QWidget" name="tab_4">
-              <attribute name="icon">
-               <iconset resource="../images/glparchis.qrc">
-                <normaloff>:/glparchis/game8.png</normaloff>:/glparchis/game8.png</iconset>
-              </attribute>
-              <attribute name="title">
-               <string>Partida de 8 jugadores</string>
-              </attribute>
-              <layout class="QHBoxLayout" name="horizontalLayout_6">
-               <item>
-                <widget class="QTableWidget" name="tblHighScores8">
-                 <attribute name="verticalHeaderVisible">
-                  <bool>false</bool>
-                 </attribute>
-                 <column>
-                  <property name="text">
-                   <string>Fecha</string>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Nombre</string>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Tiempo de partida</string>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Puntuación</string>
-                  </property>
-                 </column>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </widget>
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <item>
+              <widget class="QTabWidget" name="tabHS6">
+               <property name="tabPosition">
+                <enum>QTabWidget::West</enum>
+               </property>
+               <property name="currentIndex">
+                <number>0</number>
+               </property>
+               <widget class="QWidget" name="tab_5">
+                <attribute name="icon">
+                 <iconset resource="../images/glparchis.qrc">
+                  <normaloff>:/glparchis/game4.png</normaloff>:/glparchis/game4.png</iconset>
+                </attribute>
+                <attribute name="title">
+                 <string>Partida de 4 jugadores</string>
+                </attribute>
+                <layout class="QHBoxLayout" name="horizontalLayout_4">
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_4">
+                   <item>
+                    <widget class="QTableWidget" name="tblHighScores4">
+                     <attribute name="verticalHeaderVisible">
+                      <bool>false</bool>
+                     </attribute>
+                     <column>
+                      <property name="text">
+                       <string>Fecha</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>Nombre</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>Tiempo de partida</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>Puntuación</string>
+                      </property>
+                     </column>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="tab_3">
+                <attribute name="icon">
+                 <iconset resource="../images/glparchis.qrc">
+                  <normaloff>:/glparchis/game6.png</normaloff>:/glparchis/game6.png</iconset>
+                </attribute>
+                <attribute name="title">
+                 <string>Partida de 6 jugadores</string>
+                </attribute>
+                <layout class="QHBoxLayout" name="horizontalLayout_5">
+                 <item>
+                  <widget class="QTableWidget" name="tblHighScores6">
+                   <property name="selectionMode">
+                    <enum>QAbstractItemView::SingleSelection</enum>
+                   </property>
+                   <property name="selectionBehavior">
+                    <enum>QAbstractItemView::SelectRows</enum>
+                   </property>
+                   <attribute name="verticalHeaderVisible">
+                    <bool>false</bool>
+                   </attribute>
+                   <column>
+                    <property name="text">
+                     <string>Fecha</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Nombre</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Tiempo de partida</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Puntuación</string>
+                    </property>
+                   </column>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="tab_4">
+                <attribute name="icon">
+                 <iconset resource="../images/glparchis.qrc">
+                  <normaloff>:/glparchis/game8.png</normaloff>:/glparchis/game8.png</iconset>
+                </attribute>
+                <attribute name="title">
+                 <string>Partida de 8 jugadores</string>
+                </attribute>
+                <layout class="QHBoxLayout" name="horizontalLayout_6">
+                 <item>
+                  <widget class="QTableWidget" name="tblHighScores8">
+                   <attribute name="verticalHeaderVisible">
+                    <bool>false</bool>
+                   </attribute>
+                   <column>
+                    <property name="text">
+                     <string>Fecha</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Nombre</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Tiempo de partida</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Puntuación</string>
+                    </property>
+                   </column>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La puntuación que se obtiene al terminar la partida depende de lo lejos que hayan acabado las fichas de los oponentes de la casilla central y de la diferencia entre las fichas comidas por mí y las fichas que me comieron otros jugadores&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>

@@ -13,3 +13,5 @@
 20121101 Dependiendo del numero de jugador actual mostrar por defecto el tab del highscore
 20121101 ConfigParser no graba en utf-8
 20121101 Poner icono apagado y encendido m´as intuitivo
+20121104 Poner un sonido especifico 3 seises y a caaaSA
+20121104 iNVERTIR EL TOGGLE DEL SOUND

@@ -568,62 +568,62 @@
 <context>
     <name>wdgGame</name>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="230"/>
+        <location filename="ui/Ui_wdgGame.py" line="245"/>
         <source>Juego</source>
         <translation>Juego</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_wdgGame.py" line="255"/>
+        <location filename="ui/Ui_wdgGame.py" line="270"/>
         <source>Estadísticas</source>
         <translation>Estadísticas</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_wdgGame.py" line="232"/>
+        <location filename="ui/Ui_wdgGame.py" line="247"/>
         <source>Número de tiradas</source>
         <translation>Número de tiradas</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="234"/>
+        <location filename="ui/Ui_wdgGame.py" line="249"/>
         <source>Dado saca 1</source>
         <translation>Dado saca 1</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="236"/>
+        <location filename="ui/Ui_wdgGame.py" line="251"/>
         <source>Dado saca 2</source>
         <translation>Dado saca 2</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="238"/>
+        <location filename="ui/Ui_wdgGame.py" line="253"/>
         <source>Dado saca 3</source>
         <translation>Dado saca 3</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="240"/>
+        <location filename="ui/Ui_wdgGame.py" line="255"/>
         <source>Dado saca 4</source>
         <translation>Dado saca 4</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="242"/>
+        <location filename="ui/Ui_wdgGame.py" line="257"/>
         <source>Dado saca 5</source>
         <translation>Dado saca 5</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="244"/>
+        <location filename="ui/Ui_wdgGame.py" line="259"/>
         <source>Dado saca 6</source>
         <translation>Dado saca 6</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="246"/>
+        <location filename="ui/Ui_wdgGame.py" line="261"/>
         <source>Fichas comidas por mi</source>
         <translation>Fichas comidas por mi</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="248"/>
+        <location filename="ui/Ui_wdgGame.py" line="263"/>
         <source>Fichas comidas por otro</source>
         <translation>Fichas comidas por otro</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="250"/>
+        <location filename="ui/Ui_wdgGame.py" line="265"/>
         <source>3 seises seguidos</source>
         <translation>3 seises seguidos</translation>
     </message>
@@ -633,12 +633,12 @@
         <translation>Tira el dado</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_wdgGame.py" line="281"/>
+        <location filename="ui/Ui_wdgGame.py" line="296"/>
         <source>Puntuación</source>
         <translation>Puntuación</translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="279"/>
+        <location filename="ui/Ui_wdgGame.py" line="294"/>
         <source>Tiempo de partida</source>
         <translation>Tiempo de partida</translation>
     </message>
@@ -708,43 +708,48 @@
         <translation>Has ganado la partida</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/Ui_wdgGame.py" line="228"/>
+        <location filename="ui/Ui_wdgGame.py" line="243"/>
         <source>Pulsa este botón o haga doble click en el tablero para tirar el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="283"/>
+        <location filename="ui/Ui_wdgGame.py" line="299"/>
         <source>Mejores puntuaciones</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="275"/>
+        <location filename="ui/Ui_wdgGame.py" line="290"/>
         <source>Fecha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="277"/>
+        <location filename="ui/Ui_wdgGame.py" line="292"/>
         <source>Nombre</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="252"/>
+        <location filename="ui/Ui_wdgGame.py" line="267"/>
         <source>Casillas avanzadas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="264"/>
+        <location filename="ui/Ui_wdgGame.py" line="279"/>
         <source>Partida de 4 jugadores</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="273"/>
+        <location filename="ui/Ui_wdgGame.py" line="288"/>
         <source>Partida de 6 jugadores</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/Ui_wdgGame.py" line="282"/>
+        <location filename="ui/Ui_wdgGame.py" line="297"/>
         <source>Partida de 8 jugadores</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/Ui_wdgGame.py" line="298"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La puntuación que se obtiene al terminar la partida depende de lo lejos que hayan acabado las fichas de los oponentes de la casilla central y de la diferencia entre las fichas comidas por mí y las fichas que me comieron otros jugadores&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
