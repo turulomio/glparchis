@@ -418,7 +418,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2193"/>
+        <location filename="libglparchis.py" line="2197"/>
         <source>Esta opción se está desarrollando</source>
         <translation type="unfinished"></translation>
     </message>
@@ -560,7 +560,7 @@
 <context encoding="UTF-8">
     <name>glparchis</name>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="1989"/>
+        <location filename="libglparchis.py" line="1993"/>
         <source>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -628,7 +628,7 @@
         <translation>3 sixes in a row</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="113"/>
+        <location filename="ui/wdgGame.py" line="114"/>
         <source>Tira el dado</source>
         <translation>Roll the dice</translation>
     </message>
@@ -648,57 +648,57 @@
         <translation>The game starts</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="123"/>
+        <location filename="ui/wdgGame.py" line="124"/>
         <source>Tire el dado</source>
         <translation>Roll the dice</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="136"/>
+        <location filename="ui/wdgGame.py" line="137"/>
         <source>IA mueve una ficha</source>
         <translation>IA moves a piece</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="168"/>
+        <location filename="ui/wdgGame.py" line="169"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation>You got three sixes, but you don&apos;t go home because you got the arrival ramp</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="171"/>
+        <location filename="ui/wdgGame.py" line="172"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation>You got three sixes. Your last moved piece goes home</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="175"/>
+        <location filename="ui/wdgGame.py" line="176"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation>You got three sixes, but as you can&apos;t move, you don&apos;t go home</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="177"/>
+        <location filename="ui/wdgGame.py" line="178"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation>After three sixes, you can&apos;t roll the dice again</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="190"/>
+        <location filename="ui/wdgGame.py" line="191"/>
         <source>Seleccione una ficha...</source>
         <translation>Select a piece...</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="227"/>
+        <location filename="ui/wdgGame.py" line="228"/>
         <source>Fin de turno</source>
         <translation>End of turn</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="98"/>
+        <location filename="ui/wdgGame.py" line="99"/>
         <source>%1 ha ganado</source>
         <translation>%1 has won the game</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="118"/>
+        <location filename="ui/wdgGame.py" line="119"/>
         <source>IA Tira el dado</source>
         <translation>IA rolls the dice</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="145"/>
+        <location filename="ui/wdgGame.py" line="146"/>
         <source>Mueva una ficha</source>
         <translation>Move a piece</translation>
     </message>
