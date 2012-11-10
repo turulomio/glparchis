@@ -831,9 +831,9 @@ class SetCasillas:
                return 0 #Casilla inicial
             elif id in  (110, 118, 126, 134, 142, 150):
                return 1 #Casilla final
-            elif id==9 or  id==26 or  id==43 or  id==60:  
+            elif id==9 or  id==26 or  id==43 or  id==60 or id==77 or id==94:  
                return 2 #Casilla oblicuai
-            elif id==8 or  id==25 or  id==42 or  id==59:  
+            elif id==8 or  id==25 or  id==42 or  id==59 or id==76 or id==93:  
                return 4 #Casilla oblicuad
             else:
                 return 3 #Casilla Normal
@@ -860,15 +860,15 @@ class SetCasillas:
                 return False
             return True
         def defineRotate( id):
-            if (id>=10 and id<=24) or (id>=111 and id<=118) :
+            if (id>=10 and id<=24) or (id>=111 and id<=118)  or id==76 or id==60:
                return 60
-            if(id>=27 and id<=41) or (id>=119 and id<=126) :
+            if(id>=27 and id<=41) or (id>=119 and id<=126) or id==93 or id==77:
                 return 120
-            if(id>=44 and id<=58) or (id>=127 and id<=134) :
+            if(id>=44 and id<=58) or (id>=127 and id<=134) or id==8 or id==94:
                 return 180
-            if(id>=61 and id<=75) or (id>=135 and id<=142) :
+            if(id>=61 and id<=75) or (id>=135 and id<=142) or id==25 or id==9:
                 return 240
-            if(id>=78 and id<=92) or (id>=143 and id<=150) :
+            if(id>=78 and id<=92) or (id>=143 and id<=150) or id==42 or id==26:
                 return 300
             else:
                 return 0        
@@ -1819,11 +1819,15 @@ class Casilla(QObject):
         elif self.tipo==2:
             if ogl.mem.maxplayers==4:
                 tipo_oblicuoi(3)
+            elif ogl.mem.maxplayers==6:
+                tipo_oblicuoi(3.0/math.tan(math.pi/3))
             elif ogl.mem.maxplayers==8:
                 tipo_oblicuoi(3.0*math.tan(math.pi/8))
         elif self.tipo==4:
             if ogl.mem.maxplayers==4:
                 tipo_oblicuod(4)
+            elif ogl.mem.maxplayers==6:
+                tipo_oblicuod(7-3.0*math.tan(math.pi/6))
             elif ogl.mem.maxplayers==8:
                 tipo_oblicuod(7-3.0*math.tan(math.pi/8))
         else:
