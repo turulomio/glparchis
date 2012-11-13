@@ -21,11 +21,26 @@ Si eres atrevido o quieres ayudarme con el desarrollo te lo puedes bajar del sub
 Para desinstalar utiliza el siguiente comando hace una desinstalación limpia
   # make uninstall
 
+  
+  
 Procedimiento de instalación para binarios linux
 ================================================
 
+Se descomprime el fichero con el comando 
+  # tar xvfz glparchis-bin-linux-VERSION.tar.gz 
+
+Se entra en el directorio glparchis, que se acaba de crear con
+  # cd glparchis
+
+y se ejecuta el fichero glparchis con
+  # ./glparchis
+
+  
+  
 Procedimiento de instalación para binarios windows
 ==================================================
+
+
 
 Procedimiento de instalación para fuentes windows
 =================================================
