@@ -5,8 +5,6 @@ def poscasillas6(maxcasillas):
     c30=sqrt(3)/2
     s60=c30
     c60=s30
-    t30=s30/c30
-    t60=s60/c60
     posCasillas=[None]*maxcasillas
     posCasillas[0]=(0, 0, 0)
     posCasillas[1]=(21, 60, 0.7)
@@ -118,7 +116,7 @@ def poscasillas6(maxcasillas):
     posCasillas[107]=(21+7,  45, 0.7)
     posCasillas[108]=(21+7,  42, 0.7)
     posCasillas[109]=(21+7,  39, 0.7)
-    posCasillas[110]=(42,  42, 0.7)
+    posCasillas[110]=(posCasillas[7][0]+3*tan(pi/6),  posCasillas[7][1]-3, 0.7)
     posCasillas[111]=(21-7*2*c60-3*5*c30, 42-7*2*s60+3*5*s30, 0.7)
     posCasillas[112]=(21-7*2*c60-3*4*c30, 42-7*2*s60+3*4*s30, 0.7)
     posCasillas[113]=(21-7*2*c60-3*3*c30, 42-7*2*s60+3*3*s30, 0.7)
@@ -126,7 +124,7 @@ def poscasillas6(maxcasillas):
     posCasillas[115]=(21-7*2*c60-3*1*c30, 42-7*2*s60+3*1*s30, 0.7)
     posCasillas[116]=(21-7*2*c60-3*0*c30, 42-7*2*s60+3*0*s30, 0.7)
     posCasillas[117]=(21-7*2*c60-3*-1*c30, 42-7*2*s60-3*1*s30, 0.7)
-    posCasillas[118]=(42,  42, 0.7)
+    posCasillas[118]=(posCasillas[110][0], posCasillas[110][1], 0.7)
     posCasillas[119]=(posCasillas[27][0]-3*5*s60+1*7*c60, posCasillas[27][1]-3*5*c60-1*7*s60, 0.7)
     posCasillas[120]=(posCasillas[27][0]-3*4*s60+1*7*c60, posCasillas[27][1]-3*4*c60-1*7*s60, 0.7)
     posCasillas[121]=(posCasillas[27][0]-3*3*s60+1*7*c60, posCasillas[27][1]-3*3*c60-1*7*s60, 0.7)
@@ -134,7 +132,7 @@ def poscasillas6(maxcasillas):
     posCasillas[123]=(posCasillas[27][0]-3*1*s60+1*7*c60, posCasillas[27][1]-3*1*c60-1*7*s60, 0.7)
     posCasillas[124]=(posCasillas[27][0]-3*0*s60+1*7*c60, posCasillas[27][1]-3*0*c60-1*7*s60, 0.7)
     posCasillas[125]=(posCasillas[27][0]-3*-1*s60+1*7*c60, posCasillas[27][1]-3*-1*c60-1*7*s60, 0.7)
-    posCasillas[126]=(42,  42, 0.7)
+    posCasillas[126]=(posCasillas[118][0], posCasillas[118][1]+2*(3-21*cos(pi/6)), 0.7)
     posCasillas[127]=(posCasillas[41][0]+2*7, posCasillas[41][1]-5*3, 0.7)
     posCasillas[128]=(posCasillas[41][0]+2*7, posCasillas[41][1]-4*3, 0.7)
     posCasillas[129]=(posCasillas[41][0]+2*7, posCasillas[41][1]-3*3, 0.7)
@@ -142,7 +140,7 @@ def poscasillas6(maxcasillas):
     posCasillas[131]=(posCasillas[41][0]+2*7, posCasillas[41][1]-1*3, 0.7)
     posCasillas[132]=(posCasillas[41][0]+2*7, posCasillas[41][1]-0*3, 0.7)
     posCasillas[133]=(posCasillas[41][0]+2*7, posCasillas[41][1]+1*3, 0.7)
-    posCasillas[134]=(42,  42, 0.7)
+    posCasillas[134]=(posCasillas[126][0], posCasillas[126][1],  0.7)
     posCasillas[135]=(posCasillas[58][0]+7*2*c60+5*3*s60, posCasillas[58][1]+7*2*s60-5*3*c60, 0.7)
     posCasillas[136]=(posCasillas[58][0]+7*2*c60+4*3*s60, posCasillas[58][1]+7*2*s60-4*3*c60, 0.7)
     posCasillas[137]=(posCasillas[58][0]+7*2*c60+3*3*s60, posCasillas[58][1]+7*2*s60-3*3*c60, 0.7)
@@ -150,7 +148,7 @@ def poscasillas6(maxcasillas):
     posCasillas[139]=(posCasillas[58][0]+7*2*c60+1*3*s60, posCasillas[58][1]+7*2*s60-1*3*c60, 0.7)
     posCasillas[140]=(posCasillas[58][0]+7*2*c60+0*3*s60, posCasillas[58][1]+7*2*s60-0*3*c60, 0.7)
     posCasillas[141]=(posCasillas[58][0]+7*2*c60-1*3*s60, posCasillas[58][1]+7*2*s60+1*3*c60, 0.7)
-    posCasillas[142]=(42,  42, 0.7)
+    posCasillas[142]=(posCasillas[134][0]+2*tan(pi/6)*(21*cos(pi/6)-3),  posCasillas[134][1], 0.7)
     posCasillas[143]=(posCasillas[75][0]-7*2*c60+5*3*s60, posCasillas[75][1]+2*7*s60+5*3*c60, 0.7)
     posCasillas[144]=(posCasillas[75][0]-7*2*c60+4*3*s60, posCasillas[75][1]+2*7*s60+4*3*c60, 0.7)
     posCasillas[145]=(posCasillas[75][0]-7*2*c60+3*3*s60, posCasillas[75][1]+2*7*s60+3*3*c60, 0.7)
@@ -158,7 +156,7 @@ def poscasillas6(maxcasillas):
     posCasillas[147]=(posCasillas[75][0]-7*2*c60+1*3*s60, posCasillas[75][1]+2*7*s60+1*3*c60, 0.7)
     posCasillas[148]=(posCasillas[75][0]-7*2*c60+0*3*s60, posCasillas[75][1]+2*7*s60+0*3*c60, 0.7)
     posCasillas[149]=(posCasillas[75][0]-7*2*c60-1*3*s60, posCasillas[75][1]+2*7*s60-1*3*c60, 0.7)
-    posCasillas[150]=(42,  42, 0.7)
+    posCasillas[150]=(posCasillas[142][0], posCasillas[142][1]+2*(21*cos(pi/6)-3), 0.7)
     posCasillas[151]=(42,  42, 0.7)
     posCasillas[152]=(42,  42, 0.7)
     posCasillas[153]=(42,  42, 0.7)
