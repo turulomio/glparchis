@@ -644,22 +644,22 @@ class SetRutas:
 
     def generar_rutas6(self):    
         r=Ruta(self.mem.colores.colorbyname("yellow"), self.mem)
-        r.append_id([150]+range(5, 110+1))
+        r.append_id([151]+range(5, 110+1))
         self.arr.append(r)
         r=Ruta(self.mem.colores.colorbyname("blue"), self.mem)
-        r.append_id([151]+range(22, 110+1)+range(1, 17+1)+range(111, 118+1))
+        r.append_id([152]+range(22, 110+1)+range(1, 17+1)+range(111, 118+1))
         self.arr.append(r)
         r=Ruta(self.mem.colores.colorbyname("red"), self.mem)
-        r.append_id( [152]+range(39, 110+1)+range(1, 34+1)+range(119, 126+1))
+        r.append_id( [153]+range(39, 110+1)+range(1, 34+1)+range(119, 126+1))
         self.arr.append(r) 
         r=Ruta(self.mem.colores.colorbyname("green"), self.mem)
-        r.append_id([153]+range(56, 110+1)+range(1, 51+1)+range(127, 134+1))
+        r.append_id([154]+range(56, 110+1)+range(1, 51+1)+range(127, 134+1))
         self.arr.append(r)            
         r=Ruta(self.mem.colores.colorbyname("gray"), self.mem)
-        r.append_id([154]+range(73, 110+1)+range(1, 68+1)+range(135, 142+1))
+        r.append_id([155]+range(73, 110+1)+range(1, 68+1)+range(135, 142+1))
         self.arr.append(r)
         r=Ruta(self.mem.colores.colorbyname("pink"), self.mem)
-        r.append_id([155]+range(90, 110+1)+range(1, 85+1)+range(143, 150+1))
+        r.append_id([156]+range(90, 110+1)+range(1, 85+1)+range(143, 150+1))
         self.arr.append(r)        
 
     def generar_rutas8(self):    
@@ -698,7 +698,7 @@ class SetCasillas:
         if self.numplayers==4:
             self.number=105
         elif self.numplayers==6:
-            self.number=162
+            self.number=157
         elif self.numplayers==8:
             self.number=209
         self.generar_casillas()
@@ -816,18 +816,18 @@ class SetCasillas:
                 return False
     
         def defineMaxFichas( id):
-            if id>=156 or id in (110, 118, 126, 134, 142, 150):
+            if id>=151 or id in (110, 118, 126, 134, 142, 150):
                 return 4
             else:
                 return 2
     
         def defineRampaLlegada(id):
-            if id>=103 and id<= 149:
+            if id>=103 and id<= 150:
                return True
             return False
     
         def defineTipo( id):
-            if id>=156:
+            if id>=151:
                return 0 #Casilla inicial
             elif id in  (110, 118, 126, 134, 142, 150):
                return 1 #Casilla final
@@ -860,16 +860,28 @@ class SetCasillas:
                 return False
             return True
         def defineRotate( id):
+            if id==154:
+                return 30
             if (id>=10 and id<=24) or (id>=111 and id<=117)  or id in (60, 76, 126, 142):
                return 60
+            if id==155:
+                return 90
             if(id>=27 and id<=41) or (id>=119 and id<=125) or id in (77, 93):
                 return 120
+            if id==156:
+                return 150
             if(id>=44 and id<=58) or (id>=127 and id<=133) or id in (8, 94):
                 return 180
             if(id>=61 and id<=75) or (id>=135 and id<=141) or id in (9, 25, 118, 150):
                 return 240
+            if id==151:
+                return 210
+            if id==152:
+                return 270
             if(id>=78 and id<=92) or (id>=143 and id<=149) or id in (26, 42, 110):
                 return 300
+            if id==153:
+                return 330
             else:
                 return 0        
                 
@@ -1646,6 +1658,36 @@ class Casilla(QObject):
             glPopName();
             glPopMatrix()
             
+        def tipo_inicio6():        
+            glInitNames();
+            glPushMatrix()
+            glPushName(self.oglname);
+            glTranslated(self.position[0],self.position[1],self.position[2] )
+            glRotated(self.rotate, 0, 0, 1 )
+            glBegin(GL_QUADS)
+            b=21*math.sin(math.pi/6)
+            c=21*math.tan(math.pi/6)*math.sin(math.pi/6)
+            d=21*math.cos(math.pi/6)
+            v1 = (-b, -d, 0)
+            v2 = (0, -c-d, 0)
+            v3 = (b, -d, 0)
+            v4 = (0, 0, 0)
+            v5 = (-b, -d, 0.2)
+            v6 = (0, -c-d, 0.2)
+            v7 = (b, -d, 0.2)
+            v8 = (0, 0, 0.2)
+    
+            quad(v1, v2, v3, v4, self.color)      
+            quad(v8, v7, v6, v5, Color(70, 70, 70))      
+            quad(v1, v4, v8, v5, Color(170, 170, 170))      
+            quad(v6, v7, v3, v2, Color(170, 170, 170))      
+            quad(v5, v6, v2, v1, Color(170, 170, 170))      
+            quad(v4, v3, v7, v8, Color(170, 170, 170))      
+            glEnd()
+            border(v5, v6, v7, v8, Color(0, 0, 0))
+    
+            glPopName();
+            glPopMatrix()                 
         def tipo_inicio8():        
             glInitNames();
             glPushMatrix()
@@ -1814,6 +1856,8 @@ class Casilla(QObject):
         if self.tipo==0:
             if ogl.mem.maxplayers==4:
                 tipo_inicio()
+            elif ogl.mem.maxplayers==6:
+                tipo_inicio6()
             elif ogl.mem.maxplayers==8:
                 tipo_inicio8()
         elif self.tipo==1:
