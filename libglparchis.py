@@ -788,7 +788,7 @@ class SetCasillas:
                 
         def defineRotatePN(id):
             """EStablece si debe rotar el panel numerico"""
-            if id in (8, 60,  10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 ):
+            if id in (1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,  61, 62, 63, 64, 65, 66, 67, 68 ):
                 return True
             return False
                  
@@ -839,17 +839,17 @@ class SetCasillas:
                 return 3 #Casilla Normal
     
         def defineColor( id):
-            if id==5 or (id>=103 and id<=110) or id==150:
+            if id==5 or (id>=103 and id<=110) or id==151:
                return self.mem.colores.colorbyname("yellow")
-            elif id==22 or (id>=111 and id<=118) or id==151:
+            elif id==22 or (id>=111 and id<=118) or id==152:
                return self.mem.colores.colorbyname("blue")
-            elif id==39 or (id>=119 and id<=126) or id==152:
+            elif id==39 or (id>=119 and id<=126) or id==153:
                return self.mem.colores.colorbyname("red")
-            elif id==56 or (id>=127 and id<=134) or id==153:
+            elif id==56 or (id>=127 and id<=134) or id==154:
                return self.mem.colores.colorbyname("green")
-            elif id==73 or (id>=135 and id<=142) or id==154:
+            elif id==73 or (id>=135 and id<=142) or id==155:
                return self.mem.colores.colorbyname("gray")
-            elif id==90 or (id>=143 and id<=150) or id==155:
+            elif id==90 or (id>=143 and id<=150) or id==156:
                return self.mem.colores.colorbyname("pink")
             else:
                 return Color(255, 255, 255)            
@@ -860,15 +860,15 @@ class SetCasillas:
                 return False
             return True
         def defineRotate( id):
-            if (id>=10 and id<=24) or (id>=111 and id<=118)  or id==76 or id==60:
+            if (id>=10 and id<=24) or (id>=111 and id<=117)  or id in (60, 76, 126, 142):
                return 60
-            if(id>=27 and id<=41) or (id>=119 and id<=126) or id==93 or id==77:
+            if(id>=27 and id<=41) or (id>=119 and id<=125) or id in (77, 93):
                 return 120
-            if(id>=44 and id<=58) or (id>=127 and id<=134) or id==8 or id==94:
+            if(id>=44 and id<=58) or (id>=127 and id<=133) or id in (8, 94):
                 return 180
-            if(id>=61 and id<=75) or (id>=135 and id<=142) or id==25 or id==9:
+            if(id>=61 and id<=75) or (id>=135 and id<=141) or id in (9, 25, 118, 150):
                 return 240
-            if(id>=78 and id<=92) or (id>=143 and id<=150) or id==42 or id==26:
+            if(id>=78 and id<=92) or (id>=143 and id<=149) or id in (26, 42, 110):
                 return 300
             else:
                 return 0        
@@ -1781,7 +1781,9 @@ class Casilla(QObject):
             glPushName(self.oglname);
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
-            if ogl.mem.maxplayers==8:
+            if ogl.mem.maxplayers==6:
+                glScaled(2*math.tan(math.pi/6)*(21*math.cos(math.pi/6)-3)/15, (21*math.cos(math.pi/6)-3)/7.5, 1)
+            elif ogl.mem.maxplayers==8:
                 glScaled((21-2*3*math.tan(math.pi/8))/15.0, ((10.5/math.tan(math.pi/8))-3)/7.5, 1)
             
             
