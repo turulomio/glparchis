@@ -887,7 +887,7 @@ class SetCasillas:
                 
         ##############################        
         posCasillas=poscasillas6(self.number)
-        posFichas=posfichas6(self.number)
+        posFichas=posfichas6(self.number, posCasillas)
         for i in range(0, self.number):#Se debe inializar Antes que las fichas
             self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i) , defineRotatePN(i),  defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i]))
             
@@ -1980,7 +1980,7 @@ class Mem:
         for ic, c in enumerate(self.colores.arr):
             j=self.jugadores.jugador(c.name)
             j.ruta=self.rutas.ruta(ic)
-            for i in range(4):
+            for i in range(len(j.ruta.arr)*2):#Cambiar por 4
                 self.dic_fichas[str(id)]=Ficha(id, i, c, self.jugadores.jugador(c.name), j.ruta)
                 j.fichas.arr.append(self.dic_fichas[str(id)])#Rellena el SetFichas del jugador
                 id=id+1
