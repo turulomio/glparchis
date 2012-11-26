@@ -54,7 +54,6 @@ def posfichas8(maxcasillas, posCasillas):
     posFichas[6]=n(6)
     posFichas[7]=n(7)
     posFichas[8]=((23.4, 40.5, 0.9), (26.3, 40.5, 0.9))
-
     posFichas[9]=((posCasillas[9][0]+r1*cos(alfa1)-a+b, posCasillas[9][1]+r1*sin(alfa1)-a-b, 0.9), (posCasillas[9][0]+r4*cos(alfa4)-a+b, posCasillas[9][1]+r4*sin(alfa4)-a-b, 0.9))
     posFichas[10]=nw(10)
     posFichas[11]=nw(11)
