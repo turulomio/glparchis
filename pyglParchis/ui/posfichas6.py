@@ -4,7 +4,7 @@ def posfichas6(maxcasillas, posCasillas):
     """La posición de fichas de radio 1.4 es decir diametro 2.8 se colocan centradas en 1.5 de alto
     En lo ancho será a 0.3 de los extremos , es dicir a 1.7 el centro y a 5,3
     
-    En las oblicuas se mete 0.5 del lado en el que está oblicuo
+    En las oblicuas se mete 0.7 del lado en el que está oblicuo
     """
     def n(id):
         """Para horizontales"""
@@ -57,7 +57,7 @@ def posfichas6(maxcasillas, posCasillas):
     posFichas[6]=n(6)
     posFichas[7]=n(7)
     posFichas[8]=((22.7+0.7, 40.5, 0.9), (26.3, 40.5, 0.9))
-    posFichas[9]=((0, 0, 0), (0, 0, 0))
+    posFichas[9]=((17.050961894323343+3*cos(pi/6), 38.16006535994247-3*sin(pi/6), 0.9), (18.85096189432334+3*cos(pi/6)-0.7*sin(pi/6), 41.277756813566455-3*sin(pi/6)-0.7*cos(pi/6), 0.9))
     posFichas[10]=nw(10)
     posFichas[11]=nw(11)
     posFichas[12]=nw(12)
@@ -73,8 +73,8 @@ def posfichas6(maxcasillas, posCasillas):
     posFichas[22]=nw(22)
     posFichas[23]=nw(23)
     posFichas[24]=nw(24)
-    posFichas[25]=((posCasillas[25][0]+r3*cos(alfa3)-a+b-0.5, posCasillas[25][1]+r3*sin(alfa3)-a-b-3, 0.9), (posCasillas[25][0]+r2*cos(alfa2)-a+b, posCasillas[25][1]+r2*sin(alfa2)-a-b, 0.9))
-    posFichas[26]=((7.650757595082503, 21.850757595082502, 0.9), (7.650757595082503, 24.950757595082504, 0.9))
+    posFichas[25]=((10.050961894323342+3*cos(pi/6)+0.7*sin(pi/6), 26.035709706960333-3*sin(pi/6)+0.7*cos(pi/6), 0.9), (11.850961894323342+3*cos(pi/6), 29.153401160584313-3*sin(pi/6), 0.9))
+    posFichas[26]=((11.850961894323342+3*cos(pi/6), 18.473531880469263+3*sin(pi/6), 0.9), (10.050961894323342+3*cos(pi/6)+0.7*sin(pi/6), 21.700326799712375+3*sin(pi/6)-0.7*cos(pi/6), 0.9))
     posFichas[27]=sw(27)
     posFichas[28]=sw(28)
     posFichas[29]=sw(29)
@@ -90,10 +90,9 @@ def posfichas6(maxcasillas, posCasillas):
     posFichas[39]=sw(39)
     posFichas[40]=sw(40)
     posFichas[41]=sw(41)
-    posFichas[42]=((7.650757595082503, 8.350757595082503, 0.9), (7.650757595082503, 11.450757595082504, 0.9))
-    posFichas[43]=((8.837763363591385+b, 1.3424314830139794+b, 0.9), (6.292178951319813+b+0.5, 3.888015895285551+b-0.5, 0.9))
+    posFichas[42]=((18.85096189432334+3*cos(pi/6)-0.7*sin(pi/6), 6.349176227487122+3*sin(pi/6)+0.7*cos(pi/6), 0.9), (17.050961894323343+3*cos(pi/6), 9.575971146730236+3*sin(pi/6), 0.9))
+    posFichas[43]=((22.7+0.7, 4.126933041053578+3, 0.9), (26.299999999999997, 4.126933041053578+3, 0.9))
     
-    print (posFichas[44])
     posFichas[44]=s(44)
     posFichas[45]=s(45)
     posFichas[46]=s(46)
@@ -109,8 +108,8 @@ def posfichas6(maxcasillas, posCasillas):
     posFichas[56]=s(56)
     posFichas[57]=s(57)
     posFichas[58]=s(58)
-    posFichas[59]=((18.73725830020305+b-0.5, -8.557063453597685+b+0.5, 0.9), (16.191673887931476+b, -6.011479041326114+b, 0.9))
-    posFichas[60]=((23.2, -7.198484809834994, 0.9), (26.3, -7.198484809834994, 0.9))
+    posFichas[59]=((36.7, 4.126933041053578+3, 0.9), (40.3-0.7, 4.126933041053578+3, 0.9))
+    posFichas[60]=((45.94903810567666-3*cos(pi/6), 9.466867681111104+3*sin(pi/6), 0.9), (44.14903810567666-3*cos(pi/6)+0.7*sin(pi/6), 6.349176227487124+3*sin(pi/6)+0.7*cos(pi/6), 0.9))
     posFichas[61]=se(61)
     posFichas[62]=se(62)
     posFichas[63]=se(63)
@@ -126,8 +125,9 @@ def posfichas6(maxcasillas, posCasillas):
     posFichas[73]=se(73)
     posFichas[74]=se(74)
     posFichas[75]=se(75)
-    posFichas[76]=((36.7, -7.198484809834994, 0.9), (39.8, -7.198484809834994, 0.9))
-    posFichas[77]=((46.80832611206852-b, -6.011479041326114+b, 0.9), (44.26274169979695-b+.5, -8.557063453597685+b+.5, 0.9))
+    posFichas[76]=((52.94903810567666-3*cos(pi/6)-0.7*sin(pi/6), 21.591223334093243+3*sin(pi/6)-0.7*cos(pi/6), 0.9), (51.14903810567666-3*cos(pi/6), 18.473531880469263+3*sin(pi/6), 0.9))
+    posFichas[77]=((51.14903810567666-3*cos(pi/6), 29.153401160584313-3*sin(pi/6), 0.9), (52.94903810567666-3*cos(pi/6)-0.7*sin(pi/6), 26.035709706960333-3*sin(pi/6)+0.7*cos(pi/6), 0.9))
+
     posFichas[78]=ne(78)
     posFichas[79]=ne(79)
     posFichas[80]=ne(80)
@@ -143,8 +143,9 @@ def posfichas6(maxcasillas, posCasillas):
     posFichas[90]=ne(90)
     posFichas[91]=ne(91)
     posFichas[92]=ne(92)
-    posFichas[93]=((56.70782104868019-b-0.5, 3.888015895285551+b-0.5, 0.9), (54.162236636408615-b, 1.3424314830139794+b, 0.9))
-    posFichas[94]=((55.3492424049175, 8.350757595082502, 0.9), (55.3492424049175, 11.450757595082504, 0.9))
+    print (posFichas[92])
+    posFichas[93]=((44.14903810567666-3*cos(pi/6)+0.7*sin(pi/6), 41.277756813566455-3*sin(pi/6)-0.7*cos(pi/6), 0.9), (45.94903810567666-3*cos(pi/6), 38.16006535994248-3*sin(pi/6), 0.9))
+    posFichas[94]=((36.7, 43.5-3, 0.9), (40.3-0.7, 43.5-3, 0.9))
     posFichas[95]=n(95)
     posFichas[96]=n(96)
     posFichas[97]=n(97)
