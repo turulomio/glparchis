@@ -188,35 +188,35 @@ class frmMain(QMainWindow, Ui_frmMain):#
 
     @pyqtSlot()  
     def on_actionPartidaNueva6_triggered(self):
-#        if developing()==True:
-#            self.mem=Mem6()
-#            self.mem.cfgfile=self.cfgfile
-#            initgame=frmInitGame(self.mem,  self)
-#            salida=initgame.exec_()
-#            if salida==QDialog.Accepted:
-#                self.showWdgGame()
-                
-                
         if developing()==True:
             self.mem=Mem6()
             self.mem.cfgfile=self.cfgfile
-            for j in self.mem.jugadores.arr:
-                j.name=j.color.name
-                j.plays=True
-                j.ia=False
-                self.mem.jugadores.actual=self.mem.jugadores.jugador("blue")
-                posicion=0
-                count=0
-
-            j=self.mem.jugadores.jugador("yellow")
-            for f in j.fichas.arr:
-                f.mover(posicion, False,  True)
-                if count==1:
-                    posicion=posicion+1
-                    count=0
-                else:
-                    count=count+1
-            self.showWdgGame()                
+            initgame=frmInitGame(self.mem,  self)
+            salida=initgame.exec_()
+            if salida==QDialog.Accepted:
+                self.showWdgGame()
+                
+                
+#        if developing()==True:
+#            self.mem=Mem6()
+#            self.mem.cfgfile=self.cfgfile
+#            for j in self.mem.jugadores.arr:
+#                j.name=j.color.name
+#                j.plays=True
+#                j.ia=False
+#                self.mem.jugadores.actual=self.mem.jugadores.jugador("blue")
+#                posicion=0
+#                count=0
+#
+#            j=self.mem.jugadores.jugador("gray")
+#            for f in j.fichas.arr:
+#                f.mover(posicion, False,  True)
+#                if count==1:
+#                    posicion=posicion+1
+#                    count=0
+#                else:
+#                    count=count+1
+#            self.showWdgGame()                
 
     @pyqtSlot()  
     def on_actionPartidaNueva8_triggered(self):
