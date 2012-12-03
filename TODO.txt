@@ -17,3 +17,4 @@
 20121107 No funciona acerca de
 20121202 Meter qm en qrc. buscar en internet
 20121202 Quitar los c´alculos en posiciones y dem´as y poener digitos
+20121202 En la de 6, gano yellow y puso bluey
