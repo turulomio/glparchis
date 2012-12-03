@@ -81,6 +81,19 @@ class Dado(QObject):
                     self.position=(50, 10, 1)
                 elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("green"):
                     self.position=(50, 51, 1)
+            elif ogl.mem.maxplayers==6:
+                if ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("yellow"):
+                    self.position=(30, 31, 1)
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("blue"):
+                    self.position=(23, 27, 1)
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("red"):
+                    self.position=(23, 18, 1)
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("green"):
+                    self.position=(30, 14, 1)
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("gray"):
+                    self.position=(37, 18, 1)
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("pink"):
+                    self.position=(37, 27, 1)
             else:
                 if ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("yellow"):
                     self.position=(30, 30, .9)
@@ -646,27 +659,21 @@ class SetRutas:
         r=Ruta(self.mem.colores.colorbyname("yellow"), self.mem)
         r.append_id([151]+range(5, 110+1))
         self.arr.append(r)
-        print len (r.arr)
         r=Ruta(self.mem.colores.colorbyname("blue"), self.mem)
         r.append_id([152]+range(22, 102+1)+range(1, 17+1)+range(111, 118+1))
         self.arr.append(r)
-        print len (r.arr)
         r=Ruta(self.mem.colores.colorbyname("red"), self.mem)
         r.append_id( [153]+range(39, 102+1)+range(1, 34+1)+range(119, 126+1))
         self.arr.append(r) 
-        print len (r.arr)
         r=Ruta(self.mem.colores.colorbyname("green"), self.mem)
         r.append_id([154]+range(56, 102+1)+range(1, 51+1)+range(127, 134+1))
-        self.arr.append(r)       
-        print len (r.arr)     
+        self.arr.append(r)      
         r=Ruta(self.mem.colores.colorbyname("gray"), self.mem)
         r.append_id([155]+range(73, 102+1)+range(1, 68+1)+range(135, 142+1))
         self.arr.append(r)
-        print len (r.arr)
         r=Ruta(self.mem.colores.colorbyname("pink"), self.mem)
         r.append_id([156]+range(90, 102+1)+range(1, 85+1)+range(143, 150+1))
         self.arr.append(r)       
-        print len (r.arr) 
 
     def generar_rutas8(self):    
         r=Ruta(self.mem.colores.colorbyname("yellow"), self.mem)
@@ -1986,7 +1993,7 @@ class Mem:
         for ic, c in enumerate(self.colores.arr):
             j=self.jugadores.jugador(c.name)
             j.ruta=self.rutas.ruta(ic)
-            for i in range(len(j.ruta.arr)*2):#Cambiar por 4
+            for i in range(4):
                 self.dic_fichas[str(id)]=Ficha(id, i, c, self.jugadores.jugador(c.name), j.ruta)
                 j.fichas.arr.append(self.dic_fichas[str(id)])#Rellena el SetFichas del jugador
                 id=id+1
