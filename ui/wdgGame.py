@@ -57,6 +57,17 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.splitter.setSizes(currentSizes)
         else:
             self.splitter.restoreState(self.mem.cfgfile.splitterstate)
+        
+        #Coloca los tabs del widget
+        self.tab.setCurrentIndex(0)
+        if self.mem.maxplayers==4:
+            self.tabHS.setCurrentIndex(0)
+        elif self.mem.maxplayers==6:
+            self.tabHS.setCurrentIndex(1)
+        elif self.mem.maxplayers==8:
+            self.tabHS.setCurrentIndex(2)
+        
+            
         self.connect(self.ogl, SIGNAL("doubleClicked()"), self.on_ogl_doubleClicked)
         self.mem.inittime=datetime.datetime.now()
         self.on_JugadorDebeTirar()
