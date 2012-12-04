@@ -628,7 +628,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="125"/>
+        <location filename="ui/wdgGame.py" line="127"/>
         <source>Tira el dado</source>
         <translation type="unfinished"></translation>
     </message>
@@ -643,67 +643,67 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="49"/>
+        <location filename="ui/wdgGame.py" line="51"/>
         <source>Empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="135"/>
+        <location filename="ui/wdgGame.py" line="137"/>
         <source>Tire el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="148"/>
+        <location filename="ui/wdgGame.py" line="150"/>
         <source>IA mueve una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="181"/>
+        <location filename="ui/wdgGame.py" line="183"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="184"/>
+        <location filename="ui/wdgGame.py" line="186"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="188"/>
+        <location filename="ui/wdgGame.py" line="190"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="190"/>
+        <location filename="ui/wdgGame.py" line="192"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="203"/>
+        <location filename="ui/wdgGame.py" line="205"/>
         <source>Seleccione una ficha...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="243"/>
+        <location filename="ui/wdgGame.py" line="245"/>
         <source>Fin de turno</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="110"/>
+        <location filename="ui/wdgGame.py" line="112"/>
         <source>%1 ha ganado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="130"/>
+        <location filename="ui/wdgGame.py" line="132"/>
         <source>IA Tira el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="157"/>
+        <location filename="ui/wdgGame.py" line="159"/>
         <source>Mueva una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="89"/>
+        <location filename="ui/wdgGame.py" line="91"/>
         <source>Has ganado la partida</source>
         <translation type="unfinished"></translation>
     </message>

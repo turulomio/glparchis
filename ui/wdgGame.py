@@ -24,6 +24,8 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.table.stopReloads()
         for p in self.panels:
             p.stopTimerLog()
+            self.panelScrollLayout.removeWidget(p)
+        self.hide()
         
 
     def assign_mem(self, mem):
