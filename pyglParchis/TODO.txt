@@ -14,7 +14,7 @@
 20121101 ConfigParser no graba en utf-8
 20121101 Poner icono apagado y encendido m´as intuitivo
 20121104 Poner un sonido especifico 3 seises y a caaaSA
-20121107 No funciona acerca de
 20121202 Meter qm en qrc. buscar en internet
-20121202 Quitar los c´alculos en posiciones y dem´as y poener digitos
+20121202 Quitar los c´alculos en posiciones y dem´as y poner digitos
 20121202 En la de 6, gano yellow y puso bluey
+20121204 No se actualiza bien el scroll cuando cambio de 4 a 6 y a 8

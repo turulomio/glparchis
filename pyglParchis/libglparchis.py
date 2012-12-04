@@ -1836,10 +1836,12 @@ class Casilla(QObject):
             glPushName(self.oglname);
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
-            if ogl.mem.maxplayers==6:
-                glScaled(2*math.tan(math.pi/6)*(21*math.cos(math.pi/6)-3)/15, (21*math.cos(math.pi/6)-3)/7.5, 1)
-            elif ogl.mem.maxplayers==8:
-                glScaled((21-2*3*math.tan(math.pi/8))/15.0, ((10.5/math.tan(math.pi/8))-3)/7.5, 1)
+
+            if ogl.__class__.__name__!="wdgShowObject":#En caso de que no sea wdgShowObject
+                if ogl.mem.maxplayers==6:
+                    glScaled(2*math.tan(math.pi/6)*(21*math.cos(math.pi/6)-3)/15, (21*math.cos(math.pi/6)-3)/7.5, 1)
+                elif ogl.mem.maxplayers==8:
+                    glScaled((21-2*3*math.tan(math.pi/8))/15.0, ((10.5/math.tan(math.pi/8))-3)/7.5, 1)
             
             
             glBegin(GL_QUADS)
@@ -1866,6 +1868,20 @@ class Casilla(QObject):
             glPopName();
             glPopMatrix()
         ##################################
+        if ogl.__class__.__name__=="wdgShowObject":#En caso de wdgShowObject en la ayuda
+            if self.tipo==0:
+                tipo_inicio8()
+            elif self.tipo==1:
+                tipo_final()
+            elif self.tipo==2:
+                tipo_oblicuoi(3)
+            elif self.tipo==4:
+                tipo_oblicuod(4)
+            else:
+                tipo_normal()
+            return
+        
+        
         if self.tipo==0:
             if ogl.mem.maxplayers==4:
                 tipo_inicio()
@@ -2119,8 +2135,6 @@ class Mem6(Mem):
         
         self.circulo=Circulo(self, 102)
 
-                    
-
 class Mem4(Mem):
     def __init__(self):
         Mem.__init__(self, 4)
@@ -2131,103 +2145,6 @@ class Mem4(Mem):
         self.generar_fichas()
         
         self.circulo=Circulo(self, 68)
-#
-#
-#            
-#    def save(self, filename):
-#        cwd=os.getcwd()
-#        os.chdir(os.path.expanduser("~/.glparchis/"))
-#        config = ConfigParser.ConfigParser()
-#        config.add_section("yellow")
-#        config.set("yellow",  'ia', int(self.jugadores.jugador('yellow').ia))
-#        config.set("yellow",  'name', self.jugadores.jugador('yellow').name)
-#        config.set("yellow",  'plays', int(self.jugadores.jugador('yellow').plays))
-#        if self.jugadores.jugador('yellow').plays==True:
-#            config.set("yellow",  'rutaficha1', self.jugadores.jugador('yellow').fichas.arr[0].posruta)
-#            config.set("yellow",  'rutaficha2',  self.jugadores.jugador('yellow').fichas.arr[1].posruta)
-#            config.set("yellow",  'rutaficha3',  self.jugadores.jugador('yellow').fichas.arr[2].posruta)
-#            config.set("yellow",  'rutaficha4',  self.jugadores.jugador('yellow').fichas.arr[3].posruta)
-#        config.add_section("blue")
-#        config.set("blue",  'ia', int(self.jugadores.jugador('blue').ia))
-#        config.set("blue",  'name', self.jugadores.jugador('blue').name)
-#        config.set("blue",  'plays', int(self.jugadores.jugador('blue').plays))
-#        if self.jugadores.jugador('blue').plays==True:        
-#            config.set("blue",  'rutaficha1', self.jugadores.jugador('blue').fichas.arr[0].posruta)
-#            config.set("blue",  'rutaficha2',  self.jugadores.jugador('blue').fichas.arr[1].posruta)
-#            config.set("blue",  'rutaficha3',  self.jugadores.jugador('blue').fichas.arr[2].posruta)
-#            config.set("blue",  'rutaficha4',  self.jugadores.jugador('blue').fichas.arr[3].posruta) 
-#        config.add_section("red")
-#        config.set("red",  'ia', int(self.jugadores.jugador('red').ia))
-#        config.set("red",  'name', self.jugadores.jugador('red').name)
-#        config.set("red",  'plays', int(self.jugadores.jugador('red').plays))
-#        if self.jugadores.jugador('red').plays==True:        
-#            config.set("red",  'rutaficha1', self.jugadores.jugador('red').fichas.arr[0].posruta)
-#            config.set("red",  'rutaficha2',  self.jugadores.jugador('red').fichas.arr[1].posruta)
-#            config.set("red",  'rutaficha3',  self.jugadores.jugador('red').fichas.arr[2].posruta)
-#            config.set("red",  'rutaficha4',  self.jugadores.jugador('red').fichas.arr[3].posruta)    
-#        config.add_section("green")
-#        config.set("green",  'ia', int(self.jugadores.jugador('green').ia))
-#        config.set("green",  'name', self.jugadores.jugador('green').name)
-#        config.set("green",  'plays', int(self.jugadores.jugador('green').plays))        
-#        if self.jugadores.jugador('green').plays==True:
-#            config.set("green",  'rutaficha1', self.jugadores.jugador('green').fichas.arr[0].posruta)
-#            config.set("green",  'rutaficha2',  self.jugadores.jugador('green').fichas.arr[1].posruta)
-#            config.set("green",  'rutaficha3',  self.jugadores.jugador('green').fichas.arr[2].posruta)
-#            config.set("green",  'rutaficha4',  self.jugadores.jugador('green').fichas.arr[3].posruta)    
-#        config.add_section("game")
-#        config.set("game", 'playerstarts',self.jugadores.actual.color.name)
-#        config.set("game",  "numplayers",  self.maxplayers)
-#        config.set("game", 'fakedice','')
-#        with open(filename, 'w') as configfile:
-#            config.write(configfile)            
-#        os.chdir(cwd)
-#
-#
-#            
-#            
-#    def load(self, filename):       
-##        os.chdir("/home/keko/Proyectos/glparchis/pyglParchis/saves/") #SOLO DEBUGGING
-#        cwd=os.getcwd()
-#        os.chdir(os.path.expanduser("~/.glparchis/"))
-#        config = ConfigParser.ConfigParser()
-#        config.read(filename)
-#
-#        yellow=self.jugadores.jugador('yellow')
-#        yellow.name=config.get('yellow', 'name')
-#        yellow.ia=i2b(config.getint("yellow", "ia"))
-#        yellow.plays=(i2b(config.getint("yellow", "plays")))
-#        
-#        blue=self.jugadores.jugador('blue')
-#        blue.name=config.get("blue", "name")
-#        blue.ia=i2b(config.getint("blue", "ia"))
-#        blue.plays=(i2b(config.getint("blue", "plays")))
-#        
-#        red=self.jugadores.jugador('red')
-#        red.name=config.get("red", "name")
-#        red.ia=i2b(config.getint("red", "ia"))
-#        red.plays=(i2b(config.getint("red", "plays")))
-#        
-#        green=self.jugadores.jugador('green')
-#        green.name=config.get("green", "name")
-#        green.ia=i2b(config.getint("green", "ia"))
-#        green.plays=(i2b(config.getint("green", "plays")))  
-#
-#        for j in self.jugadores.arr:
-#            if j.plays==True:
-#                j.fichas.arr[0].mover(config.getint(j.color.name, "rutaficha1"), False,  True)
-#                j.fichas.arr[1].mover(config.getint(j.color.name, "rutaficha2"), False,  True)
-#                j.fichas.arr[2].mover(config.getint(j.color.name, "rutaficha3"), False,  True)
-#                j.fichas.arr[3].mover(config.getint(j.color.name, "rutaficha4"), False,  True)
-#
-#        fake=config.get("game", 'fakedice')
-#        if fake!="":
-#            for i in  fake.split(";")  :
-#                self.dado.fake.append(int(i))
-#        self.jugadores.actual=self.jugadores.jugador(config.get("game", 'playerstarts'))    
-#        self.jugadores.actual.movimientos_acumulados=None#Comidas ymetidas
-#        self.jugadores.actual.LastFichaMovida=None #Se utiliza cuando se va a casa
-#
-#        os.chdir(cwd)
             
 def dic2list(dic):
     """Función que convierte un diccionario pasado como parametro a una lista de objetos"""
