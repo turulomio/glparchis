@@ -1,8 +1,9 @@
-## -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 import random
 
+from libglparchis import s2q
 
 from Ui_wdgPlayerDado import *
 
@@ -20,7 +21,7 @@ class wdgPlayerDado(QWidget, Ui_wdgPlayerDado):
 
     def setName(self, name):
         """Se hace as´i porque al principio no se sabe el name del jugador"""
-        self.lblName.setText(name)
+        self.lblName.setText(s2q(name))
 
     def on_cmd_released(self):
         self.tirada=int(random.random()*6)+1

@@ -1,4 +1,4 @@
-## -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import random
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -38,7 +38,7 @@ class frmInitGame(QWizard, Ui_frmInitGame):
             d=wdgPlayerDado(mem, j,  self)
             self.scrollPlayerDado.addWidget(d)
             self.wdgplayersdado.append(d)
-            self.wdgplayers[i].txt.setText(self.mem.cfgfile.names[i])
+            self.wdgplayers[i].txt.setText(s2q(self.mem.cfgfile.names[i]))
 
                 
         #Pone juega ordenador en todos menos el primero
@@ -66,17 +66,6 @@ class frmInitGame(QWizard, Ui_frmInitGame):
                 w.commit()
                 self.mem.cfgfile.names[i]=q2s(self.wdgplayers[i].txt.text())
                 self.wdgplayersdado[i].setName(self.wdgplayers[i].txt.text())
-#                if self.mem.maxplayers>=4:
-#                    self.mem.cfgfile.yellowname=self.wdgplayers[0].txt.text()
-#                    self.mem.cfgfile.bluename=self.wdgplayers[1].txt.text()
-#                    self.mem.cfgfile.redname=self.wdgplayers[2].txt.text()
-#                    self.mem.cfgfile.greenname=self.wdgplayers[3].txt.text()
-#                if self.mem.maxplayers>=6:
-#                    self.mem.cfgfile.grayname=self.wdgplayers[4].txt.text()
-#                    self.mem.cfgfile.pinkname=self.wdgplayers[5].txt.text()
-#                if self.mem.maxplayers>=8:
-#                    self.mem.cfgfile.orangename=self.wdgplayers[6].txt.text()
-#                    self.mem.cfgfile.cyanname=self.wdgplayers[7].txt.text()
             self.mem.cfgfile.save()
             self.currentPage().setCommitPage(True)#Ya no se puede cambiar nada
             return True
