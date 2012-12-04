@@ -7,7 +7,7 @@ from poscasillas4 import *
 from posfichas4 import *
 from poscasillas6 import *
 from posfichas6 import *
-import os,  random,   ConfigParser,  datetime,  time,  sys,  codecs,  base64
+import os,  random,   ConfigParser,  datetime,  time,  sys,  codecs,  base64,  math
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
