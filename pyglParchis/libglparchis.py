@@ -7,7 +7,7 @@ from poscasillas4 import *
 from posfichas4 import *
 from poscasillas6 import *
 from posfichas6 import *
-import os,  random,   ConfigParser,  datetime,  time,  sys,  codecs
+import os,  random,   ConfigParser,  datetime,  time,  sys,  codecs,  base64
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
@@ -1437,9 +1437,10 @@ class Color:
 class ConfigFile:
     def __init__(self, file):
         self.file=file
-        self.splitterstate=None
+        self.splitterstate=''
         self.language="en"
         self.names=[]#Es un array separado de ##=##=## y siempre habr´a 8
+        #NAMES ES UN STRING DE PYTHON USAR S2Q Y Q2S
         self.names.append("Yellowy")
         self.names.append("Bluey")
         self.names.append("Redy")
@@ -1448,32 +1449,22 @@ class ConfigFile:
         self.names.append("Pinky")
         self.names.append("Orangy")
         self.names.append("Cyanny")
-#        self.yellowname=None
-#        self.redname=None
-#        self.bluename=None
-#        self.greenname=None
-#        self.grayname="Gray"
-#        self.pinkname="Pink"
-#        self.orangename="Orange"
-#        self.cyanname="Cyan"
         self.lastupdate=datetime.date.today().toordinal()
         self.config=ConfigParser.ConfigParser()
         self.load()
         
     def load(self):
+        """Cuando se carga si falla deber´a coger los valores por decto"""
         try:
-            self.config.readfp(codecs.open(self.file, "r", "utf8"))
-            self.splitterstate=self.config.get("frmMain", "splitter_state")
+            self.config.read(self.file)
+            self.splitterstate=base64.b64decode(self.config.get("frmMain", "splitter_state"))
             self.language=self.config.get("frmSettings", "language")
-            self.names=self.config.get("frmInitGame", "names").split("##=##=##")
-#            self.yellowname=self.config.get("frmInitGame", "yellowname")
-#            self.redname=self.config.get("frmInitGame", "redname")
-#            self.bluename=self.config.get("frmInitGame", "bluename")
-#            self.greenname=self.config.get("frmInitGame", "greenname")
+            stringa=base64.b64decode(self.config.get("frmInitGame", "names"))
+            self.names=base64.b64decode(self.config.get("frmInitGame", "names")).split("##=##=##")
             self.lastupdate=self.config.getint("frmMain", "lastupdate")
         except:
             print ("No hay fichero de configuración")    
-        
+      
     def save(self):
         if self.config.has_section("frmMain")==False:
             self.config.add_section("frmMain")
@@ -1482,18 +1473,13 @@ class ConfigFile:
         if self.config.has_section("frmInitGame")==False:
             self.config.add_section("frmInitGame")
         self.config.set("frmSettings",  'language', self.language)
-        self.config.set("frmMain",  'splitter_state', self.splitterstate)
+        self.config.set("frmMain",  'splitter_state', base64.b64encode(self.splitterstate))
         self.config.set("frmMain",  'lastupdate', self.lastupdate)
         cadena=""
         for n in self.names:
             cadena=cadena+n+"##=##=##"
-        print cadena.encode('utf-8')
-        self.config.set("frmInitGame",  'names', cadena[:-8].decode('utf-8'))
-#        self.config.set("frmInitGame",  'yellowname', self.yellowname)
-#        self.config.set("frmInitGame",  'redname', self.redname)
-#        self.config.set("frmInitGame",  'bluename', self.bluename)
-#        self.config.set("frmInitGame",  'greenname', self.greenname)
-        with codecs.open(self.file, 'w', 'utf-8') as configfile:
+        self.config.set("frmInitGame",  'names', base64.b64encode(cadena[:-8]))
+        with open(self.file, 'w') as configfile:
             self.config.write(configfile)
             
 class Casilla(QObject):

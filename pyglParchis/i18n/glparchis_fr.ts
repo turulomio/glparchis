@@ -245,17 +245,17 @@
         <translation>Qui est le premier?</translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.py" line="140"/>
+        <location filename="ui/frmInitGame.py" line="129"/>
         <source>El jugador %1 empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmInitGame.py" line="141"/>
+        <location filename="ui/frmInitGame.py" line="130"/>
         <source>Empieza la partida</source>
         <translation>Lancez le jeu</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmInitGame.py" line="143"/>
+        <location filename="ui/frmInitGame.py" line="132"/>
         <source>%1 deben tirar hasta que se aclare quién empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -418,7 +418,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2173"/>
+        <location filename="libglparchis.py" line="2159"/>
         <source>Esta opción se está desarrollando</source>
         <translation type="unfinished"></translation>
     </message>
@@ -560,7 +560,7 @@
 <context encoding="UTF-8">
     <name>glparchis</name>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2068"/>
+        <location filename="libglparchis.py" line="2054"/>
         <source>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -658,32 +658,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="169"/>
+        <location filename="ui/wdgGame.py" line="170"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="172"/>
+        <location filename="ui/wdgGame.py" line="173"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="176"/>
+        <location filename="ui/wdgGame.py" line="177"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="178"/>
+        <location filename="ui/wdgGame.py" line="179"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="191"/>
+        <location filename="ui/wdgGame.py" line="192"/>
         <source>Seleccione una ficha...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="228"/>
+        <location filename="ui/wdgGame.py" line="232"/>
         <source>Fin de turno</source>
         <translation type="unfinished"></translation>
     </message>

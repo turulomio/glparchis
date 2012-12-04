@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import ConfigParser
+import ConfigParser,  base64
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.QtGui import *
@@ -148,6 +148,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         
     def on_splitter_splitterMoved(self, position, index):
         self.mem.cfgfile.splitterstate=self.splitter.saveState()
+#        print self.mem.cfgfile.splitterstate,  base64.b64encode(self.mem.cfgfile.splitterstate)
         self.mem.cfgfile.save()
         self.update()
 
@@ -225,6 +226,9 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.cambiarJugador()
 
     def cambiarJugador(self):          
+        if self.mem.jugadores.alguienHaGanado()==True:
+            self.afterWinning()
+            return          
         self.mem.jugadores.actual.log (self.trUtf8("Fin de turno"))
         self.ogl.updateGL()        
         delay(400)
