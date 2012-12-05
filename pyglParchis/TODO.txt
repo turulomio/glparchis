@@ -2,7 +2,6 @@
                     si una barrera es la que quiere comer a una ficha, no debería contabilizar doble
 20120918 Cuando saque un cinco y tenga que muestre en log que debe sacar
 20120918 Hacer sistema para jugar en red
-20120918 Mostrar sistema de gráficos de 6 jugadores
 20120925 Cuando sale un 6 y con el 6 meto, corro 10 luego no me deja volver a tirar y tengo que mover otros 6
 20120930 El mensaje de final no tiene icono puede que todos popups
 20121019 Cuando se gane, hacer que el tablero gire y suba y baje
@@ -11,3 +10,5 @@
 20121101 Cuando se come en ruta1 se debe comer al último que llego
 20121104 Poner un sonido especifico 3 seises y a caaaSA
 20121202 Meter qm en qrc. buscar en internet
+20121205 Distribución no hay sonido en bin.linux
+20121205 Petaba con antiguos cfg, quizas poner versi´on al cfg.

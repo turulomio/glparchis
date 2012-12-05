@@ -2,10 +2,9 @@
 #-*- coding: utf-8 -*- 
 
 import sys, os, datetime
-WindowsVersion=False #Hay dos una en libmyquotes y otra en glparchis
-so="src.linux"
+
+so="src.linux" #src.linux src.windows bin.linux bin.windows. Se debe cambiar antes de compilar
 os.environ['glparchisso']=so
-#src.linux src.windows bin.linux bin.windows
 if so=="src.windows" or so=="bin.windows":
     sys.path.append("../lib/glparchis")
 elif so=="src.linux" or so=="bin.linux":
