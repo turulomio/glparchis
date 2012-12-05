@@ -1,17 +1,16 @@
-21/09/12 17:24
+5/12/12 13:37
 Estadísticas del proyecto
 
                   	Segmentos	Palabras	Caracteres (sin espacios)	Caracteres (incluyendo espacios)	
-Total:            	       74	     463	                     2900	                            3310	
-Pendientes:       	        0	       0	                        0	                               0	
-Únicos:           	       70	     463	                     2868	                            3278	
-Pendientes únicos:	        0	       0	                        0	                               0	
+Total:            	       86	     500	                     3051	                            3512	
+Pendientes:       	       12	      44	                      465	                             504	
+Únicos:           	       81	     500	                     3011	                            3472	
+Pendientes únicos:	       12	      44	                      465	                             504	
 
 
 Estadísticas por archivo individual:
 
 Nombre de archivo	Total Segmentos	Segmentos Pendientes	Segmentos únicos	Segmentos Únicos Pendientes	Palabras en total	Palabras pendientes	Palabras Únicas	Palabras Únicas Pendientes	Caracteres en total (sin espacios)	Caracteres pendientes (sin espacios)	Caracteres Únicos (sin espacios)	Caracteres Únicos Pendientes (sin espacios)	Caracteres en total (incluyendo espacios)	Caracteres pendientes (incluyendo espacios)	Caracteres Únicos (incluyendo espacios)	Caracteres Únicos Pendientes (incluyendo espacios)	
 AUTHORS-EN.txt   	              7	                   0	               7	                          0	               16	                  0	             16	                         0	                               142	                                   0	                             142	                                          0	                                      151	                                          0	                                    151	                                                 0	
-CHANGELOG-EN.txt 	             42	                   0	              38	                          0	              295	                  0	            295	                         0	                              1547	                                   0	                            1515	                                          0	                                     1836	                                          0	                                   1804	                                                 0	
-INSTALL-EN.txt   	             20	                   0	              20	                          0	               92	                  0	             92	                         0	                               671	                                   0	                             671	                                          0	                                      743	                                          0	                                    743	                                                 0	
-RELEASES-EN.txt  	              5	                   0	               5	                          0	               60	                  0	             60	                         0	                               540	                                   0	                             540	                                          0	                                      580	                                          0	                                    580	                                                 0	
+CHANGELOG-EN.txt 	             50	                   0	              45	                          0	              342	                  0	            342	                         0	                              1795	                                   0	                            1755	                                          0	                                     2130	                                          0	                                   2090	                                                 0	
+INSTALL-EN.txt   	             29	                  12	              29	                         12	              142	                 44	            142	                        44	                              1114	                                 465	                            1114	                                        465	                                     1231	                                        504	                                   1231	                                               504	

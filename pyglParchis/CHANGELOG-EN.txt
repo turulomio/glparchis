@@ -1,3 +1,13 @@
+XXXXXXXX 
+======== 
+- About menu shows a dice
+- cmdDado improved
+- Double click on the board to roll the dice
+Solved bug when there's a new game version
+- Added support to highscores
+- Added 6 and 8 players game
+
+
 20120921
 ======== 
 - Bug solved looking for game updates
