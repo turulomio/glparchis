@@ -70,6 +70,22 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Ahora se muestra un dado en Acerca De</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20121205T121029Z">
+        <seg>- About menu shows a dice</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Ahora se puede tirar el dado haciendo doble click encima del tablero.</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20121205T121135Z">
+        <seg>- Double click on the board to roll the dice</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- Añadida distribución de binarios en windows y linux</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120914T150831Z">
@@ -134,6 +150,14 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Mejorado el cmdDado</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20121205T121105Z">
+        <seg>- cmdDado improved</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- Nueva opción de menú que busca actualizaciones de forma manual o cada 7 dias</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120917T133111Z">
@@ -150,10 +174,26 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Se ha añadido juegos de 6 y 8 jugadores</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20121205T121241Z">
+        <seg>- Added 6 and 8 players game</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- Se ha añadido puntuación al juego teniendo en cuenta el número de casillas movidas.</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120910T205756Z">
         <seg>- Score system added. It uses the number of moved places.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Se ha añadido soporte para highscores</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20121205T121230Z">
+        <seg>- Added support to highscores</seg>
       </tuv>
     </tu>
     <tu>
@@ -270,6 +310,14 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Solucionando problema con el sistema de consultar actualizaciones</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20121205T121219Z">
+        <seg>Solved bug when there's a new game version</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- pyopengl</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T070729Z">
@@ -282,14 +330,6 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T065919Z">
         <seg>- python2</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>- vorbis-tools</seg>
-      </tuv>
-      <tuv lang="EN-GB" changeid="root" changedate="20120902T065917Z">
-        <seg>- vorbis-tools</seg>
       </tuv>
     </tu>
     <tu>
@@ -350,14 +390,6 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>=======</seg>
-      </tuv>
-      <tuv lang="EN-GB" changeid="root" changedate="20120902T065856Z">
-        <seg>=======</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
         <seg>========</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20111102T130026Z">
@@ -366,18 +398,10 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>============================</seg>
+        <seg>==========</seg>
       </tuv>
-      <tuv lang="EN-GB" changeid="root" changedate="20111102T130301Z">
-        <seg>============================ </seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>===============================</seg>
-      </tuv>
-      <tuv lang="EN-GB" changeid="root" changedate="20111102T130323Z">
-        <seg>=============================== </seg>
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T130210Z">
+        <seg>========== </seg>
       </tuv>
     </tu>
     <tu>
@@ -386,14 +410,6 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120917T132956Z">
         <seg>Now it exists the game</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>Con el siguiente comando se hace una desinstalación limpia</seg>
-      </tuv>
-      <tuv lang="EN-GB" changeid="root" changedate="20120902T070257Z">
-        <seg>The next comand makes a clean uninstall of the application</seg>
       </tuv>
     </tu>
     <tu>
@@ -446,18 +462,26 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>Procedimiento de desinstalación</seg>
+        <seg>Para desinstalar utiliza el siguiente comando hace una desinstalación limpia</seg>
       </tuv>
-      <tuv lang="EN-GB" changeid="root" changedate="20111102T130321Z">
-        <seg>Uninstalling procedure</seg>
+      <tuv lang="EN-GB" changeid="root" changedate="20121205T123639Z">
+        <seg> </seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>Procedimiento de instalación</seg>
+        <seg>Procedimiento de instalación para binarios linux</seg>
       </tuv>
-      <tuv lang="EN-GB" changeid="root" changedate="20111102T130250Z">
-        <seg>Installation procedure</seg>
+      <tuv lang="EN-GB" changeid="root" changedate="20121205T123700Z">
+        <seg>Procedure to install the game from linux binaries</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Procedimiento de instalación para fuentes linux</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20121205T121305Z">
+        <seg>Procedure to install the game from linux sources</seg>
       </tuv>
     </tu>
     <tu>
@@ -518,42 +542,10 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
-        <seg>glparchis-20120902 &lt;==&gt;  svn -r 187 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
+        <seg>XXXXXXXX</seg>
       </tuv>
-      <tuv lang="EN-GB" changeid="root" changedate="20120902T074816Z">
-        <seg>glparchis-20120902 &lt;==&gt;  svn -r 187 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>glparchis-20120910 &lt;==&gt;  svn -r 209 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
-      </tuv>
-      <tuv lang="EN-GB" changeid="root" changedate="20120910T210013Z">
-        <seg>glparchis-20120910 &lt;==&gt;  svn -r 209 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>glparchis-20120914 &lt;==&gt;  svn -r 224 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
-      </tuv>
-      <tuv lang="EN-GB" changeid="root" changedate="20120914T150924Z">
-        <seg>glparchis-20120914 &lt;==&gt;  svn -r 224 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>glparchis-20120917 &lt;==&gt;  svn -r 241 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
-      </tuv>
-      <tuv lang="EN-GB" changeid="root" changedate="20120917T133317Z">
-        <seg>glparchis-20120917 &lt;==&gt;  svn -r 241 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="ES-ES">
-        <seg>glparchis-20120921 &lt;==&gt;  svn -r 250 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
-      </tuv>
-      <tuv lang="EN-GB" changeid="root" changedate="20120921T152410Z">
-        <seg>glparchis-20120921 &lt;==&gt;  svn -r 250 co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
+      <tuv lang="EN-GB" changeid="root" changedate="20111102T130053Z">
+        <seg>XXXXXXXX </seg>
       </tuv>
     </tu>
     <tu>
