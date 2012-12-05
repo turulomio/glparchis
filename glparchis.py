@@ -21,8 +21,7 @@ except:
 
 sys.setrecursionlimit(50000)
 
-os.chdir(os.path.expanduser("~/.glparchis/"))
-cfgfile=ConfigFile("glparchis.cfg")
+cfgfile=ConfigFile(os.path.expanduser("~/.glparchis/") +"glparchis.cfg")
 cfgfile.save()
 
 app = QApplication(sys.argv)

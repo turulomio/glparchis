@@ -119,20 +119,23 @@ zip -r $CWD/dist/glparchis-src-windows-$VERSION.zip ./ >/dev/null
 cd $CWD
 
 ###### install pyinstaller
-cd $DIR
-#wget https://github.com/downloads/pyinstaller/pyinstaller/pyinstaller-2.0.tar.bz2
-#tar xjf pyinstaller-2.0.tar.bz2
-git clone git://github.com/pyinstaller/pyinstaller.git
-#mv pyinstaller-2.0 pyinstaller
-cd $CWD
+if [ ! -d "/tmp/pyinstaller" ]; then
+    cd $DIR
+    #wget https://github.com/downloads/pyinstaller/pyinstaller/pyinstaller-2.0.tar.bz2
+    #tar xjf pyinstaller-2.0.tar.bz2
+    git clone git://github.com/pyinstaller/pyinstaller.git
+    #mv pyinstaller-2.0 pyinstaller
+    cd $CWD
+fi
 
 ####### binaries linux
 #sed -i -e 's:so="src.windows":so="bin.linux":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py
-sed -i -e 's:so="src.windows":so="bin.linux":' $DIRSRCWINDOWS/bin/glparchis.py
-python $DIR/pyinstaller/pyinstaller.py -o $DIRBINLINUX -i $DIRSRCWINDOWS/share/glparchis/ficharoja.ico -w -p $DIRSRCWINDOWS/lib/glparchis $DIRSRCWINDOWS/bin/glparchis.py
+DESTDIR=$DIRBINLINUX make all
+sed -i -e 's:so="src.linux":so="bin.linux":' $DIRBINLINUX/bin/glparchis
+python /tmp/pyinstaller/pyinstaller.py -o $DIRBINLINUX -i $DIRBINLINUX/share/glparchis/ficharoja.ico -w -p $DIRBINLINUX/lib/glparchis $DIRBINLINUX/bin/glparchis
 echo "Execute glparchis and play" > $DIRBINLINUX/dist/README.txt
-cp $DIRSRCLINUX/sounds/*.wav $DIRBINLINUX/dist/glparchis
-cp $DIRSRCWINDOWS/share/glparchis/*.qm $DIRBINLINUX/dist/glparchis
+cp $DIRBINLINUX/share/glparchis/sounds/*.wav $DIRBINLINUX/dist/glparchis
+cp $DIRBINLINUX/share/glparchis/*.qm $DIRBINLINUX/dist/glparchis
 mkdir $DIRBINLINUX/dist/glparchis/phonon_backend/
 cp /usr/lib64/kde4/plugins/phonon_backend/phonon_gstreamer.so $DIRBINLINUX/dist/glparchis/phonon_backend/
 echo "  * Comprimiendo binario linux..."
@@ -142,11 +145,11 @@ cd $CWD
 
 ###### binaries windows
 #sed -i -e 's:so="bin.linux":so="bin.windows":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py
-sed -i -e 's:so="bin.linux":so="bin.windows":' $DIRSRCWINDOWS/bin/glparchis.py
-wine $HOME/.wine/drive_c/Python27/python.exe  $DIR/pyinstaller/pyinstaller.py -o $DIRBINWINDOWS -i $DIRSRCWINDOWS/share/glparchis/ficharoja.ico -w -p $DIRSRCWINDOWS/lib/glparchis $DIRSRCWINDOWS/bin/glparchis.py
-#wine $HOME/.wine/drive_c/Python27/python.exe    /usr/bin/cxfreeze -o $DIRBINWINDOWS -i $DIRSRCWINDOWS/share/glparchis/ficharoja.ico -w -p $DIRSRCWINDOWS/lib/glparchis $DIRSRCWINDOWS/bin/glparchis.py
-cp $DIRSRCLINUX/sounds/*.wav $DIRBINWINDOWS/dist/glparchis
-cp $DIRSRCWINDOWS/share/glparchis/*.qm $DIRBINWINDOWS/dist/glparchis
+DESTDIR=$DIRBINWINDOWS make all
+sed -i -e 's:so="src.linux":so="bin.windows":' $DIRBINWINDOWS/bin/glparchis
+wine $HOME/.wine/drive_c/Python27/python.exe  /tmp/pyinstaller/pyinstaller.py -o $DIRBINWINDOWS -i $DIRBINWINDOWS/share/glparchis/ficharoja.ico -w -p $DIRBINWINDOWS/lib/glparchis $DIRBINWINDOWS/bin/glparchis
+cp $DIRBINWINDOWS/share/glparchis/sounds/*.wav $DIRBINWINDOWS/dist/glparchis
+cp $DIRBINWINDOWS/share/glparchis/*.qm $DIRBINWINDOWS/dist/glparchis
 cp $CWD/glparchis.iss $DIRBINWINDOWS
 sed -i -e "s:XXXXXXXX:$VERSION:" $DIRBINWINDOWS/glparchis.iss
 cd $DIRBINWINDOWS
