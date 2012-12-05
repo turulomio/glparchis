@@ -1979,16 +1979,7 @@ class Mem:
             self.mediaObject.play()
             time.sleep(0.4)
             QCoreApplication.processEvents();    
-
-#
-#            
-#    def rutas(self, name=None):
-#        if name==None:
-#            return dic2list(self.dic_rutas)
-#        else:
-#            return self.dic_rutas[str(name)]
-
-        
+   
     def generar_fichas(self):
         """Debe generarse despuñes de jugadores"""
         id=0
