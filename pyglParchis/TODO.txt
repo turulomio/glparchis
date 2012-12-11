@@ -9,3 +9,4 @@
 20121101 Si muevo el scroll que se desactive el update hasta siguiente turno humano
 20121101 Cuando se come en ruta1 se debe comer al último que llego
 20121104 Poner un sonido especifico 3 seises y a caaaSA
+20121211 Poner autosave
