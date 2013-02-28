@@ -30,7 +30,6 @@ mkdir $DIRSRCLINUX/doc
 mkdir $DIRSRCLINUX/i18n
 mkdir $DIRSRCLINUX/images
 mkdir $DIRSRCLINUX/ui
-mkdir $DIRSRCLINUX/saves
 mkdir $DIRSRCLINUX/sounds
 
 cp      Makefile \
@@ -54,6 +53,7 @@ cp      i18n/*.ts \
 cp 	ui/frm* \
 	ui/wdg* \
 	ui/q* \
+	ui/pos* \
 	$DIRSRCLINUX/ui
 
 cp	images/*.png \
@@ -63,9 +63,6 @@ cp	images/*.png \
 
 cp 	sounds/* \
 	$DIRSRCLINUX/sounds
-
-cp 	saves/*.glparchis \
-	$DIRSRCLINUX/saves
 
 echo "  * Comprimiendo codigo fuente linux..."
 cd $DIR/src.linux
@@ -114,7 +111,7 @@ cd $CWD
 
 ###### install pyinstaller
 if [ ! -d "/tmp/pyinstaller" ]; then
-    cd $DIR
+    cd /tmp
     #wget https://github.com/downloads/pyinstaller/pyinstaller/pyinstaller-2.0.tar.bz2
     #tar xjf pyinstaller-2.0.tar.bz2
     git clone git://github.com/pyinstaller/pyinstaller.git
