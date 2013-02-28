@@ -297,11 +297,6 @@
         <source>Preferencias</source>
         <translation>Preferințe</translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="ui/frmMain.ui" line="21"/>
-        <source>glParchis 2010-2012 ©</source>
-        <translation>glParchis 2010-2012 ©</translation>
-    </message>
     <message>
         <location filename="ui/frmMain.ui" line="123"/>
         <source>Esc</source>
@@ -420,6 +415,11 @@
     <message encoding="UTF-8">
         <location filename="ui/frmMain.ui" line="71"/>
         <source>Con&amp;figuración</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmMain.ui" line="21"/>
+        <source>glParchis 2010-2013. GNU General Public License</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

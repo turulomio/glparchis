@@ -1,4 +1,4 @@
-XXXXXXXX
+20130228
 ========
 - Ahora se muestra un dado en Acerca De
 - Mejorado el cmdDado

@@ -26,21 +26,21 @@ If you want to help me, you can get the sourcecode from Sourceforge Subversion t
 Procedure to install the game from linux binaries
 ================================================
 
-Se descomprime el fichero con el comando 
+Uncompress with the command: 
   # tar xvfz glparchis-bin-linux-VERSION.tar.gz 
 
-Se entra en el directorio glparchis, que se acaba de crear con
+Enter in glparchis dirctory with:
   # cd glparchis
 
-y se ejecuta el fichero glparchis con
-  # ./glparchis
+and execute the file glparchis
+  # ./glParchis
 
   
   
-Procedimiento de instalación para binarios windows
+Procedure to install the game from windows binaries
 ==================================================
 
 
 
-Procedimiento de instalación para fuentes windows
+Procedure to install the game from windows sources
 =================================================

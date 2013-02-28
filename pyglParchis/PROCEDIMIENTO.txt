@@ -5,6 +5,7 @@ Nueva release
 3) Ejecutar omegat-integration para los ficheros
 4) Ejecutar linguist
 4) Crear los 4 ficheros (con distribution.sh que pone la version automatico) y subirlo a sourceforge
+	OJO Que no se genere con nvidia
 4) Colocar las versiones preferidas de windows y linux
 5) Subir al subversion y comprobar que queda subversion +1
 6) Crear un nuevo ebuild con la nueva versión
