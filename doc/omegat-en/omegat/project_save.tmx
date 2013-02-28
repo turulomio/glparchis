@@ -6,6 +6,22 @@
 <!-- Default translations -->
     <tu>
       <tuv lang="ES-ES">
+        <seg># ./glparchis</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130228T193337Z">
+        <seg># ./glParchis</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg># cd glparchis</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130228T193302Z">
+        <seg># cd glparchis</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg># make all</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T070554Z">
@@ -26,6 +42,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T070227Z">
         <seg># svn co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg># tar xvfz glparchis-bin-linux-VERSION.tar.gz</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130228T193243Z">
+        <seg># tar xvfz glparchis-bin-linux-VERSION.tar.gz</seg>
       </tuv>
     </tu>
     <tu>
@@ -312,8 +336,8 @@
       <tuv lang="ES-ES">
         <seg>- Solucionando problema con el sistema de consultar actualizaciones</seg>
       </tuv>
-      <tuv lang="EN-GB" changeid="root" changedate="20121205T121219Z">
-        <seg>Solved bug when there's a new game version</seg>
+      <tuv lang="EN-GB" changeid="root" changedate="20130228T193516Z">
+        <seg>- Solved bug when there's a new game version</seg>
       </tuv>
     </tu>
     <tu>
@@ -422,6 +446,14 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>20130228</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130228T193157Z">
+        <seg>20130228</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>=======</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T065856Z">
@@ -458,6 +490,38 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20111102T130323Z">
         <seg>=============================== </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>===============================================</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130228T193213Z">
+        <seg>===============================================</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>================================================</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130228T193221Z">
+        <seg>================================================</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>=================================================</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130228T193411Z">
+        <seg>=================================================</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>==================================================</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130228T193400Z">
+        <seg>==================================================</seg>
       </tuv>
     </tu>
     <tu>
@@ -774,10 +838,26 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>Procedimiento de instalación para binarios windows</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130228T193357Z">
+        <seg>Procedure to install the game from windows binaries</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>Procedimiento de instalación para fuentes linux</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20121205T121305Z">
         <seg>Procedure to install the game from linux sources</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Procedimiento de instalación para fuentes windows</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130228T193410Z">
+        <seg>Procedure to install the game from windows sources</seg>
       </tuv>
     </tu>
     <tu>
@@ -842,6 +922,22 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T065932Z">
         <seg>Uncompres the file</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Se descomprime el fichero con el comando</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130228T193241Z">
+        <seg>Uncompress with the command:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Se entra en el directorio glparchis, que se acaba de crear con</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130228T193301Z">
+        <seg>Enter in glparchis dirctory with:</seg>
       </tuv>
     </tu>
     <tu>
@@ -1082,6 +1178,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T065841Z">
         <seg>tag=dado, comido, metido</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>y se ejecuta el fichero glparchis con</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130228T193321Z">
+        <seg>and execute the file glparchis</seg>
       </tuv>
     </tu>
     <tu>
