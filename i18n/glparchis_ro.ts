@@ -540,12 +540,12 @@
     <message>
         <location filename="ui/frmShowFicha.py" line="12"/>
         <source>Nombre: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Numele: %1</translation>
     </message>
     <message>
         <location filename="ui/frmShowFicha.py" line="13"/>
         <source>Jugador: %1 (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jucator: %1 (%2)</translation>
     </message>
     <message utf8="true">
         <location filename="ui/frmShowFicha.py" line="15"/>
@@ -566,12 +566,12 @@
     <message>
         <location filename="ui/wdgGame.ui" line="98"/>
         <source>Juego</source>
-        <translation type="unfinished"></translation>
+        <translation>Joaca</translation>
     </message>
     <message utf8="true">
         <location filename="ui/wdgGame.ui" line="122"/>
         <source>Estadísticas</source>
-        <translation type="unfinished"></translation>
+        <translation>Statistica</translation>
     </message>
     <message utf8="true">
         <location filename="ui/wdgGame.ui" line="131"/>
