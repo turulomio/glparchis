@@ -6,7 +6,7 @@
     <message>
         <location filename="libglparchis.py" line="1096"/>
         <source>No es del jugador actual</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="libglparchis.py" line="1121"/>
@@ -54,7 +54,7 @@
     <message>
         <location filename="ui/qtablestatistics.py" line="22"/>
         <source>Total</source>
-        <translation type="unfinished"></translation>
+        <translation>Totalité</translation>
     </message>
 </context>
 <context>
