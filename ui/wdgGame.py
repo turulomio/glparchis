@@ -252,6 +252,22 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.panel().grp.update()
         
         self.mem.jugadores.cambiarJugador()
+        
+        #Realiza el autosave
+        if self.mem.cfgfile.autosaves>0 and self.mem.jugadores.actual.ia==False:
+            #Borra el n-esimo autosave
+            autosaves=[]
+            for infile in glob.glob( os.path.join(os.path.expanduser("~/.glparchis/"), 'autosave_*.glparchis') ):
+                autosaves.append(infile)
+            autosaves.sort()
+            if len(autosaves)>=self.mem.cfgfile.autosaves:
+                for f in autosaves[:len(autosaves)-self.mem.cfgfile.autosaves+1]:
+                    os.unlink(f)
+            #Graba el ultimo autosave
+            n=datetime.datetime.now()
+            dt="{0}{1:02d}{2:02d}_{3:02d}{4:02d}{5:02d}".format(n.year, n.month, n.day, n.hour, n.minute, n.second)
+            self.mem.save("autosave_{0}_{1}_{2}.glparchis".format(dt, self.mem.maxplayers, self.mem.jugadores.actual.color.name ))
+        
     
         self.panelScroll.ensureWidgetVisible(self.panel())
         self.panel().setActivated(True) #Activa y limpia panel

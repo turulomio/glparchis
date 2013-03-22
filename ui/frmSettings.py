@@ -11,6 +11,7 @@ class frmSettings(QDialog, Ui_frmSettings):
         QDialog.__init__(self, parent)
         self.cfgfile=cfgfile
         self.setupUi(self)
+        
         if self.cfgfile.language=="en":
             self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText("English"))
         elif self.cfgfile.language=="es":
@@ -21,6 +22,8 @@ class frmSettings(QDialog, Ui_frmSettings):
             self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText(QString(u'Rom\xe2n')))
         elif self.cfgfile.language=="ru":
             self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText(QString(u'\u0420\u0443\u0441\u0441\u043a\u0438\u0439')))#ruso
+            
+        self.spinAutosaves.setValue(self.cfgfile.autosaves)
 
     @pyqtSlot(QString)      
     def on_cmbLanguage_currentIndexChanged(self, stri):
@@ -40,4 +43,5 @@ class frmSettings(QDialog, Ui_frmSettings):
         
     def on_buttonBox_accepted(self):
         self.on_cmbLanguage_currentIndexChanged(self.cmbLanguage.currentText())
+        self.cfgfile.autosaves=self.spinAutosaves.value()
         self.cfgfile.save()

@@ -8,7 +8,6 @@
 20121031 Grabar tambi´en el medio.glparchis tiempo de partida, comidas por mi y otros, seises
 20121101 Si muevo el scroll que se desactive el update hasta siguiente turno humano
 20121104 Poner un sonido especifico 3 seises y a caaaSA
-20121211 Poner autosave
 20130320 En frances lanzar los dados en pantalla de inicio no se vé. Cuando es largo el nombre no se centra
 20130320 Poner datetime en highscores, ojo con la actualización
 20130320 Cuando acabee la partida y se genere un highscore abrir el tab y poner en negrilla el recien insertado

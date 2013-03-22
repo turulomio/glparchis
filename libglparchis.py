@@ -7,7 +7,7 @@ from poscasillas4 import *
 from posfichas4 import *
 from poscasillas6 import *
 from posfichas6 import *
-import os,  random,   ConfigParser,  datetime,  time,  sys,  codecs,  base64,  math
+import os,  random,   ConfigParser,  datetime,  time,  sys,  codecs,  base64,  math,  glob
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
@@ -345,10 +345,12 @@ class HighScore:
             f=codecs.open(os.path.expanduser("~/.glparchis/")+ "highscores"+str(self.players), "r", "utf-8")
             for line in f.readlines():
                 a=line[:-1].split(";")
-                self.arr.append((a[0], a[1], a[2], a[3],  a[4]))
+                self.arr.append((a[0], a[1], a[2], self.mem.colores.arr[0].compatibilityName(a[3]),  a[4]))
             f.close()
         except:
             print("I couldn't load highscores")
+            
+            
         
     def save(self):        
         f=codecs.open(os.path.expanduser("~/.glparchis/")+ "highscores"+str(self.players), "w", "utf-8")
@@ -554,6 +556,7 @@ class SetColores:
         for c in self.arr:
             if c.name==name:
                 return c
+        print ("No se ha encontrado el color de nombre {0}".format(name))
                 
     def index(self, color):
         """Función que devuelve un orden de color según se ha insertado en el array"""
@@ -583,10 +586,12 @@ class SetJugadores:
             
         if self.actual.plays==False:
             self.cambiarJugador()
+            return
         else:
             self.actual.tiradaturno=TiradaTurno()#Se crea otro objeto porque así el anterior queda vinculada< a TiradaHistorica.
             self.actual.movimientos_acumulados=None
             self.actual.LastFichaMovida=None
+
         
     def vaGanando(self):
         """Devuelve el objeto del jugador que va ganando"""
@@ -1415,7 +1420,19 @@ class Color:
         if dark.g<0: dark.g=0
         if dark.b<0: dark.b=0
         return dark
-                    
+                            
+    def compatibilityName(self,  color):
+        #Deber´a desaparecer el tres versiones despues de 20130228
+        if color=="gray":
+            return "dimgray"
+        elif color=="pink":
+            return "fuchsia"
+        elif color=="orange":
+            return "darkorange"
+        elif color=="cyan":
+            return "darkturquoise"
+        return color
+            
     def qicon(self):
         ico = QIcon()
         ico.addPixmap(self.qpixmap(), QIcon.Normal, QIcon.Off) 
@@ -1456,6 +1473,8 @@ class ConfigFile:
         self.names.append("Orangy")
         self.names.append("Cyanny")
         self.lastupdate=datetime.date.today().toordinal()
+        self.autosaves=10
+        
         self.config=ConfigParser.ConfigParser()
         self.load()
         
@@ -1470,7 +1489,12 @@ class ConfigFile:
             self.lastupdate=self.config.getint("frmMain", "lastupdate")
         except:
             print ("No hay fichero de configuración")    
-      
+            
+        try:
+            self.autosaves=self.config.getint("frmSettings", "autosaves")
+        except:
+            print ("Error cargando autosaves")
+            
     def save(self):
         if self.config.has_section("frmMain")==False:
             self.config.add_section("frmMain")
@@ -1479,6 +1503,7 @@ class ConfigFile:
         if self.config.has_section("frmInitGame")==False:
             self.config.add_section("frmInitGame")
         self.config.set("frmSettings",  'language', self.language)
+        self.config.set("frmSettings",  'autosaves', self.autosaves)
         self.config.set("frmMain",  'splitter_state', base64.b64encode(self.splitterstate))
         self.config.set("frmMain",  'lastupdate', self.lastupdate)
         cadena=""
