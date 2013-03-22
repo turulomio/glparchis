@@ -11,3 +11,9 @@
 20121104 Poner un sonido especifico 3 seises y a caaaSA
 20121211 Poner autosave
 20121211 El color rosa de tirar el daddo es un poco raro
+20130310 El color pinky oscurecerlo
+20130320 En frances lanzar los dados en pantalla de inicio no se vé
+20130320 Poner datetime en highscores, ojo con la actualización
+20130320 Cuando acabee la partida y se genere un highscore abrir el tab y poner en negrilla el recien insertado
+20130320 POner tableros a 6 y a 8 jugadores.
+20130320 En el mensaje de aviso de que ha ganado poner la puntuación con un desglose de puntos
