@@ -13,3 +13,6 @@
 20130320 Cuando acabee la partida y se genere un highscore abrir el tab y poner en negrilla el recien insertado
 20130320 POner tableros a 6 y a 8 jugadores.
 20130320 En el mensaje de aviso de que ha ganado poner la puntuación con un desglose de puntos
+20130320 Una ficha en la salida de casilla con otra ficha no se siente amenazada, cambiar AI
+20130320 Calcular en table estadísticas los puntos, si llevo 27 sumar a 27 los que falta 12121 a todos los jugadores y calcular
+20130320 En la tabla de estadísticas quitar el nombre del color y centrar la ficha de color
