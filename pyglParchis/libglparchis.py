@@ -13,7 +13,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.phonon import Phonon
 #Cuando se modifique una version sacada se pondrá un + p.e. 20120921+
-version="20130228"
+version="20130228+"
 def q2s(q):
     """Qstring to python string en utf8"""
     return str(QString.toUtf8(q))
@@ -1154,11 +1154,16 @@ class Ficha(QObject):
         casilladestino=self.casilla(ruta)
         fichasdestino=casilladestino.buzon_fichas()
         #debe estar primero porque es una casilla segura
-        if self.posruta==0 and self.jugador.tiradaturno.ultimoValor()==5 and self.jugador.hayDosJugadoresDistintosEnRuta1():                
-            if fichasdestino[0][1].jugador!=mem.jugadores.actual:
-                return(True, fichasdestino[0][1])
-            else:# fichasdestino[1][1].jugador!=mem.jugadores.actual:
-                return(True, fichasdestino[1][1])
+        if self.posruta==0 and self.jugador.tiradaturno.ultimoValor()==5 and casilladestino.buzon_numfichas()==2:                
+            #Las dos fichas son del jugador actual
+            if mem.jugadores.actual==fichasdestino[0][1].jugador and mem.jugadores.actual==fichasdestino[1][1].jugador:
+                return (False, None)
+            elif mem.jugadores.actual==fichasdestino[0][1].jugador and mem.jugadores.actual!=fichasdestino[1][1].jugador:
+                return (True, fichasdestino[1][1])
+            elif mem.jugadores.actual!=fichasdestino[0][1].jugador and mem.jugadores.actual==fichasdestino[1][1].jugador:
+                return (True, fichasdestino[0][1])
+            else: #Las dos son distintas se escoge la última que entró
+                return (True, casilladestino.UltimaFichaEnLlegar)
                 
         if casilladestino.seguro==True:
             return (False, None)
@@ -1439,7 +1444,7 @@ class ConfigFile:
         self.file=file
         self.splitterstate=''
         self.language="en"
-        self.names=[]#Es un array separado de ##=##=## y siempre habr´a 8
+        self.names=[]#Es un array separado de ##=##=## y siempre habrá 8
         #NAMES ES UN STRING DE PYTHON USAR S2Q Y Q2S
         self.names.append("Yellowy")
         self.names.append("Bluey")
@@ -1454,7 +1459,7 @@ class ConfigFile:
         self.load()
         
     def load(self):
-        """Cuando se carga si falla deber´a coger los valores por decto"""
+        """Cuando se carga si falla deberá coger los valores por decto"""
         try:
             self.config.read(self.file)
             self.splitterstate=base64.b64decode(self.config.get("frmMain", "splitter_state"))
@@ -1497,8 +1502,7 @@ class Casilla(QObject):
         self.seguro=seguro# No se debe usar directamente ya que en ruta 1 solo es seguro si el jugador no tiene en casa
         self.buzon=[None]*self.maxfichas #Se crean los huecos y se juega con ellos para mantener la posicion
         self.oglname=self.id+18#Nombre usado para pick por opengl
-#        self.texturas=[]
-#        self.texturas.append(self.bindTexture(QPixmap(':/glparchis/keke.png')))
+        self.UltimaFichaEnLlegar=None#Puntero a un objeto ficha que es utilizado p.e. cuando se come la segunda ficha en la casilla de salida por un 5 obligado a salir
         
     def __repr__(self):
         return ("Casilla {0} con {1} fichas dentro".format(self.id, self.buzon_numfichas()))
@@ -1919,12 +1923,15 @@ class Casilla(QObject):
     def buzon_append(self,  ficha):
         """No chequea debe ser comprobado antes"""
         self.buzon[self.posicionLibreEnBuzon()]=ficha
+        self.UltimaFichaEnLlegar=ficha
             
     def buzon_remove(self, ficha):
         """No chequea debe ser comprobado antes"""
         for i, f in enumerate(self.buzon):
             if f==ficha:
                 self.buzon[i]=None
+                if f==self.UltimaFichaEnLlegar:#Si la ficha a borrar era la ultima se pone a None
+                    self.UltimaFichaEnLlegar=None
                 return
         print ("No se ha podido hacer buzon_remove con {0}".format(ficha))
                 

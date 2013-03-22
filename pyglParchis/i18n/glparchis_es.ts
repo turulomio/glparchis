@@ -38,12 +38,12 @@
         <translation>No puede mover, porque hay otra ficha obligada a mover</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1183"/>
+        <location filename="libglparchis.py" line="1189"/>
         <source>He comido una ficha de %1 en la casilla %2</source>
         <translation>He comido una ficha de %1 en la casilla %2</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1200"/>
+        <location filename="libglparchis.py" line="1206"/>
         <source>Una ficha a llegado a la meta</source>
         <translation>Una ficha a llegado a la meta</translation>
     </message>
@@ -205,6 +205,11 @@
         <location filename="ui/frmHelp.py" line="19"/>
         <source>Se puede cambiar la vista del tablero pulsando la tecla &apos;m&apos;.&lt;p&gt;</source>
         <translation>Se puede cambiar la vista del tablero pulsando la tecla &apos;m&apos;.&lt;p&gt;</translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>Cuando en la casilla de salida de un jugador hay dos fichas distintas y el jugador del mismo color de la casilla de salida saca un cinco y debe sacar una ficha, la última ficha que llegó se va a casa.&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context encoding="UTF-8">
@@ -408,7 +413,7 @@
         <translation>Ctrl+8</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2150"/>
+        <location filename="libglparchis.py" line="2159"/>
         <source>Esta opción se está desarrollando</source>
         <translation>Esta opción se está desarrollando</translation>
     </message>
@@ -555,7 +560,7 @@
 <context encoding="UTF-8">
     <name>glparchis</name>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2045"/>
+        <location filename="libglparchis.py" line="2054"/>
         <source>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</source>
         <translation>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</translation>
     </message>
