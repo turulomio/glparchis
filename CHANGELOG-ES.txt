@@ -1,6 +1,7 @@
 XXXXXXXX
 ========
 - Cuando se come una ficha en la casilla de salida, esta ficha es la última en llegar si son dos distintas al color de la casilla
+- Cambiado el pink por el fuchsia, el cyan por darkturquoise y el orange por darkorange en colores web
 
 20130228
 ========
