@@ -1,3 +1,7 @@
+XXXXXXXX
+========
+- Cuando se come una ficha en la casilla de salida, esta ficha es la última en llegar si son dos distintas al color de la casilla
+
 20130228
 ========
 - Ahora se muestra un dado en Acerca De
@@ -6,7 +10,6 @@
 - Solucionando problema con el sistema de consultar actualizaciones
 - Se ha añadido soporte para highscores
 - Se ha añadido juegos de 6 y 8 jugadores
-
 
 20120921
 ========

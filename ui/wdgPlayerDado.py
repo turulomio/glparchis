@@ -20,7 +20,7 @@ class wdgPlayerDado(QWidget, Ui_wdgPlayerDado):
         self.pixmap.setPixmap(self.jugador.color.qpixmap())
 
     def setName(self, name):
-        """Se hace as´i porque al principio no se sabe el name del jugador
+        """Se hace así porque al principio no se sabe el name del jugador
         NAME ES UN QSTRING
         """
         self.lblName.setText(name)
