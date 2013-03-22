@@ -90,9 +90,9 @@ class Dado(QObject):
                     self.position=(23, 18, 1)
                 elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("green"):
                     self.position=(30, 14, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("gray"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("dimgray"):
                     self.position=(37, 18, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("pink"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("fuchsia"):
                     self.position=(37, 27, 1)
             else:
                 if ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("yellow"):
@@ -103,13 +103,13 @@ class Dado(QObject):
                     self.position=(15, 15, 1)
                 elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("green"):
                     self.position=(19, 3, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("gray"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("dimgray"):
                     self.position=(30, 0, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("pink"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("fuchsia"):
                     self.position=(40, 3, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("orange"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("darkorange"):
                     self.position=(44, 15, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("cyan"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("darkturquoise"):
                     self.position=(40, 27, 1)
             
             glTranslatef(self.position[0],self.position[1],self.position[2]);
@@ -539,11 +539,11 @@ class SetColores:
         self.arr.append(Color(255, 50, 50, "red"))
         self.arr.append(Color(50, 255, 50, "green"))
         if maxplayers>4:#Para 6
-            self.arr.append(Color(64, 64, 64, "gray"))
-            self.arr.append(Color(255, 50, 255, "pink"))
+            self.arr.append(Color(64, 64, 64, "dimgray"))
+            self.arr.append(Color(255, 50, 255, "fuchsia"))
         if maxplayers>6:# Para 8
-            self.arr.append(Color(255, 128, 50, "orange"))
-            self.arr.append(Color(50, 255, 255, "cyan"))
+            self.arr.append(Color(255, 128, 50, "darkorange"))
+            self.arr.append(Color(50, 255, 255, "darkturquoise"))
             
     def color(self, colo):
         for c in self.arr:
@@ -668,10 +668,10 @@ class SetRutas:
         r=Ruta(self.mem.colores.colorbyname("green"), self.mem)
         r.append_id([154]+range(56, 102+1)+range(1, 51+1)+range(127, 134+1))
         self.arr.append(r)      
-        r=Ruta(self.mem.colores.colorbyname("gray"), self.mem)
+        r=Ruta(self.mem.colores.colorbyname("dimgray"), self.mem)
         r.append_id([155]+range(73, 102+1)+range(1, 68+1)+range(135, 142+1))
         self.arr.append(r)
-        r=Ruta(self.mem.colores.colorbyname("pink"), self.mem)
+        r=Ruta(self.mem.colores.colorbyname("fuchsia"), self.mem)
         r.append_id([156]+range(90, 102+1)+range(1, 85+1)+range(143, 150+1))
         self.arr.append(r)       
 
@@ -688,16 +688,16 @@ class SetRutas:
         r=Ruta(self.mem.colores.colorbyname("green"), self.mem)
         r.append_id([204]+range(56, 136+1)+range(1, 51+1)+range(161, 168+1))
         self.arr.append(r)            
-        r=Ruta(self.mem.colores.colorbyname("gray"), self.mem)
+        r=Ruta(self.mem.colores.colorbyname("dimgray"), self.mem)
         r.append_id([205]+range(73, 136+1)+range(1, 68+1)+range(169, 176+1))
         self.arr.append(r)
-        r=Ruta(self.mem.colores.colorbyname("pink"), self.mem)
+        r=Ruta(self.mem.colores.colorbyname("fuchsia"), self.mem)
         r.append_id([206]+range(90, 136+1)+range(1, 85+1)+range(177, 184+1))
         self.arr.append(r)
-        r=Ruta(self.mem.colores.colorbyname("orange"), self.mem)
+        r=Ruta(self.mem.colores.colorbyname("darkorange"), self.mem)
         r.append_id([207]+range(107, 136+1)+range(1, 102+1)+range(185, 192+1))
         self.arr.append(r) 
-        r=Ruta(self.mem.colores.colorbyname("cyan"), self.mem)
+        r=Ruta(self.mem.colores.colorbyname("darkturquoise"), self.mem)
         r.append_id([208]+range(124, 136+1)+range(1, 119+1)+range(193, 200+1))
         self.arr.append(r)    
 
@@ -861,9 +861,9 @@ class SetCasillas:
             elif id==56 or (id>=127 and id<=134) or id==154:
                return self.mem.colores.colorbyname("green")
             elif id==73 or (id>=135 and id<=142) or id==155:
-               return self.mem.colores.colorbyname("gray")
+               return self.mem.colores.colorbyname("dimgray")
             elif id==90 or (id>=143 and id<=150) or id==156:
-               return self.mem.colores.colorbyname("pink")
+               return self.mem.colores.colorbyname("fuchsia")
             else:
                 return Color(255, 255, 255)            
                                 
@@ -945,13 +945,13 @@ class SetCasillas:
             elif id in (56, 161, 162, 163, 164, 165, 166, 167, 168, 204):
                return self.mem.colores.colorbyname("green")
             elif id in (73, 169, 170, 171, 172, 173, 174, 175, 176, 205):
-               return self.mem.colores.colorbyname("gray")
+               return self.mem.colores.colorbyname("dimgray")
             elif id in (90, 177, 178, 179, 180, 181, 182, 183, 184, 206):
-               return self.mem.colores.colorbyname("pink")
+               return self.mem.colores.colorbyname("fuchsia")
             elif id in (107, 185, 186, 187, 188, 189, 190, 191, 192, 207) :
-               return self.mem.colores.colorbyname("orange")
+               return self.mem.colores.colorbyname("darkorange")
             elif id in (124, 193, 194, 195, 196, 197, 198, 199, 200, 208) :
-               return self.mem.colores.colorbyname("cyan")
+               return self.mem.colores.colorbyname("darkturquoise")
             else:
                 return Color(255, 255, 255)            
                 
@@ -1431,14 +1431,15 @@ class Color:
             return QPixmap(":/glparchis/fichaverde.png")
         elif self.name=="red":
             return QPixmap(":/glparchis/ficharoja.png")
-        elif self.name=="gray":
+        elif self.name=="dimgray":
             return QPixmap(":/glparchis/fichagris.png")
-        elif self.name=="pink":
+        elif self.name=="fuchsia":
             return QPixmap(":/glparchis/ficharosa.png")
-        elif self.name=="orange":
+        elif self.name=="darkorange":
             return QPixmap(":/glparchis/fichanaranja.png")
-        elif self.name=="cyan":
+        elif self.name=="darkturquoise":
             return QPixmap(":/glparchis/fichacyan.png")
+
 class ConfigFile:
     def __init__(self, file):
         self.file=file
