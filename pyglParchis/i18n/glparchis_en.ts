@@ -3,47 +3,47 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="1096"/>
+        <location filename="libglparchis.py" line="1101"/>
         <source>No es del jugador actual</source>
         <translation>It&apos;s not a current player piece</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1121"/>
+        <location filename="libglparchis.py" line="1126"/>
         <source>Se ha pasado la meta</source>
         <translation>You missed the central space</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1127"/>
+        <location filename="libglparchis.py" line="1132"/>
         <source>Hay una barrera</source>
         <translation>There is a blockade</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1136"/>
+        <location filename="libglparchis.py" line="1141"/>
         <source>No hay espacio en la casilla</source>
         <translation>The space is bussy</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1116"/>
+        <location filename="libglparchis.py" line="1121"/>
         <source>No puede mover</source>
         <translation>It can&apos;t move</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1134"/>
+        <location filename="libglparchis.py" line="1139"/>
         <source>Obligado a sacar y a comer</source>
         <translation>You&apos;re forced to move to the first space and to eat</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1085"/>
+        <location filename="libglparchis.py" line="1090"/>
         <source>No puede mover, porque hay otra ficha obligada a mover</source>
         <translation>It can&apos;t move, because there is another piece forced to move</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1188"/>
+        <location filename="libglparchis.py" line="1193"/>
         <source>He comido una ficha de %1 en la casilla %2</source>
         <translation>I&apos;ve eaten a %1 piece at the %2 place</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1205"/>
+        <location filename="libglparchis.py" line="1210"/>
         <source>Una ficha a llegado a la meta</source>
         <translation>A piece arrived the central space</translation>
     </message>
@@ -413,7 +413,7 @@
         <translation>Ctrl+8</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2158"/>
+        <location filename="libglparchis.py" line="2183"/>
         <source>Esta opción se está desarrollando</source>
         <translation>This part is being develped</translation>
     </message>
@@ -436,34 +436,44 @@
         <translation>glParchis configuration</translation>
     </message>
     <message>
-        <location filename="ui/frmSettings.ui" line="106"/>
+        <location filename="ui/frmSettings.ui" line="108"/>
         <source>Selecciona un idioma</source>
         <translation>Select a language</translation>
     </message>
     <message>
-        <location filename="ui/frmSettings.ui" line="114"/>
+        <location filename="ui/frmSettings.ui" line="122"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmSettings.ui" line="123"/>
+        <location filename="ui/frmSettings.ui" line="131"/>
         <source>Español</source>
         <translation>Español</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmSettings.ui" line="132"/>
+        <location filename="ui/frmSettings.ui" line="140"/>
         <source>Français</source>
         <translation>Français</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmSettings.ui" line="150"/>
+        <location filename="ui/frmSettings.ui" line="158"/>
         <source>Русский</source>
         <translation>Русский</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmSettings.ui" line="141"/>
+        <location filename="ui/frmSettings.ui" line="149"/>
         <source>Român</source>
         <translation>Român</translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmSettings.ui" line="170"/>
+        <source>Número de autoguardados</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmSettings.ui" line="183"/>
+        <source>Si quiere autoguardado seleccione un número mayor que 0</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context encoding="UTF-8">
@@ -560,7 +570,7 @@
 <context encoding="UTF-8">
     <name>glparchis</name>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2053"/>
+        <location filename="libglparchis.py" line="2078"/>
         <source>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</source>
         <translation>The file has an obsolete version or it&apos;s broken. It can&apos;t be loaded.</translation>
     </message>

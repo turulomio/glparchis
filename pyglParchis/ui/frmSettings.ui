@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>367</width>
-    <height>155</height>
+    <width>416</width>
+    <height>233</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -101,60 +101,93 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Selecciona un idioma</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="cmbLanguage">
-         <item>
-          <property name="text">
-           <string>English</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../images/glparchis.qrc">
-            <normaloff>:/flags/uk.png</normaloff>:/flags/uk.png</iconset>
-          </property>
+        <layout class="QFormLayout" name="formLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Selecciona un idioma</string>
+           </property>
+          </widget>
          </item>
-         <item>
-          <property name="text">
-           <string>Español</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../images/glparchis.qrc">
-            <normaloff>:/flags/spain.png</normaloff>:/flags/spain.png</iconset>
-          </property>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="cmbLanguage">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <item>
+            <property name="text">
+             <string>English</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../images/glparchis.qrc">
+              <normaloff>:/flags/uk.png</normaloff>:/flags/uk.png</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Español</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../images/glparchis.qrc">
+              <normaloff>:/flags/spain.png</normaloff>:/flags/spain.png</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Français</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../images/glparchis.qrc">
+              <normaloff>:/flags/france.png</normaloff>:/flags/france.png</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Român</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../images/glparchis.qrc">
+              <normaloff>:/flags/rumania.png</normaloff>:/flags/rumania.png</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Русский</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../images/glparchis.qrc">
+              <normaloff>:/flags/rusia.png</normaloff>:/flags/rusia.png</iconset>
+            </property>
+           </item>
+          </widget>
          </item>
-         <item>
-          <property name="text">
-           <string>Français</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../images/glparchis.qrc">
-            <normaloff>:/flags/france.png</normaloff>:/flags/france.png</iconset>
-          </property>
+         <item row="1" column="0">
+          <widget class="QLabel" name="nMeroDeAutoguardadosLabel">
+           <property name="text">
+            <string>Número de autoguardados</string>
+           </property>
+          </widget>
          </item>
-         <item>
-          <property name="text">
-           <string>Român</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../images/glparchis.qrc">
-            <normaloff>:/flags/rumania.png</normaloff>:/flags/rumania.png</iconset>
-          </property>
+         <item row="1" column="1">
+          <widget class="QSpinBox" name="spinAutosaves">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Si quiere autoguardado seleccione un número mayor que 0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
          </item>
-         <item>
-          <property name="text">
-           <string>Русский</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../images/glparchis.qrc">
-            <normaloff>:/flags/rusia.png</normaloff>:/flags/rusia.png</iconset>
-          </property>
-         </item>
-        </widget>
+        </layout>
        </item>
       </layout>
      </item>
