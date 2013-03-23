@@ -38,12 +38,12 @@
         <translation>It can&apos;t move, because there is another piece forced to move</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1205"/>
+        <location filename="libglparchis.py" line="1209"/>
         <source>He comido una ficha de %1 en la casilla %2</source>
         <translation>I&apos;ve eaten a %1 piece at the %2 place</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1222"/>
+        <location filename="libglparchis.py" line="1226"/>
         <source>Una ficha a llegado a la meta</source>
         <translation>A piece arrived the central space</translation>
     </message>
@@ -51,7 +51,7 @@
 <context>
     <name>QTableStatistics</name>
     <message>
-        <location filename="ui/qtablestatistics.py" line="27"/>
+        <location filename="ui/qtablestatistics.py" line="25"/>
         <source>Total</source>
         <translation>Total</translation>
     </message>
@@ -423,7 +423,7 @@
         <translation>Ctrl+8</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2195"/>
+        <location filename="libglparchis.py" line="2199"/>
         <source>Esta opción se está desarrollando</source>
         <translation>This part is being develped</translation>
     </message>
@@ -580,7 +580,7 @@
 <context encoding="UTF-8">
     <name>glparchis</name>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2090"/>
+        <location filename="libglparchis.py" line="2094"/>
         <source>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</source>
         <translation>The file has an obsolete version or it&apos;s broken. It can&apos;t be loaded.</translation>
     </message>
@@ -588,62 +588,62 @@
 <context>
     <name>wdgGame</name>
     <message>
-        <location filename="ui/wdgGame.ui" line="98"/>
+        <location filename="ui/wdgGame.ui" line="108"/>
         <source>Juego</source>
         <translation>Game</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/wdgGame.ui" line="122"/>
+        <location filename="ui/wdgGame.ui" line="132"/>
         <source>Estadísticas</source>
         <translation>Statistics</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/wdgGame.ui" line="131"/>
+        <location filename="ui/wdgGame.ui" line="150"/>
         <source>Número de tiradas</source>
         <translation>Number of throws</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="141"/>
+        <location filename="ui/wdgGame.ui" line="160"/>
         <source>Dado saca 1</source>
         <translation>Roll a 1</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="150"/>
+        <location filename="ui/wdgGame.ui" line="169"/>
         <source>Dado saca 2</source>
         <translation>Roll a 2</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="159"/>
+        <location filename="ui/wdgGame.ui" line="178"/>
         <source>Dado saca 3</source>
         <translation>Roll a 3</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="168"/>
+        <location filename="ui/wdgGame.ui" line="187"/>
         <source>Dado saca 4</source>
         <translation>Roll a 4</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="177"/>
+        <location filename="ui/wdgGame.ui" line="196"/>
         <source>Dado saca 5</source>
         <translation>Roll a 5</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="186"/>
+        <location filename="ui/wdgGame.ui" line="205"/>
         <source>Dado saca 6</source>
         <translation>Roll a 6</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="200"/>
+        <location filename="ui/wdgGame.ui" line="219"/>
         <source>Fichas comidas por mi</source>
         <translation>Pieces eaten by me</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="205"/>
+        <location filename="ui/wdgGame.ui" line="224"/>
         <source>Fichas comidas por otro</source>
         <translation>Pieces eaten by other</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="215"/>
+        <location filename="ui/wdgGame.ui" line="234"/>
         <source>3 seises seguidos</source>
         <translation>3 sixes in a row</translation>
     </message>
@@ -653,12 +653,12 @@
         <translation>Roll the dice</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/wdgGame.ui" line="393"/>
+        <location filename="ui/wdgGame.ui" line="412"/>
         <source>Puntuación</source>
         <translation>Score</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="388"/>
+        <location filename="ui/wdgGame.ui" line="407"/>
         <source>Tiempo de partida</source>
         <translation>Game time</translation>
     </message>
@@ -733,42 +733,42 @@
         <translation>Click this button or double click in the board to roll the dice</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="263"/>
+        <location filename="ui/wdgGame.ui" line="282"/>
         <source>Mejores puntuaciones</source>
         <translation>High Scores</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="378"/>
+        <location filename="ui/wdgGame.ui" line="397"/>
         <source>Fecha</source>
         <translation>Date</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="383"/>
+        <location filename="ui/wdgGame.ui" line="402"/>
         <source>Nombre</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="225"/>
+        <location filename="ui/wdgGame.ui" line="244"/>
         <source>Casillas avanzadas</source>
         <translation>Advanced places</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="282"/>
+        <location filename="ui/wdgGame.ui" line="301"/>
         <source>Partida de 4 jugadores</source>
         <translation>4 players game</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="324"/>
+        <location filename="ui/wdgGame.ui" line="343"/>
         <source>Partida de 6 jugadores</source>
         <translation>6 players game</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="368"/>
+        <location filename="ui/wdgGame.ui" line="387"/>
         <source>Partida de 8 jugadores</source>
         <translation>8 players game</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/wdgGame.ui" line="411"/>
+        <location filename="ui/wdgGame.ui" line="430"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La puntuación que se obtiene al terminar la partida depende de lo lejos que hayan acabado las fichas de los oponentes de la casilla central y de la diferencia entre las fichas comidas por mí y las fichas que me comieron otros jugadores&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The score you get when you finish the game,depends on how far you have advanced opponents pieces to the center square and the difference between the pieces I&apos;ve eaten and the ones other players ate.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -778,8 +778,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="246"/>
-        <source>dfasfasa</source>
+        <location filename="ui/wdgGame.ui" line="67"/>
+        <source>Panel de usuario sigue al jugador actual</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

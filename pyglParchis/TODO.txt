@@ -3,13 +3,14 @@
 20120918 Cuando saque un cinco y tenga que muestre en log que debe sacar
 20120918 Hacer sistema para jugar en red
 20120925 Cuando sale un 6 y con el 6 meto, corro 10 luego no me deja volver a tirar y tengo que mover otros 6
+	 20130323 me pasó lo mismo al comer. No sé si le dí dos veces al click
 20120930 El mensaje de final no tiene icono puede que todos popups
 20121019 Cuando se gane, hacer que el tablero gire y suba y baje
 20121031 Grabar también el medio.glparchis tiempo de partida, comidas por mi y otros, seises
 20121101 Si muevo el scroll que se desactive el update hasta siguiente turno humano
-20121104 Poner un sonido especifico 3 seises y a caaaSA
+20121104 Poner un sonido especifico 3 seises y a caaasa
 20130320 Cuando acabee la partida y se genere un highscore abrir el tab y poner en negrilla el recien insertado
-20130320 POner tableros a 6 y a 8 jugadores.
+20130320 Poner tableros a 6 y a 8 jugadores.
 20130320 Una ficha en la salida de casilla con otra ficha no se siente amenazada, cambiar AI
 20130321 Me desaparecio una ficha amarilla, cuando un cyan saco y comio con un 5 creo
-20130321 Quitar header y emularlo en la primera linea centrando las fichas en la qtablestatistics
+20130321 Hacer un check box detener seguimiento del panal de usuario
