@@ -285,8 +285,8 @@ class wdgGame(QWidget, Ui_wdgGame):
             dt="{0}{1:02d}{2:02d}_{3:02d}{4:02d}{5:02d}".format(n.year, n.month, n.day, n.hour, n.minute, n.second)
             self.mem.save("autosave_{0}_{1}_{2}.glparchis".format(dt, self.mem.maxplayers, self.mem.jugadores.actual.color.name ))
         
-    
-        self.panelScroll.ensureWidgetVisible(self.panel())
+        if self.chkAvanza.isChecked()==True:
+            self.panelScroll.ensureWidgetVisible(self.panel())
         self.panel().setActivated(True) #Activa y limpia panel
         self.panel().grp.update()
 
