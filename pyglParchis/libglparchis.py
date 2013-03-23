@@ -220,7 +220,132 @@ class Dado(QObject):
             pix=QPixmap(":/glparchis/cube.png")
         return pix
                     
+class Amenaza:
+    """Clase que controla las amenazas que se ciernen sobre una ficha"""
+    def __init__(self,  objetivo, atacante, tipo):
+        self.objetivo=objetivo
+        self.atacante=atacante
+        self.tipo=tipo #1-6 dados, 7 seis con todas fuera,10 meter una ficha, 20 comer una ficha, 51 saca un cinco y mueve 1
         
+    def name(self, tipo=None):
+        if tipo==None:
+            tipo=self.tipo
+        if tipo==1: return QApplication.translate("glparchis",u"Sacar un 1")
+        if tipo==2: return QApplication.translate("glparchis",u"Sacar un 2")
+        if tipo==3: return QApplication.translate("glparchis",u"Sacar un 3")
+        if tipo==4: return QApplication.translate("glparchis",u"Sacar un 4")
+        if tipo==5: return QApplication.translate("glparchis",u"Sacar un 5")
+        if tipo==6: return QApplication.translate("glparchis",u"Sacar un 6")
+        if tipo==7: return QApplication.translate("glparchis",u"Sacar un 7")
+        if tipo==10: return QApplication.translate("glparchis",u"Contar 10")
+        if tipo==20: return QApplication.translate("glparchis",u"Contar 20")
+        if tipo==51: return QApplication.translate("glparchis",u"Sacar un 5")
+
+class SetAmenazas:
+    """Clase que genera las amenazas contra un objetivo en la casilla pasado como par´ametro"""
+    def __init__(self,  mem,  objetivo, casilla):
+        """Crea objeto"""
+        self.arr=None#Array de objetos amenaza
+        self.objetivo=objetivo#Ficha objetivo de la amenaza. 
+        self.casilla=casilla
+        self.mem=mem
+        self.detectar()
+        
+    def append(self, atacante, type):
+        self.arr.append(Amenaza(self.objetivo, atacante, type))
+            
+    def detectar(self):
+        self.arr=[]
+        print ("detectando en ",  self.casilla)
+        
+        
+        if self.casilla.rampallegada==True:
+            return
+        
+        
+        if self.casilla.seguro==True and self.casilla not in self.mem.casillas.rutas1():# Esta asegurada y no est´a en ruta 1
+            return
+            
+        #Detecta salida con un 5 a ruta1
+        if self.casilla in self.mem.casillas.rutas1():
+            #Busca la casilla inicial del mismo color
+            casillaataque=self.mem.rutas.ruta(self.mem.colores.index(self.casilla.color)).arr[0]#Casilla inicial
+            if casillaataque.buzon_numfichas()>0:#Hay fichas que coman
+                print (casillaataque)
+                if self.casilla.buzon_numfichas()==2:
+                    if  self.objetivo.posruta!=1: #Si no est´a en su propia ruta1, est´a llena
+                        for posicion, ficha in casillaataque.buzon_fichas():
+                            if  ficha.puedeComer(self.mem, ficha.posruta+1): #aquí chequea que sea mismo color o distinta, ultima en llegar...
+                                self.append(ficha, 51)
+                                break#Con que haya uno es suficiente
+                            else:
+                                return
+                    else:#Esta en su propia ruta1
+                        return
+                else:
+                    return
+            else:
+                return
+        
+        #Detecta si hay ficha en 1OJO LA CASILLA QUE SE BUSCA NO ES LA ACTUAL DEL OBJETIVO sino la de parametro de entrada self.casilla
+        casillaataque=self.mem.circulo.casilla(self.casilla.id, -1)
+        for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+1):
+                self.append(ficha, 1)
+        #Detecta si hay ficha en 2
+        casillaataque=self.mem.circulo.casilla(self.casilla.id, -2)
+        for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+2):
+                self.append(ficha, 2)
+        #Detecta si hay ficha en 3
+        casillaataque=self.mem.circulo.casilla(self.casilla.id, -3)
+        for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+3):
+                self.append(ficha, 3)
+        #Detecta si hay ficha en 4
+        casillaataque=self.mem.circulo.casilla(self.casilla.id, -4)
+        for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+4):
+                self.append(ficha, 4)
+        #Detecta si hay ficha en 5
+        casillaataque=self.mem.circulo.casilla(self.casilla.id, -5)
+        for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+5):
+                self.append(ficha, 5 )
+        #Detecta si hay ficha en 6 y chequea que no tiene todas fuera de casa
+        casillaataque=self.mem.circulo.casilla(self.casilla.id, -6)
+        for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.jugador.tieneFichasEnCasa()==False:
+                continue
+            if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+6):
+                self.append(ficha, 6 )
+                
+        #Detecta si hay ficha en 7 y chequea que tiene todas fuera de casa
+        casillaataque=self.mem.circulo.casilla(self.casilla.id, -7)
+        for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.jugador.tieneFichasEnCasa()==True:
+                continue
+            if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+7):
+                self.append(ficha, 7 )
+        
+        #Detecta si hay ficha en 10
+        casillaataque=self.mem.circulo.casilla(self.casilla.id, -10)
+        for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.jugador.tieneFichasEnRampaLlegada()==False:
+                continue
+            if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+10):
+                self.append(ficha, 10 )
+                
+        #Detecta si hay ficha en 20
+        casillaataque=self.mem.circulo.casilla(self.casilla.id, -20)
+        for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+20):
+                self.append(ficha, 20 )
+
+
+    def numero(self):
+        return len(self.arr)
+
 class TiradaHistorica:
     """Estudio estadistico de tiradas. Lleva un array con todas los objetos TiradaTurno por cada jugador
     Se graba cuando se tira ya que es un objeto TiradaTurno que se vincula en el array de TiradaHistorica"""
@@ -555,8 +680,9 @@ class SetColores:
     
 class SetJugadores:
     """Agrupación de jugadores"""
-    def __init__(self):
+    def __init__(self, mem):
         self.arr=[]
+        self.mem=mem
         self.actual=None
         self.winner=None
         
@@ -580,6 +706,8 @@ class SetJugadores:
             self.actual.tiradaturno=TiradaTurno()#Se crea otro objeto porque así el anterior queda vinculada< a TiradaHistorica.
             self.actual.movimientos_acumulados=None
             self.actual.LastFichaMovida=None
+
+        
 
         
     def vaGanando(self):
@@ -1068,6 +1196,18 @@ class Ficha(QObject):
         self.jugador=jugador
         self.oglname=self.id#Nombre usado para pick por opengl
         
+    
+        
+    def amenazas(self, mem):
+        return SetAmenazas(mem, self, self.casilla())
+        
+        
+    def amenazasDestino(self,mem,  desplazamiento):
+        if self.posruta+desplazamiento<self.ruta.length():
+            return SetAmenazas(mem, self, self.ruta.arr[self.posruta+desplazamiento])
+        else:
+            print ("No se puede ver la amenaza destino de una ruta pasada")
+        
     def __repr__(self):
         return  "Ficha {0} del jugador {1}".format(self.id, self.jugador.color.name)
         
@@ -1166,9 +1306,9 @@ class Ficha(QObject):
             casillaorigen.buzon_remove(self)
         casilladestino.buzon_append(self)
 
-    def puedeComer(self, mem, ruta):
+    def puedeComer(self, mem, destposruta):
         """Devuelve un (True, ficha a comer) or (False, None) si puede comer una ficha en la posición ruta"""
-        casilladestino=self.casilla(ruta)
+        casilladestino=self.casilla(destposruta)
         fichasdestino=casilladestino.buzon_fichas()
         #debe estar primero porque es una casilla segura
         if self.posruta==0 and self.jugador.tiradaturno.ultimoValor()==5 and casilladestino.buzon_numfichas()==2:                
@@ -2000,7 +2140,7 @@ class Mem:
 #        self.casillas=None#Lista cuya posicion coincide con el id del objeto jugador que lleva dentro
         self.dic_fichas={}
         self.colores=SetColores()
-        self.jugadores=SetJugadores()
+        self.jugadores=SetJugadores(self)
         self.dic_rutas={}
         self.dado=Dado()
         self.selFicha=None
@@ -2130,6 +2270,8 @@ class Mem:
         self.jugadores.actual=self.jugadores.jugador(config.get("game", 'playerstarts'))    
         self.jugadores.actual.movimientos_acumulados=None#Comidas ymetidas
         self.jugadores.actual.LastFichaMovida=None #Se utiliza cuando se va a casa
+
+        
 
         os.chdir(cwd)
         return True
