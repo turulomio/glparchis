@@ -4,6 +4,7 @@ XXXXXXXX
 - Cambiado el pink por el fuchsia, el cyan por darkturquoise y el orange por darkorange en colores web. Se ha añadido compatibilidad con los highscores que usaban los antiguos
 - Se ha añadido soporte para autoguardado
 - Mejorado el interfaz de usuario
+- Solucionado error al cerrar la aplicación
 
 20130228
 ========

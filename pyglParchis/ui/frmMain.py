@@ -104,18 +104,16 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.cfgfile.lastupdate=datetime.date.today().toordinal()
         self.cfgfile.save()
         
-    @pyqtSlot()      
-    def on_actionSalir_triggered(self):
+
+        
+    @pyqtSlot(QEvent)   
+    def closeEvent(self,event):   
         print ("saliendo")
         if self.game:
             self.game.__del__()
         qApp.closeAllWindows()
         qApp.exit()
         sys.exit(0)
-        
-    @pyqtSlot(QEvent)   
-    def closeEvent(self,event):
-        self.on_actionSalir_triggered()
   
     def showWdgGame(self):
         self.actionSound.setEnabled(True)

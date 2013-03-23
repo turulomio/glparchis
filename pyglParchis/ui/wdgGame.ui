@@ -53,8 +53,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>279</width>
-            <height>584</height>
+            <width>307</width>
+            <height>579</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -84,7 +84,7 @@
           <enum>QTabWidget::Rounded</enum>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>1</number>
          </property>
          <property name="elideMode">
           <enum>Qt::ElideMiddle</enum>
@@ -232,9 +232,22 @@
                </row>
                <row>
                 <property name="text">
-                 <string>Tiempo de partida</string>
+                 <string>Puntuación</string>
                 </property>
                </row>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblTime">
+               <property name="styleSheet">
+                <string notr="true">font: 75 bold 11pt &quot;Sans Serif&quot;;</string>
+               </property>
+               <property name="text">
+                <string>dfasfasa</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
               </widget>
              </item>
             </layout>

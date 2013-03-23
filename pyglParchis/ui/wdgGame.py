@@ -17,18 +17,35 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.show()
         self.panels=[]
         
+        
+        #Timer statistics
+        self.timer = QTimer()
+        QObject.connect(self.timer, SIGNAL("timeout()"), self.timer_reload)     
+        self.timer.start(500)
+        
     
     def __del__(self):
         print ("Destructor wdgGame")
         self.stopthegame=True
-        self.table.stopReloads()
+        self.stopReloads()
         for p in self.panels:
             p.stopTimerLog()
             self.panelScrollLayout.removeWidget(p)
         self.hide()
         
+        
+    
+    def stopReloads(self):
+        self.timer.stop()
+        
+    def timer_reload(self):
+        self.table.reload()
+        self.lblTime.setText(self.trUtf8("Tiempo de partida: {0}".format(str(datetime.datetime.now()-self.inicio).split(".")[0])))
+        
+        
 
     def assign_mem(self, mem):
+        self.inicio=datetime.datetime.now()#tiempo de inicio
         self.mem=mem
         self.stopthegame=False
         self.table.assign_mem(self.mem)
@@ -91,7 +108,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.mem.jugadores.actual.log(self.trUtf8("Has ganado la partida"))
         self.mem.jugadores.winner=self.mem.jugadores.actual
         self.mem.play("win")
-        self.table.stopReloads()
+        self.stopReloads()
         self.stopthegame=True
         for p in self.panels:
             p.stopTimerLog()
