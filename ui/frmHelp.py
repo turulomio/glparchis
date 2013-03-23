@@ -28,7 +28,9 @@ class frmHelp(QDialog, Ui_frmHelp):
             self.trUtf8(u"Cuando una ficha llega a la casilla final, el jugador obtiene el derecho de mover 10 puntos.<p>")+
             self.trUtf8(u"Cuando dos fichas del mismo color están en una misma casilla, se produce una barrera. Este hecho impide que el resto de jugadores puedan avanzar por ella. El jugador está obligado a abrir la barrera cuando obtiene un 6 con el dado.<p>")+
             self.trUtf8(u"Cuando un jugador tiene todas sus fichas fuera de casa (casilla inicial) y obtiene un 6, contará 7 casillas de movimiento en el tablero.<p>")+
-            self.trUtf8(u"Cuando en la casilla de salida de un jugador hay dos fichas distintas y el jugador del mismo color de la casilla de salida saca un cinco y debe sacar una ficha, la última ficha que llegó se va a casa.<p>")+            
+            self.trUtf8(u"Cuando en la casilla de salida de un jugador hay dos fichas distintas y el jugador del mismo color de la casilla de salida saca un cinco y debe sacar una ficha, la última ficha que llegó se va a casa.<p>")+    
+            self.trUtf8(u"<h3>Puntuación</h3>")+
+            self.trUtf8(u"La puntuación viene dada por el número de casillas que le falta recorrer a los otros jugadores menos las que me faltan a mí. A esta cantidad se le suma la diferencia entre las fichas que he comido y las que me han comido, multiplicadas por 40.<p>")+        
             self.trUtf8(u"<h2>Interfaz de usuario</h2>")+
             self.trUtf8(u"Existe un splitter entre los paneles de usuario y el tablero de parchís, que podrá ser movido según las preferencias del usuario. En algunas resoluciones de pantalla, al empezar el juego, el tablero aparece en negro hasta que se utiliza el splitter para darle el tamaño mínimo necesario.<p>")+
             self.trUtf8(u"Para tirar el dado se puede hacer click en el botón 'Tirar el dado' o hacer doble-click encima del tablero, cuando le toque a un jugador humano.<p>")+

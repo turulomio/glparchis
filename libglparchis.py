@@ -324,20 +324,9 @@ class HighScore:
         self.arr=[]#Cada item tendrá la fecha en ordinal, nombre, tiempo de partida, color, el score
         self.load()
 
-    def score(self):
-        """Saca la puntuación del jugador, se usa para el highscore y tiene en cuenta el tiempo 
-        y lo lejos que han acabado los jugadores de la partida,
-       Además se sumará la diferencia de comidas y comidas por otro *20 """
-        resultado=0
-        for j in  self.mem.jugadores.arr:
-            if j != self.mem.jugadores.winner:
-                resultado=resultado+j.casillasPorMover()
-        resultado=resultado+(self.mem.jugadores.winner.comidaspormi-self.mem.jugadores.winner.comidasporotro)*20
-        return resultado
-        
     def insert(self):
         """Solo se puede ejecutar, cuando haya un winner"""
-        self.arr.append((datetime.date.today().toordinal(), self.mem.jugadores.winner.name, (datetime.datetime.now()-self.mem.inittime).seconds, self.mem.jugadores.winner.color.name,  str(self.score())))
+        self.arr.append((datetime.date.today().toordinal(), self.mem.jugadores.winner.name, (datetime.datetime.now()-self.mem.inittime).seconds, self.mem.jugadores.winner.color.name,  str(self.mem.jugadores.score())))
         self.arr=sorted(self.arr, key=lambda a:a[4],  reverse=True)     
 
     def load(self):
@@ -614,6 +603,29 @@ class SetJugadores:
             if j.HaGanado()==True:
                 return True
         return False
+        
+        
+    def score(self, jugador=None):
+        """Da la puntuación de un jugador, durante o al final de la partida 
+        Saca la puntuación del jugador, se usa para el highscore y tiene en cuenta el tiempo 
+        y lo lejos que han acabado los jugadores de la partida,
+        Resta el número de casillas del propio jugador
+       Además se sumará la diferencia de comidas y comidas por otro *30 
+       
+       Si no se pasa parámetro se usa para seleccionar el winner cuando haya acabado la partida"""
+        if jugador==None:
+            jugador=self.winner
+        resultado=0
+        jugadorcm=jugador.casillasPorMover()
+        for j in  self.arr:
+            if j != jugador:
+                jcm=j.casillasPorMover()
+                if jcm>jugadorcm:#Ya que si no salen valores negativos
+                    resultado=resultado+jcm-jugadorcm
+        resultado=resultado+(jugador.comidaspormi-jugador.comidasporotro)*40
+        if resultado<0:#Ya que la direfencia de comidas puede dar negativo
+            resultado=0
+        return resultado
         
         
 class SetRutas:        
@@ -1162,12 +1174,16 @@ class Ficha(QObject):
         if self.posruta==0 and self.jugador.tiradaturno.ultimoValor()==5 and casilladestino.buzon_numfichas()==2:                
             #Las dos fichas son del jugador actual
             if mem.jugadores.actual==fichasdestino[0][1].jugador and mem.jugadores.actual==fichasdestino[1][1].jugador:
+                print ("igual0,igual1")
                 return (False, None)
             elif mem.jugadores.actual==fichasdestino[0][1].jugador and mem.jugadores.actual!=fichasdestino[1][1].jugador:
+                print ("igual0,noigual1")
                 return (True, fichasdestino[1][1])
             elif mem.jugadores.actual!=fichasdestino[0][1].jugador and mem.jugadores.actual==fichasdestino[1][1].jugador:
+                print ("noigual0,igual1")
                 return (True, fichasdestino[0][1])
             else: #Las dos son distintas se escoge la última que entró
+                print ("noigual0,noigual1")
                 return (True, casilladestino.UltimaFichaEnLlegar)
                 
         if casilladestino.seguro==True:
@@ -1422,7 +1438,7 @@ class Color:
         return dark
                             
     def compatibilityName(self,  color):
-        #Deber´a desaparecer el tres versiones despues de 20130228
+        #Deberá desaparecer el tres versiones despues de 20130228
         if color=="gray":
             return "dimgray"
         elif color=="pink":
