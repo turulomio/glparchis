@@ -270,6 +270,8 @@ class wdgGame(QWidget, Ui_wdgGame):
         
         self.mem.jugadores.cambiarJugador()
         
+        
+        
         #Realiza el autosave
         if self.mem.cfgfile.autosaves>0 and self.mem.jugadores.actual.ia==False:
             #Borra el n-esimo autosave

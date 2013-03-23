@@ -3,47 +3,47 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="1113"/>
+        <location filename="libglparchis.py" line="1253"/>
         <source>No es del jugador actual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1138"/>
+        <location filename="libglparchis.py" line="1278"/>
         <source>Se ha pasado la meta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1144"/>
+        <location filename="libglparchis.py" line="1284"/>
         <source>Hay una barrera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1153"/>
+        <location filename="libglparchis.py" line="1293"/>
         <source>No hay espacio en la casilla</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1133"/>
+        <location filename="libglparchis.py" line="1273"/>
         <source>No puede mover</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1151"/>
+        <location filename="libglparchis.py" line="1291"/>
         <source>Obligado a sacar y a comer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1102"/>
+        <location filename="libglparchis.py" line="1242"/>
         <source>No puede mover, porque hay otra ficha obligada a mover</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1209"/>
+        <location filename="libglparchis.py" line="1349"/>
         <source>He comido una ficha de %1 en la casilla %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1226"/>
+        <location filename="libglparchis.py" line="1366"/>
         <source>Una ficha a llegado a la meta</source>
         <translation type="unfinished"></translation>
     </message>
@@ -423,7 +423,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2199"/>
+        <location filename="libglparchis.py" line="2341"/>
         <source>Esta opción se está desarrollando</source>
         <translation type="unfinished"></translation>
     </message>
@@ -557,17 +557,17 @@
         <translation>Dialog</translation>
     </message>
     <message>
-        <location filename="ui/frmShowFicha.ui" line="58"/>
+        <location filename="ui/frmShowFicha.ui" line="68"/>
         <source>TextLabel</source>
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="ui/frmShowFicha.py" line="12"/>
+        <location filename="ui/frmShowFicha.py" line="13"/>
         <source>Nombre: %1</source>
         <translation>Numele: %1</translation>
     </message>
     <message>
-        <location filename="ui/frmShowFicha.py" line="13"/>
+        <location filename="ui/frmShowFicha.py" line="14"/>
         <source>Jugador: %1 (%2)</source>
         <translation>Jucator: %1 (%2)</translation>
     </message>
@@ -576,12 +576,152 @@
         <source>Posición en ruta: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmShowFicha.ui" line="27"/>
+        <source>Información</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowFicha.ui" line="81"/>
+        <source>Amenazas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowFicha.ui" line="190"/>
+        <source>Ficha</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowFicha.ui" line="195"/>
+        <source>Casilla</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowFicha.ui" line="200"/>
+        <source>Thread</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowFicha.ui" line="107"/>
+        <source>Amenazas en destino</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmShowFicha.ui" line="117"/>
+        <source>Número de casillas a avanzar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowFicha.ui" line="133"/>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowFicha.ui" line="138"/>
+        <source>2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowFicha.ui" line="143"/>
+        <source>3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowFicha.ui" line="148"/>
+        <source>4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowFicha.ui" line="153"/>
+        <source>5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowFicha.ui" line="158"/>
+        <source>6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowFicha.ui" line="163"/>
+        <source>7</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowFicha.ui" line="168"/>
+        <source>10</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowFicha.ui" line="173"/>
+        <source>20</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowFicha.ui" line="183"/>
+        <source>Amenazas en la casilla X</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmShowFicha.ui" line="128"/>
+        <source>Selecciona un número</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowFicha.py" line="24"/>
+        <source>Amenazas en la casilla {0}</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
-<context encoding="UTF-8">
+<context>
     <name>glparchis</name>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2094"/>
+        <location filename="libglparchis.py" line="2234"/>
         <source>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="233"/>
+        <source>Sacar un 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="234"/>
+        <source>Sacar un 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="235"/>
+        <source>Sacar un 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="236"/>
+        <source>Sacar un 4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="242"/>
+        <source>Sacar un 5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="238"/>
+        <source>Sacar un 6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="239"/>
+        <source>Sacar un 7</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="240"/>
+        <source>Contar 10</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="241"/>
+        <source>Contar 20</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

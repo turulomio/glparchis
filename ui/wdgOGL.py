@@ -142,7 +142,7 @@ class wdgOGL(QGLWidget):
             if id_name>=0 and id_name<=15: #fichas van de 0 a 15
                 return mem.fichas(id_name)
             elif id_name==16:#tablero 16
-                return mem.tablero
+                return self.tablero
             elif id_name==17:#casillas de 17 a 121
                 return mem.dado
             elif id_name>=18 and id_name<=18+self.mem.casillas.number:#casillas de 17 a 121
@@ -195,7 +195,7 @@ class wdgOGL(QGLWidget):
             elif len(objetos)==2:
                 selFicha=object(self.mem, objetos[1])
                 if isinstance(selFicha, Ficha):
-                    a=frmShowFicha(self, Qt.Popup,  selFicha)
+                    a=frmShowFicha(self,  Qt.Popup,  selFicha, self.mem)
                     a. move(self.mapToGlobal(placePopUp()))
                     a.show()
                 
