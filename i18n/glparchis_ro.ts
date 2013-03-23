@@ -817,7 +817,7 @@
         <translation type="unfinished">Form</translation>
     </message>
     <message>
-        <location filename="ui/wdgPlayerDado.ui" line="94"/>
+        <location filename="ui/wdgPlayerDado.ui" line="154"/>
         <source>Tirar dado</source>
         <translation type="unfinished"></translation>
     </message>
