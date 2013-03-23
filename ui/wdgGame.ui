@@ -53,8 +53,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>390</width>
-            <height>786</height>
+            <width>765</width>
+            <height>761</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -63,6 +63,16 @@
            </item>
           </layout>
          </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="chkAvanza">
+         <property name="text">
+          <string>Panel de usuario sigue al jugador actual</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
       </layout>
@@ -252,7 +262,7 @@
                 <string notr="true">font: 75 bold 11pt &quot;Sans Serif&quot;;</string>
                </property>
                <property name="text">
-                <string>dfasfasa</string>
+                <string/>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>

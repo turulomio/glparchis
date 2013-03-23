@@ -778,7 +778,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="67"/>
+        <location filename="ui/wdgGame.ui" line="71"/>
         <source>Panel de usuario sigue al jugador actual</source>
         <translation type="unfinished"></translation>
     </message>

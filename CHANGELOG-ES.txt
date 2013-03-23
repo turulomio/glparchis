@@ -5,6 +5,7 @@ XXXXXXXX
 - Se ha añadido soporte para autoguardado
 - Mejorado el interfaz de usuario
 - Solucionado error al cerrar la aplicación
+- Añadida opción de que el panel de usuario siga al jugador actual o no
 
 20130228
 ========
