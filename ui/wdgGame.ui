@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1191</width>
-    <height>629</height>
+    <width>1501</width>
+    <height>836</height>
    </rect>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
@@ -53,8 +53,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>307</width>
-            <height>579</height>
+            <width>390</width>
+            <height>786</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -126,6 +126,15 @@
             <layout class="QVBoxLayout" name="verticalLayout_3">
              <item>
               <widget class="QTableStatistics" name="table">
+               <property name="editTriggers">
+                <set>QAbstractItemView::NoEditTriggers</set>
+               </property>
+               <property name="alternatingRowColors">
+                <bool>true</bool>
+               </property>
+               <property name="selectionMode">
+                <enum>QAbstractItemView::SingleSelection</enum>
+               </property>
                <row>
                 <property name="text">
                  <string>Número de tiradas</string>

@@ -15,20 +15,15 @@ class QTableStatistics(QTableWidget):
         
         #UI headers
         self.verticalHeader().setResizeMode(QHeaderView.ResizeToContents)
-        self.horizontalHeader().setResizeMode(QHeaderView.ResizeToContents)
         self.setColumnCount(self.mem.maxplayers+1)        
         for i, j in enumerate(self.mem.jugadores.arr):
-
-            
+            self.setColumnWidth(i, 65)
             item = QTableWidgetItem()
             item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter|Qt.AlignCenter)
-            item.setIcon(j.color.qicon())
+            item.setData(Qt.BackgroundRole, j.color.qcolor())
             self.setHorizontalHeaderItem(i, item)
         item = QTableWidgetItem(self.trUtf8("Total"))
         item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter|Qt.AlignCenter)
-#        icon11 = QIcon()
-#        icon11.addPixmap(QPixmap(":/glparchis/star.png"), QIcon.Normal, QIcon.Off)
-#        item.setIcon(icon11)
         self.setHorizontalHeaderItem(self.mem.maxplayers, item)
         
         #Crea items
@@ -46,16 +41,7 @@ class QTableStatistics(QTableWidget):
             brush.setStyle(Qt.BDiagPattern)
             item.setBackground(brush)
             self.setItem(i, j, item)
-            
-#        for i in range(1, self.mem.maxplayers):
-#            item = QTableWidgetItem()
-#            item.setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
-#            brush = QBrush(QColor(0, 0, 0))
-#            brush.setStyle(Qt.BDiagPattern)
-#            item.setBackground(brush)
-#            self.setItem(16, i, item)
-
-        #negrita
+#negrita
 #        item = QTableWidgetItem()
 #        item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter|Qt.AlignCenter)
 #        font = QFont()
