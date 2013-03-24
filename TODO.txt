@@ -16,10 +16,8 @@
             sacar 1, Por meter 10 si hay a 1 tiro. Por comer si hay a 1 tiro
 20130321 Meter atributo ruta1 en casilla con true y false, y cambiar cosas sustituya
 20130321 Las fichas de verde para arriba no muestran showdialog
-20130321 crear función EstarAlguna A tiro de llegada, para hacer las amenazas del 10
 20130321 Solo puede haber una amenaza por jugador y valor, barrero solo 1, pero seguro con 2 distintas cuenta por 2
 20130321 Contar 20 con barrera en medio sale como amenaza
-
-20130323 El combodestino de showfichca apunte a la tirada del dado
 20130323 Cambiar amenazas por antigua sistema de amenazas
 20130323 Esta en ruta 1 y le amenaza uno del circuo -5
+20130323 Refactorizar Ficha por mem en constructor
