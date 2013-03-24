@@ -335,7 +335,7 @@ class SetAmenazas:
         #Detecta si hay ficha en 10
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -10)
         for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.jugador.tieneFichasEnRampaLlegada()==False:
+            if ficha.jugador.tieneFichasATiroDeLLegada()==False:
                 continue
             if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+10):
                 self.append(ficha, 10 )
@@ -565,7 +565,13 @@ class Jugador:
                 return True
         return False
         
-
+    def tieneFichasATiroDeLLegada(self):
+        """Devuelve un booleano seg´un el jugador tenga fichas a tiro de llegada o no"""
+        for f in self.fichas.arr:
+            if f.estaATiroDeLlegada()==True:
+                return True
+        return False
+        
     def HaGanado(self):
         for f in self.fichas.arr:
             if f.estaEnMeta()==False:
@@ -1189,10 +1195,11 @@ class SetFichas:
         return True
         
 class Ficha(QObject):
-    def __init__(self, id, number,  color, jugador, ruta):
+    def __init__(self, mem, id, number,  color, jugador, ruta):
         """El identificador de la ficha viene dado por el nombre del color y el id (numero de creacion), se genera en la clase Mem"""
         QGLWidget.__init__(self)
         self.color=color
+        self.mem=mem
         self.id=id
         self.number=number#indice dentro de las fichas de mismo color.
         self.ruta=ruta
@@ -1382,6 +1389,16 @@ class Ficha(QObject):
 
     def casillasPorMover(self):
         return self.ruta.length()-self.posruta
+        
+    def estaATiroDeLLegada(self ):
+        """Devuelve un booleano, seg´un la ficha est´e o no a tiro de llegada, es decir a 1,2,3,4,5,6,7"""
+        if self.posruta in (self.length-1,  self.length-2,  self.length-3,  self.length-4,  self.length-5):
+            return True
+        if self.posruta==self.length-6 and self.jugador.tieneFichasEnCasa()==True:
+            return True
+        if self.posruta==self.length-7 and self.jugador.tieneFichasEnCasa()==False:
+            return True
+        return False
         
     def numeroAmenazasMejora(self, mem):
         """Si devuelve un positivo es que ha disminuido en ese valor el numero de fichas que le amenzaban
@@ -2181,7 +2198,7 @@ class Mem:
             j=self.jugadores.jugador(c.name)
             j.ruta=self.rutas.ruta(ic)
             for i in range(4):
-                self.dic_fichas[str(id)]=Ficha(id, i, c, self.jugadores.jugador(c.name), j.ruta)
+                self.dic_fichas[str(id)]=Ficha(self, id, i, c, self.jugadores.jugador(c.name), j.ruta)
                 j.fichas.arr.append(self.dic_fichas[str(id)])#Rellena el SetFichas del jugador
                 id=id+1
 

@@ -22,7 +22,7 @@ class wdgShowObject(QGLWidget):
                
         #Carga el primer objeto    
         self.cas= Casilla(1, 2, Color(255, 255, 255) , (-3.5, -1.5, 0, 0), 0, False, False, 3,  False, (0, 0, 0))
-        self.ficha=Ficha(0, 1, Color(255, 0, 0), Jugador(Color(255, 0, 0)), None)
+        self.ficha=Ficha(None, 0, 1, Color(255, 0, 0), Jugador(Color(255, 0, 0)), None)
         self.tablero=Tablero()
         self.dado=Dado()
         self.dado.showing=True
