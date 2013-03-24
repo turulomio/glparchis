@@ -14,13 +14,17 @@ class frmShowFicha(QDialog, Ui_frmShowFicha):
         self.lblJugador.setText(self.trUtf8("Jugador: %1 (%2)").arg(str(self.ficha.jugador.name)).arg(self.ficha.jugador.color.name))
         self.lblRuta.setText(self.trUtf8("Posición en ruta: %1").arg(str(self.ficha.posruta)))
         self.tblAmenazas_reload()
+        if self.mem.jugadores.actual.tiradaturno.ultimoValor()!=None:
+            (puedemover, movimiento)=self.ficha.puedeMover(self.mem)
+            if puedemover==True:
+                self.cmbDestino.setCurrentIndex(self.cmbDestino.findText(str(movimiento)))
+                self.on_cmbDestino_currentIndexChanged(str(movimiento))
 
     def tblAmenazas_reload(self):
         self.table_reload(self.tblAmenazas, self.ficha.amenazas(self.mem))
 
     @pyqtSlot(QString)      
     def on_cmbDestino_currentIndexChanged(self, stri):
-        print (stri)
         self.group.setTitle(self.trUtf8("Amenazas en la casilla {0}".format(self.ficha.casilla(self.ficha.posruta+int(stri)).id)))
         self.table_reload(self.tblAmenazasDestino, self.ficha.amenazasDestino(self.mem, int(stri)))
                 
