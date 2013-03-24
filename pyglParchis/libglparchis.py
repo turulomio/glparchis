@@ -335,7 +335,7 @@ class SetAmenazas:
         #Detecta si hay ficha en 10
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -10)
         for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.jugador.tieneFichasATiroDeLLegada()==False:
+            if ficha.jugador.tieneFichasATiroDeLlegada()==False:
                 continue
             if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+10):
                 self.append(ficha, 10 )
@@ -565,7 +565,7 @@ class Jugador:
                 return True
         return False
         
-    def tieneFichasATiroDeLLegada(self):
+    def tieneFichasATiroDeLlegada(self):
         """Devuelve un booleano seg´un el jugador tenga fichas a tiro de llegada o no"""
         for f in self.fichas.arr:
             if f.estaATiroDeLlegada()==True:
@@ -603,14 +603,20 @@ class Jugador:
                     print (f, "seleccionada por azar comer")
                     return f
         
+        
+        
         #2 prioridad. Mueve fichas que disminuyen en número de amenazas en la nueva posicion
-        fichas=sorted(fichas, key=lambda f:f.numeroAmenazasMejora(mem),  reverse=True)     
+#        fichas=sorted(fichas, key=lambda f:f.numeroAmenazasMejora(mem),  reverse=True)     
 #        for f in fichas:
 #            print (f, f.numeroAmenazasMejora(mem), f.numFichasPuedenComer(mem, f.posruta), f.numFichasPuedenComer(mem, f.posruta+f.estaAutorizadaAMover(mem)[1]))
         if azar(95):
+            fichas=sorted(fichas, key=lambda f:f.amenazas(),  reverse=True)     
             for f in fichas:
-                if f.numeroAmenazasMejora(mem)>=0 and  f.numFichasPuedenComer(mem, f.posruta+f.estaAutorizadaAMover(mem)[1])>0: #Debe estar amenazada
-                    print (f, "seleccionada por azar al mejorar numero de fichas la pueden comer")
+                movimiento=f.estaAutorizadaAMover(mem)[1]
+                antes=f.amenazas()
+                despues=f.amenazasDestino(movimiento)
+                if antes.numero()>despues.numero():
+                    print (f, "seleccionada por azar al mejorar numero de fichas la pueden comer. Pasa de {0} a {1}".format(antes.numero(), despues.numero()))
                     return f
         
         
@@ -1215,13 +1221,13 @@ class Ficha(QObject):
         
     
         
-    def amenazas(self, mem):
-        return SetAmenazas(mem, self, self.casilla())
+    def amenazas(self):
+        return SetAmenazas(self.mem, self, self.casilla())
         
         
-    def amenazasDestino(self,mem,  desplazamiento):
+    def amenazasDestino(self,  desplazamiento):
         if self.posruta+desplazamiento<self.ruta.length():
-            return SetAmenazas(mem, self, self.ruta.arr[self.posruta+desplazamiento])
+            return SetAmenazas(self.mem,  self, self.ruta.arr[self.posruta+desplazamiento])
         else:
             print ("No se puede ver la amenaza destino de una ruta pasada")
         
@@ -1395,83 +1401,83 @@ class Ficha(QObject):
     def casillasPorMover(self):
         return self.ruta.length()-self.posruta
         
-    def estaATiroDeLLegada(self ):
+    def estaATiroDeLlegada(self ):
         """Devuelve un booleano, seg´un la ficha est´e o no a tiro de llegada, es decir a 1,2,3,4,5,6,7"""
-        if self.posruta in (self.length-1,  self.length-2,  self.length-3,  self.length-4,  self.length-5):
+        if self.posruta in (self.ruta.length()-1,  self.ruta.length()-2,  self.ruta.length()-3,  self.ruta.length()-4,  self.ruta.length()-5):
             return True
-        if self.posruta==self.length-6 and self.jugador.tieneFichasEnCasa()==True:
+        if self.posruta==self.ruta.length()-6 and self.jugador.tieneFichasEnCasa()==True:
             return True
-        if self.posruta==self.length-7 and self.jugador.tieneFichasEnCasa()==False:
+        if self.posruta==self.ruta.length()-7 and self.jugador.tieneFichasEnCasa()==False:
             return True
         return False
         
-    def numeroAmenazasMejora(self, mem):
-        """Si devuelve un positivo es que ha disminuido en ese valor el numero de fichas que le amenzaban
-        Si antes 0 y luego 1 tendra  -1
-        Si antes 1 y luego 0 tendra 1
-        Si antes 1 y luego 1 tendra 0
-        Si antes 0 y luego o tendra 0"""
-        movimiento=self.estaAutorizadaAMover(mem)[1]
-        antes=self.numFichasPuedenComer(mem, self.posruta)
-        despues=self.numFichasPuedenComer(mem, self.posruta+movimiento)
-#        print ("Amenazas en casilla {0}: {1}. En casilla {2}: {3}".format(self.casilla(self.posruta).id, antes, self.casilla(self.posruta+movimiento).id, despues))
-        return antes-despues
-
-    def numFichasPuedenComer(self, mem, posruta=None):
-        """Función que devuelve un array con las fichas que pueden comer a la ficha actual si la colocara en posruta"""
-        resultado=0
-        if posruta==None:
-            posruta=self.posruta
-            
-        if posruta<0 or posruta>self.ruta.length()-1:
-            return 0
-            
-        casilla=self.casilla(posruta)        #Datos casilla de posruta
-        
-        if casilla.esSegura(mem, self.jugador, True)==True or casilla.rampallegada==True:
-            return 0
-            
-        if casilla.tieneBarrera():
-            return 0
-            
-        if casilla not in mem.circulo.arr:#Si la casilla no esta en el circulo devuelve 0
-            return 0
-            
-        #anota comer por cinco en ruta1    
-        
-        
-        
-        
-        #fichas que se encuentran a una distancia en casillas
-        for pos, f in mem.circulo.casilla(casilla.id, -1).buzon_fichas():
-            if f.jugador!=self.jugador:
-                resultado=resultado+1
-        for pos, f in mem.circulo.casilla(casilla.id, -2).buzon_fichas():
-            if f.jugador!=self.jugador:
-                resultado=resultado+1
-        for pos, f in mem.circulo.casilla(casilla.id, -3).buzon_fichas():
-            if f.jugador!=self.jugador:
-                resultado=resultado+1
-        for pos, f in mem.circulo.casilla(casilla.id, -4).buzon_fichas():
-            if f.jugador!=self.jugador:
-                resultado=resultado+1
-        for pos, f in mem.circulo.casilla(casilla.id, -5).buzon_fichas():
-            if f.jugador!=self.jugador:
-                if f.jugador.tieneFichasEnCasa()==False:#no tiene que scar por lo que cuenta como un 5 normal
-                    resultado=resultado+1
-        for pos, f in mem.circulo.casilla(casilla.id, -6).buzon_fichas():
-            if f.jugador!=self.jugador: #Son fichas enemigas
-                if f.jugador.tieneFichasEnCasa():
-                    resultado=resultado+1
-        for pos, f in mem.circulo.casilla(casilla.id, -7).buzon_fichas():
-            if f.jugador!=self.jugador:
-                if f.jugador.tieneFichasEnCasa()==False:
-                    resultado=resultado+1
-        for pos, f in mem.circulo.casilla(casilla.id, -10).buzon_fichas():
-            if f.jugador!=self.jugador:
-                if f.jugador.tieneFichasEnRampaLlegada():
-                    resultado=resultado+1
-        return resultado
+#    def numeroAmenazasMejora(self, mem):
+#        """Si devuelve un positivo es que ha disminuido en ese valor el numero de fichas que le amenzaban
+#        Si antes 0 y luego 1 tendra  -1
+#        Si antes 1 y luego 0 tendra 1
+#        Si antes 1 y luego 1 tendra 0
+#        Si antes 0 y luego o tendra 0"""
+#        movimiento=self.estaAutorizadaAMover(mem)[1]
+#        antes=self.numFichasPuedenComer(mem, self.posruta)
+#        despues=self.numFichasPuedenComer(mem, self.posruta+movimiento)
+##        print ("Amenazas en casilla {0}: {1}. En casilla {2}: {3}".format(self.casilla(self.posruta).id, antes, self.casilla(self.posruta+movimiento).id, despues))
+#        return antes-despues
+#
+#    def numFichasPuedenComer(self, mem, posruta=None):
+#        """Función que devuelve un array con las fichas que pueden comer a la ficha actual si la colocara en posruta"""
+#        resultado=0
+#        if posruta==None:
+#            posruta=self.posruta
+#            
+#        if posruta<0 or posruta>self.ruta.length()-1:
+#            return 0
+#            
+#        casilla=self.casilla(posruta)        #Datos casilla de posruta
+#        
+#        if casilla.esSegura(mem, self.jugador, True)==True or casilla.rampallegada==True:
+#            return 0
+#            
+#        if casilla.tieneBarrera():
+#            return 0
+#            
+#        if casilla not in mem.circulo.arr:#Si la casilla no esta en el circulo devuelve 0
+#            return 0
+#            
+#        #anota comer por cinco en ruta1    
+#        
+#        
+#        
+#        
+#        #fichas que se encuentran a una distancia en casillas
+#        for pos, f in mem.circulo.casilla(casilla.id, -1).buzon_fichas():
+#            if f.jugador!=self.jugador:
+#                resultado=resultado+1
+#        for pos, f in mem.circulo.casilla(casilla.id, -2).buzon_fichas():
+#            if f.jugador!=self.jugador:
+#                resultado=resultado+1
+#        for pos, f in mem.circulo.casilla(casilla.id, -3).buzon_fichas():
+#            if f.jugador!=self.jugador:
+#                resultado=resultado+1
+#        for pos, f in mem.circulo.casilla(casilla.id, -4).buzon_fichas():
+#            if f.jugador!=self.jugador:
+#                resultado=resultado+1
+#        for pos, f in mem.circulo.casilla(casilla.id, -5).buzon_fichas():
+#            if f.jugador!=self.jugador:
+#                if f.jugador.tieneFichasEnCasa()==False:#no tiene que scar por lo que cuenta como un 5 normal
+#                    resultado=resultado+1
+#        for pos, f in mem.circulo.casilla(casilla.id, -6).buzon_fichas():
+#            if f.jugador!=self.jugador: #Son fichas enemigas
+#                if f.jugador.tieneFichasEnCasa():
+#                    resultado=resultado+1
+#        for pos, f in mem.circulo.casilla(casilla.id, -7).buzon_fichas():
+#            if f.jugador!=self.jugador:
+#                if f.jugador.tieneFichasEnCasa()==False:
+#                    resultado=resultado+1
+#        for pos, f in mem.circulo.casilla(casilla.id, -10).buzon_fichas():
+#            if f.jugador!=self.jugador:
+#                if f.jugador.tieneFichasEnRampaLlegada():
+#                    resultado=resultado+1
+#        return resultado
 
     def estaEnCasa(self):
         if self.posruta==0:

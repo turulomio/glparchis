@@ -18,8 +18,7 @@
 20130321 Las fichas de verde para arriba no muestran showdialog
 20130321 Solo puede haber una amenaza por jugador y valor, barrero solo 1, pero seguro con 2 distintas cuenta por 2
 20130321 Contar 20 con barrera en medio sale como amenaza
-20130323 Cambiar amenazas por antigua sistema de amenazas
 20130323 Esta en ruta 1 y le amenaza uno del circuo -5
-20130323 Refactorizar Ficha por mem en constructor
 20130323 Cuando una ficha saque un 5 en amenazas no es amenaza si tiene fichas en casa.
-20130323 Funcion jugadorpropietario creo mal
+20130323 Cambiar poder mover con esta autorizada a mover.
+20130323 Cuando una ficha esta a punto de llegar a su rampa, amenaza a las fichas despues de la entrada a rampa

@@ -21,12 +21,12 @@ class frmShowFicha(QDialog, Ui_frmShowFicha):
                 self.on_cmbDestino_currentIndexChanged(str(movimiento))
 
     def tblAmenazas_reload(self):
-        self.table_reload(self.tblAmenazas, self.ficha.amenazas(self.mem))
+        self.table_reload(self.tblAmenazas, self.ficha.amenazas())
 
     @pyqtSlot(QString)      
     def on_cmbDestino_currentIndexChanged(self, stri):
         self.group.setTitle(self.trUtf8("Amenazas en la casilla {0}".format(self.ficha.casilla(self.ficha.posruta+int(stri)).id)))
-        self.table_reload(self.tblAmenazasDestino, self.ficha.amenazasDestino(self.mem, int(stri)))
+        self.table_reload(self.tblAmenazasDestino, self.ficha.amenazasDestino( int(stri)))
                 
         
     def table_reload(self, table, setamenazas):
