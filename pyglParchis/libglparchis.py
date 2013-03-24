@@ -271,7 +271,7 @@ class SetAmenazas:
             return
             
         #Detecta salida con un 5 a ruta1
-        if self.casilla in self.mem.casillas.rutas1():
+        if self.casilla.ruta1==True:
             #Busca la casilla inicial del mismo color
             casillaataque=self.mem.rutas.ruta(self.mem.colores.index(self.casilla.color)).arr[0]#Casilla inicial
             if casillaataque.buzon_numfichas()>0:#Hay fichas que coman
@@ -519,8 +519,8 @@ class Jugador:
         
     def hayDosJugadoresDistintosEnRuta1(self):
         ruta1=self.ruta.ruta1()
-        if ruta1 not in self.ruta.mem.rutas.rutas1():#Casillas ruta1
-            return False
+#        if ruta1 not in self.ruta.mem.rutas.rutas1():#Casillas ruta1
+#            return False
         if ruta1.buzon_numfichas()!=2:
             return False
         if ruta1.buzon[0].jugador!=ruta1.buzon[1].jugador:
@@ -619,14 +619,14 @@ class Jugador:
         if azar(95):
             for f in fichas:
                 movimiento=f.estaAutorizadaAMover(mem)[1]
-                if f.casilla().esUnSeguroParaJugador(mem, self)==False  and  f.casilla(f.posruta+movimiento).seguro==True:
+                if f.casilla().esSegura(mem, self, True)==False  and  f.casilla(f.posruta+movimiento).esSegura(mem, self, False)==True:
                     print (f,"seleccionado por azar asegurar")
                     return f
         
         #4 Alguna ficha no asegurada puede mover
         if azar(95):
             for f in fichas:
-                if f.casilla().esUnSeguroParaJugador(mem, f.jugador)==False:
+                if f.casilla().esSegura(mem, f.jugador, True)==False:
                     print(f,"seleccionado por azar ficha no asegurada")
                     return f
         
@@ -779,13 +779,13 @@ class SetRutas:
         """id es el mismo que el orden de los colores"""
         return self.arr[id]
         
-    def rutas1(self):
-        """Función que devuelve un arr con punteros a las casillas que están en ruta1
-        Para poder saber de que color son, se puede usar casilla.color"""
-        resultado=[]
-        for r in self.arr:
-            resultado.append(r.ruta1())
-        return resultado
+#    def rutas1(self):
+#        """Función que devuelve un arr con punteros a las casillas que están en ruta1
+#        Para poder saber de que color son, se puede usar casilla.color"""
+#        resultado=[]
+#        for r in self.arr:
+#            resultado.append(r.ruta1())
+#        return resultado
 
         
     def generar_rutas(self):
@@ -902,6 +902,11 @@ class SetCasillas:
             resultado.append(self.arr[56])
         return resultado
         
+    def defineRutas1(self, id):
+        """Es igual para 4,6,8"""
+        if id in (5, 22, 39, 56, 73, 90, 105, 122):
+            return True
+        return False
             
     def generar_casillas(self):
         if self.numplayers==6:
@@ -975,7 +980,7 @@ class SetCasillas:
         posCasillas=poscasillas4(self.number)
         posFichas=posfichas4(self.number)
         for i in range(0, self.number):#Se debe inializar Antes que las fichas
-            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i]))
+            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i],  self.defineRutas1(i)))
             
     def generar_casillas6(self):
         def defineSeguro( id):           
@@ -1058,7 +1063,7 @@ class SetCasillas:
         posCasillas=poscasillas6(self.number)
         posFichas=posfichas6(self.number, posCasillas)
         for i in range(0, self.number):#Se debe inializar Antes que las fichas
-            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i) , defineRotatePN(i),  defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i]))
+            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i) , defineRotatePN(i),  defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i], self.defineRutas1(i)))
             
  
     def generar_casillas8(self):
@@ -1155,7 +1160,7 @@ class SetCasillas:
         posCasillas=poscasillas8(self.number)
         posFichas=posfichas8(self.number, posCasillas)
         for i in range(0, self.number):#Se debe inializar Antes que las fichas
-            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i]))
+            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i], self.defineRutas1(i)))
             
 class SetFichas:
     """Agrupación de fichas"""
@@ -1423,7 +1428,7 @@ class Ficha(QObject):
             
         casilla=self.casilla(posruta)        #Datos casilla de posruta
         
-        if casilla.esUnSeguroParaJugador(mem, self.jugador)==True or casilla.rampallegada==True:
+        if casilla.esSegura(mem, self.jugador, True)==True or casilla.rampallegada==True:
             return 0
             
         if casilla.tieneBarrera():
@@ -1692,7 +1697,7 @@ class ConfigFile:
             self.config.write(configfile)
             
 class Casilla(QObject):
-    def __init__(self, id, maxfichas, color,  position, rotate, rotatepn,  rampallegada, tipo, seguro, posfichas):
+    def __init__(self, id, maxfichas, color,  position, rotate, rotatepn,  rampallegada, tipo, seguro, posfichas, ruta1):
         QObject.__init__(self)
         self.id=id
         self.maxfichas=maxfichas
@@ -1702,6 +1707,7 @@ class Casilla(QObject):
         self.rotate=rotate
         self.rotatepn=rotatepn #Rotar panel numerico
         self.rampallegada=rampallegada#booleano que indica si la casilla es de rampa de llegada
+        self.ruta1=ruta1#Booleano si la casilla es ruta1. Para saber de que color es usar self.color
         self.tipo=tipo
         self.seguro=seguro# No se debe usar directamente ya que en ruta 1 solo es seguro si el jugador no tiene en casa
         self.buzon=[None]*self.maxfichas #Se crean los huecos y se juega con ellos para mantener la posicion
@@ -1712,31 +1718,27 @@ class Casilla(QObject):
         return ("Casilla {0} con {1} fichas dentro".format(self.id, self.buzon_numfichas()))
 
 
-    def jugadorPropietario(self, mem):
-        #Rutas 1
-        if self.id==5:
-            return mem.jugadores.jugador("yellow")
-        elif self.id==22:
-            return mem.jugadores.jugador("blue")
-        elif self.id==39:
-            return mem.jugadores.jugador("red")
-        elif self.id==56:
-            return mem.jugadores.jugador("green")
-        else:
-            return None
-
-    def esUnSeguroParaJugador(self, mem,  jugador):
-        """Devuelve si la casilla es segura para el jugador pasado como parámetro ante un posible moviiento"""
-        if self.id in mem.rutas.rutas1():
-            propietario=self.jugadorPropietario(mem)
+    def esSegura(self, mem,  jugador, beforemove=True):
+        """Devuelve si la casilla es segura para el jugador pasado como parámetro ante un posible moviiento,
+        esta funci´on mezcla el concepto ruta y seguro dependiendo del num´ero de fichas
+        
+        Busca seg´un beforemove antes de mover ficha, es decir es seguro con 0 fichas, o aftermove seguro con 1 ficha"""
+        if self.ruta1==True:
+            propietario=mem.jugadores.jugador(self.color.name)
             if jugador==propietario:
                 return True
             else:#color distinto
-                if propietario.tieneFichasEnCasa() and self.buzon_numfichas()>0:
-                    return False
-                else:
-                    return True
-        else:
+                if beforemove==True:
+                    if propietario.tieneFichasEnCasa() and self.buzon_numfichas()==0:
+                        return False
+                    else:
+                        return True
+                else:#beforemove=False
+                    if propietario.tieneFichasEnCasa() and self.buzon_numfichas()==1:
+                        return False
+                    else:
+                        return True
+        else:   
             if self.seguro==True:
                 return True
             else:

@@ -21,3 +21,5 @@
 20130323 Cambiar amenazas por antigua sistema de amenazas
 20130323 Esta en ruta 1 y le amenaza uno del circuo -5
 20130323 Refactorizar Ficha por mem en constructor
+20130323 Cuando una ficha saque un 5 en amenazas no es amenaza si tiene fichas en casa.
+20130323 Funcion jugadorpropietario creo mal
