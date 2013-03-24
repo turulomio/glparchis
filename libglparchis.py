@@ -245,7 +245,7 @@ class SetAmenazas:
     """Clase que genera las amenazas contra un objetivo en la casilla pasado como par´ametro"""
     def __init__(self,  mem,  objetivo, casilla):
         """Crea objeto"""
-        self.arr=None#Array de objetos amenaza
+        self.arr=[]#Array de objetos amenaza
         self.objetivo=objetivo#Ficha objetivo de la amenaza. 
         self.casilla=casilla
         self.mem=mem
@@ -255,9 +255,13 @@ class SetAmenazas:
         self.arr.append(Amenaza(self.objetivo, atacante, type))
             
     def detectar(self):
+        del self.arr
         self.arr=[]
         print ("detectando en ",  self.casilla)
         
+        
+        if self.casilla.tipo==0 or self.casilla.tipo==1:#Casilla inicial y final
+            return
         
         if self.casilla.rampallegada==True:
             return
@@ -430,6 +434,7 @@ class TiradaTurno:
         return False
         
     def ultimoValor(self):
+        """Devuelve el ultimo valor realizado y None si no ha realizado ninguno."""
         if len(self.arr)>0:
             return self.arr[len(self.arr)-1].valor
         else:
