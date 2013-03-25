@@ -264,7 +264,7 @@ class SetAmenazas:
         if self.casilla.rampallegada==True:
             return
         
-        if self.casilla.seguro==True and self.casilla not in self.mem.casillas.rutas1():# Esta asegurada y no est´a en ruta 1
+        if self.casilla.seguro==True and self.casilla.ruta1==False:#Esta asegurada y no est´a en ruta 1
             return
             
         #Detecta salida con un 5 a ruta1
@@ -272,7 +272,6 @@ class SetAmenazas:
             #Busca la casilla inicial del mismo color
             casillaataque=self.mem.rutas.ruta(self.mem.colores.index(self.casilla.color)).arr[0]#Casilla inicial
             if casillaataque.buzon_numfichas()>0:#Hay fichas que coman
-                print (casillaataque)
                 if self.casilla.buzon_numfichas()==2:
                     if  self.objetivo.posruta!=1: #Si no est´a en su propia ruta1, est´a llena
                         for posicion, ficha in casillaataque.buzon_fichas():
@@ -316,6 +315,7 @@ class SetAmenazas:
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -5)
         for posicion, ficha in casillaataque.buzon_fichas():
             if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
+            if ficha.jugador.tieneFichasEnCasa(): continue
             if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(self.mem) and ficha.puedeComer(self.mem, ficha.posruta+5):
                 self.append(ficha, 5 )
         #Detecta si hay ficha en 6 y chequea que no tiene todas fuera de casa
@@ -794,6 +794,7 @@ class SetRutas:
         
     def ruta(self, id):        
         """id es el mismo que el orden de los colores"""
+        print("Buscando color id {0}".format(id))
         return self.arr[id]
         
 #    def rutas1(self):
@@ -892,38 +893,47 @@ class SetCasillas:
     def casilla(self, id):
         return self.arr[id]
         
-    def rutas1(self):
-        """Función que devuelve un arr con punteros a las casillas que están en ruta1
-        Para poder saber de que color son, se puede usar casilla.color"""
-        resultado=[]
-        if self.numplayers==6:
-            resultado.append(self.arr[5])
-            resultado.append(self.arr[22])
-            resultado.append(self.arr[39])
-            resultado.append(self.arr[56])
-            resultado.append(self.arr[73])
-            resultado.append(self.arr[90])
-        elif self.numplayers==8:
-            resultado.append(self.arr[5])
-            resultado.append(self.arr[22])
-            resultado.append(self.arr[39])
-            resultado.append(self.arr[56])
-            resultado.append(self.arr[73])
-            resultado.append(self.arr[90])
-            resultado.append(self.arr[105])
-            resultado.append(self.arr[122])
-        elif self.numplayers==4:       
-            resultado.append(self.arr[5])
-            resultado.append(self.arr[22])
-            resultado.append(self.arr[39])
-            resultado.append(self.arr[56])
-        return resultado
+#    def rutas1(self):
+#        """Función que devuelve un arr con punteros a las casillas que están en ruta1
+#        Para poder saber de que color son, se puede usar casilla.color"""
+#        resultado=[]
+#        if self.numplayers==6:
+#            resultado.append(self.arr[5])
+#            resultado.append(self.arr[22])
+#            resultado.append(self.arr[39])
+#            resultado.append(self.arr[56])
+#            resultado.append(self.arr[73])
+#            resultado.append(self.arr[90])
+#        elif self.numplayers==8:
+#            resultado.append(self.arr[5])
+#            resultado.append(self.arr[22])
+#            resultado.append(self.arr[39])
+#            resultado.append(self.arr[56])
+#            resultado.append(self.arr[73])
+#            resultado.append(self.arr[90])
+#            resultado.append(self.arr[105])
+#            resultado.append(self.arr[122])
+#        elif self.numplayers==4:       
+#            resultado.append(self.arr[5])
+#            resultado.append(self.arr[22])
+#            resultado.append(self.arr[39])
+#            resultado.append(self.arr[56])
+#        return resultado
         
     def defineRutas1(self, id):
         """Es igual para 4,6,8"""
-        if id in (5, 22, 39, 56, 73, 90, 105, 122):
-            return True
-        return False
+        if self.numplayers==8:
+            if id in (5, 22, 39, 56, 73, 90, 107, 122):
+                return True
+            return False
+        if self.numplayers==6:
+            if id in (5, 22, 39, 56, 73, 90):
+                return True
+            return False
+        if self.numplayers==4:
+            if id in (5, 22, 39, 56):
+                return True
+            return False            
             
     def generar_casillas(self):
         if self.numplayers==6:
