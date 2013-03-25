@@ -3,47 +3,47 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="1276"/>
+        <location filename="libglparchis.py" line="1287"/>
         <source>No es del jugador actual</source>
         <translation>It&apos;s not a current player piece</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1301"/>
+        <location filename="libglparchis.py" line="1312"/>
         <source>Se ha pasado la meta</source>
         <translation>You missed the central space</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1307"/>
+        <location filename="libglparchis.py" line="1318"/>
         <source>Hay una barrera</source>
         <translation>There is a blockade</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1316"/>
+        <location filename="libglparchis.py" line="1327"/>
         <source>No hay espacio en la casilla</source>
         <translation>The space is bussy</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1296"/>
+        <location filename="libglparchis.py" line="1307"/>
         <source>No puede mover</source>
         <translation>It can&apos;t move</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1314"/>
+        <location filename="libglparchis.py" line="1325"/>
         <source>Obligado a sacar y a comer</source>
         <translation>You&apos;re forced to move to the first space and to eat</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1265"/>
+        <location filename="libglparchis.py" line="1276"/>
         <source>No puede mover, porque hay otra ficha obligada a mover</source>
         <translation>It can&apos;t move, because there is another piece forced to move</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1372"/>
+        <location filename="libglparchis.py" line="1383"/>
         <source>He comido una ficha de %1 en la casilla %2</source>
         <translation>I&apos;ve eaten a %1 piece at the %2 place</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1389"/>
+        <location filename="libglparchis.py" line="1400"/>
         <source>Una ficha a llegado a la meta</source>
         <translation>A piece arrived the central space</translation>
     </message>
@@ -423,7 +423,7 @@
         <translation>Ctrl+8</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2371"/>
+        <location filename="libglparchis.py" line="2382"/>
         <source>Esta opción se está desarrollando</source>
         <translation>This part is being develped</translation>
     </message>
@@ -675,7 +675,7 @@
 <context>
     <name>glparchis</name>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2264"/>
+        <location filename="libglparchis.py" line="2275"/>
         <source>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</source>
         <translation>The file has an obsolete version or it&apos;s broken. It can&apos;t be loaded.</translation>
     </message>
@@ -926,7 +926,7 @@
 <context>
     <name>wdgOGL</name>
     <message>
-        <location filename="ui/wdgOGL.py" line="207"/>
+        <location filename="ui/wdgOGL.py" line="203"/>
         <source>Se ha hecho click en la ficha %1</source>
         <translation>I clicked on the %1 piece</translation>
     </message>
