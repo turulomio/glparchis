@@ -3,47 +3,47 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="1297"/>
+        <location filename="libglparchis.py" line="1317"/>
         <source>No es del jugador actual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1322"/>
+        <location filename="libglparchis.py" line="1342"/>
         <source>Se ha pasado la meta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1328"/>
+        <location filename="libglparchis.py" line="1348"/>
         <source>Hay una barrera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1337"/>
+        <location filename="libglparchis.py" line="1357"/>
         <source>No hay espacio en la casilla</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1317"/>
+        <location filename="libglparchis.py" line="1337"/>
         <source>No puede mover</source>
         <translation>Vous ne pouvez pas déplacer</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1335"/>
+        <location filename="libglparchis.py" line="1355"/>
         <source>Obligado a sacar y a comer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1286"/>
+        <location filename="libglparchis.py" line="1306"/>
         <source>No puede mover, porque hay otra ficha obligada a mover</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1393"/>
+        <location filename="libglparchis.py" line="1413"/>
         <source>He comido una ficha de %1 en la casilla %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1410"/>
+        <location filename="libglparchis.py" line="1430"/>
         <source>Una ficha a llegado a la meta</source>
         <translation type="unfinished"></translation>
     </message>
@@ -423,7 +423,7 @@
         <translation>Ctrl+8</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2392"/>
+        <location filename="libglparchis.py" line="2412"/>
         <source>Esta opción se está desarrollando</source>
         <translation type="unfinished"></translation>
     </message>
@@ -524,28 +524,33 @@
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/frmShowCasilla.py" line="25"/>
+        <location filename="ui/frmShowCasilla.py" line="28"/>
         <source>Casilla vacía</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmShowCasilla.py" line="31"/>
+        <location filename="ui/frmShowCasilla.py" line="34"/>
         <source>Ocupada con una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmShowCasilla.py" line="37"/>
+        <location filename="ui/frmShowCasilla.py" line="40"/>
         <source>Ocupada con dos fichas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmShowCasilla.py" line="43"/>
+        <location filename="ui/frmShowCasilla.py" line="46"/>
         <source>Ocupada con tres fichas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/frmShowCasilla.py" line="49"/>
+        <location filename="ui/frmShowCasilla.py" line="52"/>
         <source>Casilla llena</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmShowCasilla.py" line="19"/>
+        <source>Ruta 1 de {0}</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -675,7 +680,7 @@
 <context>
     <name>glparchis</name>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2285"/>
+        <location filename="libglparchis.py" line="2305"/>
         <source>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</source>
         <translation type="unfinished"></translation>
     </message>
