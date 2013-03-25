@@ -51,7 +51,7 @@ class Dado(QObject):
         self.fake=[]
         self.showing=False
         self.position=(65/2, 65/2, 1)
-        self.oglname=17
+        self.oglname=33
         self.lasttirada=None
         
     def tirar(self):
@@ -257,15 +257,12 @@ class SetAmenazas:
     def detectar(self):
         del self.arr
         self.arr=[]
-        print ("detectando en ",  self.casilla)
-        
         
         if self.casilla.tipo==0 or self.casilla.tipo==1:#Casilla inicial y final
             return
         
         if self.casilla.rampallegada==True:
             return
-        
         
         if self.casilla.seguro==True and self.casilla not in self.mem.casillas.rutas1():# Esta asegurada y no est´a en ruta 1
             return
@@ -294,56 +291,65 @@ class SetAmenazas:
         #Detecta si hay ficha en 1OJO LA CASILLA QUE SE BUSCA NO ES LA ACTUAL DEL OBJETIVO sino la de parametro de entrada self.casilla
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -1)
         for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+1):
+            if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
+            if ficha.jugador!=self.objetivo.jugador and ficha.estaAutorizadaAMover(self.mem) and ficha.puedeComer(self.mem, ficha.posruta+1):
                 self.append(ficha, 1)
         #Detecta si hay ficha en 2
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -2)
         for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+2):
+            if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
+            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(self.mem) and ficha.puedeComer(self.mem, ficha.posruta+2):
                 self.append(ficha, 2)
         #Detecta si hay ficha en 3
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -3)
         for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+3):
+            if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
+            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(self.mem) and ficha.puedeComer(self.mem, ficha.posruta+3):
                 self.append(ficha, 3)
         #Detecta si hay ficha en 4
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -4)
         for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+4):
+            if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
+            if ficha.jugador!=self.objetivo.jugador and ficha.estaAutorizadaAMover(self.mem)  and ficha.puedeComer(self.mem, ficha.posruta+4):
                 self.append(ficha, 4)
         #Detecta si hay ficha en 5
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -5)
         for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+5):
+            if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
+            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(self.mem) and ficha.puedeComer(self.mem, ficha.posruta+5):
                 self.append(ficha, 5 )
         #Detecta si hay ficha en 6 y chequea que no tiene todas fuera de casa
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -6)
         for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
             if ficha.jugador.tieneFichasEnCasa()==False:
                 continue
-            if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+6):
+            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(self.mem) and ficha.puedeComer(self.mem, ficha.posruta+6):
                 self.append(ficha, 6 )
                 
         #Detecta si hay ficha en 7 y chequea que tiene todas fuera de casa
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -7)
         for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
             if ficha.jugador.tieneFichasEnCasa()==True:
                 continue
-            if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+7):
+            if ficha.jugador!=self.objetivo.jugador and ficha.estaAutorizadaAMover(self.mem)  and ficha.puedeComer(self.mem, ficha.posruta+7):
                 self.append(ficha, 7 )
         
         #Detecta si hay ficha en 10
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -10)
         for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
             if ficha.jugador.tieneFichasATiroDeLlegada()==False:
                 continue
-            if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+10):
+            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(self.mem) and ficha.puedeComer(self.mem, ficha.posruta+10):
                 self.append(ficha, 10 )
                 
         #Detecta si hay ficha en 20
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -20)
         for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.jugador!=self.objetivo.jugador and ficha.puedeComer(self.mem, ficha.posruta+20):
+            if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
+            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(self.mem) and ficha.puedeComer(self.mem, ficha.posruta+20):
                 self.append(ficha, 20 )
 
 
@@ -660,6 +666,11 @@ class Ruta:
     def ruta1(self):
         return self.arr[1]
     
+    def estaEnRuta(self, casilla):
+        """Devuelve si la casilla est´a en la ruta"""
+        if casilla in self.arr:
+            return True
+        return False
     
 class SetColores:
     """Agrupación de jugadores"""
@@ -1524,7 +1535,7 @@ class Tablero(QObject):
         QGLWidget.__init__(self, parent)
         self.object = 1
         self.position=(-1, -1, 0)
-        self.oglname=16#Nombre usado para pick por opengl
+        self.oglname=32#Nombre usado para pick por opengl
 
 
     def dibujar(self, ogl):
@@ -1717,7 +1728,7 @@ class Casilla(QObject):
         self.tipo=tipo
         self.seguro=seguro# No se debe usar directamente ya que en ruta 1 solo es seguro si el jugador no tiene en casa
         self.buzon=[None]*self.maxfichas #Se crean los huecos y se juega con ellos para mantener la posicion
-        self.oglname=self.id+18#Nombre usado para pick por opengl
+        self.oglname=self.id+34#Nombre usado para pick por opengl
         self.UltimaFichaEnLlegar=None#Puntero a un objeto ficha que es utilizado p.e. cuando se come la segunda ficha en la casilla de salida por un 5 obligado a salir
         
     def __repr__(self):
