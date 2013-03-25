@@ -15,6 +15,9 @@ class frmShowCasilla(QDialog, Ui_frmShowCasilla):
         else:
             self.lblSeguro.setText(self.trUtf8("Casilla insegura"))
             
+        if self.casilla.ruta1==True:
+            self.lblSeguro.setText(self.lblSeguro.text()+". "+ self.trUtf8("Ruta 1 de {0}".format(self.casilla.color.name)))
+            
         fichas=self.casilla.buzon_fichas() #NO se puede usar buzon[0], porque puede estar en [1]
         
         if len(fichas)==0:

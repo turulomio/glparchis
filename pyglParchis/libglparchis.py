@@ -920,20 +920,20 @@ class SetCasillas:
 #            resultado.append(self.arr[56])
 #        return resultado
         
-    def defineRutas1(self, id):
-        """Es igual para 4,6,8"""
-        if self.numplayers==8:
-            if id in (5, 22, 39, 56, 73, 90, 107, 122):
-                return True
-            return False
-        if self.numplayers==6:
-            if id in (5, 22, 39, 56, 73, 90):
-                return True
-            return False
-        if self.numplayers==4:
-            if id in (5, 22, 39, 56):
-                return True
-            return False            
+#    def defineRutas1(self, id):
+#        """Es igual para 4,6,8"""
+#        if self.numplayers==8:
+#            if id in (5, 22, 39, 56, 73, 90, 107, 124):
+#                return True
+#            return False
+#        if self.numplayers==6:
+#            if id in (5, 22, 39, 56, 73, 90):
+#                return True
+#            return False
+#        if self.numplayers==4:
+#            if id in (5, 22, 39, 56):
+#                return True
+#            return False            
             
     def generar_casillas(self):
         if self.numplayers==6:
@@ -944,6 +944,14 @@ class SetCasillas:
             self.generar_casillas4()
                                 
     def generar_casillas4(self):
+        
+
+        def defineRutas1(id):
+            """Es igual para 4,6,8"""
+            if id in (5, 22, 39, 56):
+                return True
+            return False
+                
         def defineSeguro( id):
             if id==5 or id==12 or id==17 or id==22 or id==29 or id==34 or id==39 or id==46 or id==51  or id==56 or id==63 or id==68:
                 return True
@@ -1007,9 +1015,15 @@ class SetCasillas:
         posCasillas=poscasillas4(self.number)
         posFichas=posfichas4(self.number)
         for i in range(0, self.number):#Se debe inializar Antes que las fichas
-            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i],  self.defineRutas1(i)))
+            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i],  defineRutas1(i)))
             
     def generar_casillas6(self):
+
+        def defineRutas1(id):
+            if id in (5, 22, 39, 56, 73, 90):
+                return True
+            return False
+                
         def defineSeguro( id):           
             if id  in (5, 12, 17, 22, 29, 34, 39, 46, 51, 56, 63, 68, 73, 80, 85, 90, 97, 102) or id>=103:
                 return True
@@ -1090,7 +1104,7 @@ class SetCasillas:
         posCasillas=poscasillas6(self.number)
         posFichas=posfichas6(self.number, posCasillas)
         for i in range(0, self.number):#Se debe inializar Antes que las fichas
-            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i) , defineRotatePN(i),  defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i], self.defineRutas1(i)))
+            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i) , defineRotatePN(i),  defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i], defineRutas1(i)))
             
  
     def generar_casillas8(self):
@@ -1148,7 +1162,13 @@ class SetCasillas:
             if (id>=61 and id<=75) or id in(8, 9, 25, 26, 42, 43, 59, 60,  76, 77, 93, 94, 110, 111, 127, 128):
                 return False
             return True
-            
+                    
+        def defineRutas1(id):
+            """Es igual para 4,6,8"""
+            if id in (5, 22, 39, 56, 73, 90, 107, 124):
+                return True
+            return False
+        
         def defineRotate( id):
             if id==205:
                 return 22.5
@@ -1187,7 +1207,7 @@ class SetCasillas:
         posCasillas=poscasillas8(self.number)
         posFichas=posfichas8(self.number, posCasillas)
         for i in range(0, self.number):#Se debe inializar Antes que las fichas
-            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i], self.defineRutas1(i)))
+            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i], defineRutas1(i)))
             
 class SetFichas:
     """Agrupación de fichas"""
