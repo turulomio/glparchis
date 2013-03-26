@@ -2288,6 +2288,8 @@ class Mem:
             config.set("jugador{0}".format(i),  'ia', int(j.ia))
             config.set("jugador{0}".format(i),  'name', j.name)
             config.set("jugador{0}".format(i),  'plays', int(j.plays))
+            config.set("jugador{0}".format(i),  'eatbyme', j.comidaspormi)
+            config.set("jugador{0}".format(i),  'eatbyothers', j.comidasporotro)
             if self.jugadores.jugador('yellow').plays==True:
                 config.set("jugador{0}".format(i),  'rutaficha1', j.fichas.arr[0].posruta)
                 config.set("jugador{0}".format(i),  'rutaficha2',  j.fichas.arr[1].posruta)
@@ -2332,7 +2334,14 @@ class Mem:
             j.name=config.get("jugador{0}".format(i), "name")
             j.ia=i2b(config.getint("jugador{0}".format(i), "ia"))
             j.plays=i2b(config.getint("jugador{0}".format(i), "plays"))
-            
+            try:
+                j.comidaspormi=config.getint("jugador{0}".format(i), "eatbyme")
+                j.comidasporotro=config.getint("jugador{0}".format(i), "eatbyothers")
+            except:
+                j.comidaspormi=0
+                j.comidasporotro=0
+                print("No se ha podido cargar comidas por mi u otros")
+                
             if j.plays==True:
                 j.fichas.arr[0].mover(config.getint("jugador{0}".format(i), "rutaficha1"), False,  True)
                 j.fichas.arr[1].mover(config.getint("jugador{0}".format(i), "rutaficha2"), False,  True)
