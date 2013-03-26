@@ -423,7 +423,7 @@
         <translation>Ctrl+8</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2418"/>
+        <location filename="libglparchis.py" line="2427"/>
         <source>Esta opción se está desarrollando</source>
         <translation>Esta opción se está desarrollando</translation>
     </message>
@@ -680,7 +680,7 @@
 <context>
     <name>glparchis</name>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2305"/>
+        <location filename="libglparchis.py" line="2307"/>
         <source>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</source>
         <translation>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</translation>
     </message>
