@@ -239,7 +239,7 @@ class Amenaza:
         if tipo==7: return QApplication.translate("glparchis",u"Sacar un 7")
         if tipo==10: return QApplication.translate("glparchis",u"Contar 10")
         if tipo==20: return QApplication.translate("glparchis",u"Contar 20")
-        if tipo==51: return QApplication.translate("glparchis",u"Sacar un 5")
+        if tipo==51: return QApplication.translate("glparchis",u"Sacar ficha")
 
 class SetAmenazas:
     """Clase que genera las amenazas contra un objetivo en la casilla pasado como par´ametro"""
@@ -794,7 +794,6 @@ class SetRutas:
         
     def ruta(self, id):        
         """id es el mismo que el orden de los colores"""
-        print("Buscando color id {0}".format(id))
         return self.arr[id]
         
 #    def rutas1(self):
@@ -2283,6 +2282,7 @@ class Mem:
         config.set("game",  "numplayers",  self.maxplayers)
         config.set("game", 'fakedice','')
         config.set("game", 'fileversion','1.0')
+        config.set("game",  'inittime', self.inittime)
         for i, j in enumerate(self.jugadores.arr):
             config.add_section("jugador{0}".format(i))
             config.set("jugador{0}".format(i),  'ia', int(j.ia))
@@ -2321,6 +2321,12 @@ class Mem:
         if fileversion!="1.0":#Ir cambiando según necesidades
             error()
             return False
+        
+        try:
+            self.inittime=datetime.datetime.strptime(config.get("game", "inittime"),"%Y-%m-%d %H:%M:%S.%f")
+        except:
+            self.inittime=datetime.datetime.now()
+            print ("No se ha podido cargar el inittime")
         
         for i, j in enumerate(self.jugadores.arr):
             j.name=config.get("jugador{0}".format(i), "name")
