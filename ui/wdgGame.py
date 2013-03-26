@@ -40,12 +40,12 @@ class wdgGame(QWidget, Ui_wdgGame):
         
     def timer_reload(self):
         self.table.reload()
-        self.lblTime.setText(self.trUtf8("Tiempo de partida: {0}".format(str(datetime.datetime.now()-self.inicio).split(".")[0])))
+        self.lblTime.setText(self.trUtf8("Tiempo de partida: {0}".format(str(datetime.datetime.now()-self.mem.inittime).split(".")[0])))
         
         
 
     def assign_mem(self, mem):
-        self.inicio=datetime.datetime.now()#tiempo de inicio
+#        self.inicio=datetime.datetime.now()#tiempo de inicio
         self.mem=mem
         self.stopthegame=False
         self.table.assign_mem(self.mem)
@@ -88,7 +88,9 @@ class wdgGame(QWidget, Ui_wdgGame):
         
             
         self.connect(self.ogl, SIGNAL("doubleClicked()"), self.on_ogl_doubleClicked)
-        self.mem.inittime=datetime.datetime.now()
+        
+        if self.mem.inittime==None:#Caso de que se cree la partida sin cargar .glparchis
+            self.mem.inittime=datetime.datetime.now()
         self.on_JugadorDebeTirar()
 
     def on_ogl_doubleClicked(self):

@@ -10,9 +10,6 @@
     <height>330</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Dialog</string>
-  </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(253, 255, 190);</string>
   </property>
@@ -83,6 +80,9 @@
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
         <widget class="QTableWidget" name="tblAmenazas">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(253, 255, 190);</string>
+         </property>
          <column>
           <property name="text">
            <string>Ficha</string>
@@ -95,7 +95,7 @@
          </column>
          <column>
           <property name="text">
-           <string>Thread</string>
+           <string>Amenaza</string>
           </property>
          </column>
         </widget>
@@ -185,6 +185,9 @@
            <layout class="QHBoxLayout" name="horizontalLayout_5">
             <item>
              <widget class="QTableWidget" name="tblAmenazasDestino">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(253, 255, 190);</string>
+              </property>
               <column>
                <property name="text">
                 <string>Ficha</string>
