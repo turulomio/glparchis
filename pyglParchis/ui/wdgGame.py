@@ -167,7 +167,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.cmdTirarDado.setEnabled(False)
         if self.mem.jugadores.actual.ia==True:
             self.mem.jugadores.actual.log(self.trUtf8("IA mueve una ficha"))     
-            iaficha=self.mem.jugadores.actual.IASelectFicha(self.mem)
+            iaficha=self.mem.jugadores.actual.IASelectFicha()
             delay(400)
             if iaficha==None:
                 self.cambiarJugador()
@@ -180,7 +180,6 @@ class wdgGame(QWidget, Ui_wdgGame):
         
     def on_splitter_splitterMoved(self, position, index):
         self.mem.cfgfile.splitterstate=self.splitter.saveState()
-#        print self.mem.cfgfile.splitterstate,  base64.b64encode(self.mem.cfgfile.splitterstate)
         self.mem.cfgfile.save()
         self.update()
 
@@ -192,7 +191,6 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.mem.jugadores.actual.tirarDado()
         self.mem.dado.showing=True
         self.ogl.updateGL()
-#        self.cmdTirarDado.setIcon(self.mem.dado.qicon(self.mem.jugadores.actual.tiradaturno.ultimoValor()))
         self.panel().setLabelDado()
         
         if self.mem.jugadores.actual.tiradaturno.tresSeises()==True:
@@ -201,7 +199,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 if casilla.rampallegada==True:
                     self.mem.jugadores.actual.log(self.trUtf8("Han salido tres seises, no se va a casa por haber llegado a rampa de llegada"))
                 else:
-                    if self.mem.jugadores.actual.LastFichaMovida.estaAutorizadaAMover(self.mem)[0]==True:
+                    if self.mem.jugadores.actual.LastFichaMovida.estaAutorizadaAMover()[0]==True:
                         self.mem.jugadores.actual.log(self.trUtf8("Han salido tres seises, la ultima ficha movida se va a casa"))
                         self.mem.play("comer")
                         self.mem.jugadores.actual.LastFichaMovida.mover(0)
@@ -211,7 +209,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.mem.jugadores.actual.log(self.trUtf8(u"Despues de tres seises, ya no puede volver a tirar"))
             self.cambiarJugador()
         else: # si no han salido 3 seises
-            if self.mem.jugadores.actual.fichas.algunaEstaAutorizadaAmover(self.mem)==True:
+            if self.mem.jugadores.actual.fichas.algunaEstaAutorizadaAmover()==True:
                 self.on_JugadorDebeMover()
             else:#ninguna puede mover.
                 if self.mem.jugadores.actual.tiradaturno.ultimoEsSeis()==True:
@@ -227,7 +225,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         if self.cmdTirarDado.isEnabled():#Esta esperando dado no se puede pulsar ficha para mover.
             return
         
-        (puede, movimiento)=self.mem.selFicha.estaAutorizadaAMover(self.mem, True)
+        (puede, movimiento)=self.mem.selFicha.estaAutorizadaAMover(None, True)
             
         if puede==False:
             if self.mem.jugadores.actual.ia==False:
@@ -242,7 +240,7 @@ class wdgGame(QWidget, Ui_wdgGame):
             else:
                 self.mem.play("comer")            
             delay(600)
-            if self.mem.jugadores.actual.fichas.algunaEstaAutorizadaAmover(self.mem)==True:
+            if self.mem.jugadores.actual.fichas.algunaEstaAutorizadaAmover()==True:
                 self.on_JugadorDebeMover()
                 return
         else:

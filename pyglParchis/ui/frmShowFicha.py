@@ -15,7 +15,7 @@ class frmShowFicha(QDialog, Ui_frmShowFicha):
         self.lblRuta.setText(self.trUtf8("Posición en ruta: %1").arg(str(self.ficha.posruta)))
         self.tblAmenazas_reload()
         if self.mem.jugadores.actual.tiradaturno.ultimoValor()!=None:
-            (puedemover, movimiento)=self.ficha.puedeMover(self.mem)
+            (puedemover, movimiento)=self.ficha.puedeMover()
             if puedemover==True:
                 self.cmbDestino.setCurrentIndex(self.cmbDestino.findText(str(movimiento)))
                 self.on_cmbDestino_currentIndexChanged(str(movimiento))

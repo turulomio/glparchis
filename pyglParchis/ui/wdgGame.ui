@@ -53,7 +53,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>765</width>
+            <width>750</width>
             <height>761</height>
            </rect>
           </property>
@@ -216,12 +216,7 @@
                </row>
                <row>
                 <property name="text">
-                 <string>Fichas comidas por mi</string>
-                </property>
-               </row>
-               <row>
-                <property name="text">
-                 <string>Fichas comidas por otro</string>
+                 <string>3 seises seguidos</string>
                 </property>
                </row>
                <row>
@@ -231,7 +226,12 @@
                </row>
                <row>
                 <property name="text">
-                 <string>3 seises seguidos</string>
+                 <string>Fichas comidas por mi</string>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>Fichas comidas por otro</string>
                 </property>
                </row>
                <row>
