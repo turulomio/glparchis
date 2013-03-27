@@ -291,32 +291,32 @@ class SetAmenazas:
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -1)
         for posicion, ficha in casillaataque.buzon_fichas():
             if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
-            if ficha.jugador!=self.objetivo.jugador and ficha.estaAutorizadaAMover(self.mem) and ficha.puedeComer(self.mem, ficha.posruta+1):
+            if ficha.jugador!=self.objetivo.jugador and ficha.estaAutorizadaAMover(1) and ficha.puedeComer(self.mem, ficha.posruta+1):
                 self.append(ficha, 1)
         #Detecta si hay ficha en 2
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -2)
         for posicion, ficha in casillaataque.buzon_fichas():
             if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
-            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(self.mem) and ficha.puedeComer(self.mem, ficha.posruta+2):
+            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(2) and ficha.puedeComer(self.mem, ficha.posruta+2):
                 self.append(ficha, 2)
         #Detecta si hay ficha en 3
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -3)
         for posicion, ficha in casillaataque.buzon_fichas():
             if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
-            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(self.mem) and ficha.puedeComer(self.mem, ficha.posruta+3):
+            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(3) and ficha.puedeComer(self.mem, ficha.posruta+3):
                 self.append(ficha, 3)
         #Detecta si hay ficha en 4
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -4)
         for posicion, ficha in casillaataque.buzon_fichas():
             if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
-            if ficha.jugador!=self.objetivo.jugador and ficha.estaAutorizadaAMover(self.mem)  and ficha.puedeComer(self.mem, ficha.posruta+4):
+            if ficha.jugador!=self.objetivo.jugador and ficha.estaAutorizadaAMover(4)  and ficha.puedeComer(self.mem, ficha.posruta+4):
                 self.append(ficha, 4)
         #Detecta si hay ficha en 5
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -5)
         for posicion, ficha in casillaataque.buzon_fichas():
             if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
             if ficha.jugador.tieneFichasEnCasa(): continue
-            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(self.mem) and ficha.puedeComer(self.mem, ficha.posruta+5):
+            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(5) and ficha.puedeComer(self.mem, ficha.posruta+5):
                 self.append(ficha, 5 )
         #Detecta si hay ficha en 6 y chequea que no tiene todas fuera de casa
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -6)
@@ -324,7 +324,7 @@ class SetAmenazas:
             if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
             if ficha.jugador.tieneFichasEnCasa()==False:
                 continue
-            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(self.mem) and ficha.puedeComer(self.mem, ficha.posruta+6):
+            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(6) and ficha.puedeComer(self.mem, ficha.posruta+6):
                 self.append(ficha, 6 )
                 
         #Detecta si hay ficha en 7 y chequea que tiene todas fuera de casa
@@ -333,7 +333,7 @@ class SetAmenazas:
             if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
             if ficha.jugador.tieneFichasEnCasa()==True:
                 continue
-            if ficha.jugador!=self.objetivo.jugador and ficha.estaAutorizadaAMover(self.mem)  and ficha.puedeComer(self.mem, ficha.posruta+7):
+            if ficha.jugador!=self.objetivo.jugador and ficha.estaAutorizadaAMover(7)  and ficha.puedeComer(self.mem, ficha.posruta+7):
                 self.append(ficha, 7 )
         
         #Detecta si hay ficha en 10
@@ -342,15 +342,15 @@ class SetAmenazas:
             if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
             if ficha.jugador.tieneFichasATiroDeLlegada()==False:
                 continue
-            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(self.mem) and ficha.puedeComer(self.mem, ficha.posruta+10):
+            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(10) and ficha.puedeComer(self.mem, ficha.posruta+10):
                 self.append(ficha, 10 )
                 
         #Detecta si hay ficha en 20
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -20)
         for posicion, ficha in casillaataque.buzon_fichas():
             if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
-            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(self.mem) and ficha.puedeComer(self.mem, ficha.posruta+20):
-                self.append(ficha, 20 )
+            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(20) and ficha.puedeComer(self.mem, ficha.posruta+20):
+                self.append(ficha, 20)
 
 
     def numero(self):
@@ -486,12 +486,13 @@ class HighScore:
         f.close()
                 
 class Jugador:
-    def __init__(self,  color):
+    def __init__(self, mem,  color):
+        self.mem=mem
         self.name=None#Es el nombre de usuario no el de color
         self.color=color
         self.ia=False
         self.plays=True
-        self.fichas=SetFichas()     
+        self.fichas=SetFichas(self.mem)     
         self.tiradaturno=TiradaTurno()#TiradaJugador()
         self.tiradahistorica=TiradaHistorica()
         self.LastFichaMovida=None #Se utiliza cuando se va a casa NOne si ninguna
@@ -584,7 +585,7 @@ class Jugador:
                 return False
         return True
         
-    def IASelectFicha(self, mem):
+    def IASelectFicha(self):
         """Función que devuelve la ficha seleccionada por la IA. Si devuelve None es que ninguna se puede mover"""
         def azar(tope):
             """Función que saca un numero al azar de entre 1 y 100. Si es mayor del tope devuelve true. Sino devuelve false. Es decir tope 85 es una probabilidad del 85%"""
@@ -594,7 +595,7 @@ class Jugador:
                 return True
             return False
         ####################################
-        fichas=self.fichas.fichasAutorizadasAMover(mem)
+        fichas=self.fichas.fichasAutorizadasAMover()
         fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)     
         if len(fichas)==0:
             return None
@@ -603,8 +604,8 @@ class Jugador:
         #1 prioridad. Puede comer IA 85%
         if azar(95):
             for f in fichas:#Recorre las que pueden mover
-                movimiento=f.estaAutorizadaAMover(mem)[1]
-                (puede, fichaacomer)=f.puedeComer(mem, f.posruta+movimiento)
+                movimiento=f.estaAutorizadaAMover()[1]
+                (puede, fichaacomer)=f.puedeComer(self.mem, f.posruta+movimiento)
                 if puede:
                     print (f, "seleccionada por azar comer")
                     return f
@@ -612,13 +613,13 @@ class Jugador:
         
         
         #2 prioridad. Mueve fichas que disminuyen en número de amenazas en la nueva posicion
-#        fichas=sorted(fichas, key=lambda f:f.numeroAmenazasMejora(mem),  reverse=True)     
+#        fichas=sorted(fichas, key=lambda f:f.numeroAmenazasMejora(self.mem),  reverse=True)     
 #        for f in fichas:
-#            print (f, f.numeroAmenazasMejora(mem), f.numFichasPuedenComer(mem, f.posruta), f.numFichasPuedenComer(mem, f.posruta+f.estaAutorizadaAMover(mem)[1]))
+#            print (f, f.numeroAmenazasMejora(self.mem), f.numFichasPuedenComer(self.mem, f.posruta), f.numFichasPuedenComer(self.mem, f.posruta+f.estaAutorizadaAMover(self.mem)[1]))
         if azar(95):
             fichas=sorted(fichas, key=lambda f:f.amenazas(),  reverse=True)     
             for f in fichas:
-                movimiento=f.estaAutorizadaAMover(mem)[1]
+                movimiento=f.estaAutorizadaAMover()[1]
                 antes=f.amenazas()
                 despues=f.amenazasDestino(movimiento)
                 if antes.numero()>despues.numero():
@@ -630,15 +631,15 @@ class Jugador:
         fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)     
         if azar(95):
             for f in fichas:
-                movimiento=f.estaAutorizadaAMover(mem)[1]
-                if f.casilla().esSegura(mem, self, True)==False  and  f.casilla(f.posruta+movimiento).esSegura(mem, self, False)==True:
+                movimiento=f.estaAutorizadaAMover()[1]
+                if f.casilla().esSegura(self.mem, self, True)==False  and  f.casilla(f.posruta+movimiento).esSegura(self.mem, self, False)==True:
                     print (f,"seleccionado por azar asegurar")
                     return f
         
         #4 Alguna ficha no asegurada puede mover
         if azar(95):
             for f in fichas:
-                if f.casilla().esSegura(mem, f.jugador, True)==False:
+                if f.casilla().esSegura(self.mem, f.jugador, True)==False:
                     print(f,"seleccionado por azar ficha no asegurada")
                     return f
         
@@ -1210,26 +1211,27 @@ class SetCasillas:
             
 class SetFichas:
     """Agrupación de fichas"""
-    def __init__(self):
+    def __init__(self, mem):
         self.arr=[]
+        self.mem=mem
 
-    def algunaEstaObligada(self, mem):
+    def algunaEstaObligada(self):
         """Busca entre las fichas que pueden mover si alguna está obligada a mover"""
         for f in self.arr:
-            if f.estaObligada(mem)==True:
+            if f.estaObligada(self.mem)==True:
                 return True
         return False
 
-    def algunaEstaAutorizadaAmover(self, mem):
-        if len(self.fichasAutorizadasAMover(mem))>0:
+    def algunaEstaAutorizadaAmover(self):
+        if len(self.fichasAutorizadasAMover())>0:
             return True
         return False
         
-    def fichasAutorizadasAMover(self, mem):
+    def fichasAutorizadasAMover(self):
         """Devuelve un arr con las fichas que pueden mover"""
         resultado=[]
         for f in self.arr:
-            if f.estaAutorizadaAMover(mem)[0]==True:
+            if f.estaAutorizadaAMover()[0]==True:
                 resultado.append(f)
         return resultado        
     
@@ -1248,7 +1250,7 @@ class SetFichas:
 class Ficha(QObject):
     def __init__(self, mem, id, number,  color, jugador, ruta):
         """El identificador de la ficha viene dado por el nombre del color y el id (numero de creacion), se genera en la clase Mem"""
-        QGLWidget.__init__(self)
+        QObject.__init__(self)
         self.color=color
         self.mem=mem
         self.id=id
@@ -1258,9 +1260,7 @@ class Ficha(QObject):
         self.ficha=gluNewQuadric();
         self.jugador=jugador
         self.oglname=self.id#Nombre usado para pick por opengl
-        
-    
-        
+
     def amenazas(self):
         return SetAmenazas(self.mem, self, self.casilla())
         
@@ -1276,7 +1276,7 @@ class Ficha(QObject):
         
     def estaObligada(self, mem):        
         """ESta pregunta se integra dentro de puede mover. NO DEBE HABER EN SETFICHAS ALGUNAS, YA QUE SE INTEGRARíA DENTRO DE ALGUNA PUEDEMOVER"""
-        if self.puedeMover(mem)[0]==False:
+        if self.puedeMover()[0]==False:
             return False
             
         if self.jugador.tiradaturno.ultimoValor()==5 and self.estaEnCasa() and self.ruta.arr[1].buzon_numfichas()<2:
@@ -1292,68 +1292,81 @@ class Ficha(QObject):
                 return True
         return False
         
-    def estaAutorizadaAMover(self, mem, log=False):
+    def estaAutorizadaAMover(self, posibledado=None, log=False):
         """PUEDE MOVER Y ESTA OBLIGADO SON DOS CONCEPTOS INDEPENDIENTES QUE NO DEBEN DE UNIRSE 
         PORQUE GENERA RECURSIVIDADPOR ESO SE HACE AQUí
         
         Autorizada significa que puede mover y no está obligada a hacer otras cosas"""
         
-        (puede, movimiento)=self.puedeMover(mem, log)
+        (puede, movimiento)=self.puedeMover(posibledado,  log)
         if puede:
-            if mem.jugadores.actual.fichas.algunaEstaObligada(mem) :
-                if self.estaObligada(mem)==False:
-                    if log: mem.jugadores.actual.log(self.trUtf8("No puede mover, porque hay otra ficha obligada a mover"))
+            if self.mem.jugadores.actual.fichas.algunaEstaObligada() :
+                if self.estaObligada(self.mem)==False:
+                    if log: self.mem.jugadores.actual.log(self.trUtf8("No puede mover, porque hay otra ficha obligada a mover"))
                     return (False, 0)                    
             return (puede, movimiento)
         return (puede, movimiento)
         
-    def puedeMover(self, mem,  log=False):
+    def puedeMover(self, posibledado=None,  log=False):
         """Comprueba si la ficha puede mover. desde el punto de vista fisico
-        Si log=True muestra los logs"""
+        Si log=True muestra los logs
+        
+        posibledado
+        """
 
         #Es ficha del jugador actual. #A PARTIR DE AQUI SE PUEDE USAR SELF.JUGADOR EN VEZ DE MEM.jugadores.actual
-        if  self.jugador!=mem.jugadores.actual:             
-            if log: mem.jugadores.actual.log(self.trUtf8("No es del jugador actual"))
+        if  self.jugador!=self.mem.jugadores.actual:             
+            if log: self.mem.jugadores.actual.log(self.trUtf8("No es del jugador actual"))
             return (False, 0)
             
         #No se puede mover una ficha que está en casa con puntos acumulados
-        if mem.jugadores.actual.movimientos_acumulados!=None and self.estaEnCasa():
+        if self.mem.jugadores.actual.movimientos_acumulados!=None and self.estaEnCasa():
             return (False, 0)
 
         #Calcula el movimiento
-        if mem.jugadores.actual.movimientos_acumulados!=None:
-            movimiento=mem.jugadores.actual.movimientos_acumulados
-        elif self.estaEnCasa() and self.jugador.tiradaturno.ultimoValor()==5:
+        if posibledado==None:
+            dado=self.jugador.tiradaturno.ultimoValor()
+        else:
+            dado=posibledado
+        
+        
+        if self.mem.jugadores.actual.movimientos_acumulados!=None:
+            movimiento=self.mem.jugadores.actual.movimientos_acumulados
+        elif self.estaEnCasa() and dado==5:
             movimiento= 1
-        elif self.estaEnCasa()==True and self.jugador.tiradaturno.ultimoValor()!=5: #Saco un 5
+        elif self.estaEnCasa()==True and dado!=5: #Saco un 5
             movimiento=0
-        elif self.jugador.fichas.TodasFichasFueraDeCasa()==True and self.jugador.tiradaturno.ultimoValor()==6:
+        elif self.jugador.fichas.TodasFichasFueraDeCasa()==True and dado==6:
             movimiento=7
         else:
-            movimiento=self.jugador.tiradaturno.ultimoValor()
+            movimiento=dado
+            
+        #Caso posibledado con 10 y 20
+            if posibledado in (10, 20):
+                movimiento=posibledado
                             
         if movimiento==0 or movimiento==None:
-            if log: mem.jugadores.actual.log(self.trUtf8("No puede mover"))
+            if log: self.mem.jugadores.actual.log(self.trUtf8("No puede mover"))
             return (False, 0)    
            
         #se ha pasado la meta
         if self.posruta+movimiento>self.ruta.length()-1:
-            if log: mem.jugadores.actual.log(self.trUtf8("Se ha pasado la meta"))
+            if log: self.mem.jugadores.actual.log(self.trUtf8("Se ha pasado la meta"))
             return (False, 0) 
             
         #Rastrea todas las casillas de paso en busca de barrera. desde la siguiente
         for i in range(self.posruta+1, self.posruta+movimiento+1): 
             if self.ruta.arr[i].tieneBarrera()==True:
-                if log: mem.jugadores.actual.log(self.trUtf8("Hay una barrera"))
+                if log: self.mem.jugadores.actual.log(self.trUtf8("Hay una barrera"))
                 return (False, 0)
 
         #Comprueba si hay sitio libre
         casilladestino=self.ruta.arr[self.posruta+movimiento]
         if casilladestino.posicionLibreEnBuzon()==-1:
             if self.jugador.hayDosJugadoresDistintosEnRuta1():#COmprueeba si es primera casilla en ruta y hay otra de otro color.
-                if log: mem.jugadores.actual.log(self.trUtf8("Obligado a sacar y a comer"))
+                if log: self.mem.jugadores.actual.log(self.trUtf8("Obligado a sacar y a comer"))
             else:
-                if log: mem.jugadores.actual.log(self.trUtf8("No hay espacio en la casilla"))
+                if log: self.mem.jugadores.actual.log(self.trUtf8("No hay espacio en la casilla"))
                 return (False, 0)
                 
 
@@ -2253,7 +2266,7 @@ class Mem:
             
     def generar_jugadores(self):
         for c in self.colores.arr:
-            j=Jugador(c)
+            j=Jugador(self, c)
             self.jugadores.arr.append(j)
             j.dado=self.dado
 

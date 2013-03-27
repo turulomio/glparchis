@@ -21,5 +21,4 @@
 20130325 Cuando hay barrera mia en ruta 1 y sale un 5 no amenaza
 20130325 En showcaslla mostrar la ausencia de ficha con una ficha sin color
 20130325 Esta autorizada a mover y pudede mover calculan con movimiento de dado, no con estimación de movimiento, falla no cuentan barreras con 20...
-20130325 Ver como volver a traducción de codigo sin tener que poner la de _es.ts
 20130325 Hay que quitar el make all y cambiarlo por make install

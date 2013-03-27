@@ -34,7 +34,7 @@ class QTableStatistics(QTableWidget):
                 self.setItem( j,i, item )
                 
         #Rallando la tabla
-        for i, j in ((9, self.mem.maxplayers), (10, self.mem.maxplayers), (14, self.mem.maxplayers), (16, self.mem.maxplayers)):
+        for i, j in ((11, self.mem.maxplayers), (12, self.mem.maxplayers), (14, self.mem.maxplayers), (16, self.mem.maxplayers)):
             item = QTableWidgetItem()
             item.setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
             brush = QBrush(QColor(0, 0, 0))
@@ -73,9 +73,9 @@ class QTableStatistics(QTableWidget):
             self.item(0, column).setText(str(j.tiradahistorica.numThrows()))
             for i in range(2, 8):
                 self.item(i, column).setText(str(j.tiradahistorica.numTimesDiceGetNumber(i-1)))
-            self.item(9, column).setText(str(j.comidaspormi))
-            self.item(10, column).setText(str(j.comidasporotro))
-            self.item(12, column).setText(str(j.tiradahistorica.numThreeSixes()))
+            self.item(9, column).setText(str(j.tiradahistorica.numThreeSixes()))
+            self.item(11, column).setText(str(j.comidaspormi))
+            self.item(12, column).setText(str(j.comidasporotro))
             
             
             if j==ganando:
@@ -93,6 +93,6 @@ class QTableStatistics(QTableWidget):
         self.item(0, self.mem.maxplayers).setText(str(tj.numThrows()))
         for i in range(2, 8):
             self.item(i, self.mem.maxplayers).setText(str(tj.numTimesDiceGetNumber(i-1)))
-        self.item(12, self.mem.maxplayers).setText(str(tj.numThreeSixes()))
+        self.item(9, self.mem.maxplayers).setText(str(tj.numThreeSixes()))
         
 

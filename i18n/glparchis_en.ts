@@ -3,32 +3,32 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="1316"/>
+        <location filename="libglparchis.py" line="1319"/>
         <source>No es del jugador actual</source>
         <translation>It&apos;s not a current player piece</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1341"/>
+        <location filename="libglparchis.py" line="1354"/>
         <source>Se ha pasado la meta</source>
         <translation>You missed the central space</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1347"/>
+        <location filename="libglparchis.py" line="1360"/>
         <source>Hay una barrera</source>
         <translation>There is a blockade</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1356"/>
+        <location filename="libglparchis.py" line="1369"/>
         <source>No hay espacio en la casilla</source>
         <translation>The space is bussy</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1336"/>
+        <location filename="libglparchis.py" line="1349"/>
         <source>No puede mover</source>
         <translation>It can&apos;t move</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1354"/>
+        <location filename="libglparchis.py" line="1367"/>
         <source>Obligado a sacar y a comer</source>
         <translation>You&apos;re forced to move to the first space and to eat</translation>
     </message>
@@ -38,12 +38,12 @@
         <translation>It can&apos;t move, because there is another piece forced to move</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1412"/>
+        <location filename="libglparchis.py" line="1425"/>
         <source>He comido una ficha de %1 en la casilla %2</source>
         <translation>I&apos;ve eaten a %1 piece at the %2 place</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1429"/>
+        <location filename="libglparchis.py" line="1442"/>
         <source>Una ficha a llegado a la meta</source>
         <translation>A piece arrived the central space</translation>
     </message>
@@ -423,7 +423,7 @@
         <translation>Ctrl+8</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2427"/>
+        <location filename="libglparchis.py" line="2440"/>
         <source>Esta opción se está desarrollando</source>
         <translation>This part is being develped</translation>
     </message>
@@ -680,7 +680,7 @@
 <context>
     <name>glparchis</name>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2307"/>
+        <location filename="libglparchis.py" line="2320"/>
         <source>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</source>
         <translation>The file has an obsolete version or it&apos;s broken. It can&apos;t be loaded.</translation>
     </message>
@@ -783,17 +783,17 @@
         <translation>Roll a 6</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="219"/>
+        <location filename="ui/wdgGame.ui" line="229"/>
         <source>Fichas comidas por mi</source>
         <translation>Pieces eaten by me</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="224"/>
+        <location filename="ui/wdgGame.ui" line="234"/>
         <source>Fichas comidas por otro</source>
         <translation>Pieces eaten by other</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.ui" line="234"/>
+        <location filename="ui/wdgGame.ui" line="219"/>
         <source>3 seises seguidos</source>
         <translation>3 sixes in a row</translation>
     </message>
@@ -828,32 +828,32 @@
         <translation>IA moves a piece</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="202"/>
+        <location filename="ui/wdgGame.py" line="200"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation>You got three sixes, but you don&apos;t go home because you got the arrival ramp</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="205"/>
+        <location filename="ui/wdgGame.py" line="203"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation>You got three sixes. Your last moved piece goes home</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="209"/>
+        <location filename="ui/wdgGame.py" line="207"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation>You got three sixes, but as you can&apos;t move, you don&apos;t go home</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="211"/>
+        <location filename="ui/wdgGame.py" line="209"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation>After three sixes, you can&apos;t roll the dice again</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="224"/>
+        <location filename="ui/wdgGame.py" line="222"/>
         <source>Seleccione una ficha...</source>
         <translation>Select a piece...</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="264"/>
+        <location filename="ui/wdgGame.py" line="262"/>
         <source>Fin de turno</source>
         <translation>End of turn</translation>
     </message>
