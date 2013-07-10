@@ -1392,6 +1392,10 @@ class Ficha(QObject):
 
     def puedeComer(self, mem, destposruta):
         """Devuelve un (True, ficha a comer) or (False, None) si puede comer una ficha en la posición ruta"""
+        #Controla que la casilla de destino no sobrepase la ruta
+        if destposruta>self.ruta.length()-1:
+            return (False, None)
+            
         casilladestino=self.casilla(destposruta)
         fichasdestino=casilladestino.buzon_fichas()
         #debe estar primero porque es una casilla segura
