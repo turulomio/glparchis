@@ -1,4 +1,4 @@
-## -*- coding: utf-8 -*-
+# 
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from libglparchis import *
@@ -41,6 +41,7 @@ class QTableStatistics(QTableWidget):
             brush.setStyle(Qt.BDiagPattern)
             item.setBackground(brush)
             self.setItem(i, j, item)
+            
 #negrita
 #        item = QTableWidgetItem()
 #        item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter|Qt.AlignCenter)

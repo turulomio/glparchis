@@ -7,24 +7,32 @@ from poscasillas4 import *
 from posfichas4 import *
 from poscasillas6 import *
 from posfichas6 import *
-import os,  random,   ConfigParser,  datetime,  time,  sys,  codecs,  base64,  math,  glob
+import os,  random,   configparser,  datetime,  time,  sys,  codecs,  base64,  math,  glob
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.phonon import Phonon
 #Cuando se modifique una version sacada se pondrá un + p.e. 20120921+
 version="20130228+"
-def q2s(q):
-    """Qstring to python string en utf8"""
-    return str(QString.toUtf8(q))
+#def q2s(q):
+#    """Qstring to python string en utf8"""
+#    return str(QString.toUtf8(q))
     
-def s2q(st):
-    """utf8 python string to qstring"""
-    if st==None:
-        return QString("")
+#def s2q(st):
+#    """utf8 python string to qstring"""
+#    if st==None:
+#        return QString("")
+#    else:
+#        return QString(st.decode("UTF8"))
+def b2s(b, code='UTF-8'):
+    return b.decode(code)
+    
+def s2b(s, code='UTF8'):
+    if s==None:
+        return "".encode(code)
     else:
-        return QString(st.decode("UTF8"))
-
+        return s.encode(code)
+        
 def i2b(integer):
     """Convierte 1 en Truue 0 en False"""
     if integer==1:
@@ -617,7 +625,7 @@ class Jugador:
 #        for f in fichas:
 #            print (f, f.numeroAmenazasMejora(self.mem), f.numFichasPuedenComer(self.mem, f.posruta), f.numFichasPuedenComer(self.mem, f.posruta+f.estaAutorizadaAMover(self.mem)[1]))
         if azar(95):
-            fichas=sorted(fichas, key=lambda f:f.amenazas(),  reverse=True)     
+            fichas=sorted(fichas, key=lambda f:f.amenazas().numero(),  reverse=True)     
             for f in fichas:
                 movimiento=f.estaAutorizadaAMover()[1]
                 antes=f.amenazas()
@@ -816,63 +824,63 @@ class SetRutas:
 
     def generar_rutas4(self):    
         r=Ruta(self.mem.colores.colorbyname("yellow"), self.mem)
-        r.append_id( [101]+range(5, 76+1))
+        r.append_id( [101]+list(range(5, 76+1)))
         self.arr.append(r)
         r=Ruta(self.mem.colores.colorbyname("blue"), self.mem)
-        r.append_id([102]+ range(22, 68+1)+range(1, 17+1)+range(77, 84+1))
+        r.append_id([102]+ list(range(22, 68+1))+list(range(1, 17+1))+list(range(77, 84+1)))
         self.arr.append(r)
         r=Ruta(self.mem.colores.colorbyname("red"), self.mem)
-        r.append_id( [103]+range(39, 68+1)+range(1, 34+1)+range(85, 92+1))
+        r.append_id( [103]+list(range(39, 68+1))+list(range(1, 34+1))+list(range(85, 92+1)))
         self.arr.append(r) 
         r=Ruta(self.mem.colores.colorbyname("green"), self.mem)
-        r.append_id([104]+range(56, 68+1)+range(1, 51+1)+range(93, 100+1))
+        r.append_id([104]+list(range(56, 68+1))+list(range(1, 51+1))+list(range(93, 100+1)))
         self.arr.append(r)        
             
 
     def generar_rutas6(self):    
         r=Ruta(self.mem.colores.colorbyname("yellow"), self.mem)
-        r.append_id([151]+range(5, 110+1))
+        r.append_id([151]+list(range(5, 110+1)))
         self.arr.append(r)
         r=Ruta(self.mem.colores.colorbyname("blue"), self.mem)
-        r.append_id([152]+range(22, 102+1)+range(1, 17+1)+range(111, 118+1))
+        r.append_id([152]+list(range(22, 102+1))+list(range(1, 17+1))+list(range(111, 118+1)))
         self.arr.append(r)
         r=Ruta(self.mem.colores.colorbyname("red"), self.mem)
-        r.append_id( [153]+range(39, 102+1)+range(1, 34+1)+range(119, 126+1))
+        r.append_id( [153]+list(range(39, 102+1))+list(range(1, 34+1))+list(range(119, 126+1)))
         self.arr.append(r) 
         r=Ruta(self.mem.colores.colorbyname("green"), self.mem)
-        r.append_id([154]+range(56, 102+1)+range(1, 51+1)+range(127, 134+1))
+        r.append_id([154]+list(range(56, 102+1))+list(range(1, 51+1))+list(range(127, 134+1)))
         self.arr.append(r)      
         r=Ruta(self.mem.colores.colorbyname("dimgray"), self.mem)
-        r.append_id([155]+range(73, 102+1)+range(1, 68+1)+range(135, 142+1))
+        r.append_id([155]+list(range(73, 102+1))+list(range(1, 68+1))+list(range(135, 142+1)))
         self.arr.append(r)
         r=Ruta(self.mem.colores.colorbyname("fuchsia"), self.mem)
-        r.append_id([156]+range(90, 102+1)+range(1, 85+1)+range(143, 150+1))
+        r.append_id([156]+list(range(90, 102+1))+list(range(1, 85+1))+list(range(143, 150+1)))
         self.arr.append(r)       
 
     def generar_rutas8(self):    
         r=Ruta(self.mem.colores.colorbyname("yellow"), self.mem)
-        r.append_id([201]+range(5, 144+1))
+        r.append_id([201]+list(range(5, 144+1)))
         self.arr.append(r)
         r=Ruta(self.mem.colores.colorbyname("blue"), self.mem)
-        r.append_id([202]+range(22, 136+1)+range(1, 17+1)+range(145, 152+1))
+        r.append_id([202]+list(range(22, 136+1))+list(range(1, 17+1))+list(range(145, 152+1)))
         self.arr.append(r)
         r=Ruta(self.mem.colores.colorbyname("red"), self.mem)
-        r.append_id( [203]+range(39, 136+1)+range(1, 34+1)+range(153, 160+1))
+        r.append_id( [203]+list(range(39, 136+1))+list(range(1, 34+1))+list(range(153, 160+1)))
         self.arr.append(r) 
         r=Ruta(self.mem.colores.colorbyname("green"), self.mem)
-        r.append_id([204]+range(56, 136+1)+range(1, 51+1)+range(161, 168+1))
+        r.append_id([204]+list(range(56, 136+1))+list(range(1, 51+1))+list(range(161, 168+1)))
         self.arr.append(r)            
         r=Ruta(self.mem.colores.colorbyname("dimgray"), self.mem)
-        r.append_id([205]+range(73, 136+1)+range(1, 68+1)+range(169, 176+1))
+        r.append_id([205]+list(range(73, 136+1))+list(range(1, 68+1))+list(range(169, 176+1)))
         self.arr.append(r)
         r=Ruta(self.mem.colores.colorbyname("fuchsia"), self.mem)
-        r.append_id([206]+range(90, 136+1)+range(1, 85+1)+range(177, 184+1))
+        r.append_id([206]+list(range(90, 136+1))+list(range(1, 85+1))+list(range(177, 184+1)))
         self.arr.append(r)
         r=Ruta(self.mem.colores.colorbyname("darkorange"), self.mem)
-        r.append_id([207]+range(107, 136+1)+range(1, 102+1)+range(185, 192+1))
+        r.append_id([207]+list(range(107, 136+1))+list(range(1, 102+1))+list(range(185, 192+1)))
         self.arr.append(r) 
         r=Ruta(self.mem.colores.colorbyname("darkturquoise"), self.mem)
-        r.append_id([208]+range(124, 136+1)+range(1, 119+1)+range(193, 200+1))
+        r.append_id([208]+list(range(124, 136+1))+list(range(1, 119+1))+list(range(193, 200+1)))
         self.arr.append(r)    
 
 class SetCasillas:
@@ -1422,7 +1430,7 @@ class Ficha(QObject):
             else:
                 self.mover(ruta, True)
             mem.jugadores.actual.movimientos_acumulados=20
-            mem.jugadores.actual.log(self.trUtf8('He comido una ficha de %1 en la casilla %2').arg(fichaacomer.jugador.name).arg(self.casilla(ruta).id))
+            mem.jugadores.actual.log(self.trUtf8('He comido una ficha de {0} en la casilla {1}'.format(fichaacomer.jugador.name, self.casilla(ruta).id)))
             self.jugador.comidaspormi=self.jugador.comidaspormi+1
             fichaacomer.jugador.comidasporotro=fichaacomer.jugador.comidasporotro+1
             return True
@@ -1717,14 +1725,14 @@ class ConfigFile:
         self.lastupdate=datetime.date.today().toordinal()
         self.autosaves=10
         
-        self.config=ConfigParser.ConfigParser()
+        self.config=configparser.ConfigParser()
         self.load()
         
     def load(self):
         """Cuando se carga si falla deberá coger los valores por decto"""
         try:
             self.config.read(self.file)
-            self.splitterstate=base64.b64decode(self.config.get("frmMain", "splitter_state"))
+            self.splitterstate=QByteArray(base64.b64decode(self.config.get("frmMain", "splitter_state"))) #bytes2QByteARray
             self.language=self.config.get("frmSettings", "language")
             stringa=base64.b64decode(self.config.get("frmInitGame", "names"))
             self.names=base64.b64decode(self.config.get("frmInitGame", "names")).split("##=##=##")
@@ -1745,13 +1753,13 @@ class ConfigFile:
         if self.config.has_section("frmInitGame")==False:
             self.config.add_section("frmInitGame")
         self.config.set("frmSettings",  'language', self.language)
-        self.config.set("frmSettings",  'autosaves', self.autosaves)
-        self.config.set("frmMain",  'splitter_state', base64.b64encode(self.splitterstate))
-        self.config.set("frmMain",  'lastupdate', self.lastupdate)
-        cadena=""
+        self.config.set("frmSettings",  'autosaves', str(self.autosaves))
+        self.config.set("frmMain",  'splitter_state', b2s(base64.b64encode(bytes(self.splitterstate))))#QByteArray2bytes
+        self.config.set("frmMain",  'lastupdate', str(self.lastupdate))
+        cadena=s2b("")
         for n in self.names:
-            cadena=cadena+n+"##=##=##"
-        self.config.set("frmInitGame",  'names', base64.b64encode(cadena[:-8]))
+            cadena=cadena+s2b(n)+s2b("##=##=##")
+        self.config.set("frmInitGame",  'names', b2s(base64.b64encode(cadena[:-8])))
         with open(self.file, 'w') as configfile:
             self.config.write(configfile)
             
@@ -2288,26 +2296,26 @@ class Mem:
     def save(self, filename):
         cwd=os.getcwd()
         os.chdir(os.path.expanduser("~/.glparchis/"))
-        config = ConfigParser.ConfigParser()
+        config = configparser.ConfigParser()
         
         config.add_section("game")
         config.set("game", 'playerstarts',self.jugadores.actual.color.name)
-        config.set("game",  "numplayers",  self.maxplayers)
+        config.set("game",  "numplayers",  str(self.maxplayers))
         config.set("game", 'fakedice','')
         config.set("game", 'fileversion','1.0')
-        config.set("game",  'inittime', self.inittime)
+        config.set("game",  'inittime', str(self.inittime))
         for i, j in enumerate(self.jugadores.arr):
             config.add_section("jugador{0}".format(i))
-            config.set("jugador{0}".format(i),  'ia', int(j.ia))
+            config.set("jugador{0}".format(i),  'ia', str(j.ia))
             config.set("jugador{0}".format(i),  'name', j.name)
-            config.set("jugador{0}".format(i),  'plays', int(j.plays))
-            config.set("jugador{0}".format(i),  'eatbyme', j.comidaspormi)
-            config.set("jugador{0}".format(i),  'eatbyothers', j.comidasporotro)
+            config.set("jugador{0}".format(i),  'plays', str(j.plays))
+            config.set("jugador{0}".format(i),  'eatbyme', str(j.comidaspormi))
+            config.set("jugador{0}".format(i),  'eatbyothers', str(j.comidasporotro))
             if self.jugadores.jugador('yellow').plays==True:
-                config.set("jugador{0}".format(i),  'rutaficha1', j.fichas.arr[0].posruta)
-                config.set("jugador{0}".format(i),  'rutaficha2',  j.fichas.arr[1].posruta)
-                config.set("jugador{0}".format(i),  'rutaficha3',  j.fichas.arr[2].posruta)
-                config.set("jugador{0}".format(i),  'rutaficha4',  j.fichas.arr[3].posruta)
+                config.set("jugador{0}".format(i),  'rutaficha1', str(j.fichas.arr[0].posruta))
+                config.set("jugador{0}".format(i),  'rutaficha2', str( j.fichas.arr[1].posruta))
+                config.set("jugador{0}".format(i),  'rutaficha3',  str(j.fichas.arr[2].posruta))
+                config.set("jugador{0}".format(i),  'rutaficha4',  str(j.fichas.arr[3].posruta))
         with open(filename, 'w') as configfile:
             config.write(configfile)            
         os.chdir(cwd)
@@ -2323,7 +2331,7 @@ class Mem:
 
         cwd=os.getcwd()
         os.chdir(os.path.expanduser("~/.glparchis/"))
-        config = ConfigParser.ConfigParser()
+        config = configparser.ConfigParser()
         config.read(filename)
         
         try:

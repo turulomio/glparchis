@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-import ConfigParser,  base64
+ 
+import configparser,  base64
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.QtGui import *
@@ -128,7 +128,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         
         m=QMessageBox()
         m.setIcon(QMessageBox.Information)
-        m.setText(self.trUtf8("%1 ha ganado").arg(self.mem.jugadores.actual.name))
+        m.setText(self.trUtf8("{0} ha ganado".format(self.mem.jugadores.actual.name)))
         m.exec_() 
         self.tab.setCurrentIndex(1)
 

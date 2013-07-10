@@ -1,4 +1,4 @@
-## -*- coding: utf-8 -*-
+# 
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from Ui_frmShowCasilla import *   
@@ -8,8 +8,8 @@ class frmShowCasilla(QDialog, Ui_frmShowCasilla):
         QDialog.__init__(self, parent, flags)
         self.casilla=casilla
         self.setupUi(self)
-        self.lblCasilla.setText(self.trUtf8("Casilla %1").arg(str(self.casilla.id)))
-        self.lblMaxCasillas.setText(self.trUtf8("%1 fichas como máximo").arg(str(self.casilla.maxfichas)))
+        self.lblCasilla.setText(self.trUtf8("Casilla {0}".format(str(self.casilla.id))))
+        self.lblMaxCasillas.setText(self.trUtf8("{0} fichas como máximo".format(self.casilla.maxfichas)))
         if self.casilla.seguro==True:
             self.lblSeguro.setText(self.trUtf8("Casilla segura"))
         else:

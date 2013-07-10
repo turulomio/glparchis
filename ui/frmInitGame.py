@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ 
 import random
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -38,7 +38,7 @@ class frmInitGame(QWizard, Ui_frmInitGame):
             d=wdgPlayerDado(mem, j,  self)
             self.scrollPlayerDado.addWidget(d)
             self.wdgplayersdado.append(d)
-            self.wdgplayers[i].txt.setText(s2q(self.mem.cfgfile.names[i]))
+            self.wdgplayers[i].txt.setText( (self.mem.cfgfile.names[i]))
 
                 
         #Pone juega ordenador en todos menos el primero
@@ -64,7 +64,7 @@ class frmInitGame(QWizard, Ui_frmInitGame):
                 if w.chkPlays.checkState()==Qt.Unchecked:
                     self.wdgplayersdado[i].cmd.setEnabled(False)
                 w.commit()
-                self.mem.cfgfile.names[i]=q2s(self.wdgplayers[i].txt.text())
+                self.mem.cfgfile.names[i]=self.wdgplayers[i].txt.text()
                 self.wdgplayersdado[i].setName(self.wdgplayers[i].txt.text())
             self.mem.cfgfile.save()
             self.currentPage().setCommitPage(True)#Ya no se puede cambiar nada
@@ -126,10 +126,10 @@ class frmInitGame(QWizard, Ui_frmInitGame):
             #Asigna o vuelve a tirar
             if len(maxplayers)==1:
                 self.playerstarts=maxplayers[0].jugador.color.name
-                self.lblPlayerStarts.setText(self.trUtf8("El jugador %1 empieza la partida").arg(self.playerstarts))      
+                self.lblPlayerStarts.setText(self.trUtf8("El jugador {0} empieza la partida".format(self.playerstarts)))
                 self.setButtonText(QWizard.FinishButton, self.trUtf8("Empieza la partida"))          
             else:
-                self.lblPlayerStarts.setText(self.trUtf8("%1 deben tirar hasta que se aclare quién empieza la partida").arg(str(self.maxplayers2colors(maxplayers))))                
+                self.lblPlayerStarts.setText(self.trUtf8("{0} deben tirar hasta que se aclare quién empieza la partida".format(self.maxplayers2colors(maxplayers))))
                 for w in self.wdgplayersdado:
                     if w not in maxplayers:
                         w.lblDado.setPixmap(self.mem.dado.qpixmap(None))
