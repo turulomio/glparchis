@@ -1,4 +1,4 @@
-## -*- coding: utf-8 -*-
+# 
 
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
@@ -134,7 +134,7 @@ class wdgShowObject(QGLWidget):
 
     def resizeGL(self, width, height):
         side = min(width, height)
-        glViewport((width - side) / 2, (height - side) / 2, side, side)
+        glViewport(int((width - side) / 2.0), int((height - side) / 2.0), side, side)
 
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()

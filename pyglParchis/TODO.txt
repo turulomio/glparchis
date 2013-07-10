@@ -22,3 +22,9 @@
 20130325 En showcaslla mostrar la ausencia de ficha con una ficha sin color
 20130325 Esta autorizada a mover y pudede mover calculan con movimiento de dado, no con estimación de movimiento, falla no cuentan barreras con 20...
 20130325 Hay que quitar el make all y cambiarlo por make install
+
+PYTHON3
+=======
+20130710 Ver si podemos quitar lo de base64
+20130710 Falla el fichero configuración al arrancar
+20130710 Falla comprobar actualización

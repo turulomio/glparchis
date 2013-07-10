@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
+ 
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
-from libglparchis import s2q
 
 from Ui_wdgUserPanel import *
 
@@ -24,7 +23,7 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         self.jugador=jugador
         self.lblAvatar.setPixmap(jugador.color.qpixmap())      
         self.grp.setStyleSheet('QGroupBox {color: '+self.jugador.color.name+'}')
-        self.grp.setTitle(s2q(jugador.name))
+        self.grp.setTitle( (jugador.name))
         
     def setLabelDado(self):
         """Actualiza la etiqueta del útlimo valor de tiradaturno"""

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ 
 import os,  libglparchis
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -15,27 +15,27 @@ class frmSettings(QDialog, Ui_frmSettings):
         if self.cfgfile.language=="en":
             self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText("English"))
         elif self.cfgfile.language=="es":
-            self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText(QString(u'Espa\xf1ol')))
+            self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText('Español'))
         elif self.cfgfile.language=="fr":
-            self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText(QString(u'Fran\xe7ais')))
+            self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText('Français'))
         elif self.cfgfile.language=="ro":
-            self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText(QString(u'Rom\xe2n')))
+            self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText('Rom\xe2n'))
         elif self.cfgfile.language=="ru":
-            self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText(QString(u'\u0420\u0443\u0441\u0441\u043a\u0438\u0439')))#ruso
+            self.cmbLanguage.setCurrentIndex(self.cmbLanguage.findText('\u0420\u0443\u0441\u0441\u043a\u0438\u0439'))#ruso
             
         self.spinAutosaves.setValue(self.cfgfile.autosaves)
 
-    @pyqtSlot(QString)      
+    @pyqtSlot(str)      
     def on_cmbLanguage_currentIndexChanged(self, stri):
-        if stri==QString(u"English"):
+        if stri=="English":
             self.cfgfile.language="en"
-        elif stri==QString(u'Espa\xf1ol'):#problemas con unicode en python2
+        elif stri=='Español':
             self.cfgfile.language="es"
-        elif stri==QString(u'Fran\xe7ais'):
+        elif stri=='Fran\xe7ais':
             self.cfgfile.language="fr"
-        elif stri==QString(u'Rom\xe2n'):
+        elif stri=='Rom\xe2n':
             self.cfgfile.language="ro"
-        elif stri==QString(QString(u'\u0420\u0443\u0441\u0441\u043a\u0438\u0439')):#ruso
+        elif stri=='\u0420\u0443\u0441\u0441\u043a\u0438\u0439':#ruso
             self.cfgfile.language="ru"
         
         libglparchis.cargarQTranslator(self.cfgfile)

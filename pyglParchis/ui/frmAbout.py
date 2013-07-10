@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ 
 import libglparchis
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -19,7 +19,7 @@ class frmAbout(QDialog, Ui_frmAbout):
         if name:
             self.setObjectName(name)
         self.setupUi(self)
-        self.lblVersion.setText(self.trUtf8("Versión %1").arg(libglparchis.version))
+        self.lblVersion.setText(self.trUtf8("Versión {0}".format(libglparchis.version)))
         self.textBrowser.setHtml(
             self.trUtf8("La página del proyecto se encuentra en <a href=\"http://glparchis.sourceforge.net\">http://glparchis.sourceforge.net</a><p> <p>")+
             self.trUtf8("Este programa ha sido desarrollado por Mariano Muñoz.<p>")+

@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-import sys, os, urllib2,  datetime
+ 
+import sys, os, urllib,   datetime
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from libglparchis import *
@@ -67,7 +67,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def checkUpdates(self, showdialogwhennoupdates=False):
         #Chequea en Internet
         try:
-            web=urllib2.urlopen('https://sourceforge.net/projects/glparchis/files/glparchis/').read()
+            web=urllib.urlopen('https://sourceforge.net/projects/glparchis/files/glparchis/').read()
         except:
             web=None
         #Si hay error de internet avisa
@@ -133,7 +133,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         cwd=os.getcwd()
         os.chdir(os.path.expanduser("~/.glparchis/"))
         #ÐEBE SERLOCAL
-        filenam=os.path.basename(libglparchis.q2s(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")))
+        filenam=os.path.basename(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)"))
         if filenam!="":
             #Busca si es de 4,6,8
             self.mem=self.selectMem(filenam)
@@ -155,7 +155,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         resultado=None
         cwd=os.getcwd()
         os.chdir(os.path.expanduser("~/.glparchis/"))
-        config = ConfigParser.ConfigParser()
+        config = configparser.ConfigParser()
         config.read(filename)
         try:
             self.maxplayers=int(config.get("game",  "numplayers"))
@@ -208,7 +208,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def on_actionGuardarPartida_triggered(self):
         cwd=os.getcwd()
         os.chdir(os.path.expanduser("~/.glparchis/"))
-        filename=os.path.basename(libglparchis.q2s(QFileDialog.getSaveFileName(self, "", "", "glParchis game (*.glparchis)")))
+        filename=os.path.basename(QFileDialog.getSaveFileName(self, "", "", "glParchis game (*.glparchis)"))
         if filename!="":       
             if os.path.splitext(filename)[1]!=".glparchis":
                 filename=filename+".glparchis"

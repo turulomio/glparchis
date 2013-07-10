@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ 
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.QtGui import *
@@ -200,7 +200,7 @@ class wdgOGL(QGLWidget):
         if event.buttons() & Qt.LeftButton:
             pickup(event, False)            
             if self.mem.selFicha!=None:
-                self.mem.jugadores.actual.log(self.trUtf8("Se ha hecho click en la ficha %1").arg(self.mem.selFicha.id))
+                self.mem.jugadores.actual.log(self.trUtf8("Se ha hecho click en la ficha {0}".format(self.mem.selFicha.id)))
                 self.emit(SIGNAL("fichaClicked()"))#No se pasa parámetro porque es self.mem.selFicha
         elif event.buttons() & Qt.RightButton:
             pickup(event, True)                    

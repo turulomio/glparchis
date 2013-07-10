@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ 
 from math import *
 def posfichas6(maxcasillas, posCasillas):
     """La posición de fichas de radio 1.4 es decir diametro 2.8 se colocan centradas en 1.5 de alto
