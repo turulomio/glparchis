@@ -1,4 +1,3 @@
-#-*- coding: utf-8 -*- 
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from poscasillas8 import *
@@ -7,25 +6,16 @@ from poscasillas4 import *
 from posfichas4 import *
 from poscasillas6 import *
 from posfichas6 import *
-import os,  random,   configparser,  datetime,  time,  sys,  codecs,  base64,  math,  glob
+import os,  random,   configparser,  datetime,  time,  sys,  codecs,  math
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.phonon import Phonon
 #Cuando se modifique una version sacada se pondrá un + p.e. 20120921+
 version="20130228+"
-#def q2s(q):
-#    """Qstring to python string en utf8"""
-#    return str(QString.toUtf8(q))
-    
-#def s2q(st):
-#    """utf8 python string to qstring"""
-#    if st==None:
-#        return QString("")
-#    else:
-#        return QString(st.decode("UTF8"))
+
 def b2s(b, code='UTF-8'):
-    return b.decode(code)
+    return bytes(b).decode(code)
     
 def s2b(s, code='UTF8'):
     if s==None:
@@ -1714,7 +1704,7 @@ class Color:
 class ConfigFile:
     def __init__(self, file):
         self.file=file
-        self.splitterstate=''
+        self.splitterstate=QByteArray()
         self.language="en"
         self.names=[]#Es un array separado de ##=##=## y siempre habrá 8
         #NAMES ES UN STRING DE PYTHON USAR S2Q Y Q2S
@@ -1736,10 +1726,11 @@ class ConfigFile:
         """Cuando se carga si falla deberá coger los valores por decto"""
         try:
             self.config.read(self.file)
-            self.splitterstate=QByteArray(base64.b64decode(self.config.get("frmMain", "splitter_state"))) #bytes2QByteARray
+            self.splitterstate=QByteArray().fromBase64(s2b(self.config.get("frmMain", "splitter_state"))) #bytes2QByteARray
             self.language=self.config.get("frmSettings", "language")
-            stringa=base64.b64decode(self.config.get("frmInitGame", "names"))
-            self.names=base64.b64decode(self.config.get("frmInitGame", "names")).split("##=##=##")
+            prueba=self.config.get("frmInitGame", "names").split("##=##=##")
+            if len(prueba)==8:#Se hizo cuando se quito base64 para dar compatibilidad
+                self.names=prueba
             self.lastupdate=self.config.getint("frmMain", "lastupdate")
         except:
             print ("No hay fichero de configuración")    
@@ -1758,12 +1749,12 @@ class ConfigFile:
             self.config.add_section("frmInitGame")
         self.config.set("frmSettings",  'language', self.language)
         self.config.set("frmSettings",  'autosaves', str(self.autosaves))
-        self.config.set("frmMain",  'splitter_state', b2s(base64.b64encode(bytes(self.splitterstate))))#QByteArray2bytes
+        self.config.set("frmMain",  'splitter_state', b2s(self.splitterstate.toBase64()))#QByteArray2bytes
         self.config.set("frmMain",  'lastupdate', str(self.lastupdate))
-        cadena=s2b("")
+        cadena=""
         for n in self.names:
-            cadena=cadena+s2b(n)+s2b("##=##=##")
-        self.config.set("frmInitGame",  'names', b2s(base64.b64encode(cadena[:-8])))
+            cadena=cadena+n+"##=##=##"
+        self.config.set("frmInitGame",  'names',cadena[:-8])
         with open(self.file, 'w') as configfile:
             self.config.write(configfile)
             

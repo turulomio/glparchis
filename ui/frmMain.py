@@ -1,5 +1,4 @@
- 
-import sys, os, urllib,   datetime
+import sys, os, urllib.request,   datetime
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from libglparchis import *
@@ -67,7 +66,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def checkUpdates(self, showdialogwhennoupdates=False):
         #Chequea en Internet
         try:
-            web=urllib.urlopen('https://sourceforge.net/projects/glparchis/files/glparchis/').read()
+            web=b2s(urllib.request.urlopen('https://sourceforge.net/projects/glparchis/files/glparchis/').read())
         except:
             web=None
         #Si hay error de internet avisa
@@ -144,10 +143,6 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 return
             for i, j in enumerate(self.mem.jugadores.arr):
                 j.name=self.cfgfile.names[i]
-#            self.mem.jugadores.jugador("yellow").name=self.cfgfile.yellowname
-#            self.mem.jugadores.jugador("blue").name=self.cfgfile.bluename
-#            self.mem.jugadores.jugador("red").name=self.cfgfile.redname
-#            self.mem.jugadores.jugador("green").name=self.cfgfile.greenname
             self.showWdgGame()
         os.chdir(cwd)
 

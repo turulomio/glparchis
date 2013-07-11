@@ -1,5 +1,3 @@
- 
-import configparser,  base64
 from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.QtGui import *
@@ -69,7 +67,7 @@ class wdgGame(QWidget, Ui_wdgGame):
 
 
         QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('fichaClicked()'), self.after_ficha_click)  
-        if self.mem.cfgfile.splitterstate==None:
+        if self.mem.cfgfile.splitterstate.isEmpty():
             currentSizes = self.splitter.sizes()
             currentSizes[0]=self.width()-self.ogl.height()-100
             currentSizes[1]=self.width()-currentSizes[0]
