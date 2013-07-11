@@ -16,13 +16,33 @@ mkdir -p $DIRBINWINDOWS
 
 echo "Este script crea el fichero $FILE para ser subido a sourceforge"
 echo "Debe tener instalado una versión de wine y sobre el haber instalado"
-echo "  - Python 2.xx"
-echo "  - PyQt4 (ultima version)"
-echo "  - pyopengl (ultima version)"
+echo "  - Python (ultima version)"
+echo "  - PyQt4 (ultima version serie 4)"
+echo "  - pyopengl (ultima version), se instalará a mano con wine para bin.wines"
 echo "  - pywin32 (ultima version)"
 echo "  - Inno Setup (ultima version)"
 
 rm $CWD/dist/*
+###### binaries windows
+#sed -i -e 's:so="bin.linux":so="bin.windows":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py
+DESTDIR=$DIRBINWINDOWS make all
+sed -i -e 's:so="src.linux":so="bin.windows":' $DIRBINWINDOWS/bin/glparchis
+#wine $HOME/.wine/drive_c/Python27/python.exe  /tmp/pyinstaller/pyinstaller.py -o $DIRBINWINDOWS -i $DIRBINWINDOWS/share/glparchis/ficharoja.ico -w -p $DIRBINWINDOWS/lib/glparchis $DIRBINWINDOWS/bin/glparchis
+wine $HOME/.wine/drive_c/Python33/python.exe $HOME/.wine/drive_c/Python33/Scripts/cxfreeze $DIRBINWINDOWS/bin/glparchis --include-path=$DIRBINWINDOWS/lib/glparchis/ --target-dir=$DIRBINWINDOWS/dist/glparchis --include-modules=OpenGL.platform.win32
+cp $DIRBINWINDOWS/share/glparchis/sounds/*.wav $DIRBINWINDOWS/dist/glparchis
+cp $DIRBINWINDOWS/share/glparchis/*.qm $DIRBINWINDOWS/dist/glparchis
+cp $HOME/.wine/drive_c/Python33/python33.dll  \
+   $HOME/.wine/drive_c/Python33/Lib/site-packages/PyQt4/phonon4.dll \
+   $HOME/.wine/drive_c/Python33/Lib/site-packages/PyQt4/QtCore4.dll \
+   $HOME/.wine/drive_c/Python33/Lib/site-packages/PyQt4/QtGui4.dll \
+   $HOME/.wine/drive_c/Python33/Lib/site-packages/PyQt4/QtOpenGL4.dll \
+   $DIRBINWINDOWS/dist/glparchis/
+cp $CWD/glparchis.iss $DIRBINWINDOWS
+sed -i -e "s:XXXXXXXX:$VERSION:" $DIRBINWINDOWS/glparchis.iss
+cd $DIRBINWINDOWS
+wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/Inno\ Setup\ 5/ISCC.exe /o$CWD/dist glparchis.iss
+cd $CWD
+exit
 
 #GENERA SRC LINUX
 make compile
@@ -69,6 +89,8 @@ cd $DIR/src.linux
 tar cvz  -f $CWD/dist/glparchis-src-linux-$VERSION.tar.gz * -C $DIR/src.linux > /dev/null
 cd $CWD
 
+
+
 ######## 
 DESTDIR=$DIRSRCWINDOWS make all
 mv $DIRSRCWINDOWS/bin/glparchis $DIRSRCWINDOWS/bin/glparchis.py
@@ -110,20 +132,20 @@ zip -r $CWD/dist/glparchis-src-windows-$VERSION.zip ./ >/dev/null
 cd $CWD
 
 ###### install pyinstaller
-if [ ! -d "/tmp/pyinstaller" ]; then
-    cd /tmp
-    #wget https://github.com/downloads/pyinstaller/pyinstaller/pyinstaller-2.0.tar.bz2
-    #tar xjf pyinstaller-2.0.tar.bz2
-    git clone git://github.com/pyinstaller/pyinstaller.git
-    #mv pyinstaller-2.0 pyinstaller
-    cd $CWD
-fi
+#if [ ! -d "/tmp/pyinstaller" ]; then
+#    cd /tmp
+#    #wget https://github.com/downloads/pyinstaller/pyinstaller/pyinstaller-2.0.tar.bz2
+#    #tar xjf pyinstaller-2.0.tar.bz2
+#    git clone git://github.com/pyinstaller/pyinstaller.git
+#    #mv pyinstaller-2.0 pyinstaller
+#    cd $CWD
+#fi
 
 ####### binaries linux
 #sed -i -e 's:so="src.windows":so="bin.linux":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py
 DESTDIR=$DIRBINLINUX make all
 sed -i -e 's:so="src.linux":so="bin.linux":' $DIRBINLINUX/bin/glparchis
-python /tmp/pyinstaller/pyinstaller.py -o $DIRBINLINUX -i $DIRBINLINUX/share/glparchis/ficharoja.ico -w -p $DIRBINLINUX/lib/glparchis $DIRBINLINUX/bin/glparchis
+cxfreeze $DIRBINLINUX/bin/glparchis --include-path=$DIRBINLINUX/lib/glparchis/ --target-dir=$DIRBINLINUX/dist/glparchis --include-modules=OpenGL.platform.glx
 echo "Execute glparchis and play" > $DIRBINLINUX/dist/README.txt
 cp $DIRBINLINUX/share/glparchis/sounds/*.wav $DIRBINLINUX/dist/glparchis
 cp $DIRBINLINUX/share/glparchis/*.qm $DIRBINLINUX/dist/glparchis
@@ -134,16 +156,4 @@ cd $DIRBINLINUX/dist
 tar cvz  -f $CWD/dist/glparchis-bin-linux-$VERSION.tar.gz * -C $DIRBINLINUX/dist > /dev/null
 cd $CWD
 
-###### binaries windows
-#sed -i -e 's:so="bin.linux":so="bin.windows":' $DIRSRCWINDOWS/lib/glparchis/libglparchis.py
-DESTDIR=$DIRBINWINDOWS make all
-sed -i -e 's:so="src.linux":so="bin.windows":' $DIRBINWINDOWS/bin/glparchis
-wine $HOME/.wine/drive_c/Python27/python.exe  /tmp/pyinstaller/pyinstaller.py -o $DIRBINWINDOWS -i $DIRBINWINDOWS/share/glparchis/ficharoja.ico -w -p $DIRBINWINDOWS/lib/glparchis $DIRBINWINDOWS/bin/glparchis
-cp $DIRBINWINDOWS/share/glparchis/sounds/*.wav $DIRBINWINDOWS/dist/glparchis
-cp $DIRBINWINDOWS/share/glparchis/*.qm $DIRBINWINDOWS/dist/glparchis
-cp $CWD/glparchis.iss $DIRBINWINDOWS
-sed -i -e "s:XXXXXXXX:$VERSION:" $DIRBINWINDOWS/glparchis.iss
-cd $DIRBINWINDOWS
-wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/Inno\ Setup\ 5/ISCC.exe /o$CWD/dist glparchis.iss
-cd $CWD
 
