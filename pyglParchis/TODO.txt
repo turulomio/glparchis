@@ -25,6 +25,4 @@
 
 PYTHON3
 =======
-20130710 Ver si podemos quitar lo de base64
-20130710 Falla el fichero configuración al arrancar
-20130710 Falla comprobar actualización
+20130711 distribution

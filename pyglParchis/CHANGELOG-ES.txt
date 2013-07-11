@@ -7,6 +7,7 @@ XXXXXXXX
 - Solucionado error al cerrar la aplicación
 - Añadida opción de que el panel de usuario siga al jugador actual o no
 - Al guardar la partida se graba, el tiempo de inicio y el número de fichas comidas.
+- Se ha migrado a python3, yo lo he testeado con python 3.3
 
 20130228
 ========
