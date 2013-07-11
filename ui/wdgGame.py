@@ -6,6 +6,7 @@ from wdgGame import *
 from qtablestatistics import *
 from libglparchis import *
 from Ui_wdgGame import *
+import glob
 
 class wdgGame(QWidget, Ui_wdgGame):
     """Clase principal del Juego, aquí está toda la ciencia, cuando se deba pasar al UI se crearán emits que captura qT para el UI"""

@@ -818,7 +818,7 @@
         <translation>Game time</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="66"/>
+        <location filename="ui/wdgGame.py" line="67"/>
         <source>Empieza la partida</source>
         <translation>The game starts</translation>
     </message>
@@ -833,32 +833,32 @@
         <translation>IA moves a piece</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="200"/>
+        <location filename="ui/wdgGame.py" line="199"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation>You got three sixes, but you don&apos;t go home because you got the arrival ramp</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="203"/>
+        <location filename="ui/wdgGame.py" line="202"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation>You got three sixes. Your last moved piece goes home</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="207"/>
+        <location filename="ui/wdgGame.py" line="206"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation>You got three sixes, but as you can&apos;t move, you don&apos;t go home</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="209"/>
+        <location filename="ui/wdgGame.py" line="208"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation>After three sixes, you can&apos;t roll the dice again</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="222"/>
+        <location filename="ui/wdgGame.py" line="221"/>
         <source>Seleccione una ficha...</source>
         <translation>Select a piece...</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="262"/>
+        <location filename="ui/wdgGame.py" line="261"/>
         <source>Fin de turno</source>
         <translation>End of turn</translation>
     </message>
@@ -923,7 +923,7 @@
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The score you get when you finish the game,depends on how far you have advanced opponents pieces to the center square and the difference between the pieces I&apos;ve eaten and the ones other players ate.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="ui/wdgGame.py" line="41"/>
+        <location filename="ui/wdgGame.py" line="42"/>
         <source>Tiempo de partida: {0}</source>
         <translation>Match time: {0}</translation>
     </message>

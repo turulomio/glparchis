@@ -23,10 +23,10 @@ DefaultDirName={pf}\glparchis
 DisableDirPage=yes
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
-LicenseFile=..\src.windows\glparchis-XXXXXXXX\share\glparchis\GPL-3.txt
+LicenseFile=share\glparchis\GPL-3.txt
 OutputDir=dist
 OutputBaseFilename=glparchis-bin-windows-{#MyAppVersion}
-SetupIconFile=..\src.windows\glparchis-XXXXXXXX\share\glparchis\ficharoja.ico
+SetupIconFile=share\glparchis\ficharoja.ico
 Compression=lzma
 SolidCompression=yes
 
@@ -48,27 +48,24 @@ Source: "dist\glparchis\_socket.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\_ctypes.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\_ssl.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\_hashlib.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "dist\glparchis\bz2.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "dist\glparchis\glparchis.exe.manifest"; DestDir: "{app}"; Flags: ignoreversion
-Source: "dist\glparchis\Microsoft.VC90.CRT.manifest"; DestDir: "{app}"; Flags: ignoreversion
-Source: "dist\glparchis\msvcm90.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "dist\glparchis\msvcp90.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "dist\glparchis\msvcr90.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\glparchis\_lzma.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\glparchis\_bz2.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\PyQt4.QtCore.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\PyQt4.QtGui.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\PyQt4.QtOpenGL.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\PyQt4.phonon.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "dist\glparchis\python27.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "dist\glparchis\phonon4.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\glparchis\pyexpat.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\glparchis\python33.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\QtCore4.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\QtGui4.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\QtOpenGL4.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "dist\glparchis\QtSvg4.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "dist\glparchis\QtXml4.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\glparchis\phonon4.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\glparchis\pywintypes33.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\select.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\sip.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\glparchis\win32api.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\glparchis\unicodedata.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "dist\glparchis\qt4_plugins\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "dist\glparchis\phonon_backend\*"; DestDir: "{app}\phonon_backend\"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

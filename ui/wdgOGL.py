@@ -49,10 +49,10 @@ class wdgOGL(QGLWidget):
         
         glFrontFace(GL_CCW);
 
-        light_ambient =  (0.3, 0.3, 0.3, 0.1);
+        light_ambient =  [0.3, 0.3, 0.3, 0.1]
 
         glEnable(GL_LIGHTING)
-        lightpos=(0, 0, 50)
+        lightpos=[0, 0, 50]
         glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)  
         glLightfv(GL_LIGHT0, GL_POSITION, lightpos)  
         glEnable(GL_LIGHT0);
