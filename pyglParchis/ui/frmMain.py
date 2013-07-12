@@ -133,6 +133,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         os.chdir(os.path.expanduser("~/.glparchis/"))
         #ÐEBE SERLOCAL
         filenam=os.path.basename(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)"))
+        print (filenam)
         if filenam!="":
             #Busca si es de 4,6,8
             self.mem=self.selectMem(filenam)
