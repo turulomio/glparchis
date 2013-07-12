@@ -23,13 +23,7 @@ def s2b(s, code='UTF8'):
     else:
         return s.encode(code)
         
-def i2b(integer):
-    """Convierte 1 en Truue 0 en False"""
-    if integer==1:
-        return True
-    elif integer==0:
-        return False
-        
+
 def c2b(state):
     """QCheckstate to python bool"""
     if state==Qt.Checked:
@@ -2348,8 +2342,8 @@ class Mem:
         
         for i, j in enumerate(self.jugadores.arr):
             j.name=config.get("jugador{0}".format(i), "name")
-            j.ia=i2b(config.getint("jugador{0}".format(i), "ia"))
-            j.plays=i2b(config.getint("jugador{0}".format(i), "plays"))
+            j.ia=bool(config.get("jugador{0}".format(i), "ia"))
+            j.plays=bool(config.get("jugador{0}".format(i), "plays"))
             try:
                 j.comidaspormi=config.getint("jugador{0}".format(i), "eatbyme")
                 j.comidasporotro=config.getint("jugador{0}".format(i), "eatbyothers")
