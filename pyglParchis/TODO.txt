@@ -22,7 +22,6 @@
 20130325 En showcaslla mostrar la ausencia de ficha con una ficha sin color
 20130325 Esta autorizada a mover y pudede mover calculan con movimiento de dado, no con estimación de movimiento, falla no cuentan barreras con 20...
 20130325 Hay que quitar el make all y cambiarlo por make install
-
-PYTHON3
-=======
-20130711 distribution
+20130712 En la nueva maquetación no va bien el cerrar desde windows, probablemente falte en VC10.dll o aśi
+20130712 En windows sale ventana de consola
+20130712 Al cargar un autosave, se ponen en ia todos los jugadores
