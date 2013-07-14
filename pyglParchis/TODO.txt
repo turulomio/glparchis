@@ -24,4 +24,3 @@
 20130325 Hay que quitar el make all y cambiarlo por make install
 20130712 En la nueva maquetación no va bien el cerrar desde windows, probablemente falte en VC10.dll o aśi
 20130712 En windows sale ventana de consola
-20130712 Al cargar un autosave, se ponen en ia todos los jugadores
