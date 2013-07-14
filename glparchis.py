@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 import sys, os, datetime
 
 so="src.linux" #src.linux src.windows bin.linux bin.windows. Se debe cambiar antes de compilar
@@ -18,7 +17,7 @@ try:
 except:
     pass
 
-sys.setrecursionlimit(50000)
+sys.setrecursionlimit(100000)
 
 cfgfile=ConfigFile(os.path.expanduser("~/.glparchis/") +"glparchis.cfg")
 cfgfile.save()
