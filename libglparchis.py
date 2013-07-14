@@ -14,6 +14,13 @@ from PyQt4.phonon import Phonon
 #Cuando se modifique una version sacada se pondrá un + p.e. 20120921+
 version="20130228+"
 
+def str2bool(s):
+    if s.lower()=="true":
+        return True
+    if s.lower()=="false":
+        return False
+    print ("I coudn't convert string to boolean")
+
 def b2s(b, code='UTF-8'):
     return bytes(b).decode(code)
     
@@ -2342,8 +2349,8 @@ class Mem:
         
         for i, j in enumerate(self.jugadores.arr):
             j.name=config.get("jugador{0}".format(i), "name")
-            j.ia=bool(config.get("jugador{0}".format(i), "ia"))
-            j.plays=bool(config.get("jugador{0}".format(i), "plays"))
+            j.ia=str2bool(config.get("jugador{0}".format(i), "ia"))
+            j.plays=str2bool(config.get("jugador{0}".format(i), "plays"))
             try:
                 j.comidaspormi=config.getint("jugador{0}".format(i), "eatbyme")
                 j.comidasporotro=config.getint("jugador{0}".format(i), "eatbyothers")
