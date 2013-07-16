@@ -32,8 +32,13 @@ class frmHelp(QDialog, Ui_frmHelp):
             self.trUtf8(u"<h3>Puntuación</h3>")+
             self.trUtf8(u"La puntuación viene dada por el número de casillas que le falta recorrer a los otros jugadores menos las que me faltan a mí. A esta cantidad se le suma la diferencia entre las fichas que he comido y las que me han comido, multiplicadas por 40.<p>")+        
             self.trUtf8(u"<h2>Interfaz de usuario</h2>")+
+            self.trUtf8(u"<h3>Guardado automático</h3>")+            
+            self.trUtf8(u"La aplicación guarda automáticamente el estado de la partida cada vez que hay un turno de un jugador humano. Se guardan 10 ficheros por defecto, pudiéndose cambiar el menú de configuración.<p>")+
+            self.trUtf8(u"<h3>Separador de pantalla</h3>")+            
             self.trUtf8(u"Existe un splitter entre los paneles de usuario y el tablero de parchís, que podrá ser movido según las preferencias del usuario. En algunas resoluciones de pantalla, al empezar el juego, el tablero aparece en negro hasta que se utiliza el splitter para darle el tamaño mínimo necesario.<p>")+
+            self.trUtf8(u"<h3>Lanzamiento de dado</h3>")+                 
             self.trUtf8(u"Para tirar el dado se puede hacer click en el botón 'Tirar el dado' o hacer doble-click encima del tablero, cuando le toque a un jugador humano.<p>")+
+            self.trUtf8(u"<h3>Vistas del tablero</h3>")+                 
             self.trUtf8(u"Se puede cambiar la vista del tablero pulsando la tecla 'm'.<p>")
         )
 

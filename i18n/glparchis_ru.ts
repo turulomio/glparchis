@@ -226,6 +226,31 @@
         <source>Ayuda de glParchis</source>
         <translation type="unfinished"></translation>
     </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>&lt;h3&gt;Guardado automático&lt;/h3&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>La aplicación guarda automáticamente el estado de la partida cada vez que hay un turno de un jugador humano. Se guardan 10 ficheros por defecto, pudiéndose cambiar el menú de configuración.&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>&lt;h3&gt;Separador de pantalla&lt;/h3&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>&lt;h3&gt;Lanzamiento de dado&lt;/h3&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/frmHelp.py" line="19"/>
+        <source>&lt;h3&gt;Vistas del tablero&lt;/h3&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context encoding="UTF-8">
     <name>frmInitGame</name>

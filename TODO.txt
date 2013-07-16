@@ -8,11 +8,9 @@
 20121019 Cuando se gane, hacer que el tablero gire y suba y baje
 20121104 Poner un sonido especifico 3 seises y a caaasa
 20130320 Cuando acabee la partida y se genere un highscore abrir el tab y poner en negrilla el recien insertado
-20130320 Poner tableros a 6 y a 8 jugadores.
 20130320 Una ficha en la salida de casilla con otra ficha no se siente amenazada, cambiar AI
 20130321 Me desaparecio una ficha amarilla, cuando un cyan saco y comio con un 5 creo
-20130321 Hacer una matriz de las ficchas, con estado ficha actual y amenazas 
-            sacar 1, Por meter 10 si hay a 1 tiro. Por comer si hay a 1 tiro
+20130321 Hacer una matriz de las ficchas, con estado ficha actual y amenazas sacar 1, Por meter 10 si hay a 1 tiro. Por comer si hay a 1 tiro
 20130321 Solo puede haber una amenaza por jugador y valor, barrero solo 1, pero seguro con 2 distintas cuenta por 2
 20130321 Contar 20 con barrera en medio sale como amenaza
 20130323 Esta en ruta 1 y le amenaza uno del circuo -5
@@ -22,5 +20,4 @@
 20130325 En showcaslla mostrar la ausencia de ficha con una ficha sin color
 20130325 Esta autorizada a mover y pudede mover calculan con movimiento de dado, no con estimación de movimiento, falla no cuentan barreras con 20...
 20130325 Hay que quitar el make all y cambiarlo por make install
-20130712 En la nueva maquetación no va bien el cerrar desde windows, probablemente falte en VC10.dll o aśi
-20130712 En windows sale ventana de consola
+20130716 Cuando empieza otra partida, el sonido se pone a true y debería ponerse al valor del toggled action

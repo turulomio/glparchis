@@ -241,7 +241,7 @@ class Amenaza:
         if tipo==51: return QApplication.translate("glparchis",u"Sacar ficha")
 
 class SetAmenazas:
-    """Clase que genera las amenazas contra un objetivo en la casilla pasado como par´ametro"""
+    """Clase que genera las amenazas contra un objetivo en la casilla pasado como parámetro"""
     def __init__(self,  mem,  objetivo, casilla):
         """Crea objeto"""
         self.arr=[]#Array de objetos amenaza
@@ -263,7 +263,7 @@ class SetAmenazas:
         if self.casilla.rampallegada==True:
             return
         
-        if self.casilla.seguro==True and self.casilla.ruta1==False:#Esta asegurada y no est´a en ruta 1
+        if self.casilla.seguro==True and self.casilla.ruta1==False:#Esta asegurada y no está en ruta 1
             return
             
         #Detecta salida con un 5 a ruta1
@@ -272,7 +272,7 @@ class SetAmenazas:
             casillaataque=self.mem.rutas.ruta(self.mem.colores.index(self.casilla.color)).arr[0]#Casilla inicial
             if casillaataque.buzon_numfichas()>0:#Hay fichas que coman
                 if self.casilla.buzon_numfichas()==2:
-                    if  self.objetivo.posruta!=1: #Si no est´a en su propia ruta1, est´a llena
+                    if  self.objetivo.posruta!=1: #Si no está en su propia ruta1, está llena
                         for posicion, ficha in casillaataque.buzon_fichas():
                             if  ficha.puedeComer(self.mem, ficha.posruta+1): #aquí chequea que sea mismo color o distinta, ultima en llegar...
                                 self.append(ficha, 51)
@@ -572,7 +572,7 @@ class Jugador:
         return False
         
     def tieneFichasATiroDeLlegada(self):
-        """Devuelve un booleano seg´un el jugador tenga fichas a tiro de llegada o no"""
+        """Devuelve un booleano según el jugador tenga fichas a tiro de llegada o no"""
         for f in self.fichas.arr:
             if f.estaATiroDeLlegada()==True:
                 return True
@@ -667,7 +667,7 @@ class Ruta:
         return self.arr[1]
     
     def estaEnRuta(self, casilla):
-        """Devuelve si la casilla est´a en la ruta"""
+        """Devuelve si la casilla está en la ruta"""
         if casilla in self.arr:
             return True
         return False
@@ -1458,7 +1458,7 @@ class Ficha(QObject):
         return self.ruta.length()-self.posruta
         
     def estaATiroDeLlegada(self ):
-        """Devuelve un booleano, seg´un la ficha est´e o no a tiro de llegada, es decir a 1,2,3,4,5,6,7"""
+        """Devuelve un booleano, según la ficha esté o no a tiro de llegada, es decir a 1,2,3,4,5,6,7"""
         if self.posruta in (self.ruta.length()-1,  self.ruta.length()-2,  self.ruta.length()-3,  self.ruta.length()-4,  self.ruta.length()-5):
             return True
         if self.posruta==self.ruta.length()-6 and self.jugador.tieneFichasEnCasa()==True:
@@ -1783,9 +1783,9 @@ class Casilla(QObject):
 
     def esSegura(self, mem,  jugador, beforemove=True):
         """Devuelve si la casilla es segura para el jugador pasado como parámetro ante un posible moviiento,
-        esta funci´on mezcla el concepto ruta y seguro dependiendo del num´ero de fichas
+        esta función mezcla el concepto ruta y seguro dependiendo del numéro de fichas
         
-        Busca seg´un beforemove antes de mover ficha, es decir es seguro con 0 fichas, o aftermove seguro con 1 ficha"""
+        Busca según beforemove antes de mover ficha, es decir es seguro con 0 fichas, o aftermove seguro con 1 ficha"""
         if self.ruta1==True:
             propietario=mem.jugadores.jugador(self.color.name)
             if jugador==propietario:
