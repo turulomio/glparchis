@@ -129,10 +129,10 @@ cd $CWD
 ###### binaries windows
 DESTDIR=$DIRBINWINDOWS make all
 sed -i -e 's:so="src.linux":so="bin.windows":' $DIRBINWINDOWS/bin/glparchis
-wine $HOME/.wine/drive_c/Python33/python.exe $HOME/.wine/drive_c/Python33/Scripts/cxfreeze $DIRBINWINDOWS/bin/glparchis --include-path=$DIRBINWINDOWS/lib/glparchis/ --target-dir=$DIRBINWINDOWS/dist/glparchis --include-modules="OpenGL,OpenGL.platform.win32,OpenGL.arrays,OpenGL.arrays.ctypesarrays,OpenGL.arrays.lists,OpenGL.converters"
+wine $HOME/.wine/drive_c/Python33/python.exe $HOME/.wine/drive_c/Python33/Scripts/cxfreeze $DIRBINWINDOWS/bin/glparchis --icon="$DIRBINWINDOWS/share/glparchis/ficharoja.ico" --base-name=Win32GUI --include-path=$DIRBINWINDOWS/lib/glparchis/ --target-dir=$DIRBINWINDOWS/dist/glparchis --include-modules="OpenGL,OpenGL.platform.win32,OpenGL.arrays,OpenGL.arrays.ctypesarrays,OpenGL.arrays.lists,OpenGL.converters"
 cp $DIRBINWINDOWS/share/glparchis/sounds/*.wav $DIRBINWINDOWS/dist/glparchis
 cp $DIRBINWINDOWS/share/glparchis/*.qm $DIRBINWINDOWS/dist/glparchis
-cp $HOME/.wine/drive_c/Python33/DLLs/python33.dll  \
+cp $HOME/.wine/drive_c/Python33/python33.dll  \
    $HOME/.wine/drive_c/Python33/Lib/site-packages/PyQt4/phonon4.dll \
    $HOME/.wine/drive_c/Python33/Lib/site-packages/PyQt4/QtCore4.dll \
    $HOME/.wine/drive_c/Python33/Lib/site-packages/PyQt4/QtGui4.dll \
