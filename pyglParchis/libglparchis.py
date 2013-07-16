@@ -12,7 +12,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.phonon import Phonon
 #Cuando se modifique una version sacada se pondrá un + p.e. 20120921+
-version="20130228+"
+version="20130716"
 
 def str2bool(s):
     if s.lower()=="true":

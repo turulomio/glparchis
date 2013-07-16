@@ -4,3 +4,5 @@ glparchis-20120914 <==>  svn -r 224 checkout http://svn.code.sf.net/p/glparchis/
 glparchis-20120917 <==>  svn -r 241 checkout http://svn.code.sf.net/p/glparchis/code/pyglParchis glparchis
 glparchis-20120921 <==>  svn -r 250 checkout http://svn.code.sf.net/p/glparchis/code/pyglParchis glparchis
 glparchis-20130228 <==>  svn -r 302 checkout http://svn.code.sf.net/p/glparchis/code/pyglParchis glparchis
+glparchis-20130716 <==>  svn -r 341 checkout http://svn.code.sf.net/p/glparchis/code/pyglParchis glparchis
+
