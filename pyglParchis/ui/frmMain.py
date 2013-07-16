@@ -119,7 +119,6 @@ class frmMain(QMainWindow, Ui_frmMain):#
         if self.game!=None:
             self.layout.removeWidget(self.game)    
             self.game.__del__()
-#            self.game.deleteLater()
         self.game=wdgGame(self)
         self.game.stopthegame=False
         self.layout.addWidget(self.game)

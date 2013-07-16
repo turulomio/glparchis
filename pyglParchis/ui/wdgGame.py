@@ -147,12 +147,12 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.cmdTirarDado.setEnabled(True)
 #        self.cmdTirarDado.setIcon(self.mem.dado.qicon(None))
         if self.mem.jugadores.actual.ia==True:
-            self.mem.jugadores.actual.log(self.trUtf8(u"IA Tira el dado"))
+            self.mem.jugadores.actual.log(self.trUtf8("IA Tira el dado"))
             delay(400)
             self.on_cmdTirarDado_clicked()
             delay(800)
         else:
-            self.mem.jugadores.actual.log(self.trUtf8(u"Tire el dado"))
+            self.mem.jugadores.actual.log(self.trUtf8("Tire el dado"))
 
        
     def on_JugadorDebeMover(self):
@@ -203,9 +203,9 @@ class wdgGame(QWidget, Ui_wdgGame):
                         self.mem.play("comer")
                         self.mem.jugadores.actual.LastFichaMovida.mover(0)
                     else:
-                        self.mem.jugadores.actual.log(self.trUtf8(u"Han salido tres seises, pero como no puede mover no se va a casa"))
+                        self.mem.jugadores.actual.log(self.trUtf8("Han salido tres seises, pero como no puede mover no se va a casa"))
             else:               
-                self.mem.jugadores.actual.log(self.trUtf8(u"Despues de tres seises, ya no puede volver a tirar"))
+                self.mem.jugadores.actual.log(self.trUtf8("Despues de tres seises, ya no puede volver a tirar"))
             self.cambiarJugador()
         else: # si no han salido 3 seises
             if self.mem.jugadores.actual.fichas.algunaEstaAutorizadaAmover()==True:
