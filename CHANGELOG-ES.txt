@@ -1,7 +1,8 @@
-XXXXXXXX
+20130716
 ========
 - Cuando se come una ficha en la casilla de salida, esta ficha es la última en llegar si son dos distintas al color de la casilla
-- Cambiado el pink por el fuchsia, el cyan por darkturquoise y el orange por darkorange en colores web. Se ha añadido compatibilidad con los highscores que usaban los antiguos
+- Cambiado el pink por el fuchsia, el cyan por darkturquoise y el orange por darkorange en colores web. 
+- Se ha añadido compatibilidad con los highscores que usaban los antiguos
 - Se ha añadido soporte para autoguardado
 - Mejorado el interfaz de usuario
 - Solucionado error al cerrar la aplicación

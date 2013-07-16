@@ -110,6 +110,14 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Al guardar la partida se graba, el tiempo de inicio y el número de fichas comidas.</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130716T100516Z">
+        <seg>- When saving the current game, it saves now inittime and the number of eaten pieces</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- Añadida distribución de binarios en windows y linux</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120914T150831Z">
@@ -118,10 +126,34 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Añadida opción de que el panel de usuario siga al jugador actual o no</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130716T100437Z">
+        <seg>- Added option to follow the current player in the user panel</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- Añadido apagar / encender sonido</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120917T133019Z">
         <seg>- Switch off / on sound added</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Cambiado el pink por el fuchsia, el cyan por darkturquoise y el orange por darkorange en colores web.</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130716T100257Z">
+        <seg>- Change color pink by fuchsia, cyan by darturquise and orange by darkorange</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Cuando se come una ficha en la casilla de salida, esta ficha es la última en llegar si son dos distintas al color de la casilla</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130716T100302Z">
+        <seg>- When you eat a piece in the first spacem, this piece is the last in arrive, when both pieces are of different color.</seg>
       </tuv>
     </tu>
     <tu>
@@ -182,6 +214,14 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Mejorado el interfaz de usuario</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130716T100404Z">
+        <seg>- Improved user interface</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- Nueva opción de menú que busca actualizaciones de forma manual o cada 7 dias</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120917T133111Z">
@@ -198,6 +238,14 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Se ha añadido compatibilidad con los highscores que usaban los antiguos</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130716T100751Z">
+        <seg>- Compatibility added with old highscores</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- Se ha añadido juegos de 6 y 8 jugadores</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20121205T121241Z">
@@ -210,6 +258,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120910T205756Z">
         <seg>- Score system added. It uses the number of moved places.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Se ha añadido soporte para autoguardado</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130716T100352Z">
+        <seg>- Added autosave support</seg>
       </tuv>
     </tu>
     <tu>
@@ -262,6 +318,14 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>- Se ha migrado a python3, yo lo he testeado con python 3.3</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130716T100604Z">
+        <seg>- App has been migrated to python3. I have test it with python 3.3</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>- Se ha puesto la visualización del dado en 3D</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120921T152402Z">
@@ -298,6 +362,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120921T152109Z">
         <seg>- Bug solved looking for game updates</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>- Solucionado error al cerrar la aplicación</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130716T100418Z">
+        <seg>- Solved bug when closing app</seg>
       </tuv>
     </tu>
     <tu>
@@ -450,6 +522,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20130228T193157Z">
         <seg>20130228</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>20130716</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130716T095935Z">
+        <seg>20130716</seg>
       </tuv>
     </tu>
     <tu>
@@ -938,6 +1018,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20130228T193301Z">
         <seg>Enter in glparchis dirctory with:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Se ha añadido compatibilidad con los highscores que usaban los antiguos</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20130716T100341Z">
+        <seg>- Compatibility added with old highscores</seg>
       </tuv>
     </tu>
     <tu>

@@ -209,7 +209,7 @@
     <message encoding="UTF-8">
         <location filename="ui/frmHelp.py" line="19"/>
         <source>Cuando en la casilla de salida de un jugador hay dos fichas distintas y el jugador del mismo color de la casilla de salida saca un cinco y debe sacar una ficha, la última ficha que llegó se va a casa.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>When there are to different pieces in the start space of a player and the player rolls a 5 and takes out a piece, the last piece to arrive goes home.&lt;p&gt;</translation>
     </message>
     <message encoding="UTF-8">
         <location filename="ui/frmHelp.py" line="19"/>
@@ -219,7 +219,7 @@
     <message encoding="UTF-8">
         <location filename="ui/frmHelp.py" line="19"/>
         <source>La puntuación viene dada por el número de casillas que le falta recorrer a los otros jugadores menos las que me faltan a mí. A esta cantidad se le suma la diferencia entre las fichas que he comido y las que me han comido, multiplicadas por 40.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Score is calculted with the number of spaces left to each player minus my left spaces. To this amount you must sum the difference between pieces that i&apos;ve eaten minus my pieces eaten by other players, multiplied by 40.&lt;p&gt;</translation>
     </message>
     <message>
         <location filename="ui/Ui_frmHelp.py" line="74"/>
@@ -229,27 +229,27 @@
     <message encoding="UTF-8">
         <location filename="ui/frmHelp.py" line="19"/>
         <source>&lt;h3&gt;Guardado automático&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Autosave&lt;/h3&gt;</translation>
     </message>
     <message encoding="UTF-8">
         <location filename="ui/frmHelp.py" line="19"/>
         <source>La aplicación guarda automáticamente el estado de la partida cada vez que hay un turno de un jugador humano. Se guardan 10 ficheros por defecto, pudiéndose cambiar el menú de configuración.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>The application automatically saves the state of the game each time there is a human player turn. 10 files are saved by default, you can change this number in the configuration menu.&lt;p&gt;</translation>
     </message>
     <message>
         <location filename="ui/frmHelp.py" line="19"/>
         <source>&lt;h3&gt;Separador de pantalla&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Screen splitter&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="ui/frmHelp.py" line="19"/>
         <source>&lt;h3&gt;Lanzamiento de dado&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Rolling the dice&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="ui/frmHelp.py" line="19"/>
         <source>&lt;h3&gt;Vistas del tablero&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Board views&lt;/h3&gt;</translation>
     </message>
 </context>
 <context encoding="UTF-8">
