@@ -229,16 +229,16 @@ class Amenaza:
     def name(self, tipo=None):
         if tipo==None:
             tipo=self.tipo
-        if tipo==1: return QApplication.translate("glparchis",u"Sacar un 1")
-        if tipo==2: return QApplication.translate("glparchis",u"Sacar un 2")
-        if tipo==3: return QApplication.translate("glparchis",u"Sacar un 3")
-        if tipo==4: return QApplication.translate("glparchis",u"Sacar un 4")
-        if tipo==5: return QApplication.translate("glparchis",u"Sacar un 5")
-        if tipo==6: return QApplication.translate("glparchis",u"Sacar un 6")
-        if tipo==7: return QApplication.translate("glparchis",u"Sacar un 7")
-        if tipo==10: return QApplication.translate("glparchis",u"Contar 10")
-        if tipo==20: return QApplication.translate("glparchis",u"Contar 20")
-        if tipo==51: return QApplication.translate("glparchis",u"Sacar ficha")
+        if tipo==1: return QApplication.translate("glparchis","Sacar un 1")
+        if tipo==2: return QApplication.translate("glparchis","Sacar un 2")
+        if tipo==3: return QApplication.translate("glparchis","Sacar un 3")
+        if tipo==4: return QApplication.translate("glparchis","Sacar un 4")
+        if tipo==5: return QApplication.translate("glparchis","Sacar un 5")
+        if tipo==6: return QApplication.translate("glparchis","Sacar un 6")
+        if tipo==7: return QApplication.translate("glparchis","Sacar un 7")
+        if tipo==10: return QApplication.translate("glparchis","Contar 10")
+        if tipo==20: return QApplication.translate("glparchis","Contar 20")
+        if tipo==51: return QApplication.translate("glparchis","Sacar ficha")
 
 class SetAmenazas:
     """Clase que genera las amenazas contra un objetivo en la casilla pasado como parámetro"""
@@ -507,7 +507,7 @@ class Jugador:
         return "Jugador {0}".format(self.color.name)
 
     def log(self, l):
-        l=u"{0} {1}".format(str(datetime.datetime.now().time()).split(".")[0], l)
+        l="{0} {1}".format(str(datetime.datetime.now().time()).split(".")[0], l)
         self.logturno.append( l)
         self.loghistorico.append(l)
         
@@ -2321,7 +2321,7 @@ class Mem:
             
     def load(self, filename):       
         def error():           
-            QMessageBox.information(None, "glParchis", QApplication.translate("glparchis", u"Este fichero es de una versión antigua o está estropeado. No puede ser cargado.", None, QApplication.UnicodeUTF8))
+            QMessageBox.information(None, "glParchis", QApplication.translate("glparchis", "Este fichero es de una versión antigua o está estropeado. No puede ser cargado.", None, QApplication.UnicodeUTF8))
             print("Error loading file")
             os.chdir(cwd)
 
