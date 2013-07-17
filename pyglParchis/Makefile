@@ -7,7 +7,6 @@ PREFIXSOUND=$(DESTDIR)/share/glparchis/sounds
 PREFIXPIXMAPS=$(DESTDIR)/share/pixmaps
 PREFIXAPPLICATIONS=$(DESTDIR)/share/applications
 
-all: compile install
 compile:
 	pyuic4 ui/frmAbout.ui > ui/Ui_frmAbout.py
 	pyuic4 ui/frmHelp.ui > ui/Ui_frmHelp.py
