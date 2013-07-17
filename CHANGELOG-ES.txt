@@ -1,3 +1,7 @@
+XXXXXXXX
+========
+- La configuración del sonido se graba ahora en glparchis.cfg
+
 20130716
 ========
 - Cuando se come una ficha en la casilla de salida, esta ficha es la última en llegar si son dos distintas al color de la casilla
