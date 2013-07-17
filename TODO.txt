@@ -17,6 +17,4 @@
 	- Se repite en 20130325
 20130323 Cuando una ficha esta a punto de llegar a su rampa, amenaza a las fichas despues de la entrada a rampa
 20130325 Cuando hay barrera mia en ruta 1 y sale un 5 no amenaza
-20130325 En showcaslla mostrar la ausencia de ficha con una ficha sin color
 20130325 Esta autorizada a mover y pudede mover calculan con movimiento de dado, no con estimación de movimiento, falla no cuentan barreras con 20...
-20130716 El binario de linux no va 

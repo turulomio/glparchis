@@ -25,7 +25,7 @@ echo "  - Inno Setup (ultima version)"
 rm $CWD/dist/*
 
 ######## sources linux
-make compile
+make
 mkdir $DIRSRCLINUX/doc
 mkdir $DIRSRCLINUX/i18n
 mkdir $DIRSRCLINUX/images
@@ -72,7 +72,7 @@ cd $CWD
 
 
 ######## sources windows
-DESTDIR=$DIRSRCWINDOWS make all
+DESTDIR=$DIRSRCWINDOWS make install
 mv $DIRSRCWINDOWS/bin/glparchis $DIRSRCWINDOWS/bin/glparchis.py
 sed -i -e 's:so="src.linux":so="src.windows":' $DIRSRCWINDOWS/bin/glparchis.py
 cp $DIRSRCWINDOWS/bin/glparchis.py $DIRSRCWINDOWS/bin/glparchis.py.src
@@ -112,9 +112,10 @@ zip -r $CWD/dist/glparchis-src-windows-$VERSION.zip ./ >/dev/null
 cd $CWD
 
 ####### binaries linux
-DESTDIR=$DIRBINLINUX make all
+DESTDIR=$DIRBINLINUX make install
 sed -i -e 's:so="src.linux":so="bin.linux":' $DIRBINLINUX/bin/glparchis
-cxfreeze $DIRBINLINUX/bin/glparchis --include-path=$DIRBINLINUX/lib/glparchis/ --target-dir=$DIRBINLINUX/dist/glparchis --include-modules=OpenGL.platform.glx
+cxfreeze $DIRBINLINUX/bin/glparchis --include-path=$DIRBINLINUX/lib/glparchis/ --target-dir=$DIRBINLINUX/dist/glparchis --include-modules=OpenGL.platform.glx,OpenGL.arrays,OpenGL.arrays.ctypesarrays,OpenGL.arrays.lists,OpenGL.converters
+
 echo "Execute glparchis and play" > $DIRBINLINUX/dist/README.txt
 cp $DIRBINLINUX/share/glparchis/sounds/*.wav $DIRBINLINUX/dist/glparchis
 cp $DIRBINLINUX/share/glparchis/*.qm $DIRBINLINUX/dist/glparchis
@@ -127,7 +128,7 @@ cd $CWD
 
 
 ###### binaries windows
-DESTDIR=$DIRBINWINDOWS make all
+DESTDIR=$DIRBINWINDOWS make install
 sed -i -e 's:so="src.linux":so="bin.windows":' $DIRBINWINDOWS/bin/glparchis
 wine $HOME/.wine/drive_c/Python33/python.exe $HOME/.wine/drive_c/Python33/Scripts/cxfreeze $DIRBINWINDOWS/bin/glparchis --icon="$DIRBINWINDOWS/share/glparchis/ficharoja.ico" --base-name=Win32GUI --include-path=$DIRBINWINDOWS/lib/glparchis/ --target-dir=$DIRBINWINDOWS/dist/glparchis --include-modules="OpenGL,OpenGL.platform.win32,OpenGL.arrays,OpenGL.arrays.ctypesarrays,OpenGL.arrays.lists,OpenGL.converters"
 cp $DIRBINWINDOWS/share/glparchis/sounds/*.wav $DIRBINWINDOWS/dist/glparchis
