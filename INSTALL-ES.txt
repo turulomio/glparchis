@@ -3,14 +3,14 @@ Requisitos
 El programa tiene las siguientes dependencias:
   - PyQt4
   - pyopengl
-  - python2
+  - python3
 
 Procedimiento de instalación para fuentes linux
 ===============================================
 
 Se descomprime el fichero 
 Una vez en el directorio en el que esta el Makefile se ejecuta
-  # make all
+  # make; make install
 
 Si usas la distribución Gentoo, te puedes bajar el ebuild desde
 https://xulpymoney.svn.sourceforge.net/svnroot/xulpymoney/myportage/games-board/glparchis/

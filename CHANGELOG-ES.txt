@@ -1,6 +1,7 @@
 XXXXXXXX
 ========
 - La configuración del sonido se graba ahora en glparchis.cfg
+- Se ha cambiado el makefile para que se compile con make y se instale con make install
 
 20130716
 ========
