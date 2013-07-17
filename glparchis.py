@@ -3,7 +3,7 @@ import sys, os, datetime
 
 so="src.linux" #src.linux src.windows bin.linux bin.windows. Se debe cambiar antes de compilar
 os.environ['glparchisso']=so
-if so=="src.windows" or so=="bin.windows":
+if so=="bin.windows":
     sys.path.append("../lib/glparchis")
 elif so=="src.linux" or so=="bin.linux":
     sys.path.append("/usr/lib/glparchis")

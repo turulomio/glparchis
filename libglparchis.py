@@ -2248,8 +2248,6 @@ class Mem:
             so=os.environ['glparchisso']
             if so=="bin.windows" or so=="bin.linux":
                 url= sound + ".wav"
-            elif so=="src.windows":
-                url="../share/glparchis/sounds/"+sound+".wav"
             elif so=="src.linux":
                 url="/usr/share/glparchis/sounds/"+sound+".wav"
             self.mediaObject.setCurrentSource(Phonon.MediaSource(url))
@@ -2431,8 +2429,6 @@ def cargarQTranslator(cfgfile):
     so=os.environ['glparchisso']
     if so=="src.linux":
         cfgfile.qtranslator.load("/usr/share/glparchis/glparchis_" + cfgfile.language + ".qm")
-    elif so=="src.windows":
-        cfgfile.qtranslator.load("../share/glparchis/glparchis_" + cfgfile.language + ".qm")
     elif so=="bin.windows" or so=="bin.linux":
         cfgfile.qtranslator.load("glparchis_" + cfgfile.language + ".qm")
     qApp.installTranslator(cfgfile.qtranslator);
