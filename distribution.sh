@@ -70,47 +70,6 @@ tar cvz  -f $CWD/dist/glparchis-src-linux-$VERSION.tar.gz * -C $DIR/src.linux > 
 cd $CWD
 
 
-
-######## sources windows
-DESTDIR=$DIRSRCWINDOWS make install
-mv $DIRSRCWINDOWS/bin/glparchis $DIRSRCWINDOWS/bin/glparchis.py
-sed -i -e 's:so="src.linux":so="src.windows":' $DIRSRCWINDOWS/bin/glparchis.py
-cp $DIRSRCWINDOWS/bin/glparchis.py $DIRSRCWINDOWS/bin/glparchis.py.src
-cp $DIRSRCWINDOWS/bin/glparchis.py $DIRSRCWINDOWS/bin/glparchis.py.bin
-sed -i -e 's:so="src.windows":so="bin.windows":' $DIRSRCWINDOWS/bin/glparchis.py.bin
-
-echo "
-@echo off
-copy /Y bin\\glparchis.py.src bin\\glparchis.py
-
-cd bin
-c:/Python27/python.exe glparchis.py
-pause" > $DIRSRCWINDOWS/glparchis.bat
-
-echo "
-rem Solo con x86 no hay opengl 64
-rem Instalar pyinstaller directorio en c:\ solo una vez
-rem Se necesita pywin32 para pyinstaller 
-rem Meter glparchis.ico
-rem Cambiar ruta de pyinstaller 
-
-cd ..
-cd ..
-copy /Y bin\\glparchis.py.bin bin\\glparchis.py
-cd share/glparchis
-rm glparchis.spec
-rm logdict2.7.3.final.0-1.log
-rmdir /s /q build
-rmdir /s /q dist
-c:\Python27\python.exe c:\pyinstaller\pyinstaller.py -i ficharoja.ico -w -p ..\..\lib\glparchis ..\..\bin\glparchis.py
-copy /Y sounds\\*.wav dist\\glparchis\\
-pause" > $DIRSRCWINDOWS/share/glparchis/generateexe_inno.bat
-
-echo "  * Comprimiendo codigo fuente windows..."
-cd $DIR/src.windows
-zip -r $CWD/dist/glparchis-src-windows-$VERSION.zip ./ >/dev/null
-cd $CWD
-
 ####### binaries linux
 DESTDIR=$DIRBINLINUX make install
 sed -i -e 's:so="src.linux":so="bin.linux":' $DIRBINLINUX/bin/glparchis
