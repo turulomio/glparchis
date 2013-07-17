@@ -12,7 +12,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtOpenGL import *
 from PyQt4.phonon import Phonon
 #Cuando se modifique una version sacada se pondrá un + p.e. 20120921+
-version="20130716"
+version="20130716+"
 
 def str2bool(s):
     if s.lower()=="true":
@@ -1719,6 +1719,7 @@ class ConfigFile:
         self.names.append("Cyanny")
         self.lastupdate=datetime.date.today().toordinal()
         self.autosaves=10
+        self.sound=True
         
         self.config=configparser.ConfigParser()
         self.load()
@@ -1733,6 +1734,7 @@ class ConfigFile:
             if len(prueba)==8:#Se hizo cuando se quito base64 para dar compatibilidad
                 self.names=prueba
             self.lastupdate=self.config.getint("frmMain", "lastupdate")
+            self.sound=str2bool(self.config.get("frmSettings", "sound"))
         except:
             print ("No hay fichero de configuración")    
             
@@ -1750,6 +1752,7 @@ class ConfigFile:
             self.config.add_section("frmInitGame")
         self.config.set("frmSettings",  'language', self.language)
         self.config.set("frmSettings",  'autosaves', str(self.autosaves))
+        self.config.set("frmSettings",  'sound', str(self.sound))
         self.config.set("frmMain",  'splitter_state', b2s(self.splitterstate.toBase64()))#QByteArray2bytes
         self.config.set("frmMain",  'lastupdate', str(self.lastupdate))
         cadena=""
@@ -2224,7 +2227,6 @@ class Casilla(QObject):
 class Mem:
     def __init__(self, maxplayers):     
         self.maxplayers=maxplayers
-#        self.casillas=None#Lista cuya posicion coincide con el id del objeto jugador que lleva dentro
         self.dic_fichas={}
         self.colores=SetColores()
         self.jugadores=SetJugadores(self)
@@ -2235,7 +2237,6 @@ class Mem:
         self.cfgfile=None#fichero configuración que se crea en glparchis.py
            
         self.mediaObject = None
-        self.sound=True#Enciende o apaga el sonido
         parent=QCoreApplication.instance()
         self.mediaObject = Phonon.MediaObject(parent)
         audioOutput = Phonon.AudioOutput(Phonon.MusicCategory, parent)
@@ -2243,7 +2244,7 @@ class Mem:
         
 
     def play(self, sound):
-        if self.sound==True:
+        if self.cfgfile.sound==True:
             so=os.environ['glparchisso']
             if so=="bin.windows" or so=="bin.linux":
                 url= sound + ".wav"

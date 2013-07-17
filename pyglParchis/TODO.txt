@@ -20,4 +20,4 @@
 20130325 En showcaslla mostrar la ausencia de ficha con una ficha sin color
 20130325 Esta autorizada a mover y pudede mover calculan con movimiento de dado, no con estimación de movimiento, falla no cuentan barreras con 20...
 20130325 Hay que quitar el make all y cambiarlo por make install
-20130716 Cuando empieza otra partida, el sonido se pone a true y debería ponerse al valor del toggled action
+20130716 El binario de linux no va 

@@ -22,6 +22,10 @@ class frmMain(QMainWindow, Ui_frmMain):#
             print ("Actualizando")
             self.checkUpdates(False)
         
+        #Ajusta el sonido desde cfgfile
+        self.cfgfile.sound=not self.cfgfile.sound #Se cambia antes para que self.on_actionSound_triggered lo deje bien
+        self.on_actionSound_triggered()
+        
     @pyqtSlot()      
     def on_actionAcercaDe_triggered(self):
         fr=frmAbout(self,"frmabout")
@@ -47,8 +51,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
         
     @pyqtSlot()      
     def on_actionSound_triggered(self):
-        self.game.mem.sound=not self.game.mem.sound
-        if self.game.mem.sound:
+        self.cfgfile.sound=not self.cfgfile.sound
+        if self.cfgfile.sound:
             self.actionSound.setText(self.trUtf8("Sonido encendido")) 
             icon8 = QtGui.QIcon()
             icon8.addPixmap(QtGui.QPixmap(":/glparchis/sound.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -58,6 +62,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
             icon8 = QtGui.QIcon()
             icon8.addPixmap(QtGui.QPixmap(":/glparchis/soundoff.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.actionSound.setIcon(icon8)
+        self.cfgfile.save() ##Cambia los cambios del sound en el cfgfile
         
     @pyqtSlot()      
     def on_actionUpdates_triggered(self):
@@ -132,12 +137,10 @@ class frmMain(QMainWindow, Ui_frmMain):#
         os.chdir(os.path.expanduser("~/.glparchis/"))
         #ÐEBE SERLOCAL
         filenam=os.path.basename(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)"))
-        print (filenam)
         if filenam!="":
             #Busca si es de 4,6,8
             self.mem=self.selectMem(filenam)
-            #Lo carga
-            self.mem.cfgfile=self.cfgfile
+            self.mem.cfgfile=self.cfgfile #Punto a cfgfile
             if self.mem.load(filenam)==False:
                 self.mem=None
                 return
