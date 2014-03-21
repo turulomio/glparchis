@@ -2245,10 +2245,8 @@ class Mem:
 
     def play(self, sound):
         if self.cfgfile.sound==True:
-            so=os.environ['glparchisso']
-            if so=="bin.windows" or so=="bin.linux":
-                url= sound + ".wav"
-            elif so=="src.linux":
+            url= "sounds/"+sound + ".wav"
+            if os.path.exists(url)==False:
                 url="/usr/share/glparchis/sounds/"+sound+".wav"
             self.mediaObject.setCurrentSource(Phonon.MediaSource(url))
             self.mediaObject.play()
@@ -2426,13 +2424,17 @@ def dic2list(dic):
 
 def cargarQTranslator(cfgfile):  
     """language es un string"""
-    so=os.environ['glparchisso']
-    if so=="src.linux":
-        cfgfile.qtranslator.load("/usr/share/glparchis/glparchis_" + cfgfile.language + ".qm")
-    elif so=="bin.windows" or so=="bin.linux":
-        cfgfile.qtranslator.load("glparchis_" + cfgfile.language + ".qm")
+#    so=os.environ['glparchisso']
+#    if so=="src.linux":
+#        cfgfile.qtranslator.load("/usr/share/glparchis/glparchis_" + cfgfile.language + ".qm")
+#    elif so=="bin.windows" or so=="bin.linux":
+#        cfgfile.qtranslator.load("glparchis_" + cfgfile.language + ".qm")
+#    qApp.installTranslator(cfgfile.qtranslator);
+    url="/usr/share/glparchis/glparchis_" + cfgfile.language + ".qm"
+    if os.path.exists(url)==False:
+        url="i18n/glparchis_" + cfgfile.language + ".qm"
+    cfgfile.qtranslator.load(url)
     qApp.installTranslator(cfgfile.qtranslator);
-    
 def developing():
     """Función que permite avanzar si hay un parametro y da un aviso e interrumpe si no, se debe poner un if en donde se use"""
     if len (sys.argv)==1:
