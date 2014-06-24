@@ -5,7 +5,6 @@
 20120925 Cuando sale un 6 y con el 6 meto, corro 10 luego no me deja volver a tirar y tengo que mover otros 6
 	 20130323 me pasó lo mismo al comer. No sé si le dí dos veces al click
 20121019 Cuando se gane, hacer que el tablero gire y suba y baje
-20121104 Poner un sonido especifico 3 seises y a caaasa
 20130320 Cuando acabee la partida y se genere un highscore abrir el tab y poner en negrilla el recien insertado
 20130320 Una ficha en la salida de casilla con otra ficha no se siente amenazada, cambiar AI
 20130321 Solo puede haber una amenaza por jugador y valor, barrero solo 1, pero seguro con 2 distintas cuenta por 2
@@ -14,3 +13,4 @@
 20130325 Esta autorizada a mover y pudede mover calculan con movimiento de dado, no con estimación de movimiento, falla no cuentan barreras con 20...
 20130906 Hacer despues de ir a seguro, bajar a amenazas, hacer estudios de acuantas amenazo si me muevo
 20130906 Cuando una partida dura días ponerlo en los históricos. Sale en el label de estadisticas bien.
+20140514 Meter más eventos en los logs, poner motivo movimiento y como queda de amenazas si está en modo depuración
