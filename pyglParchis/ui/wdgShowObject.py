@@ -9,7 +9,7 @@ from wdgGame import *
 
 class wdgShowObject(QGLWidget):
     def __init__(self, parent=None):
-        self.ortho=(-4.5, +4.5, +4.5, -4.5, 4.0, 15.0)
+        self.ortho=(-9, +9, +9, -9, -25.0, 25.0)
         QGLWidget.__init__(self, parent)
         self.xRot = 0
         self.yRot = 0
@@ -23,7 +23,12 @@ class wdgShowObject(QGLWidget):
         #Carga el primer objeto    
         self.cas= Casilla(1, 2, Color(255, 255, 255) , (-3.5, -1.5, 0, 0), 0, False, False, 3,  False, (0, 0, 0), False)
         self.ficha=Ficha(None, 0, 1, Color(255, 0, 0), Jugador(None, Color(255, 0, 0)), None)
-        self.tablero=Tablero()
+        self.tablero=Tablero(4)
+        self.tablero.position=Coord(0, 0, 0)
+        self.tablero6=Tablero(6)
+        self.tablero6.position=Coord(0, 0, 0)
+        self.tablero8=Tablero(8)
+        self.tablero8.position=Coord(0, 0, 0)
         self.dado=Dado()
         self.dado.showing=True
         self.lasttirada=5
@@ -112,8 +117,9 @@ class wdgShowObject(QGLWidget):
         glRotated(self.zRot / 16.0, 0.0, 0.0, 1.0)
         #Aquí no añadir calculos hacerlo en dobleclick
         if self.objeto==0:
-            self.cas.color=Color(255, 255, 255)
-            self.cas.dibujar(self)
+#            self.cas.color=Color(255, 255, 255)
+#            self.cas.dibujar(self)
+            self.tablero8.dibujar(self)
         elif self.objeto==1:
             self.cas.dibujar(self)
         elif self.objeto==2:

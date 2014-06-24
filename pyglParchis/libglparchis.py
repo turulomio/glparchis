@@ -1467,74 +1467,6 @@ class Ficha(QObject):
             return True
         return False
         
-#    def numeroAmenazasMejora(self, mem):
-#        """Si devuelve un positivo es que ha disminuido en ese valor el numero de fichas que le amenzaban
-#        Si antes 0 y luego 1 tendra  -1
-#        Si antes 1 y luego 0 tendra 1
-#        Si antes 1 y luego 1 tendra 0
-#        Si antes 0 y luego o tendra 0"""
-#        movimiento=self.estaAutorizadaAMover(mem)[1]
-#        antes=self.numFichasPuedenComer(mem, self.posruta)
-#        despues=self.numFichasPuedenComer(mem, self.posruta+movimiento)
-##        print ("Amenazas en casilla {0}: {1}. En casilla {2}: {3}".format(self.casilla(self.posruta).id, antes, self.casilla(self.posruta+movimiento).id, despues))
-#        return antes-despues
-#
-#    def numFichasPuedenComer(self, mem, posruta=None):
-#        """Función que devuelve un array con las fichas que pueden comer a la ficha actual si la colocara en posruta"""
-#        resultado=0
-#        if posruta==None:
-#            posruta=self.posruta
-#            
-#        if posruta<0 or posruta>self.ruta.length()-1:
-#            return 0
-#            
-#        casilla=self.casilla(posruta)        #Datos casilla de posruta
-#        
-#        if casilla.esSegura(mem, self.jugador, True)==True or casilla.rampallegada==True:
-#            return 0
-#            
-#        if casilla.tieneBarrera():
-#            return 0
-#            
-#        if casilla not in mem.circulo.arr:#Si la casilla no esta en el circulo devuelve 0
-#            return 0
-#            
-#        #anota comer por cinco en ruta1    
-#        
-#        
-#        
-#        
-#        #fichas que se encuentran a una distancia en casillas
-#        for pos, f in mem.circulo.casilla(casilla.id, -1).buzon_fichas():
-#            if f.jugador!=self.jugador:
-#                resultado=resultado+1
-#        for pos, f in mem.circulo.casilla(casilla.id, -2).buzon_fichas():
-#            if f.jugador!=self.jugador:
-#                resultado=resultado+1
-#        for pos, f in mem.circulo.casilla(casilla.id, -3).buzon_fichas():
-#            if f.jugador!=self.jugador:
-#                resultado=resultado+1
-#        for pos, f in mem.circulo.casilla(casilla.id, -4).buzon_fichas():
-#            if f.jugador!=self.jugador:
-#                resultado=resultado+1
-#        for pos, f in mem.circulo.casilla(casilla.id, -5).buzon_fichas():
-#            if f.jugador!=self.jugador:
-#                if f.jugador.tieneFichasEnCasa()==False:#no tiene que scar por lo que cuenta como un 5 normal
-#                    resultado=resultado+1
-#        for pos, f in mem.circulo.casilla(casilla.id, -6).buzon_fichas():
-#            if f.jugador!=self.jugador: #Son fichas enemigas
-#                if f.jugador.tieneFichasEnCasa():
-#                    resultado=resultado+1
-#        for pos, f in mem.circulo.casilla(casilla.id, -7).buzon_fichas():
-#            if f.jugador!=self.jugador:
-#                if f.jugador.tieneFichasEnCasa()==False:
-#                    resultado=resultado+1
-#        for pos, f in mem.circulo.casilla(casilla.id, -10).buzon_fichas():
-#            if f.jugador!=self.jugador:
-#                if f.jugador.tieneFichasEnRampaLlegada():
-#                    resultado=resultado+1
-#        return resultado
-
     def estaEnCasa(self):
         if self.posruta==0:
             return True
@@ -1576,51 +1508,175 @@ class Ficha(QObject):
 
 
 class Tablero(QObject):
-    def __init__(self, parent=None):
+    def __init__(self, maxplayers,  parent=None):
         QGLWidget.__init__(self, parent)
         self.object = 1
-        self.position=(-1, -1, 0)
+        self.maxplayers=maxplayers
+        if self.maxplayers==4:
+            self.position=Coord(-1, -1, 0)
+        elif self.maxplayers==6:
+            self.position=Coord(31.5, 23.9, 0)
+        elif self.maxplayers==8:
+            self.position=Coord(31.5, 16.5, 0)
+
         self.oglname=32#Nombre usado para pick por opengl
+        self.colorbrown=Color(88, 40, 0)
+        self.arrcolorbrown=self.colorbrown.arraycolor(6)
+        self.colorwhite=Color(255, 255, 255)
 
 
     def dibujar(self, ogl):
         def quad(p1, p2, p3, p4, color):
+            glBegin(GL_QUADS)
             ogl.qglColor(color.qcolor())
             glTexCoord2f(0.0,0.0)
-            glVertex3d(p1[0], p1[1], p1[2])
+            glVertex3d(p1.x, p1.y, p1.z)
             glTexCoord2f(1.0,0.0)
-            glVertex3d(p2[0], p2[1], p2[2])
+            glVertex3d(p2.x, p2.y, p2.z)
             glTexCoord2f(1.0,1.0)
-            glVertex3d(p3[0], p3[1], p3[2])
+            glVertex3d(p3.x, p3.y, p3.z)
             glTexCoord2f(0.0,1.0)
-            glVertex3d(p4[0], p4[1], p4[2])              
-        glPushMatrix()
-        glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, ogl.texDecor[1])
-        glTranslated(self.position[0],  self.position[1],  self.position[2])
-        glBegin(GL_QUADS)
-        v1 = (0, 0, 0)
-        v2 = (65, 0, 0)
-        v3 = (65, 65, 0)
-        v4 = (0, 65, 0)
-        v5 = (0, 0, 0.5)
-        v6 = (65, 0, 0.5)
-        v7 = (65, 65, 0.5)
-        v8 = (0, 65, 0.5)
-        color=Color(255, 255, 255)
-        quad(v4, v3, v2, v1, color)      
-        color=Color(70, 70, 70)
-        quad(v5, v6, v7, v8, color)   
-        color=Color(255, 255, 255)   
-        quad(v5, v8, v4, v1, color)      
-        quad(v2, v3, v7, v6, color)      
-        quad(v1, v2, v6, v5, color)      
-        quad(v8, v7, v3, v4, color)          
-
-        glEnd()
-        glPopMatrix()
-        glDisable(GL_TEXTURE_2D)
-        
+            glVertex3d(p4.x, p4.y, p4.z)
+            glEnd()
+            
+        def poliedro(lenx, leny, lenz, arrcolor):
+            """Arrcolor, array de 6 colores, si es de uno pinta todo igual"""
+            v1 = Coord(0, 0, 0)
+            v2 = Coord(lenx, 0, 0)
+            v3 = Coord(lenx, leny, 0)
+            v4 = Coord(0, leny, 0)
+            v5 = Coord(0, 0, lenz)
+            v6 = Coord(lenx, 0, lenz)
+            v7 = Coord(lenx, leny, lenz)
+            v8 = Coord(0, leny, lenz)
+            quad(v4, v3, v2, v1, arrcolor[0])   
+            quad(v5, v6, v7, v8, arrcolor[1])   
+            quad(v4, v1, v5, v8, arrcolor[2])      
+            quad(v2, v3, v7, v6, arrcolor[3])      
+            quad(v1, v2, v6, v5, arrcolor[4])      
+            quad(v8, v7, v3, v4, arrcolor[5])   
+            
+            #PARA DEBUG CON COLORES
+#            quad(None,v4, v3, v2, v1, Color(255, 0, 0))   
+#            quad(None,v5, v6, v7, v8, self.colorbrown)   
+#            quad(None,v4, v1, v5, v8, self.colorwhite)      
+#            quad(None,v2, v3, v7, v6, Color(0, 0, 0))      
+#            quad(None,v1, v2, v6, v5, Color(0, 255, 0))      
+#            quad(None,v8, v7, v3, v4, Color(0, 0, 255))       
+            
+        def hexagon(radius, color, reverse):
+            """position es el centro del hex´agono en su base inferior
+            reversed used to see from up in opengl
+            Returns hexagon vertices"""
+            glBegin(GL_POLYGON)
+            arr=[]
+            ogl.qglColor(color.qcolor())
+            if reverse==True:
+                rango=reversed(range(6))
+            else:
+                rango=range(6)
+            for i in rango:#Reversed to see from up in opengl.
+                posx=math.sin(i/6.0*2*math.pi+math.pi/6)
+                posy=math.cos(i/6.0*2*math.pi+math.pi/6)
+                glTexCoord2f(posx, posy)
+                glVertex3d(posx*radius, posy*radius,  0)
+                arr.append(Coord(posx*radius, posy*radius, 0))
+            glEnd()
+            return arr
+                        
+        def octogon(radius, color, reverse):
+            """position es el centro del hex´agono en su base inferior
+            reversed used to see from up in opengl
+            Returns hexagon vertices"""
+            glBegin(GL_POLYGON)
+            arr=[]
+            ogl.qglColor(color.qcolor())
+            if reverse==True:
+                rango=reversed(range(8))
+            else:
+                rango=range(8)
+            for i in rango:#Reversed to see from up in opengl.
+                posx=math.sin(i/8.0*2*math.pi+math.pi/8)
+                posy=math.cos(i/8.0*2*math.pi+math.pi/8)
+                glTexCoord2f(posx, posy)
+                glVertex3d(posx*radius, posy*radius,  0)
+                arr.append(Coord(posx*radius, posy*radius, 0))
+            glEnd()
+            return arr
+            
+        def hexagontrunk(radius, height):
+            """centercoord es el centro del hex´agono en su base inferior
+            radius, hexagon radius
+            height the trunk height"""
+            hexinf=hexagon( radius,  self.colorbrown, True)
+            glTranslated(0, 0, 0.5)
+            hexsup=hexagon( radius,   self.colorbrown, False)
+            hexsup.reverse()
+            glTranslated(0, 0, -0.5)
+            #Suma a hexsup la altura que acabo de quitar
+            for c in hexsup:
+                c.sum_z(0.5)
+            quad(hexsup[0], hexsup[1], hexinf[1], hexinf[0], Color(200, 200, 200))
+            quad(hexsup[1], hexsup[2], hexinf[2], hexinf[1], Color(200, 200, 200))
+            quad(hexsup[2], hexsup[3], hexinf[3], hexinf[2], Color(200, 200, 200))
+            quad(hexsup[3], hexsup[4], hexinf[4], hexinf[3], Color(200, 200, 200))
+            quad(hexsup[4], hexsup[5], hexinf[5], hexinf[4], Color(200, 200, 200))
+            quad(hexsup[5], hexsup[0], hexinf[0], hexinf[5], Color(200, 200, 200))        
+            
+        def octogontrunk(radius, height):
+            """centercoord es el centro del hex´agono en su base inferior
+            radius, hexagon radius
+            height the trunk height"""
+            octinf=octogon( radius,  self.colorbrown, True)
+            glTranslated(0, 0, 0.5)
+            octsup=octogon( radius,   self.colorbrown, False)
+            octsup.reverse()
+            glTranslated(0, 0, -0.5)
+            #Suma a octsup la altura que acabo de quitar
+            for c in octsup:
+                c.sum_z(0.5)
+            quad(octsup[0], octsup[1], octinf[1], octinf[0], Color(200, 200, 200))
+            quad(octsup[1], octsup[2], octinf[2], octinf[1], Color(200, 200, 200))
+            quad(octsup[2], octsup[3], octinf[3], octinf[2], Color(200, 200, 200))
+            quad(octsup[3], octsup[4], octinf[4], octinf[3], Color(200, 200, 200))
+            quad(octsup[4], octsup[5], octinf[5], octinf[4], Color(200, 200, 200))
+            quad(octsup[5], octsup[6], octinf[6], octinf[5], Color(200, 200, 200))
+            quad(octsup[6], octsup[7], octinf[7], octinf[6], Color(200, 200, 200))
+            quad(octsup[7], octsup[0], octinf[0], octinf[7], Color(200, 200, 200))
+            
+            
+        def tipo4():
+            glPushMatrix()
+            glEnable(GL_TEXTURE_2D);
+            glBindTexture(GL_TEXTURE_2D, ogl.texDecor[1])   
+            glTranslated(self.position.x,  self.position.y,  self.position.z)
+            poliedro(65, 65, 0.5, self.arrcolorbrown)#65.65.0.5
+            glPopMatrix()
+            glDisable(GL_TEXTURE_2D)
+            
+        def tipo6():
+            glPushMatrix()
+            glEnable(GL_TEXTURE_2D);
+            glBindTexture(GL_TEXTURE_2D, ogl.texDecor[1])
+            glTranslated(self.position.x,  self.position.y,  self.position.z)
+            hexagontrunk( 47, 0.5)#47
+            glPopMatrix()
+            glDisable(GL_TEXTURE_2D)            
+        def tipo8():
+            glPushMatrix()
+            glEnable(GL_TEXTURE_2D);
+            glBindTexture(GL_TEXTURE_2D, ogl.texDecor[1])
+            glTranslated(self.position.x,  self.position.y,  self.position.z)
+            octogontrunk( 52.5, 0.5)#47
+            glPopMatrix()
+            glDisable(GL_TEXTURE_2D)            
+        ###########################################
+        if self.maxplayers==4:
+            tipo4()
+        elif self.maxplayers==6:
+            tipo6()
+        elif self.maxplayers==8:
+            tipo8()
         
 class Circulo:
     """Es el circulo publico por el que se mueven las fichas y pueden comerse entre ellas
@@ -1665,6 +1721,14 @@ class Color:
         if dark.g<0: dark.g=0
         if dark.b<0: dark.b=0
         return dark
+    
+    def arraycolor(self,  size):
+        """Returns and array of the seame color, poliedros."""
+        arr=[]
+        for i in range(size):
+            arr.append(self)
+        return arr
+        
                             
     def compatibilityName(self,  color):
         #Deberá desaparecer el tres versiones despues de 20130228
@@ -1701,6 +1765,21 @@ class Color:
             return QPixmap(":/glparchis/fichanaranja.png")
         elif self.name=="darkturquoise":
             return QPixmap(":/glparchis/fichacyan.png")
+
+
+class Coord:
+    def __init__(self, x, y, z):
+        self.x=x
+        self.y=y
+        self.z=z
+    def clone(self):
+        """Returns other object with the same coords"""
+        return(Coord(self.x, self.y,  self.z))
+        
+    def sum_z(self, n):
+        """Suma un valor a la z y devuelve el objeto mismo syou"""
+        self.z=self.z+n
+        return self
 
 class ConfigFile:
     def __init__(self, file):
