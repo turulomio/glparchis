@@ -14,7 +14,7 @@ class wdgOGL(QGLWidget):
    Emite click ficha cuando se realiza"""
     def __init__(self,  parent=None,  filename=None):
         QGLWidget.__init__(self, parent)
-        self.tablero=Tablero()
+        self.tablero=None#After assign_mem creation
         self.texNumeros=[]
         self.texDecor=[]
         self.rotX=0
@@ -22,6 +22,7 @@ class wdgOGL(QGLWidget):
         
     def assign_mem(self, mem):
         self.mem=mem
+        self.tablero=Tablero(mem.maxplayers)
         
     def initializeGL(self):
         #LAS TEXTURAS SE DEBEN CRAR AQUÍ ES LO PRIMERO QUE SE EJECUTA
@@ -60,13 +61,6 @@ class wdgOGL(QGLWidget):
         glColorMaterial(GL_FRONT,GL_AMBIENT_AND_DIFFUSE);
 
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-        
-        #Antialiasing
-#        glEnable (GL_LINE_SMOOTH);
-#        glEnable (GL_POINT_SMOOTH);
-#        glEnable (GL_POLYGON_SMOOTH);
-#        glHint (GL_LINE_SMOOTH_HINT, GL_NICEST);
-#        glLineWidth (1.5)
 
     def paintGL(self):   
         glLoadIdentity()
@@ -81,11 +75,13 @@ class wdgOGL(QGLWidget):
             glTranslated(-31.5, -24,  -80)
             
         glRotated(self.rotX, 1,0 , 0)
-        if self.mem.maxplayers==4:
-            self.tablero.dibujar(self)
+        
+        self.tablero.dibujar(self)
+        
         for c in self.mem.casillas.arr:
             c.dibujar(self)
             c.dibujar_fichas(self)
+            
         self.mem.dado.dibujar(self)
 
     def resizeGL(self, width, height):
@@ -104,9 +100,13 @@ class wdgOGL(QGLWidget):
                 self.rotX=340
             elif self.visualizacion==2:
                 self.rotX=275
+            elif self.visualizacion==3:
+                self.rotX=270
+            elif self.visualizacion==4:
+                self.rotX=180
             self.updateGL()
             
-            if self.visualizacion==2:
+            if self.visualizacion==4:
                 self.visualizacion=0
             else:
                 self.visualizacion=self.visualizacion+1
