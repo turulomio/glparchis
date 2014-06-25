@@ -24,11 +24,11 @@ class wdgShowObject(QGLWidget):
         self.cas= Casilla(1, 2, Color(255, 255, 255) , (-3.5, -1.5, 0, 0), 0, False, False, 3,  False, (0, 0, 0), False)
         self.ficha=Ficha(None, 0, 1, Color(255, 0, 0), Jugador(None, Color(255, 0, 0)), None)
         self.tablero=Tablero(4)
-        self.tablero.position=Coord(0, 0, 0)
+        self.tablero.position=Coord3D(0, 0, 0)
         self.tablero6=Tablero(6)
-        self.tablero6.position=Coord(0, 0, 0)
+        self.tablero6.position=Coord3D(0, 0, 0)
         self.tablero8=Tablero(8)
-        self.tablero8.position=Coord(0, 0, 0)
+        self.tablero8.position=Coord3D(0, 0, 0)
         self.dado=Dado()
         self.dado.showing=True
         self.lasttirada=5
@@ -119,7 +119,7 @@ class wdgShowObject(QGLWidget):
         if self.objeto==0:
 #            self.cas.color=Color(255, 255, 255)
 #            self.cas.dibujar(self)
-            self.tablero8.dibujar(self)
+            self.tablero.dibujar(self)
         elif self.objeto==1:
             self.cas.dibujar(self)
         elif self.objeto==2:
