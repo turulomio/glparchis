@@ -64,9 +64,10 @@ class wdgOGL(QGLWidget):
 
     def paintGL(self):   
         glLoadIdentity()
+#        self.qglClearColor(Color(0, 0, 0).qcolor())
         self.qglClearColor(QColor())
 
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+        glClear(GL_DEPTH_BUFFER_BIT)#GL_COLOR_BUFFER_BIT | 
         if self.mem.maxplayers==8:
             glTranslated(-31.5, -17,  -85)
         elif self.mem.maxplayers==4:

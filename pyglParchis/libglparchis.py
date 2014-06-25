@@ -1693,6 +1693,7 @@ class Polygon:
         self.color=None
         self.texture=None
         self.texverts=None
+        
     def init__create(self, verts, color,  texture, texverts):
         """verts. Array de Coords3D
         color: Color del poligono
@@ -1713,7 +1714,8 @@ class Polygon:
             for i in range(lados):#Reversed to see from up in opengl.
                 posx=math.sin(i/lados*2*math.pi+math.pi/lados)
                 posy=math.cos(i/lados*2*math.pi+math.pi/lados)
-                texverts.append(Coord2D(posx, posy))
+                if texture:
+                    texverts.append(Coord2D(posx, posy))
                 verts.append(Coord3D(posx*radius, posy*radius, 0))
             return self.init__create(verts, color, texture, texverts)
 
@@ -1723,25 +1725,44 @@ class Polygon:
         texverts=[]
         for i in range(len(self.verts)):
             verts.append(self.verts[i].clone())
-            texverts.append(self.texverts[i].clone())
+            if self.texture:
+                texverts.append(self.texverts[i].clone())
         return p.init__create(verts, Color(self.color.r, self.color.g, self.color.b, self.color.name), self.texture, texverts)
         
     def reverse(self):
         self.verts.reverse()
         
     def opengl(self, ogl):
-        glBindTexture(GL_TEXTURE_2D, self.texture)   
+        if self.texture:
+            glBindTexture(GL_TEXTURE_2D, self.texture)   
         glBegin(GL_POLYGON)
         ogl.qglColor(self.color.qcolor())
         for i, v in enumerate(self.verts):
-            glTexCoord2f(self.texverts[i].x, self.texverts[i].y)
+            if self.texture:
+                glTexCoord2f(self.texverts[i].x, self.texverts[i].y)
             glVertex3d(v.x, v.y, v.z)
         glEnd()
         
     def translate_z(self, n):
         for v in self.verts:
             v.z=v.z+n
+            
+    def opengl_border(self, ogl):
+        """Draws a polygon border"""
+        glBegin(GL_LINE_LOOP)
+        glColor3d(0, 0, 0)
+        for i, v in enumerate(self.verts):
+            glVertex3d(v.x, v.y, v.z)
+        glEnd()
 
+        def border(a, b, c, d, color):    
+            glBegin(GL_LINE_LOOP)
+            glColor3d(color.r, color.g, color.b)
+            glVertex3d(a[0], a[1], a[2])
+            glVertex3d(b[0], b[1], b[2])
+            glVertex3d(c[0], c[1], c[2])
+            glVertex3d(d[0], d[1], d[2])
+            glEnd()
 class Prism:
     """Prisma"""
     def __init__(self,  poligon, height):
@@ -1751,12 +1772,10 @@ class Prism:
         Face n, donde n numero vertices."""
         self.height=height
         self.bottom=poligon
-#        self.bottom.reverse()
         self.up=poligon.clone()
         self.up.translate_z(height)
         self.up.reverse()
         
-#        print (self.bottom.verts[0].z,  self.up.verts[0].z)
         self.contour=[]
         #HAy que re - reverse
         rere=self.up.clone()
@@ -1782,6 +1801,21 @@ class Prism:
         self.bottom.opengl(ogl)
         for f in self.contour:
             f.opengl(ogl)
+            
+    def opengl_border(self, ogl, face=None):
+        if face==None:
+            self.up.opengl_border(ogl)
+            self.bottom.opengl_border(ogl)
+            for f in self.contour:
+                f.opengl_border(ogl)
+        else:
+            if face==0:
+                self.up.opengl_border(ogl)
+            elif face==1:
+                self.up.opengl_border(ogl)
+            if face>=2:
+                self.contour.opengl_border(face-2)
+            
 
 class ConfigFile:
     def __init__(self, file):
@@ -1992,24 +2026,30 @@ class Casilla(QObject):
             glPushName(self.oglname);
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
-            glBegin(GL_QUADS)
-            v1 = (0, 0, 0)
-            v2 = (21, 0, 0)
-            v3 = (21, 21, 0)
-            v4 = (0, 21, 0)
-            v5 = (0, 0, 0.2)
-            v6 = (21, 0, 0.2)
-            v7 = (21, 21, 0.2)
-            v8 = (0, 21, 0.2)
+            verts=[Coord3D(0, 0, 0.5), Coord3D(21, 0, 0.5), Coord3D(21, 21, 0.5), Coord3D(0, 21, 0.5)]
+            p=Polygon().init__create(verts, self.color, None, [])
+            prism=Prism(p, 0.2)
+            prism.opengl(ogl)
+            prism.opengl_border(ogl)
+            
+##            glBegin(GL_QUADS)
+#            v1 = (0, 0, 0)
+#            v2 = (21, 0, 0)
+#            v3 = (21, 21, 0)
+#            v4 = (0, 21, 0)
+#            v5 = (0, 0, 0.2)
+#            v6 = (21, 0, 0.2)
+#            v7 = (21, 21, 0.2)
+#            v8 = (0, 21, 0.2)
     
-            quad(v1, v2, v3, v4, self.color)      
-            quad(v8, v7, v6, v5, Color(70, 70, 70))      
-            quad(v1, v4, v8, v5, Color(170, 170, 170))      
-            quad(v6, v7, v3, v2, Color(170, 170, 170))      
-            quad(v5, v6, v2, v1, Color(170, 170, 170))      
-            quad(v4, v3, v7, v8, Color(170, 170, 170))      
-            glEnd()
-            border(v5, v6, v7, v8, Color(0, 0, 0))
+#            quad(v1, v2, v3, v4, self.color)      
+#            quad(v8, v7, v6, v5, Color(70, 70, 70))      
+#            quad(v1, v4, v8, v5, Color(170, 170, 170))      
+#            quad(v6, v7, v3, v2, Color(170, 170, 170))      
+#            quad(v5, v6, v2, v1, Color(170, 170, 170))      
+#            quad(v4, v3, v7, v8, Color(170, 170, 170))      
+#            glEnd()
+#            border(v5, v6, v7, v8, Color(0, 0, 0))
     
             glPopName();
             glPopMatrix()
