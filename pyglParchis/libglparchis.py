@@ -1485,21 +1485,21 @@ class Ficha(QObject):
             p=(0, 0, 0)
         else:
             p=self.ruta.arr[self.posruta].posfichas[posicionBuzon]
+        white=Color(255, 255, 255)
         glTranslated(p[0], p[1], p[2])
         glRotated(180, 1, 0, 0)# da la vuelta a la cara
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, ogl.texDecor[1])
-        ogl.qglColor(Color(255, 255, 0).qcolor())
+#        ogl.qglColor(Color(255, 255, 0).qcolor())
         gluQuadricDrawStyle (self.ficha, GLU_FILL);
         gluQuadricNormals (self.ficha, GLU_SMOOTH);
         gluQuadricTexture (self.ficha, True);
-        ogl.qglColor(self.color.qcolor())
+        ogl.qglColor(white.qcolor())
         gluCylinder (self.ficha, 1.4, 1.4, 0.5, 16, 5)
-        glTranslated(0, 0, 0.5)
-        ogl.qglColor(Color(70, 70, 70).qcolor())
-        gluDisk(self.ficha, 0, 1.4, 16, 5)
+        glTranslated(0, 0, 0.2)
         ogl.qglColor(self.color.dark().qcolor())
-        glTranslated(0, 0, -0.5)
+        gluDisk(self.ficha, 0, 1.4, 16, 5)
+        glTranslated(0, 0, -0.2)
         glRotated(180, 1, 0, 0)# da la vuelta a la cara
         gluDisk(self.ficha, 0, 1.40, 16, 5)
         glPopName();
@@ -1521,19 +1521,17 @@ class Tablero(QObject):
 
         self.oglname=32#Nombre usado para pick por opengl
         self.colorbrown=Color(88, 40, 0)
-        self.arrcolorbrown=self.colorbrown.arraycolor(6)
-        self.colorwhite=Color(255, 255, 255)
+#        self.colorwhite=Color(255, 255, 255)
 
 
     def dibujar(self, ogl): 
-            
         def tipo4():
             glPushMatrix()
             glEnable(GL_TEXTURE_2D);
             glTranslated(self.position.x,  self.position.y,  self.position.z)
             #Lados cuadrado
-            verts=[Coord3D(0, 0, 0), Coord3D(65, 0, 0), Coord3D(65, 65, 0), Coord3D(0, 65, 0)]
-            texverts=[Coord2D(0, 0),Coord2D(1, 0), Coord2D(1, 1), Coord2D(0, 1) ]
+            verts=[Coord3D(0, 0, 0), Coord3D(0, 65, 0), Coord3D(65, 65, 0), Coord3D(65, 0, 0)]
+            texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
             p=Polygon().init__create(verts, self.colorbrown, ogl.texDecor[1], texverts)
             prism=Prism(p, 0.5)
             prism.opengl(ogl)
@@ -1683,7 +1681,10 @@ class Coord2D:
 
 
 class Polygon:
-    """Un quad es un polygon de cuatro vertices."""
+    """Un quad es un polygon de cuatro vertices.
+    Cumplen la regla del sacacorchos para la orientaci´on
+    
+    Cuando se vaya a hacer un prisma el poligono que se pone como par´ametro es de abajo, y va en sentido de las agujas del reloj"""
     def init(self):
         """verts. Array de Coords3D
         color: Color del poligono
@@ -1749,20 +1750,22 @@ class Polygon:
             
     def opengl_border(self, ogl):
         """Draws a polygon border"""
+#        glLineWidth(1.2);
         glBegin(GL_LINE_LOOP)
         glColor3d(0, 0, 0)
         for i, v in enumerate(self.verts):
-            glVertex3d(v.x, v.y, v.z)
+            glVertex3d(v.x, v.y, v.z+0.001)
         glEnd()
-
-        def border(a, b, c, d, color):    
-            glBegin(GL_LINE_LOOP)
-            glColor3d(color.r, color.g, color.b)
-            glVertex3d(a[0], a[1], a[2])
-            glVertex3d(b[0], b[1], b[2])
-            glVertex3d(c[0], c[1], c[2])
-            glVertex3d(d[0], d[1], d[2])
-            glEnd()
+#        glLineWidth(1);
+#
+#        def border(a, b, c, d, color):    
+#            glBegin(GL_LINE_LOOP)
+#            glColor3d(color.r, color.g, color.b)
+#            glVertex3d(a[0], a[1], a[2])
+#            glVertex3d(b[0], b[1], b[2])
+#            glVertex3d(c[0], c[1], c[2])
+#            glVertex3d(d[0], d[1], d[2])
+#            glEnd()
 class Prism:
     """Prisma"""
     def __init__(self,  poligon, height):
@@ -1944,7 +1947,7 @@ class Casilla(QObject):
             def cuadrito(x, texture, rotation):
                 glBindTexture(GL_TEXTURE_2D, texture)                
                 glPushMatrix()
-                glTranslated(self.position[0],self.position[1],self.position[2] )
+                glTranslated(self.position[0],self.position[1],self.position[2]+0.2)
                 glRotated(self.rotate, 0, 0, 1 )            
                 glBegin(GL_QUADS)
                 ogl.qglColor(self.color.qcolor())
@@ -2026,22 +2029,39 @@ class Casilla(QObject):
             glPushName(self.oglname);
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
-            verts=[Coord3D(0, 0, 0.5), Coord3D(21, 0, 0.5), Coord3D(21, 21, 0.5), Coord3D(0, 21, 0.5)]
+            verts=[Coord3D(0, 0, 0), Coord3D(0, 21, 0), Coord3D(21, 21, 0), Coord3D(21, 0, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
             prism.opengl(ogl)
-            prism.opengl_border(ogl)
+            prism.opengl_border(ogl, 1)    
+            glPopName();
+            glPopMatrix()
             
-##            glBegin(GL_QUADS)
-#            v1 = (0, 0, 0)
-#            v2 = (21, 0, 0)
-#            v3 = (21, 21, 0)
-#            v4 = (0, 21, 0)
-#            v5 = (0, 0, 0.2)
-#            v6 = (21, 0, 0.2)
-#            v7 = (21, 21, 0.2)
-#            v8 = (0, 21, 0.2)
-    
+        def tipo_inicio6():        
+            glInitNames();
+            glPushMatrix()
+            glPushName(self.oglname);
+            glTranslated(self.position[0],self.position[1],self.position[2] )
+            glRotated(self.rotate, 0, 0, 1 )
+            b=21*math.sin(math.pi/6)
+            c=21*math.tan(math.pi/6)*math.sin(math.pi/6)
+            d=21*math.cos(math.pi/6)
+            verts=[ Coord3D(0, 0, 0), Coord3D(b, -d, 0), Coord3D(0, -c-d, 0), Coord3D (-b, -d, 0)]
+            p=Polygon().init__create(verts, self.color, None, [])
+            prism=Prism(p, 0.2)
+            prism.opengl(ogl)
+            prism.opengl_border(ogl, 1)    
+#            
+#            glBegin(GL_QUADS)
+#            v1 = (-b, -d, 0)
+#            v2 = (0, -c-d, 0)
+#            v3 = (b, -d, 0)
+#            v4 = (0, 0, 0)
+#            v5 = (-b, -d, 0.2)
+#            v6 = (0, -c-d, 0.2)
+#            v7 = (b, -d, 0.2)
+#            v8 = (0, 0, 0.2)
+#    
 #            quad(v1, v2, v3, v4, self.color)      
 #            quad(v8, v7, v6, v5, Color(70, 70, 70))      
 #            quad(v1, v4, v8, v5, Color(170, 170, 170))      
@@ -2052,37 +2072,6 @@ class Casilla(QObject):
 #            border(v5, v6, v7, v8, Color(0, 0, 0))
     
             glPopName();
-            glPopMatrix()
-            
-        def tipo_inicio6():        
-            glInitNames();
-            glPushMatrix()
-            glPushName(self.oglname);
-            glTranslated(self.position[0],self.position[1],self.position[2] )
-            glRotated(self.rotate, 0, 0, 1 )
-            glBegin(GL_QUADS)
-            b=21*math.sin(math.pi/6)
-            c=21*math.tan(math.pi/6)*math.sin(math.pi/6)
-            d=21*math.cos(math.pi/6)
-            v1 = (-b, -d, 0)
-            v2 = (0, -c-d, 0)
-            v3 = (b, -d, 0)
-            v4 = (0, 0, 0)
-            v5 = (-b, -d, 0.2)
-            v6 = (0, -c-d, 0.2)
-            v7 = (b, -d, 0.2)
-            v8 = (0, 0, 0.2)
-    
-            quad(v1, v2, v3, v4, self.color)      
-            quad(v8, v7, v6, v5, Color(70, 70, 70))      
-            quad(v1, v4, v8, v5, Color(170, 170, 170))      
-            quad(v6, v7, v3, v2, Color(170, 170, 170))      
-            quad(v5, v6, v2, v1, Color(170, 170, 170))      
-            quad(v4, v3, v7, v8, Color(170, 170, 170))      
-            glEnd()
-            border(v5, v6, v7, v8, Color(0, 0, 0))
-    
-            glPopName();
             glPopMatrix()                 
         def tipo_inicio8():        
             glInitNames();
@@ -2090,28 +2079,33 @@ class Casilla(QObject):
             glPushName(self.oglname);
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
-            glBegin(GL_QUADS)
+#            glBegin(GL_QUADS)
             a22c5=math.pi/8
             a=21*math.sin(a22c5)
             c=21*math.tan(a22c5)*math.sin(a22c5)
             h=21/math.cos(a22c5)
-            v1 = (0, 0, 0)
-            v2 = (a, -c, 0)
-            v3 = (2*a, 0, 0)
-            v4 = (a, h-c, 0)
-            v5 = (0, 0, 0.2)
-            v6 = (a, -c, 0.2)
-            v7 = (2*a, 0, 0.2)
-            v8 = (a, h-c, 0.2)
-    
-            quad(v1, v2, v3, v4, self.color)      
-            quad(v8, v7, v6, v5, Color(70, 70, 70))      
-            quad(v1, v4, v8, v5, Color(170, 170, 170))      
-            quad(v6, v7, v3, v2, Color(170, 170, 170))      
-            quad(v5, v6, v2, v1, Color(170, 170, 170))      
-            quad(v4, v3, v7, v8, Color(170, 170, 170))      
-            glEnd()
-            border(v5, v6, v7, v8, Color(0, 0, 0))
+            verts=[ Coord3D(a, h-c, 0), Coord3D(2*a, 0, 0), Coord3D(a, -c, 0), Coord3D(0, 0, 0)]
+            p=Polygon().init__create(verts, self.color, None, [])
+            prism=Prism(p, 0.2)
+            prism.opengl(ogl)
+            prism.opengl_border(ogl, 1)    
+#            v1 = (0, 0, 0)
+#            v2 = (a, -c, 0)
+#            v3 = (2*a, 0, 0)
+#            v4 = (a, h-c, 0)
+#            v5 = (0, 0, 0.2)
+#            v6 = (a, -c, 0.2)
+#            v7 = (2*a, 0, 0.2)
+#            v8 = (a, h-c, 0.2)
+#    
+#            quad(v1, v2, v3, v4, self.color)      
+#            quad(v8, v7, v6, v5, Color(70, 70, 70))      
+#            quad(v1, v4, v8, v5, Color(170, 170, 170))      
+#            quad(v6, v7, v3, v2, Color(170, 170, 170))      
+#            quad(v5, v6, v2, v1, Color(170, 170, 170))      
+#            quad(v4, v3, v7, v8, Color(170, 170, 170))      
+#            glEnd()
+#            border(v5, v6, v7, v8, Color(0, 0, 0))
     
             glPopName();
             glPopMatrix()            
@@ -2122,28 +2116,37 @@ class Casilla(QObject):
             glPushName(self.oglname);
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )            
+            verts=[Coord3D(0, 0, 0), Coord3D(0, 3, 0), Coord3D(7, 3, 0), Coord3D(7, 0, 0)]
+            texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
             if self.seguro==True and self.rampallegada==False:
                 glEnable(GL_TEXTURE_2D);
-                glBindTexture(GL_TEXTURE_2D, ogl.texDecor[2])
-            glBegin(GL_QUADS)
-            v1 = (0, 0, 0)
-            v2 = (7, 0, 0)
-            v3 = (7, 3, 0)
-            v4 = (0, 3, 0)
-            v5 = (0, 0, 0.2)
-            v6 = (7, 0, 0.2)
-            v7 = (7, 3, 0.2)
-            v8 = (0, 3, 0.2)
-    
-            quad(v1, v2, v3, v4, self.color)      
-            quad(v8, v7, v6, v5,Color(70, 70, 70) )      
-            quad(v1, v4, v8, v5,Color(170, 170, 170))      
-            quad(v6, v7, v3, v2, Color(170, 170, 170))      
-            quad(v5, v6, v2, v1, Color(170, 170, 170) )      
-            quad(v4, v3, v7, v8, Color(170, 170, 170))      
-    
-            glEnd()
-            border(v5, v6, v7, v8, Color(0, 0, 0))
+#                glBindTexture(GL_TEXTURE_2D, ogl.texDecor[2])
+                p=Polygon().init__create(verts, self.color, ogl.texDecor[2], texverts)
+            else:
+                p=Polygon().init__create(verts, self.color, None, [])
+            prism=Prism(p, 0.2)
+            prism.opengl(ogl)
+            prism.opengl_border(ogl, 1)    
+#            
+#            glBegin(GL_QUADS)
+#            v1 = (0, 0, 0)
+#            v2 = (7, 0, 0)
+#            v3 = (7, 3, 0)
+#            v4 = (0, 3, 0)
+#            v5 = (0, 0, 0.2)
+#            v6 = (7, 0, 0.2)
+#            v7 = (7, 3, 0.2)
+#            v8 = (0, 3, 0.2)
+#    
+#            quad(v1, v2, v3, v4, self.color)      
+#            quad(v8, v7, v6, v5,Color(70, 70, 70) )      
+#            quad(v1, v4, v8, v5,Color(170, 170, 170))      
+#            quad(v6, v7, v3, v2, Color(170, 170, 170))      
+#            quad(v5, v6, v2, v1, Color(170, 170, 170) )      
+#            quad(v4, v3, v7, v8, Color(170, 170, 170))      
+#    
+#            glEnd()
+#            border(v5, v6, v7, v8, Color(0, 0, 0))
             glPopName();
             glPopMatrix()
             glDisable(GL_TEXTURE_2D)
@@ -2156,26 +2159,32 @@ class Casilla(QObject):
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
 
-            glBegin(GL_QUADS)
-            v1 = (0, 0, 0)
-            v2 = (7, 0, 0)
-            v3 = (7, 3, 0)
-            v4 = (lado, 3, 0)
-            v5 = (0, 0, 0.2)
-            v6 = (7, 0, 0.2)
-            v7 = (7, 3, 0.2)
-            v8 = (lado, 3, 0.2)
-    
-            quad(v1, v2, v3, v4, self.color)      
-            quad(v8, v7, v6, v5, Color(70, 70, 70))      
-            quad(v1, v4, v8, v5,Color(170, 170, 170))      
-            quad(v6, v7, v3, v2, Color(170, 170, 170))      
-            quad(v5, v6, v2, v1, Color(170, 170, 170) )      
-            quad(v4, v3, v7, v8, Color(170, 170, 170))      
-    
-            glEnd()
-
-            border(v5, v6, v7, v8, Color(0, 0, 0))
+            verts=[Coord3D(0, 0, 0), Coord3D(lado, 3, 0), Coord3D(7, 3, 0), Coord3D(7, 0, 0)]
+            p=Polygon().init__create(verts, self.color, None, [])
+            prism=Prism(p, 0.2)
+            prism.opengl(ogl)
+            prism.opengl_border(ogl, 1)    
+            
+#            glBegin(GL_QUADS)
+#            v1 = (0, 0, 0)
+#            v2 = (7, 0, 0)
+#            v3 = (7, 3, 0)
+#            v4 = (lado, 3, 0)
+#            v5 = (0, 0, 0.2)
+#            v6 = (7, 0, 0.2)
+#            v7 = (7, 3, 0.2)
+#            v8 = (lado, 3, 0.2)
+#    
+#            quad(v1, v2, v3, v4, self.color)      
+#            quad(v8, v7, v6, v5, Color(70, 70, 70))      
+#            quad(v1, v4, v8, v5,Color(170, 170, 170))      
+#            quad(v6, v7, v3, v2, Color(170, 170, 170))      
+#            quad(v5, v6, v2, v1, Color(170, 170, 170) )      
+#            quad(v4, v3, v7, v8, Color(170, 170, 170))      
+#    
+#            glEnd()
+#
+#            border(v5, v6, v7, v8, Color(0, 0, 0))
     
             glPopName();
             glPopMatrix()
@@ -2189,25 +2198,31 @@ class Casilla(QObject):
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
 
-            glBegin(GL_QUADS)
-            v1 = (0, 0, 0)
-            v2 = (7, 0, 0)
-            v3 = (lado, 3, 0)
-            v4 = (0, 3, 0)
-            v5 = (0, 0, 0.2)
-            v6 = (7, 0, 0.2)
-            v7 = (lado, 3, 0.2)
-            v8 = (0, 3, 0.2)
-    
-            quad(v1, v2, v3, v4,self.color )      
-            quad(v8, v7, v6, v5, Color(70, 70, 70))      
-            quad(v1, v4, v8, v5,Color(170, 170, 170))      
-            quad(v6, v7, v3, v2, Color(170, 170, 170))      
-            quad(v5, v6, v2, v1, Color(170, 170, 170) )      
-            quad(v4, v3, v7, v8, Color(170, 170, 170))      
-
-            glEnd()
-            border(v5, v6, v7, v8, Color(0, 0, 0))
+#            texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
+            verts=[Coord3D(0, 0, 0), Coord3D(0, 3, 0), Coord3D(lado, 3, 0), Coord3D(7, 0, 0)]
+            p=Polygon().init__create(verts, self.color, None, [])
+            prism=Prism(p, 0.2)
+            prism.opengl(ogl)
+            prism.opengl_border(ogl, 1)    
+#            glBegin(GL_QUADS)
+#            v1 = (0, 0, 0)
+#            v2 = (7, 0, 0)
+#            v3 = (lado, 3, 0)
+#            v4 = (0, 3, 0)
+#            v5 = (0, 0, 0.2)
+#            v6 = (7, 0, 0.2)
+#            v7 = (lado, 3, 0.2)
+#            v8 = (0, 3, 0.2)
+#    
+#            quad(v1, v2, v3, v4,self.color )      
+#            quad(v8, v7, v6, v5, Color(70, 70, 70))      
+#            quad(v1, v4, v8, v5,Color(170, 170, 170))      
+#            quad(v6, v7, v3, v2, Color(170, 170, 170))      
+#            quad(v5, v6, v2, v1, Color(170, 170, 170) )      
+#            quad(v4, v3, v7, v8, Color(170, 170, 170))      
+#
+#            glEnd()
+#            border(v5, v6, v7, v8, Color(0, 0, 0))
     
             glPopName();
             glPopMatrix()
@@ -2226,27 +2241,33 @@ class Casilla(QObject):
                 elif ogl.mem.maxplayers==8:
                     glScaled((21-2*3*math.tan(math.pi/8))/15.0, ((10.5/math.tan(math.pi/8))-3)/7.5, 1)
             
-            
-            glBegin(GL_QUADS)
-            v1 = (0, 0, 0)
-            v2 = (0,  0, 0)
-            v3 = (15, 0, 0)
-            v4 = (7.5, 7.5, 0)
-            v5 = (0, 0, 0.2)
-            v6 = (0, 0, 0.2)
-            v7 = (15, 0, 0.2)
-            v8 = (7.5, 7.5, 0.2)
-    
-            quad(v1, v2, v3, v4, self.color)      
-            quad(v8, v7, v6, v5, Color(70, 70, 70))      
-            quad(v1, v4, v8, v5,Color(170, 170, 170))      
-            quad(v6, v7, v3, v2, Color(170, 170, 170))      
-            quad(v5, v6, v2, v1, Color(170, 170, 170) )      
-            quad(v4, v3, v7, v8, Color(170, 170, 170))      
-    
-            glEnd()
-
-            border(v5, v6, v7, v8, Color(0, 0, 0))
+            texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
+            verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(7.5, 7.5, 0), Coord3D(15, 0, 0)]
+            p=Polygon().init__create(verts, self.color, None, [])
+            prism=Prism(p, 0.2)
+            prism.opengl(ogl)
+            prism.opengl_border(ogl, 1)    
+#            
+#            glBegin(GL_QUADS)
+#            v1 = (0, 0, 0)
+#            v2 = (0,  0, 0)
+#            v3 = (15, 0, 0)
+#            v4 = (7.5, 7.5, 0)
+#            v5 = (0, 0, 0.2)
+#            v6 = (0, 0, 0.2)
+#            v7 = (15, 0, 0.2)
+#            v8 = (7.5, 7.5, 0.2)
+#    
+#            quad(v1, v2, v3, v4, self.color)      
+#            quad(v8, v7, v6, v5, Color(70, 70, 70))      
+#            quad(v1, v4, v8, v5,Color(170, 170, 170))      
+#            quad(v6, v7, v3, v2, Color(170, 170, 170))      
+#            quad(v5, v6, v2, v1, Color(170, 170, 170) )      
+#            quad(v4, v3, v7, v8, Color(170, 170, 170))      
+#    
+#            glEnd()
+#
+#            border(v5, v6, v7, v8, Color(0, 0, 0))
     
             glPopName();
             glPopMatrix()

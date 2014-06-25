@@ -453,7 +453,7 @@
         <translation>Ctrl+8</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2564"/>
+        <location filename="libglparchis.py" line="2585"/>
         <source>Esta opción se está desarrollando</source>
         <translation type="unfinished"></translation>
     </message>
@@ -710,7 +710,7 @@
 <context>
     <name>glparchis</name>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2442"/>
+        <location filename="libglparchis.py" line="2463"/>
         <source>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -966,7 +966,7 @@
 <context>
     <name>wdgOGL</name>
     <message>
-        <location filename="ui/wdgOGL.py" line="204"/>
+        <location filename="ui/wdgOGL.py" line="203"/>
         <source>Se ha hecho click en la ficha {0}</source>
         <translation type="unfinished"></translation>
     </message>
