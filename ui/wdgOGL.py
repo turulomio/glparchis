@@ -18,7 +18,9 @@ class wdgOGL(QGLWidget):
         self.texNumeros=[]
         self.texDecor=[]
         self.rotX=0
-        self.visualizacion=0
+        self.rotY=0
+        self.rotZ=0
+#        self.visualizacion=0
         
     def assign_mem(self, mem):
         self.mem=mem
@@ -64,10 +66,9 @@ class wdgOGL(QGLWidget):
 
     def paintGL(self):   
         glLoadIdentity()
-#        self.qglClearColor(Color(0, 0, 0).qcolor())
         self.qglClearColor(QColor())
 
-        glClear(GL_DEPTH_BUFFER_BIT)#GL_COLOR_BUFFER_BIT | 
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)#GL_COLOR_BUFFER_BIT | 
         if self.mem.maxplayers==8:
             glTranslated(-31.5, -17,  -85)
         elif self.mem.maxplayers==4:
@@ -76,12 +77,15 @@ class wdgOGL(QGLWidget):
             glTranslated(-31.5, -24,  -80)
             
         glRotated(self.rotX, 1,0 , 0)
+        glRotated(self.rotY, 0,1 , 0)
+        glRotated(self.rotZ, 0,0 , 1)
         
         self.tablero.dibujar(self)
         
         for c in self.mem.casillas.arr:
-            c.dibujar(self)
-            c.dibujar_fichas(self)
+            if c.id!=0:
+                c.dibujar(self)
+                c.dibujar_fichas(self)
             
         self.mem.dado.dibujar(self)
 
@@ -94,23 +98,18 @@ class wdgOGL(QGLWidget):
         glMatrixMode(GL_MODELVIEW)
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_M: # toggle mode
-            if self.visualizacion==0:
-                self.rotX=0
-            elif self.visualizacion==1:
-                self.rotX=340
-            elif self.visualizacion==2:
-                self.rotX=275
-            elif self.visualizacion==3:
-                self.rotX=270
-            elif self.visualizacion==4:
-                self.rotX=180
-            self.updateGL()
-            
-            if self.visualizacion==4:
-                self.visualizacion=0
-            else:
-                self.visualizacion=self.visualizacion+1
+        if event.key() == Qt.Key_X: # toggle mode
+            self.rotX=self.rotX+5
+        if event.key() == Qt.Key_Y: # toggle mode
+            self.rotY=self.rotY+5
+        if event.key() == Qt.Key_Z: # toggle mode
+            self.rotZ=self.rotZ+5
+        if event.key() == Qt.Key_Space: # toggle mode
+            self.rotX=0
+            self.rotY=0
+            self.rotZ=0
+
+        self.updateGL()
     
     def mouseDoubleClickEvent(self, event):
         self.emit(SIGNAL("doubleClicked()"))
