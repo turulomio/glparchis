@@ -1,4 +1,3 @@
- 
 import libglparchis
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -36,3 +35,8 @@ class frmAbout(QDialog, Ui_frmAbout):
         Slot documentation goes here.
         """
         self.done(0)
+
+    def on_table_itemSelectionChanged(self):
+        for i in self.table.selectedItems():#itera por cada item no row.
+            if i.column()==0:
+                self.wdgso.showObject(i.row())
