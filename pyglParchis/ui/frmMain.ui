@@ -18,7 +18,7 @@
    <cursorShape>PointingHandCursor</cursorShape>
   </property>
   <property name="windowTitle">
-   <string>glParchis 2010-2013. GNU General Public License</string>
+   <string>glParchis 2010-2014. GNU General Public License</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../images/glparchis.qrc">
@@ -40,7 +40,7 @@
      <x>0</x>
      <y>0</y>
      <width>995</width>
-     <height>20</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAyuda">
@@ -108,6 +108,7 @@
    <addaction name="separator"/>
    <addaction name="actionSound"/>
    <addaction name="separator"/>
+   <addaction name="actionAcercaDe"/>
    <addaction name="actionSalir"/>
   </widget>
   <widget class="QStatusBar" name="status"/>

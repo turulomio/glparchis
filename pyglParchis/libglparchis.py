@@ -1495,7 +1495,7 @@ class Ficha(QObject):
         gluQuadricNormals (self.ficha, GLU_SMOOTH);
         gluQuadricTexture (self.ficha, True);
         ogl.qglColor(white.qcolor())
-        gluCylinder (self.ficha, 1.4, 1.4, 0.5, 16, 5)
+        gluCylinder (self.ficha, 1.4, 1.4, 0.2, 16, 5)
         glTranslated(0, 0, 0.2)
         ogl.qglColor(self.color.dark().qcolor())
         gluDisk(self.ficha, 0, 1.4, 16, 5)
