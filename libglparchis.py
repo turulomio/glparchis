@@ -1513,11 +1513,11 @@ class Tablero(QObject):
         self.object = 1
         self.maxplayers=maxplayers
         if self.maxplayers==4:
-            self.position=Coord(-1, -1, 0)
+            self.position=Coord3D(-1, -1, 0)
         elif self.maxplayers==6:
-            self.position=Coord(31.5, 23.9, 0)
+            self.position=Coord3D(31.5, 23.9, 0)
         elif self.maxplayers==8:
-            self.position=Coord(31.5, 16.5, 0)
+            self.position=Coord3D(31.5, 16.5, 0)
 
         self.oglname=32#Nombre usado para pick por opengl
         self.colorbrown=Color(88, 40, 0)
@@ -1525,141 +1525,28 @@ class Tablero(QObject):
         self.colorwhite=Color(255, 255, 255)
 
 
-    def dibujar(self, ogl):
-        def quad(p1, p2, p3, p4, color):
-            glBegin(GL_QUADS)
-            ogl.qglColor(color.qcolor())
-            glTexCoord2f(0.0,0.0)
-            glVertex3d(p1.x, p1.y, p1.z)
-            glTexCoord2f(1.0,0.0)
-            glVertex3d(p2.x, p2.y, p2.z)
-            glTexCoord2f(1.0,1.0)
-            glVertex3d(p3.x, p3.y, p3.z)
-            glTexCoord2f(0.0,1.0)
-            glVertex3d(p4.x, p4.y, p4.z)
-            glEnd()
-            
-        def poliedro(lenx, leny, lenz, arrcolor):
-            """Arrcolor, array de 6 colores, si es de uno pinta todo igual"""
-            v1 = Coord(0, 0, 0)
-            v2 = Coord(lenx, 0, 0)
-            v3 = Coord(lenx, leny, 0)
-            v4 = Coord(0, leny, 0)
-            v5 = Coord(0, 0, lenz)
-            v6 = Coord(lenx, 0, lenz)
-            v7 = Coord(lenx, leny, lenz)
-            v8 = Coord(0, leny, lenz)
-            quad(v4, v3, v2, v1, arrcolor[0])   
-            quad(v5, v6, v7, v8, arrcolor[1])   
-            quad(v4, v1, v5, v8, arrcolor[2])      
-            quad(v2, v3, v7, v6, arrcolor[3])      
-            quad(v1, v2, v6, v5, arrcolor[4])      
-            quad(v8, v7, v3, v4, arrcolor[5])   
-            
-            #PARA DEBUG CON COLORES
-#            quad(None,v4, v3, v2, v1, Color(255, 0, 0))   
-#            quad(None,v5, v6, v7, v8, self.colorbrown)   
-#            quad(None,v4, v1, v5, v8, self.colorwhite)      
-#            quad(None,v2, v3, v7, v6, Color(0, 0, 0))      
-#            quad(None,v1, v2, v6, v5, Color(0, 255, 0))      
-#            quad(None,v8, v7, v3, v4, Color(0, 0, 255))       
-            
-        def hexagon(radius, color, reverse):
-            """position es el centro del hex´agono en su base inferior
-            reversed used to see from up in opengl
-            Returns hexagon vertices"""
-            glBegin(GL_POLYGON)
-            arr=[]
-            ogl.qglColor(color.qcolor())
-            if reverse==True:
-                rango=reversed(range(6))
-            else:
-                rango=range(6)
-            for i in rango:#Reversed to see from up in opengl.
-                posx=math.sin(i/6.0*2*math.pi+math.pi/6)
-                posy=math.cos(i/6.0*2*math.pi+math.pi/6)
-                glTexCoord2f(posx, posy)
-                glVertex3d(posx*radius, posy*radius,  0)
-                arr.append(Coord(posx*radius, posy*radius, 0))
-            glEnd()
-            return arr
-                        
-        def octogon(radius, color, reverse):
-            """position es el centro del hex´agono en su base inferior
-            reversed used to see from up in opengl
-            Returns hexagon vertices"""
-            glBegin(GL_POLYGON)
-            arr=[]
-            ogl.qglColor(color.qcolor())
-            if reverse==True:
-                rango=reversed(range(8))
-            else:
-                rango=range(8)
-            for i in rango:#Reversed to see from up in opengl.
-                posx=math.sin(i/8.0*2*math.pi+math.pi/8)
-                posy=math.cos(i/8.0*2*math.pi+math.pi/8)
-                glTexCoord2f(posx, posy)
-                glVertex3d(posx*radius, posy*radius,  0)
-                arr.append(Coord(posx*radius, posy*radius, 0))
-            glEnd()
-            return arr
-            
-        def hexagontrunk(radius, height):
-            """centercoord es el centro del hex´agono en su base inferior
-            radius, hexagon radius
-            height the trunk height"""
-            hexinf=hexagon( radius,  self.colorbrown, True)
-            glTranslated(0, 0, 0.5)
-            hexsup=hexagon( radius,   self.colorbrown, False)
-            hexsup.reverse()
-            glTranslated(0, 0, -0.5)
-            #Suma a hexsup la altura que acabo de quitar
-            for c in hexsup:
-                c.sum_z(0.5)
-            quad(hexsup[0], hexsup[1], hexinf[1], hexinf[0], Color(200, 200, 200))
-            quad(hexsup[1], hexsup[2], hexinf[2], hexinf[1], Color(200, 200, 200))
-            quad(hexsup[2], hexsup[3], hexinf[3], hexinf[2], Color(200, 200, 200))
-            quad(hexsup[3], hexsup[4], hexinf[4], hexinf[3], Color(200, 200, 200))
-            quad(hexsup[4], hexsup[5], hexinf[5], hexinf[4], Color(200, 200, 200))
-            quad(hexsup[5], hexsup[0], hexinf[0], hexinf[5], Color(200, 200, 200))        
-            
-        def octogontrunk(radius, height):
-            """centercoord es el centro del hex´agono en su base inferior
-            radius, hexagon radius
-            height the trunk height"""
-            octinf=octogon( radius,  self.colorbrown, True)
-            glTranslated(0, 0, 0.5)
-            octsup=octogon( radius,   self.colorbrown, False)
-            octsup.reverse()
-            glTranslated(0, 0, -0.5)
-            #Suma a octsup la altura que acabo de quitar
-            for c in octsup:
-                c.sum_z(0.5)
-            quad(octsup[0], octsup[1], octinf[1], octinf[0], Color(200, 200, 200))
-            quad(octsup[1], octsup[2], octinf[2], octinf[1], Color(200, 200, 200))
-            quad(octsup[2], octsup[3], octinf[3], octinf[2], Color(200, 200, 200))
-            quad(octsup[3], octsup[4], octinf[4], octinf[3], Color(200, 200, 200))
-            quad(octsup[4], octsup[5], octinf[5], octinf[4], Color(200, 200, 200))
-            quad(octsup[5], octsup[6], octinf[6], octinf[5], Color(200, 200, 200))
-            quad(octsup[6], octsup[7], octinf[7], octinf[6], Color(200, 200, 200))
-            quad(octsup[7], octsup[0], octinf[0], octinf[7], Color(200, 200, 200))
-            
+    def dibujar(self, ogl): 
             
         def tipo4():
             glPushMatrix()
             glEnable(GL_TEXTURE_2D);
-            glBindTexture(GL_TEXTURE_2D, ogl.texDecor[1])   
             glTranslated(self.position.x,  self.position.y,  self.position.z)
-            poliedro(65, 65, 0.5, self.arrcolorbrown)#65.65.0.5
+            #Lados cuadrado
+            verts=[Coord3D(0, 0, 0), Coord3D(65, 0, 0), Coord3D(65, 65, 0), Coord3D(0, 65, 0)]
+            texverts=[Coord2D(0, 0),Coord2D(1, 0), Coord2D(1, 1), Coord2D(0, 1) ]
+            p=Polygon().init__create(verts, self.colorbrown, ogl.texDecor[1], texverts)
+            prism=Prism(p, 0.5)
+            prism.opengl(ogl)
             glPopMatrix()
             glDisable(GL_TEXTURE_2D)
             
         def tipo6():
             glPushMatrix()
             glEnable(GL_TEXTURE_2D);
-            glBindTexture(GL_TEXTURE_2D, ogl.texDecor[1])
             glTranslated(self.position.x,  self.position.y,  self.position.z)
-            hexagontrunk( 47, 0.5)#47
+            p=Polygon().init__regular(6, 47, self.colorbrown, ogl.texDecor[1])
+            prism=Prism(p, 0.5)
+            prism.opengl(ogl)
             glPopMatrix()
             glDisable(GL_TEXTURE_2D)            
         def tipo8():
@@ -1667,7 +1554,9 @@ class Tablero(QObject):
             glEnable(GL_TEXTURE_2D);
             glBindTexture(GL_TEXTURE_2D, ogl.texDecor[1])
             glTranslated(self.position.x,  self.position.y,  self.position.z)
-            octogontrunk( 52.5, 0.5)#47
+            p=Polygon().init__regular(8, 52.5, self.colorbrown, ogl.texDecor[1])
+            prism=Prism(p, 0.5)
+            prism.opengl(ogl)
             glPopMatrix()
             glDisable(GL_TEXTURE_2D)            
         ###########################################
@@ -1729,7 +1618,9 @@ class Color:
             arr.append(self)
         return arr
         
-                            
+    def clone(self):
+        return (Color(self.r, self.g, self.b, self.name))
+    
     def compatibilityName(self,  color):
         #Deberá desaparecer el tres versiones despues de 20130228
         if color=="gray":
@@ -1767,19 +1658,130 @@ class Color:
             return QPixmap(":/glparchis/fichacyan.png")
 
 
-class Coord:
+
+
+class Coord3D:
     def __init__(self, x, y, z):
         self.x=x
         self.y=y
         self.z=z
     def clone(self):
         """Returns other object with the same coords"""
-        return(Coord(self.x, self.y,  self.z))
+        return(Coord3D(self.x, self.y,  self.z))
         
     def sum_z(self, n):
         """Suma un valor a la z y devuelve el objeto mismo syou"""
         self.z=self.z+n
         return self
+class Coord2D:
+    def __init__(self, x, y):
+        self.x=x
+        self.y=y
+    def clone(self):
+        """Returns other object with the same coords"""
+        return(Coord2D(self.x, self.y))
+
+
+class Polygon:
+    """Un quad es un polygon de cuatro vertices."""
+    def init(self):
+        """verts. Array de Coords3D
+        color: Color del poligono
+        texture: Textura del pol´igno
+        texcoords: Array de coords2D de la textura"""
+        self.verts=None
+        self.color=None
+        self.texture=None
+        self.texverts=None
+    def init__create(self, verts, color,  texture, texverts):
+        """verts. Array de Coords3D
+        color: Color del poligono
+        texture: Textura del pol´igno
+        texcoords: Array de coords2D de la textura"""
+        self.verts=verts
+        self.color=color
+        self.texture=texture
+        self.texverts=texverts
+        return self
+    
+    def init__regular(self, lados, radius, color, texture):
+            """position es el centro del hex´agono en su base inferior
+            reversed used to see from up in opengl
+            Returns hexagon vertices"""
+            texverts=[]
+            verts=[]
+            for i in range(lados):#Reversed to see from up in opengl.
+                posx=math.sin(i/lados*2*math.pi+math.pi/lados)
+                posy=math.cos(i/lados*2*math.pi+math.pi/lados)
+                texverts.append(Coord2D(posx, posy))
+                verts.append(Coord3D(posx*radius, posy*radius, 0))
+            return self.init__create(verts, color, texture, texverts)
+
+    def clone(self):
+        p=Polygon()
+        verts=[]
+        texverts=[]
+        for i in range(len(self.verts)):
+            verts.append(self.verts[i].clone())
+            texverts.append(self.texverts[i].clone())
+        return p.init__create(verts, Color(self.color.r, self.color.g, self.color.b, self.color.name), self.texture, texverts)
+        
+    def reverse(self):
+        self.verts.reverse()
+        
+    def opengl(self, ogl):
+        glBindTexture(GL_TEXTURE_2D, self.texture)   
+        glBegin(GL_POLYGON)
+        ogl.qglColor(self.color.qcolor())
+        for i, v in enumerate(self.verts):
+            glTexCoord2f(self.texverts[i].x, self.texverts[i].y)
+            glVertex3d(v.x, v.y, v.z)
+        glEnd()
+        
+    def translate_z(self, n):
+        for v in self.verts:
+            v.z=v.z+n
+
+class Prism:
+    """Prisma"""
+    def __init__(self,  poligon, height):
+        """Genera un prisma a  partir del poligono
+        Face 1: origen 
+        Face 2: otra cara
+        Face n, donde n numero vertices."""
+        self.height=height
+        self.bottom=poligon
+#        self.bottom.reverse()
+        self.up=poligon.clone()
+        self.up.translate_z(height)
+        self.up.reverse()
+        
+#        print (self.bottom.verts[0].z,  self.up.verts[0].z)
+        self.contour=[]
+        #HAy que re - reverse
+        rere=self.up.clone()
+        rere.reverse()
+        for i, v in enumerate(self.up.verts):
+            pverts=[]
+            texverts=[Coord2D(0, 0),Coord2D(1, 0), Coord2D(1, 1), Coord2D(0, 1) ]
+            pverts.append(rere.verts[i].clone())
+            pverts.append(rere.verts[(i+1) % len(rere.verts)].clone())
+            pverts.append(self.bottom.verts[(i+1) % len(self.bottom.verts)].clone())
+            pverts.append(self.bottom.verts[i].clone())
+            self.contour.append(Polygon().init__create(pverts, Color(200, 200, 200), self.bottom.texture, texverts))
+            
+#            quad(hexsup[0], hexsup[1], hexinf[1], hexinf[0], Color(200, 200, 200))
+#            quad(hexsup[1], hexsup[2], hexinf[2], hexinf[1], Color(200, 200, 200))
+#            quad(hexsup[2], hexsup[3], hexinf[3], hexinf[2], Color(200, 200, 200))
+#            quad(hexsup[3], hexsup[4], hexinf[4], hexinf[3], Color(200, 200, 200))
+#            quad(hexsup[4], hexsup[5], hexinf[5], hexinf[4], Color(200, 200, 200))
+#            quad(hexsup[5], hexsup[0], hexinf[0], hexinf[5], Color(200, 200, 200))     
+        
+    def opengl(self, ogl):
+        self.up.opengl(ogl)
+        self.bottom.opengl(ogl)
+        for f in self.contour:
+            f.opengl(ogl)
 
 class ConfigFile:
     def __init__(self, file):
