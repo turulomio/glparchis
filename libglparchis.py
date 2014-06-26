@@ -1303,9 +1303,9 @@ class Ficha(QObject):
             if self.mem.jugadores.actual.fichas.algunaEstaObligada() :
                 if self.estaObligada(self.mem)==False:
                     if self.jugador.tiradaturno.ultimoValor()==5:
-                        if log: self.mem.jugadores.actual.log(self.trUtf8("Pawn can't move, because you must enter a pawn"))
+                        if log: self.mem.jugadores.actual.log(self.trUtf8("No puede mover, porque debe sacar una ficha"))
                     else:
-                        if log: self.mem.jugadores.actual.log(self.trUtf8("Pawn can't move, because you must open a blockade"))                        
+                        if log: self.mem.jugadores.actual.log(self.trUtf8("No puede mover, porque debe abrir una barrera"))                        
                     return (False, 0)                    
             return (puede, movimiento)
         return (puede, movimiento)
@@ -1511,6 +1511,7 @@ class Ficha(QObject):
 
 
 class Tablero(QObject):
+    """Se traduce como Board"""
     def __init__(self, maxplayers,  parent=None):
         QGLWidget.__init__(self, parent)
         self.object = 1
