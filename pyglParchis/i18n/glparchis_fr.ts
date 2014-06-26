@@ -44,12 +44,12 @@
     </message>
     <message>
         <location filename="libglparchis.py" line="1306"/>
-        <source>Pawn can&apos;t move, because you must enter a pawn</source>
+        <source>No puede mover, porque debe sacar una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="libglparchis.py" line="1308"/>
-        <source>Pawn can&apos;t move, because you must open a blockade</source>
+        <source>No puede mover, porque debe abrir una barrera</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
