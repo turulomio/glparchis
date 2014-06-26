@@ -3,48 +3,53 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="libglparchis.py" line="1318"/>
+        <location filename="libglparchis.py" line="1322"/>
         <source>No es del jugador actual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1353"/>
+        <location filename="libglparchis.py" line="1357"/>
         <source>Se ha pasado la meta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1359"/>
+        <location filename="libglparchis.py" line="1363"/>
         <source>Hay una barrera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1368"/>
+        <location filename="libglparchis.py" line="1372"/>
         <source>No hay espacio en la casilla</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1348"/>
+        <location filename="libglparchis.py" line="1352"/>
         <source>No puede mover</source>
         <translation>Vous ne pouvez pas déplacer</translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1366"/>
+        <location filename="libglparchis.py" line="1370"/>
         <source>Obligado a sacar y a comer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1304"/>
-        <source>No puede mover, porque hay otra ficha obligada a mover</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="libglparchis.py" line="1445"/>
+        <location filename="libglparchis.py" line="1449"/>
         <source>Una ficha a llegado a la meta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="libglparchis.py" line="1428"/>
+        <location filename="libglparchis.py" line="1432"/>
         <source>He comido una ficha de {0} en la casilla {1}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="1306"/>
+        <source>Pawn can&apos;t move, because you must enter a pawn</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="libglparchis.py" line="1308"/>
+        <source>Pawn can&apos;t move, because you must open a blockade</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -493,7 +498,7 @@
         <translation>Ctrl+8</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2585"/>
+        <location filename="libglparchis.py" line="2574"/>
         <source>Esta opción se está desarrollando</source>
         <translation type="unfinished"></translation>
     </message>
@@ -750,7 +755,7 @@
 <context>
     <name>glparchis</name>
     <message encoding="UTF-8">
-        <location filename="libglparchis.py" line="2463"/>
+        <location filename="libglparchis.py" line="2452"/>
         <source>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</source>
         <translation type="unfinished"></translation>
     </message>

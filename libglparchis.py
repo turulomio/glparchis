@@ -1247,6 +1247,7 @@ class SetFichas:
         return True
         
 class Ficha(QObject):
+    """En ingl´es se traduce como Pawn"""
     def __init__(self, mem, id, number,  color, jugador, ruta):
         """El identificador de la ficha viene dado por el nombre del color y el id (numero de creacion), se genera en la clase Mem"""
         QObject.__init__(self)
@@ -1301,7 +1302,10 @@ class Ficha(QObject):
         if puede:
             if self.mem.jugadores.actual.fichas.algunaEstaObligada() :
                 if self.estaObligada(self.mem)==False:
-                    if log: self.mem.jugadores.actual.log(self.trUtf8("No puede mover, porque hay otra ficha obligada a mover"))
+                    if self.jugador.tiradaturno.ultimoValor()==5:
+                        if log: self.mem.jugadores.actual.log(self.trUtf8("Pawn can't move, because you must enter a pawn"))
+                    else:
+                        if log: self.mem.jugadores.actual.log(self.trUtf8("Pawn can't move, because you must open a blockade"))                        
                     return (False, 0)                    
             return (puede, movimiento)
         return (puede, movimiento)
@@ -1331,7 +1335,7 @@ class Ficha(QObject):
         
         if self.mem.jugadores.actual.movimientos_acumulados!=None:
             movimiento=self.mem.jugadores.actual.movimientos_acumulados
-        elif self.estaEnCasa() and dado==5:
+        elif self.estaEnCasa() and dado==5:   
             movimiento= 1
         elif self.estaEnCasa()==True and dado!=5: #Saco un 5
             movimiento=0
@@ -1490,7 +1494,6 @@ class Ficha(QObject):
         glRotated(180, 1, 0, 0)# da la vuelta a la cara
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, ogl.texDecor[1])
-#        ogl.qglColor(Color(255, 255, 0).qcolor())
         gluQuadricDrawStyle (self.ficha, GLU_FILL);
         gluQuadricNormals (self.ficha, GLU_SMOOTH);
         gluQuadricTexture (self.ficha, True);
@@ -1521,7 +1524,6 @@ class Tablero(QObject):
 
         self.oglname=32#Nombre usado para pick por opengl
         self.colorbrown=Color(88, 40, 0)
-#        self.colorwhite=Color(255, 255, 255)
 
 
     def dibujar(self, ogl): 
@@ -1529,7 +1531,6 @@ class Tablero(QObject):
             glPushMatrix()
             glEnable(GL_TEXTURE_2D);
             glTranslated(self.position.x,  self.position.y,  self.position.z)
-            #Lados cuadrado
             verts=[Coord3D(0, 0, 0), Coord3D(0, 65, 0), Coord3D(65, 65, 0), Coord3D(65, 0, 0)]
             texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
             p=Polygon().init__create(verts, self.colorbrown, ogl.texDecor[1], texverts)
@@ -1750,22 +1751,12 @@ class Polygon:
             
     def opengl_border(self, ogl):
         """Draws a polygon border"""
-#        glLineWidth(1.2);
         glBegin(GL_LINE_LOOP)
         glColor3d(0, 0, 0)
         for i, v in enumerate(self.verts):
             glVertex3d(v.x, v.y, v.z+0.001)
         glEnd()
-#        glLineWidth(1);
-#
-#        def border(a, b, c, d, color):    
-#            glBegin(GL_LINE_LOOP)
-#            glColor3d(color.r, color.g, color.b)
-#            glVertex3d(a[0], a[1], a[2])
-#            glVertex3d(b[0], b[1], b[2])
-#            glVertex3d(c[0], c[1], c[2])
-#            glVertex3d(d[0], d[1], d[2])
-#            glEnd()
+
 class Prism:
     """Prisma"""
     def __init__(self,  poligon, height):
@@ -1930,18 +1921,16 @@ class Casilla(QObject):
             
 
     def dibujar(self, ogl):             
-        def quad(p1, p2, p3, p4, color):
-            ogl.qglColor(color.qcolor())
-#            glNormal3f(1, 1, 1)
-#            glColor3d(color.r, color.g, color.b)
-            glTexCoord2f(0.0,0.0)
-            glVertex3d(p1[0], p1[1], p1[2])
-            glTexCoord2f(1.0,0.0)
-            glVertex3d(p2[0], p2[1], p2[2])
-            glTexCoord2f(1.0,1.0)
-            glVertex3d(p3[0], p3[1], p3[2])
-            glTexCoord2f(0.0,1.0)
-            glVertex3d(p4[0], p4[1], p4[2])          
+#        def quad(p1, p2, p3, p4, color):
+#            ogl.qglColor(color.qcolor())
+#            glTexCoord2f(0.0,0.0)
+#            glVertex3d(p1[0], p1[1], p1[2])
+#            glTexCoord2f(1.0,0.0)
+#            glVertex3d(p2[0], p2[1], p2[2])
+#            glTexCoord2f(1.0,1.0)
+#            glVertex3d(p3[0], p3[1], p3[2])
+#            glTexCoord2f(0.0,1.0)
+#            glVertex3d(p4[0], p4[1], p4[2])          
             
         def panelnumerico():
             def cuadrito(x, texture, rotation):
