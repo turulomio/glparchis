@@ -42,7 +42,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 Source: "glparchis.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "*.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "i18n/*.qm"; DestDir: "{app}"; Flags: ignoreversion
-Source: "sounds/*.wav"; DestDir: "{app}"; Flags: ignoreversion
+Source: "sounds/*.wav"; DestDir: "{app}/sounds"; Flags: ignoreversion
 Source: "*.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "*.zip"; DestDir: "{app}"; Flags: ignoreversion
 Source: "phonon_backend\*"; DestDir: "{app}\phonon_backend\"; Flags: ignoreversion recursesubdirs createallsubdirs
