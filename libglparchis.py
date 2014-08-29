@@ -2377,9 +2377,13 @@ class Mem:
 
     def play(self, sound):
         if self.cfgfile.sound==True:
-            url= "sounds/"+sound + ".wav"
-            if os.path.exists(url)==False:
-                url="/usr/share/glparchis/sounds/"+sound+".wav"
+            urls= ["./sounds/"+sound + ".wav", "/usr/share/glparchis/sounds/"+sound+".wav"]
+            for url in urls:
+                if os.path.exists(url)==True:
+#                    print ("Found {} from {}".format(url,  os.getcwd()))
+                    break
+#                else:
+#                    print ("Not found {} from {}".format(url,  os.getcwd()))
             self.mediaObject.setCurrentSource(Phonon.MediaSource(url))
             self.mediaObject.play()
             time.sleep(0.4)
@@ -2555,16 +2559,15 @@ def dic2list(dic):
 
 
 def cargarQTranslator(cfgfile):  
-    """language es un string"""
-#    so=os.environ['glparchisso']
-#    if so=="src.linux":
-#        cfgfile.qtranslator.load("/usr/share/glparchis/glparchis_" + cfgfile.language + ".qm")
-#    elif so=="bin.windows" or so=="bin.linux":
-#        cfgfile.qtranslator.load("glparchis_" + cfgfile.language + ".qm")
-#    qApp.installTranslator(cfgfile.qtranslator);
-    url="/usr/share/glparchis/glparchis_" + cfgfile.language + ".qm"
-    if os.path.exists(url)==False:
-        url="i18n/glparchis_" + cfgfile.language + ".qm"
+    """language es un string"""       
+    urls= ["i18n/glparchis_" + cfgfile.language + ".qm","/usr/share/glparchis/glparchis_" + cfgfile.language + ".qm"]
+    for url in urls:
+        if os.path.exists(url)==True:
+            print ("Found {} from {}".format(url,  os.getcwd()))
+            break
+        else:
+            print ("Not found {} from {}".format(url,  os.getcwd()))        
+        
     cfgfile.qtranslator.load(url)
     qApp.installTranslator(cfgfile.qtranslator);
 def developing():
