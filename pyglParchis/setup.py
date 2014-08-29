@@ -24,19 +24,30 @@ for f in os.listdir('i18n/'):#adding qm
 if sys.platform=='win32':
       base = 'Win32GUI'
       version=winversion()
-      build_msi_options = {
-           'upgrade_code': '{3849730B-2375-4F76-B4A5-A6677A23AB9B}',
-           'add_to_path': False,
-           'initial_target_dir': r'[ProgramFilesFolder]\%s' % (name),
-            }
- 
-      build_exe_options = dict(includes = ['OpenGL','OpenGL.platform.win32','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters'],excludes=[], include_files=include_files)
+#      build_msi_options = {
+#           'upgrade_code': '{3849730B-2375-4F76-B4A5-A6677A23AB9B}',
+#           'add_to_path': False,
+#           'initial_target_dir': r'[ProgramFilesFolder]\%s' % (name),
+#            }
 
-      options={'bdist_msi': build_msi_options,
-               'build_exe': build_exe_options}
+      build_exe_options = dict(
+           create_shared_zip=False,
+           includes = ['OpenGL','OpenGL.platform.win32','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters'],
+           excludes=[], 
+           include_files=include_files
+           )
+
+      options={
+      #'bdist_msi': build_msi_options,
+               'build_exe': build_exe_options
+               }
 else:#linux
       base="Console"
-      build_options = dict(includes = ['OpenGL','OpenGL.platform.glx','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters'], excludes = [], include_files=include_files)
+      build_options = dict(
+           includes = ['OpenGL','OpenGL.platform.glx','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters'], 
+           excludes = [], 
+           include_files=include_files
+           )
       options=dict(build_exe = build_options)
 
 executables = [
@@ -57,4 +68,13 @@ if sys.platform=='linux':
             os.makedirs(builddir+ '/phonon_backend')
       except:
             pass
-      shutil.copyfile('/usr/lib64/qt4/plugins/phonon_backend/phonon_gstreamer.so', builddir+'/phonon_backend/phonon_gstreamer.so')
+#      shutil.copyfile('/usr/lib64/qt4/plugins/phonon_backend/phonon_gstreamer.so', builddir+'/phonon_backend/phonon_gstreamer.so')
+
+if sys.platform=='win32':
+      builddir='build/exe.win32-3.3'
+      shutil.copyfile('/root/.wine/drive_c/Python33/python33.dll', builddir+'/python33.dll')
+      shutil.copyfile('/root/.wine/drive_c/Python33/Lib/site-packages/PyQt4/phonon4.dll', builddir+'/phonon4.dll')
+      shutil.copyfile('/root/.wine/drive_c/Python33/Lib/site-packages/PyQt4/QtCore4.dll', builddir+'/QtCore4.dll')
+      shutil.copyfile('/root/.wine/drive_c/Python33/Lib/site-packages/PyQt4/QtGui4.dll', builddir+'/QtGui4.dll')
+      shutil.copyfile('/root/.wine/drive_c/Python33/Lib/site-packages/PyQt4/QtOpenGL4.dll', builddir+'/QtOpenGL4.dll')
+

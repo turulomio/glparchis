@@ -44,7 +44,7 @@ Source: "*.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "i18n/*.qm"; DestDir: "{app}"; Flags: ignoreversion
 Source: "sounds/*.wav"; DestDir: "{app}"; Flags: ignoreversion
 Source: "*.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "library.zip"; DestDir: "{app}"; Flags: ignoreversion
+Source: "*.zip"; DestDir: "{app}"; Flags: ignoreversion
 Source: "phonon_backend\*"; DestDir: "{app}\phonon_backend\"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 

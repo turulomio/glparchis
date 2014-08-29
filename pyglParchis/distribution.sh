@@ -72,7 +72,7 @@ DIR=build/exe.win32-$PYTHONVERSION
 mkdir -p $DIR
 cp glparchis.iss $DIR
 #sed -i -e "s:XXXXXXXX:$VERSION:" build/exe.win32-$PYTHONVERSION/glparchis.iss #Se copia para que el setup.bat funcione bien
-wine $HOME/.wine/drive_c/python33/python.exe setup.py bdist_msi
+wine $HOME/.wine/drive_c/python33/python.exe setup.py build_exe
 cd $DIR
 wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/Inno\ Setup\ 5/ISCC.exe /o$CWD/dist /DVERSION_NAME=$VERSION glparchis.iss
 
