@@ -6,6 +6,7 @@ XXXXXXXX
 - Ahora se generan versiones de Windows de 32 bits y de 64 bits
 - Se ha eliminado el soporte para phonon, ahora se utiliza QMultimedia
 - Se ha migrado a PyQt5
+- Se ha añadido el modo de pantalla completa
 
 20130716
 ========

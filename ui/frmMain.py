@@ -31,6 +31,24 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def on_actionAcercaDe_triggered(self):
         fr=frmAbout(self,"frmabout")
         fr.open()
+    @pyqtSlot()      
+    def on_actionFullScreen_triggered(self):
+        if self.isFullScreen():
+            self.actionFullScreen.setText(self.tr("Cambiar al modo de pantalla completa"))
+            self.actionFullScreen.setToolTip(self.tr("Cambiar al modo de pantalla completa"))
+            self.menuBar.show()
+            self.showMaximized()
+            self.removeToolBar(self.toolBar);
+            self.addToolBar(Qt.TopToolBarArea, self.toolBar)
+            self.toolBar.show()
+        else:      
+            self.actionFullScreen.setText(self.tr("Salir del modo de pantalla completa"))
+            self.actionFullScreen.setToolTip(self.tr("Salir del modo de pantalla completa"))
+            self.showFullScreen()
+            self.menuBar.hide()
+            self.removeToolBar(self.toolBar);
+            self.addToolBar(Qt.LeftToolBarArea, self.toolBar)
+            self.toolBar.show()
                 
     @pyqtSlot()      
     def on_actionHelp_triggered(self):

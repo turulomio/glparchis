@@ -37,7 +37,7 @@
      <x>0</x>
      <y>0</y>
      <width>995</width>
-     <height>28</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAyuda">
@@ -68,6 +68,8 @@
      <string>Con&amp;figuración</string>
     </property>
     <addaction name="actionSound"/>
+    <addaction name="separator"/>
+    <addaction name="actionFullScreen"/>
     <addaction name="separator"/>
     <addaction name="actionSettings"/>
    </widget>
@@ -104,9 +106,13 @@
    <addaction name="actionGuardarPartida"/>
    <addaction name="separator"/>
    <addaction name="actionSound"/>
+   <addaction name="actionFullScreen"/>
    <addaction name="separator"/>
+   <addaction name="actionHelp"/>
    <addaction name="actionAcercaDe"/>
+   <addaction name="separator"/>
    <addaction name="actionSalir"/>
+   <addaction name="separator"/>
   </widget>
   <action name="actionSalir">
    <property name="icon">
@@ -244,6 +250,21 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+8</string>
+   </property>
+  </action>
+  <action name="actionFullScreen">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/fullscreen.gif</normaloff>:/glparchis/fullscreen.gif</iconset>
+   </property>
+   <property name="text">
+    <string>Cambiar al modo de pantalla completa</string>
+   </property>
+   <property name="toolTip">
+    <string>Cambiar al modo de pantalla completa</string>
+   </property>
+   <property name="shortcut">
+    <string>F11</string>
    </property>
   </action>
  </widget>
