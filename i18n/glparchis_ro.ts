@@ -56,7 +56,7 @@
 <context>
     <name>QTableStatistics</name>
     <message>
-        <location filename="../ui/qtablestatistics.py" line="26"/>
+        <location filename="../ui/qtablestatistics.py" line="22"/>
         <source>Total</source>
         <translation type="unfinished"></translation>
     </message>
@@ -433,22 +433,22 @@
         <translation>Suna pe</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="80"/>
+        <location filename="../ui/frmMain.py" line="81"/>
         <source>Sonido apagado</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../ui/frmMain.py" line="101"/>
+        <location filename="../ui/frmMain.py" line="102"/>
         <source>No se ha podido comprobar si hay actualizaciones. Inténtelo más tarde.</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../ui/frmMain.py" line="119"/>
+        <location filename="../ui/frmMain.py" line="120"/>
         <source>Dispone de la última versión del juego</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../ui/frmMain.py" line="125"/>
+        <location filename="../ui/frmMain.py" line="126"/>
         <source>Hay una nueva versión del programa. Bájatela de la página web del proyecto &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt; o directamente desde &lt;a href=&apos;https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-</source>
         <translation type="unfinished"></translation>
     </message>
@@ -518,7 +518,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="46"/>
+        <location filename="../ui/frmMain.py" line="47"/>
         <source>Salir del modo de pantalla completa</source>
         <translation type="unfinished"></translation>
     </message>

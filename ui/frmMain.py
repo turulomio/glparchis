@@ -26,11 +26,12 @@ class frmMain(QMainWindow, Ui_frmMain):#
         #Ajusta el sonido desde cfgfile
         self.cfgfile.sound=not self.cfgfile.sound #Se cambia antes para que self.on_actionSound_triggered lo deje bien
         self.on_actionSound_triggered()
-        
+
     @pyqtSlot()      
     def on_actionAcercaDe_triggered(self):
         fr=frmAbout(self,"frmabout")
         fr.open()
+
     @pyqtSlot()      
     def on_actionFullScreen_triggered(self):
         if self.isFullScreen():
