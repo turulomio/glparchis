@@ -3,52 +3,52 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="../libglparchis.py" line="1327"/>
+        <location filename="../libglparchis.py" line="1325"/>
         <source>No es del jugador actual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1362"/>
+        <location filename="../libglparchis.py" line="1360"/>
         <source>Se ha pasado la meta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1368"/>
+        <location filename="../libglparchis.py" line="1366"/>
         <source>Hay una barrera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1377"/>
+        <location filename="../libglparchis.py" line="1375"/>
         <source>No hay espacio en la casilla</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1357"/>
+        <location filename="../libglparchis.py" line="1355"/>
         <source>No puede mover</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1375"/>
+        <location filename="../libglparchis.py" line="1373"/>
         <source>Obligado a sacar y a comer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1454"/>
+        <location filename="../libglparchis.py" line="1452"/>
         <source>Una ficha a llegado a la meta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1437"/>
+        <location filename="../libglparchis.py" line="1435"/>
         <source>He comido una ficha de {0} en la casilla {1}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1311"/>
+        <location filename="../libglparchis.py" line="1309"/>
         <source>No puede mover, porque debe sacar una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1313"/>
+        <location filename="../libglparchis.py" line="1311"/>
         <source>No puede mover, porque debe abrir una barrera</source>
         <translation type="unfinished"></translation>
     </message>
@@ -750,52 +750,52 @@
 <context>
     <name>glparchis</name>
     <message>
-        <location filename="../libglparchis.py" line="236"/>
+        <location filename="../libglparchis.py" line="234"/>
         <source>Sacar un 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="237"/>
+        <location filename="../libglparchis.py" line="235"/>
         <source>Sacar un 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="238"/>
+        <location filename="../libglparchis.py" line="236"/>
         <source>Sacar un 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="239"/>
+        <location filename="../libglparchis.py" line="237"/>
         <source>Sacar un 4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="240"/>
+        <location filename="../libglparchis.py" line="238"/>
         <source>Sacar un 5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="241"/>
+        <location filename="../libglparchis.py" line="239"/>
         <source>Sacar un 6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="242"/>
+        <location filename="../libglparchis.py" line="240"/>
         <source>Sacar un 7</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="243"/>
+        <location filename="../libglparchis.py" line="241"/>
         <source>Contar 10</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="244"/>
+        <location filename="../libglparchis.py" line="242"/>
         <source>Contar 20</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="245"/>
+        <location filename="../libglparchis.py" line="243"/>
         <source>Sacar ficha</source>
         <translation type="unfinished"></translation>
     </message>

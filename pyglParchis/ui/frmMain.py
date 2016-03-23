@@ -1,6 +1,4 @@
 import sys, os, urllib.request,   datetime
-if sys.platform=='win32':
-    sys.path.append("ui")
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -13,7 +11,6 @@ from frmInitGame import *
 from frmSettings import *
 from frmHelp import *
 
-            
 class frmMain(QMainWindow, Ui_frmMain):#    
     def __init__(self, cfgfile, parent = 0,  flags = False):
         QMainWindow.__init__(self)
