@@ -28,6 +28,7 @@ SetupIconFile=ficharoja.ico
 Compression=lzma
 SolidCompression=yes
 VersionInfoVersion={#VERSION_NAME}
+UninstallDisplayIcon={uninstallexe}
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
