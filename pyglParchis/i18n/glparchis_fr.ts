@@ -56,7 +56,7 @@
 <context>
     <name>QTableStatistics</name>
     <message>
-        <location filename="../ui/qtablestatistics.py" line="22"/>
+        <location filename="../ui/qtablestatistics.py" line="19"/>
         <source>Total</source>
         <translation>Totalité</translation>
     </message>

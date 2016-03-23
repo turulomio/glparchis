@@ -8,16 +8,13 @@ class QTableStatistics(QTableWidget):
 
     def assign_mem(self, mem):
         self.mem=mem
-        
-        
         #UI headers
-#        self.verticalHeader().setResizeMode(QHeaderView.ResizeToContents)
         self.setColumnCount(self.mem.maxplayers+1)        
         for i, j in enumerate(self.mem.jugadores.arr):
-            self.setColumnWidth(i, 65)
+            self.setColumnWidth(i, 90)
             item = QTableWidgetItem(j.name)
             item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter|Qt.AlignCenter)
-            item.setData(Qt.BackgroundRole, j.color.qcolor())
+            item.setIcon(j.color.qicon())   
             self.setHorizontalHeaderItem(i, item)
         item = QTableWidgetItem(self.tr("Total"))
         item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter|Qt.AlignCenter)
@@ -48,22 +45,22 @@ class QTableStatistics(QTableWidget):
 #        item.setFont(font)
 #        self.setItem(16, 0, item)
                 
-
-    
-    def reload(self):
-        #Define el widget cron para que aparezca centrado el icon dentro de qtableitem
-        crown=QWidget()
-        lay=QHBoxLayout(crown)
+    def widgetCentered(self, qpixmap):
+                #Define el widget cron para que aparezca centrado el icon dentro de qtableitem
+        w=QWidget()
+        lay=QHBoxLayout(w)
         lay.addSpacing(0)
         pix = QLabel()
         pix.setMaximumSize(QSize(24, 24))
         pix.setScaledContents(True)
-        pix.setPixmap(QPixmap(":/glparchis/corona.png"))
+        pix.setPixmap(qpixmap)
         pix.setAlignment(Qt.AlignCenter)
         lay.addWidget(pix)
         lay.addSpacing(0)
-        crown.setLayout(lay)
-        
+        w.setLayout(lay)
+        return w
+    
+    def reload(self):        
         tj=TiradaJuego(self.mem)
         ganando=self.mem.jugadores.vaGanando()
         for j in self.mem.jugadores.arr:
@@ -77,7 +74,7 @@ class QTableStatistics(QTableWidget):
             
             
             if j==ganando:
-                self.setCellWidget(13, column, crown)    
+                self.setCellWidget(13, column, self.widgetCentered(QPixmap(":/glparchis/corona.png")))    
             else:
                 w=QWidget()
                 self.setCellWidget(13, column, w)
