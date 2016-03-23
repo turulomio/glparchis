@@ -1,6 +1,7 @@
  
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 from libglparchis import c2b
 from Ui_wdgPlayer import *
 
@@ -16,7 +17,7 @@ class wdgPlayer(QWidget, Ui_wdgPlayer):
     def setJugador(self, j):
         self.jugador=j
         self.pixmap.setPixmap(j.color.qpixmap())
-        self.label.setText(self.trUtf8("Datos del jugador {0}".format( (j.color.name))))
+        self.label.setText(self.tr("Datos del jugador {0}".format( (j.color.name))))
         
     def commit(self):
         """Mete en jugador los datos aceptados"""

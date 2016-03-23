@@ -1,6 +1,7 @@
 # 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 from libglparchis import *
 import datetime
 
@@ -14,7 +15,7 @@ class QTableStatistics(QTableWidget):
         
         
         #UI headers
-        self.verticalHeader().setResizeMode(QHeaderView.ResizeToContents)
+#        self.verticalHeader().setResizeMode(QHeaderView.ResizeToContents)
         self.setColumnCount(self.mem.maxplayers+1)        
         for i, j in enumerate(self.mem.jugadores.arr):
             self.setColumnWidth(i, 65)
@@ -22,7 +23,7 @@ class QTableStatistics(QTableWidget):
             item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter|Qt.AlignCenter)
             item.setData(Qt.BackgroundRole, j.color.qcolor())
             self.setHorizontalHeaderItem(i, item)
-        item = QTableWidgetItem(self.trUtf8("Total"))
+        item = QTableWidgetItem(self.tr("Total"))
         item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter|Qt.AlignCenter)
         self.setHorizontalHeaderItem(self.mem.maxplayers, item)
         

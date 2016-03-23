@@ -1,6 +1,7 @@
-from PyQt4.QtCore import *
-from PyQt4.QtOpenGL import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtOpenGL import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 from wdgUserPanel import *
 from wdgGame import *
 from qtablestatistics import *
@@ -19,7 +20,8 @@ class wdgGame(QWidget, Ui_wdgGame):
         
         #Timer statistics
         self.timer = QTimer()
-        QObject.connect(self.timer, SIGNAL("timeout()"), self.timer_reload)     
+        self.timer.timeout.connect(self.timer_reload)
+#        QObject.connect(self.timer, SIGNAL("timeout()"), self.timer_reload)     
         self.timer.start(500)
         
     
@@ -39,7 +41,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         
     def timer_reload(self):
         self.table.reload()
-        self.lblTime.setText(self.trUtf8("Tiempo de partida: {0}".format(str(datetime.datetime.now()-self.mem.inittime).split(".")[0])))
+        self.lblTime.setText(self.tr("Tiempo de partida: {0}".format(str(datetime.datetime.now()-self.mem.inittime).split(".")[0])))
         
         
 
@@ -67,7 +69,8 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.mem.jugadores.actual.log(self.tr("Empieza la partida"))
 
 
-        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('fichaClicked()'), self.after_ficha_click)  
+#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('fichaClicked()'), self.after_ficha_click)  
+        self.ogl.fichaClicked.connect(self.after_ficha_click)
         if self.mem.cfgfile.splitterstate.isEmpty():
             currentSizes = self.splitter.sizes()
             currentSizes[0]=self.width()-self.ogl.height()-100
@@ -86,7 +89,8 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.tabHS.setCurrentIndex(2)
         
             
-        self.connect(self.ogl, SIGNAL("doubleClicked()"), self.on_ogl_doubleClicked)
+#        self.connect(self.ogl, SIGNAL("doubleClicked()"), self.on_ogl_doubleClicked)
+        self.ogl.doubleClicked.connect(self.on_ogl_doubleClicked)
         
         if self.mem.inittime==None:#Caso de que se cree la partida sin cargar .glparchis
             self.mem.inittime=datetime.datetime.now()
@@ -106,7 +110,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 return p
 
     def afterWinning(self):
-        self.mem.jugadores.actual.log(self.trUtf8("Has ganado la partida"))
+        self.mem.jugadores.actual.log(self.tr("Has ganado la partida"))
         self.mem.jugadores.winner=self.mem.jugadores.actual
         self.mem.play("win")
         self.stopReloads()
@@ -127,7 +131,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         
         m=QMessageBox()
         m.setIcon(QMessageBox.Information)
-        m.setText(self.trUtf8("{0} ha ganado".format(self.mem.jugadores.actual.name)))
+        m.setText(self.tr("{0} ha ganado".format(self.mem.jugadores.actual.name)))
         m.exec_() 
         self.tab.setCurrentIndex(1)
 
@@ -142,17 +146,17 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.afterWinning()
             return  
             
-        self.cmdTirarDado.setText(self.trUtf8("Tira el dado"))
+        self.cmdTirarDado.setText(self.tr("Tira el dado"))
         if self.mem.jugadores.actual.ia==False:#Cuando es IA no debe permitir tirar dado
             self.cmdTirarDado.setEnabled(True)
 #        self.cmdTirarDado.setIcon(self.mem.dado.qicon(None))
         if self.mem.jugadores.actual.ia==True:
-            self.mem.jugadores.actual.log(self.trUtf8("IA Tira el dado"))
+            self.mem.jugadores.actual.log(self.tr("IA Tira el dado"))
             delay(400)
             self.on_cmdTirarDado_clicked()
             delay(800)
         else:
-            self.mem.jugadores.actual.log(self.trUtf8("Tire el dado"))
+            self.mem.jugadores.actual.log(self.tr("Tire el dado"))
 
        
     def on_JugadorDebeMover(self):
@@ -165,7 +169,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         
         self.cmdTirarDado.setEnabled(False)
         if self.mem.jugadores.actual.ia==True:
-            self.mem.jugadores.actual.log(self.trUtf8("IA mueve una ficha"))     
+            self.mem.jugadores.actual.log(self.tr("IA mueve una ficha"))     
             iaficha=self.mem.jugadores.actual.IASelectFicha()
             delay(400)
             if iaficha==None:
@@ -174,7 +178,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.mem.selFicha=iaficha
                 self.after_ficha_click()
         else:
-            self.mem.jugadores.actual.log(self.trUtf8("Mueva una ficha"))
+            self.mem.jugadores.actual.log(self.tr("Mueva una ficha"))
 
         
     def on_splitter_splitterMoved(self, position, index):
@@ -196,16 +200,16 @@ class wdgGame(QWidget, Ui_wdgGame):
             if self.mem.jugadores.actual.LastFichaMovida!=None:
                 casilla=self.mem.jugadores.actual.LastFichaMovida.casilla()
                 if casilla.rampallegada==True:
-                    self.mem.jugadores.actual.log(self.trUtf8("Han salido tres seises, no se va a casa por haber llegado a rampa de llegada"))
+                    self.mem.jugadores.actual.log(self.tr("Han salido tres seises, no se va a casa por haber llegado a rampa de llegada"))
                 else:
                     if self.mem.jugadores.actual.LastFichaMovida.estaAutorizadaAMover()[0]==True:
-                        self.mem.jugadores.actual.log(self.trUtf8("Han salido tres seises, la ultima ficha movida se va a casa"))
+                        self.mem.jugadores.actual.log(self.tr("Han salido tres seises, la ultima ficha movida se va a casa"))
                         self.mem.play("shoot")
                         self.mem.jugadores.actual.LastFichaMovida.mover(0)
                     else:
-                        self.mem.jugadores.actual.log(self.trUtf8("Han salido tres seises, pero como no puede mover no se va a casa"))
+                        self.mem.jugadores.actual.log(self.tr("Han salido tres seises, pero como no puede mover no se va a casa"))
             else:               
-                self.mem.jugadores.actual.log(self.trUtf8("Despues de tres seises, ya no puede volver a tirar"))
+                self.mem.jugadores.actual.log(self.tr("Despues de tres seises, ya no puede volver a tirar"))
             self.cambiarJugador()
         else: # si no han salido 3 seises
             if self.mem.jugadores.actual.fichas.algunaEstaAutorizadaAmover()==True:
@@ -218,7 +222,7 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     def after_ficha_click(self):
         if self.mem.selFicha==None:
-            self.mem.jugadores.actual.log(self.trUtf8("Seleccione una ficha..."))
+            self.mem.jugadores.actual.log(self.tr("Seleccione una ficha..."))
             return
             
         if self.cmdTirarDado.isEnabled():#Esta esperando dado no se puede pulsar ficha para mover.
@@ -258,7 +262,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         if self.mem.jugadores.alguienHaGanado()==True:
             self.afterWinning()
             return          
-        self.mem.jugadores.actual.log (self.trUtf8("Fin de turno"))
+        self.mem.jugadores.actual.log (self.tr("Fin de turno"))
         self.ogl.updateGL()        
         delay(400)
         self.mem.dado.showing=False
@@ -296,8 +300,8 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     def highscoresUpdate(self):
         def updateTable(hs, table): 
-            table.verticalHeader().setResizeMode(QHeaderView.ResizeToContents)
-            table.horizontalHeader().setResizeMode(QHeaderView.ResizeToContents)
+#            table.verticalHeader().setResizeMode(QHeaderView.ResizeToContents)
+#            table.horizontalHeader().setResizeMode(QHeaderView.ResizeToContents)
             table.setRowCount(len(hs.arr))        
             for i,  a in enumerate(hs.arr):
                 table.setItem(i, 0, QTableWidgetItem(str(datetime.date.fromordinal(int(a[0])))))
