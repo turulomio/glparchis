@@ -207,7 +207,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def on_actionGuardarPartida_triggered(self):
         cwd=os.getcwd()
         os.chdir(os.path.expanduser("~/.glparchis/"))
-        filename=os.path.basename(QFileDialog.getSaveFileName(self, "", "", "glParchis game (*.glparchis)"))
+        filename=os.path.basename(QFileDialog.getSaveFileName(self, "", "", "glParchis game (*.glparchis)")[0])
         if filename!="":       
             if os.path.splitext(filename)[1]!=".glparchis":
                 filename=filename+".glparchis"

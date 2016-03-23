@@ -23,10 +23,11 @@ DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
 LicenseFile=GPL-3.txt
 OutputDir=dist
-OutputBaseFilename=glparchis-bin-windows-{#VERSION_NAME}
-SetupIconFile=images\ficharoja.ico
+OutputBaseFilename={#FILENAME}
+SetupIconFile=ficharoja.ico
 Compression=lzma
 SolidCompression=yes
+VersionInfoVersion={#VERSION_NAME}
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -41,11 +42,13 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 [Files]
 Source: "glparchis.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "*.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "i18n/*.qm"; DestDir: "{app}"; Flags: ignoreversion
 Source: "sounds/*.wav"; DestDir: "{app}/sounds"; Flags: ignoreversion
 Source: "*.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "*.zip"; DestDir: "{app}"; Flags: ignoreversion
-Source: "phonon_backend\*"; DestDir: "{app}\phonon_backend\"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "*.zip"; DestDir: "{app}"; Flags: ignoreversion  
+Source: "i18n\*.qm"; DestDir: "{app}\i18n\"; Flags: ignoreversion recursesubdirs createallsubdirs   
+Source: "platforms\*"; DestDir: "{app}\platforms\"; Flags: ignoreversion recursesubdirs createallsubdirs   
+Source: "imageformats\*"; DestDir: "{app}\imageformats\"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "audio\*"; DestDir: "{app}\audio\"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

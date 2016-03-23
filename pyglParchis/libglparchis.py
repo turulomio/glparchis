@@ -2380,8 +2380,7 @@ class Mem:
                 if os.path.exists(url)==True:
                     break
             QSound.play(url)
-#            time.sleep(0.4)
-            QCoreApplication.processEvents();    
+            QCoreApplication.processEvents() 
    
     def generar_fichas(self):
         """Debe generarse despuñes de jugadores"""
