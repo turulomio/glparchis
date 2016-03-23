@@ -57,6 +57,7 @@ tar cvz  -f $CWD/dist/glparchis-src-linux-$VERSION.tar.gz * -C $CWD/build/src > 
 cd $CWD
 
 ####### binaries linux
+make
 python3 setup.py build
 cd build/exe.linux-x86_64-$PYTHONVERSION
 tar cvz  -f $CWD/dist/glparchis-bin-linux-$VERSION.tar.gz * -C $CWD/build/exe.linux-x86_64-$PYTHONVERSION > /dev/null

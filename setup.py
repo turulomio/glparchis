@@ -1,5 +1,6 @@
 from cx_Freeze import setup, Executable
-import sys,os, shutil
+import sys
+import os 
 sys.path.append('ui')
 sys.path.append('images')
 from libglparchis import version
@@ -11,14 +12,12 @@ def winversion():
 print ("Building for", sys.platform, version, winversion())
 name="glParchis"
 
-
 #Add files
 include_files=['sounds/', 'images/ficharoja.ico', 'GPL-3.txt']
 for f in os.listdir('i18n/'):#adding qm
       if f[len(f)-3:]==".qm":
             include_files.append('i18n/'+f)
             print (f)
-
 
 #Build options
 if sys.platform=='win32':
@@ -44,7 +43,7 @@ if sys.platform=='win32':
 else:#linux
       base="Console"
       build_options = dict(
-           includes = ['OpenGL','OpenGL.platform.glx','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters'], 
+           includes = ['OpenGL','OpenGL.platform.glx','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters','PyQt5.QtNetwork'], 
            excludes = [], 
            include_files=include_files
            )
@@ -57,24 +56,7 @@ executables = [
 setup(name=name,
       version = version,
       author = 'Mariano Muñoz',
-      description = 'Parchis Game',
+      description = 'Parcheesi Game',
       options = options,
       executables = executables)
-
-#After build
-if sys.platform=='linux':
-      builddir='build/exe.linux-x86_64-3.3'
-      try:
-            os.makedirs(builddir+ '/phonon_backend')
-      except:
-            pass
-#      shutil.copyfile('/usr/lib64/qt4/plugins/phonon_backend/phonon_gstreamer.so', builddir+'/phonon_backend/phonon_gstreamer.so')
-
-if sys.platform=='win32':
-      builddir='build/exe.win32-3.3'
-      shutil.copyfile('/root/.wine/drive_c/Python33/python33.dll', builddir+'/python33.dll')
-      shutil.copyfile('/root/.wine/drive_c/Python33/Lib/site-packages/PyQt5/phonon4.dll', builddir+'/phonon4.dll')
-      shutil.copyfile('/root/.wine/drive_c/Python33/Lib/site-packages/PyQt5/QtCore4.dll', builddir+'/QtCore4.dll')
-      shutil.copyfile('/root/.wine/drive_c/Python33/Lib/site-packages/PyQt5/QtGui4.dll', builddir+'/QtGui4.dll')
-      shutil.copyfile('/root/.wine/drive_c/Python33/Lib/site-packages/PyQt5/QtOpenGL4.dll', builddir+'/QtOpenGL4.dll')
 
