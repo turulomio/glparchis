@@ -13,9 +13,8 @@ import os,  random,   configparser,  datetime,  time,  sys,  codecs,  math
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtOpenGL import *
+from PyQt5.QtMultimedia import QSound
 
-if not sys.platform=='win32':
-    from PyQt5.phonon import Phonon
 #Cuando se modifique una version sacada se pondrá un + p.e. 20120921+
 version="20130716+"
 
@@ -2374,17 +2373,17 @@ class Mem:
         self.cfgfile=None#fichero configuración que se crea en glparchis.py
            
         self.mediaObject = None
-        parent=QCoreApplication.instance()
-        if not sys.platform=='win32':
-            self.mediaObject = Phonon.MediaObject(parent)
-            audioOutput = Phonon.AudioOutput(Phonon.MusicCategory, parent)
-            Phonon.createPath(self.mediaObject, audioOutput)
+#        parent=QCoreApplication.instance()
+#        if not sys.platform=='win32':
+#            self.mediaObject = Phonon.MediaObject(parent)
+#            audioOutput = Phonon.AudioOutput(Phonon.MusicCategory, parent)
+#            Phonon.createPath(self.mediaObject, audioOutput)
         
 
     def play(self, sound):
         
-        if sys.platform=='win32':
-            return
+#        if sys.platform=='win32':
+#            return
         if self.cfgfile.sound==True:
             urls= ["./sounds/"+sound + ".wav", "/usr/share/glparchis/sounds/"+sound+".wav"]
             for url in urls:
@@ -2393,8 +2392,9 @@ class Mem:
                     break
 #                else:
 #                    print ("Not found {} from {}".format(url,  os.getcwd()))
-            self.mediaObject.setCurrentSource(Phonon.MediaSource(url))
-            self.mediaObject.play()
+            QSound.play(url)
+#            self.mediaObject.setCurrentSource(Phonon.MediaSource(url))
+#            self.mediaObject.play()
             time.sleep(0.4)
             QCoreApplication.processEvents();    
    

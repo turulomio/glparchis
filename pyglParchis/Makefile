@@ -8,19 +8,19 @@ PREFIXPIXMAPS=$(DESTDIR)/share/pixmaps
 PREFIXAPPLICATIONS=$(DESTDIR)/share/applications
 
 compile:
-	pyuic4 ui/frmAbout.ui > ui/Ui_frmAbout.py
-	pyuic4 ui/frmHelp.ui > ui/Ui_frmHelp.py
-	pyuic4 ui/frmInitGame.ui > ui/Ui_frmInitGame.py
-	pyuic4 ui/frmMain.ui > ui/Ui_frmMain.py
-	pyuic4 ui/frmSettings.ui > ui/Ui_frmSettings.py
-	pyuic4 ui/frmShowCasilla.ui > ui/Ui_frmShowCasilla.py
-	pyuic4 ui/frmShowFicha.ui > ui/Ui_frmShowFicha.py
-	pyuic4 ui/wdgPlayerDado.ui > ui/Ui_wdgPlayerDado.py
-	pyuic4 ui/wdgPlayer.ui > ui/Ui_wdgPlayer.py
-	pyuic4 ui/wdgUserPanel.ui > ui/Ui_wdgUserPanel.py
-	pyuic4 ui/wdgGame.ui > ui/Ui_wdgGame.py
-	pyrcc4 -py3 images/glparchis.qrc > images/glparchis_rc.py
-	pylupdate4 -noobsolete glparchis.pro
+	pyuic5 ui/frmAbout.ui > ui/Ui_frmAbout.py
+	pyuic5 ui/frmHelp.ui > ui/Ui_frmHelp.py
+	pyuic5 ui/frmInitGame.ui > ui/Ui_frmInitGame.py
+	pyuic5 ui/frmMain.ui > ui/Ui_frmMain.py
+	pyuic5 ui/frmSettings.ui > ui/Ui_frmSettings.py
+	pyuic5 ui/frmShowCasilla.ui > ui/Ui_frmShowCasilla.py
+	pyuic5 ui/frmShowFicha.ui > ui/Ui_frmShowFicha.py
+	pyuic5 ui/wdgPlayerDado.ui > ui/Ui_wdgPlayerDado.py
+	pyuic5 ui/wdgPlayer.ui > ui/Ui_wdgPlayer.py
+	pyuic5 ui/wdgUserPanel.ui > ui/Ui_wdgUserPanel.py
+	pyuic5 ui/wdgGame.ui > ui/Ui_wdgGame.py
+	pyrcc5 images/glparchis.qrc > images/glparchis_rc.py
+	pylupdate5 -noobsolete glparchis.pro
 	lrelease glparchis.pro
 
 install:

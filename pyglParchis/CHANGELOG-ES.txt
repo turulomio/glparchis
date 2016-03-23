@@ -3,6 +3,9 @@ XXXXXXXX
 - La configuración del sonido se graba ahora en glparchis.cfg
 - Se ha cambiado el makefile para que se compile con make y se instale con make install
 - Ya no se van a distribuir los sources de windows
+- Ahora se generan versiones de Windows de 32 bits y de 64 bits
+- Se ha eliminado el soporte para phonon, ahora se utiliza QMultimedia
+- Se ha migrado a PyQt5
 
 20130716
 ========

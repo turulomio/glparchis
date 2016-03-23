@@ -6,21 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1501</width>
-    <height>836</height>
+    <width>1021</width>
+    <height>714</height>
    </rect>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <widget class="QSplitter" name="splitter">
-     <property name="frameShape">
-      <enum>QFrame::Panel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="handleWidth">
+      <number>5</number>
      </property>
      <widget class="QWidget" name="layoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -53,8 +53,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>750</width>
-            <height>761</height>
+            <width>416</width>
+            <height>624</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -90,11 +90,14 @@
          <property name="autoFillBackground">
           <bool>true</bool>
          </property>
+         <property name="tabPosition">
+          <enum>QTabWidget::East</enum>
+         </property>
          <property name="tabShape">
           <enum>QTabWidget::Rounded</enum>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <property name="elideMode">
           <enum>Qt::ElideMiddle</enum>
@@ -287,7 +290,7 @@
              <item>
               <widget class="QTabWidget" name="tabHS">
                <property name="tabPosition">
-                <enum>QTabWidget::West</enum>
+                <enum>QTabWidget::North</enum>
                </property>
                <property name="currentIndex">
                 <number>0</number>

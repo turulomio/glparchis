@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>909</width>
-    <height>357</height>
+    <width>1006</width>
+    <height>574</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,8 +38,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>887</width>
-         <height>287</height>
+         <width>966</width>
+         <height>469</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -66,13 +66,13 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>885</width>
-           <height>262</height>
+           <width>964</width>
+           <height>443</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout">
+           <layout class="QVBoxLayout" name="scrollPlayerDado">
             <item>
              <spacer name="verticalSpacer">
               <property name="orientation">
@@ -85,9 +85,6 @@
                </size>
               </property>
              </spacer>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="scrollPlayerDado"/>
             </item>
             <item>
              <spacer name="verticalSpacer_2">

@@ -24,6 +24,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         if datetime.date.today()-datetime.date.fromordinal(self.cfgfile.lastupdate)>=datetime.timedelta(days=7):
             print ("Actualizando")
             self.checkUpdates(False)
+        self.setWindowTitle(self.tr("glParchis 2010-{}. GNU General Public License \xa9").format(version[0:4]))
         
         #Ajusta el sonido desde cfgfile
         self.cfgfile.sound=not self.cfgfile.sound #Se cambia antes para que self.on_actionSound_triggered lo deje bien
@@ -139,7 +140,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         cwd=os.getcwd()
         os.chdir(os.path.expanduser("~/.glparchis/"))
         #ÐEBE SERLOCAL
-        filenam=os.path.basename(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)"))
+        filenam=os.path.basename(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")[0])
         if filenam!="":
             #Busca si es de 4,6,8
             self.mem=self.selectMem(filenam)

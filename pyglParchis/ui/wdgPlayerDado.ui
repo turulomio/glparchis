@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>129</width>
-    <height>189</height>
+    <width>156</width>
+    <height>178</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -141,19 +141,6 @@
            </spacer>
           </item>
          </layout>
-        </item>
-        <item>
-         <widget class="QPushButton" name="cmd">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Tirar dado</string>
-          </property>
-         </widget>
         </item>
        </layout>
       </item>
