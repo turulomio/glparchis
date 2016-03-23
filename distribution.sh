@@ -1,18 +1,18 @@
 #!/bin/bash
 rm -Rf build
-rm -Rf dist
-mkdir -p build/src dist
+mkdir -p build/src
 VERSION=`cat libglparchis.py | grep 'version="2'| cut --delimiter='"'  -f 2`
 TIME=`date +%Y%m%d%H%M%S`
 CWD=`pwd`
-touch build/$VERSION-$TIME dist/$VERSION-$TIME   #Genera fichero con versión y hora de distribución
+touch build/$VERSION-$TIME   #Genera fichero con versión y hora de distribución
 DIRSRCLINUX=build/src # Se instala con un makefile
-PYTHONVERSION=3.4
 
 echo "Este script crea el fichero $FILE para ser subido a sourceforge"
 
+
+make
+
 ######## sources linux
-make > /dev/null
 mkdir $DIRSRCLINUX/doc
 mkdir $DIRSRCLINUX/i18n
 mkdir $DIRSRCLINUX/images
@@ -53,13 +53,9 @@ cp 	sounds/* \
 
 echo "  * Comprimiendo codigo fuente linux..."
 cd build/src
-tar cvz  -f $CWD/dist/glparchis-src-linux-$VERSION.tar.gz * -C $CWD/build/src > /dev/null
+tar cvz  -f $CWD/build/glparchis-src-$VERSION.tar.gz * -C $CWD/build/src > /dev/null
 cd $CWD
 
 ####### binaries linux
-make
 python3 setup.py build
-cd build/exe.linux-x86_64-$PYTHONVERSION
-tar cvz  -f $CWD/dist/glparchis-bin-linux-$VERSION.tar.gz * -C $CWD/build/exe.linux-x86_64-$PYTHONVERSION > /dev/null
-cd $CWD
 

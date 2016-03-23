@@ -24,7 +24,16 @@ Nueva release
 10) Comprobar enlaces
 11) Publicar news en sourceforge con el CHANGELOG-EN
 
-
+PROCEDIMIENTO.txt
 =======================================
 Pruebas:
     - Borrar el .glparchis
+    
+    
+SISTEMA COMPILABLE EN WINDOWS
+==================================
+1 Instalar python seg´un 32 o 64 bits
+2 Instalar PyQt de la misma versi´on y bits
+3 Instalar eric, bajando el zip (opcional) y entrando por consola python3 install.python
+4 Instar con pip.exe pyopengl
+5 Instalar con pip.exe cx-freeze 

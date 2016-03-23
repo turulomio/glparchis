@@ -8,6 +8,7 @@ from posfichas4 import *
 from poscasillas6 import *
 from posfichas6 import *
 import os,  random,   configparser,  datetime,  codecs,  math
+import time
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtOpenGL import *
@@ -2380,6 +2381,7 @@ class Mem:
                 if os.path.exists(url)==True:
                     break
             QSound.play(url)
+            time.sleep(0.4)
             QCoreApplication.processEvents() 
    
     def generar_fichas(self):
