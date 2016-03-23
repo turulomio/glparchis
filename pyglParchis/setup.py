@@ -100,10 +100,11 @@ setup(name=name,
 #Post setup
 if sys.platform=="win32":
     os.chdir(build_dir())
+    
     inno="c:/Program Files (x86)/Inno Setup 5/ISCC.exe"
-
-    if sys.platform=="win32":
+    if platform.architecture()[0]=="32bit":
         inno=inno.replace(" (x86)", "")
+    
     subprocess.call([inno,  "/o../",  "/DVERSION_NAME={}".format(winversion()), "/DFILENAME={}".format(filename_output()),"glparchis.iss"], stdout=sys.stdout)
 else:   #Linux
     print (build_dir(), filename_output(), os.getcwd())
