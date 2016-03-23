@@ -1,9 +1,5 @@
-# 
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from libglparchis import *
-import datetime
 
 class QTableStatistics(QTableWidget):
     def __init__(self, parent=None):
@@ -19,7 +15,7 @@ class QTableStatistics(QTableWidget):
         self.setColumnCount(self.mem.maxplayers+1)        
         for i, j in enumerate(self.mem.jugadores.arr):
             self.setColumnWidth(i, 65)
-            item = QTableWidgetItem()
+            item = QTableWidgetItem(j.name)
             item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter|Qt.AlignCenter)
             item.setData(Qt.BackgroundRole, j.color.qcolor())
             self.setHorizontalHeaderItem(i, item)
