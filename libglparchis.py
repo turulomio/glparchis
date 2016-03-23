@@ -1,5 +1,8 @@
+import sys
 from OpenGL.GL import *
 from OpenGL.GLU import *
+if sys.platform=='win32':
+    sys.path.append("ui")
 from poscasillas8 import *
 from posfichas8 import *
 from poscasillas4 import *
@@ -7,10 +10,12 @@ from posfichas4 import *
 from poscasillas6 import *
 from posfichas6 import *
 import os,  random,   configparser,  datetime,  time,  sys,  codecs,  math
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
-from PyQt4.QtOpenGL import *
-from PyQt4.phonon import Phonon
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtOpenGL import *
+
+if not sys.platform=='win32':
+    from PyQt5.phonon import Phonon
 #Cuando se modifique una version sacada se pondrá un + p.e. 20120921+
 version="20130716+"
 
@@ -1303,9 +1308,9 @@ class Ficha(QObject):
             if self.mem.jugadores.actual.fichas.algunaEstaObligada() :
                 if self.estaObligada(self.mem)==False:
                     if self.jugador.tiradaturno.ultimoValor()==5:
-                        if log: self.mem.jugadores.actual.log(self.trUtf8("No puede mover, porque debe sacar una ficha"))
+                        if log: self.mem.jugadores.actual.log(self.tr("No puede mover, porque debe sacar una ficha"))
                     else:
-                        if log: self.mem.jugadores.actual.log(self.trUtf8("No puede mover, porque debe abrir una barrera"))                        
+                        if log: self.mem.jugadores.actual.log(self.tr("No puede mover, porque debe abrir una barrera"))                        
                     return (False, 0)                    
             return (puede, movimiento)
         return (puede, movimiento)
@@ -1319,7 +1324,7 @@ class Ficha(QObject):
 
         #Es ficha del jugador actual. #A PARTIR DE AQUI SE PUEDE USAR SELF.JUGADOR EN VEZ DE MEM.jugadores.actual
         if  self.jugador!=self.mem.jugadores.actual:             
-            if log: self.mem.jugadores.actual.log(self.trUtf8("No es del jugador actual"))
+            if log: self.mem.jugadores.actual.log(self.tr("No es del jugador actual"))
             return (False, 0)
             
         #No se puede mover una ficha que está en casa con puntos acumulados
@@ -1349,27 +1354,27 @@ class Ficha(QObject):
                 movimiento=posibledado
                             
         if movimiento==0 or movimiento==None:
-            if log: self.mem.jugadores.actual.log(self.trUtf8("No puede mover"))
+            if log: self.mem.jugadores.actual.log(self.tr("No puede mover"))
             return (False, 0)    
            
         #se ha pasado la meta
         if self.posruta+movimiento>self.ruta.length()-1:
-            if log: self.mem.jugadores.actual.log(self.trUtf8("Se ha pasado la meta"))
+            if log: self.mem.jugadores.actual.log(self.tr("Se ha pasado la meta"))
             return (False, 0) 
             
         #Rastrea todas las casillas de paso en busca de barrera. desde la siguiente
         for i in range(self.posruta+1, self.posruta+movimiento+1): 
             if self.ruta.arr[i].tieneBarrera()==True:
-                if log: self.mem.jugadores.actual.log(self.trUtf8("Hay una barrera"))
+                if log: self.mem.jugadores.actual.log(self.tr("Hay una barrera"))
                 return (False, 0)
 
         #Comprueba si hay sitio libre
         casilladestino=self.ruta.arr[self.posruta+movimiento]
         if casilladestino.posicionLibreEnBuzon()==-1:
             if self.jugador.hayDosJugadoresDistintosEnRuta1():#COmprueeba si es primera casilla en ruta y hay otra de otro color.
-                if log: self.mem.jugadores.actual.log(self.trUtf8("Obligado a sacar y a comer"))
+                if log: self.mem.jugadores.actual.log(self.tr("Obligado a sacar y a comer"))
             else:
-                if log: self.mem.jugadores.actual.log(self.trUtf8("No hay espacio en la casilla"))
+                if log: self.mem.jugadores.actual.log(self.tr("No hay espacio en la casilla"))
                 return (False, 0)
                 
 
@@ -1429,7 +1434,7 @@ class Ficha(QObject):
             else:
                 self.mover(ruta, True)
             mem.jugadores.actual.movimientos_acumulados=20
-            mem.jugadores.actual.log(self.trUtf8('He comido una ficha de {0} en la casilla {1}'.format(fichaacomer.jugador.name, self.casilla(ruta).id)))
+            mem.jugadores.actual.log(self.tr('He comido una ficha de {0} en la casilla {1}'.format(fichaacomer.jugador.name, self.casilla(ruta).id)))
             self.jugador.comidaspormi=self.jugador.comidaspormi+1
             fichaacomer.jugador.comidasporotro=fichaacomer.jugador.comidasporotro+1
             return True
@@ -1446,7 +1451,7 @@ class Ficha(QObject):
         if self.puedeMeter(posruta):
             self.mover(posruta, True)
             self.jugador.movimientos_acumulados=10
-            self.jugador.log(self.trUtf8("Una ficha a llegado a la meta"))
+            self.jugador.log(self.tr("Una ficha a llegado a la meta"))
             return True
         return False
 
@@ -2370,12 +2375,16 @@ class Mem:
            
         self.mediaObject = None
         parent=QCoreApplication.instance()
-        self.mediaObject = Phonon.MediaObject(parent)
-        audioOutput = Phonon.AudioOutput(Phonon.MusicCategory, parent)
-        Phonon.createPath(self.mediaObject, audioOutput)
+        if not sys.platform=='win32':
+            self.mediaObject = Phonon.MediaObject(parent)
+            audioOutput = Phonon.AudioOutput(Phonon.MusicCategory, parent)
+            Phonon.createPath(self.mediaObject, audioOutput)
         
 
     def play(self, sound):
+        
+        if sys.platform=='win32':
+            return
         if self.cfgfile.sound==True:
             urls= ["./sounds/"+sound + ".wav", "/usr/share/glparchis/sounds/"+sound+".wav"]
             for url in urls:
@@ -2569,7 +2578,7 @@ def cargarQTranslator(cfgfile):
             print ("Not found {} from {}".format(url,  os.getcwd()))        
         
     cfgfile.qtranslator.load(url)
-    qApp.installTranslator(cfgfile.qtranslator);
+    QCoreApplication.installTranslator(cfgfile.qtranslator);
 def developing():
     """Función que permite avanzar si hay un parametro y da un aviso e interrumpe si no, se debe poner un if en donde se use"""
     if len (sys.argv)==1:

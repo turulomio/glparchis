@@ -1,7 +1,8 @@
  
-from PyQt4.QtCore import *
-from PyQt4.QtOpenGL import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtOpenGL import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from libglparchis import *
@@ -12,6 +13,8 @@ from frmShowFicha import *
 class wdgOGL(QGLWidget):
     """Clase principal del Juego, aquí está fundamentalmente la representación.
    Emite click ficha cuando se realiza"""
+    fichaClicked=pyqtSignal()
+    doubleClicked=pyqtSignal()
     def __init__(self,  parent=None,  filename=None):
         QGLWidget.__init__(self, parent)
         self.tablero=None#After assign_mem creation
@@ -113,7 +116,9 @@ class wdgOGL(QGLWidget):
         self.updateGL()
     
     def mouseDoubleClickEvent(self, event):
-        self.emit(SIGNAL("doubleClicked()"))
+        
+        self.doubleClicked.emit()
+#        self.emit(SIGNAL("doubleClicked()"))
                 
     def mousePressEvent(self, event):        
         def pickup(event, right):
@@ -201,8 +206,9 @@ class wdgOGL(QGLWidget):
         if event.buttons() & Qt.LeftButton:
             pickup(event, False)            
             if self.mem.selFicha!=None:
-                self.mem.jugadores.actual.log(self.trUtf8("Se ha hecho click en la ficha {0}".format(self.mem.selFicha.id)))
-                self.emit(SIGNAL("fichaClicked()"))#No se pasa parámetro porque es self.mem.selFicha
+                self.mem.jugadores.actual.log(self.tr("Se ha hecho click en la ficha {0}".format(self.mem.selFicha.id)))
+                self.fichaClicked.emit()
+#                self.emit(SIGNAL("fichaClicked()"))#No se pasa parámetro porque es self.mem.selFicha
         elif event.buttons() & Qt.RightButton:
             pickup(event, True)                    
         self.updateGL()

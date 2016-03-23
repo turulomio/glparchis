@@ -1,6 +1,9 @@
 import sys, os, urllib.request,   datetime
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+if sys.platform=='win32':
+    sys.path.append("ui")
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 from libglparchis import *
 
 from Ui_frmMain import *
@@ -53,12 +56,12 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def on_actionSound_triggered(self):
         self.cfgfile.sound=not self.cfgfile.sound
         if self.cfgfile.sound:
-            self.actionSound.setText(self.trUtf8("Sonido encendido")) 
+            self.actionSound.setText(self.tr("Sonido encendido")) 
             icon8 = QtGui.QIcon()
             icon8.addPixmap(QtGui.QPixmap(":/glparchis/sound.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.actionSound.setIcon(icon8)
         else:
-            self.actionSound.setText(self.trUtf8("Sonido apagado"))
+            self.actionSound.setText(self.tr("Sonido apagado"))
             icon8 = QtGui.QIcon()
             icon8.addPixmap(QtGui.QPixmap(":/glparchis/soundoff.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.actionSound.setIcon(icon8)
@@ -79,7 +82,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
             if showdialogwhennoupdates==True:
                 m=QMessageBox()
                 m.setIcon(QMessageBox.Information)
-                m.setText(self.trUtf8("No se ha podido comprobar si hay actualizaciones. Inténtelo más tarde."))
+                m.setText(self.tr("No se ha podido comprobar si hay actualizaciones. Inténtelo más tarde."))
                 m.exec_() 
             return
         #Saca la version de internet
@@ -97,13 +100,13 @@ class frmMain(QMainWindow, Ui_frmMain):#
             if showdialogwhennoupdates==True:
                 m=QMessageBox()
                 m.setIcon(QMessageBox.Information)
-                m.setText(self.trUtf8("Dispone de la última versión del juego"))
+                m.setText(self.tr("Dispone de la última versión del juego"))
                 m.exec_() 
         else:
             m=QMessageBox()
             m.setIcon(QMessageBox.Information)
             m.setTextFormat(Qt.RichText)#this is what makes the links clickable
-            m.setText(self.trUtf8("Hay una nueva versión del programa. Bájatela de la página web del proyecto <a href='http://glparchis.sourceforge.net'>http://glparchis.sourceforge.net</a> o directamente desde <a href='https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-")+remoteversion+"/'>Sourceforge</a>")
+            m.setText(self.tr("Hay una nueva versión del programa. Bájatela de la página web del proyecto <a href='http://glparchis.sourceforge.net'>http://glparchis.sourceforge.net</a> o directamente desde <a href='https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-")+remoteversion+"/'>Sourceforge</a>")
             m.exec_()                 
         self.cfgfile.lastupdate=datetime.date.today().toordinal()
         self.cfgfile.save()

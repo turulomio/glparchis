@@ -10,11 +10,17 @@ import sys, os, datetime
 #elif so=="src.linux" or so=="bin.linux":
 #    
     
-sys.path.append("../lib/glparchis")
-sys.path.append("/usr/lib/glparchis")
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+
+if sys.platform=='win32':
+    sys.path.append("ui")
+    sys.path.append("images")
+else:
+    sys.path.append("../lib/glparchis")
+    sys.path.append("/usr/lib/glparchis")
+
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
 from frmMain import *
 
 try:
@@ -30,12 +36,13 @@ cfgfile.save()
 app = QApplication(sys.argv)
 app.setApplicationName("glParchis {0}".format(str(datetime.datetime.now())))
 app.setQuitOnLastWindowClosed(True)
-try:
-    from PyQt4.phonon import Phonon
-    borrar= Phonon.MediaObject(app)
-except ImportError:
-    QMessageBox.critical(None, "glParchis",  "Tu instalación QT no tiene soporte Phonon")
-    sys.exit(1)
+if not sys.platform=='win32':
+    try:
+        from PyQt5.phonon import Phonon
+        borrar= Phonon.MediaObject(app)
+    except ImportError:
+        QMessageBox.critical(None, "glParchis",  "Tu instalación QT no tiene soporte Phonon")
+        sys.exit(1)
 
 from libglparchis import cargarQTranslator
 cfgfile.qtranslator=QTranslator()

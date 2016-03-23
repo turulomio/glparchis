@@ -73,8 +73,8 @@ if sys.platform=='linux':
 if sys.platform=='win32':
       builddir='build/exe.win32-3.3'
       shutil.copyfile('/root/.wine/drive_c/Python33/python33.dll', builddir+'/python33.dll')
-      shutil.copyfile('/root/.wine/drive_c/Python33/Lib/site-packages/PyQt4/phonon4.dll', builddir+'/phonon4.dll')
-      shutil.copyfile('/root/.wine/drive_c/Python33/Lib/site-packages/PyQt4/QtCore4.dll', builddir+'/QtCore4.dll')
-      shutil.copyfile('/root/.wine/drive_c/Python33/Lib/site-packages/PyQt4/QtGui4.dll', builddir+'/QtGui4.dll')
-      shutil.copyfile('/root/.wine/drive_c/Python33/Lib/site-packages/PyQt4/QtOpenGL4.dll', builddir+'/QtOpenGL4.dll')
+      shutil.copyfile('/root/.wine/drive_c/Python33/Lib/site-packages/PyQt5/phonon4.dll', builddir+'/phonon4.dll')
+      shutil.copyfile('/root/.wine/drive_c/Python33/Lib/site-packages/PyQt5/QtCore4.dll', builddir+'/QtCore4.dll')
+      shutil.copyfile('/root/.wine/drive_c/Python33/Lib/site-packages/PyQt5/QtGui4.dll', builddir+'/QtGui4.dll')
+      shutil.copyfile('/root/.wine/drive_c/Python33/Lib/site-packages/PyQt5/QtOpenGL4.dll', builddir+'/QtOpenGL4.dll')
 

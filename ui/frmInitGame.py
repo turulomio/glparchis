@@ -1,7 +1,8 @@
  
 import random
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 from libglparchis import *
 from wdgPlayer import *
 from wdgPlayerDado import *
@@ -17,12 +18,12 @@ class frmInitGame(QWizard, Ui_frmInitGame):
         self.setupUi(self)
         self.setGeometry(parent.width()*0.1/2, parent.height()*0.1/2, parent.width()*0.9,  parent.height()*0.9)
         self.wizardPage1.setTitle(self.tr("Configurar la partida"))
-        self.wizardPage1.setSubTitle(self.trUtf8("Selecciona las fichas que van a jugar y quién va a jugar con ellas"))
+        self.wizardPage1.setSubTitle(self.tr("Selecciona las fichas que van a jugar y quién va a jugar con ellas"))
 
         self.wizardPage2.setTitle(self.tr("Elegir el jugador que empieza la partida"))
-        self.wizardPage2.setSubTitle(self.trUtf8("Tirar el dado de tu color. El jugador que saque la puntuación más alta, empieza la partida"))        
+        self.wizardPage2.setSubTitle(self.tr("Tirar el dado de tu color. El jugador que saque la puntuación más alta, empieza la partida"))        
         
-        self.setButtonText(QWizard.FinishButton, self.trUtf8("¿Quién empieza?"))
+        self.setButtonText(QWizard.FinishButton, self.tr("¿Quién empieza?"))
         self.dado={}
         self.playerstarts=None
         random.seed(datetime.datetime.now().microsecond)
@@ -44,8 +45,10 @@ class frmInitGame(QWizard, Ui_frmInitGame):
         #Pone juega ordenador en todos menos el primero
         for i in range (1, self.mem.maxplayers):
             self.wdgplayers[i].chkIA.setCheckState(Qt.Checked)
+        
+        self.currentIdChanged.connect(self.on_currentIdChanged)
             
-        QObject.connect(self, SIGNAL("currentIdChanged(int)"), self.on_currentIdChanged)                 
+#        QObject.connect(self, SIGNAL("currentIdChanged(int)"), self.on_currentIdChanged)                 
             
     def on_currentIdChanged(self, id):
         QCoreApplication.processEvents();   
@@ -126,10 +129,10 @@ class frmInitGame(QWizard, Ui_frmInitGame):
             #Asigna o vuelve a tirar
             if len(maxplayers)==1:
                 self.playerstarts=maxplayers[0].jugador.color.name
-                self.lblPlayerStarts.setText(self.trUtf8("El jugador {0} empieza la partida".format(self.playerstarts)))
-                self.setButtonText(QWizard.FinishButton, self.trUtf8("Empieza la partida"))          
+                self.lblPlayerStarts.setText(self.tr("El jugador {0} empieza la partida".format(self.playerstarts)))
+                self.setButtonText(QWizard.FinishButton, self.tr("Empieza la partida"))          
             else:
-                self.lblPlayerStarts.setText(self.trUtf8("{0} deben tirar hasta que se aclare quién empieza la partida".format(self.maxplayers2colors(maxplayers))))
+                self.lblPlayerStarts.setText(self.tr("{0} deben tirar hasta que se aclare quién empieza la partida".format(self.maxplayers2colors(maxplayers))))
                 for w in self.wdgplayersdado:
                     if w not in maxplayers:
                         w.lblDado.setPixmap(self.mem.dado.qpixmap(None))

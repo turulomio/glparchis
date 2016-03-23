@@ -1,7 +1,8 @@
 # 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
-from Ui_frmShowFicha import *   
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from Ui_frmShowFicha import *  
+from PyQt5.QtWidgets import * 
 
 class frmShowFicha(QDialog, Ui_frmShowFicha):
     def __init__(self,   parent = None, flags= None,  ficha=None, mem=None):
@@ -30,8 +31,8 @@ class frmShowFicha(QDialog, Ui_frmShowFicha):
                 
         
     def table_reload(self, table, setamenazas):
-        table.verticalHeader().setResizeMode(QHeaderView.ResizeToContents)
-        table.horizontalHeader().setResizeMode(QHeaderView.ResizeToContents)
+#        table.verticalHeader().setResizeMode(QHeaderView.ResizeToContents)
+#        table.horizontalHeader().setResizeMode(QHeaderView.ResizeToContents)
         table.setRowCount(len(setamenazas.arr))        
         for i,  a in enumerate(setamenazas.arr):
             item = QTableWidgetItem()
