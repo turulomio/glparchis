@@ -9,6 +9,9 @@ from OpenGL.GL import *
 from wdgGame import *
 
 class wdgShowObject(QGLWidget):
+    xRotationChanged=pyqtSignal(int)
+    yRotationChanged=pyqtSignal(int)
+    zRotationChanged=pyqtSignal(int)
     def __init__(self, parent=None):
         self.ortho=(-9, +9, +9, -9, -25.0, 25.0)
         QGLWidget.__init__(self, parent)
@@ -63,7 +66,7 @@ class wdgShowObject(QGLWidget):
         self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/transwood.png')))
         self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/seguro.png')))
         self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/dado_desplegado.png')))
-        self.qglClearColor(QColor.fromCmykF(0.39, 0.39, 0.0, 0.0).dark())
+        self.qglClearColor(QColor.darker(QColor.fromCmykF(0.39, 0.39, 0.0, 0.0)))
         glShadeModel(GL_FLAT)
         glEnable(GL_DEPTH_TEST)
         glEnable(GL_CULL_FACE)
@@ -140,21 +143,24 @@ class wdgShowObject(QGLWidget):
         angle = self.normalizeAngle(angle)
         if angle != self.xRot:
             self.xRot = angle
-            self.emit(SIGNAL("xRotationChanged(int)"), angle)
+#            self.emit(SIGNAL("xRotationChanged(int)"), angle)
+            self.xRotationChanged.emit(angle)
             self.updateGL()
 
     def setYRotation(self, angle):
         angle = self.normalizeAngle(angle)
         if angle != self.yRot:
             self.yRot = angle
-            self.emit(SIGNAL("yRotationChanged(int)"), angle)
+#            self.emit(SIGNAL("yRotationChanged(int)"), angle)
+            self.yRotationChanged.emit(angle)
             self.updateGL()
 
     def setZRotation(self, angle):
         angle = self.normalizeAngle(angle)
         if angle != self.zRot:
             self.zRot = angle
-            self.emit(SIGNAL("zRotationChanged(int)"), angle)
+#            self.emit(SIGNAL("zRotationChanged(int)"), angle)
+            self.zRotationChanged.emit(angle)
             self.updateGL()
             
     def mousePressEvent(self, event):

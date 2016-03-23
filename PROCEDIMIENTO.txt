@@ -4,8 +4,13 @@ Nueva release
 2) Modificar todos los ficheros RELEASE-ES CHANGELOG con num subversion +1
 3) Ejecutar omegat-integration para los ficheros
 4) Ejecutar linguist
-4) Crear los 4 ficheros (con distribution.sh que pone la version automatico) y subirlo a sourceforge
-	OJO Que no se genere con nvidia
+4) Crear los siguientes ficheros y subirlos a sourceforge:
+	+ Desde Linux con distribution.sh que pone la version automatico) y subirlo a sourceforge
+		- src
+		- bin. Ojo no se genere con nvidia
+	+ Desde Windows con distribution.bat, desde un equipo con python 32 bits y desde otro equipo con python 64 bits
+		- 32 bits
+		- 64 bits
 4) Colocar las versiones preferidas de windows y linux
 5) Subir al subversion y comprobar que queda subversion +1
 6) Crear un nuevo ebuild con la nueva versión

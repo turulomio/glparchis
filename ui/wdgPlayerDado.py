@@ -1,10 +1,8 @@
- 
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 import random
 
-#from libglparchis import s2q
 
 from Ui_wdgPlayerDado import *
 
@@ -19,16 +17,16 @@ class wdgPlayerDado(QWidget, Ui_wdgPlayerDado):
         self.jugador=jugador
         self.tirada=0
         self.pixmap.setPixmap(self.jugador.color.qpixmap())
+    
+    def hasPlayed(self):
+        if self.tirada!=0:
+            return True
+        return False
 
     def setName(self, name):
-        """Se hace así porque al principio no se sabe el name del jugador
-        NAME ES UN QSTRING
-        """
+        """Se hace así porque al principio no se sabe el name del jugador """
         self.lblName.setText(name)
 
     def on_cmd_released(self):
         self.tirada=int(random.random()*6)+1
-        if self.jugador.ia==False:
-            self.mem.play("dice")            
         self.lblDado.setPixmap(self.mem.dado.qpixmap(self.tirada))
-        self.cmd.setEnabled(False)

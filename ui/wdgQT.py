@@ -8,6 +8,9 @@ import math
 from OpenGL import GL
 
 class wdgQT(QGLWidget):
+    xRotationChanged=pyqtSignal(int)
+    yRotationChanged=pyqtSignal(int)
+    zRotationChanged=pyqtSignal(int)
     def __init__(self, parent=None):
         QGLWidget.__init__(self, parent)
 
@@ -40,25 +43,27 @@ class wdgQT(QGLWidget):
         angle = self.normalizeAngle(angle)
         if angle != self.xRot:
             self.xRot = angle
-            self.emit(SIGNAL("xRotationChanged(int)"), angle)
+            self.xRotationChanged.emit(angle)
             self.updateGL()
 
     def setYRotation(self, angle):
         angle = self.normalizeAngle(angle)
         if angle != self.yRot:
             self.yRot = angle
-            self.emit(SIGNAL("yRotationChanged(int)"), angle)
+#            self.emit(SIGNAL("yRotationChanged(int)"), angle)
+            self.yRotationChanged.emit(angle)
             self.updateGL()
 
     def setZRotation(self, angle):
         angle = self.normalizeAngle(angle)
         if angle != self.zRot:
             self.zRot = angle
-            self.emit(SIGNAL("zRotationChanged(int)"), angle)
+#            self.emit(SIGNAL("zRotationChanged(int)"), angle)
+            self.zRotationChanged.emit(angle)
             self.updateGL()
 
     def initializeGL(self):
-        self.qglClearColor(self.trolltechPurple.dark())
+        self.qglClearColor(self.trolltechPurple.darker())
         self.object = self.makeObject()
         GL.glShadeModel(GL.GL_FLAT)
         GL.glEnable(GL.GL_DEPTH_TEST)
@@ -164,7 +169,7 @@ class wdgQT(QGLWidget):
         GL.glVertex3d(x1, y1, +0.05)
 
     def extrude(self, x1, y1, x2, y2):
-        self.qglColor(self.trolltechGreen.dark(250 + int(100 * x1)))
+        self.qglColor(self.trolltechGreen.darker(250 + int(100 * x1)))
 
         GL.glVertex3d(x1, y1, +0.05)
         GL.glVertex3d(x2, y2, +0.05)
