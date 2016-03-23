@@ -1,15 +1,13 @@
 import sys
 from OpenGL.GL import *
 from OpenGL.GLU import *
-if sys.platform=='win32':
-    sys.path.append("ui")
 from poscasillas8 import *
 from posfichas8 import *
 from poscasillas4 import *
 from posfichas4 import *
 from poscasillas6 import *
 from posfichas6 import *
-import os,  random,   configparser,  datetime,  time,  sys,  codecs,  math
+import os,  random,   configparser,  datetime,  codecs,  math
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtOpenGL import *
@@ -2235,7 +2233,7 @@ class Casilla(QObject):
                 elif ogl.mem.maxplayers==8:
                     glScaled((21-2*3*math.tan(math.pi/8))/15.0, ((10.5/math.tan(math.pi/8))-3)/7.5, 1)
             
-            texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
+#            texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
             verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(7.5, 7.5, 0), Coord3D(15, 0, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
@@ -2373,29 +2371,16 @@ class Mem:
         self.cfgfile=None#fichero configuración que se crea en glparchis.py
            
         self.mediaObject = None
-#        parent=QCoreApplication.instance()
-#        if not sys.platform=='win32':
-#            self.mediaObject = Phonon.MediaObject(parent)
-#            audioOutput = Phonon.AudioOutput(Phonon.MusicCategory, parent)
-#            Phonon.createPath(self.mediaObject, audioOutput)
         
 
     def play(self, sound):
-        
-#        if sys.platform=='win32':
-#            return
         if self.cfgfile.sound==True:
             urls= ["./sounds/"+sound + ".wav", "/usr/share/glparchis/sounds/"+sound+".wav"]
             for url in urls:
                 if os.path.exists(url)==True:
-#                    print ("Found {} from {}".format(url,  os.getcwd()))
                     break
-#                else:
-#                    print ("Not found {} from {}".format(url,  os.getcwd()))
             QSound.play(url)
-#            self.mediaObject.setCurrentSource(Phonon.MediaSource(url))
-#            self.mediaObject.play()
-            time.sleep(0.4)
+#            time.sleep(0.4)
             QCoreApplication.processEvents();    
    
     def generar_fichas(self):

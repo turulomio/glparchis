@@ -30,7 +30,7 @@ class SetWdgPlayers:
         """Muestra un string con los colores del set"""
         resultado=""
         for w in self.arr:
-            resultado=resultado +" " + w.jugador.name +" ,"
+            resultado=resultado +" " + w.jugador.name +", "
         return resultado[:-2]
         
     def arrWdgPlayers_MaximaPuntuacion(self):

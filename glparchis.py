@@ -25,13 +25,6 @@ cfgfile.save()
 app = QApplication(sys.argv)
 app.setApplicationName("glParchis {0}".format(str(datetime.datetime.now())))
 app.setQuitOnLastWindowClosed(True)
-#if not sys.platform=='win32':
-#    try:
-#        from PyQt5.phonon import Phonon
-#        borrar= Phonon.MediaObject(app)
-#    except ImportError:
-#        QMessageBox.critical(None, "glParchis",  "Tu instalación QT no tiene soporte Phonon")
-#        sys.exit(1)
 
 from libglparchis import cargarQTranslator
 cfgfile.qtranslator=QTranslator()
