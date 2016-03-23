@@ -17,21 +17,36 @@ def winversion():
     versio=version.replace("+","")
     return versio[:-4]+"."+versio[4:-2]+"."+versio[6:]+"."+lastpoint
     
-def output_win32_build():
-    if platform.architecture()[0]=="64bit":
-        pl="amd64"
-    else:
-        pl="win32"
+def build_dir():
     pyversion="{}.{}".format(sys.version_info[0], sys.version_info[1])
-    return "build/exe.win-{}-{}".format(pl, pyversion)
-    
-def exe_output():
-    if platform.architecture()[0]=="64bit":
-        pl="amd64"
-    else:
-        pl="win32"
     if sys.platform=="win32":
-        return "glparchis-{}.{}".format(version, pl)
+        so="win"
+        if platform.architecture()[0]=="64bit":
+            pl="amd64"
+        else:
+            pl="win32"
+    else:#linux
+        so="linux"
+        if platform.architecture()[0]=="64bit":
+            pl="x86_64"
+        else:
+            pl="x86"
+    return "build/exe.{}-{}-{}".format(so, pl, pyversion)
+    
+def filename_output():
+    if sys.platform=="win32":
+        so="windows"
+        if platform.architecture()[0]=="64bit":
+            pl="amd64"
+        else:
+            pl="win32"
+    else:#linux
+        so="linux"
+        if platform.architecture()[0]=="64bit":
+            pl="x86_64"
+        else:
+            pl="x86"
+    return "glparchis-{}-{}.{}".format(so,  version, pl)
 
 print ("Building for", sys.platform, version, winversion())
 name="glParchis"
@@ -83,5 +98,11 @@ setup(name=name,
 
 #Post setup
 if sys.platform=="win32":
-    os.chdir(output_win32_build())
-    subprocess.call(["c:/Program Files (x86)/Inno Setup 5/ISCC.exe",  "/o../",  "/DVERSION_NAME={}".format(winversion()), "/DFILENAME={}".format(exe_output()),"glparchis.iss"], stdout=sys.stdout)
+    os.chdir(build_dir())
+    subprocess.call(["c:/Program Files (x86)/Inno Setup 5/ISCC.exe",  "/o../",  "/DVERSION_NAME={}".format(winversion()), "/DFILENAME={}".format(filename_output()),"glparchis.iss"], stdout=sys.stdout)
+else:   #Linux
+    print (build_dir(), filename_output(), os.getcwd())
+    pwd=os.getcwd()
+    os.chdir(build_dir())
+    print (build_dir(), filename_output(), os.getcwd())
+    os.system("tar cvz -f '{0}/build/{1}.tar.gz' * -C '{0}/{2}/'".format(pwd, filename_output(),  build_dir()))
