@@ -31,7 +31,7 @@ def build_dir():
         if platform.architecture()[0]=="64bit":
             pl="x86_64"
         else:
-            pl="x86"
+            pl="i686"
     return "build/exe.{}-{}-{}".format(so, pl, pyversion)
     
 def filename_output():
