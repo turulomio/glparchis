@@ -182,7 +182,7 @@ class wdgGame(QWidget, Ui_wdgGame):
 
         
     def on_splitter_splitterMoved(self, position, index):
-        self.mem.settings("frmMain/splitter_state", self.splitter.saveState())
+        self.mem.settings.setValue("frmMain/splitter_state", self.splitter.saveState())
         #self.update()
 
     @QtCore.pyqtSlot()      
