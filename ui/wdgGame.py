@@ -17,14 +17,11 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.show()
         self.panels=[]
         
-        
         #Timer statistics
         self.timer = QTimer()
         self.timer.timeout.connect(self.timer_reload)
-#        QObject.connect(self.timer, SIGNAL("timeout()"), self.timer_reload)     
         self.timer.start(500)
-        
-    
+
     def __del__(self):
         print ("Destructor wdgGame")
         self.stopthegame=True
@@ -33,20 +30,15 @@ class wdgGame(QWidget, Ui_wdgGame):
             p.stopTimerLog()
             self.panelScrollLayout.removeWidget(p)
         self.hide()
-        
-        
-    
+
     def stopReloads(self):
         self.timer.stop()
         
     def timer_reload(self):
         self.table.reload()
         self.lblTime.setText(self.tr("Tiempo de partida: {0}".format(str(datetime.datetime.now()-self.mem.inittime).split(".")[0])))
-        
-        
 
     def assign_mem(self, mem):
-#        self.inicio=datetime.datetime.now()#tiempo de inicio
         self.mem=mem
         self.stopthegame=False
         self.table.assign_mem(self.mem)
@@ -88,8 +80,6 @@ class wdgGame(QWidget, Ui_wdgGame):
         elif self.mem.maxplayers==8:
             self.tabHS.setCurrentIndex(2)
         
-            
-#        self.connect(self.ogl, SIGNAL("doubleClicked()"), self.on_ogl_doubleClicked)
         self.ogl.doubleClicked.connect(self.on_ogl_doubleClicked)
         
         if self.mem.inittime==None:#Caso de que se cree la partida sin cargar .glparchis
@@ -130,10 +120,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.hs8.save()           
             self.highscoresUpdate()
         
-        m=QMessageBox()
-        m.setIcon(QMessageBox.Information)
-        m.setText(self.tr("{0} ha ganado".format(self.mem.jugadores.actual.name)))
-        m.exec_() 
+        qmessagebox(self.tr("{0} ha ganado".format(self.mem.jugadores.actual.name)))
         self.tab.setCurrentIndex(1)
 
 
@@ -150,7 +137,6 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.cmdTirarDado.setText(self.tr("Tira el dado"))
         if self.mem.jugadores.actual.ia==False:#Cuando es IA no debe permitir tirar dado
             self.cmdTirarDado.setEnabled(True)
-#        self.cmdTirarDado.setIcon(self.mem.dado.qicon(None))
         if self.mem.jugadores.actual.ia==True:
             self.mem.jugadores.actual.log(self.tr("IA Tira el dado"))
             delay(400)
@@ -301,8 +287,6 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     def highscoresUpdate(self):
         def updateTable(hs, table): 
-#            table.verticalHeader().setResizeMode(QHeaderView.ResizeToContents)
-#            table.horizontalHeader().setResizeMode(QHeaderView.ResizeToContents)
             table.setRowCount(len(hs.arr))        
             for i,  a in enumerate(hs.arr):
                 item=QTableWidgetItem(str(datetime.date.fromordinal(int(a[0]))))
