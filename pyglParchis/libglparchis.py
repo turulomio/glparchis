@@ -2370,6 +2370,7 @@ class Mem:
         self.selFicha=None
         self.inittime=None#Tiempo inicio partida
         self.cfgfile=None#fichero configuración que se crea en glparchis.py
+        self.settings=QSettings()
            
         self.mediaObject = None
         
@@ -2517,11 +2518,6 @@ class Mem8(Mem):
         self.generar_fichas()
         
         self.circulo=Circulo(self, 136)
-
-
-
-
-                   
 
 class Mem6(Mem):    
     def __init__(self):

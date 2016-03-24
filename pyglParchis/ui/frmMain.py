@@ -105,7 +105,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         #Saca la version de internet
         remoteversion=None
         for line in web.split("\n"):
-            if line.find('folder warn')!=-1:
+            if line.find('class="folder "')!=-1:
                 remoteversion=line.split('glparchis-')[1].split('"') [0]
                 break
         #Si no hay version sale
