@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-import sys, os, datetime
+import os
+import sys
 
 if sys.platform=='win32':
     sys.path.append("ui")
@@ -18,19 +19,15 @@ except:
     pass
 
 sys.setrecursionlimit(100000)
-
-cfgfile=ConfigFile(os.path.expanduser("~/.glparchis/") +"glparchis.cfg")
-cfgfile.save()
-
 app = QApplication(sys.argv)
-app.setApplicationName("glParchis {0}".format(str(datetime.datetime.now())))
+app.setOrganizationName("Mariano Muñoz ©")
+app.setOrganizationDomain("turulomio.users.sourceforge.net")
+app.setApplicationName("glParchis")
 app.setQuitOnLastWindowClosed(True)
 
-from libglparchis import cargarQTranslator
-cfgfile.qtranslator=QTranslator()
-cargarQTranslator(cfgfile)
+settings=QSettings()
 
-frmMain = frmMain(cfgfile) 
+frmMain = frmMain(settings) 
 frmMain.show()
 sys.exit(app.exec_())
 

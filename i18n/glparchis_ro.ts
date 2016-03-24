@@ -3,52 +3,52 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="../libglparchis.py" line="1326"/>
+        <location filename="../libglparchis.py" line="1338"/>
         <source>No es del jugador actual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1361"/>
+        <location filename="../libglparchis.py" line="1373"/>
         <source>Se ha pasado la meta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1367"/>
+        <location filename="../libglparchis.py" line="1379"/>
         <source>Hay una barrera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1376"/>
+        <location filename="../libglparchis.py" line="1388"/>
         <source>No hay espacio en la casilla</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1356"/>
+        <location filename="../libglparchis.py" line="1368"/>
         <source>No puede mover</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1374"/>
+        <location filename="../libglparchis.py" line="1386"/>
         <source>Obligado a sacar y a comer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1453"/>
+        <location filename="../libglparchis.py" line="1465"/>
         <source>Una ficha a llegado a la meta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1436"/>
+        <location filename="../libglparchis.py" line="1448"/>
         <source>He comido una ficha de {0} en la casilla {1}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1310"/>
+        <location filename="../libglparchis.py" line="1322"/>
         <source>No puede mover, porque debe sacar una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1312"/>
+        <location filename="../libglparchis.py" line="1324"/>
         <source>No puede mover, porque debe abrir una barrera</source>
         <translation type="unfinished"></translation>
     </message>
@@ -320,12 +320,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmInitGame.py" line="65"/>
+        <location filename="../ui/frmInitGame.py" line="64"/>
         <source>Empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmInitGame.py" line="64"/>
+        <location filename="../ui/frmInitGame.py" line="63"/>
         <source>El jugador {0} empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -335,7 +335,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmInitGame.py" line="68"/>
+        <location filename="../ui/frmInitGame.py" line="67"/>
         <source>Los jugadores {} deben tirar hasta que se aclare qui&#xc3;&#xa9;n empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -433,22 +433,22 @@
         <translation>Suna pe</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="81"/>
+        <location filename="../ui/frmMain.py" line="82"/>
         <source>Sonido apagado</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../ui/frmMain.py" line="102"/>
+        <location filename="../ui/frmMain.py" line="103"/>
         <source>No se ha podido comprobar si hay actualizaciones. Inténtelo más tarde.</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../ui/frmMain.py" line="120"/>
+        <location filename="../ui/frmMain.py" line="121"/>
         <source>Dispone de la última versión del juego</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../ui/frmMain.py" line="126"/>
+        <location filename="../ui/frmMain.py" line="127"/>
         <source>Hay una nueva versión del programa. Bájatela de la página web del proyecto &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt; o directamente desde &lt;a href=&apos;https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-</source>
         <translation type="unfinished"></translation>
     </message>
@@ -503,7 +503,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="24"/>
+        <location filename="../ui/frmMain.py" line="23"/>
         <source>glParchis 2010-{}. GNU General Public License &#xa9;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -518,7 +518,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="47"/>
+        <location filename="../ui/frmMain.py" line="46"/>
         <source>Salir del modo de pantalla completa</source>
         <translation type="unfinished"></translation>
     </message>
@@ -526,47 +526,22 @@
 <context encoding="UTF-8">
     <name>frmSettings</name>
     <message encoding="UTF-8">
-        <location filename="../ui/Ui_frmSettings.py" line="110"/>
+        <location filename="../ui/Ui_frmSettings.py" line="95"/>
         <source>Configuración de glParchis</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmSettings.py" line="111"/>
+        <location filename="../ui/Ui_frmSettings.py" line="96"/>
         <source>Selecciona un idioma</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../ui/Ui_frmSettings.py" line="112"/>
-        <source>English</source>
-        <translation>English</translation>
-    </message>
     <message encoding="UTF-8">
-        <location filename="../ui/Ui_frmSettings.py" line="113"/>
-        <source>Español</source>
-        <translation>Español</translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/Ui_frmSettings.py" line="114"/>
-        <source>Français</source>
-        <translation>Français</translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/Ui_frmSettings.py" line="116"/>
-        <source>Русский</source>
-        <translation>Русский</translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/Ui_frmSettings.py" line="115"/>
-        <source>Român</source>
-        <translation>Român</translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/Ui_frmSettings.py" line="117"/>
+        <location filename="../ui/Ui_frmSettings.py" line="97"/>
         <source>Número de autoguardados</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../ui/Ui_frmSettings.py" line="118"/>
+        <location filename="../ui/Ui_frmSettings.py" line="98"/>
         <source>Si quiere autoguardado seleccione un número mayor que 0</source>
         <translation type="unfinished"></translation>
     </message>
@@ -908,32 +883,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="203"/>
+        <location filename="../ui/wdgGame.py" line="202"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="206"/>
+        <location filename="../ui/wdgGame.py" line="205"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="210"/>
+        <location filename="../ui/wdgGame.py" line="209"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="212"/>
+        <location filename="../ui/wdgGame.py" line="211"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="225"/>
+        <location filename="../ui/wdgGame.py" line="224"/>
         <source>Seleccione una ficha...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="265"/>
+        <location filename="../ui/wdgGame.py" line="264"/>
         <source>Fin de turno</source>
         <translation type="unfinished"></translation>
     </message>

@@ -31,7 +31,7 @@ class frmInitGame(QWizard, Ui_frmInitGame):
             p=wdgPlayer(self)
             self.scrollPlayer.addWidget(p)
             p.setJugador(j)
-            p.txt.setText( (self.mem.cfgfile.names[i]))
+            p.txt.setText(self.mem.settings.value("Players/{}".format(j.color.name), j.DefaultName()))
             self.players.append(p)
                 
         #Pone juega ordenador en todos menos el primero
@@ -45,13 +45,12 @@ class frmInitGame(QWizard, Ui_frmInitGame):
             #Desactiva el cmd si no juega
             self.set=SetWdgPlayers()
             for i,  w in enumerate(self.players):
-                w.commit()
+                w.commit()#Rellena objeto jugador
+                self.mem.settings.setValue("Players/{}".format(w.jugador.color.name), w.jugador.name)
                 if w.chkPlays.checkState()==Qt.Unchecked:#Quita los que no juegan
                     continue
-                self.mem.cfgfile.names[i]=w.txt.text()
                 self.set.arr.append(w)
             self.scrollPlayerDado.addWidget(self.set.qwidget())
-            self.mem.cfgfile.save()
             self.currentPage().setCommitPage(True)#Ya no se puede cambiar nada
             return True
         elif self.currentId()==1:

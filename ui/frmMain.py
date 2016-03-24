@@ -12,20 +12,19 @@ from frmSettings import *
 from frmHelp import *
 
 class frmMain(QMainWindow, Ui_frmMain):#    
-    def __init__(self, cfgfile, parent = 0,  flags = False):
+    def __init__(self, settings, parent = 0,  flags = False):
         QMainWindow.__init__(self)
-        self.cfgfile=cfgfile
+        self.settings=settings
+        self.translator=QTranslator()
+        cargarQTranslator(self.translator, settings.value("frmSettings/language", "en"))
         self.setupUi(self)
         self.showMaximized()
         self.game=None
-        if datetime.date.today()-datetime.date.fromordinal(self.cfgfile.lastupdate)>=datetime.timedelta(days=7):
+        self.setWindowTitle(self.tr("glParchis 2010-{}. GNU General Public License \xa9").format(version[0:4]))
+        if datetime.date.today()-datetime.date.fromordinal(int(self.settings.value("frmMain/lastupdate", 1)))>=datetime.timedelta(days=7):
             print ("Actualizando")
             self.checkUpdates(False)
-        self.setWindowTitle(self.tr("glParchis 2010-{}. GNU General Public License \xa9").format(version[0:4]))
-        
-        #Ajusta el sonido desde cfgfile
-        self.cfgfile.sound=not self.cfgfile.sound #Se cambia antes para que self.on_actionSound_triggered lo deje bien
-        self.on_actionSound_triggered()
+        self.setSound(self.settings.value("frmSettings/sound", True))
 
     @pyqtSlot()      
     def on_actionAcercaDe_triggered(self):
@@ -58,7 +57,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         
     @pyqtSlot()      
     def on_actionSettings_triggered(self):
-        f=frmSettings(self.cfgfile,   self)
+        f=frmSettings(self.settings, self.translator,    self)
         f.exec_()
         if self.game!=None:
             self.game.retranslateUi(self)
@@ -71,8 +70,10 @@ class frmMain(QMainWindow, Ui_frmMain):#
         
     @pyqtSlot()      
     def on_actionSound_triggered(self):
-        self.cfgfile.sound=not self.cfgfile.sound
-        if self.cfgfile.sound:
+        self.setSound(not self.settings.value("frmSettings/sound"))
+    
+    def setSound(self, bool):
+        if bool==True:
             self.actionSound.setText(self.tr("Sonido encendido")) 
             icon8 = QtGui.QIcon()
             icon8.addPixmap(QtGui.QPixmap(":/glparchis/sound.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -82,7 +83,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
             icon8 = QtGui.QIcon()
             icon8.addPixmap(QtGui.QPixmap(":/glparchis/soundoff.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.actionSound.setIcon(icon8)
-        self.cfgfile.save() ##Cambia los cambios del sound en el cfgfile
+        self.settings.setValue("frmSettings/sound", bool)
         
     @pyqtSlot()      
     def on_actionUpdates_triggered(self):
@@ -124,9 +125,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
             m.setIcon(QMessageBox.Information)
             m.setTextFormat(Qt.RichText)#this is what makes the links clickable
             m.setText(self.tr("Hay una nueva versión del programa. Bájatela de la página web del proyecto <a href='http://glparchis.sourceforge.net'>http://glparchis.sourceforge.net</a> o directamente desde <a href='https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-")+remoteversion+"/'>Sourceforge</a>")
-            m.exec_()                 
-        self.cfgfile.lastupdate=datetime.date.today().toordinal()
-        self.cfgfile.save()
+            m.exec_() 
+        self.settings.setValue("frmMain/lastupdate", datetime.date.today().toordinal())
         
 
         
@@ -160,12 +160,13 @@ class frmMain(QMainWindow, Ui_frmMain):#
         if filenam!="":
             #Busca si es de 4,6,8
             self.mem=self.selectMem(filenam)
-            self.mem.cfgfile=self.cfgfile #Punto a cfgfile
+            self.mem.settings=self.settings
+            self.mem.translator=self.translator
             if self.mem.load(filenam)==False:
                 self.mem=None
                 return
             for i, j in enumerate(self.mem.jugadores.arr):
-                j.name=self.cfgfile.names[i]
+                j.name=self.mem.settings.value("Players/{}".format(j.color.name), j.DefaultName())
             self.showWdgGame()
         os.chdir(cwd)
 
@@ -196,7 +197,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
     @pyqtSlot()  
     def on_actionPartidaNueva4_triggered(self):
         self.mem=Mem4()
-        self.mem.cfgfile=self.cfgfile
+        self.mem.settings=self.settings
+        self.mem.translator=self.translator
         initgame=frmInitGame(self.mem,  self)
         salida=initgame.exec_()
         if salida==QDialog.Accepted:
@@ -205,7 +207,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
     @pyqtSlot()  
     def on_actionPartidaNueva6_triggered(self):
         self.mem=Mem6()
-        self.mem.cfgfile=self.cfgfile
+        self.mem.settings=self.settings
+        self.mem.translator=self.translator
         initgame=frmInitGame(self.mem,  self)
         salida=initgame.exec_()
         if salida==QDialog.Accepted:
@@ -215,7 +218,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
     @pyqtSlot()  
     def on_actionPartidaNueva8_triggered(self):
         self.mem=Mem8()
-        self.mem.cfgfile=self.cfgfile
+        self.mem.settings=self.settings
+        self.mem.translator=self.translator
         initgame=frmInitGame(self.mem,  self)
         salida=initgame.exec_()
         if salida==QDialog.Accepted:
