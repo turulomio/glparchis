@@ -68,16 +68,16 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.cmdTirarDado.setStyleSheet('QPushButton {color: '+self.mem.jugadores.actual.color.name+'; font: bold 30px; background-color: rgb(170, 170, 170);}')
         self.mem.jugadores.actual.log(self.tr("Empieza la partida"))
 
-
-#        QtCore.QObject.connect(self.ogl, QtCore.SIGNAL('fichaClicked()'), self.after_ficha_click)  
         self.ogl.fichaClicked.connect(self.after_ficha_click)
-        if self.mem.cfgfile.splitterstate.isEmpty():
+
+        splitter_state=self.mem.settings.value("frmMain/splitter_state", None)
+        if splitter_state==None:
             currentSizes = self.splitter.sizes()
             currentSizes[0]=self.width()-self.ogl.height()-100
             currentSizes[1]=self.width()-currentSizes[0]
             self.splitter.setSizes(currentSizes)
         else:
-            self.splitter.restoreState(self.mem.cfgfile.splitterstate)
+            self.splitter.restoreState(splitter_state)
         
         #Coloca los tabs del widget
         self.tab.setCurrentIndex(0)
@@ -182,9 +182,8 @@ class wdgGame(QWidget, Ui_wdgGame):
 
         
     def on_splitter_splitterMoved(self, position, index):
-        self.mem.cfgfile.splitterstate=self.splitter.saveState()
-        self.mem.cfgfile.save()
-        self.update()
+        self.mem.settings("frmMain/splitter_state", self.splitter.saveState())
+        #self.update()
 
     @QtCore.pyqtSlot()      
     def on_cmdTirarDado_clicked(self):  
@@ -276,14 +275,15 @@ class wdgGame(QWidget, Ui_wdgGame):
         
         
         #Realiza el autosave
-        if self.mem.cfgfile.autosaves>0 and self.mem.jugadores.actual.ia==False:
+        maxautosaves= int(self.mem.settings.value("frmSettings/autosaves"))
+        if maxautosaves>0 and self.mem.jugadores.actual.ia==False:
             #Borra el n-esimo autosave
             autosaves=[]
             for infile in glob.glob( os.path.join(os.path.expanduser("~/.glparchis/"), 'autosave_*.glparchis') ):
                 autosaves.append(infile)
             autosaves.sort()
-            if len(autosaves)>=self.mem.cfgfile.autosaves:
-                for f in autosaves[:len(autosaves)-self.mem.cfgfile.autosaves+1]:
+            if len(autosaves)>=maxautosaves:
+                for f in autosaves[:len(autosaves)-maxautosaves+1]:
                     os.unlink(f)
             #Graba el ultimo autosave
             n=datetime.datetime.now()

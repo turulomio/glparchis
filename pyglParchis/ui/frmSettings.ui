@@ -117,51 +117,6 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <item>
-            <property name="text">
-             <string>English</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../images/glparchis.qrc">
-              <normaloff>:/flags/uk.png</normaloff>:/flags/uk.png</iconset>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Español</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../images/glparchis.qrc">
-              <normaloff>:/flags/spain.png</normaloff>:/flags/spain.png</iconset>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Français</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../images/glparchis.qrc">
-              <normaloff>:/flags/france.png</normaloff>:/flags/france.png</iconset>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Român</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../images/glparchis.qrc">
-              <normaloff>:/flags/rumania.png</normaloff>:/flags/rumania.png</iconset>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Русский</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../images/glparchis.qrc">
-              <normaloff>:/flags/rusia.png</normaloff>:/flags/rusia.png</iconset>
-            </property>
-           </item>
           </widget>
          </item>
          <item row="1" column="0">

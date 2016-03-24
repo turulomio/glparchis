@@ -581,6 +581,18 @@ class Jugador:
                 return True
         return False
         
+    def DefaultName(self):
+        d={}
+        d["yellow"]="Yellowy"
+        d["blue"]="Bluey"
+        d["red"]="Redy"
+        d["green"]="Greeny"
+        d["dimgray"]="Graye"
+        d["fuchsia"]="Pinky"
+        d["darkorange"]="Orangy"
+        d["darkturquoise"]="Cyanny"
+        return d[self.color.name]
+
     def HaGanado(self):
         for f in self.fichas.arr:
             if f.estaEnMeta()==False:
@@ -1815,65 +1827,6 @@ class Prism:
                 self.contour.opengl_border(face-2)
             
 
-class ConfigFile:
-    def __init__(self, file):
-        self.file=file
-        self.splitterstate=QByteArray()
-        self.language="en"
-        self.names=[]#Es un array separado de ##=##=## y siempre habrá 8
-        #NAMES ES UN STRING DE PYTHON USAR S2Q Y Q2S
-        self.names.append("Yellowy")
-        self.names.append("Bluey")
-        self.names.append("Redy")
-        self.names.append("Greeny")
-        self.names.append("Graye")
-        self.names.append("Pinky")
-        self.names.append("Orangy")
-        self.names.append("Cyanny")
-        self.lastupdate=datetime.date.today().toordinal()
-        self.autosaves=10
-        self.sound=True
-        
-        self.config=configparser.ConfigParser()
-        self.load()
-        
-    def load(self):
-        """Cuando se carga si falla deberá coger los valores por decto"""
-        try:
-            self.config.read(self.file)
-            self.splitterstate=QByteArray().fromBase64(s2b(self.config.get("frmMain", "splitter_state"))) #bytes2QByteARray
-            self.language=self.config.get("frmSettings", "language")
-            prueba=self.config.get("frmInitGame", "names").split("##=##=##")
-            if len(prueba)==8:#Se hizo cuando se quito base64 para dar compatibilidad
-                self.names=prueba
-            self.lastupdate=self.config.getint("frmMain", "lastupdate")
-            self.sound=str2bool(self.config.get("frmSettings", "sound"))
-        except:
-            print ("No hay fichero de configuración")    
-            
-        try:
-            self.autosaves=self.config.getint("frmSettings", "autosaves")
-        except:
-            print ("Error cargando autosaves")
-            
-    def save(self):
-        if self.config.has_section("frmMain")==False:
-            self.config.add_section("frmMain")
-        if self.config.has_section("frmSettings")==False:
-            self.config.add_section("frmSettings")
-        if self.config.has_section("frmInitGame")==False:
-            self.config.add_section("frmInitGame")
-        self.config.set("frmSettings",  'language', self.language)
-        self.config.set("frmSettings",  'autosaves', str(self.autosaves))
-        self.config.set("frmSettings",  'sound', str(self.sound))
-        self.config.set("frmMain",  'splitter_state', b2s(self.splitterstate.toBase64()))#QByteArray2bytes
-        self.config.set("frmMain",  'lastupdate', str(self.lastupdate))
-        cadena=""
-        for n in self.names:
-            cadena=cadena+n+"##=##=##"
-        self.config.set("frmInitGame",  'names',cadena[:-8])
-        with open(self.file, 'w') as configfile:
-            self.config.write(configfile)
             
 class Casilla(QObject):
     def __init__(self, id, maxfichas, color,  position, rotate, rotatepn,  rampallegada, tipo, seguro, posfichas, ruta1):
@@ -2369,14 +2322,13 @@ class Mem:
         self.dado=Dado()
         self.selFicha=None
         self.inittime=None#Tiempo inicio partida
-        self.cfgfile=None#fichero configuración que se crea en glparchis.py
-        self.settings=QSettings()
-           
+        self.settings=None
+        self.translator=None           
         self.mediaObject = None
         
 
     def play(self, sound):
-        if self.cfgfile.sound==True:
+        if str2bool(self.settings.value("frmSettings/sound"))==True:
             urls= ["./sounds/"+sound + ".wav", "/usr/share/glparchis/sounds/"+sound+".wav"]
             for url in urls:
                 if os.path.exists(url)==True:
@@ -2549,9 +2501,9 @@ def dic2list(dic):
     return resultado
 
 
-def cargarQTranslator(cfgfile):  
-    """language es un string"""       
-    urls= ["i18n/glparchis_" + cfgfile.language + ".qm","/usr/share/glparchis/glparchis_" + cfgfile.language + ".qm"]
+def cargarQTranslator(qtranslator, language):  
+    """language es un string"""  
+    urls= ["i18n/glparchis_" + language + ".qm","/usr/share/glparchis/glparchis_" + language + ".qm"]
     for url in urls:
         if os.path.exists(url)==True:
             print ("Found {} from {}".format(url,  os.getcwd()))
@@ -2559,8 +2511,8 @@ def cargarQTranslator(cfgfile):
         else:
             print ("Not found {} from {}".format(url,  os.getcwd()))        
         
-    cfgfile.qtranslator.load(url)
-    QCoreApplication.installTranslator(cfgfile.qtranslator);
+    qtranslator.load(url)
+    QCoreApplication.installTranslator(qtranslator);
 def developing():
     """Función que permite avanzar si hay un parametro y da un aviso e interrumpe si no, se debe poner un if en donde se use"""
     if len (sys.argv)==1:
