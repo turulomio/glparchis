@@ -276,7 +276,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         
         
         #Realiza el autosave
-        maxautosaves= int(self.mem.settings.value("frmSettings/autosaves"))
+        maxautosaves= int(self.mem.settings.value("frmSettings/autosaves", 15))
         if maxautosaves>0 and self.mem.jugadores.actual.ia==False:
             #Borra el n-esimo autosave
             autosaves=[]
