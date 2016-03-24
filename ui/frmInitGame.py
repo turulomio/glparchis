@@ -22,7 +22,6 @@ class frmInitGame(QWizard, Ui_frmInitGame):
         self.wizardPage2.setSubTitle(self.tr("El jugador que saque la puntuación más alta, empieza la partida"))        
         
         self.setButtonText(QWizard.FinishButton, self.tr("Los jugadores lanzan sus dados"))
-        self.dado={}
         random.seed(datetime.datetime.now().microsecond)
         self.players=[]#players primera del wizard
         self.set=None #SetWdgPlayers()#Set para tirar dados un turno
