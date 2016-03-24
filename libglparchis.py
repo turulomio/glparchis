@@ -18,6 +18,8 @@ from PyQt5.QtMultimedia import QSound
 version="20130716+"
 
 def str2bool(s):
+    if s.__class__==bool:#Si ya fuera bool
+        return s
     if s.lower()=="true":
         return True
     if s.lower()=="false":
@@ -387,6 +389,9 @@ class TiradaHistorica:
             if tt.tresSeises()==True:
                 resultado=resultado+1
         return resultado
+        
+    def length(self):
+        return len(self.arr)
                 
 class TiradaJuego:
     """Estudio estadistico de tiradas globales del juego (une todos jugadores). Se usa para temas estadisticos y recorre las tiradas
@@ -537,9 +542,14 @@ class Jugador:
         return False
         
         
-    def tirarDado(self):
-        """Tira el dado lo almacena en tirada, tiradaturno e historico y devuelve el valor"""
-        tirada=Tirada(self, self.dado.tirar())
+    def tirarDado(self,  number=None):
+        """Tira el dado lo almacena en tirada, tiradaturno e historico y devuelve el valor
+        Se usa number, cuando se hace un load .glparchis, para regenerar las estad´isticas
+        """
+        if number==None:
+            tirada=Tirada(self, self.dado.tirar())
+        else:
+            tirada=Tirada(self, number)#Se usa cuando se hace un load, para regenerar las estad´isticas
         self.tiradaturno.arr.append(tirada)
         if self.tiradaturno not in self.tiradahistorica.arr:
             self.tiradahistorica.arr.append(self.tiradaturno)
@@ -2360,17 +2370,9 @@ class Mem:
             return dic2list(self.dic_fichas)
         else:
             return self.dic_fichas[str(name)]
-#
-#    def casillas(self, name=None):
-#        if name==None:
-#            return dic2list(self.dic_casillas)
-#        else:
-#            return self.dic_casillas[str(name)]
-#            
-                        
 
-            
     def save(self, filename):
+        """Version 1.1 INtroduce stadisticas"""
         cwd=os.getcwd()
         os.chdir(os.path.expanduser("~/.glparchis/"))
         config = configparser.ConfigParser()
@@ -2379,8 +2381,8 @@ class Mem:
         config.set("game", 'playerstarts',self.jugadores.actual.color.name)
         config.set("game",  "numplayers",  str(self.maxplayers))
         config.set("game", 'fakedice','')
-        config.set("game", 'fileversion','1.0')
-        config.set("game",  'inittime', str(self.inittime))
+        config.set("game", 'fileversion','1.1')
+        config.set("game",  'inittime', str(datetime.datetime.now()-self.inittime))
         for i, j in enumerate(self.jugadores.arr):
             config.add_section("jugador{0}".format(i))
             config.set("jugador{0}".format(i),  'ia', str(j.ia))
@@ -2388,7 +2390,14 @@ class Mem:
             config.set("jugador{0}".format(i),  'plays', str(j.plays))
             config.set("jugador{0}".format(i),  'eatbyme', str(j.comidaspormi))
             config.set("jugador{0}".format(i),  'eatbyothers', str(j.comidasporotro))
-            if self.jugadores.jugador('yellow').plays==True:
+            config.set("jugador{0}".format(i),  'roll1', str(j.tiradahistorica.numTimesDiceGetNumber(1)))
+            config.set("jugador{0}".format(i),  'roll2', str(j.tiradahistorica.numTimesDiceGetNumber(2)))
+            config.set("jugador{0}".format(i),  'roll3', str(j.tiradahistorica.numTimesDiceGetNumber(3)))
+            config.set("jugador{0}".format(i),  'roll4', str(j.tiradahistorica.numTimesDiceGetNumber(4)))
+            config.set("jugador{0}".format(i),  'roll5', str(j.tiradahistorica.numTimesDiceGetNumber(5)))
+            config.set("jugador{0}".format(i),  'roll6', str(j.tiradahistorica.numTimesDiceGetNumber(6)))
+            config.set("jugador{0}".format(i),  'six3', str(j.tiradahistorica.numThreeSixes()))
+            if j.plays==True:
                 config.set("jugador{0}".format(i),  'rutaficha1', str(j.fichas.arr[0].posruta))
                 config.set("jugador{0}".format(i),  'rutaficha2', str( j.fichas.arr[1].posruta))
                 config.set("jugador{0}".format(i),  'rutaficha3',  str(j.fichas.arr[2].posruta))
@@ -2405,7 +2414,7 @@ class Mem:
             QMessageBox.information(None, "glParchis", QApplication.translate("glparchis", "Este fichero es de una versión antigua o está estropeado. No puede ser cargado.", None, QApplication.UnicodeUTF8))
             print("Error loading file")
             os.chdir(cwd)
-
+        ################################
         cwd=os.getcwd()
         os.chdir(os.path.expanduser("~/.glparchis/"))
         config = configparser.ConfigParser()
@@ -2418,12 +2427,15 @@ class Mem:
             fileversion=None
             error()
             return False
-        if fileversion!="1.0":#Ir cambiando según necesidades
+        if fileversion!="1.1":#Ir cambiando según necesidades
             error()
             return False
         
         try:
-            self.inittime=datetime.datetime.strptime(config.get("game", "inittime"),"%Y-%m-%d %H:%M:%S.%f")
+            init=config.get("game", "inittime").split(".")[0]#Quita milissegundos
+            arrinit=init.split(":")
+            delta=datetime.timedelta(hours=int(arrinit[0]), minutes=int(arrinit[1]),  seconds=int(arrinit[2]))
+            self.inittime=datetime.datetime.now()-delta
         except:
             self.inittime=datetime.datetime.now()
             print ("No se ha podido cargar el inittime")
@@ -2445,6 +2457,41 @@ class Mem:
                 j.fichas.arr[1].mover(config.getint("jugador{0}".format(i), "rutaficha2"), False,  True)
                 j.fichas.arr[2].mover(config.getint("jugador{0}".format(i), "rutaficha3"), False,  True)
                 j.fichas.arr[3].mover(config.getint("jugador{0}".format(i), "rutaficha4"), False,  True)
+                #INICIO ESTADISTICAS
+                #Regeneracion de estad´isticas
+                #Genera dos arrays, con seixes y no seises
+                sixes=[]
+                nosixes=[]
+                for dice in range(1, 7):
+                    for n in range(config.getint("jugador{0}".format(i), "roll{}".format(dice))):
+                        if dice<6:
+                            nosixes.append(dice)#Mete los no seises por jugador
+                        else:
+                            sixes.append(dice)#Mete los seises por jugador
+                        
+                        
+                # Para generar las tiradas, hay que crear en jugador una TiradaTurno nuevo, usar la funcion jugador.tirarDAdo en ese turno, la funci´on hace el resto.
+                #list.pop(0) borra el primero de la lista y lo devuleve
+                #1 Los 3 seises
+                for n in range(config.getint("jugador{0}".format(i), "six3")):
+                    j.tiradaturno=TiradaTurno()
+                    j.tirarDado(sixes.pop(0))
+                    j.tirarDado(sixes.pop(0))
+                    j.tirarDado(sixes.pop(0))
+                    
+                #2 Segundo los seixes, cogiendo uno de nosiexes tambien
+                for n in range(len(sixes)):
+                    j.tiradaturno=TiradaTurno()
+                    j.tirarDado(6)
+                    j.tirarDado(nosixes.pop(0))
+                    
+                #3 Resto de n´umeros
+                for a in nosixes:
+                    j.tiradaturno=TiradaTurno()
+                    j.tirarDado(a)
+
+                #FIN  DE ESTADISTICAS
+
 
         fake=config.get("game", 'fakedice')
         if fake!="":

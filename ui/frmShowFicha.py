@@ -11,9 +11,9 @@ class frmShowFicha(QDialog, Ui_frmShowFicha):
         self.ficha=ficha
         self.setupUi(self)
         self.lblFicha.setPixmap(self.ficha.jugador.color.qpixmap())       
-        self.lblName.setText(self.trUtf8("Nombre: {0}".format(self.ficha.id)))
-        self.lblJugador.setText(self.trUtf8("Jugador: {0} ({1})".format(self.ficha.jugador.name, self.ficha.jugador.color.name)))
-        self.lblRuta.setText(self.trUtf8("Posición en ruta: {0}".format(self.ficha.posruta)))
+        self.lblName.setText(self.tr("Nombre: {0}".format(self.ficha.id)))
+        self.lblJugador.setText(self.tr("Jugador: {0} ({1})".format(self.ficha.jugador.name, self.ficha.jugador.color.name)))
+        self.lblRuta.setText(self.tr("Posición en ruta: {0}".format(self.ficha.posruta)))
         self.tblAmenazas_reload()
         if self.mem.jugadores.actual.tiradaturno.ultimoValor()!=None:
             (puedemover, movimiento)=self.ficha.puedeMover()
@@ -26,7 +26,7 @@ class frmShowFicha(QDialog, Ui_frmShowFicha):
 
     @pyqtSlot(str)      
     def on_cmbDestino_currentIndexChanged(self, stri):
-        self.group.setTitle(self.trUtf8("Amenazas en la casilla {0}".format(self.ficha.casilla(self.ficha.posruta+int(stri)).id)))
+        self.group.setTitle(self.tr("Amenazas en la casilla {0}".format(self.ficha.casilla(self.ficha.posruta+int(stri)).id)))
         self.table_reload(self.tblAmenazasDestino, self.ficha.amenazasDestino( int(stri)))
                 
         

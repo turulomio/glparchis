@@ -24,7 +24,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         if datetime.date.today()-datetime.date.fromordinal(int(self.settings.value("frmMain/lastupdate", 1)))>=datetime.timedelta(days=7):
             print ("Actualizando")
             self.checkUpdates(False)
-        self.setSound(self.settings.value("frmSettings/sound", True))
+        self.setSound(str2bool(self.settings.value("frmSettings/sound", "True")))
 
     @pyqtSlot()      
     def on_actionAcercaDe_triggered(self):
@@ -70,7 +70,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         
     @pyqtSlot()      
     def on_actionSound_triggered(self):
-        self.setSound(not self.settings.value("frmSettings/sound"))
+        self.setSound(not str2bool(self.settings.value("frmSettings/sound")))
     
     def setSound(self, bool):
         if bool==True:

@@ -86,7 +86,7 @@ class frmSettings(QDialog, Ui_frmSettings):
         self.setupUi(self)
         self.languages=SetLanguages()
         self.languages.qcombobox(self.cmbLanguage, self.settings.value("frmSettings/language", "en"))            
-        self.spinAutosaves.setValue(self.settings.value("frmSettings/autosaves", 15))
+        self.spinAutosaves.setValue(int(self.settings.value("frmSettings/autosaves", 15)))
 
     @pyqtSlot(str)      
     def on_cmbLanguage_currentIndexChanged(self, stri):        
