@@ -110,6 +110,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 return p
 
     def afterWinning(self):
+        print("AFTERWINNING")
         self.mem.jugadores.actual.log(self.tr("Has ganado la partida"))
         self.mem.jugadores.winner=self.mem.jugadores.actual
         self.mem.play("win")
