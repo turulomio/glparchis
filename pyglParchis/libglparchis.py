@@ -12,6 +12,7 @@ import time
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtOpenGL import *
+from PyQt5.QtWidgets import *
 from PyQt5.QtMultimedia import QSound
 
 #Cuando se modifique una version sacada se pondrá un + p.e. 20120921+
@@ -2409,8 +2410,7 @@ class Mem:
             
     def load(self, filename):       
         def error():           
-            QMessageBox.information(None, "glParchis", QApplication.translate("glparchis", "Este fichero es de una versión antigua o está estropeado. No puede ser cargado.", None, QApplication.UnicodeUTF8))
-            print("Error loading file")
+            qmessagebox(QApplication.translate("glparchis", "Este fichero es de una versión antigua o está estropeado. No puede ser cargado."))
             os.chdir(cwd)
         ################################
         cwd=os.getcwd()
@@ -2558,12 +2558,17 @@ def cargarQTranslator(qtranslator, language):
         
     qtranslator.load(url)
     QCoreApplication.installTranslator(qtranslator);
+
 def developing():
     """Función que permite avanzar si hay un parametro y da un aviso e interrumpe si no, se debe poner un if en donde se use"""
     if len (sys.argv)==1:
-        m=QMessageBox()
-        m.setIcon(QMessageBox.Information)
-        m.setText(QApplication.translate("frmMain", "Esta opción se está desarrollando", None, QApplication.UnicodeUTF8))
-        m.exec_()            
+        qmessagebox(QApplication.translate("frmMain", "Esta opción se está desarrollando"))
         return False
     return True
+
+def qmessagebox(message, type=QMessageBox.Information):
+    m=QMessageBox()
+    m.setWindowIcon(QIcon(":glparchis/ficharoja.png"))
+    m.setIcon(type)
+    m.setText(message)
+    m.exec_() 
