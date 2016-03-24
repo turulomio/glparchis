@@ -286,23 +286,6 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.on_JugadorDebeTirar()
 
     def highscoresUpdate(self):
-        def updateTable(hs, table): 
-            table.setRowCount(len(hs.arr))        
-            for i,  a in enumerate(hs.arr):
-                item=QTableWidgetItem(str(datetime.date.fromordinal(int(a[0]))))
-                table.setItem(i, 0, item)
-                item = QTableWidgetItem(a[1])
-                item.setIcon(colores.colorbyname(a[3]).qicon())                
-                table.setItem(i, 1, QTableWidgetItem(item))
-                item = QTableWidgetItem(str(datetime.timedelta(seconds=int(a[2]))))
-                item.setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
-                table.setItem(i, 2, item)
-                item = QTableWidgetItem(a[4])
-                item.setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
-                table.setItem(i, 3, item)
-        #############################
-        colores=SetColores()
-        colores.generar_colores(8)
-        updateTable(self.hs4, self.tblHighScores4)
-        updateTable(self.hs6, self.tblHighScores6)
-        updateTable(self.hs8, self.tblHighScores8)
+        self.hs4.qtablewidget(self.tblHighScores4)
+        self.hs6.qtablewidget(self.tblHighScores6)
+        self.hs8.qtablewidget(self.tblHighScores8)
