@@ -3,52 +3,52 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="../libglparchis.py" line="1348"/>
+        <location filename="../libglparchis.py" line="1368"/>
         <source>No es del jugador actual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1383"/>
+        <location filename="../libglparchis.py" line="1403"/>
         <source>Se ha pasado la meta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1389"/>
+        <location filename="../libglparchis.py" line="1409"/>
         <source>Hay una barrera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1398"/>
+        <location filename="../libglparchis.py" line="1418"/>
         <source>No hay espacio en la casilla</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1378"/>
+        <location filename="../libglparchis.py" line="1398"/>
         <source>No puede mover</source>
         <translation>Vous ne pouvez pas déplacer</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1396"/>
+        <location filename="../libglparchis.py" line="1416"/>
         <source>Obligado a sacar y a comer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1475"/>
+        <location filename="../libglparchis.py" line="1495"/>
         <source>Una ficha a llegado a la meta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1458"/>
+        <location filename="../libglparchis.py" line="1478"/>
         <source>He comido una ficha de {0} en la casilla {1}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1332"/>
+        <location filename="../libglparchis.py" line="1352"/>
         <source>No puede mover, porque debe sacar una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1334"/>
+        <location filename="../libglparchis.py" line="1354"/>
         <source>No puede mover, porque debe abrir una barrera</source>
         <translation type="unfinished"></translation>
     </message>
@@ -523,7 +523,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../libglparchis.py" line="2566"/>
+        <location filename="../libglparchis.py" line="2586"/>
         <source>Esta opción se está desarrollando</source>
         <translation type="unfinished"></translation>
     </message>
@@ -795,7 +795,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../libglparchis.py" line="2414"/>
+        <location filename="../libglparchis.py" line="2434"/>
         <source>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</source>
         <translation type="unfinished"></translation>
     </message>

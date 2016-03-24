@@ -470,20 +470,40 @@ class HighScore:
 
     def insert(self):
         """Solo se puede ejecutar, cuando haya un winner"""
-        self.arr.append((datetime.date.today().toordinal(), self.mem.jugadores.winner.name, (datetime.datetime.now()-self.mem.inittime).seconds, self.mem.jugadores.winner.color.name,  str(self.mem.jugadores.winer.score())))
-        self.arr=sorted(self.arr, key=lambda a:a[4],  reverse=True)     
+        self.arr.append((datetime.date.today().toordinal(), self.mem.jugadores.winner.name, (datetime.datetime.now()-self.mem.inittime).seconds, self.mem.jugadores.winner.color.name,  self.mem.jugadores.winner.score()))
+        self.sort()
+        
+    def qtablewidget(self, table): 
+        colores=SetColores()#Se pinta hs,hs6 y hs8
+        colores.generar_colores(8)
+        table.setRowCount(len(self.arr))        
+        self.sort()
+        for i,  a in enumerate(self.arr):
+            item=QTableWidgetItem(str(datetime.date.fromordinal(int(a[0]))))
+            table.setItem(i, 0, item)
+            item = QTableWidgetItem(a[1])
+            item.setIcon(colores.find_by_name(a[3]).qicon())                
+            table.setItem(i, 1, QTableWidgetItem(item))
+            item = QTableWidgetItem(str(datetime.timedelta(seconds=int(a[2]))))
+            item.setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
+            table.setItem(i, 2, item)
+            item = QTableWidgetItem(str(a[4]))
+            item.setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
+            table.setItem(i, 3, item)
 
     def load(self):
         try:
             f=codecs.open(os.path.expanduser("~/.glparchis/")+ "highscores"+str(self.players), "r", "utf-8")
             for line in f.readlines():
                 a=line[:-1].split(";")
-                self.arr.append((a[0], a[1], a[2], self.mem.colores.arr[0].compatibilityName(a[3]),  a[4]))
+                self.arr.append((a[0], a[1], a[2], self.mem.colores.arr[0].compatibilityName(a[3]),  int(a[4])))
             f.close()
         except:
             print("I couldn't load highscores")
             
-            
+    def sort(self):        
+        self.arr=sorted(self.arr, key=lambda a:a[4],  reverse=True)     
+
         
     def save(self):        
         f=codecs.open(os.path.expanduser("~/.glparchis/")+ "highscores"+str(self.players), "w", "utf-8")
@@ -741,7 +761,7 @@ class SetColores:
             if c==colo:
                 return c
                             
-    def colorbyname(self, name=None):
+    def find_by_name(self, name=None):
         for c in self.arr:
             if c.name==name:
                 return c
@@ -839,63 +859,63 @@ class SetRutas:
             self.generar_rutas8()
 
     def generar_rutas4(self):    
-        r=Ruta(self.mem.colores.colorbyname("yellow"), self.mem)
+        r=Ruta(self.mem.colores.find_by_name("yellow"), self.mem)
         r.append_id( [101]+list(range(5, 76+1)))
         self.arr.append(r)
-        r=Ruta(self.mem.colores.colorbyname("blue"), self.mem)
+        r=Ruta(self.mem.colores.find_by_name("blue"), self.mem)
         r.append_id([102]+ list(range(22, 68+1))+list(range(1, 17+1))+list(range(77, 84+1)))
         self.arr.append(r)
-        r=Ruta(self.mem.colores.colorbyname("red"), self.mem)
+        r=Ruta(self.mem.colores.find_by_name("red"), self.mem)
         r.append_id( [103]+list(range(39, 68+1))+list(range(1, 34+1))+list(range(85, 92+1)))
         self.arr.append(r) 
-        r=Ruta(self.mem.colores.colorbyname("green"), self.mem)
+        r=Ruta(self.mem.colores.find_by_name("green"), self.mem)
         r.append_id([104]+list(range(56, 68+1))+list(range(1, 51+1))+list(range(93, 100+1)))
         self.arr.append(r)        
             
 
     def generar_rutas6(self):    
-        r=Ruta(self.mem.colores.colorbyname("yellow"), self.mem)
+        r=Ruta(self.mem.colores.find_by_name("yellow"), self.mem)
         r.append_id([151]+list(range(5, 110+1)))
         self.arr.append(r)
-        r=Ruta(self.mem.colores.colorbyname("blue"), self.mem)
+        r=Ruta(self.mem.colores.find_by_name("blue"), self.mem)
         r.append_id([152]+list(range(22, 102+1))+list(range(1, 17+1))+list(range(111, 118+1)))
         self.arr.append(r)
-        r=Ruta(self.mem.colores.colorbyname("red"), self.mem)
+        r=Ruta(self.mem.colores.find_by_name("red"), self.mem)
         r.append_id( [153]+list(range(39, 102+1))+list(range(1, 34+1))+list(range(119, 126+1)))
         self.arr.append(r) 
-        r=Ruta(self.mem.colores.colorbyname("green"), self.mem)
+        r=Ruta(self.mem.colores.find_by_name("green"), self.mem)
         r.append_id([154]+list(range(56, 102+1))+list(range(1, 51+1))+list(range(127, 134+1)))
         self.arr.append(r)      
-        r=Ruta(self.mem.colores.colorbyname("dimgray"), self.mem)
+        r=Ruta(self.mem.colores.find_by_name("dimgray"), self.mem)
         r.append_id([155]+list(range(73, 102+1))+list(range(1, 68+1))+list(range(135, 142+1)))
         self.arr.append(r)
-        r=Ruta(self.mem.colores.colorbyname("fuchsia"), self.mem)
+        r=Ruta(self.mem.colores.find_by_name("fuchsia"), self.mem)
         r.append_id([156]+list(range(90, 102+1))+list(range(1, 85+1))+list(range(143, 150+1)))
         self.arr.append(r)       
 
     def generar_rutas8(self):    
-        r=Ruta(self.mem.colores.colorbyname("yellow"), self.mem)
+        r=Ruta(self.mem.colores.find_by_name("yellow"), self.mem)
         r.append_id([201]+list(range(5, 144+1)))
         self.arr.append(r)
-        r=Ruta(self.mem.colores.colorbyname("blue"), self.mem)
+        r=Ruta(self.mem.colores.find_by_name("blue"), self.mem)
         r.append_id([202]+list(range(22, 136+1))+list(range(1, 17+1))+list(range(145, 152+1)))
         self.arr.append(r)
-        r=Ruta(self.mem.colores.colorbyname("red"), self.mem)
+        r=Ruta(self.mem.colores.find_by_name("red"), self.mem)
         r.append_id( [203]+list(range(39, 136+1))+list(range(1, 34+1))+list(range(153, 160+1)))
         self.arr.append(r) 
-        r=Ruta(self.mem.colores.colorbyname("green"), self.mem)
+        r=Ruta(self.mem.colores.find_by_name("green"), self.mem)
         r.append_id([204]+list(range(56, 136+1))+list(range(1, 51+1))+list(range(161, 168+1)))
         self.arr.append(r)            
-        r=Ruta(self.mem.colores.colorbyname("dimgray"), self.mem)
+        r=Ruta(self.mem.colores.find_by_name("dimgray"), self.mem)
         r.append_id([205]+list(range(73, 136+1))+list(range(1, 68+1))+list(range(169, 176+1)))
         self.arr.append(r)
-        r=Ruta(self.mem.colores.colorbyname("fuchsia"), self.mem)
+        r=Ruta(self.mem.colores.find_by_name("fuchsia"), self.mem)
         r.append_id([206]+list(range(90, 136+1))+list(range(1, 85+1))+list(range(177, 184+1)))
         self.arr.append(r)
-        r=Ruta(self.mem.colores.colorbyname("darkorange"), self.mem)
+        r=Ruta(self.mem.colores.find_by_name("darkorange"), self.mem)
         r.append_id([207]+list(range(107, 136+1))+list(range(1, 102+1))+list(range(185, 192+1)))
         self.arr.append(r) 
-        r=Ruta(self.mem.colores.colorbyname("darkturquoise"), self.mem)
+        r=Ruta(self.mem.colores.find_by_name("darkturquoise"), self.mem)
         r.append_id([208]+list(range(124, 136+1))+list(range(1, 119+1))+list(range(193, 200+1)))
         self.arr.append(r)    
 
@@ -1009,13 +1029,13 @@ class SetCasillas:
     
         def defineColor( id):
             if id==5 or (id>=69 and id<=76) or id==101:
-               return self.mem.colores.colorbyname("yellow")
+               return self.mem.colores.find_by_name("yellow")
             elif id==22 or (id>=77 and id<=84) or id==102:
-               return self.mem.colores.colorbyname("blue")
+               return self.mem.colores.find_by_name("blue")
             elif id==39 or (id>=85 and id<=92) or id==103:
-               return self.mem.colores.colorbyname("red")
+               return self.mem.colores.find_by_name("red")
             elif id==56 or (id>=93 and id<=100) or id==104:
-               return self.mem.colores.colorbyname("green")
+               return self.mem.colores.find_by_name("green")
             else:
                 return Color(255, 255, 255)            
                 
@@ -1079,17 +1099,17 @@ class SetCasillas:
     
         def defineColor( id):
             if id==5 or (id>=103 and id<=110) or id==151:
-               return self.mem.colores.colorbyname("yellow")
+               return self.mem.colores.find_by_name("yellow")
             elif id==22 or (id>=111 and id<=118) or id==152:
-               return self.mem.colores.colorbyname("blue")
+               return self.mem.colores.find_by_name("blue")
             elif id==39 or (id>=119 and id<=126) or id==153:
-               return self.mem.colores.colorbyname("red")
+               return self.mem.colores.find_by_name("red")
             elif id==56 or (id>=127 and id<=134) or id==154:
-               return self.mem.colores.colorbyname("green")
+               return self.mem.colores.find_by_name("green")
             elif id==73 or (id>=135 and id<=142) or id==155:
-               return self.mem.colores.colorbyname("dimgray")
+               return self.mem.colores.find_by_name("dimgray")
             elif id==90 or (id>=143 and id<=150) or id==156:
-               return self.mem.colores.colorbyname("fuchsia")
+               return self.mem.colores.find_by_name("fuchsia")
             else:
                 return Color(255, 255, 255)            
                                 
@@ -1163,21 +1183,21 @@ class SetCasillas:
     
         def defineColor( id):
             if id in (5,  137, 138, 139, 140, 141, 142, 143, 144, 201) :
-               return self.mem.colores.colorbyname("yellow")
+               return self.mem.colores.find_by_name("yellow")
             elif id in (22, 145, 146, 147, 148, 149, 150, 151, 152, 202):
-               return self.mem.colores.colorbyname("blue")
+               return self.mem.colores.find_by_name("blue")
             elif id in (39, 153, 154,  155, 156, 157, 158, 159, 160, 203) :
-               return self.mem.colores.colorbyname("red")
+               return self.mem.colores.find_by_name("red")
             elif id in (56, 161, 162, 163, 164, 165, 166, 167, 168, 204):
-               return self.mem.colores.colorbyname("green")
+               return self.mem.colores.find_by_name("green")
             elif id in (73, 169, 170, 171, 172, 173, 174, 175, 176, 205):
-               return self.mem.colores.colorbyname("dimgray")
+               return self.mem.colores.find_by_name("dimgray")
             elif id in (90, 177, 178, 179, 180, 181, 182, 183, 184, 206):
-               return self.mem.colores.colorbyname("fuchsia")
+               return self.mem.colores.find_by_name("fuchsia")
             elif id in (107, 185, 186, 187, 188, 189, 190, 191, 192, 207) :
-               return self.mem.colores.colorbyname("darkorange")
+               return self.mem.colores.find_by_name("darkorange")
             elif id in (124, 193, 194, 195, 196, 197, 198, 199, 200, 208) :
-               return self.mem.colores.colorbyname("darkturquoise")
+               return self.mem.colores.find_by_name("darkturquoise")
             else:
                 return Color(255, 255, 255)            
                 
