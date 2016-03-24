@@ -83,8 +83,8 @@ class QTableStatistics(QTableWidget):
             item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter)
             self.setItem(14, column, item)    
     
-            self.item(16, column).setText(str(self.mem.jugadores.score(j)))
-            
+            self.item(16, column).setText(str(j.score()))
+        #Ultima columna
         self.item(0, self.mem.maxplayers).setText(str(tj.numThrows()))
         for i in range(2, 8):
             self.item(i, self.mem.maxplayers).setText(str(tj.numTimesDiceGetNumber(i-1)))

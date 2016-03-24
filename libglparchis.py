@@ -469,7 +469,7 @@ class HighScore:
 
     def insert(self):
         """Solo se puede ejecutar, cuando haya un winner"""
-        self.arr.append((datetime.date.today().toordinal(), self.mem.jugadores.winner.name, (datetime.datetime.now()-self.mem.inittime).seconds, self.mem.jugadores.winner.color.name,  str(self.mem.jugadores.score())))
+        self.arr.append((datetime.date.today().toordinal(), self.mem.jugadores.winner.name, (datetime.datetime.now()-self.mem.inittime).seconds, self.mem.jugadores.winner.color.name,  str(self.mem.jugadores.winer.score())))
         self.arr=sorted(self.arr, key=lambda a:a[4],  reverse=True)     
 
     def load(self):
@@ -487,6 +487,7 @@ class HighScore:
     def save(self):        
         f=codecs.open(os.path.expanduser("~/.glparchis/")+ "highscores"+str(self.players), "w", "utf-8")
         s=""
+        print (self.arr)
         for a in self.arr[:10]:
             s=s+"{0};{1};{2};{3};{4}\n".format(a[0], a[1],  a[2], a[3], a[4])
         f.write(s)
@@ -565,7 +566,27 @@ class Jugador:
             if f.casilla().tieneBarrera()==True:
                 resultado.append(f.casilla())
         return resultado
-        
+                
+    def score(self):
+        """Da la puntuación de un jugador, durante o al final de la partida 
+       
+       Score sumatorio(casillas por mover otros jugadores si llevan 
+       En caso de Ganar: 500 puntos + (comidas por mi-comidas por otros)*40 + sumatorio(casillas por mover del resto de jugadores)*2+ (casillas movidas)*
+       
+       Score en partida: (comidas por mi - comidas por otros)*40 + (casillas movidas)*2
+       
+       )
+       """
+        if self.HaGanado()==True:
+            sum_pormover=0
+            for j in self.mem.jugadores.arr:
+                if j!=self:
+                    sum_pormover=sum_pormover+j.casillasPorMover()
+            return 500+(self.comidaspormi-self.comidasporotro)*40+ self.casillasMovidas()*2+sum_pormover*5
+        else:#No ha ganado
+            return (self.comidaspormi-self.comidasporotro)*40+ self.casillasMovidas()*2
+
+
     def tieneBarreras(self):
         if len(self.barreras())>0:
             return True
@@ -785,28 +806,6 @@ class SetJugadores:
                 return True
         return False
         
-        
-    def score(self, jugador=None):
-        """Da la puntuación de un jugador, durante o al final de la partida 
-        Saca la puntuación del jugador, se usa para el highscore y tiene en cuenta el tiempo 
-        y lo lejos que han acabado los jugadores de la partida,
-        Resta el número de casillas del propio jugador
-       Además se sumará la diferencia de comidas y comidas por otro *30 
-       
-       Si no se pasa parámetro se usa para seleccionar el winner cuando haya acabado la partida"""
-        if jugador==None:
-            jugador=self.winner
-        resultado=0
-        jugadorcm=jugador.casillasPorMover()
-        for j in  self.arr:
-            if j != jugador:
-                jcm=j.casillasPorMover()
-                if jcm>jugadorcm:#Ya que si no salen valores negativos
-                    resultado=resultado+jcm-jugadorcm
-        resultado=resultado+(jugador.comidaspormi-jugador.comidasporotro)*40
-        if resultado<0:#Ya que la direfencia de comidas puede dar negativo
-            resultado=0
-        return resultado
         
         
 class SetRutas:        
@@ -2344,8 +2343,7 @@ class Mem:
                 if os.path.exists(url)==True:
                     break
             QSound.play(url)
-            time.sleep(0.4)
-            QCoreApplication.processEvents() 
+            time.sleep(0.2)
    
     def generar_fichas(self):
         """Debe generarse despuñes de jugadores"""
