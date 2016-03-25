@@ -1,5 +1,6 @@
 SOURCES         = libglparchis.py \
                   glparchis.py \
+                  project_i18n.py \
                   ui/frmInitGame.py \
                   ui/Ui_frmInitGame.py \
                   ui/frmMain.py \
