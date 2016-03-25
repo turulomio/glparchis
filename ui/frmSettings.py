@@ -40,8 +40,8 @@ class SetLanguages:
         
     def load_all(self):
         self.append(Language("en","English" ))
-        self.append(Language("es",self.tr("Espanol" )))
-        self.append(Language("fr",self.tr("Francais" )))
+        self.append(Language("es",QApplication.translate("glparchis","Espanol" )))
+        self.append(Language("fr",QApplication.translate("glparchis","Francais" )))
         self.append(Language("ro","Rom\xe2n" ))
         self.append(Language("ru",'\u0420\u0443\u0441\u0441\u043a\u0438\u0439' ))
 

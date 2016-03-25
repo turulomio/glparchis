@@ -62,19 +62,6 @@
     </message>
 </context>
 <context>
-    <name>SetLanguages</name>
-    <message>
-        <location filename="../ui/frmSettings.py" line="43"/>
-        <source>Espanol</source>
-        <translation>Español</translation>
-    </message>
-    <message>
-        <location filename="../ui/frmSettings.py" line="44"/>
-        <source>Francais</source>
-        <translation>Français</translation>
-    </message>
-</context>
-<context>
     <name>frmAbout</name>
     <message>
         <location filename="../ui/Ui_frmAbout.py" line="345"/>
@@ -806,6 +793,16 @@
         <location filename="../libglparchis.py" line="2434"/>
         <source>Este fichero es de una version antigua o esta estropeado. No puede ser cargado.</source>
         <translation>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</translation>
+    </message>
+    <message>
+        <location filename="../ui/frmSettings.py" line="43"/>
+        <source>Espanol</source>
+        <translation>Español</translation>
+    </message>
+    <message>
+        <location filename="../ui/frmSettings.py" line="44"/>
+        <source>Francais</source>
+        <translation>Français</translation>
     </message>
 </context>
 <context>

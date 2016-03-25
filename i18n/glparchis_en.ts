@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="en" sourcelanguage="">
+<!DOCTYPE TS>
+<TS version="2.1" language="en">
 <context>
     <name>Ficha</name>
     <message>
@@ -59,19 +60,6 @@
         <location filename="../ui/qtablestatistics.py" line="19"/>
         <source>Total</source>
         <translation>Total</translation>
-    </message>
-</context>
-<context>
-    <name>SetLanguages</name>
-    <message>
-        <location filename="../ui/frmSettings.py" line="43"/>
-        <source>Espanol</source>
-        <translation>Español</translation>
-    </message>
-    <message>
-        <location filename="../ui/frmSettings.py" line="44"/>
-        <source>Francais</source>
-        <translation>Français</translation>
     </message>
 </context>
 <context>
@@ -497,7 +485,7 @@
     </message>
     <message>
         <location filename="../ui/frmMain.py" line="23"/>
-        <source>glParchis 2010-{}. GNU General Public License &#xa9;</source>
+        <source>glParchis 2010-{}. GNU General Public License ©</source>
         <translation>glParchis 2010-{}. GNU General Public License ©</translation>
     </message>
     <message>
@@ -806,6 +794,16 @@
         <location filename="../libglparchis.py" line="2434"/>
         <source>Este fichero es de una version antigua o esta estropeado. No puede ser cargado.</source>
         <translation>This file is old or it is broken. It can&apos;t be loaded.</translation>
+    </message>
+    <message>
+        <location filename="../ui/frmSettings.py" line="43"/>
+        <source>Espanol</source>
+        <translation>Español</translation>
+    </message>
+    <message>
+        <location filename="../ui/frmSettings.py" line="44"/>
+        <source>Francais</source>
+        <translation>Français</translation>
     </message>
 </context>
 <context>
