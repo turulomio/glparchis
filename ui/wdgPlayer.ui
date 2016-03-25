@@ -89,7 +89,7 @@
            <string>Selecciona si quieres que el jugador lo controle el ordenador</string>
           </property>
           <property name="text">
-           <string>¿Inteligencia artificial?</string>
+           <string>Inteligencia artificial?</string>
           </property>
          </widget>
         </item>

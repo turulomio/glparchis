@@ -1,3 +1,18 @@
+
+XXXXXXXX
+--------
+- Anadido el script project_i18n para traducir la documentacion del proyecto
+
+20160325
+--------
+- Sound configuration is saved now in settings
+- Makefile have been changed to compile with make and to install with make install
+- Windows sources are not going to be released
+- 32 bits and 64 bits windows versions are going to be released
+- Phonon support have been droped. Now we use QMultimedia
+- We have migrated to PyQt5
+- We have added full screen support
+
 20130716
 ======== 
 - When you eat a piece in the first spacem, this piece is the last in arrive, when both pieces are of different color.
