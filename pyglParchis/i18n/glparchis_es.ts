@@ -62,6 +62,19 @@
     </message>
 </context>
 <context>
+    <name>SetLanguages</name>
+    <message>
+        <location filename="../ui/frmSettings.py" line="43"/>
+        <source>Espanol</source>
+        <translation>Español</translation>
+    </message>
+    <message>
+        <location filename="../ui/frmSettings.py" line="44"/>
+        <source>Francais</source>
+        <translation>Français</translation>
+    </message>
+</context>
+<context>
     <name>frmAbout</name>
     <message>
         <location filename="../ui/Ui_frmAbout.py" line="345"/>
