@@ -23,7 +23,9 @@ class wdgOGL(QGLWidget):
         self.rotX=0
         self.rotY=0
         self.rotZ=0
-#        self.visualizacion=0
+        self.rotCenter=0
+        
+        self.rotatecenter=0#Si es 1 rota en sentido agujas del reloj desde el centro del tablero, si -1 al reves, si 0 no rota desde el centro
         
     def assign_mem(self, mem):
         self.mem=mem
@@ -68,10 +70,11 @@ class wdgOGL(QGLWidget):
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
     def paintGL(self):   
+        inicio=datetime.datetime.now()
         glLoadIdentity()
         self.qglClearColor(QColor())
 
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT| GL_STENCIL_BUFFER_BIT)#GL_COLOR_BUFFER_BIT | 
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT| GL_STENCIL_BUFFER_BIT)
         if self.mem.maxplayers==8:
             glTranslated(-31.5, -17,  -85)
         elif self.mem.maxplayers==4:
@@ -79,6 +82,20 @@ class wdgOGL(QGLWidget):
         elif self.mem.maxplayers==6:
             glTranslated(-31.5, -24,  -80)
             
+        if self.rotatecenter==1:
+            #Para rotar desde elcentro, hay que llevar el centro al origen
+            if self.mem.maxplayers==4:
+                glTranslated(31.5, 31.5, 0)
+                glRotated(self.rotCenter, 0, 0, 1)
+                glTranslated(-31.5, -31.5, 0)
+            elif self.mem.maxplayers==6:
+                glTranslated(31.5, 24,  0)
+                glRotated(self.rotCenter, 0, 0, 1)
+                glTranslated(-31.5, -24,  0)
+            elif self.mem.maxplayers==8:
+                glTranslated(31.5, 17,  0)
+                glRotated(self.rotCenter, 0, 0, 1)
+                glTranslated(-31.5, -17, 0)
         glRotated(self.rotX, 1,0 , 0)
         glRotated(self.rotY, 0,1 , 0)
         glRotated(self.rotZ, 0,0 , 1)
@@ -91,7 +108,7 @@ class wdgOGL(QGLWidget):
                 c.dibujar_fichas(self)
             
         self.mem.dado.dibujar(self)
-#        swapBuffers()
+        print("paintGL", datetime.datetime.now()-inicio)
 
     def resizeGL(self, width, height):
         glViewport(0, 0, width, height)
@@ -102,6 +119,7 @@ class wdgOGL(QGLWidget):
         glMatrixMode(GL_MODELVIEW)
 
     def keyPressEvent(self, event):
+        self.rotatecenter=0
         if event.key() == Qt.Key_X: # toggle mode
             self.rotX=self.rotX+5
         if event.key() == Qt.Key_Y: # toggle mode
@@ -112,13 +130,13 @@ class wdgOGL(QGLWidget):
             self.rotX=0
             self.rotY=0
             self.rotZ=0
-
+        if event.key() == Qt.Key_M: # toggle mode
+            self.rotatecenter=1
+            self.rotCenter=self.rotCenter+5
         self.updateGL()
     
     def mouseDoubleClickEvent(self, event):
-        
         self.doubleClicked.emit()
-#        self.emit(SIGNAL("doubleClicked()"))
                 
     def mousePressEvent(self, event):        
         def pickup(event, right):
@@ -153,7 +171,7 @@ class wdgOGL(QGLWidget):
             elif id_name==33:#casillas de 17 a 121
                 return mem.dado
             elif id_name>=34 and id_name<=34+self.mem.casillas.number:#casillas de 17 a 121
-                return mem.casillas.casilla(id_name-34)
+                return mem.casillas.find_by_id(id_name-34)
             else:
                 return None
                 
@@ -208,7 +226,6 @@ class wdgOGL(QGLWidget):
             if self.mem.selFicha!=None:
                 self.mem.jugadores.actual.log(self.tr("Se ha hecho click en la ficha {0}".format(self.mem.selFicha.id)))
                 self.fichaClicked.emit()
-#                self.emit(SIGNAL("fichaClicked()"))#No se pasa parametro porque es self.mem.selFicha
         elif event.buttons() & Qt.RightButton:
             pickup(event, True)                    
         self.updateGL()

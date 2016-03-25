@@ -3,52 +3,52 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="../libglparchis.py" line="1368"/>
+        <location filename="../libglparchis.py" line="1310"/>
         <source>No es del jugador actual</source>
         <translation>No es del jugador actual</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1403"/>
+        <location filename="../libglparchis.py" line="1345"/>
         <source>Se ha pasado la meta</source>
         <translation>Se ha pasado la meta</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1409"/>
+        <location filename="../libglparchis.py" line="1351"/>
         <source>Hay una barrera</source>
         <translation>Hay una barrera</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1418"/>
+        <location filename="../libglparchis.py" line="1360"/>
         <source>No hay espacio en la casilla</source>
         <translation>No hay espacio en la casilla</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1398"/>
+        <location filename="../libglparchis.py" line="1340"/>
         <source>No puede mover</source>
         <translation>No puede mover</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1416"/>
+        <location filename="../libglparchis.py" line="1358"/>
         <source>Obligado a sacar y a comer</source>
         <translation>Obligado a sacar y a comer</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1478"/>
+        <location filename="../libglparchis.py" line="1418"/>
         <source>He comido una ficha de {0} en la casilla {1}</source>
         <translation>He comido una ficha de {0} en la casilla {1}</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1352"/>
+        <location filename="../libglparchis.py" line="1294"/>
         <source>No puede mover, porque debe sacar una ficha</source>
         <translation>No puede mover, porque debe sacar una ficha</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1354"/>
+        <location filename="../libglparchis.py" line="1296"/>
         <source>No puede mover, porque debe abrir una barrera</source>
         <translation>No puede mover, porque debe abrir una barrera</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1495"/>
+        <location filename="../libglparchis.py" line="1435"/>
         <source>Una ficha ha llegado a la meta</source>
         <translation>Una ficha ha llegado a la meta</translation>
     </message>
@@ -503,7 +503,7 @@
         <translation>Salir del modo de pantalla completa</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="2586"/>
+        <location filename="../libglparchis.py" line="2388"/>
         <source>Esta opcion se esta desarrollando</source>
         <translation>Esta opción se esta desarrollando</translation>
     </message>
@@ -740,57 +740,57 @@
 <context>
     <name>glparchis</name>
     <message>
-        <location filename="../libglparchis.py" line="238"/>
+        <location filename="../libglparchis.py" line="237"/>
         <source>Sacar un 1</source>
         <translation>Sacar un 1</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="239"/>
+        <location filename="../libglparchis.py" line="238"/>
         <source>Sacar un 2</source>
         <translation>Sacar un 2</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="240"/>
+        <location filename="../libglparchis.py" line="239"/>
         <source>Sacar un 3</source>
         <translation>Sacar un 3</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="241"/>
+        <location filename="../libglparchis.py" line="240"/>
         <source>Sacar un 4</source>
         <translation>Sacar un 4</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="242"/>
+        <location filename="../libglparchis.py" line="241"/>
         <source>Sacar un 5</source>
         <translation>Sacar un 5</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="243"/>
+        <location filename="../libglparchis.py" line="242"/>
         <source>Sacar un 6</source>
         <translation>Sacar un 6</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="244"/>
+        <location filename="../libglparchis.py" line="243"/>
         <source>Sacar un 7</source>
         <translation>Sacar un 7</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="245"/>
+        <location filename="../libglparchis.py" line="244"/>
         <source>Contar 10</source>
         <translation>Contar 10</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="246"/>
+        <location filename="../libglparchis.py" line="245"/>
         <source>Contar 20</source>
         <translation>Contar 20</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="247"/>
+        <location filename="../libglparchis.py" line="246"/>
         <source>Sacar ficha</source>
         <translation>Sacar ficha</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="2434"/>
+        <location filename="../libglparchis.py" line="2236"/>
         <source>Este fichero es de una version antigua o esta estropeado. No puede ser cargado.</source>
         <translation>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</translation>
     </message>
@@ -1300,7 +1300,7 @@ Procedimiento de instalación para fuentes windows
 <context>
     <name>wdgOGL</name>
     <message>
-        <location filename="../ui/wdgOGL.py" line="209"/>
+        <location filename="../ui/wdgOGL.py" line="227"/>
         <source>Se ha hecho click en la ficha {0}</source>
         <translation>Se ha hecho click en la ficha {0}</translation>
     </message>
