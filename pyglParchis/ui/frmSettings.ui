@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Configuración de glParchis</string>
+   <string>Configuracion de glParchis</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../images/glparchis.qrc">
@@ -30,7 +30,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Configuración de glParchis</string>
+        <string>Configuracion de glParchis</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -122,7 +122,7 @@
          <item row="1" column="0">
           <widget class="QLabel" name="nMeroDeAutoguardadosLabel">
            <property name="text">
-            <string>Número de autoguardados</string>
+            <string>Numero de autoguardados</string>
            </property>
           </widget>
          </item>
@@ -135,7 +135,7 @@
             </sizepolicy>
            </property>
            <property name="toolTip">
-            <string>Si quiere autoguardado seleccione un número mayor que 0</string>
+            <string>Si quiere autoguardado seleccione un numero mayor que 0</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

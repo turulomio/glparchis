@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Configuración inicial de la partida</string>
+   <string>Configuracion inicial de la partida</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../images/glparchis.qrc">
@@ -38,8 +38,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>966</width>
-         <height>469</height>
+         <width>984</width>
+         <height>506</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -66,8 +66,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>964</width>
-           <height>443</height>
+           <width>69</width>
+           <height>16</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_3">

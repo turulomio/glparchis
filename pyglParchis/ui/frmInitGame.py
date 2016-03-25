@@ -16,10 +16,10 @@ class frmInitGame(QWizard, Ui_frmInitGame):
         self.setupUi(self)
         self.setGeometry(parent.width()*0.2/2, parent.height()*0.2/2, parent.width()*0.8,  parent.height()*0.8)
         self.wizardPage1.setTitle(self.tr("Configurar la partida"))
-        self.wizardPage1.setSubTitle(self.tr("Selecciona las fichas que van a jugar y quién va a jugar con ellas"))
+        self.wizardPage1.setSubTitle(self.tr("Selecciona las fichas que van a jugar y quien va a jugar con ellas"))
 
         self.wizardPage2.setTitle(self.tr("Elegir el jugador que empieza la partida"))
-        self.wizardPage2.setSubTitle(self.tr("El jugador que saque la puntuación más alta, empieza la partida"))        
+        self.wizardPage2.setSubTitle(self.tr("El jugador que saque la puntuacion mas alta, empieza la partida"))        
         
         self.setButtonText(QWizard.FinishButton, self.tr("Los jugadores lanzan sus dados"))
         random.seed(datetime.datetime.now().microsecond)
@@ -39,7 +39,7 @@ class frmInitGame(QWizard, Ui_frmInitGame):
         
 
     def validateCurrentPage(self):
-        """Valida la pestaña del widget"""
+        """Valida la pestana del widget"""
         if self.currentId()==0:
             #Desactiva el cmd si no juega
             self.set=SetWdgPlayers()
@@ -63,7 +63,7 @@ class frmInitGame(QWizard, Ui_frmInitGame):
                     self.setButtonText(QWizard.FinishButton, self.tr("Empieza la partida"))          
                     return False#Debe haber la validaci´on con playerstarts
                 else:#Mas de dos jugadores
-                    self.lblPlayerStarts.setText(self.tr("Los jugadores {} deben tirar hasta que se aclare quién empieza la partida".format(maxplayers.strNames())))
+                    self.lblPlayerStarts.setText(self.tr("Los jugadores {} deben tirar hasta que se aclare quien empieza la partida".format(maxplayers.strNames())))
                     self.set=maxplayers
                     self.scrollPlayerDado.addWidget(self.set.qwidget())
                     return False

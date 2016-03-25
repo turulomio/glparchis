@@ -63,11 +63,11 @@
      <item>
       <widget class="QTabWidget" name="tab">
        <property name="currentIndex">
-        <number>3</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tabGLParchis">
         <attribute name="title">
-         <string>Créditos</string>
+         <string>Creditos</string>
         </attribute>
         <layout class="QHBoxLayout">
          <item>

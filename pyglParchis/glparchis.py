@@ -20,8 +20,8 @@ except:
 
 sys.setrecursionlimit(100000)
 app = QApplication(sys.argv)
-app.setOrganizationName("Mariano Muñoz ©")
-app.setOrganizationDomain("turulomio.users.sourceforge.net")
+app.setOrganizationName("glParchis")
+app.setOrganizationDomain("glparchis.sourceforge.net")
 app.setApplicationName("glParchis")
 app.setQuitOnLastWindowClosed(True)
 

@@ -1,10 +1,10 @@
  
 from math import *
 def posfichas6(maxcasillas, posCasillas):
-    """La posición de fichas de radio 1.4 es decir diametro 2.8 se colocan centradas en 1.5 de alto
-    En lo ancho será a 0.3 de los extremos , es dicir a 1.7 el centro y a 5,3
+    """La posicion de fichas de radio 1.4 es decir diametro 2.8 se colocan centradas en 1.5 de alto
+    En lo ancho sera a 0.3 de los extremos , es dicir a 1.7 el centro y a 5,3
     
-    En las oblicuas se mete 0.7 del lado en el que está oblicuo
+    En las oblicuas se mete 0.7 del lado en el que esta oblicuo
     """
 #    def n(id):
 #        """Para horizontales"""

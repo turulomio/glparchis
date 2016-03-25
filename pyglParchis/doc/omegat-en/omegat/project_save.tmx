@@ -694,6 +694,14 @@
     </tu>
     <tu>
       <tuv lang="ES-ES">
+        <seg>English: Mariano Munoz &lt;turulomio@yahoo.es&gt;</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20160325T092939Z">
+        <seg>[parcial]English: Mariano Muñoz &lt;turulomio@yahoo.es&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
         <seg>English: Mariano Muñoz &lt;turulomio@yahoo.es&gt;</seg>
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T065748Z">
@@ -826,6 +834,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20111102T131450Z">
         <seg>User guide</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Mariano Munoz &lt;turulomio@yahoo.es&gt;</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20160325T092937Z">
+        <seg>Mariano Munoz &lt;turulomio@yahoo.es&gt;</seg>
       </tuv>
     </tu>
     <tu>
@@ -1082,6 +1098,14 @@
       </tuv>
       <tuv lang="EN-GB" changeid="root" changedate="20120902T074745Z">
         <seg>Si, no importa que pregunte esá en casa, ya que se escuye en tiene barrera</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="ES-ES">
+        <seg>Traduccion</seg>
+      </tuv>
+      <tuv lang="EN-GB" changeid="root" changedate="20160325T092938Z">
+        <seg>Traduccion</seg>
       </tuv>
     </tu>
     <tu>

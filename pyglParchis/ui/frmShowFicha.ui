@@ -21,7 +21,7 @@
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
-       <string>Información</string>
+       <string>Informacion</string>
       </attribute>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
@@ -114,7 +114,7 @@
            <item>
             <widget class="QLabel" name="label">
              <property name="text">
-              <string>Número de casillas a avanzar</string>
+              <string>Numero de casillas a avanzar</string>
              </property>
             </widget>
            </item>
@@ -125,7 +125,7 @@
              </property>
              <item>
               <property name="text">
-               <string>Selecciona un número</string>
+               <string>Selecciona un numero</string>
               </property>
              </item>
              <item>
@@ -200,7 +200,7 @@
               </column>
               <column>
                <property name="text">
-                <string>Thread</string>
+                <string>Amenaza</string>
                </property>
               </column>
              </widget>
