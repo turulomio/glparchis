@@ -8,12 +8,11 @@ from posfichas4 import *
 from poscasillas6 import *
 from posfichas6 import *
 import os,  random,   configparser,  datetime,  codecs,  math
-import time
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtOpenGL import *
 from PyQt5.QtWidgets import *
-from PyQt5.QtMultimedia import QSound
+from PyQt5.QtMultimedia import *
 
 #Cuando se modifique una version sacada se pondra un + p.e. 20120921+
 version="20160325"
@@ -78,43 +77,43 @@ class Dado(QObject):
         glPushMatrix();
         if alone==False:
             if ogl.mem.maxplayers==4:
-                if ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("yellow"):
+                if ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("yellow"):
                     self.position=(10, 51, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("blue"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("blue"):
                     self.position=(9, 10, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("red"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("red"):
                     self.position=(50, 10, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("green"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("green"):
                     self.position=(50, 51, 1)
             elif ogl.mem.maxplayers==6:
-                if ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("yellow"):
+                if ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("yellow"):
                     self.position=(30, 31, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("blue"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("blue"):
                     self.position=(23, 27, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("red"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("red"):
                     self.position=(23, 18, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("green"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("green"):
                     self.position=(30, 14, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("dimgray"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("dimgray"):
                     self.position=(37, 18, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("fuchsia"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("fuchsia"):
                     self.position=(37, 27, 1)
             else:
-                if ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("yellow"):
+                if ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("yellow"):
                     self.position=(30, 30, .9)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("blue"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("blue"):
                     self.position=(19, 27, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("red"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("red"):
                     self.position=(15, 15, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("green"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("green"):
                     self.position=(19, 3, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("dimgray"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("dimgray"):
                     self.position=(30, 0, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("fuchsia"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("fuchsia"):
                     self.position=(40, 3, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("darkorange"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("darkorange"):
                     self.position=(44, 15, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.jugador("darkturquoise"):
+                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("darkturquoise"):
                     self.position=(40, 27, 1)
             
             glTranslatef(self.position[0],self.position[1],self.position[2]);
@@ -577,9 +576,6 @@ class Jugador:
             self.tiradahistorica.arr.append(self.tiradaturno)
         return tirada.valor
 
-        
-        
-        
     def barreras(self):
         """Devuelve una lista con las casillas en las que el jugador tiene barrera"""
         resultado=[]
@@ -724,7 +720,7 @@ class Ruta:
     def append_id(self,  arr):
         """Funcion que recibe un arr con los id de la ruta"""
         for id in arr:
-            self.arr.append(self.mem.casillas.casilla(id))
+            self.arr.append(self.mem.casillas.find_by_id(id))
             
     def length(self):
         """Saca el numero de casillas """
@@ -802,9 +798,6 @@ class SetJugadores:
             self.actual.movimientos_acumulados=None
             self.actual.LastFichaMovida=None
 
-        
-
-        
     def vaGanando(self):
         """Devuelve el objeto del jugador que va ganando"""
         resultado=self.arr[0]#Selecciona primer jugador
@@ -815,7 +808,7 @@ class SetJugadores:
                 resultado=j
         return resultado
         
-    def jugador(self, colorname):
+    def find_by_colorname(self, colorname):
         for j in self.arr:
             if j.color.name==colorname:
                 return j
@@ -840,15 +833,6 @@ class SetRutas:
     def ruta(self, id):        
         """id es el mismo que el orden de los colores"""
         return self.arr[id]
-        
-#    def rutas1(self):
-#        """Funcion que devuelve un arr con punteros a las casillas que estan en ruta1
-#        Para poder saber de que color son, se puede usar casilla.color"""
-#        resultado=[]
-#        for r in self.arr:
-#            resultado.append(r.ruta1())
-#        return resultado
-
         
     def generar_rutas(self):
         if self.numplayers==4:
@@ -934,50 +918,8 @@ class SetCasillas:
             self.number=209
         self.generar_casillas()
         
-    def casilla(self, id):
+    def find_by_id(self, id):
         return self.arr[id]
-        
-#    def rutas1(self):
-#        """Funcion que devuelve un arr con punteros a las casillas que estan en ruta1
-#        Para poder saber de que color son, se puede usar casilla.color"""
-#        resultado=[]
-#        if self.numplayers==6:
-#            resultado.append(self.arr[5])
-#            resultado.append(self.arr[22])
-#            resultado.append(self.arr[39])
-#            resultado.append(self.arr[56])
-#            resultado.append(self.arr[73])
-#            resultado.append(self.arr[90])
-#        elif self.numplayers==8:
-#            resultado.append(self.arr[5])
-#            resultado.append(self.arr[22])
-#            resultado.append(self.arr[39])
-#            resultado.append(self.arr[56])
-#            resultado.append(self.arr[73])
-#            resultado.append(self.arr[90])
-#            resultado.append(self.arr[105])
-#            resultado.append(self.arr[122])
-#        elif self.numplayers==4:       
-#            resultado.append(self.arr[5])
-#            resultado.append(self.arr[22])
-#            resultado.append(self.arr[39])
-#            resultado.append(self.arr[56])
-#        return resultado
-        
-#    def defineRutas1(self, id):
-#        """Es igual para 4,6,8"""
-#        if self.numplayers==8:
-#            if id in (5, 22, 39, 56, 73, 90, 107, 124):
-#                return True
-#            return False
-#        if self.numplayers==6:
-#            if id in (5, 22, 39, 56, 73, 90):
-#                return True
-#            return False
-#        if self.numplayers==4:
-#            if id in (5, 22, 39, 56):
-#                return True
-#            return False            
             
     def generar_casillas(self):
         if self.numplayers==6:
@@ -1416,8 +1358,6 @@ class Ficha(QObject):
             else:
                 if log: self.mem.jugadores.actual.log(self.tr("No hay espacio en la casilla"))
                 return (False, 0)
-                
-
         return (True, movimiento)
         
     def mover(self, ruta, controllastficha=True,  startgame=False):
@@ -1620,7 +1560,7 @@ class Circulo:
         self.arr=[]
         self.numcasillas=numcasillas
         for i in range(1, self.numcasillas+1):
-            self.arr.append(mem.casillas.casilla(i))
+            self.arr.append(mem.casillas.find_by_id(i))
     
     def casilla(self, posicion,  desplazamiento):
         """Calcula la casilla del circulo que tiene un desplazamiento positivo (hacia adelante) o negativo (hacia atras) 
@@ -1712,12 +1652,13 @@ class Coord3D:
         self.z=z
     def clone(self):
         """Returns other object with the same coords"""
-        return(Coord3D(self.x, self.y,  self.z))
+        return Coord3D(self.x, self.y,  self.z)
         
     def sum_z(self, n):
         """Suma un valor a la z y devuelve el objeto mismo syou"""
         self.z=self.z+n
         return self
+
 class Coord2D:
     def __init__(self, x, y):
         self.x=x
@@ -1886,7 +1827,7 @@ class Casilla(QObject):
         
         Busca segun beforemove antes de mover ficha, es decir es seguro con 0 fichas, o aftermove seguro con 1 ficha"""
         if self.ruta1==True:
-            propietario=mem.jugadores.jugador(self.color.name)
+            propietario=mem.jugadores.find_by_colorname(self.color.name)
             if jugador==propietario:
                 return True
             else:#color distinto
@@ -1907,18 +1848,7 @@ class Casilla(QObject):
                 return False
             
 
-    def dibujar(self, ogl):             
-#        def quad(p1, p2, p3, p4, color):
-#            ogl.qglColor(color.qcolor())
-#            glTexCoord2f(0.0,0.0)
-#            glVertex3d(p1[0], p1[1], p1[2])
-#            glTexCoord2f(1.0,0.0)
-#            glVertex3d(p2[0], p2[1], p2[2])
-#            glTexCoord2f(1.0,1.0)
-#            glVertex3d(p3[0], p3[1], p3[2])
-#            glTexCoord2f(0.0,1.0)
-#            glVertex3d(p4[0], p4[1], p4[2])          
-            
+    def dibujar(self, ogl):
         def panelnumerico():
             def cuadrito(x, texture, rotation):
                 glBindTexture(GL_TEXTURE_2D, texture)                
@@ -2026,36 +1956,16 @@ class Casilla(QObject):
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
             prism.opengl(ogl)
-            prism.opengl_border(ogl, 1)    
-#            
-#            glBegin(GL_QUADS)
-#            v1 = (-b, -d, 0)
-#            v2 = (0, -c-d, 0)
-#            v3 = (b, -d, 0)
-#            v4 = (0, 0, 0)
-#            v5 = (-b, -d, 0.2)
-#            v6 = (0, -c-d, 0.2)
-#            v7 = (b, -d, 0.2)
-#            v8 = (0, 0, 0.2)
-#    
-#            quad(v1, v2, v3, v4, self.color)      
-#            quad(v8, v7, v6, v5, Color(70, 70, 70))      
-#            quad(v1, v4, v8, v5, Color(170, 170, 170))      
-#            quad(v6, v7, v3, v2, Color(170, 170, 170))      
-#            quad(v5, v6, v2, v1, Color(170, 170, 170))      
-#            quad(v4, v3, v7, v8, Color(170, 170, 170))      
-#            glEnd()
-#            border(v5, v6, v7, v8, Color(0, 0, 0))
-    
+            prism.opengl_border(ogl, 1)       
             glPopName();
-            glPopMatrix()                 
+            glPopMatrix()                
+
         def tipo_inicio8():        
             glInitNames();
             glPushMatrix()
             glPushName(self.oglname);
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
-#            glBegin(GL_QUADS)
             a22c5=math.pi/8
             a=21*math.sin(a22c5)
             c=21*math.tan(a22c5)*math.sin(a22c5)
@@ -2065,24 +1975,6 @@ class Casilla(QObject):
             prism=Prism(p, 0.2)
             prism.opengl(ogl)
             prism.opengl_border(ogl, 1)    
-#            v1 = (0, 0, 0)
-#            v2 = (a, -c, 0)
-#            v3 = (2*a, 0, 0)
-#            v4 = (a, h-c, 0)
-#            v5 = (0, 0, 0.2)
-#            v6 = (a, -c, 0.2)
-#            v7 = (2*a, 0, 0.2)
-#            v8 = (a, h-c, 0.2)
-#    
-#            quad(v1, v2, v3, v4, self.color)      
-#            quad(v8, v7, v6, v5, Color(70, 70, 70))      
-#            quad(v1, v4, v8, v5, Color(170, 170, 170))      
-#            quad(v6, v7, v3, v2, Color(170, 170, 170))      
-#            quad(v5, v6, v2, v1, Color(170, 170, 170))      
-#            quad(v4, v3, v7, v8, Color(170, 170, 170))      
-#            glEnd()
-#            border(v5, v6, v7, v8, Color(0, 0, 0))
-    
             glPopName();
             glPopMatrix()            
     
@@ -2096,33 +1988,12 @@ class Casilla(QObject):
             texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
             if self.seguro==True and self.rampallegada==False:
                 glEnable(GL_TEXTURE_2D);
-#                glBindTexture(GL_TEXTURE_2D, ogl.texDecor[2])
                 p=Polygon().init__create(verts, self.color, ogl.texDecor[2], texverts)
             else:
                 p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
             prism.opengl(ogl)
             prism.opengl_border(ogl, 1)    
-#            
-#            glBegin(GL_QUADS)
-#            v1 = (0, 0, 0)
-#            v2 = (7, 0, 0)
-#            v3 = (7, 3, 0)
-#            v4 = (0, 3, 0)
-#            v5 = (0, 0, 0.2)
-#            v6 = (7, 0, 0.2)
-#            v7 = (7, 3, 0.2)
-#            v8 = (0, 3, 0.2)
-#    
-#            quad(v1, v2, v3, v4, self.color)      
-#            quad(v8, v7, v6, v5,Color(70, 70, 70) )      
-#            quad(v1, v4, v8, v5,Color(170, 170, 170))      
-#            quad(v6, v7, v3, v2, Color(170, 170, 170))      
-#            quad(v5, v6, v2, v1, Color(170, 170, 170) )      
-#            quad(v4, v3, v7, v8, Color(170, 170, 170))      
-#    
-#            glEnd()
-#            border(v5, v6, v7, v8, Color(0, 0, 0))
             glPopName();
             glPopMatrix()
             glDisable(GL_TEXTURE_2D)
@@ -2140,28 +2011,6 @@ class Casilla(QObject):
             prism=Prism(p, 0.2)
             prism.opengl(ogl)
             prism.opengl_border(ogl, 1)    
-            
-#            glBegin(GL_QUADS)
-#            v1 = (0, 0, 0)
-#            v2 = (7, 0, 0)
-#            v3 = (7, 3, 0)
-#            v4 = (lado, 3, 0)
-#            v5 = (0, 0, 0.2)
-#            v6 = (7, 0, 0.2)
-#            v7 = (7, 3, 0.2)
-#            v8 = (lado, 3, 0.2)
-#    
-#            quad(v1, v2, v3, v4, self.color)      
-#            quad(v8, v7, v6, v5, Color(70, 70, 70))      
-#            quad(v1, v4, v8, v5,Color(170, 170, 170))      
-#            quad(v6, v7, v3, v2, Color(170, 170, 170))      
-#            quad(v5, v6, v2, v1, Color(170, 170, 170) )      
-#            quad(v4, v3, v7, v8, Color(170, 170, 170))      
-#    
-#            glEnd()
-#
-#            border(v5, v6, v7, v8, Color(0, 0, 0))
-    
             glPopName();
             glPopMatrix()
             panelnumerico()
@@ -2173,33 +2022,11 @@ class Casilla(QObject):
             glPushName(self.oglname);
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
-
-#            texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
             verts=[Coord3D(0, 0, 0), Coord3D(0, 3, 0), Coord3D(lado, 3, 0), Coord3D(7, 0, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
             prism.opengl(ogl)
             prism.opengl_border(ogl, 1)    
-#            glBegin(GL_QUADS)
-#            v1 = (0, 0, 0)
-#            v2 = (7, 0, 0)
-#            v3 = (lado, 3, 0)
-#            v4 = (0, 3, 0)
-#            v5 = (0, 0, 0.2)
-#            v6 = (7, 0, 0.2)
-#            v7 = (lado, 3, 0.2)
-#            v8 = (0, 3, 0.2)
-#    
-#            quad(v1, v2, v3, v4,self.color )      
-#            quad(v8, v7, v6, v5, Color(70, 70, 70))      
-#            quad(v1, v4, v8, v5,Color(170, 170, 170))      
-#            quad(v6, v7, v3, v2, Color(170, 170, 170))      
-#            quad(v5, v6, v2, v1, Color(170, 170, 170) )      
-#            quad(v4, v3, v7, v8, Color(170, 170, 170))      
-#
-#            glEnd()
-#            border(v5, v6, v7, v8, Color(0, 0, 0))
-    
             glPopName();
             glPopMatrix()
             panelnumerico()
@@ -2216,35 +2043,11 @@ class Casilla(QObject):
                     glScaled(2*math.tan(math.pi/6)*(21*math.cos(math.pi/6)-3)/15, (21*math.cos(math.pi/6)-3)/7.5, 1)
                 elif ogl.mem.maxplayers==8:
                     glScaled((21-2*3*math.tan(math.pi/8))/15.0, ((10.5/math.tan(math.pi/8))-3)/7.5, 1)
-            
-#            texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
             verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(7.5, 7.5, 0), Coord3D(15, 0, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
             prism.opengl(ogl)
             prism.opengl_border(ogl, 1)    
-#            
-#            glBegin(GL_QUADS)
-#            v1 = (0, 0, 0)
-#            v2 = (0,  0, 0)
-#            v3 = (15, 0, 0)
-#            v4 = (7.5, 7.5, 0)
-#            v5 = (0, 0, 0.2)
-#            v6 = (0, 0, 0.2)
-#            v7 = (15, 0, 0.2)
-#            v8 = (7.5, 7.5, 0.2)
-#    
-#            quad(v1, v2, v3, v4, self.color)      
-#            quad(v8, v7, v6, v5, Color(70, 70, 70))      
-#            quad(v1, v4, v8, v5,Color(170, 170, 170))      
-#            quad(v6, v7, v3, v2, Color(170, 170, 170))      
-#            quad(v5, v6, v2, v1, Color(170, 170, 170) )      
-#            quad(v4, v3, v7, v8, Color(170, 170, 170))      
-#    
-#            glEnd()
-#
-#            border(v5, v6, v7, v8, Color(0, 0, 0))
-    
             glPopName();
             glPopMatrix()
         ##################################
@@ -2362,18 +2165,17 @@ class Mem:
             urls= ["./sounds/"+sound + ".wav", "/usr/share/glparchis/sounds/"+sound+".wav"]
             for url in urls:
                 if os.path.exists(url)==True:
-                    break
+                    break 
             QSound.play(url)
-            time.sleep(0.2)
    
     def generar_fichas(self):
         """Debe generarse despunes de jugadores"""
         id=0
         for ic, c in enumerate(self.colores.arr):
-            j=self.jugadores.jugador(c.name)
+            j=self.jugadores.find_by_colorname(c.name)
             j.ruta=self.rutas.ruta(ic)
             for i in range(4):
-                self.dic_fichas[str(id)]=Ficha(self, id, i, c, self.jugadores.jugador(c.name), j.ruta)
+                self.dic_fichas[str(id)]=Ficha(self, id, i, c, self.jugadores.find_by_colorname(c.name), j.ruta)
                 j.fichas.arr.append(self.dic_fichas[str(id)])#Rellena el SetFichas del jugador
                 id=id+1
 
@@ -2516,7 +2318,7 @@ class Mem:
             for i in  fake.split(";")  :
                 self.dado.fake.append(int(i))
 
-        self.jugadores.actual=self.jugadores.jugador(config.get("game", 'playerstarts'))    
+        self.jugadores.actual=self.jugadores.find_by_colorname(config.get("game", 'playerstarts'))    
         self.jugadores.actual.movimientos_acumulados=None#Comidas ymetidas
         self.jugadores.actual.LastFichaMovida=None #Se utiliza cuando se va a casa
 

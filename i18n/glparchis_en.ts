@@ -1,55 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="en">
+<!DOCTYPE TS><TS version="2.0" language="en" sourcelanguage="">
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="../libglparchis.py" line="1368"/>
+        <location filename="../libglparchis.py" line="1310"/>
         <source>No es del jugador actual</source>
         <translation>It&apos;s not a current player piece</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1403"/>
+        <location filename="../libglparchis.py" line="1345"/>
         <source>Se ha pasado la meta</source>
         <translation>You missed the central space</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1409"/>
+        <location filename="../libglparchis.py" line="1351"/>
         <source>Hay una barrera</source>
         <translation>There is a blockade</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1418"/>
+        <location filename="../libglparchis.py" line="1360"/>
         <source>No hay espacio en la casilla</source>
         <translation>The space is bussy</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1398"/>
+        <location filename="../libglparchis.py" line="1340"/>
         <source>No puede mover</source>
         <translation>It can&apos;t move</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1416"/>
+        <location filename="../libglparchis.py" line="1358"/>
         <source>Obligado a sacar y a comer</source>
         <translation>You&apos;re forced to move to the first space and to eat</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1478"/>
+        <location filename="../libglparchis.py" line="1418"/>
         <source>He comido una ficha de {0} en la casilla {1}</source>
         <translation>I&apos;ve eaten a piece of {0}at the space {1}</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1352"/>
+        <location filename="../libglparchis.py" line="1294"/>
         <source>No puede mover, porque debe sacar una ficha</source>
         <translation>Pawn can&apos;t move, because you must enter a pawn</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1354"/>
+        <location filename="../libglparchis.py" line="1296"/>
         <source>No puede mover, porque debe abrir una barrera</source>
         <translation>Pawn can&apos;t move, because you must open a blockade</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1495"/>
+        <location filename="../libglparchis.py" line="1435"/>
         <source>Una ficha ha llegado a la meta</source>
         <translation>A piece arrived to central space</translation>
     </message>
@@ -485,7 +484,7 @@
     </message>
     <message>
         <location filename="../ui/frmMain.py" line="23"/>
-        <source>glParchis 2010-{}. GNU General Public License ©</source>
+        <source>glParchis 2010-{}. GNU General Public License &#xa9;</source>
         <translation>glParchis 2010-{}. GNU General Public License ©</translation>
     </message>
     <message>
@@ -504,7 +503,7 @@
         <translation>Exit from full screen mode</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="2586"/>
+        <location filename="../libglparchis.py" line="2388"/>
         <source>Esta opcion se esta desarrollando</source>
         <translation>This option is being developed</translation>
     </message>
@@ -741,57 +740,57 @@
 <context>
     <name>glparchis</name>
     <message>
-        <location filename="../libglparchis.py" line="238"/>
+        <location filename="../libglparchis.py" line="237"/>
         <source>Sacar un 1</source>
         <translation>Roll a 1</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="239"/>
+        <location filename="../libglparchis.py" line="238"/>
         <source>Sacar un 2</source>
         <translation>Roll a 2</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="240"/>
+        <location filename="../libglparchis.py" line="239"/>
         <source>Sacar un 3</source>
         <translation>Roll a 3</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="241"/>
+        <location filename="../libglparchis.py" line="240"/>
         <source>Sacar un 4</source>
         <translation>Roll a 4</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="242"/>
+        <location filename="../libglparchis.py" line="241"/>
         <source>Sacar un 5</source>
         <translation>Roll a 5</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="243"/>
+        <location filename="../libglparchis.py" line="242"/>
         <source>Sacar un 6</source>
         <translation>Roll a 6</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="244"/>
+        <location filename="../libglparchis.py" line="243"/>
         <source>Sacar un 7</source>
         <translation>Get a 7</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="245"/>
+        <location filename="../libglparchis.py" line="244"/>
         <source>Contar 10</source>
         <translation>Advance 10</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="246"/>
+        <location filename="../libglparchis.py" line="245"/>
         <source>Contar 20</source>
         <translation>Advance 20</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="247"/>
+        <location filename="../libglparchis.py" line="246"/>
         <source>Sacar ficha</source>
         <translation>Take out a piece</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="2434"/>
+        <location filename="../libglparchis.py" line="2236"/>
         <source>Este fichero es de una version antigua o esta estropeado. No puede ser cargado.</source>
         <translation>This file is old or it is broken. It can&apos;t be loaded.</translation>
     </message>
@@ -1302,7 +1301,7 @@ Procedure to install the game from windows sources
 <context>
     <name>wdgOGL</name>
     <message>
-        <location filename="../ui/wdgOGL.py" line="209"/>
+        <location filename="../ui/wdgOGL.py" line="227"/>
         <source>Se ha hecho click en la ficha {0}</source>
         <translation>I click the piece {0}</translation>
     </message>

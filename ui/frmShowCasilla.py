@@ -9,7 +9,7 @@ class frmShowCasilla(QDialog, Ui_frmShowCasilla):
         QDialog.__init__(self, parent, flags)
         self.casilla=casilla
         self.setupUi(self)
-        self.lblCasilla.setText(self.tr("Casilla {0}".format(str(self.casilla.id))))
+        self.lblCasilla.setText(self.tr("Casilla {0}".format(self.casilla.id)))
         self.lblMaxCasillas.setText(self.tr("{0} fichas como maximo".format(self.casilla.maxfichas)))
         if self.casilla.seguro==True:
             self.lblSeguro.setText(self.tr("Casilla segura"))
