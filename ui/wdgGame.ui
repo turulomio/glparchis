@@ -30,7 +30,7 @@
        <item>
         <widget class="QPushButton" name="cmdTirarDado">
          <property name="toolTip">
-          <string>Pulsa este botón o haga doble click en el tablero para tirar el dado</string>
+          <string>Pulsa este boton o haga doble click en el tablero para tirar el dado</string>
          </property>
          <property name="text">
           <string>Tira el dado</string>
@@ -56,8 +56,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>441</width>
-            <height>640</height>
+            <width>488</width>
+            <height>649</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -132,7 +132,7 @@
             <normaloff>:/glparchis/cube5.png</normaloff>:/glparchis/cube5.png</iconset>
           </attribute>
           <attribute name="title">
-           <string>Estadísticas</string>
+           <string>Estadisticas</string>
           </attribute>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
@@ -150,7 +150,7 @@
                </property>
                <row>
                 <property name="text">
-                 <string>Número de tiradas</string>
+                 <string>Numero de tiradas</string>
                 </property>
                </row>
                <row>
@@ -254,7 +254,7 @@
                </row>
                <row>
                 <property name="text">
-                 <string>Puntuación</string>
+                 <string>Puntuacion</string>
                 </property>
                </row>
               </widget>
@@ -293,7 +293,7 @@
                 <enum>QTabWidget::North</enum>
                </property>
                <property name="currentIndex">
-                <number>0</number>
+                <number>2</number>
                </property>
                <widget class="QWidget" name="tab_5">
                 <attribute name="icon">
@@ -328,7 +328,7 @@
                      </column>
                      <column>
                       <property name="text">
-                       <string>Puntuación</string>
+                       <string>Puntuacion</string>
                       </property>
                      </column>
                     </widget>
@@ -374,7 +374,7 @@
                    </column>
                    <column>
                     <property name="text">
-                     <string>Puntuación</string>
+                     <string>Puntuacion</string>
                     </property>
                    </column>
                   </widget>
@@ -412,7 +412,7 @@
                    </column>
                    <column>
                     <property name="text">
-                     <string>Puntuación</string>
+                     <string>Puntuacion</string>
                     </property>
                    </column>
                   </widget>
@@ -430,7 +430,7 @@
                 </font>
                </property>
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La puntuación que se obtiene al terminar la partida depende de lo lejos que hayan acabado las fichas de los oponentes de la casilla central y de la diferencia entre las fichas comidas por mí y las fichas que me comieron otros jugadores&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La puntuacion que se obtiene al terminar la partida depende de lo lejos que hayan acabado las fichas de los oponentes de la casilla central y de la diferencia entre las fichas comidas por mi y las fichas que me comieron otros jugadores&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>

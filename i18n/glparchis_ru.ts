@@ -33,11 +33,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1495"/>
-        <source>Una ficha a llegado a la meta</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../libglparchis.py" line="1478"/>
         <source>He comido una ficha de {0} en la casilla {1}</source>
         <translation type="unfinished"></translation>
@@ -50,6 +45,11 @@
     <message>
         <location filename="../libglparchis.py" line="1354"/>
         <source>No puede mover, porque debe abrir una barrera</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../libglparchis.py" line="1495"/>
+        <source>Una ficha ha llegado a la meta</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -88,16 +88,6 @@
         <source>S&amp;alir</source>
         <translation type="unfinished">В&amp;ыход</translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/Ui_frmAbout.py" line="307"/>
-        <source>Créditos</source>
-        <translation>Кредиты</translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmAbout.py" line="23"/>
-        <source>Este programa ha sido desarrollado por Mariano Muñoz.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../ui/frmAbout.py" line="23"/>
         <source>Ha sido traducido por:</source>
@@ -108,24 +98,9 @@
         <source>a los siguientes idiomas&lt;p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmAbout.py" line="23"/>
-        <source>Los avatares han sido extraídos de la página &lt;a href=&quot;http://www.nobleavatar.com/&quot;&gt;http://www.nobleavatar.com/&lt;/a&gt;&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmAbout.py" line="23"/>
-        <source>La página del proyecto se encuentra en &lt;a href=&quot;http://glparchis.sourceforge.net&quot;&gt;http://glparchis.sourceforge.net&lt;/a&gt;&lt;p&gt; &lt;p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../ui/Ui_frmAbout.py" line="305"/>
         <source>Acerca de glParchis</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmAbout.py" line="22"/>
-        <source>Versión {0}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -173,6 +148,31 @@
         <source>Ficha roja</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../ui/frmAbout.py" line="22"/>
+        <source>Version {0}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmAbout.py" line="23"/>
+        <source>La pagina del proyecto se encuentra en &lt;a href=&quot;http://glparchis.sourceforge.net&quot;&gt;http://glparchis.sourceforge.net&lt;/a&gt;&lt;p&gt; &lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmAbout.py" line="23"/>
+        <source>Los avatares han sido extraidos de la pagina &lt;a href=&quot;http://www.nobleavatar.com/&quot;&gt;http://www.nobleavatar.com/&lt;/a&gt;&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_frmAbout.py" line="307"/>
+        <source>Creditos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmAbout.py" line="23"/>
+        <source>Este programa ha sido desarrollado por Mariano Munoz.&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>frmHelp</name>
@@ -196,54 +196,9 @@
         <source>&lt;h2&gt;Interfaz de usuario&lt;/h2&gt;</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmHelp.py" line="20"/>
-        <source>Hay muchas variantes del juego, dependiendo fundamentalmente del lugar en el que se juega. España ha sido uno de los países en los que más arraigo ha tenido el juego. Es por ello que glParchis utiliza las normas más comunes de juego en España</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../ui/frmHelp.py" line="20"/>
         <source>Cuando una ficha llega a la casilla final, el jugador obtiene el derecho de mover 10 puntos.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmHelp.py" line="20"/>
-        <source>Cuando dos fichas del mismo color están en una misma casilla, se produce una barrera. Este hecho impide que el resto de jugadores puedan avanzar por ella. El jugador está obligado a abrir la barrera cuando obtiene un 6 con el dado.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmHelp.py" line="20"/>
-        <source>Cuando un jugador tiene todas sus fichas fuera de casa (casilla inicial) y obtiene un 6, contará 7 casillas de movimiento en el tablero.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmHelp.py" line="20"/>
-        <source>El juego del Parchís es una variación del Parchisi, un juego que tiene su origen en la India (Siglo XVI). Más información puede obtenerla en la &lt;a href=&apos;http://es.wikipedia.org/wiki/Parchis&apos;&gt;Wikipedia&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmHelp.py" line="20"/>
-        <source>Cada jugador dispone de 4 fichas que deberá mover por el tablero usando un dado y siguiendo un turno entre los distintos jugadores.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmHelp.py" line="20"/>
-        <source>Cada ficha partirá de una casilla inicial, de la que sólo podrá salir con un 5. Recorrerá una ruta con un número de casillas igual para todos los jugadores, que termina en una rampa de llegada de su color y una casilla final. Este movimiento lo realizará en sentido contrario a las agujas del reloj&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmHelp.py" line="20"/>
-        <source>Existe un splitter entre los paneles de usuario y el tablero de parchís, que podrá ser movido según las preferencias del usuario. En algunas resoluciones de pantalla, al empezar el juego, el tablero aparece en negro hasta que se utiliza el splitter para darle el tamaño mínimo necesario.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmHelp.py" line="20"/>
-        <source>Existen unas casillas seguras (casillas con circulo gris), en las que dos fichas de distintos jugadores pueden convivir. En el resto (casillas blancas), la ficha que llega en segundo lugar come (manda a la casilla inicial) a la que llegó en primer lugar y obtiene el derecho de mover 20 casillas.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmHelp.py" line="20"/>
-        <source>Para tirar el dado se puede hacer click en el botón &apos;Tirar el dado&apos; o hacer doble-click encima del tablero, cuando le toque a un jugador humano.&lt;p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -251,34 +206,9 @@
         <source>Se puede cambiar la vista del tablero pulsando la tecla &apos;m&apos;.&lt;p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmHelp.py" line="20"/>
-        <source>Cuando en la casilla de salida de un jugador hay dos fichas distintas y el jugador del mismo color de la casilla de salida saca un cinco y debe sacar una ficha, la última ficha que llegó se va a casa.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmHelp.py" line="20"/>
-        <source>&lt;h3&gt;Puntuación&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmHelp.py" line="20"/>
-        <source>La puntuación viene dada por el número de casillas que le falta recorrer a los otros jugadores menos las que me faltan a mí. A esta cantidad se le suma la diferencia entre las fichas que he comido y las que me han comido, multiplicadas por 40.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../ui/Ui_frmHelp.py" line="60"/>
         <source>Ayuda de glParchis</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmHelp.py" line="20"/>
-        <source>&lt;h3&gt;Guardado automático&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmHelp.py" line="20"/>
-        <source>La aplicación guarda automáticamente el estado de la partida cada vez que hay un turno de un jugador humano. Se guardan 10 ficheros por defecto, pudiéndose cambiar el menú de configuración.&lt;p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -296,22 +226,82 @@
         <source>&lt;h3&gt;Vistas del tablero&lt;/h3&gt;</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context encoding="UTF-8">
-    <name>frmInitGame</name>
-    <message encoding="UTF-8">
-        <location filename="../ui/Ui_frmInitGame.py" line="75"/>
-        <source>Configuración inicial de la partida</source>
+    <message>
+        <location filename="../ui/frmHelp.py" line="20"/>
+        <source>El juego del Parchis es una variacion del Parchisi, un juego que tiene su origen en la India (Siglo XVI). Mas informacion puede obtenerla en la &lt;a href=&apos;http://es.wikipedia.org/wiki/Parchis&apos;&gt;Wikipedia&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmInitGame.py" line="18"/>
-        <source>Configurar la partida</source>
+        <location filename="../ui/frmHelp.py" line="20"/>
+        <source>Cada jugador dispone de 4 fichas que debera mover por el tablero usando un dado y siguiendo un turno entre los distintos jugadores.&lt;p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmInitGame.py" line="19"/>
-        <source>Selecciona las fichas que van a jugar y quién va a jugar con ellas</source>
+    <message>
+        <location filename="../ui/frmHelp.py" line="20"/>
+        <source>Cada ficha partira de una casilla inicial, de la que solo podra salir con un 5. Recorrera una ruta con un numero de casillas igual para todos los jugadores, que termina en una rampa de llegada de su color y una casilla final. Este movimiento lo realizara en sentido contrario a las agujas del reloj&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmHelp.py" line="20"/>
+        <source>Existen unas casillas seguras (casillas con circulo gris), en las que dos fichas de distintos jugadores pueden convivir. En el resto (casillas blancas), la ficha que llega en segundo lugar come (manda a la casilla inicial) a la que llego en primer lugar y obtiene el derecho de mover 20 casillas.&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmHelp.py" line="20"/>
+        <source>Cuando dos fichas del mismo color estan en una misma casilla, se produce una barrera. Este hecho impide que el resto de jugadores puedan avanzar por ella. El jugador esta obligado a abrir la barrera cuando obtiene un 6 con el dado.&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmHelp.py" line="20"/>
+        <source>Cuando un jugador tiene todas sus fichas fuera de casa (casilla inicial) y obtiene un 6, contara 7 casillas de movimiento en el tablero.&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmHelp.py" line="20"/>
+        <source>Cuando en la casilla de salida de un jugador hay dos fichas distintas y el jugador del mismo color de la casilla de salida saca un cinco y debe sacar una ficha, la ultima ficha que llego se va a casa.&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmHelp.py" line="20"/>
+        <source>&lt;h3&gt;Puntuacion&lt;/h3&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmHelp.py" line="20"/>
+        <source>La puntuacion viene dada por el numero de casillas que le falta recorrer a los otros jugadores menos las que me faltan a mi. A esta cantidad se le suma la diferencia entre las fichas que he comido y las que me han comido, multiplicadas por 40.&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmHelp.py" line="20"/>
+        <source>&lt;h3&gt;Guardado automatico&lt;/h3&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmHelp.py" line="20"/>
+        <source>La aplicacion guarda automaticamente el estado de la partida cada vez que hay un turno de un jugador humano. Se guardan 10 ficheros por defecto, pudiendose cambiar el menu de configuracion.&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmHelp.py" line="20"/>
+        <source>Para tirar el dado se puede hacer click en el boton &apos;Tirar el dado&apos; o hacer doble-click encima del tablero, cuando le toque a un jugador humano.&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmHelp.py" line="20"/>
+        <source>Hay muchas variantes del juego, dependiendo fundamentalmente del lugar en el que se juega. Espana ha sido uno de los paises en los que mas arraigo ha tenido el juego. Es por ello que glParchis utiliza las normas mas comunes de juego en Espana</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmHelp.py" line="20"/>
+        <source>Existe un splitter entre los paneles de usuario y el tablero de parchis, que podra ser movido segun las preferencias del usuario. En algunas resoluciones de pantalla, al empezar el juego, el tablero aparece en negro hasta que se utiliza el splitter para darle el tamano minimo necesario.&lt;p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>frmInitGame</name>
+    <message>
+        <location filename="../ui/frmInitGame.py" line="18"/>
+        <source>Configurar la partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -320,12 +310,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmInitGame.py" line="64"/>
+        <location filename="../ui/frmInitGame.py" line="63"/>
         <source>Empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmInitGame.py" line="63"/>
+        <location filename="../ui/frmInitGame.py" line="62"/>
         <source>El jugador {0} empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -335,100 +325,110 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmInitGame.py" line="67"/>
-        <source>Los jugadores {} deben tirar hasta que se aclare qui&#xc3;&#xa9;n empieza la partida</source>
+        <location filename="../ui/frmInitGame.py" line="19"/>
+        <source>Selecciona las fichas que van a jugar y quien va a jugar con ellas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/frmInitGame.py" line="22"/>
-        <source>El jugador que saque la puntuaci&#xc3;&#xb3;n m&#xc3;&#xa1;s alta, empieza la partida</source>
+        <source>El jugador que saque la puntuacion mas alta, empieza la partida</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmInitGame.py" line="66"/>
+        <source>Los jugadores {} deben tirar hasta que se aclare quien empieza la partida</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_frmInitGame.py" line="75"/>
+        <source>Configuracion inicial de la partida</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>frmMain</name>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="148"/>
+        <location filename="../ui/Ui_frmMain.py" line="150"/>
         <source>A&amp;yuda</source>
         <translation>С&amp;правка</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="149"/>
+        <location filename="../ui/Ui_frmMain.py" line="151"/>
         <source>J&amp;ugar</source>
         <translation>И&amp;грать</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="151"/>
+        <location filename="../ui/Ui_frmMain.py" line="153"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="152"/>
+        <location filename="../ui/Ui_frmMain.py" line="154"/>
         <source>S&amp;alir</source>
         <translation>В&amp;ыход</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="154"/>
+        <location filename="../ui/Ui_frmMain.py" line="156"/>
         <source>Acerca de</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="155"/>
+        <location filename="../ui/Ui_frmMain.py" line="157"/>
         <source>&amp;Recuperar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="156"/>
+        <location filename="../ui/Ui_frmMain.py" line="158"/>
         <source>&amp;Guardar partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="160"/>
+        <location filename="../ui/Ui_frmMain.py" line="162"/>
         <source>Preferencias</source>
         <translation>Предпочтения</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="153"/>
+        <location filename="../ui/Ui_frmMain.py" line="155"/>
         <source>Esc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="161"/>
+        <location filename="../ui/Ui_frmMain.py" line="163"/>
         <source>Ayuda del juego</source>
         <translation>Помощь игры</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="162"/>
+        <location filename="../ui/Ui_frmMain.py" line="164"/>
         <source>Muestra la ayuda del juego</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="163"/>
+        <location filename="../ui/Ui_frmMain.py" line="165"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="164"/>
+        <location filename="../ui/Ui_frmMain.py" line="166"/>
         <source>Buscar actualizaciones</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="165"/>
+        <location filename="../ui/Ui_frmMain.py" line="167"/>
         <source>Busca actualizaciones en Internet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="167"/>
+        <location filename="../ui/Ui_frmMain.py" line="169"/>
         <source>Enciende o apaga el sonido</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="168"/>
+        <location filename="../ui/Ui_frmMain.py" line="170"/>
         <source>F5</source>
         <translation>F5</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="166"/>
+        <location filename="../ui/Ui_frmMain.py" line="168"/>
         <source>Sonido encendido</source>
         <translation type="unfinished"></translation>
     </message>
@@ -437,69 +437,49 @@
         <source>Sonido apagado</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmMain.py" line="101"/>
-        <source>No se ha podido comprobar si hay actualizaciones. Inténtelo más tarde.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmMain.py" line="116"/>
-        <source>Dispone de la última versión del juego</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmMain.py" line="122"/>
-        <source>Hay una nueva versión del programa. Bájatela de la página web del proyecto &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt; o directamente desde &lt;a href=&apos;https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="157"/>
+        <location filename="../ui/Ui_frmMain.py" line="159"/>
         <source>Partida de &amp;4 jugadores</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="158"/>
+        <location filename="../ui/Ui_frmMain.py" line="160"/>
         <source>Partida de 4 jugadores</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="159"/>
+        <location filename="../ui/Ui_frmMain.py" line="161"/>
         <source>Ctrl+4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="169"/>
+        <location filename="../ui/Ui_frmMain.py" line="171"/>
         <source>Partida de &amp;6 jugadores</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="170"/>
+        <location filename="../ui/Ui_frmMain.py" line="172"/>
         <source>Partida de 6 jugadores</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="171"/>
+        <location filename="../ui/Ui_frmMain.py" line="173"/>
         <source>Ctrl+6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="172"/>
+        <location filename="../ui/Ui_frmMain.py" line="174"/>
         <source>Partida de &amp;8 jugadores</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="173"/>
+        <location filename="../ui/Ui_frmMain.py" line="175"/>
         <source>Partida de 8 jugadores</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="174"/>
+        <location filename="../ui/Ui_frmMain.py" line="176"/>
         <source>Ctrl+8</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/Ui_frmMain.py" line="150"/>
-        <source>Con&amp;figuración</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -508,12 +488,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="177"/>
+        <location filename="../ui/Ui_frmMain.py" line="179"/>
         <source>F11</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmMain.py" line="176"/>
+        <location filename="../ui/Ui_frmMain.py" line="178"/>
         <source>Cambiar al modo de pantalla completa</source>
         <translation type="unfinished"></translation>
     </message>
@@ -522,32 +502,52 @@
         <source>Salir del modo de pantalla completa</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <location filename="../libglparchis.py" line="2586"/>
-        <source>Esta opción se está desarrollando</source>
+        <source>Esta opcion se esta desarrollando</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmMain.py" line="101"/>
+        <source>No se ha podido comprobar si hay actualizaciones. Intentelo mas tarde.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmMain.py" line="116"/>
+        <source>Dispone de la ultima version del juego</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmMain.py" line="122"/>
+        <source>Hay una nueva version del programa. Bajatela de la pagina web del proyecto &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt; o directamente desde &lt;a href=&apos;https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_frmMain.py" line="152"/>
+        <source>Con&amp;figuracion</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
-<context encoding="UTF-8">
+<context>
     <name>frmSettings</name>
-    <message encoding="UTF-8">
-        <location filename="../ui/Ui_frmSettings.py" line="95"/>
-        <source>Configuración de glParchis</source>
-        <translation>конфигурация glParchis</translation>
-    </message>
     <message>
         <location filename="../ui/Ui_frmSettings.py" line="96"/>
         <source>Selecciona un idioma</source>
         <translation>Выберите язык</translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/Ui_frmSettings.py" line="97"/>
-        <source>Número de autoguardados</source>
+    <message>
+        <location filename="../ui/Ui_frmSettings.py" line="95"/>
+        <source>Configuracion de glParchis</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
+        <location filename="../ui/Ui_frmSettings.py" line="97"/>
+        <source>Numero de autoguardados</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/Ui_frmSettings.py" line="98"/>
-        <source>Si quiere autoguardado seleccione un número mayor que 0</source>
+        <source>Si quiere autoguardado seleccione un numero mayor que 0</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -563,11 +563,6 @@
         <source>TextLabel</source>
         <translation>лицензия</translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/Ui_frmShowCasilla.py" line="72"/>
-        <source>Ocupación</source>
-        <translation>Оккупация</translation>
-    </message>
     <message>
         <location filename="../ui/frmShowCasilla.py" line="15"/>
         <source>Casilla segura</source>
@@ -576,11 +571,6 @@
     <message>
         <location filename="../ui/frmShowCasilla.py" line="17"/>
         <source>Casilla insegura</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/frmShowCasilla.py" line="29"/>
-        <source>Casilla vacía</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -613,9 +603,19 @@
         <source>Casilla {0}</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <location filename="../ui/frmShowCasilla.py" line="13"/>
-        <source>{0} fichas como máximo</source>
+        <source>{0} fichas como maximo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmShowCasilla.py" line="29"/>
+        <source>Casilla vacia</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_frmShowCasilla.py" line="72"/>
+        <source>Ocupacion</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -625,11 +625,6 @@
         <location filename="../ui/Ui_frmShowFicha.py" line="118"/>
         <source>TextLabel</source>
         <translation>TextLabel</translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/Ui_frmShowFicha.py" line="119"/>
-        <source>Información</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/Ui_frmShowFicha.py" line="126"/>
@@ -647,18 +642,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmShowFicha.py" line="144"/>
-        <source>Thread</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/Ui_frmShowFicha.py" line="145"/>
         <source>Amenazas en destino</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/Ui_frmShowFicha.py" line="127"/>
-        <source>Número de casillas a avanzar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -711,18 +696,13 @@
         <source>Amenazas en la casilla X</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/Ui_frmShowFicha.py" line="128"/>
-        <source>Selecciona un número</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../ui/frmShowFicha.py" line="29"/>
         <source>Amenazas en la casilla {0}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmShowFicha.py" line="125"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="144"/>
         <source>Amenaza</source>
         <translation type="unfinished"></translation>
     </message>
@@ -736,9 +716,24 @@
         <source>Jugador: {0} ({1})</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <location filename="../ui/frmShowFicha.py" line="16"/>
-        <source>Posición en ruta: {0}</source>
+        <source>Posicion en ruta: {0}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_frmShowFicha.py" line="119"/>
+        <source>Informacion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_frmShowFicha.py" line="127"/>
+        <source>Numero de casillas a avanzar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_frmShowFicha.py" line="128"/>
+        <source>Selecciona un numero</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -794,9 +789,9 @@
         <source>Sacar ficha</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <location filename="../libglparchis.py" line="2434"/>
-        <source>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</source>
+        <source>Este fichero es de una version antigua o esta estropeado. No puede ser cargado.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -806,16 +801,6 @@
         <location filename="../ui/Ui_wdgGame.py" line="253"/>
         <source>Juego</source>
         <translation>Игра</translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/Ui_wdgGame.py" line="278"/>
-        <source>Estadísticas</source>
-        <translation>Статистика</translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/Ui_wdgGame.py" line="255"/>
-        <source>Número de tiradas</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/Ui_wdgGame.py" line="257"/>
@@ -866,11 +851,6 @@
         <location filename="../ui/wdgGame.py" line="137"/>
         <source>Tira el dado</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/Ui_wdgGame.py" line="304"/>
-        <source>Puntuación</source>
-        <translation>Оценка</translation>
     </message>
     <message>
         <location filename="../ui/Ui_wdgGame.py" line="302"/>
@@ -937,11 +917,6 @@
         <source>Has ganado la partida</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/Ui_wdgGame.py" line="250"/>
-        <source>Pulsa este botón o haga doble click en el tablero para tirar el dado</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../ui/Ui_wdgGame.py" line="307"/>
         <source>Mejores puntuaciones</source>
@@ -977,11 +952,6 @@
         <source>Partida de 8 jugadores</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../ui/Ui_wdgGame.py" line="306"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La puntuación que se obtiene al terminar la partida depende de lo lejos que hayan acabado las fichas de los oponentes de la casilla central y de la diferencia entre las fichas comidas por mí y las fichas que me comieron otros jugadores&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../ui/wdgGame.py" line="39"/>
         <source>Tiempo de partida: {0}</source>
@@ -995,6 +965,31 @@
     <message>
         <location filename="../ui/wdgGame.py" line="123"/>
         <source>{0} ha ganado</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_wdgGame.py" line="278"/>
+        <source>Estadisticas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_wdgGame.py" line="255"/>
+        <source>Numero de tiradas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_wdgGame.py" line="304"/>
+        <source>Puntuacion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_wdgGame.py" line="306"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La puntuacion que se obtiene al terminar la partida depende de lo lejos que hayan acabado las fichas de los oponentes de la casilla central y de la diferencia entre las fichas comidas por mi y las fichas que me comieron otros jugadores&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_wdgGame.py" line="250"/>
+        <source>Pulsa este boton o haga doble click en el tablero para tirar el dado</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

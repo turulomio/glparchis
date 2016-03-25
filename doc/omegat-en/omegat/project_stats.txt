@@ -1,16 +1,16 @@
-16/07/13 12:08
+25/03/16 9:30
 Estadísticas del proyecto
 
                   	Segmentos	Palabras	Caracteres (sin espacios)	Caracteres (incluyendo espacios)	
-Total:            	       97	     615	                     3589	                            4164	
-Pendientes:       	        0	       0	                        0	                               0	
-Únicos:           	       91	     615	                     3541	                            4116	
-Pendientes únicos:	        0	       0	                        0	                               0	
+Total:            	      106	     690	                     3939	                            4588	
+Pendientes:       	       41	     389	                     1928	                            2311	
+Únicos:           	       99	     690	                     3883	                            4532	
+Pendientes únicos:	       41	     389	                     1928	                            2311	
 
 
 Estadísticas por archivo individual:
 
 Nombre de archivo	Total Segmentos	Segmentos Pendientes	Segmentos únicos	Segmentos Únicos Pendientes	Palabras en total	Palabras pendientes	Palabras Únicas	Palabras Únicas Pendientes	Caracteres en total (sin espacios)	Caracteres pendientes (sin espacios)	Caracteres Únicos (sin espacios)	Caracteres Únicos Pendientes (sin espacios)	Caracteres en total (incluyendo espacios)	Caracteres pendientes (incluyendo espacios)	Caracteres Únicos (incluyendo espacios)	Caracteres Únicos Pendientes (incluyendo espacios)	
 AUTHORS-EN.txt   	              7	                   0	               7	                          0	               16	                  0	             16	                         0	                               142	                                   0	                             142	                                          0	                                      151	                                          0	                                    151	                                                 0	
-CHANGELOG-EN.txt 	             61	                   0	              55	                          0	              457	                  0	            457	                         0	                              2333	                                   0	                            2285	                                          0	                                     2782	                                          0	                                   2734	                                                 0	
-INSTALL-EN.txt   	             29	                   0	              29	                          0	              142	                  0	            142	                         0	                              1114	                                   0	                            1114	                                          0	                                     1231	                                          0	                                   1231	                                                 0	
+CHANGELOG-EN.txt 	             70	                  33	              63	                         33	              531	                340	            531	                       340	                              2674	                                1609	                            2618	                                       1609	                                     3196	                                       1949	                                   3140	                                              1949	
+INSTALL-EN.txt   	             29	                   8	              29	                          8	              143	                 49	            143	                        49	                              1123	                                 319	                            1123	                                        319	                                     1241	                                        362	                                   1241	                                               362	

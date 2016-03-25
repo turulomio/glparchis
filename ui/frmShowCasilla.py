@@ -10,7 +10,7 @@ class frmShowCasilla(QDialog, Ui_frmShowCasilla):
         self.casilla=casilla
         self.setupUi(self)
         self.lblCasilla.setText(self.tr("Casilla {0}".format(str(self.casilla.id))))
-        self.lblMaxCasillas.setText(self.tr("{0} fichas como máximo".format(self.casilla.maxfichas)))
+        self.lblMaxCasillas.setText(self.tr("{0} fichas como maximo".format(self.casilla.maxfichas)))
         if self.casilla.seguro==True:
             self.lblSeguro.setText(self.tr("Casilla segura"))
         else:
@@ -26,7 +26,7 @@ class frmShowCasilla(QDialog, Ui_frmShowCasilla):
             self.lbl2.hide()
             self.lbl3.hide()
             self.lbl4.hide()
-            self.grp.setTitle(self.tr("Casilla vacía"))
+            self.grp.setTitle(self.tr("Casilla vacia"))
         elif len(fichas)==1:
             self.lbl1.setPixmap(fichas[0][1].jugador.color.qpixmap())
             self.lbl2.hide()

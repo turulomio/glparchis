@@ -52,7 +52,7 @@
      <item>
       <widget class="QGroupBox" name="grp">
        <property name="title">
-        <string>Ocupación</string>
+        <string>Ocupacion</string>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>

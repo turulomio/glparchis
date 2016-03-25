@@ -98,7 +98,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         #Si hay error de internet avisa
         if web==None:
             if showdialogwhennoupdates==True:
-                qmessagebox(self.tr("No se ha podido comprobar si hay actualizaciones. Inténtelo más tarde."))
+                qmessagebox(self.tr("No se ha podido comprobar si hay actualizaciones. Intentelo mas tarde."))
             return
         #Saca la version de internet
         remoteversion=None
@@ -111,15 +111,15 @@ class frmMain(QMainWindow, Ui_frmMain):#
         if remoteversion==None:
             return
                 
-        if remoteversion==version.replace("+", ""):#Quita el más de desarrollo 
+        if remoteversion==version.replace("+", ""):#Quita el mas de desarrollo 
             if showdialogwhennoupdates==True:
-                qmessagebox(self.tr("Dispone de la última versión del juego"))
+                qmessagebox(self.tr("Dispone de la ultima version del juego"))
         else:
             m=QMessageBox()
             m.setIcon(QMessageBox.Information)
             m.setWindowIcon(QIcon(":glparchis/ficharoja.png"))
             m.setTextFormat(Qt.RichText)#this is what makes the links clickable
-            m.setText(self.tr("Hay una nueva versión del programa. Bájatela de la página web del proyecto <a href='http://glparchis.sourceforge.net'>http://glparchis.sourceforge.net</a> o directamente desde <a href='https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-")+remoteversion+"/'>Sourceforge</a>")
+            m.setText(self.tr("Hay una nueva version del programa. Bajatela de la pagina web del proyecto <a href='http://glparchis.sourceforge.net'>http://glparchis.sourceforge.net</a> o directamente desde <a href='https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-")+remoteversion+"/'>Sourceforge</a>")
             m.exec_() 
         self.settings.setValue("frmMain/lastupdate", datetime.date.today().toordinal())
         

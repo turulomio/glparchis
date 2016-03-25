@@ -10,7 +10,7 @@ from Ui_wdgGame import *
 import glob
 
 class wdgGame(QWidget, Ui_wdgGame):
-    """Clase principal del Juego, aquí está toda la ciencia, cuando se deba pasar al UI se crearán emits que captura qT para el UI"""
+    """Clase principal del Juego, aqui esta toda la ciencia, cuando se deba pasar al UI se crearan emits que captura qT para el UI"""
     def __init__(self,   parent=None,  filename=None):        
         QWidget.__init__(self, parent)
         self.setupUi(self)
@@ -147,8 +147,8 @@ class wdgGame(QWidget, Ui_wdgGame):
 
        
     def on_JugadorDebeMover(self):
-        """Función que se ejecuta cuando un jugador debe mover
-        Aquí se evalua si puede mover devolviendo True en caso positivo y """
+        """Funcion que se ejecuta cuando un jugador debe mover
+        Aqui se evalua si puede mover devolviendo True en caso positivo y """
         
         if self.mem.jugadores.alguienHaGanado()==True:
             self.afterWinning()

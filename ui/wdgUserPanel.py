@@ -28,7 +28,7 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         self.grp.setTitle( (jugador.name))
         
     def setLabelDado(self):
-        """Actualiza la etiqueta del útlimo valor de tiradaturno"""
+        """Actualiza la etiqueta del utlimo valor de tiradaturno"""
         numlbl=len(self.jugador.tiradaturno.arr)
         #Selecciona el label
         if numlbl==1:
@@ -42,7 +42,7 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         label.setPixmap(self.jugador.dado.qpixmap(self.jugador.tiradaturno.ultimoValor()))
 
     def setActivated(self, bool):
-        """Función que se ejecuta para activar un panel. Al hacerlo se cambia el log de turno y se limpian los dados"""
+        """Funcion que se ejecuta para activar un panel. Al hacerlo se cambia el log de turno y se limpian los dados"""
         if bool==True:
             self.lbl1.setPixmap(self.jugador.dado.qpixmap(None))
             self.lbl2.setPixmap(self.jugador.dado.qpixmap(None))
@@ -58,7 +58,7 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         
 
     def on_chk_stateChanged(self, state):        
-        """Reescribe solo cuando cambia el tamaño"""
+        """Reescribe solo cuando cambia el tamano"""
         if state==Qt.Checked and self.lst.count()!=len(self.jugador.loghistorico):
             self.lst.clear()
             self.lst.addItems(self.jugador.loghistorico)  

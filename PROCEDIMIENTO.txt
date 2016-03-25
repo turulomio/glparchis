@@ -13,11 +13,11 @@ Nueva release
 		- 64 bits
 4) Colocar las versiones preferidas de windows y linux
 5) Subir al subversion y comprobar que queda subversion +1
-6) Crear un nuevo ebuild con la nueva versión
+6) Crear un nuevo ebuild con la nueva version
 8) Subirlo al subversion del portage
 9) Modificar la pagina web
    - Crear objeto de Noticia
-   - Añadir el release a la página
+   - Anadir el release a la pagina
    - Modificar todos los enlaces ojo no cambiar muchas versiones si hago un replace
    - Subirla a internet con bash publicar.sh
 10) Subirlo a la mula

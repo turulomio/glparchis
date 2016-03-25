@@ -65,7 +65,7 @@
    </widget>
    <widget class="QMenu" name="menuConfiguraci_n">
     <property name="title">
-     <string>Con&amp;figuración</string>
+     <string>Con&amp;figuracion</string>
     </property>
     <addaction name="actionSound"/>
     <addaction name="separator"/>
@@ -106,6 +106,8 @@
    <addaction name="actionGuardarPartida"/>
    <addaction name="separator"/>
    <addaction name="actionSound"/>
+   <addaction name="separator"/>
+   <addaction name="actionSettings"/>
    <addaction name="actionFullScreen"/>
    <addaction name="separator"/>
    <addaction name="actionHelp"/>

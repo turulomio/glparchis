@@ -24,7 +24,7 @@ class wdgPlayerDado(QWidget, Ui_wdgPlayerDado):
         return False
 
     def setName(self, name):
-        """Se hace así porque al principio no se sabe el name del jugador """
+        """Se hace asi porque al principio no se sabe el name del jugador """
         self.lblName.setText(name)
 
     def on_cmd_released(self):

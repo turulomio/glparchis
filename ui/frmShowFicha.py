@@ -13,7 +13,7 @@ class frmShowFicha(QDialog, Ui_frmShowFicha):
         self.lblFicha.setPixmap(self.ficha.jugador.color.qpixmap())       
         self.lblName.setText(self.tr("Nombre: {0}".format(self.ficha.id)))
         self.lblJugador.setText(self.tr("Jugador: {0} ({1})".format(self.ficha.jugador.name, self.ficha.jugador.color.name)))
-        self.lblRuta.setText(self.tr("Posición en ruta: {0}".format(self.ficha.posruta)))
+        self.lblRuta.setText(self.tr("Posicion en ruta: {0}".format(self.ficha.posruta)))
         self.tblAmenazas_reload()
         if self.mem.jugadores.actual.tiradaturno.ultimoValor()!=None:
             (puedemover, movimiento)=self.ficha.puedeMover()

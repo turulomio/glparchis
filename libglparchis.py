@@ -15,8 +15,8 @@ from PyQt5.QtOpenGL import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtMultimedia import QSound
 
-#Cuando se modifique una version sacada se pondrá un + p.e. 20120921+
-version="20130716+"
+#Cuando se modifique una version sacada se pondra un + p.e. 20120921+
+version="20160325"
 
 def str2bool(s):
     if s.__class__==bool:#Si ya fuera bool
@@ -247,7 +247,7 @@ class Amenaza:
         if tipo==51: return QApplication.translate("glparchis","Sacar ficha")
 
 class SetAmenazas:
-    """Clase que genera las amenazas contra un objetivo en la casilla pasado como parámetro"""
+    """Clase que genera las amenazas contra un objetivo en la casilla pasado como parametro"""
     def __init__(self,  mem,  objetivo, casilla):
         """Crea objeto"""
         self.arr=[]#Array de objetos amenaza
@@ -269,7 +269,7 @@ class SetAmenazas:
         if self.casilla.rampallegada==True:
             return
         
-        if self.casilla.seguro==True and self.casilla.ruta1==False:#Esta asegurada y no está en ruta 1
+        if self.casilla.seguro==True and self.casilla.ruta1==False:#Esta asegurada y no esta en ruta 1
             return
             
         #Detecta salida con un 5 a ruta1
@@ -278,9 +278,9 @@ class SetAmenazas:
             casillaataque=self.mem.rutas.ruta(self.mem.colores.index(self.casilla.color)).arr[0]#Casilla inicial
             if casillaataque.buzon_numfichas()>0:#Hay fichas que coman
                 if self.casilla.buzon_numfichas()==2:
-                    if  self.objetivo.posruta!=1: #Si no está en su propia ruta1, está llena
+                    if  self.objetivo.posruta!=1: #Si no esta en su propia ruta1, esta llena
                         for posicion, ficha in casillaataque.buzon_fichas():
-                            if  ficha.puedeComer(self.mem, ficha.posruta+1): #aquí chequea que sea mismo color o distinta, ultima en llegar...
+                            if  ficha.puedeComer(self.mem, ficha.posruta+1): #aqui chequea que sea mismo color o distinta, ultima en llegar...
                                 self.append(ficha, 51)
                                 break#Con que haya uno es suficiente
                             else:
@@ -435,7 +435,7 @@ class TiradaTurno:
         self.arr=[]
         
     def tresSeises(self):
-        """Función que devuelve un booleano según haya o no salido 3 seises"""
+        """Funcion que devuelve un booleano segun haya o no salido 3 seises"""
         if len(self.arr)==3:
             if self.arr[0].valor==6 and self.arr[1].valor==6 and self.arr[2].valor==6:
                 return True
@@ -460,12 +460,12 @@ class TiradaTurno:
 
 
 class HighScore:
-    """Clase que calcula gestiona todo lo relacionado con el highscore. Sólo debe usarse cuando haya acabado la partida
+    """Clase que calcula gestiona todo lo relacionado con el highscore. Solo debe usarse cuando haya acabado la partida
     y haya un winner"""
     def __init__(self, mem, players):
         self.players=players
         self.mem=mem
-        self.arr=[]#Cada item tendrá la fecha en ordinal, nombre, tiempo de partida, color, el score
+        self.arr=[]#Cada item tendra la fecha en ordinal, nombre, tiempo de partida, color, el score
         self.load()
 
     def insert(self):
@@ -549,7 +549,7 @@ class Jugador:
         return resultado
             
     def casillasMovidas(self):
-        """Casillas que ha movido el jugador, puede considerarse la puntuación del jugador"""
+        """Casillas que ha movido el jugador, puede considerarse la puntuacion del jugador"""
         return 4*self.fichas.arr[0].ruta.length()-self.casillasPorMover()
             
         
@@ -589,7 +589,7 @@ class Jugador:
         return resultado
                 
     def score(self):
-        """Da la puntuación de un jugador, durante o al final de la partida 
+        """Da la puntuacion de un jugador, durante o al final de la partida 
        
        Score sumatorio(casillas por mover otros jugadores si llevan 
        En caso de Ganar: 500 puntos + (comidas por mi-comidas por otros)*40 + sumatorio(casillas por mover del resto de jugadores)*2+ (casillas movidas)*
@@ -627,7 +627,7 @@ class Jugador:
         return False
         
     def tieneFichasATiroDeLlegada(self):
-        """Devuelve un booleano según el jugador tenga fichas a tiro de llegada o no"""
+        """Devuelve un booleano segun el jugador tenga fichas a tiro de llegada o no"""
         for f in self.fichas.arr:
             if f.estaATiroDeLlegada()==True:
                 return True
@@ -652,9 +652,9 @@ class Jugador:
         return True
         
     def IASelectFicha(self):
-        """Función que devuelve la ficha seleccionada por la IA. Si devuelve None es que ninguna se puede mover"""
+        """Funcion que devuelve la ficha seleccionada por la IA. Si devuelve None es que ninguna se puede mover"""
         def azar(tope):
-            """Función que saca un numero al azar de entre 1 y 100. Si es mayor del tope devuelve true. Sino devuelve false. Es decir tope 85 es una probabilidad del 85%"""
+            """Funcion que saca un numero al azar de entre 1 y 100. Si es mayor del tope devuelve true. Sino devuelve false. Es decir tope 85 es una probabilidad del 85%"""
             random.seed(datetime.datetime.now().microsecond)
             numero=int(random.random()*100)
             if numero<tope:
@@ -678,7 +678,7 @@ class Jugador:
         
         
         
-        #2 prioridad. Mueve fichas que disminuyen en número de amenazas en la nueva posicion
+        #2 prioridad. Mueve fichas que disminuyen en numero de amenazas en la nueva posicion
 #        fichas=sorted(fichas, key=lambda f:f.numeroAmenazasMejora(self.mem),  reverse=True)     
 #        for f in fichas:
 #            print (f, f.numeroAmenazasMejora(self.mem), f.numFichasPuedenComer(self.mem, f.posruta), f.numFichasPuedenComer(self.mem, f.posruta+f.estaAutorizadaAMover(self.mem)[1]))
@@ -722,25 +722,25 @@ class Ruta:
         self.mem=mem
         
     def append_id(self,  arr):
-        """Función que recibe un arr con los id de la ruta"""
+        """Funcion que recibe un arr con los id de la ruta"""
         for id in arr:
             self.arr.append(self.mem.casillas.casilla(id))
             
     def length(self):
-        """Saca el número de casillas """
+        """Saca el numero de casillas """
         return len(self.arr)
         
     def ruta1(self):
         return self.arr[1]
     
     def estaEnRuta(self, casilla):
-        """Devuelve si la casilla está en la ruta"""
+        """Devuelve si la casilla esta en la ruta"""
         if casilla in self.arr:
             return True
         return False
     
 class SetColores:
-    """Agrupación de jugadores"""
+    """Agrupacion de jugadores"""
     def __init__(self):
         self.arr=[]    
     
@@ -768,13 +768,13 @@ class SetColores:
         print ("No se ha encontrado el color de nombre {0}".format(name))
                 
     def index(self, color):
-        """Función que devuelve un orden de color según se ha insertado en el array"""
+        """Funcion que devuelve un orden de color segun se ha insertado en el array"""
         for i, c in enumerate(self.arr):
             if c==color:
                 return i
     
 class SetJugadores:
-    """Agrupación de jugadores"""
+    """Agrupacion de jugadores"""
     def __init__(self, mem):
         self.arr=[]
         self.mem=mem
@@ -798,7 +798,7 @@ class SetJugadores:
             self.cambiarJugador()
             return
         else:
-            self.actual.tiradaturno=TiradaTurno()#Se crea otro objeto porque así el anterior queda vinculada< a TiradaHistorica.
+            self.actual.tiradaturno=TiradaTurno()#Se crea otro objeto porque asi el anterior queda vinculada< a TiradaHistorica.
             self.actual.movimientos_acumulados=None
             self.actual.LastFichaMovida=None
 
@@ -842,7 +842,7 @@ class SetRutas:
         return self.arr[id]
         
 #    def rutas1(self):
-#        """Función que devuelve un arr con punteros a las casillas que están en ruta1
+#        """Funcion que devuelve un arr con punteros a las casillas que estan en ruta1
 #        Para poder saber de que color son, se puede usar casilla.color"""
 #        resultado=[]
 #        for r in self.arr:
@@ -938,7 +938,7 @@ class SetCasillas:
         return self.arr[id]
         
 #    def rutas1(self):
-#        """Función que devuelve un arr con punteros a las casillas que están en ruta1
+#        """Funcion que devuelve un arr con punteros a las casillas que estan en ruta1
 #        Para poder saber de que color son, se puede usar casilla.color"""
 #        resultado=[]
 #        if self.numplayers==6:
@@ -999,7 +999,7 @@ class SetCasillas:
         def defineSeguro( id):
             if id==5 or id==12 or id==17 or id==22 or id==29 or id==34 or id==39 or id==46 or id==51  or id==56 or id==63 or id==68:
                 return True
-            elif id>=69 and id<=100:#Las de la rampa de llegada también son seguras
+            elif id>=69 and id<=100:#Las de la rampa de llegada tambien son seguras
                 return True
             else:
                 return False
@@ -1254,13 +1254,13 @@ class SetCasillas:
             self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i], defineRutas1(i)))
             
 class SetFichas:
-    """Agrupación de fichas"""
+    """Agrupacion de fichas"""
     def __init__(self, mem):
         self.arr=[]
         self.mem=mem
 
     def algunaEstaObligada(self):
-        """Busca entre las fichas que pueden mover si alguna está obligada a mover"""
+        """Busca entre las fichas que pueden mover si alguna esta obligada a mover"""
         for f in self.arr:
             if f.estaObligada(self.mem)==True:
                 return True
@@ -1320,7 +1320,7 @@ class Ficha(QObject):
         return  "Ficha {0} del jugador {1}".format(self.id, self.jugador.color.name)
         
     def estaObligada(self, mem):        
-        """ESta pregunta se integra dentro de puede mover. NO DEBE HABER EN SETFICHAS ALGUNAS, YA QUE SE INTEGRARíA DENTRO DE ALGUNA PUEDEMOVER"""
+        """ESta pregunta se integra dentro de puede mover. NO DEBE HABER EN SETFICHAS ALGUNAS, YA QUE SE INTEGRARiA DENTRO DE ALGUNA PUEDEMOVER"""
         if self.puedeMover()[0]==False:
             return False
             
@@ -1331,7 +1331,7 @@ class Ficha(QObject):
         if self.jugador.tiradaturno.ultimoValor()==5 and self.estaEnCasa() and self.jugador.hayDosJugadoresDistintosEnRuta1():
             return True
         
-        #Comprueba que no tenga obligación de abrir barrera
+        #Comprueba que no tenga obligacion de abrir barrera
         if self.jugador.tieneBarreras()==True  and self.jugador.tiradaturno.ultimoValor()==6:
             if self.casilla() in self.jugador.barreras():
                 return True
@@ -1339,9 +1339,9 @@ class Ficha(QObject):
         
     def estaAutorizadaAMover(self, posibledado=None, log=False):
         """PUEDE MOVER Y ESTA OBLIGADO SON DOS CONCEPTOS INDEPENDIENTES QUE NO DEBEN DE UNIRSE 
-        PORQUE GENERA RECURSIVIDADPOR ESO SE HACE AQUí
+        PORQUE GENERA RECURSIVIDADPOR ESO SE HACE AQUi
         
-        Autorizada significa que puede mover y no está obligada a hacer otras cosas"""
+        Autorizada significa que puede mover y no esta obligada a hacer otras cosas"""
         
         (puede, movimiento)=self.puedeMover(posibledado,  log)
         if puede:
@@ -1367,7 +1367,7 @@ class Ficha(QObject):
             if log: self.mem.jugadores.actual.log(self.tr("No es del jugador actual"))
             return (False, 0)
             
-        #No se puede mover una ficha que está en casa con puntos acumulados
+        #No se puede mover una ficha que esta en casa con puntos acumulados
         if self.mem.jugadores.actual.movimientos_acumulados!=None and self.estaEnCasa():
             return (False, 0)
 
@@ -1431,7 +1431,7 @@ class Ficha(QObject):
         casilladestino.buzon_append(self)
 
     def puedeComer(self, mem, destposruta):
-        """Devuelve un (True, ficha a comer) or (False, None) si puede comer una ficha en la posición ruta"""
+        """Devuelve un (True, ficha a comer) or (False, None) si puede comer una ficha en la posicion ruta"""
         #Controla que la casilla de destino no sobrepase la ruta
         if destposruta>self.ruta.length()-1:
             return (False, None)
@@ -1450,7 +1450,7 @@ class Ficha(QObject):
             elif mem.jugadores.actual!=fichasdestino[0][1].jugador and mem.jugadores.actual==fichasdestino[1][1].jugador:
                 print ("noigual0,igual1")
                 return (True, fichasdestino[0][1])
-            else: #Las dos son distintas se escoge la última que entró
+            else: #Las dos son distintas se escoge la ultima que entro
                 print ("noigual0,noigual1")
                 return (True, casilladestino.UltimaFichaEnLlegar)
                 
@@ -1465,7 +1465,7 @@ class Ficha(QObject):
                 
                 
     def come(self, mem,   ruta):
-        """ruta, es la posición de ruta de ficha en la que come. No se ha movido antes, come si puede y devuelve True, en caso contrario False"""
+        """ruta, es la posicion de ruta de ficha en la que come. No se ha movido antes, come si puede y devuelve True, en caso contrario False"""
         (puede, fichaacomer)=self.puedeComer(mem, ruta)
         if puede==True:
             fichaacomer.mover(0, False)
@@ -1491,7 +1491,7 @@ class Ficha(QObject):
         if self.puedeMeter(posruta):
             self.mover(posruta, True)
             self.jugador.movimientos_acumulados=10
-            self.jugador.log(self.tr("Una ficha a llegado a la meta"))
+            self.jugador.log(self.tr("Una ficha ha llegado a la meta"))
             return True
         return False
 
@@ -1507,7 +1507,7 @@ class Ficha(QObject):
         return self.ruta.length()-self.posruta
         
     def estaATiroDeLlegada(self ):
-        """Devuelve un booleano, según la ficha esté o no a tiro de llegada, es decir a 1,2,3,4,5,6,7"""
+        """Devuelve un booleano, segun la ficha este o no a tiro de llegada, es decir a 1,2,3,4,5,6,7"""
         if self.posruta in (self.ruta.length()-1,  self.ruta.length()-2,  self.ruta.length()-3,  self.ruta.length()-4,  self.ruta.length()-5):
             return True
         if self.posruta==self.ruta.length()-6 and self.jugador.tieneFichasEnCasa()==True:
@@ -1623,9 +1623,9 @@ class Circulo:
             self.arr.append(mem.casillas.casilla(i))
     
     def casilla(self, posicion,  desplazamiento):
-        """Calcula la casilla del circulo que tiene un desplazamiento positivo (hacia adelante) o negativo (hacia atrás) 
+        """Calcula la casilla del circulo que tiene un desplazamiento positivo (hacia adelante) o negativo (hacia atras) 
         de la casilla cuya posicion (id de la casilla) se ha dado como parametro"""
-        if posicion<1 or posicion>self.numcasillas:   #Si no está en el circulo
+        if posicion<1 or posicion>self.numcasillas:   #Si no esta en el circulo
             return None
             
         destino=posicion-1+desplazamiento
@@ -1667,7 +1667,7 @@ class Color:
         return (Color(self.r, self.g, self.b, self.name))
     
     def compatibilityName(self,  color):
-        #Deberá desaparecer el tres versiones despues de 20130228
+        #Debera desaparecer el tres versiones despues de 20130228
         if color=="gray":
             return "dimgray"
         elif color=="pink":
@@ -1863,7 +1863,7 @@ class Casilla(QObject):
         QObject.__init__(self)
         self.id=id
         self.maxfichas=maxfichas
-        self.posfichas=posfichas#es un array de vectores 3d de tamaño maxfichas
+        self.posfichas=posfichas#es un array de vectores 3d de tamano maxfichas
         self.color=color
         self.position=position
         self.rotate=rotate
@@ -1881,10 +1881,10 @@ class Casilla(QObject):
 
 
     def esSegura(self, mem,  jugador, beforemove=True):
-        """Devuelve si la casilla es segura para el jugador pasado como parámetro ante un posible moviiento,
-        esta función mezcla el concepto ruta y seguro dependiendo del numéro de fichas
+        """Devuelve si la casilla es segura para el jugador pasado como parametro ante un posible moviiento,
+        esta funcion mezcla el concepto ruta y seguro dependiendo del numero de fichas
         
-        Busca según beforemove antes de mover ficha, es decir es seguro con 0 fichas, o aftermove seguro con 1 ficha"""
+        Busca segun beforemove antes de mover ficha, es decir es seguro con 0 fichas, o aftermove seguro con 1 ficha"""
         if self.ruta1==True:
             propietario=mem.jugadores.jugador(self.color.name)
             if jugador==propietario:
@@ -1950,7 +1950,7 @@ class Casilla(QObject):
             ################################
             if self.seguro==True:
                 return
-            #Cada cuadrante estará a 3x7 estara a 1x1 de ancho
+            #Cada cuadrante estara a 3x7 estara a 1x1 de ancho
             if len(str(self.id))==1:
                 primero=int(str(self.id)[0])
             if len(str(self.id))==2:
@@ -2295,7 +2295,7 @@ class Casilla(QObject):
                     f.dibujar(ogl, i)
 
     def tieneBarrera(self):
-        """Devuelve un booleano, las fichas de la barrera se pueden sacar del buzón"""
+        """Devuelve un booleano, las fichas de la barrera se pueden sacar del buzon"""
         if self.tipo not in (0, 1):#Casilla inicio y final
             if self.maxfichas==2:
                 if self.buzon_numfichas()==2:
@@ -2304,7 +2304,7 @@ class Casilla(QObject):
         return False
 
     def posicionLibreEnBuzon(self):
-        """Función que devuelve la posición de un sitio libre con un entero. En caso negativo devuelve -1"""
+        """Funcion que devuelve la posicion de un sitio libre con un entero. En caso negativo devuelve -1"""
         for i, p in enumerate(self.buzon):
             if p==None:
                 return i
@@ -2326,7 +2326,7 @@ class Casilla(QObject):
         print ("No se ha podido hacer buzon_remove con {0}".format(ficha))
                 
     def buzon_numfichas(self):
-        """Función que devuelve el número de fichas en el buzón"""
+        """Funcion que devuelve el numero de fichas en el buzon"""
         resultado=0
         for f in self.buzon:
             if f!=None:
@@ -2334,7 +2334,7 @@ class Casilla(QObject):
         return resultado
 
     def buzon_fichas(self):
-        """Como ahora puede haber una ficha y estar en buzon[1] se hace necesario esta función.
+        """Como ahora puede haber una ficha y estar en buzon[1] se hace necesario esta funcion.
         Devuelve una lista de fichas con una tupla (posicion, ficha)"""
         resultado=[]
         for i, f in enumerate(self.buzon):
@@ -2367,7 +2367,7 @@ class Mem:
             time.sleep(0.2)
    
     def generar_fichas(self):
-        """Debe generarse despuñes de jugadores"""
+        """Debe generarse despunes de jugadores"""
         id=0
         for ic, c in enumerate(self.colores.arr):
             j=self.jugadores.jugador(c.name)
@@ -2430,7 +2430,7 @@ class Mem:
             
     def load(self, filename):       
         def error():           
-            qmessagebox(QApplication.translate("glparchis", "Este fichero es de una versión antigua o está estropeado. No puede ser cargado."))
+            qmessagebox(QApplication.translate("glparchis", "Este fichero es de una version antigua o esta estropeado. No puede ser cargado."))
             os.chdir(cwd)
         ################################
         cwd=os.getcwd()
@@ -2445,7 +2445,7 @@ class Mem:
             fileversion=None
             error()
             return False
-        if fileversion!="1.1":#Ir cambiando según necesidades
+        if fileversion!="1.1":#Ir cambiando segun necesidades
             error()
             return False
         
@@ -2559,7 +2559,7 @@ class Mem4(Mem):
         self.circulo=Circulo(self, 68)
             
 def dic2list(dic):
-    """Función que convierte un diccionario pasado como parametro a una lista de objetos"""
+    """Funcion que convierte un diccionario pasado como parametro a una lista de objetos"""
     resultado=[]
     for k,  v in dic.items():
         resultado.append(v)
@@ -2580,9 +2580,9 @@ def cargarQTranslator(qtranslator, language):
     QCoreApplication.installTranslator(qtranslator);
 
 def developing():
-    """Función que permite avanzar si hay un parametro y da un aviso e interrumpe si no, se debe poner un if en donde se use"""
+    """Funcion que permite avanzar si hay un parametro y da un aviso e interrumpe si no, se debe poner un if en donde se use"""
     if len (sys.argv)==1:
-        qmessagebox(QApplication.translate("frmMain", "Esta opción se está desarrollando"))
+        qmessagebox(QApplication.translate("frmMain", "Esta opcion se esta desarrollando"))
         return False
     return True
 
