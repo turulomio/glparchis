@@ -36,7 +36,9 @@ class wdgOGL(QGLWidget):
         self.mem=mem
         self.tablero=Tablero(mem.maxplayers)
         print("DisplayLists")
+        #Como vamos a usar varias lists tenemos que crear una base y luego el orden
         self.displaylists=glGenLists(DisplayList.numero())
+        #Tablero
         glNewList(DisplayList.tablero, GL_COMPILE)
         self.tablero.dibujar(self)
         for c in self.mem.casillas.arr:
@@ -114,13 +116,18 @@ class wdgOGL(QGLWidget):
         glRotated(self.rotY, 0,1 , 0)
         glRotated(self.rotZ, 0,0 , 1)
         
+#        print(self.displaylists)
+#        glListBase(self.displaylists)
+        #glCallLists(b'2')
+#        glCallLists([DisplayList.tablero, DisplayList.dado])
+        
         glCallList(DisplayList.tablero)
         
         for c in self.mem.casillas.arr:
             if c.id!=0:
                 c.dibujar_fichas(self)
-            
         self.mem.dado.dibujar(self)
+            
         print("paintGL", datetime.datetime.now()-inicio)
 
     def resizeGL(self, width, height):
