@@ -9,6 +9,11 @@ from libglparchis import *
 from frmShowCasilla import *
 from frmShowFicha import *
 
+class DisplayList:
+    tablero=1
+    
+    def numero():
+        return 1
 
 class wdgOGL(QGLWidget):
     """Clase principal del Juego, aqui esta fundamentalmente la representacion.
@@ -30,6 +35,14 @@ class wdgOGL(QGLWidget):
     def assign_mem(self, mem):
         self.mem=mem
         self.tablero=Tablero(mem.maxplayers)
+        print("DisplayLists")
+        self.displaylists=glGenLists(DisplayList.numero())
+        glNewList(DisplayList.tablero, GL_COMPILE)
+        self.tablero.dibujar(self)
+        for c in self.mem.casillas.arr:
+            if c.id!=0:
+                c.dibujar(self)
+        glEndList()
         
     def initializeGL(self):
         #LAS TEXTURAS SE DEBEN CRAR AQUÍ ES LO PRIMERO QUE SE EJECUTA
@@ -68,6 +81,7 @@ class wdgOGL(QGLWidget):
         glColorMaterial(GL_FRONT,GL_AMBIENT_AND_DIFFUSE);
 
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+        
 
     def paintGL(self):   
         inicio=datetime.datetime.now()
@@ -100,11 +114,10 @@ class wdgOGL(QGLWidget):
         glRotated(self.rotY, 0,1 , 0)
         glRotated(self.rotZ, 0,0 , 1)
         
-        self.tablero.dibujar(self)
+        glCallList(DisplayList.tablero)
         
         for c in self.mem.casillas.arr:
             if c.id!=0:
-                c.dibujar(self)
                 c.dibujar_fichas(self)
             
         self.mem.dado.dibujar(self)
