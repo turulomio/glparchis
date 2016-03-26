@@ -32,6 +32,7 @@ XXXXXXXX
 --------
 - Anadido el script project_i18n para traducir la documentacion del proyecto
 - Ahora el tablero rota por su centro pulsando la letra m
+- Rendimiento mejorado
 """))
 
         f.write(self.tr("""
