@@ -16,6 +16,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.setupUi(self)
         self.show()
         self.panels=[]
+        self.delay=300#To create IA movement reallity
         
         #Timer statistics
         self.timer = QTimer()
@@ -139,9 +140,9 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.cmdTirarDado.setEnabled(True)
         if self.mem.jugadores.actual.ia==True:
             self.mem.jugadores.actual.log(self.tr("IA Tira el dado"))
-            delay(400)
+            delay(self.delay)
             self.on_cmdTirarDado_clicked()
-            delay(800)
+            delay(self.delay)
         else:
             self.mem.jugadores.actual.log(self.tr("Tire el dado"))
 
@@ -158,7 +159,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         if self.mem.jugadores.actual.ia==True:
             self.mem.jugadores.actual.log(self.tr("IA mueve una ficha"))     
             iaficha=self.mem.jugadores.actual.IASelectFicha()
-            delay(400)
+            delay(self.delay)
             if iaficha==None:
                 self.cambiarJugador()
             else:
@@ -228,7 +229,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.mem.play("meter")
             else:
                 self.mem.play("comer")            
-            delay(600)
+            delay(self.delay)
             if self.mem.jugadores.actual.fichas.algunaEstaAutorizadaAmover()==True:
                 self.on_JugadorDebeMover()
                 return
@@ -250,7 +251,7 @@ class wdgGame(QWidget, Ui_wdgGame):
             return          
         self.mem.jugadores.actual.log (self.tr("Fin de turno"))
         self.ogl.updateGL()        
-        delay(400)
+        delay(self.delay)
         self.mem.dado.showing=False
         self.ogl.updateGL()        
 

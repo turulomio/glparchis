@@ -3,52 +3,52 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="../libglparchis.py" line="1310"/>
+        <location filename="../libglparchis.py" line="1311"/>
         <source>No es del jugador actual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1345"/>
+        <location filename="../libglparchis.py" line="1346"/>
         <source>Se ha pasado la meta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1351"/>
+        <location filename="../libglparchis.py" line="1352"/>
         <source>Hay una barrera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1360"/>
+        <location filename="../libglparchis.py" line="1361"/>
         <source>No hay espacio en la casilla</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1340"/>
+        <location filename="../libglparchis.py" line="1341"/>
         <source>No puede mover</source>
         <translation>Vous ne pouvez pas déplacer</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1358"/>
+        <location filename="../libglparchis.py" line="1359"/>
         <source>Obligado a sacar y a comer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1418"/>
+        <location filename="../libglparchis.py" line="1419"/>
         <source>He comido una ficha de {0} en la casilla {1}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1294"/>
+        <location filename="../libglparchis.py" line="1295"/>
         <source>No puede mover, porque debe sacar una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1296"/>
+        <location filename="../libglparchis.py" line="1297"/>
         <source>No puede mover, porque debe abrir una barrera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1435"/>
+        <location filename="../libglparchis.py" line="1436"/>
         <source>Una ficha ha llegado a la meta</source>
         <translation type="unfinished"></translation>
     </message>
@@ -503,7 +503,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="2388"/>
+        <location filename="../libglparchis.py" line="2389"/>
         <source>Esta opcion se esta desarrollando</source>
         <translation type="unfinished"></translation>
     </message>
@@ -740,57 +740,57 @@
 <context>
     <name>glparchis</name>
     <message>
-        <location filename="../libglparchis.py" line="237"/>
+        <location filename="../libglparchis.py" line="238"/>
         <source>Sacar un 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="238"/>
+        <location filename="../libglparchis.py" line="239"/>
         <source>Sacar un 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="239"/>
+        <location filename="../libglparchis.py" line="240"/>
         <source>Sacar un 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="240"/>
+        <location filename="../libglparchis.py" line="241"/>
         <source>Sacar un 4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="241"/>
+        <location filename="../libglparchis.py" line="242"/>
         <source>Sacar un 5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="242"/>
+        <location filename="../libglparchis.py" line="243"/>
         <source>Sacar un 6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="243"/>
+        <location filename="../libglparchis.py" line="244"/>
         <source>Sacar un 7</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="244"/>
+        <location filename="../libglparchis.py" line="245"/>
         <source>Contar 10</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="245"/>
+        <location filename="../libglparchis.py" line="246"/>
         <source>Contar 20</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="246"/>
+        <location filename="../libglparchis.py" line="247"/>
         <source>Sacar ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="2236"/>
+        <location filename="../libglparchis.py" line="2237"/>
         <source>Este fichero es de una version antigua o esta estropeado. No puede ser cargado.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -808,16 +808,7 @@
 <context>
     <name>i18n</name>
     <message>
-        <location filename="../project_i18n.py" line="30"/>
-        <source>
-XXXXXXXX
---------
-- Anadido el script project_i18n para traducir la documentacion del proyecto
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="36"/>
+        <location filename="../project_i18n.py" line="37"/>
         <source>
 20160325
 --------
@@ -832,7 +823,7 @@ XXXXXXXX
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="48"/>
+        <location filename="../project_i18n.py" line="49"/>
         <source>
 20130716
 --------
@@ -903,7 +894,7 @@ XXXXXXXX
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="126"/>
+        <location filename="../project_i18n.py" line="127"/>
         <source>
 Idea y desarrollo
 ----------------- 
@@ -917,7 +908,7 @@ French: Nadejda Adam
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="140"/>
+        <location filename="../project_i18n.py" line="141"/>
         <source>
 Requisitos
 ==========
@@ -966,6 +957,16 @@ Procedimiento de instalacion para binarios windows
 Procedimiento de instalacion para fuentes windows
 =================================================
 
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="30"/>
+        <source>
+XXXXXXXX
+--------
+- Anadido el script project_i18n para traducir la documentacion del proyecto
+- Ahora el tablero rota por su centro pulsando la letra m
 </source>
         <translation type="unfinished"></translation>
     </message>
@@ -1023,7 +1024,7 @@ Procedimiento de instalacion para fuentes windows
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="137"/>
+        <location filename="../ui/wdgGame.py" line="138"/>
         <source>Tira el dado</source>
         <translation>Lancer les dés</translation>
     </message>
@@ -1033,62 +1034,62 @@ Procedimiento de instalacion para fuentes windows
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="61"/>
+        <location filename="../ui/wdgGame.py" line="62"/>
         <source>Empieza la partida</source>
         <translation>Lancez le jeu</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="146"/>
+        <location filename="../ui/wdgGame.py" line="147"/>
         <source>Tire el dado</source>
         <translation>Lance les dés</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="159"/>
+        <location filename="../ui/wdgGame.py" line="160"/>
         <source>IA mueve una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="189"/>
+        <location filename="../ui/wdgGame.py" line="190"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="192"/>
+        <location filename="../ui/wdgGame.py" line="193"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="196"/>
+        <location filename="../ui/wdgGame.py" line="197"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="198"/>
+        <location filename="../ui/wdgGame.py" line="199"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="211"/>
+        <location filename="../ui/wdgGame.py" line="212"/>
         <source>Seleccione una ficha...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="251"/>
+        <location filename="../ui/wdgGame.py" line="252"/>
         <source>Fin de turno</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="141"/>
+        <location filename="../ui/wdgGame.py" line="142"/>
         <source>IA Tira el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="168"/>
+        <location filename="../ui/wdgGame.py" line="169"/>
         <source>Mueva una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="104"/>
+        <location filename="../ui/wdgGame.py" line="105"/>
         <source>Has ganado la partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1128,7 +1129,7 @@ Procedimiento de instalacion para fuentes windows
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="39"/>
+        <location filename="../ui/wdgGame.py" line="40"/>
         <source>Tiempo de partida: {0}</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1138,7 +1139,7 @@ Procedimiento de instalacion para fuentes windows
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="123"/>
+        <location filename="../ui/wdgGame.py" line="124"/>
         <source>{0} ha ganado</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1171,7 +1172,7 @@ Procedimiento de instalacion para fuentes windows
 <context>
     <name>wdgOGL</name>
     <message>
-        <location filename="../ui/wdgOGL.py" line="227"/>
+        <location filename="../ui/wdgOGL.py" line="247"/>
         <source>Se ha hecho click en la ficha {0}</source>
         <translation type="unfinished"></translation>
     </message>
