@@ -27,13 +27,13 @@ class i18n(QObject):
             self.install(l)
     def changelog(self, language):
         f=open("CHANGELOG-{}.txt".format(language.upper()), "w")
-        f.write(self.tr("""
-XXXXXXXX
---------
-- Anadido el script project_i18n para traducir la documentacion del proyecto
-- Ahora el tablero rota por su centro pulsando la letra m
-- Rendimiento mejorado
-"""))
+        f.write("20160623\n")
+        f.write("--------\n")
+        f.write(self.tr("- Anadido el script project_i18n para traducir la documentacion del proyecto")+"\n")
+        f.write(self.tr("- Ahora el tablero rota por su centro pulsando la letra m")+"\n")
+        f.write(self.tr("- Rendimiento mejorado")+"\n")
+        f.write(self.tr("- Corregido error con el icono de fullscreen")+"\n")
+        f.write("\n")
 
         f.write(self.tr("""
 20160325
