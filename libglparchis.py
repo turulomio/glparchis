@@ -15,7 +15,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtMultimedia import *
 
 #Cuando se modifique una version sacada se pondra un + p.e. 20120921+
-version="20160325"
+version="20160623"
 
 def str2bool(s):
     if s.__class__==bool:#Si ya fuera bool
