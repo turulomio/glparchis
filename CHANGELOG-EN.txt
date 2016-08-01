@@ -1,9 +1,13 @@
+20160801
+--------
+- La configuración del splitter del juego se guarda ahora en pantalla normal y en pantalla completa
+
 20160623
 --------
-- project_i18n script added to translate project documentation
-- Board rotates pressing m key
-- Improved performance
-- Fullscreen icon error fixed
+- Anadido el script project_i18n para traducir la documentacion del proyecto
+- Ahora el tablero rota por su centro pulsando la letra m
+- Rendimiento mejorado
+- Corregido error con el icono de fullscreen
 
 
 20160325
