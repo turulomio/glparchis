@@ -2159,6 +2159,7 @@ class Mem:
         self.settings=None
         self.translator=None           
         self.mediaObject = None
+        self.frmMain=None #Pointer to QMainWindow
         
 
     def play(self, sound):

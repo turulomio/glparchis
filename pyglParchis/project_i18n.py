@@ -27,6 +27,11 @@ class i18n(QObject):
             self.install(l)
     def changelog(self, language):
         f=open("CHANGELOG-{}.txt".format(language.upper()), "w")
+        f.write("XXXXXXXX\n")
+        f.write("--------\n")
+        f.write(self.tr("- El splitter en el juego ahora guarda la configuracion en pantalla normal y en pantalla completa")+"\n")
+        f.write("\n")
+
         f.write("20160623\n")
         f.write("--------\n")
         f.write(self.tr("- Anadido el script project_i18n para traducir la documentacion del proyecto")+"\n")
