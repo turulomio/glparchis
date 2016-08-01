@@ -808,7 +808,7 @@
 <context>
     <name>i18n</name>
     <message>
-        <location filename="../project_i18n.py" line="38"/>
+        <location filename="../project_i18n.py" line="43"/>
         <source>
 20160325
 --------
@@ -823,7 +823,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="50"/>
+        <location filename="../project_i18n.py" line="55"/>
         <source>
 20130716
 --------
@@ -894,7 +894,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="128"/>
+        <location filename="../project_i18n.py" line="133"/>
         <source>
 Idea y desarrollo
 ----------------- 
@@ -908,7 +908,7 @@ French: Nadejda Adam
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="142"/>
+        <location filename="../project_i18n.py" line="147"/>
         <source>
 Requisitos
 ==========
@@ -961,23 +961,28 @@ Procedimiento de instalacion para fuentes windows
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="32"/>
+        <location filename="../project_i18n.py" line="37"/>
         <source>- Anadido el script project_i18n para traducir la documentacion del proyecto</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="33"/>
+        <location filename="../project_i18n.py" line="38"/>
         <source>- Ahora el tablero rota por su centro pulsando la letra m</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="34"/>
+        <location filename="../project_i18n.py" line="39"/>
         <source>- Rendimiento mejorado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="35"/>
+        <location filename="../project_i18n.py" line="40"/>
         <source>- Corregido error con el icono de fullscreen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="32"/>
+        <source>- La configuraci&#xc3;&#xb3;n del splitter del juego se guarda ahora en pantalla normal y en pantalla completa</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1059,32 +1064,32 @@ Procedimiento de instalacion para fuentes windows
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="205"/>
+        <location filename="../ui/wdgGame.py" line="204"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="208"/>
+        <location filename="../ui/wdgGame.py" line="207"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="212"/>
+        <location filename="../ui/wdgGame.py" line="211"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="214"/>
+        <location filename="../ui/wdgGame.py" line="213"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="227"/>
+        <location filename="../ui/wdgGame.py" line="226"/>
         <source>Seleccione una ficha...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="267"/>
+        <location filename="../ui/wdgGame.py" line="266"/>
         <source>Fin de turno</source>
         <translation type="unfinished"></translation>
     </message>
