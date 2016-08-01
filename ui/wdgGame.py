@@ -63,14 +63,7 @@ class wdgGame(QWidget, Ui_wdgGame):
 
         self.ogl.fichaClicked.connect(self.after_ficha_click)
 
-        splitter_state=self.mem.settings.value("frmMain/splitter_state", None)
-        if splitter_state==None:
-            currentSizes = self.splitter.sizes()
-            currentSizes[0]=self.width()-self.ogl.height()-100
-            currentSizes[1]=self.width()-currentSizes[0]
-            self.splitter.setSizes(currentSizes)
-        else:
-            self.splitter.restoreState(splitter_state)
+        self.restoreSplitter()
         
         #Coloca los tabs del widget
         self.tab.setCurrentIndex(0)
@@ -86,6 +79,9 @@ class wdgGame(QWidget, Ui_wdgGame):
         if self.mem.inittime==None:#Caso de que se cree la partida sin cargar .glparchis
             self.mem.inittime=datetime.datetime.now()
         self.on_JugadorDebeTirar()
+
+
+
 
     def on_ogl_doubleClicked(self):
         if self.cmdTirarDado.isEnabled()==False:
@@ -168,10 +164,26 @@ class wdgGame(QWidget, Ui_wdgGame):
         else:
             self.mem.jugadores.actual.log(self.tr("Mueva una ficha"))
 
-        
     def on_splitter_splitterMoved(self, position, index):
-        self.mem.settings.setValue("frmMain/splitter_state", self.splitter.saveState())
-        #self.update()
+        if self.mem.frmMain.isFullScreen():
+            fs="FS"
+        else:
+            fs=""
+        self.mem.settings.setValue("wdgGame/splitter_sizes_{}{}".format(fs, self.mem.maxplayers), self.splitter.sizes())
+
+    def restoreSplitter(self):
+        """Restura la configuraci´on del splitter en el juego"""
+        if self.mem.frmMain.isFullScreen():
+            fs="FS"
+        else:
+            fs=""
+        try:
+            arr_strsizes=self.mem.settings.value("wdgGame/splitter_sizes_{}{}".format(fs, self.mem.maxplayers), None) #Returns a list
+            sizes=[int(arr_strsizes[0]), int(arr_strsizes[1])]
+            self.splitter.setSizes(sizes)
+            print("Splitter restored to {}.".format(sizes))
+        except:
+            print("I couldn't restore splitter sizes.")
 
     @QtCore.pyqtSlot()      
     def on_cmdTirarDado_clicked(self):  

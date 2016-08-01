@@ -433,7 +433,7 @@
         <translation>Sonido encendido</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="82"/>
+        <location filename="../ui/frmMain.py" line="84"/>
         <source>Sonido apagado</source>
         <translation>Sonido apagado</translation>
     </message>
@@ -503,22 +503,22 @@
         <translation>Salir del modo de pantalla completa</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="2389"/>
+        <location filename="../libglparchis.py" line="2390"/>
         <source>Esta opcion se esta desarrollando</source>
         <translation>Esta opción se esta desarrollando</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="101"/>
+        <location filename="../ui/frmMain.py" line="103"/>
         <source>No se ha podido comprobar si hay actualizaciones. Intentelo mas tarde.</source>
         <translation>No se ha podido comprobar si hay actualizaciones. Inténtelo mas tarde.</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="116"/>
+        <location filename="../ui/frmMain.py" line="118"/>
         <source>Dispone de la ultima version del juego</source>
         <translation>Dispone de la última versión del juego</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="122"/>
+        <location filename="../ui/frmMain.py" line="124"/>
         <source>Hay una nueva version del programa. Bajatela de la pagina web del proyecto &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt; o directamente desde &lt;a href=&apos;https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-</source>
         <translation>Hay una nueva versión del programa. Bájatela de la página web del proyecto &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt; o directamente desde &lt;a href=&apos;https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-</translation>
     </message>
@@ -790,7 +790,7 @@
         <translation>Sacar ficha</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="2237"/>
+        <location filename="../libglparchis.py" line="2238"/>
         <source>Este fichero es de una version antigua o esta estropeado. No puede ser cargado.</source>
         <translation>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</translation>
     </message>
@@ -1163,7 +1163,7 @@ Procedimiento de instalación para fuentes windows
         <translation>3 seises seguidos</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="138"/>
+        <location filename="../ui/wdgGame.py" line="134"/>
         <source>Tira el dado</source>
         <translation>Tira el dado</translation>
     </message>
@@ -1178,57 +1178,57 @@ Procedimiento de instalación para fuentes windows
         <translation>Empieza la partida</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="147"/>
+        <location filename="../ui/wdgGame.py" line="143"/>
         <source>Tire el dado</source>
         <translation>Tire el dado</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="160"/>
+        <location filename="../ui/wdgGame.py" line="156"/>
         <source>IA mueve una ficha</source>
         <translation>IA mueve una ficha</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="190"/>
+        <location filename="../ui/wdgGame.py" line="205"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="193"/>
+        <location filename="../ui/wdgGame.py" line="208"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation>Han salido tres seises, la última ficha movida se va a casa</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="197"/>
+        <location filename="../ui/wdgGame.py" line="212"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation>Han salido tres seises, pero como no puede mover no se va a casa</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="199"/>
+        <location filename="../ui/wdgGame.py" line="214"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation>Después de tres seises, ya no puede volver a tirar</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="212"/>
+        <location filename="../ui/wdgGame.py" line="227"/>
         <source>Seleccione una ficha...</source>
         <translation>Seleccione una ficha...</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="252"/>
+        <location filename="../ui/wdgGame.py" line="267"/>
         <source>Fin de turno</source>
         <translation>Fin de turno</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="142"/>
+        <location filename="../ui/wdgGame.py" line="138"/>
         <source>IA Tira el dado</source>
         <translation>IA Tira el dado</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="169"/>
+        <location filename="../ui/wdgGame.py" line="165"/>
         <source>Mueva una ficha</source>
         <translation>Mueva una ficha</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="105"/>
+        <location filename="../ui/wdgGame.py" line="101"/>
         <source>Has ganado la partida</source>
         <translation>Has ganado la partida</translation>
     </message>
@@ -1278,7 +1278,7 @@ Procedimiento de instalación para fuentes windows
         <translation>Panel de usuario sigue al jugador actual</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="124"/>
+        <location filename="../ui/wdgGame.py" line="120"/>
         <source>{0} ha ganado</source>
         <translation>{0} ha ganado</translation>
     </message>

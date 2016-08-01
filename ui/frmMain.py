@@ -49,6 +49,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
             self.removeToolBar(self.toolBar);
             self.addToolBar(Qt.LeftToolBarArea, self.toolBar)
             self.toolBar.show()
+        if self.game!=None:
+            self.game.restoreSplitter()
                 
     @pyqtSlot()      
     def on_actionHelp_triggered(self):
@@ -157,6 +159,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
             self.mem=self.selectMem(filenam)
             self.mem.settings=self.settings
             self.mem.translator=self.translator
+            self.mem.frmMain=self
             if self.mem.load(filenam)==False:
                 self.mem=None
                 return
@@ -194,6 +197,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.mem=Mem4()
         self.mem.settings=self.settings
         self.mem.translator=self.translator
+        self.mem.frmMain=self
         initgame=frmInitGame(self.mem,  self)
         salida=initgame.exec_()
         if salida==QDialog.Accepted:
@@ -204,6 +208,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.mem=Mem6()
         self.mem.settings=self.settings
         self.mem.translator=self.translator
+        self.mem.frmMain=self
         initgame=frmInitGame(self.mem,  self)
         salida=initgame.exec_()
         if salida==QDialog.Accepted:
@@ -215,6 +220,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.mem=Mem8()
         self.mem.settings=self.settings
         self.mem.translator=self.translator
+        self.mem.frmMain=self
         initgame=frmInitGame(self.mem,  self)
         salida=initgame.exec_()
         if salida==QDialog.Accepted:
