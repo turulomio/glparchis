@@ -4,7 +4,7 @@
 
 20160623
 --------
-- Anadido el script project_i18n para traducir la documentacion del proyecto
+- Añadido el script project_i18n para traducir la documentación del proyecto
 - Ahora el tablero rota por su centro pulsando la letra m
 - Rendimiento mejorado
 - Corregido error con el icono de fullscreen

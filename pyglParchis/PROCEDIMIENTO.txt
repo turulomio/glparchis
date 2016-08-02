@@ -1,30 +1,31 @@
 Nueva release
 =============
-1) Modificar la version en libglparchis
-2) Modificar en project_18n el CHANGELOG XXXXXXXX y poner fecha. 
-2) Modificar RELEASE.txt con num subversion +1
-3) Ejecutar make
-4) Ejecutar linguist para todos los idiomas y tambien para _es
-4) Ejecutar python3 project_i18n.py 
-4) Crear los siguientes ficheros y subirlos a sourceforge:
-	+ Desde Linux con distribution.sh que pone la version automatico) y subirlo a sourceforge
-		- src
-		- bin. Ojo no se genere con nvidia
-	+ Desde Windows con distribution.bat, desde un equipo con python 32 bits y desde otro equipo con python 64 bits
-		- 32 bits
-		- 64 bits
-4) Colocar las versiones preferidas de windows y linux
-5) Subir al subversion y comprobar que queda subversion +1
-6) Crear un nuevo ebuild con la nueva version
-8) Subirlo al subversion del portage
-9) Modificar la pagina web
+01) Modificar la version en libglparchis
+02) Modificar en project_18n el CHANGELOG XXXXXXXX y poner fecha. 
+03) Modificar RELEASE.txt con num subversion +1
+04) Ejecutar make
+05) Ejecutar linguist para todos los idiomas y tambien para _es
+06) Ejecutar make otra vez
+07) Ejecutar python3 project_i18n.py 
+08) Crear desde Linux con distribution.sh que pone la version automatico) y subirlo a sourceforge
+	- src
+	- bin. Ojo no se genere con nvidia
+09) Subir al subversion y comprobar que queda subversion +1
+10) Pasar a windows, hacer un update del subversion
+11) Crear desde Windows con distribution.bat, desde un equipo con python 32 bits y desde otro equipo con python 64 bits y subir a sourceforge
+	- 32 bits
+	- 64 bits
+12) Colocar las versiones preferidas de windows y linux
+13) Crear un nuevo ebuild con la nueva version
+14) Subirlo al subversion del portage
+15) Modificar la pagina web
    - Crear objeto de Noticia
    - Anadir el release a la pagina
    - Modificar todos los enlaces ojo no cambiar muchas versiones si hago un replace
    - Subirla a internet con bash publicar.sh
-10) Subirlo a la mula
-10) Comprobar enlaces
-11) Publicar news en sourceforge con el CHANGELOG-EN
+16) Subirlo a la mula
+17) Comprobar enlaces
+18) Publicar news en sourceforge con el CHANGELOG-EN
 
 PROCEDIMIENTO.txt
 =======================================
