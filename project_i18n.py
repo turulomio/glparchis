@@ -29,7 +29,7 @@ class i18n(QObject):
         f=open("CHANGELOG-{}.txt".format(language.upper()), "w")
         f.write("20160801\n")
         f.write("--------\n")
-        f.write(self.tr("- La configuración del splitter del juego se guarda ahora en pantalla normal y en pantalla completa")+"\n")
+        f.write(self.tr("- La configuracion del splitter del juego se guarda ahora en pantalla normal y en pantalla completa")+"\n")
         f.write("\n")
 
         f.write("20160623\n")
