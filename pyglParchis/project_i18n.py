@@ -27,6 +27,12 @@ class i18n(QObject):
             self.install(l)
     def changelog(self, language):
         f=open("CHANGELOG-{}.txt".format(language.upper()), "w")
+        
+        f.write("XXXXXXXX\n")
+        f.write("--------\n")
+        f.write(self.tr("- El estado de pantalla completa se guarda en el fichero de configuracion")+"\n")
+        f.write("\n")
+        
         f.write("20160801\n")
         f.write("--------\n")
         f.write(self.tr("- La configuracion del splitter del juego se guarda ahora en pantalla normal y en pantalla completa")+"\n")

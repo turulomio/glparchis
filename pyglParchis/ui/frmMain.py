@@ -25,6 +25,29 @@ class frmMain(QMainWindow, Ui_frmMain):#
             print ("Actualizando")
             self.checkUpdates(False)
         self.setSound(str2bool(self.settings.value("frmSettings/sound", "True")))
+        self.setFullScreen(str2bool(self.settings.value("frmMain/fullscreen", "False")))
+
+    def setFullScreen(self, bool):
+        if bool==False:
+            self.actionFullScreen.setText(self.tr("Cambiar al modo de pantalla completa"))
+            self.actionFullScreen.setToolTip(self.tr("Cambiar al modo de pantalla completa"))
+            self.menuBar.show()
+            self.showMaximized()
+            self.removeToolBar(self.toolBar);
+            self.addToolBar(Qt.TopToolBarArea, self.toolBar)
+            self.toolBar.show()
+            self.settings.setValue("frmMain/fullscreen", "False")
+        else:      
+            self.actionFullScreen.setText(self.tr("Salir del modo de pantalla completa"))
+            self.actionFullScreen.setToolTip(self.tr("Salir del modo de pantalla completa"))
+            self.showFullScreen()
+            self.menuBar.hide()
+            self.removeToolBar(self.toolBar);
+            self.addToolBar(Qt.LeftToolBarArea, self.toolBar)
+            self.toolBar.show()
+            self.settings.setValue("frmMain/fullscreen", "True")
+        if self.game!=None:
+            self.game.restoreSplitter()
 
     @pyqtSlot()      
     def on_actionAcercaDe_triggered(self):
@@ -34,23 +57,9 @@ class frmMain(QMainWindow, Ui_frmMain):#
     @pyqtSlot()      
     def on_actionFullScreen_triggered(self):
         if self.isFullScreen():
-            self.actionFullScreen.setText(self.tr("Cambiar al modo de pantalla completa"))
-            self.actionFullScreen.setToolTip(self.tr("Cambiar al modo de pantalla completa"))
-            self.menuBar.show()
-            self.showMaximized()
-            self.removeToolBar(self.toolBar);
-            self.addToolBar(Qt.TopToolBarArea, self.toolBar)
-            self.toolBar.show()
-        else:      
-            self.actionFullScreen.setText(self.tr("Salir del modo de pantalla completa"))
-            self.actionFullScreen.setToolTip(self.tr("Salir del modo de pantalla completa"))
-            self.showFullScreen()
-            self.menuBar.hide()
-            self.removeToolBar(self.toolBar);
-            self.addToolBar(Qt.LeftToolBarArea, self.toolBar)
-            self.toolBar.show()
-        if self.game!=None:
-            self.game.restoreSplitter()
+            self.setFullScreen(False)
+        else:
+            self.setFullScreen(True)
                 
     @pyqtSlot()      
     def on_actionHelp_triggered(self):
