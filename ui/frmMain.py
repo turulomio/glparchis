@@ -10,6 +10,7 @@ from frmAbout import *
 from frmInitGame import *
 from frmSettings import *
 from frmHelp import *
+from uuid import uuid4
 
 class frmMain(QMainWindow, Ui_frmMain):#    
     def __init__(self, settings, parent = 0,  flags = False):
@@ -26,6 +27,11 @@ class frmMain(QMainWindow, Ui_frmMain):#
             self.checkUpdates(False)
         self.setSound(str2bool(self.settings.value("frmSettings/sound", "True")))
         self.setFullScreen(str2bool(self.settings.value("frmMain/fullscreen", "False")))
+        self.setInstallationUUID()
+        
+    def setInstallationUUID(self):
+        if self.settings.value("frmMain/uuid", "None")=="None":
+            self.settings.setValue("frmMain/uuid", str(uuid4()))
 
     def setFullScreen(self, bool):
         if bool==False:
