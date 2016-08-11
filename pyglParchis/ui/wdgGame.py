@@ -8,6 +8,8 @@ from qtablestatistics import *
 from libglparchis import *
 from Ui_wdgGame import *
 import glob
+from urllib.request import urlopen
+from uuid import uuid4
 
 class wdgGame(QWidget, Ui_wdgGame):
     """Clase principal del Juego, aqui esta toda la ciencia, cuando se deba pasar al UI se crearan emits que captura qT para el UI"""
@@ -32,6 +34,21 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.panelScrollLayout.removeWidget(p)
         self.hide()
 
+    def sendStatisticsStart(self):
+        #Chequea en Internet
+        url='http://glparchis.sourceforge.net/php/glparchis_game_start.php?uuid={}&installations_uuid={}&numplayers={}&maxplayers={}&version={}'.format(self.mem.settings.value("frmMain/uuid"), uuid4(), self.mem.maxplayers, self.mem.maxplayers, version)
+        print(url)
+        try:
+            web=b2s(urlopen(ul).read())
+        except:
+            web=None
+        #Si hay error de internet avisa
+        print (web)       
+        
+    def sendEndStatistics(self):
+        pass
+
+
     def stopReloads(self):
         self.timer.stop()
         
@@ -41,6 +58,7 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     def assign_mem(self, mem):
         self.mem=mem
+        self.sendStatisticsStart()
         self.stopthegame=False
         self.table.assign_mem(self.mem)
         self.ogl.assign_mem(self.mem)

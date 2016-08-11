@@ -1183,62 +1183,62 @@ Procedimiento de instalación para fuentes windows
         <translation>Tiempo de partida</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="62"/>
+        <location filename="../ui/wdgGame.py" line="80"/>
         <source>Empieza la partida</source>
         <translation>Empieza la partida</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="143"/>
+        <location filename="../ui/wdgGame.py" line="161"/>
         <source>Tire el dado</source>
         <translation>Tire el dado</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="156"/>
+        <location filename="../ui/wdgGame.py" line="174"/>
         <source>IA mueve una ficha</source>
         <translation>IA mueve una ficha</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="204"/>
+        <location filename="../ui/wdgGame.py" line="222"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="207"/>
+        <location filename="../ui/wdgGame.py" line="225"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation>Han salido tres seises, la última ficha movida se va a casa</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="211"/>
+        <location filename="../ui/wdgGame.py" line="229"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation>Han salido tres seises, pero como no puede mover no se va a casa</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="213"/>
+        <location filename="../ui/wdgGame.py" line="231"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation>Después de tres seises, ya no puede volver a tirar</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="226"/>
+        <location filename="../ui/wdgGame.py" line="244"/>
         <source>Seleccione una ficha...</source>
         <translation>Seleccione una ficha...</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="266"/>
+        <location filename="../ui/wdgGame.py" line="284"/>
         <source>Fin de turno</source>
         <translation>Fin de turno</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="138"/>
+        <location filename="../ui/wdgGame.py" line="156"/>
         <source>IA Tira el dado</source>
         <translation>IA Tira el dado</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="165"/>
+        <location filename="../ui/wdgGame.py" line="183"/>
         <source>Mueva una ficha</source>
         <translation>Mueva una ficha</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="101"/>
+        <location filename="../ui/wdgGame.py" line="119"/>
         <source>Has ganado la partida</source>
         <translation>Has ganado la partida</translation>
     </message>
@@ -1278,7 +1278,7 @@ Procedimiento de instalación para fuentes windows
         <translation>Partida de 8 jugadores</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="40"/>
+        <location filename="../ui/wdgGame.py" line="57"/>
         <source>Tiempo de partida: {0}</source>
         <translation>Tiempo de partida: {0}</translation>
     </message>
@@ -1288,7 +1288,7 @@ Procedimiento de instalación para fuentes windows
         <translation>Panel de usuario sigue al jugador actual</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="120"/>
+        <location filename="../ui/wdgGame.py" line="138"/>
         <source>{0} ha ganado</source>
         <translation>{0} ha ganado</translation>
     </message>

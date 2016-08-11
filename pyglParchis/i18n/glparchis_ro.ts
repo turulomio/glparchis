@@ -1054,62 +1054,62 @@ Procedimiento de instalacion para fuentes windows
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="62"/>
+        <location filename="../ui/wdgGame.py" line="80"/>
         <source>Empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="143"/>
+        <location filename="../ui/wdgGame.py" line="161"/>
         <source>Tire el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="156"/>
+        <location filename="../ui/wdgGame.py" line="174"/>
         <source>IA mueve una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="204"/>
+        <location filename="../ui/wdgGame.py" line="222"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="207"/>
+        <location filename="../ui/wdgGame.py" line="225"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="211"/>
+        <location filename="../ui/wdgGame.py" line="229"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="213"/>
+        <location filename="../ui/wdgGame.py" line="231"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="226"/>
+        <location filename="../ui/wdgGame.py" line="244"/>
         <source>Seleccione una ficha...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="266"/>
+        <location filename="../ui/wdgGame.py" line="284"/>
         <source>Fin de turno</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="138"/>
+        <location filename="../ui/wdgGame.py" line="156"/>
         <source>IA Tira el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="165"/>
+        <location filename="../ui/wdgGame.py" line="183"/>
         <source>Mueva una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="101"/>
+        <location filename="../ui/wdgGame.py" line="119"/>
         <source>Has ganado la partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1149,7 +1149,7 @@ Procedimiento de instalacion para fuentes windows
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="40"/>
+        <location filename="../ui/wdgGame.py" line="57"/>
         <source>Tiempo de partida: {0}</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1159,7 +1159,7 @@ Procedimiento de instalacion para fuentes windows
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="120"/>
+        <location filename="../ui/wdgGame.py" line="138"/>
         <source>{0} ha ganado</source>
         <translation type="unfinished"></translation>
     </message>
