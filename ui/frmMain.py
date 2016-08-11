@@ -157,6 +157,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
             self.layout.removeWidget(self.game)    
             self.game.__del__()
         self.game=wdgGame(self)
+        
         self.game.stopthegame=False
         self.layout.addWidget(self.game)
         self.actionGuardarPartida.setEnabled(True)
