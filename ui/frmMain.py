@@ -32,6 +32,17 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def setInstallationUUID(self):
         if self.settings.value("frmMain/uuid", "None")=="None":
             self.settings.setValue("frmMain/uuid", str(uuid4()))
+        #Chequea en Internet
+            url='http://glparchis.sourceforge.net/php/glparchis_installations.php?uuid={}'.format(self.settings.value("frmMain/uuid"))
+            print(url)
+            try:
+                web=b2s(urlopen(url).read())
+            except:
+                web=None
+            #Si hay error de internet avisa
+            print (web)       
+
+
 
     def setFullScreen(self, bool):
         if bool==False:
