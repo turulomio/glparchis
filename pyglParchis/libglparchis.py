@@ -784,6 +784,14 @@ class SetJugadores:
             if j==jugador:
                 return i
         
+    def numPlays(self):
+        """Number of players playing"""
+        r=0
+        for j in self.arr:
+            if j.plays==True:
+                r=r+1
+        return r
+        
     def cambiarJugador(self):        
         index=self.index(self.actual)
         if index==len(self.arr)-1:

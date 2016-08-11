@@ -24,6 +24,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.timer = QTimer()
         self.timer.timeout.connect(self.timer_reload)
         self.timer.start(500)
+        self.uuid=uuid4()
 
     def __del__(self):
         print ("Destructor wdgGame")
@@ -36,17 +37,26 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     def sendStatisticsStart(self):
         #Chequea en Internet
-        url='http://glparchis.sourceforge.net/php/glparchis_game_start.php?uuid={}&installations_uuid={}&numplayers={}&maxplayers={}&version={}'.format(self.mem.settings.value("frmMain/uuid"), uuid4(), self.mem.maxplayers, self.mem.maxplayers, version)
+        url='http://glparchis.sourceforge.net/php/glparchis_game_start.php?uuid={}&installations_uuid={}&numplayers={}&maxplayers={}&version={}'.format(self.uuid, self.mem.settings.value("frmMain/uuid"),  self.mem.jugadores.numPlays(), self.mem.maxplayers, version)
+        print(url)
+#        try:
+        web=b2s(urlopen(url).read())
+#        except:
+#            web=None
+        #Si hay error de internet avisa
+        print (web)       
+        
+    def sendStatisticsEnd(self):
+
+        #Chequea en Internet
+        url='http://glparchis.sourceforge.net/php/glparchis_game_end.php?uuid={}&installations_uuid={}&human_won={}'.format(self.uuid, self.mem.settings.value("frmMain/uuid"),  not self.mem.jugadores.actual.ia)
         print(url)
         try:
-            web=b2s(urlopen(ul).read())
+            web=b2s(urlopen(url).read())
         except:
             web=None
         #Si hay error de internet avisa
         print (web)       
-        
-    def sendEndStatistics(self):
-        pass
 
 
     def stopReloads(self):
@@ -135,6 +145,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.hs8.save()           
             self.highscoresUpdate()
         
+        self.sendStatisticsEnd()
         qmessagebox(self.tr("{0} ha ganado".format(self.mem.jugadores.actual.name)))
         self.tab.setCurrentIndex(1)
 
