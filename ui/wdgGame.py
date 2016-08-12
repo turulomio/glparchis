@@ -36,27 +36,24 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.hide()
 
     def sendStatisticsStart(self):
-        #Chequea en Internet
-        url='http://glparchis.sourceforge.net/php/glparchis_game_start.php?uuid={}&installations_uuid={}&numplayers={}&maxplayers={}&version={}'.format(self.uuid, self.mem.settings.value("frmMain/uuid"),  self.mem.jugadores.numPlays(), self.mem.maxplayers, version)
-        print(url)
-#        try:
-        web=b2s(urlopen(url).read())
-#        except:
-#            web=None
-        #Si hay error de internet avisa
-        print (web)       
+        if str2bool(self.mem.settings.value("frmSettings/statistics", "True"))==True:
+            url='http://glparchis.sourceforge.net/php/glparchis_game_start.php?uuid={}&installations_uuid={}&numplayers={}&maxplayers={}&version={}'.format(self.uuid, self.mem.settings.value("frmMain/uuid"),  self.mem.jugadores.numPlays(), self.mem.maxplayers, version)
+            print(url)
+            try:
+                web=b2s(urlopen(url).read())
+            except:
+                web=None
+            print (web)       
         
     def sendStatisticsEnd(self):
-
-        #Chequea en Internet
-        url='http://glparchis.sourceforge.net/php/glparchis_game_end.php?uuid={}&installations_uuid={}&human_won={}'.format(self.uuid, self.mem.settings.value("frmMain/uuid"),  not self.mem.jugadores.actual.ia)
-        print(url)
-        try:
-            web=b2s(urlopen(url).read())
-        except:
-            web=None
-        #Si hay error de internet avisa
-        print (web)       
+        if str2bool(self.mem.settings.value("frmSettings/statistics", "True"))==True:
+            url='http://glparchis.sourceforge.net/php/glparchis_game_end.php?uuid={}&installations_uuid={}&human_won={}'.format(self.uuid, self.mem.settings.value("frmMain/uuid"),  not self.mem.jugadores.actual.ia)
+            print(url)
+            try:
+                web=b2s(urlopen(url).read())
+            except:
+                web=None
+            print (web)       
 
 
     def stopReloads(self):

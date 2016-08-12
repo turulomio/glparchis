@@ -2,6 +2,7 @@ import sys, os, urllib.request,   datetime
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from PyQt5.QtWebKitWidgets import QWebView
 from libglparchis import *
 
 from Ui_frmMain import *
@@ -32,15 +33,14 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def setInstallationUUID(self):
         if self.settings.value("frmMain/uuid", "None")=="None":
             self.settings.setValue("frmMain/uuid", str(uuid4()))
-        #Chequea en Internet
-            url='http://glparchis.sourceforge.net/php/glparchis_installations.php?uuid={}'.format(self.settings.value("frmMain/uuid"))
-            print(url)
-            try:
-                web=b2s(urlopen(url).read())
-            except:
-                web=None
-            #Si hay error de internet avisa
-            print (web)       
+            if str2bool(self.settings.value("frmSettings/statistics", "True"))==True:
+                url='http://glparchis.sourceforge.net/php/glparchis_installations.php?uuid={}'.format(self.settings.value("frmMain/uuid"))
+                print(url)
+                try:
+                    web=b2s(urlopen(url).read())
+                except:
+                    web=None
+                print (web)       
 
 
 
@@ -219,6 +219,54 @@ class frmMain(QMainWindow, Ui_frmMain):#
 
 
 
+    @pyqtSlot()  
+    def on_actionMundialStatistics_triggered(self):
+        d=QDialog(self)        
+        d.setWindowTitle(self.tr("Estadisticas mundiales"))       
+        d.setWindowModality(QtCore.Qt.WindowModal)
+        d.resize(549, 607)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/glparchis/statistics.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        d.setWindowIcon(icon)
+        d.setSizeGripEnabled(True)
+        d.setModal(True)
+        self.horizontalLayout_2 = QHBoxLayout(d)
+        self.verticalLayout = QVBoxLayout()
+        
+        self.lblApp = QLabel(d)
+        self.lblApp.setText(self.tr("Estadisticas mundiales"))
+        font = QtGui.QFont()
+        font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
+        self.lblApp.setFont(font)
+        self.lblApp.setAlignment(QtCore.Qt.AlignCenter)
+        self.verticalLayout.addWidget(self.lblApp)
+        
+        self.horizontalLayout = QHBoxLayout()
+        spacerItem = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem)
+        self.lblPixmap = QLabel(d)
+        self.lblPixmap.setMaximumSize(QtCore.QSize(68, 68))
+        self.lblPixmap.setPixmap(QtGui.QPixmap(":/glparchis/statistics.png"))
+        self.lblPixmap.setScaledContents(True)
+        self.lblPixmap.setAlignment(QtCore.Qt.AlignCenter)
+        self.horizontalLayout.addWidget(self.lblPixmap)
+        spacerItem1 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem1)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        
+        self.webView = QWebView(d)
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.webView.sizePolicy().hasHeightForWidth())
+        self.webView.setSizePolicy(sizePolicy)
+        self.webView.setUrl(QtCore.QUrl("http://glparchis.sourceforge.net/php/glparchis_statistics.php"))
+        self.verticalLayout.addWidget(self.webView)
+        self.horizontalLayout_2.addLayout(self.verticalLayout)
+        d.show()
+            
     @pyqtSlot()  
     def on_actionPartidaNueva4_triggered(self):
         self.mem=Mem4()

@@ -1,8 +1,7 @@
- 
-import libglparchis
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
+from libglparchis import str2bool, cargarQTranslator
+#from PyQt5.QtCore import *
+from PyQt5.QtGui import  QPixmap,  QIcon
+from PyQt5.QtWidgets import   QDialog
 
 from Ui_frmSettings import *
 from wdgQT import *
@@ -87,13 +86,15 @@ class frmSettings(QDialog, Ui_frmSettings):
         self.languages=SetLanguages()
         self.languages.qcombobox(self.cmbLanguage, self.settings.value("frmSettings/language", "en"))            
         self.spinAutosaves.setValue(int(self.settings.value("frmSettings/autosaves", 15)))
+        self.chkStatistics.setChecked(str2bool(self.settings.value("frmSettings/statistics", "True")))
 
     @pyqtSlot(str)      
     def on_cmbLanguage_currentIndexChanged(self, stri):        
         self.languages.selected=self.languages.find_by_name(stri)
-        libglparchis.cargarQTranslator(self.translator, self.languages.selected.id)
+        cargarQTranslator(self.translator, self.languages.selected.id)
         self.retranslateUi(self)
         
     def on_buttonBox_accepted(self):
         self.settings.setValue("frmSettings/language", self.languages.selected.id)
         self.settings.setValue("frmSettings/autosaves", self.spinAutosaves.value())
+        self.settings.setValue("frmSettings/statistics", self.chkStatistics.isChecked())

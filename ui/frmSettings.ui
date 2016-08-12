@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>416</width>
-    <height>233</height>
+    <width>482</width>
+    <height>234</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -147,6 +147,16 @@
       </layout>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="chkStatistics">
+     <property name="text">
+      <string>Si esta marcado, tus partidas formaran parte de las estadisticas mundiales</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">

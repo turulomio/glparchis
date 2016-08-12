@@ -46,6 +46,8 @@
     </property>
     <addaction name="actionHelp"/>
     <addaction name="separator"/>
+    <addaction name="actionMundialStatistics"/>
+    <addaction name="separator"/>
     <addaction name="actionUpdates"/>
     <addaction name="separator"/>
     <addaction name="actionAcercaDe"/>
@@ -267,6 +269,18 @@
    </property>
    <property name="shortcut">
     <string>F11</string>
+   </property>
+  </action>
+  <action name="actionMundialStatistics">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/statistics.png</normaloff>:/glparchis/statistics.png</iconset>
+   </property>
+   <property name="text">
+    <string>Estadisticas mundiales</string>
+   </property>
+   <property name="toolTip">
+    <string>Estadisticas mundiales</string>
    </property>
   </action>
  </widget>
