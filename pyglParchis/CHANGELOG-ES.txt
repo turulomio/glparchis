@@ -1,3 +1,9 @@
+20160812
+--------
+- El estado de pantalla completa se guarda en el fichero de configuración
+- Añadido sistema de estadística en la base de datos de Sourceforge
+- Añadida opción de no contribuir a la estadística mundial
+
 20160801
 --------
 - La configuración del splitter del juego se guarda ahora en pantalla normal y en pantalla completa

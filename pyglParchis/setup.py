@@ -64,7 +64,7 @@ if sys.platform=='win32':
         include_files.append('glparchis.iss')
         build_exe_options = dict(
            create_shared_zip=False,
-           includes = ['OpenGL','OpenGL.platform.win32','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters','PyQt5.QtNetwork'],
+           includes = ['OpenGL','OpenGL.platform.win32','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters','PyQt5.QtNetwork','PyQt5.QtWebKit','PyQt5.QtPrintSupport'],
            excludes=[], 
            include_files=include_files
            )
@@ -79,7 +79,7 @@ if sys.platform=='win32':
 else:#linux
         base="Console"
         build_options = dict(
-           includes = ['OpenGL','OpenGL.platform.glx','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters','PyQt5.QtNetwork'], 
+           includes = ['OpenGL','OpenGL.platform.glx','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters','PyQt5.QtNetwork','PyQt5.QtWebKit','PyQt5.QtPrintSupport'],
            excludes = [], 
            include_files=include_files
            )
