@@ -30,7 +30,9 @@ class i18n(QObject):
         
         f.write("XXXXXXXX\n")
         f.write("--------\n")
-        f.write(self.tr("- El estado de pantalla completa se guarda en el fichero de configuracion")+"\n")
+        f.write("- {}\n".format(self.tr("El estado de pantalla completa se guarda en el fichero de configuracion")))
+        f.write("- {}\n".format(self.tr("Anadido sistema de estadistica en la base de datos de Sourceforge")))
+        f.write("- {}\n".format(self.tr("Anadido opcion de no contribuir a la estadistica mundial")))
         f.write("\n")
         
         f.write("20160801\n")

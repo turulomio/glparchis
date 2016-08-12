@@ -40,7 +40,10 @@ class frmHelp(QDialog, Ui_frmHelp):
             self.tr("<h3>Lanzamiento de dado</h3>")+                 
             self.tr("Para tirar el dado se puede hacer click en el boton 'Tirar el dado' o hacer doble-click encima del tablero, cuando le toque a un jugador humano.<p>")+
             self.tr("<h3>Vistas del tablero</h3>")+                 
-            self.tr("Se puede cambiar la vista del tablero pulsando la tecla 'm'.<p>")
+            self.tr("Se puede cambiar la vista del tablero pulsando la tecla 'm'.<p>") +
+            self.tr("<h2>Estadisticas del juego</h2>") +
+            self.tr("Hay un sistema de estadisticas mundiales, que puedes ver en el menu de ayuda.") + "<p> " +
+            self.tr("Por defecto, el usuario participa en esas estadisticas. Si no quieres formar parte de ellas, puedes desmarcar la casilla correspondiente en el menu de configuracion")+ "<p>"
         )
 """
 Basics: Parcheesi is played with two dice and the goal of the game is to move each of your pawns home to the center space. The most popular Parcheesi boards in America have seventy-two spaces around the board, twelve of which are darkened safe spaces where a pawn cannot be captured.
