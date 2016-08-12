@@ -28,7 +28,7 @@ class i18n(QObject):
     def changelog(self, language):
         f=open("CHANGELOG-{}.txt".format(language.upper()), "w")
         
-        f.write("XXXXXXXX\n")
+        f.write("20160812\n")
         f.write("--------\n")
         f.write("- {}\n".format(self.tr("El estado de pantalla completa se guarda en el fichero de configuracion")))
         f.write("- {}\n".format(self.tr("Anadido sistema de estadistica en la base de datos de Sourceforge")))

@@ -1,3 +1,9 @@
+20160812
+--------
+- Fullscreen state is saved in settings file
+- Added statistics system in Sourceforge database
+- Added option to do not contribute to world statistics
+
 20160801
 --------
 - Splitter game configuration is saved with fullscreen and normal data

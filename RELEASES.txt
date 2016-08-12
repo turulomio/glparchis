@@ -7,5 +7,6 @@ glparchis-20130228 <==>  svn -r 302 checkout svn://svn.code.sf.net/p/glparchis/c
 glparchis-20130716 <==>  svn -r 341 checkout svn://svn.code.sf.net/p/glparchis/code/pyglParchis glparchis
 glparchis-20160325 <==>  svn -r 382 checkout svn://svn.code.sf.net/p/glparchis/code/pyglParchis glparchis
 glparchis-20160623 <==>  svn -r 392 checkout svn://svn.code.sf.net/p/glparchis/code/pyglParchis glparchis
-glparchis-20160623 <==>  svn -r 395 checkout svn://svn.code.sf.net/p/glparchis/code/pyglParchis glparchis
+glparchis-20160801 <==>  svn -r 395 checkout svn://svn.code.sf.net/p/glparchis/code/pyglParchis glparchis
+glparchis-20160812 <==>  svn -r 402 checkout svn://svn.code.sf.net/p/glparchis/code/pyglParchis glparchis
 
