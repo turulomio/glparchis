@@ -3,52 +3,52 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="../libglparchis.py" line="1319"/>
+        <location filename="../libglparchis.py" line="1320"/>
         <source>No es del jugador actual</source>
         <translation>It&apos;s not a current player piece</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1354"/>
+        <location filename="../libglparchis.py" line="1355"/>
         <source>Se ha pasado la meta</source>
         <translation>You missed the central space</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1360"/>
+        <location filename="../libglparchis.py" line="1361"/>
         <source>Hay una barrera</source>
         <translation>There is a blockade</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1369"/>
+        <location filename="../libglparchis.py" line="1370"/>
         <source>No hay espacio en la casilla</source>
         <translation>The space is bussy</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1349"/>
+        <location filename="../libglparchis.py" line="1350"/>
         <source>No puede mover</source>
         <translation>It can&apos;t move</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1367"/>
+        <location filename="../libglparchis.py" line="1368"/>
         <source>Obligado a sacar y a comer</source>
         <translation>You&apos;re forced to move to the first space and to eat</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1427"/>
+        <location filename="../libglparchis.py" line="1428"/>
         <source>He comido una ficha de {0} en la casilla {1}</source>
         <translation>I&apos;ve eaten a piece of {0}at the space {1}</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1303"/>
+        <location filename="../libglparchis.py" line="1304"/>
         <source>No puede mover, porque debe sacar una ficha</source>
         <translation>Pawn can&apos;t move, because you must enter a pawn</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1305"/>
+        <location filename="../libglparchis.py" line="1306"/>
         <source>No puede mover, porque debe abrir una barrera</source>
         <translation>Pawn can&apos;t move, because you must open a blockade</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1444"/>
+        <location filename="../libglparchis.py" line="1445"/>
         <source>Una ficha ha llegado a la meta</source>
         <translation>A piece arrived to central space</translation>
     </message>
@@ -518,7 +518,7 @@
         <translation>Exit from full screen mode</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="2398"/>
+        <location filename="../libglparchis.py" line="2403"/>
         <source>Esta opcion se esta desarrollando</source>
         <translation>This option is being developed</translation>
     </message>
@@ -765,57 +765,57 @@
 <context>
     <name>glparchis</name>
     <message>
-        <location filename="../libglparchis.py" line="238"/>
+        <location filename="../libglparchis.py" line="239"/>
         <source>Sacar un 1</source>
         <translation>Roll a 1</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="239"/>
+        <location filename="../libglparchis.py" line="240"/>
         <source>Sacar un 2</source>
         <translation>Roll a 2</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="240"/>
+        <location filename="../libglparchis.py" line="241"/>
         <source>Sacar un 3</source>
         <translation>Roll a 3</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="241"/>
+        <location filename="../libglparchis.py" line="242"/>
         <source>Sacar un 4</source>
         <translation>Roll a 4</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="242"/>
+        <location filename="../libglparchis.py" line="243"/>
         <source>Sacar un 5</source>
         <translation>Roll a 5</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="243"/>
+        <location filename="../libglparchis.py" line="244"/>
         <source>Sacar un 6</source>
         <translation>Roll a 6</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="244"/>
+        <location filename="../libglparchis.py" line="245"/>
         <source>Sacar un 7</source>
         <translation>Get a 7</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="245"/>
+        <location filename="../libglparchis.py" line="246"/>
         <source>Contar 10</source>
         <translation>Advance 10</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="246"/>
+        <location filename="../libglparchis.py" line="247"/>
         <source>Contar 20</source>
         <translation>Advance 20</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="247"/>
+        <location filename="../libglparchis.py" line="248"/>
         <source>Sacar ficha</source>
         <translation>Take out a piece</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="2246"/>
+        <location filename="../libglparchis.py" line="2250"/>
         <source>Este fichero es de una version antigua o esta estropeado. No puede ser cargado.</source>
         <translation>This file is old or it is broken. It can&apos;t be loaded.</translation>
     </message>
@@ -1209,7 +1209,7 @@ Procedure to install the game from windows sources
         <translation>3 sixes in a row</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="160"/>
+        <location filename="../ui/wdgGame.py" line="158"/>
         <source>Tira el dado</source>
         <translation>Roll the dice</translation>
     </message>
@@ -1219,62 +1219,62 @@ Procedure to install the game from windows sources
         <translation>Game time</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="87"/>
+        <location filename="../ui/wdgGame.py" line="85"/>
         <source>Empieza la partida</source>
         <translation>The game starts</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="169"/>
+        <location filename="../ui/wdgGame.py" line="167"/>
         <source>Tire el dado</source>
         <translation>Roll the dice</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="182"/>
+        <location filename="../ui/wdgGame.py" line="180"/>
         <source>IA mueve una ficha</source>
         <translation>IA moves a piece</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="230"/>
+        <location filename="../ui/wdgGame.py" line="228"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation>You got three sixes, but you don&apos;t go home because you got the arrival ramp</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="233"/>
+        <location filename="../ui/wdgGame.py" line="231"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation>You got three sixes. Your last moved piece goes home</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="237"/>
+        <location filename="../ui/wdgGame.py" line="235"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation>You got three sixes, but as you can&apos;t move, you don&apos;t go home</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="239"/>
+        <location filename="../ui/wdgGame.py" line="237"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation>After three sixes, you can&apos;t roll the dice again</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="252"/>
+        <location filename="../ui/wdgGame.py" line="250"/>
         <source>Seleccione una ficha...</source>
         <translation>Select a piece...</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="292"/>
+        <location filename="../ui/wdgGame.py" line="290"/>
         <source>Fin de turno</source>
         <translation>End of turn</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="164"/>
+        <location filename="../ui/wdgGame.py" line="162"/>
         <source>IA Tira el dado</source>
         <translation>IA rolls the dice</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="191"/>
+        <location filename="../ui/wdgGame.py" line="189"/>
         <source>Mueva una ficha</source>
         <translation>Move a piece</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="126"/>
+        <location filename="../ui/wdgGame.py" line="124"/>
         <source>Has ganado la partida</source>
         <translation>You won the game</translation>
     </message>
@@ -1314,7 +1314,7 @@ Procedure to install the game from windows sources
         <translation>8 players game</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="64"/>
+        <location filename="../ui/wdgGame.py" line="62"/>
         <source>Tiempo de partida: {0}</source>
         <translation>Match time: {0}</translation>
     </message>
@@ -1324,7 +1324,7 @@ Procedure to install the game from windows sources
         <translation>User panel follows to current player</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="146"/>
+        <location filename="../ui/wdgGame.py" line="144"/>
         <source>{0} ha ganado</source>
         <translation>{0} has won</translation>
     </message>
@@ -1357,7 +1357,7 @@ Procedure to install the game from windows sources
 <context>
     <name>wdgOGL</name>
     <message>
-        <location filename="../ui/wdgOGL.py" line="247"/>
+        <location filename="../ui/wdgOGL.py" line="248"/>
         <source>Se ha hecho click en la ficha {0}</source>
         <translation>I click the piece {0}</translation>
     </message>
