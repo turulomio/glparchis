@@ -173,7 +173,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.layout.addWidget(self.game)
         self.actionGuardarPartida.setEnabled(True)
         self.game.assign_mem(self.mem)
-        
+        qmessagebox(self.mem.uuid)
 
     @pyqtSlot()  
     def on_actionRecuperarPartida_triggered(self):

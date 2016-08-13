@@ -29,6 +29,7 @@ class wdgOGL(QGLWidget):
         self.rotY=0
         self.rotZ=0
         self.rotCenter=0
+        self.lock=False
         
         self.rotatecenter=0#Si es 1 rota en sentido agujas del reloj desde el centro del tablero, si -1 al reves, si 0 no rota desde el centro
         
@@ -115,12 +116,7 @@ class wdgOGL(QGLWidget):
         glRotated(self.rotX, 1,0 , 0)
         glRotated(self.rotY, 0,1 , 0)
         glRotated(self.rotZ, 0,0 , 1)
-        
-#        print(self.displaylists)
-#        glListBase(self.displaylists)
-        #glCallLists(b'2')
-#        glCallLists([DisplayList.tablero, DisplayList.dado])
-        
+                
         glCallList(DisplayList.tablero)
         
         for c in self.mem.casillas.arr:
@@ -156,8 +152,13 @@ class wdgOGL(QGLWidget):
         self.updateGL()
     
     def mouseDoubleClickEvent(self, event):
-        self.doubleClicked.emit()
-                
+        if self.lock==False:
+            self.lock=True
+            self.doubleClicked.emit()
+            self.lock=False
+        else:
+            print ("Double click event ignored")
+
     def mousePressEvent(self, event):        
         def pickup(event, right):
             """right es si el boton pulsado en el derecho"""

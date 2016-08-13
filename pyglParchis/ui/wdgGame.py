@@ -9,7 +9,6 @@ from libglparchis import *
 from Ui_wdgGame import *
 import glob
 from urllib.request import urlopen
-from uuid import uuid4
 
 class wdgGame(QWidget, Ui_wdgGame):
     """Clase principal del Juego, aqui esta toda la ciencia, cuando se deba pasar al UI se crearan emits que captura qT para el UI"""
@@ -24,7 +23,6 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.timer = QTimer()
         self.timer.timeout.connect(self.timer_reload)
         self.timer.start(500)
-        self.uuid=uuid4()
 
     def __del__(self):
         print ("Destructor wdgGame")
@@ -37,7 +35,7 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     def sendStatisticsStart(self):
         if str2bool(self.mem.settings.value("frmSettings/statistics", "True"))==True:
-            url='http://glparchis.sourceforge.net/php/glparchis_game_start.php?uuid={}&installations_uuid={}&numplayers={}&maxplayers={}&version={}'.format(self.uuid, self.mem.settings.value("frmMain/uuid"),  self.mem.jugadores.numPlays(), self.mem.maxplayers, version)
+            url='http://glparchis.sourceforge.net/php/glparchis_game_start.php?uuid={}&installations_uuid={}&numplayers={}&maxplayers={}&version={}'.format(self.mem.uuid, self.mem.settings.value("frmMain/uuid"),  self.mem.jugadores.numPlays(), self.mem.maxplayers, version)
             print(url)
             try:
                 web=b2s(urlopen(url).read())
@@ -47,7 +45,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         
     def sendStatisticsEnd(self):
         if str2bool(self.mem.settings.value("frmSettings/statistics", "True"))==True:
-            url='http://glparchis.sourceforge.net/php/glparchis_game_end.php?uuid={}&installations_uuid={}&human_won={}'.format(self.uuid, self.mem.settings.value("frmMain/uuid"),  not self.mem.jugadores.actual.ia)
+            url='http://glparchis.sourceforge.net/php/glparchis_game_end.php?uuid={}&installations_uuid={}&human_won={}'.format(self.mem.uuid, self.mem.settings.value("frmMain/uuid"),  not self.mem.jugadores.actual.ia)
             print(url)
             try:
                 web=b2s(urlopen(url).read())

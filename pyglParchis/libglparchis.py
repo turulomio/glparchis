@@ -13,6 +13,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtOpenGL import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtMultimedia import *
+from uuid import uuid4
 
 #Cuando se modifique una version sacada se pondra un + p.e. 20120921+
 version="20160812"
@@ -2157,6 +2158,7 @@ class Casilla(QObject):
 class Mem:
     def __init__(self, maxplayers):     
         self.maxplayers=maxplayers
+        self.uuid=uuid4()
         self.dic_fichas={}
         self.colores=SetColores()
         self.jugadores=SetJugadores(self)
@@ -2203,7 +2205,8 @@ class Mem:
             return self.dic_fichas[str(name)]
 
     def save(self, filename):
-        """Version 1.1 INtroduce stadisticas"""
+        """Version 1.1 INtroduce stadisticas
+        Version 1.2 Introduce uuid"""
         cwd=os.getcwd()
         os.chdir(os.path.expanduser("~/.glparchis/"))
         config = configparser.ConfigParser()
@@ -2212,8 +2215,9 @@ class Mem:
         config.set("game", 'playerstarts',self.jugadores.actual.color.name)
         config.set("game",  "numplayers",  str(self.maxplayers))
         config.set("game", 'fakedice','')
-        config.set("game", 'fileversion','1.1')
+        config.set("game", 'fileversion','1.2')
         config.set("game",  'inittime', str(datetime.datetime.now()-self.inittime))
+        config.set("game",  'uuid', str(self.uuid))
         for i, j in enumerate(self.jugadores.arr):
             config.add_section("jugador{0}".format(i))
             config.set("jugador{0}".format(i),  'ia', str(j.ia))
@@ -2253,11 +2257,12 @@ class Mem:
         try:
             fileversion=config.get("game", "fileversion")
             self.maxplayers=config.getint("game",  "numplayers")
+            self.uuid=config.get("game", "uuid")
         except:
             fileversion=None
             error()
             return False
-        if fileversion!="1.1":#Ir cambiando segun necesidades
+        if fileversion!="1.2":#Ir cambiando segun necesidades
             error()
             return False
         
@@ -2402,5 +2407,5 @@ def qmessagebox(message, type=QMessageBox.Information):
     m=QMessageBox()
     m.setWindowIcon(QIcon(":glparchis/ficharoja.png"))
     m.setIcon(type)
-    m.setText(message)
+    m.setText(str(message))
     m.exec_() 
