@@ -651,11 +651,11 @@ class Jugador:
         
     def IASelectFicha(self):
         """Funcion que devuelve la ficha seleccionada por la IA. Si devuelve None es que ninguna se puede mover"""
-        def azar(tope):
+        def azar():
             """Funcion que saca un numero al azar de entre 1 y 100. Si es mayor del tope devuelve true. Sino devuelve false. Es decir tope 85 es una probabilidad del 85%"""
             random.seed(datetime.datetime.now().microsecond)
             numero=int(random.random()*100)
-            if numero<tope:
+            if numero<self.mem.difficulty:
                 return True
             return False
         ####################################
@@ -666,7 +666,7 @@ class Jugador:
         
         # Hay porcentajes de acierto si falla pasa a la siguiente prioridad
         #1 prioridad. Puede comer IA 85%
-        if azar(95):
+        if azar():
             for f in fichas:#Recorre las que pueden mover
                 movimiento=f.estaAutorizadaAMover()[1]
                 (puede, fichaacomer)=f.puedeComer(self.mem, f.posruta+movimiento)
@@ -680,7 +680,7 @@ class Jugador:
 #        fichas=sorted(fichas, key=lambda f:f.numeroAmenazasMejora(self.mem),  reverse=True)     
 #        for f in fichas:
 #            print (f, f.numeroAmenazasMejora(self.mem), f.numFichasPuedenComer(self.mem, f.posruta), f.numFichasPuedenComer(self.mem, f.posruta+f.estaAutorizadaAMover(self.mem)[1]))
-        if azar(95):
+        if azar():
             fichas=sorted(fichas, key=lambda f:f.amenazas().numero(),  reverse=True)     
             for f in fichas:
                 movimiento=f.estaAutorizadaAMover()[1]
@@ -693,7 +693,7 @@ class Jugador:
         
         #3 prioridad Asegura IA  de ultima a primera 85%
         fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)     
-        if azar(95):
+        if azar():
             for f in fichas:
                 movimiento=f.estaAutorizadaAMover()[1]
                 if f.casilla().esSegura(self.mem, self, True)==False  and  f.casilla(f.posruta+movimiento).esSegura(self.mem, self, False)==True:
@@ -701,7 +701,7 @@ class Jugador:
                     return f
         
         #4 Alguna ficha no asegurada puede mover
-        if azar(95):
+        if azar():
             for f in fichas:
                 if f.casilla().esSegura(self.mem, f.jugador, True)==False:
                     print(f,"seleccionado por azar ficha no asegurada")
@@ -2174,6 +2174,8 @@ class Mem:
 
     def play(self, sound):
         if str2bool(self.settings.value("frmSettings/sound"))==True:
+            if int(self.settings.value("frmSettings/delay"))<300 and self.jugadores.actual.ia==True:#If delay is too low and it's a IA
+                return
             urls= ["./sounds/"+sound + ".wav", "/usr/share/glparchis/sounds/"+sound+".wav"]
             for url in urls:
                 if os.path.exists(url)==True:

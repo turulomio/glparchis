@@ -37,7 +37,7 @@
      <x>0</x>
      <y>0</y>
      <width>995</width>
-     <height>28</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAyuda">
@@ -67,7 +67,7 @@
    </widget>
    <widget class="QMenu" name="menuConfiguraci_n">
     <property name="title">
-     <string>Con&amp;figuracion</string>
+     <string>&amp;Configuracion</string>
     </property>
     <addaction name="actionSound"/>
     <addaction name="separator"/>
@@ -113,6 +113,7 @@
    <addaction name="actionFullScreen"/>
    <addaction name="separator"/>
    <addaction name="actionHelp"/>
+   <addaction name="actionMundialStatistics"/>
    <addaction name="actionAcercaDe"/>
    <addaction name="separator"/>
    <addaction name="actionSalir"/>
@@ -136,7 +137,7 @@
      <normaloff>:/glparchis/ficharoja.png</normaloff>:/glparchis/ficharoja.png</iconset>
    </property>
    <property name="text">
-    <string>Acerca de</string>
+    <string>Acerca &amp;de</string>
    </property>
   </action>
   <action name="actionRecuperarPartida">
@@ -181,7 +182,7 @@
      <normaloff>:/glparchis/configure.png</normaloff>:/glparchis/configure.png</iconset>
    </property>
    <property name="text">
-    <string>Preferencias</string>
+    <string>&amp;Preferencias</string>
    </property>
   </action>
   <action name="actionHelp">
@@ -190,7 +191,7 @@
      <normaloff>:/glparchis/help.png</normaloff>:/glparchis/help.png</iconset>
    </property>
    <property name="text">
-    <string>Ayuda del juego</string>
+    <string>&amp;Ayuda del juego</string>
    </property>
    <property name="toolTip">
     <string>Muestra la ayuda del juego</string>
@@ -205,7 +206,7 @@
      <normaloff>:/glparchis/update.png</normaloff>:/glparchis/update.png</iconset>
    </property>
    <property name="text">
-    <string>Buscar actualizaciones</string>
+    <string>&amp;Buscar actualizaciones</string>
    </property>
    <property name="toolTip">
     <string>Busca actualizaciones en Internet</string>
@@ -217,7 +218,7 @@
      <normaloff>:/glparchis/sound.png</normaloff>:/glparchis/sound.png</iconset>
    </property>
    <property name="text">
-    <string>Sonido encendido</string>
+    <string>&amp;Sonido encendido</string>
    </property>
    <property name="toolTip">
     <string>Enciende o apaga el sonido</string>
@@ -262,7 +263,7 @@
      <normaloff>:/glparchis/fullscreen.png</normaloff>:/glparchis/fullscreen.png</iconset>
    </property>
    <property name="text">
-    <string>Cambiar al modo de pantalla completa</string>
+    <string>&amp;Cambiar al modo de pantalla completa</string>
    </property>
    <property name="toolTip">
     <string>Cambiar al modo de pantalla completa</string>
@@ -277,7 +278,7 @@
      <normaloff>:/glparchis/statistics.png</normaloff>:/glparchis/statistics.png</iconset>
    </property>
    <property name="text">
-    <string>Estadisticas mundiales</string>
+    <string>&amp;Estadisticas mundiales</string>
    </property>
    <property name="toolTip">
     <string>Estadisticas mundiales</string>
