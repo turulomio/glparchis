@@ -164,6 +164,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
   
     def showWdgGame(self):
         self.actionSound.setEnabled(True)
+        self.mem.delay=int(self.settings.value("frmSettings/delay", 300))
+        self.mem.difficulty=int(self.settings.value("frmSettings/difficulty", 70))
         if self.game!=None:
             self.layout.removeWidget(self.game)    
             self.game.__del__()
@@ -173,7 +175,6 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.layout.addWidget(self.game)
         self.actionGuardarPartida.setEnabled(True)
         self.game.assign_mem(self.mem)
-        qmessagebox(self.mem.uuid)
 
     @pyqtSlot()  
     def on_actionRecuperarPartida_triggered(self):
@@ -221,14 +222,13 @@ class frmMain(QMainWindow, Ui_frmMain):#
 
     @pyqtSlot()  
     def on_actionMundialStatistics_triggered(self):
-        d=QDialog(self)        
+        d=QDialog()#Use frmMain because in invoked from frmSettings to        
         d.setWindowTitle(self.tr("Estadisticas mundiales"))       
         d.setWindowModality(QtCore.Qt.WindowModal)
         d.resize(549, 607)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/glparchis/statistics.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         d.setWindowIcon(icon)
-        d.setSizeGripEnabled(True)
         d.setModal(True)
         self.horizontalLayout_2 = QHBoxLayout(d)
         self.verticalLayout = QVBoxLayout()
@@ -265,7 +265,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.webView.setUrl(QtCore.QUrl("http://glparchis.sourceforge.net/php/glparchis_statistics.php"))
         self.verticalLayout.addWidget(self.webView)
         self.horizontalLayout_2.addLayout(self.verticalLayout)
-        d.show()
+        d.setFocus()
+        d.exec_()
             
     @pyqtSlot()  
     def on_actionPartidaNueva4_triggered(self):

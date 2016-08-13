@@ -82,11 +82,24 @@ class frmSettings(QDialog, Ui_frmSettings):
         QDialog.__init__(self, parent)
         self.settings=settings
         self.translator=translator
+        self.parent=parent
         self.setupUi(self)
         self.languages=SetLanguages()
         self.languages.qcombobox(self.cmbLanguage, self.settings.value("frmSettings/language", "en"))            
         self.spinAutosaves.setValue(int(self.settings.value("frmSettings/autosaves", 15)))
         self.chkStatistics.setChecked(str2bool(self.settings.value("frmSettings/statistics", "True")))
+        self.spinDelay.setValue(int(self.settings.value("frmSettings/delay", 300)))
+        difficulty=int(self.settings.value("frmSettings/difficulty", 70))
+        if difficulty==40:
+            self.cmbDifficultyLevel.setCurrentIndex(0)
+        elif difficulty==55:
+            self.cmbDifficultyLevel.setCurrentIndex(1)
+        elif difficulty==70:
+            self.cmbDifficultyLevel.setCurrentIndex(2)
+        elif difficulty==85:
+            self.cmbDifficultyLevel.setCurrentIndex(3)
+        elif difficulty==100:
+            self.cmbDifficultyLevel.setCurrentIndex(4)
 
     @pyqtSlot(str)      
     def on_cmbLanguage_currentIndexChanged(self, stri):        
@@ -98,3 +111,19 @@ class frmSettings(QDialog, Ui_frmSettings):
         self.settings.setValue("frmSettings/language", self.languages.selected.id)
         self.settings.setValue("frmSettings/autosaves", self.spinAutosaves.value())
         self.settings.setValue("frmSettings/statistics", self.chkStatistics.isChecked())
+        self.settings.setValue("frmSettings/delay", self.spinDelay.value())
+        if self.cmbDifficultyLevel.currentIndex()==0:
+            difficulty=40
+        elif self.cmbDifficultyLevel.currentIndex()==1:
+            difficulty=55
+        elif self.cmbDifficultyLevel.currentIndex()==2:
+            difficulty=70
+        elif self.cmbDifficultyLevel.currentIndex()==3:
+            difficulty=85
+        elif self.cmbDifficultyLevel.currentIndex()==4:
+            difficulty=100
+        self.settings.setValue("frmSettings/difficulty", difficulty)
+        
+    def on_cmdGlobalStatistics_released(self):
+        self.parent.on_actionMundialStatistics_triggered()
+

@@ -17,7 +17,6 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.setupUi(self)
         self.show()
         self.panels=[]
-        self.delay=300#To create IA movement reallity
         
         #Timer statistics
         self.timer = QTimer()
@@ -63,6 +62,7 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     def assign_mem(self, mem):
         self.mem=mem
+        self.delay=int(self.mem.settings.value("frmSettings/delay",300))#First set to initializate, later its set afeter human player change
         self.sendStatisticsStart()
         self.stopthegame=False
         self.table.assign_mem(self.mem)
@@ -186,6 +186,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.mem.selFicha=iaficha
                 self.after_ficha_click()
         else:
+            self.delay=int(self.mem.settings.value("frmSettings/delay",300))#Set delay before human turn, so it can be changed during the match
             self.mem.jugadores.actual.log(self.tr("Mueva una ficha"))
 
     def on_splitter_splitterMoved(self, position, index):
