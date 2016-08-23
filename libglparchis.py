@@ -2174,7 +2174,7 @@ class Mem:
 
     def play(self, sound):
         if str2bool(self.settings.value("frmSettings/sound"))==True:
-            if int(self.settings.value("frmSettings/delay"))<300 and self.jugadores.actual.ia==True:#If delay is too low and it's a IA
+            if int(self.settings.value("frmSettings/delay","300"))<300 and self.jugadores.actual.ia==True:#If delay is too low and it's a IA
                 return
             urls= ["./sounds/"+sound + ".wav", "/usr/share/glparchis/sounds/"+sound+".wav"]
             for url in urls:

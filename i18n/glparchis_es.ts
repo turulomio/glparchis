@@ -893,7 +893,7 @@
 <context>
     <name>i18n</name>
     <message>
-        <location filename="../project_i18n.py" line="51"/>
+        <location filename="../project_i18n.py" line="57"/>
         <source>
 20160325
 --------
@@ -918,7 +918,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="63"/>
+        <location filename="../project_i18n.py" line="69"/>
         <source>
 20130716
 --------
@@ -1054,7 +1054,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="141"/>
+        <location filename="../project_i18n.py" line="147"/>
         <source>
 Idea y desarrollo
 ----------------- 
@@ -1076,7 +1076,7 @@ French: Nadejda Adam
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="155"/>
+        <location filename="../project_i18n.py" line="161"/>
         <source>
 Requisitos
 ==========
@@ -1175,44 +1175,54 @@ Procedimiento de instalación para fuentes windows
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="45"/>
+        <location filename="../project_i18n.py" line="51"/>
         <source>- Anadido el script project_i18n para traducir la documentacion del proyecto</source>
         <translation>- Añadido el script project_i18n para traducir la documentación del proyecto</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="46"/>
+        <location filename="../project_i18n.py" line="52"/>
         <source>- Ahora el tablero rota por su centro pulsando la letra m</source>
         <translation>- Ahora el tablero rota por su centro pulsando la letra m</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="47"/>
+        <location filename="../project_i18n.py" line="53"/>
         <source>- Rendimiento mejorado</source>
         <translation>- Rendimiento mejorado</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="48"/>
+        <location filename="../project_i18n.py" line="54"/>
         <source>- Corregido error con el icono de fullscreen</source>
         <translation>- Corregido error con el icono de fullscreen</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="40"/>
+        <location filename="../project_i18n.py" line="46"/>
         <source>- La configuracion del splitter del juego se guarda ahora en pantalla normal y en pantalla completa</source>
         <translation>- La configuración del splitter del juego se guarda ahora en pantalla normal y en pantalla completa</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="33"/>
+        <location filename="../project_i18n.py" line="39"/>
         <source>El estado de pantalla completa se guarda en el fichero de configuracion</source>
         <translation>El estado de pantalla completa se guarda en el fichero de configuración</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="34"/>
+        <location filename="../project_i18n.py" line="40"/>
         <source>Anadido sistema de estadistica en la base de datos de Sourceforge</source>
         <translation>Añadido sistema de estadística en la base de datos de Sourceforge</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="35"/>
+        <location filename="../project_i18n.py" line="41"/>
         <source>Anadido opcion de no contribuir a la estadistica mundial</source>
         <translation>Añadida opción de no contribuir a la estadística mundial</translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="33"/>
+        <source>Anadida la opcion de configuracion de retraso entre movimientos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="34"/>
+        <source>Anadida la opcion de configuracion de nivel de dificultad</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
