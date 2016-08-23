@@ -893,7 +893,7 @@
 <context>
     <name>i18n</name>
     <message>
-        <location filename="../project_i18n.py" line="51"/>
+        <location filename="../project_i18n.py" line="57"/>
         <source>
 20160325
 --------
@@ -918,7 +918,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="63"/>
+        <location filename="../project_i18n.py" line="69"/>
         <source>
 20130716
 --------
@@ -1054,7 +1054,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="141"/>
+        <location filename="../project_i18n.py" line="147"/>
         <source>
 Idea y desarrollo
 ----------------- 
@@ -1077,7 +1077,7 @@ French: Nadejda Adam
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="155"/>
+        <location filename="../project_i18n.py" line="161"/>
         <source>
 Requisitos
 ==========
@@ -1176,44 +1176,54 @@ Procedure to install the game from windows sources
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="45"/>
+        <location filename="../project_i18n.py" line="51"/>
         <source>- Anadido el script project_i18n para traducir la documentacion del proyecto</source>
         <translation>- project_i18n script added to translate project documentation</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="46"/>
+        <location filename="../project_i18n.py" line="52"/>
         <source>- Ahora el tablero rota por su centro pulsando la letra m</source>
         <translation>- Board rotates pressing m key</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="47"/>
+        <location filename="../project_i18n.py" line="53"/>
         <source>- Rendimiento mejorado</source>
         <translation>- Improved performance</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="48"/>
+        <location filename="../project_i18n.py" line="54"/>
         <source>- Corregido error con el icono de fullscreen</source>
         <translation>- Fullscreen icon error fixed</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="40"/>
+        <location filename="../project_i18n.py" line="46"/>
         <source>- La configuracion del splitter del juego se guarda ahora en pantalla normal y en pantalla completa</source>
         <translation>- Splitter game configuration is saved with fullscreen and normal data</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="33"/>
+        <location filename="../project_i18n.py" line="39"/>
         <source>El estado de pantalla completa se guarda en el fichero de configuracion</source>
         <translation>Fullscreen state is saved in settings file</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="34"/>
+        <location filename="../project_i18n.py" line="40"/>
         <source>Anadido sistema de estadistica en la base de datos de Sourceforge</source>
         <translation>Added statistics system in Sourceforge database</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="35"/>
+        <location filename="../project_i18n.py" line="41"/>
         <source>Anadido opcion de no contribuir a la estadistica mundial</source>
         <translation>Added option to do not contribute to world statistics</translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="33"/>
+        <source>Anadida la opcion de configuracion de retraso entre movimientos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="34"/>
+        <source>Anadida la opcion de configuracion de nivel de dificultad</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
