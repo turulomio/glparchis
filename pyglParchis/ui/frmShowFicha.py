@@ -1,8 +1,6 @@
-# 
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from Ui_frmShowFicha import *  
-from PyQt5.QtWidgets import * 
+from PyQt5.QtCore import pyqtSlot, Qt
+from Ui_frmShowFicha import Ui_frmShowFicha
+from PyQt5.QtWidgets import QDialog, QTableWidgetItem
 
 class frmShowFicha(QDialog, Ui_frmShowFicha):
     def __init__(self,   parent = None, flags= None,  ficha=None, mem=None):

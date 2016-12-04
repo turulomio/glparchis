@@ -1,13 +1,11 @@
-from PyQt5.QtCore import *
-from PyQt5.QtOpenGL import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from wdgUserPanel import *
-from wdgGame import *
-from qtablestatistics import *
-from libglparchis import *
-from Ui_wdgGame import *
+from PyQt5.QtCore import QTimer, pyqtSlot
+from PyQt5.QtWidgets import QWidget
+from wdgUserPanel import wdgUserPanel
+from libglparchis import str2bool, version, b2s, HighScore, qmessagebox, delay
+from Ui_wdgGame import Ui_wdgGame
 import glob
+import datetime
+import os
 from urllib.request import urlopen
 
 class wdgGame(QWidget, Ui_wdgGame):
@@ -210,7 +208,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         except:
             print("I couldn't restore splitter sizes.")
 
-    @QtCore.pyqtSlot()      
+    @pyqtSlot()      
     def on_cmdTirarDado_clicked(self):  
         self.cmdTirarDado.setEnabled(False)
         self.cmdTirarDado.setText("")

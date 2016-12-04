@@ -1,12 +1,9 @@
-# 
+from PyQt5.QtCore import pyqtSignal, QPoint, QSize, Qt
+from PyQt5.QtOpenGL import QGLWidget
+from PyQt5.QtGui import QPixmap, QColor
 
-from PyQt5.QtCore import *
-from PyQt5.QtOpenGL import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-
-from OpenGL.GL import *
-from wdgGame import *
+from OpenGL.GL import glClear, glEnable, glLoadIdentity, glMatrixMode, glOrtho, glRotated, glScaled, glShadeModel, glTranslated, glViewport, GL_COLOR_BUFFER_BIT, GL_CULL_FACE, GL_DEPTH_BUFFER_BIT, GL_DEPTH_TEST, GL_FLAT, GL_MODELVIEW, GL_PROJECTION
+from libglparchis import Color, Casilla, Ficha, Jugador, Tablero, Coord3D, Dado
 
 class wdgShowObject(QGLWidget):
     xRotationChanged=pyqtSignal(int)
@@ -51,21 +48,21 @@ class wdgShowObject(QGLWidget):
 
 
     def initializeGL(self): 
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/0.png')))
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/1.png')))
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/2.png')))
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/3.png')))
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/4.png')))
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/5.png')))
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/6.png')))
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/7.png')))
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/8.png')))
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/9.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/0.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/1.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/2.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/3.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/4.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/5.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/6.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/7.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/8.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/9.png')))
         
-        self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/casillainicial.png')))
-        self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/transwood.png')))
-        self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/seguro.png')))
-        self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/dado_desplegado.png')))
+        self.texDecor.append(self.bindTexture(QPixmap(':/glparchis/casillainicial.png')))
+        self.texDecor.append(self.bindTexture(QPixmap(':/glparchis/transwood.png')))
+        self.texDecor.append(self.bindTexture(QPixmap(':/glparchis/seguro.png')))
+        self.texDecor.append(self.bindTexture(QPixmap(':/glparchis/dado_desplegado.png')))
         self.qglClearColor(QColor.darker(QColor.fromCmykF(0.39, 0.39, 0.0, 0.0)))
         glShadeModel(GL_FLAT)
         glEnable(GL_DEPTH_TEST)

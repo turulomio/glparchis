@@ -1,10 +1,6 @@
-import libglparchis
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-
-from Ui_frmAbout import *
-from wdgQT import *
+from libglparchis import version
+from PyQt5.QtWidgets import QDialog
+from Ui_frmAbout import Ui_frmAbout
 
 class frmAbout(QDialog, Ui_frmAbout):
     def __init__(self, parent = None, name = None, modal = False):
@@ -19,7 +15,7 @@ class frmAbout(QDialog, Ui_frmAbout):
         if name:
             self.setObjectName(name)
         self.setupUi(self)
-        self.lblVersion.setText(self.tr("Version {0}".format(libglparchis.version)))
+        self.lblVersion.setText(self.tr("Version {0}".format(version)))
         self.textBrowser.setHtml(
             self.tr("La pagina del proyecto se encuentra en <a href=\"http://glparchis.sourceforge.net\">http://glparchis.sourceforge.net</a><p> <p>")+
             self.tr("Este programa ha sido desarrollado por Mariano Munoz.<p>")+

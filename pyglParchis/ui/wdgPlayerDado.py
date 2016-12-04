@@ -1,10 +1,6 @@
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QWidget
 import random
-
-
-from Ui_wdgPlayerDado import *
+from Ui_wdgPlayerDado import Ui_wdgPlayerDado
 
 class wdgPlayerDado(QWidget, Ui_wdgPlayerDado):
     def __init__(self, mem,  jugador, parent = None, name = None):

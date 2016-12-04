@@ -1,13 +1,12 @@
- 
-from PyQt5.QtCore import *
-from PyQt5.QtOpenGL import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from OpenGL.GL import *
-from OpenGL.GLU import *
-from libglparchis import *
-from frmShowCasilla import *
-from frmShowFicha import *
+from PyQt5.QtCore import pyqtSignal, QPoint, Qt
+from PyQt5.QtOpenGL import QGLWidget
+from PyQt5.QtGui import QPixmap, QColor
+from OpenGL.GL import glCallList, glClear, glColorMaterial, glEnable,  glEndList, glFrontFace, glGenLists, glGetIntegerv, glHint, glLightfv, glLoadIdentity, glMatrixMode, glNewList, glPopMatrix, glPushMatrix, glRenderMode, glRotated, glSelectBuffer, glShadeModel, glTranslated, glViewport, GL_AMBIENT, GL_AMBIENT_AND_DIFFUSE, GL_CCW, GL_COLOR_BUFFER_BIT, GL_COLOR_MATERIAL, GL_COMPILE, GL_CULL_FACE, GL_DEPTH_BUFFER_BIT, GL_DEPTH_TEST, GL_FRONT, GL_LIGHT0, GL_LIGHTING, GL_MODELVIEW, GL_NICEST, GL_PERSPECTIVE_CORRECTION_HINT, GL_POSITION, GL_PROJECTION, GL_RENDER, GL_SELECT, GL_SMOOTH, GL_STENCIL_BUFFER_BIT, GL_TEXTURE_2D, GL_VIEWPORT
+from OpenGL.GLU import gluPerspective, gluPickMatrix
+from libglparchis import Tablero, Ficha, Casilla
+from frmShowCasilla import frmShowCasilla
+from frmShowFicha import frmShowFicha
+import datetime
 
 class DisplayList:
     tablero=1
@@ -28,6 +27,7 @@ class wdgOGL(QGLWidget):
         self.rotX=0
         self.rotY=0
         self.rotZ=0
+        self.z=None
         self.rotCenter=0
         self.lock=False
         
@@ -35,6 +35,18 @@ class wdgOGL(QGLWidget):
         
     def assign_mem(self, mem):
         self.mem=mem
+        
+        if self.mem.frmMain.isFullScreen():
+            fs="FS"
+        else:
+            fs=""
+        if self.mem.maxplayers==8:
+            self.z=int(self.mem.settings.value("wdgOGL/z_{}{}".format(fs, self.mem.maxplayers), -85))
+        elif self.mem.maxplayers==4:
+            self.z=int(self.mem.settings.value("wdgOGL/z_{}{}".format(fs, self.mem.maxplayers), -60))
+        elif self.mem.maxplayers==6:
+            self.z=int(self.mem.settings.value("wdgOGL/z_{}{}".format(fs, self.mem.maxplayers), -80))
+            
         self.tablero=Tablero(mem.maxplayers)
         print("DisplayLists")
         #Como vamos a usar varias lists tenemos que crear una base y luego el orden
@@ -47,23 +59,24 @@ class wdgOGL(QGLWidget):
                 c.dibujar(self)
         glEndList()
         
+        
     def initializeGL(self):
         #LAS TEXTURAS SE DEBEN CRAR AQUÍ ES LO PRIMERO QUE SE EJECUTA
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/0.png')))
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/1.png')))
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/2.png')))
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/3.png')))
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/4.png')))
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/5.png')))
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/6.png')))
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/7.png')))
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/8.png')))
-        self.texNumeros.append(self.bindTexture(QtGui.QPixmap(':/glparchis/9.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/0.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/1.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/2.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/3.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/4.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/5.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/6.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/7.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/8.png')))
+        self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/9.png')))
         
-        self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/casillainicial.png')))
-        self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/transwood.png')))
-        self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/seguro.png')))
-        self.texDecor.append(self.bindTexture(QtGui.QPixmap(':/glparchis/dado_desplegado.png')))
+        self.texDecor.append(self.bindTexture(QPixmap(':/glparchis/casillainicial.png')))
+        self.texDecor.append(self.bindTexture(QPixmap(':/glparchis/transwood.png')))
+        self.texDecor.append(self.bindTexture(QPixmap(':/glparchis/seguro.png')))
+        self.texDecor.append(self.bindTexture(QPixmap(':/glparchis/dado_desplegado.png')))
         
         print ("initializeGL")
         glEnable(GL_TEXTURE_2D);
@@ -85,19 +98,19 @@ class wdgOGL(QGLWidget):
 
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
         
+        
 
     def paintGL(self):   
         inicio=datetime.datetime.now()
         glLoadIdentity()
         self.qglClearColor(QColor())
-
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT| GL_STENCIL_BUFFER_BIT)
         if self.mem.maxplayers==8:
-            glTranslated(-31.5, -17,  -85)
+            glTranslated(-31.5, -17, self.z)
         elif self.mem.maxplayers==4:
-            glTranslated(-31.5, -31.5,  -60)
+            glTranslated(-31.5, -31.5, self.z)
         elif self.mem.maxplayers==6:
-            glTranslated(-31.5, -24,  -80)
+            glTranslated(-31.5, -24, self.z)
             
         if self.rotatecenter==1:
             #Para rotar desde elcentro, hay que llevar el centro al origen
@@ -135,7 +148,21 @@ class wdgOGL(QGLWidget):
         glMatrixMode(GL_MODELVIEW)
 
     def keyPressEvent(self, event):
+        def save_z():
+            if self.mem.frmMain.isFullScreen():
+                fs="FS"
+            else:
+                fs=""
+            self.mem.settings.setValue("wdgOGL/z_{}{}".format(fs, self.mem.maxplayers), self.z)
+            print(self.z)
+            ###########################
         self.rotatecenter=0
+        if event.key() == Qt.Key_Plus:
+            self.z=self.z+1
+            save_z()
+        if event.key() == Qt.Key_Minus:
+            self.z=self.z-1
+            save_z()
         if event.key() == Qt.Key_X: # toggle mode
             self.rotX=self.rotX+5
         if event.key() == Qt.Key_Y: # toggle mode
