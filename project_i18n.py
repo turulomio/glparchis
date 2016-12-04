@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import os
 import sys
-from PyQt5.QtCore import *
+from PyQt5.QtCore import QObject, QTranslator, QCoreApplication
 
 class i18n(QObject):
     """Se escribe sin acentos y sin n"""
@@ -32,6 +32,7 @@ class i18n(QObject):
         f.write("--------\n")
         f.write("- {}\n".format(self.tr("Anadida la opcion de configuracion de retraso entre movimientos")))
         f.write("- {}\n".format(self.tr("Anadida la opcion de configuracion de nivel de dificultad")))
+        f.write("- {}\n".format(self.tr("Anadida la opcion de subir y bajar el tablero en el eje z, con las teclas + y -")))
         f.write("\n")
 
         f.write("20160812\n")
