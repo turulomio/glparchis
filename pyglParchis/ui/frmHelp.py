@@ -38,6 +38,9 @@ class frmHelp(QDialog, Ui_frmHelp):
             self.tr("Para tirar el dado se puede hacer click en el boton 'Tirar el dado' o hacer doble-click encima del tablero, cuando le toque a un jugador humano.<p>")+
             self.tr("<h3>Vistas del tablero</h3>")+                 
             self.tr("Se puede cambiar la vista del tablero pulsando la tecla 'm'.<p>") +
+            self.tr("Pulsando las teclas 'x','y' y 'z' puede rotar el tablero en el eje X, Y y Z respectivamente.<p>") +
+            self.tr("Pulsando el espacio recupera la vista inicial del tablero.<p>") +
+            self.tr("Pulsando las teclas '+' y '-' acerca o aleja el tablero en la pantalla.<p>") +
             self.tr("<h2>Estadisticas del juego</h2>") +
             self.tr("Hay un sistema de estadisticas mundiales, que puedes ver en el menu de ayuda.") + "<p> " +
             self.tr("Por defecto, el usuario participa en esas estadisticas. Si no quieres formar parte de ellas, puedes desmarcar la casilla correspondiente en el menu de configuracion")+ "<p>"
