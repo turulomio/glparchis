@@ -1,16 +1,18 @@
 import sys, os, urllib.request,   datetime
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
+from urllib.request import urlopen
+from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QSize, QEvent, QUrl
+from PyQt5.QtGui import QIcon, QPixmap, QFont
+from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QLabel, QSpacerItem, QDialog, QHBoxLayout, QVBoxLayout, QFileDialog, QSizePolicy
 from PyQt5.QtWebKitWidgets import QWebView
-from libglparchis import *
+from libglparchis import version, str2bool, cargarQTranslator, b2s, qmessagebox,  Mem4, Mem6, Mem8
 
-from Ui_frmMain import *
-from wdgGame import *
-from frmAbout import *
-from frmInitGame import *
-from frmSettings import *
-from frmHelp import *
+import configparser
+from Ui_frmMain import Ui_frmMain
+from wdgGame import wdgGame
+from frmAbout import frmAbout
+from frmInitGame import frmInitGame
+from frmSettings import frmSettings
+from frmHelp import frmHelp
 from uuid import uuid4
 
 class frmMain(QMainWindow, Ui_frmMain):#    
@@ -103,13 +105,13 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def setSound(self, bool):
         if bool==True:
             self.actionSound.setText(self.tr("Sonido encendido")) 
-            icon8 = QtGui.QIcon()
-            icon8.addPixmap(QtGui.QPixmap(":/glparchis/sound.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon8 = QIcon()
+            icon8.addPixmap(QPixmap(":/glparchis/sound.png"), QIcon.Normal, QIcon.Off)
             self.actionSound.setIcon(icon8)
         else:
             self.actionSound.setText(self.tr("Sonido apagado"))
-            icon8 = QtGui.QIcon()
-            icon8.addPixmap(QtGui.QPixmap(":/glparchis/soundoff.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon8 = QIcon()
+            icon8.addPixmap(QPixmap(":/glparchis/soundoff.png"), QIcon.Normal, QIcon.Off)
             self.actionSound.setIcon(icon8)
         self.settings.setValue("frmSettings/sound", bool)
         
@@ -224,10 +226,10 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def on_actionMundialStatistics_triggered(self):
         d=QDialog()#Use frmMain because in invoked from frmSettings to        
         d.setWindowTitle(self.tr("Estadisticas mundiales"))       
-        d.setWindowModality(QtCore.Qt.WindowModal)
+        d.setWindowModality(Qt.WindowModal)
         d.resize(549, 607)
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/glparchis/statistics.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon = QIcon()
+        icon.addPixmap(QPixmap(":/glparchis/statistics.png"), QIcon.Normal, QIcon.Off)
         d.setWindowIcon(icon)
         d.setModal(True)
         self.horizontalLayout_2 = QHBoxLayout(d)
@@ -235,22 +237,22 @@ class frmMain(QMainWindow, Ui_frmMain):#
         
         self.lblApp = QLabel(d)
         self.lblApp.setText(self.tr("Estadisticas mundiales"))
-        font = QtGui.QFont()
+        font = QFont()
         font.setPointSize(20)
         font.setBold(True)
         font.setWeight(75)
         self.lblApp.setFont(font)
-        self.lblApp.setAlignment(QtCore.Qt.AlignCenter)
+        self.lblApp.setAlignment(Qt.AlignCenter)
         self.verticalLayout.addWidget(self.lblApp)
         
         self.horizontalLayout = QHBoxLayout()
         spacerItem = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.lblPixmap = QLabel(d)
-        self.lblPixmap.setMaximumSize(QtCore.QSize(68, 68))
-        self.lblPixmap.setPixmap(QtGui.QPixmap(":/glparchis/statistics.png"))
+        self.lblPixmap.setMaximumSize(QSize(68, 68))
+        self.lblPixmap.setPixmap(QPixmap(":/glparchis/statistics.png"))
         self.lblPixmap.setScaledContents(True)
-        self.lblPixmap.setAlignment(QtCore.Qt.AlignCenter)
+        self.lblPixmap.setAlignment(Qt.AlignCenter)
         self.horizontalLayout.addWidget(self.lblPixmap)
         spacerItem1 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem1)
@@ -262,7 +264,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.webView.sizePolicy().hasHeightForWidth())
         self.webView.setSizePolicy(sizePolicy)
-        self.webView.setUrl(QtCore.QUrl("http://glparchis.sourceforge.net/php/glparchis_statistics.php"))
+        self.webView.setUrl(QUrl("http://glparchis.sourceforge.net/php/glparchis_statistics.php"))
         self.verticalLayout.addWidget(self.webView)
         self.horizontalLayout_2.addLayout(self.verticalLayout)
         d.setFocus()

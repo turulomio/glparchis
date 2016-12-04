@@ -1,9 +1,6 @@
- 
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-
-from Ui_wdgUserPanel import *
+from PyQt5.QtCore import QTimer, Qt
+from PyQt5.QtWidgets import QWidget
+from Ui_wdgUserPanel import Ui_wdgUserPanel
 
 class wdgUserPanel(QWidget, Ui_wdgUserPanel):
     def __init__(self, parent = None, name = None):
@@ -15,7 +12,6 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
         self.jugador=None
         self.timerLog = QTimer()
         self.timerLog.timeout.connect(self.refreshLog)
-#        QObject.connect(self.timerLog, SIGNAL("timeout()"), self.refreshLog)     
         self.timerLog.start(300)
         
     def stopTimerLog(self):

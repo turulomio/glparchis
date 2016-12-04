@@ -1,8 +1,5 @@
-# 
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from Ui_frmShowCasilla import *  
-from PyQt5.QtWidgets import * 
+from Ui_frmShowCasilla import Ui_frmShowCasilla
+from PyQt5.QtWidgets import QDialog
 
 class frmShowCasilla(QDialog, Ui_frmShowCasilla):
     def __init__(self, parent = None, flags= None,  casilla=None):

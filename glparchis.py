@@ -9,9 +9,9 @@ else:
     sys.path.append("../lib/glparchis")
     sys.path.append("/usr/lib/glparchis")
 
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from frmMain import *
+from PyQt5.QtCore import QSettings
+from PyQt5.QtWidgets import QApplication
+from frmMain import frmMain
 
 try:
     os.makedirs(os.path.expanduser("~/.glparchis/"))

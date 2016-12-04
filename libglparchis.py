@@ -1,22 +1,22 @@
 import sys
-from OpenGL.GL import *
-from OpenGL.GLU import *
-from poscasillas8 import *
-from posfichas8 import *
-from poscasillas4 import *
-from posfichas4 import *
-from poscasillas6 import *
-from posfichas6 import *
+from OpenGL.GL import glBegin, glBindTexture, glColor3d, glDisable, glEnable, glEnd, glInitNames, glPopMatrix, glPopName, glPushName, glPushMatrix, glRotated, glScaled, glTexCoord2f, glTranslated, glTranslatef, glVertex3d, glVertex3fv, GL_TEXTURE_2D, GL_QUADS, GL_POLYGON, GL_LINE_LOOP
+from OpenGL.GLU import gluCylinder, gluDisk, gluNewQuadric, gluQuadricDrawStyle, gluQuadricNormals, gluQuadricTexture, GLU_FILL, GLU_SMOOTH
+from poscasillas8 import poscasillas8
+from posfichas8 import posfichas8
+from poscasillas4 import poscasillas4
+from posfichas4 import posfichas4
+from poscasillas6 import poscasillas6
+from posfichas6 import posfichas6
 import os,  random,   configparser,  datetime,  codecs,  math
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
-from PyQt5.QtOpenGL import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtMultimedia import *
+from PyQt5.QtGui import QColor, QIcon, QPixmap
+from PyQt5.QtCore import Qt, QObject, QCoreApplication, QEventLoop
+from PyQt5.QtOpenGL import QGLWidget
+from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
+from PyQt5.QtMultimedia import QSound
 from uuid import uuid4
 
 #Cuando se modifique una version sacada se pondra un + p.e. 20120921+
-version="20160812"
+version="20161204"
 
 def str2bool(s):
     if s.__class__==bool:#Si ya fuera bool

@@ -1,5 +1,7 @@
-from PyQt5.QtWidgets import *
-from libglparchis import *
+from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem, QWidget, QLabel, QHBoxLayout
+from PyQt5.QtCore import Qt, QSize
+from PyQt5.QtGui import QBrush, QColor, QPixmap
+from libglparchis import TiradaJuego
 
 class QTableStatistics(QTableWidget):
     def __init__(self, parent=None):
