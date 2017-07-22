@@ -44,7 +44,7 @@ def filename_output():
             pl="x86_64"
         else:
             pl="x86"
-    return "xulpymoney-{}-{}.{}".format(so,  version, pl)
+    return "glparchis-{}-{}.{}".format(so,  version, pl)
     
 
 
@@ -95,7 +95,7 @@ if __name__ == '__main__':
         pwd=os.getcwd()
         os.chdir(build_dir())
         print (build_dir(), filename_output(), os.getcwd())
-        os.system("tar cvz -f '{0}/dist/{1}.tar.gz' * -C '{0}/{2}/'".format(pwd, filename_output(),  build_dir()))
+        os.system("tar cvz -f '{0}/dist/{1}.tar.gz' * -C '{0}/'".format(pwd, filename_output()))#,  build_dir()))
     elif args.dist_windows==True:
         check_call([sys.executable, "setup.py","bdist_msi"])
     elif args.compile==True:
@@ -134,7 +134,6 @@ if __name__ == '__main__':
         shell("install -m 644 -o root images/ficharoja.png "+ prefixshare)
         shell("install -m 644 -o root sounds/* "+ prefixsounds)
         shell("install -m 644 -o root images/ficharoja.png "+ prefixpixmaps + "/glparchis.png")
-        shell("install -m 644 -o root GPL-3.txt AUTHORS-EN.txt AUTHORS-ES.txt CHANGELOG-EN.txt CHANGELOG-ES.txt INSTALL-EN.txt INSTALL-ES.txt RELEASES.txt"+ prefixshare)
-        
+        shell("install -m 644 -o root GPL-3.txt AUTHORS-EN.txt AUTHORS-ES.txt CHANGELOG-EN.txt CHANGELOG-ES.txt INSTALL-EN.txt INSTALL-ES.txt RELEASES.txt "+ prefixshare)
     print ("*** Process took {} using {} processors ***".format(datetime.datetime.now()-start , cpu_count()))
 
