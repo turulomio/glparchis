@@ -125,7 +125,7 @@ print ("Building for", sys.platform, version)
 name="glparchis"
 
 #Add files
-include_files=[ 'images/glparchis.ico', 'GPL-3.txt']
+include_files=[ 'images/ficharoja.ico', 'GPL-3.txt']
 include_files.append(("i18n/glparchis_es.qm", "i18n/glparchis_es.qm"))
 include_files.append(("i18n/glparchis_fr.qm", "i18n/glparchis_fr.qm"))
 include_files.append(("i18n/glparchis_ro.qm", "i18n/glparchis_ro.qm"))
@@ -189,7 +189,7 @@ setup(name=name,
       version = version,
       author = 'Mariano Muñoz',
       author_email="turulomio@yahoo.es", 
-      description = 'Search devices in my LAN',
+      description = 'Parchessi game',
       options = options,
       url="https://sourceforge.net/projects/glparchis/", 
       executables = executables)
