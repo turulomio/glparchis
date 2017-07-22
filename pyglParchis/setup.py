@@ -1,53 +1,4 @@
-##from cx_Freeze import setup, Executable
-##import os
-##import shutil
-##import subprocess
-##import sys
-##import platform 
-##import PyQt5
-##sys.path.append('ui')
-##sys.path.append('images')
-##from libglparchis import version
-##
-##def winversion():
-##    lastpoint="0"
-##    if version.find("+")!=-1:
-##        lastpoint="1"
-##        
-##    versio=version.replace("+","")
-##    return versio[:-4]+"."+versio[4:-2]+"."+versio[6:]+"."+lastpoint
-##    
-##def build_dir():
-##    pyversion="{}.{}".format(sys.version_info[0], sys.version_info[1])
-##    if sys.platform=="win32":
-##        so="win"
-##        if platform.architecture()[0]=="64bit":
-##            pl="amd64"
-##        else:
-##            pl="win32"
-##            return "build/exe.{}-{}".format(sys.platform, pyversion)
-##    else:#linux
-##        so="linux"
-##        if platform.architecture()[0]=="64bit":
-##            pl="x86_64"
-##        else:
-##            pl="i686"
-##    return "build/exe.{}-{}-{}".format(so, pl, pyversion)
-##    
-##def filename_output():
-##    if sys.platform=="win32":
-##        so="windows"
-##        if platform.architecture()[0]=="64bit":
-##            pl="amd64"
-##        else:
-##            pl="win32"
-##    else:#linux
-##        so="linux"
-##        if platform.architecture()[0]=="64bit":
-##            pl="x86_64"
-##        else:
-##            pl="x86"
-##    return "glparchis-{}-{}.{}".format(so,  version, pl)
+
 ##
 ##print ("Building for", sys.platform, version, winversion())
 ##name="glParchis"
@@ -125,7 +76,7 @@ print ("Building for", sys.platform, version())
 name="glparchis"
 
 #Add files
-include_files=[ 'images/ficharoja.ico', 'GPL-3.txt']
+include_files=['sounds/','images/ficharoja.ico', 'GPL-3.txt']
 include_files.append(("i18n/glparchis_es.qm", "i18n/glparchis_es.qm"))
 include_files.append(("i18n/glparchis_fr.qm", "i18n/glparchis_fr.qm"))
 include_files.append(("i18n/glparchis_ro.qm", "i18n/glparchis_ro.qm"))
@@ -133,8 +84,8 @@ include_files.append(("i18n/glparchis_ru.qm", "i18n/glparchis_ru.qm"))
 
 #Build options
 if sys.platform=='win32':
-      #base = 'Win32GUI'
-      base="Console"
+      base = 'Win32GUI'
+      #base="Console"
       shortcut_table = [
           ("DesktopShortcut",        # Shortcut
            "DesktopFolder",          # Directory_
