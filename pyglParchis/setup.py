@@ -121,11 +121,11 @@ sys.path.append('ui')
 sys.path.append('images')
 from libglparchis import version
 
-print ("Building for", sys.platform, version())
+print ("Building for", sys.platform, version)
 name="glparchis"
 
 #Add files
-include_files=[ 'images/ficharoja.ico', 'GPL-3.txt']
+include_files=[ 'images/glparchis.ico', 'GPL-3.txt']
 include_files.append(("i18n/glparchis_es.qm", "i18n/glparchis_es.qm"))
 include_files.append(("i18n/glparchis_fr.qm", "i18n/glparchis_fr.qm"))
 include_files.append(("i18n/glparchis_ro.qm", "i18n/glparchis_ro.qm"))
@@ -186,10 +186,10 @@ executables = [
 ]
 
 setup(name=name,
-      version = version(),
+      version = version,
       author = 'Mariano Muñoz',
       author_email="turulomio@yahoo.es", 
-      description = 'Parchessi game',
+      description = 'Search devices in my LAN',
       options = options,
       url="https://sourceforge.net/projects/glparchis/", 
       executables = executables)
