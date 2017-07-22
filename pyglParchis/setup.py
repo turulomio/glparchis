@@ -121,7 +121,7 @@ sys.path.append('ui')
 sys.path.append('images')
 from libglparchis import version
 
-print ("Building for", sys.platform, version)
+print ("Building for", sys.platform, version())
 name="glparchis"
 
 #Add files
@@ -186,7 +186,7 @@ executables = [
 ]
 
 setup(name=name,
-      version = version,
+      version = version(),
       author = 'Mariano Muñoz',
       author_email="turulomio@yahoo.es", 
       description = 'Parchessi game',

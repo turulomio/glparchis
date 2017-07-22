@@ -4,7 +4,7 @@ from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QSize, QEvent, QUrl
 from PyQt5.QtGui import QIcon, QPixmap, QFont
 from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QLabel, QSpacerItem, QDialog, QHBoxLayout, QVBoxLayout, QFileDialog, QSizePolicy
 from PyQt5.QtWebKitWidgets import QWebView
-from libglparchis import version, str2bool, cargarQTranslator, b2s, qmessagebox,  Mem4, Mem6, Mem8
+from libglparchis import dateversion, str2bool, cargarQTranslator, b2s, qmessagebox,  Mem4, Mem6, Mem8
 
 import configparser
 from Ui_frmMain import Ui_frmMain
@@ -24,7 +24,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.setupUi(self)
         self.showMaximized()
         self.game=None
-        self.setWindowTitle(self.tr("glParchis 2010-{}. GNU General Public License \xa9").format(version[0:4]))
+        self.setWindowTitle(self.tr("glParchis 2010-{}. GNU General Public License \xa9").format(dateversion.year))
         if datetime.date.today()-datetime.date.fromordinal(int(self.settings.value("frmMain/lastupdate", 1)))>=datetime.timedelta(days=7):
             print ("Actualizando")
             self.checkUpdates(False)
@@ -140,8 +140,9 @@ class frmMain(QMainWindow, Ui_frmMain):#
         print ("Remote version",  remoteversion)
         if remoteversion==None:
             return
+        dateremoteversion=datetime.date(int(remoteversion[:4]), int(remoteversion[4:6]), int(remoteversion[6:8]))
                 
-        if remoteversion==version.replace("+", ""):#Quita el mas de desarrollo 
+        if dateremoteversion==dateversion: 
             if showdialogwhennoupdates==True:
                 qmessagebox(self.tr("Dispone de la ultima version del juego"))
         else:
