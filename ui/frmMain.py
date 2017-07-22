@@ -3,7 +3,7 @@ from urllib.request import urlopen
 from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QSize, QEvent, QUrl
 from PyQt5.QtGui import QIcon, QPixmap, QFont
 from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QLabel, QSpacerItem, QDialog, QHBoxLayout, QVBoxLayout, QFileDialog, QSizePolicy
-from PyQt5.QtWebKitWidgets import QWebView
+from PyQt5.QtWebEngineWidgets import QWebEngineView
 from libglparchis import dateversion, str2bool, cargarQTranslator, b2s, qmessagebox,  Mem4, Mem6, Mem8
 
 import configparser
@@ -259,7 +259,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.horizontalLayout.addItem(spacerItem1)
         self.verticalLayout.addLayout(self.horizontalLayout)
         
-        self.webView = QWebView(d)
+        self.webView = QWebEngineView(d)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
