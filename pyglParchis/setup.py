@@ -182,7 +182,12 @@ if sys.platform=='win32':
 
 else:#linux
       base="Console"
-      build_options = dict(includes = [], excludes = [], include_files=include_files)
+      build_options = dict(
+           includes = ['OpenGL','OpenGL.platform.glx','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters','PyQt5.QtNetwork','PyQt5.QtWebKit','PyQt5.QtPrintSupport', 'OpenGL.GLU.glustruct'],
+           excludes = [], 
+           include_files=include_files
+           )
+##      build_options = dict(includes = [], excludes = [], include_files=include_files)
       options=dict(build_exe = build_options)
 
 executables = [

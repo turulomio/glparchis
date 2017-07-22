@@ -44,7 +44,7 @@ def filename_output():
             pl="x86_64"
         else:
             pl="x86"
-    return "glparchis-{}-{}.{}".format(so,  version, pl)
+    return "glparchis-{}-{}.{}".format(so,  version(), pl)
     
 
 
@@ -53,6 +53,7 @@ if __name__ == '__main__':
     parser=argparse.ArgumentParser(prog='Makefile.py', description='Makefile in python', epilog="Developed by Mariano Muñoz", formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('--doc', help="Generate docs and i18n",action="store_true",default=False)
     parser.add_argument('--compile', help="App compilation",action="store_true",default=False)
+    parser.add_argument('--compile_windows', help="Make a Windows binary compilation", action="store_true",default=False)
     parser.add_argument('--compile_images', help="App images compilation",action="store_true",default=False)
     parser.add_argument('--destdir', help="Directory to install",action="store",default="/")
     parser.add_argument('--uninstall', help="Uninstall",action="store_true",default=False)
@@ -70,7 +71,7 @@ if __name__ == '__main__':
     prefixman=args.destdir+"/usr/share/man"
     prefixsounds=args.destdir+"/usr/share/glparchis/sounds"
 
-    if "--dist_windows" in sys.argv and platform.system()!="Windows":
+    if ( "--dist_windows" in sys.argv or "--compile_windows" in sys.argv )  and platform.system()!="Windows":
         print("You need to be in Windows to pass this parameters")
         sys.exit(1)
     elif "--dist_windows" not in sys.argv and platform.system=="Windows":#In windows only dist_windows
@@ -93,9 +94,15 @@ if __name__ == '__main__':
         shell("{} setup.py build_exe".format(args.python))    
         print (build_dir(), filename_output(), os.getcwd())
         pwd=os.getcwd()
+        try:
+            os.makedirs(build_dir())
+        except:
+            pass
         os.chdir(build_dir())
         print (build_dir(), filename_output(), os.getcwd())
         os.system("tar cvz -f '{0}/dist/{1}.tar.gz' * -C '{0}/'".format(pwd, filename_output()))#,  build_dir()))
+    elif args.compile_windows==True:
+        check_call([sys.executable, "setup.py","build exe"])
     elif args.dist_windows==True:
         check_call([sys.executable, "setup.py","bdist_msi"])
     elif args.compile==True:
