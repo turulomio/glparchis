@@ -102,7 +102,7 @@ if __name__ == '__main__':
         print (build_dir(), filename_output(), os.getcwd())
         os.system("tar cvz -f '{0}/dist/{1}.tar.gz' * -C '{0}/'".format(pwd, filename_output()))#,  build_dir()))
     elif args.compile_windows==True:
-        check_call([sys.executable, "setup.py","build exe"])
+        check_call([sys.executable, "setup.py","build_exe"])
     elif args.dist_windows==True:
         check_call([sys.executable, "setup.py","bdist_msi"])
     elif args.compile==True:
