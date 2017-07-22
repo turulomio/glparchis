@@ -121,11 +121,11 @@ sys.path.append('ui')
 sys.path.append('images')
 from libglparchis import version
 
-print ("Building for", sys.platform, version)
+print ("Building for", sys.platform, version())
 name="glparchis"
 
 #Add files
-include_files=[ 'images/glparchis.ico', 'GPL-3.txt']
+include_files=[ 'images/ficharoja.ico', 'GPL-3.txt']
 include_files.append(("i18n/glparchis_es.qm", "i18n/glparchis_es.qm"))
 include_files.append(("i18n/glparchis_fr.qm", "i18n/glparchis_fr.qm"))
 include_files.append(("i18n/glparchis_ro.qm", "i18n/glparchis_ro.qm"))
@@ -172,8 +172,12 @@ if sys.platform=='win32':
            'initial_target_dir': r'[ProgramFilesFolder]\%s' % (name),
            'data': msi_data
             }
- 
-      build_exe_options = dict(includes = [],excludes=[], include_files=include_files)
+      build_exe_options = dict(
+           includes = ['OpenGL','OpenGL.platform.win32','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters','OpenGL.GLU','OpenGL.GLU.glustruct'],#    ,'PyQt5.QtNetwork','PyQt5.QtWebKit','PyQt5.QtPrintSupport'],
+           excludes=[], 
+           include_files=include_files
+           )
+
       options={'bdist_msi': build_msi_options, 'build_exe': build_exe_options}
 
 else:#linux
@@ -186,7 +190,7 @@ executables = [
 ]
 
 setup(name=name,
-      version = version,
+      version = version(),
       author = 'Mariano Muñoz',
       author_email="turulomio@yahoo.es", 
       description = 'Search devices in my LAN',
