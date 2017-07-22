@@ -16,7 +16,12 @@ from PyQt5.QtMultimedia import QSound
 from uuid import uuid4
 
 #Cuando se modifique una version sacada se pondra un + p.e. 20120921+
-version="20161204"
+dateversion=datetime.date(2017, 7, 22)
+def version():
+    if sys.platform=="win32":
+        return "{}.{}.{}".format(dateversion.year, dateversion.month, dateversion.day)
+    else:
+        return  str(dateversion).replace("-", "")
 
 def str2bool(s):
     if s.__class__==bool:#Si ya fuera bool
