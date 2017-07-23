@@ -33,6 +33,7 @@ class i18n(QObject):
         f.write("- {}\n".format(self.tr("Anadida la opcion de configuracion de retraso entre movimientos")))
         f.write("- {}\n".format(self.tr("Anadida la opcion de configuracion de nivel de dificultad")))
         f.write("- {}\n".format(self.tr("Anadida la opcion de subir y bajar el tablero en el eje z, con las teclas + y -")))
+        f.write("- {}\n".format(self.tr("Anadidas estadísticas individuales de juego")))
         f.write("\n")
 
         f.write("20160812\n")
