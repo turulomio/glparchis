@@ -1,4 +1,4 @@
-from PyQt5.QtCore import QTimer, pyqtSlot
+from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QWidget
 from wdgUserPanel import wdgUserPanel
 from libglparchis import str2bool, version, b2s, HighScore, qmessagebox, delay
@@ -10,23 +10,17 @@ from urllib.request import urlopen
 
 class wdgGame(QWidget, Ui_wdgGame):
     """Clase principal del Juego, aqui esta toda la ciencia, cuando se deba pasar al UI se crearan emits que captura qT para el UI"""
+    
     def __init__(self,   parent=None,  filename=None):        
         QWidget.__init__(self, parent)
         self.setupUi(self)
         self.show()
         self.panels=[]
-        
-        #Timer statistics
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.timer_reload)
-        self.timer.start(500)
 
     def __del__(self):
         print ("Destructor wdgGame")
         self.stopthegame=True
-        self.stopReloads()
         for p in self.panels:
-            p.stopTimerLog()
             self.panelScrollLayout.removeWidget(p)
         self.hide()
 
@@ -50,11 +44,10 @@ class wdgGame(QWidget, Ui_wdgGame):
                 web=None
             print (web)       
 
-
-    def stopReloads(self):
-        self.timer.stop()
-        
-    def timer_reload(self):
+    def table_reload(self):
+        """
+            Recargar tabla de estadísticas
+        """
         self.table.reload()
         self.lblTime.setText(self.tr("Tiempo de partida: {0}".format(str(datetime.datetime.now()-self.mem.inittime).split(".")[0])))
 
@@ -101,9 +94,6 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.mem.inittime=datetime.datetime.now()
         self.on_JugadorDebeTirar()
 
-
-
-
     def on_ogl_doubleClicked(self):
         if self.cmdTirarDado.isEnabled()==False:
             return
@@ -122,10 +112,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.mem.jugadores.actual.log(self.tr("Has ganado la partida"))
         self.mem.jugadores.winner=self.mem.jugadores.actual
         self.mem.play("win")
-        self.stopReloads()
         self.stopthegame=True
-        for p in self.panels:
-            p.stopTimerLog()
         if self.mem.jugadores.winner.ia==False:#Solo se genera hs cuando es un humano
             if self.mem.maxplayers==4:
                 self.hs4.insert()
@@ -137,6 +124,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.hs8.insert()
                 self.hs8.save()           
             self.highscoresUpdate()
+        self.table_reload()
         
         self.sendStatisticsEnd()
         qmessagebox(self.tr("{0} ha ganado".format(self.mem.jugadores.actual.name)))
@@ -214,6 +202,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.cmdTirarDado.setText("")
         self.mem.play("dice")
         self.mem.jugadores.actual.tirarDado()
+        self.table_reload()
         self.mem.dado.showing=True
         self.ogl.updateGL()
         self.panel().setLabelDado()
@@ -259,6 +248,7 @@ class wdgGame(QWidget, Ui_wdgGame):
 
                 
         if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta+movimiento) or self.mem.selFicha.mete(self.mem.selFicha.posruta+movimiento):    
+            self.table_reload()
             self.ogl.updateGL()
             if self.mem.jugadores.actual.movimientos_acumulados==10:
                 self.mem.play("meter")
@@ -270,6 +260,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 return
         else:
             self.mem.selFicha.mover( self.mem.selFicha.posruta + movimiento)    
+            self.table_reload()
             self.ogl.updateGL()
        #Quita el movimiento acumulados
         if self.mem.jugadores.actual.movimientos_acumulados in (10, 20):
@@ -291,12 +282,23 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.ogl.updateGL()        
 
         self.panel().setActivated(False)
-        self.panel().grp.update()
         
         self.mem.jugadores.cambiarJugador()
-        
-        
-        
+        self.autosave()    
+
+        if self.chkAvanza.isChecked()==True:
+            self.panelScroll.ensureWidgetVisible(self.panel())
+        self.panel().setActivated(True) #Activa y limpia panel
+
+        self.cmdTirarDado.setStyleSheet('QPushButton {color: '+self.mem.jugadores.actual.color.name+'; font: bold 30px; background-color: rgb(170, 170, 170);}')
+        self.on_JugadorDebeTirar()
+
+
+    def autosave(self):
+        """
+            Makes an autosave of the game
+        """
+                
         #Realiza el autosave
         maxautosaves= int(self.mem.settings.value("frmSettings/autosaves", 15))
         if maxautosaves>0 and self.mem.jugadores.actual.ia==False:
@@ -312,14 +314,6 @@ class wdgGame(QWidget, Ui_wdgGame):
             n=datetime.datetime.now()
             dt="{0}{1:02d}{2:02d}_{3:02d}{4:02d}{5:02d}".format(n.year, n.month, n.day, n.hour, n.minute, n.second)
             self.mem.save("autosave_{0}_{1}_{2}.glparchis".format(dt, self.mem.maxplayers, self.mem.jugadores.actual.color.name ))
-        
-        if self.chkAvanza.isChecked()==True:
-            self.panelScroll.ensureWidgetVisible(self.panel())
-        self.panel().setActivated(True) #Activa y limpia panel
-        self.panel().grp.update()
-
-        self.cmdTirarDado.setStyleSheet('QPushButton {color: '+self.mem.jugadores.actual.color.name+'; font: bold 30px; background-color: rgb(170, 170, 170);}')
-        self.on_JugadorDebeTirar()
 
     def highscoresUpdate(self):
         self.hs4.qtablewidget(self.tblHighScores4)
