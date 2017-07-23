@@ -109,6 +109,7 @@ if __name__ == '__main__':
         futures=[]
         with ProcessPoolExecutor(max_workers=cpu_count()+1) as executor:
             futures.append(executor.submit(shell, "pyuic5 ui/frmAbout.ui -o ui/Ui_frmAbout.py"))
+            futures.append(executor.submit(shell, "pyuic5 ui/frmGameStatistics.ui -o ui/Ui_frmGameStatistics.py"))
             futures.append(executor.submit(shell, "pyuic5 ui/frmHelp.ui -o ui/Ui_frmHelp.py"))
             futures.append(executor.submit(shell, "pyuic5 ui/frmInitGame.ui -o ui/Ui_frmInitGame.py"))
             futures.append(executor.submit(shell, "pyuic5 ui/frmMain.ui -o ui/Ui_frmMain.py"))

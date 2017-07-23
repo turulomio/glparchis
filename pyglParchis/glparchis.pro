@@ -13,6 +13,8 @@ SOURCES         = libglparchis.py \
                   ui/Ui_frmHelp.py \
                   ui/frmAbout.py \
                   ui/Ui_frmAbout.py \
+                  ui/frmGameStatistics.py \
+                  ui/Ui_frmGameStatistics.py \
                   ui/frmSettings.py \
                   ui/Ui_frmSettings.py \
                   ui/frmShowCasilla.py \
@@ -25,6 +27,7 @@ SOURCES         = libglparchis.py \
                   ui/qtablestatistics.py
 
 FORMS           = ui/frmAbout.ui \
+                  ui/frmGameStatistics.ui \
                   ui/frmInitGame.ui \
                   ui/frmMain.ui \
                   ui/frmShowCasilla.ui \
