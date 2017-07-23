@@ -9,7 +9,7 @@ from poscasillas6 import poscasillas6
 from posfichas6 import posfichas6
 import os,  random,   configparser,  datetime,  codecs,  math
 from PyQt5.QtGui import QColor, QIcon, QPixmap
-from PyQt5.QtCore import Qt, QObject, QCoreApplication, QEventLoop
+from PyQt5.QtCore import Qt, QObject, QCoreApplication, QEventLoop,  pyqtSignal
 from PyQt5.QtOpenGL import QGLWidget
 from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
 from PyQt5.QtMultimedia import QSound
@@ -60,6 +60,7 @@ def delay(miliseconds):
 
 
 class Dado(QObject):    
+    throwed=pyqtSignal()
     def __init__(self, parent=None ):
         QGLWidget.__init__(self, parent)
         self.fake=[]
@@ -523,8 +524,10 @@ class HighScore:
         f.write(s)
         f.close()
                 
-class Jugador:
+class Jugador(QObject):
+    logEmitted=pyqtSignal(str)
     def __init__(self, mem,  color):
+        QObject.__init__(self)
         self.mem=mem
         self.name=None#Es el nombre de usuario no el de color
         self.color=color
@@ -536,8 +539,6 @@ class Jugador:
         self.LastFichaMovida=None #Se utiliza cuando se va a casa NOne si ninguna
         self.movimientos_acumulados=None#Comidas ymetidas, puede ser 10, 20 o None Cuando se cuenta se borra a None
         self.dado=None #Enlace a objeto dado de mem
-        self.logturno=[]#log de turno
-        self.loghistorico=[]
         self.comidaspormi=0
         self.comidasporotro=0
         self.ruta=None#Se apunta
@@ -547,8 +548,7 @@ class Jugador:
 
     def log(self, l):
         l="{0} {1}".format(str(datetime.datetime.now().time()).split(".")[0], l)
-        self.logturno.append( l)
-        self.loghistorico.append(l)
+        self.logEmitted.emit(l)
         
     def casillasPorMover(self):
         """Casillas que le queda al jugador hasta ganar la partida"""
@@ -1252,6 +1252,7 @@ class SetFichas:
         return True
         
 class Ficha(QObject):
+    moved=pyqtSignal()
     """En ingl´es se traduce como Pawn"""
     def __init__(self, mem, id, number,  color, jugador, ruta):
         """El identificador de la ficha viene dado por el nombre del color y el id (numero de creacion), se genera en la clase Mem"""
@@ -1379,6 +1380,7 @@ class Ficha(QObject):
         return (True, movimiento)
         
     def mover(self, ruta, controllastficha=True,  startgame=False):
+        self.moved.emit()
         casillaorigen=self.ruta.arr[self.posruta]
         casilladestino=self.ruta.arr[ruta]        
         self.posruta=ruta

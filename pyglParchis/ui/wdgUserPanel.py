@@ -1,27 +1,24 @@
-from PyQt5.QtCore import QTimer, Qt
+from PyQt5.QtCore import  Qt
 from PyQt5.QtWidgets import QWidget
 from Ui_wdgUserPanel import Ui_wdgUserPanel
 
 class wdgUserPanel(QWidget, Ui_wdgUserPanel):
     def __init__(self, parent = None, name = None):
         QWidget.__init__(self, parent)
+        self.logturno=[]#log de turno
+        self.loghistorico=[]
         if name:
             self.setObjectName(name)
         self.setupUi(self)
 
         self.jugador=None
-        self.timerLog = QTimer()
-        self.timerLog.timeout.connect(self.refreshLog)
-        self.timerLog.start(300)
-        
-    def stopTimerLog(self):
-        self.timerLog.stop()
         
     def setJugador(self, jugador):
         self.jugador=jugador
         self.lblAvatar.setPixmap(jugador.color.qpixmap())      
         self.grp.setStyleSheet('QGroupBox {color: '+self.jugador.color.name+'}')
         self.grp.setTitle( (jugador.name))
+        jugador.logEmitted.connect(self.logReceived)
         
     def setLabelDado(self):
         """Actualiza la etiqueta del utlimo valor de tiradaturno"""
@@ -44,7 +41,7 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
             self.lbl2.setPixmap(self.jugador.dado.qpixmap(None))
             self.lbl3.setPixmap(self.jugador.dado.qpixmap(None))
             self.grp.setStyleSheet('QGroupBox {font: bold ; color: '+self.jugador.color.name+';}')#'background-color: rgb(170, 170, 170);}')
-            self.jugador.logturno=[]
+            self.logturno=[]
         else:
             self.grp.setStyleSheet('QGroupBox {font: Normal; color: '+self.jugador.color.name+';}')
         self.lbl1.setEnabled(bool)
@@ -55,17 +52,18 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
 
     def on_chk_stateChanged(self, state):        
         """Reescribe solo cuando cambia el tamano"""
-        if state==Qt.Checked and self.lst.count()!=len(self.jugador.loghistorico):
+        if state==Qt.Checked and self.lst.count()!=len(self.loghistorico):
             self.lst.clear()
-            self.lst.addItems(self.jugador.loghistorico)  
-            self.lst.setCurrentRow(len(self.jugador.loghistorico)-1)
+            self.lst.addItems(self.loghistorico)  
+            self.lst.setCurrentRow(len(self.loghistorico)-1)
             self.lst.clearSelection()
-        elif state==Qt.Unchecked and self.lst.count()!=len(self.jugador.logturno):
+        elif state==Qt.Unchecked and self.lst.count()!=len(self.logturno):
             self.lst.clear()
-            self.lst.addItems(self.jugador.logturno)          
-            self.lst.setCurrentRow(len(self.jugador.logturno)-1)  
+            self.lst.addItems(self.logturno)          
+            self.lst.setCurrentRow(len(self.logturno)-1)  
             self.lst.clearSelection()
         
-    def refreshLog(self):
+    def logReceived(self, log):
+        self.logturno.append(log)
+        self.loghistorico.append(log)
         self.on_chk_stateChanged(self.chk.checkState())
-        
