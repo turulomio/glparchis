@@ -1,15 +1,15 @@
 import sys, os, urllib.request,   datetime
 from urllib.request import urlopen
-from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QSize, QEvent, QUrl
-from PyQt5.QtGui import QIcon, QPixmap, QFont
-from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QLabel, QSpacerItem, QDialog, QHBoxLayout, QVBoxLayout, QFileDialog, QSizePolicy
-from PyQt5.QtWebEngineWidgets import QWebEngineView
+from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QEvent
+from PyQt5.QtGui import QIcon, QPixmap
+from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QDialog, QFileDialog
 from libglparchis import dateversion, str2bool, cargarQTranslator, b2s, qmessagebox,  Mem4, Mem6, Mem8
 
 import configparser
 from Ui_frmMain import Ui_frmMain
 from wdgGame import wdgGame
 from frmAbout import frmAbout
+from frmGameStatistics import frmGameStatistics
 from frmInitGame import frmInitGame
 from frmSettings import frmSettings
 from frmHelp import frmHelp
@@ -225,51 +225,10 @@ class frmMain(QMainWindow, Ui_frmMain):#
 
     @pyqtSlot()  
     def on_actionMundialStatistics_triggered(self):
-        d=QDialog()#Use frmMain because in invoked from frmSettings to        
-        d.setWindowTitle(self.tr("Estadisticas mundiales"))       
-        d.setWindowModality(Qt.WindowModal)
-        d.resize(549, 607)
-        icon = QIcon()
-        icon.addPixmap(QPixmap(":/glparchis/statistics.png"), QIcon.Normal, QIcon.Off)
-        d.setWindowIcon(icon)
-        d.setModal(True)
-        self.horizontalLayout_2 = QHBoxLayout(d)
-        self.verticalLayout = QVBoxLayout()
-        
-        self.lblApp = QLabel(d)
-        self.lblApp.setText(self.tr("Estadisticas mundiales"))
-        font = QFont()
-        font.setPointSize(20)
-        font.setBold(True)
-        font.setWeight(75)
-        self.lblApp.setFont(font)
-        self.lblApp.setAlignment(Qt.AlignCenter)
-        self.verticalLayout.addWidget(self.lblApp)
-        
-        self.horizontalLayout = QHBoxLayout()
-        spacerItem = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-        self.horizontalLayout.addItem(spacerItem)
-        self.lblPixmap = QLabel(d)
-        self.lblPixmap.setMaximumSize(QSize(68, 68))
-        self.lblPixmap.setPixmap(QPixmap(":/glparchis/statistics.png"))
-        self.lblPixmap.setScaledContents(True)
-        self.lblPixmap.setAlignment(Qt.AlignCenter)
-        self.horizontalLayout.addWidget(self.lblPixmap)
-        spacerItem1 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-        self.horizontalLayout.addItem(spacerItem1)
-        self.verticalLayout.addLayout(self.horizontalLayout)
-        
-        self.webView = QWebEngineView(d)
-        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.webView.sizePolicy().hasHeightForWidth())
-        self.webView.setSizePolicy(sizePolicy)
-        self.webView.setUrl(QUrl("http://glparchis.sourceforge.net/php/glparchis_statistics.php"))
-        self.verticalLayout.addWidget(self.webView)
-        self.horizontalLayout_2.addLayout(self.verticalLayout)
-        d.setFocus()
-        d.exec_()
+        uuid=self.settings.value("frmMain/uuid", "None")
+        fr=frmGameStatistics(uuid, self)
+        fr.exec_()
+
             
     @pyqtSlot()  
     def on_actionPartidaNueva4_triggered(self):
