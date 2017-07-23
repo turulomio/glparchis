@@ -17,7 +17,10 @@ from uuid import uuid4
 
 #Cuando se modifique una version sacada se pondra un + p.e. 20120921+
 dateversion=datetime.date(2017, 7, 22)
-def version():
+def version(platform=None):
+    """platform can be win32 or linux"""
+    if platform==None:
+        platform=sys.platform
     if sys.platform=="win32":
         return "{}.{}.{}".format(dateversion.year, dateversion.month, dateversion.day)
     else:

@@ -32,7 +32,7 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     def sendStatisticsStart(self):
         if str2bool(self.mem.settings.value("frmSettings/statistics", "True"))==True:
-            url='http://glparchis.sourceforge.net/php/glparchis_game_start.php?uuid={}&installations_uuid={}&numplayers={}&maxplayers={}&version={}'.format(self.mem.uuid, self.mem.settings.value("frmMain/uuid"),  self.mem.jugadores.numPlays(), self.mem.maxplayers, version)
+            url='http://glparchis.sourceforge.net/php/glparchis_game_start.php?uuid={}&installations_uuid={}&numplayers={}&maxplayers={}&version={}'.format(self.mem.uuid, self.mem.settings.value("frmMain/uuid"),  self.mem.jugadores.numPlays(), self.mem.maxplayers, version("linux"))
             print(url)
             try:
                 web=b2s(urlopen(url).read())
