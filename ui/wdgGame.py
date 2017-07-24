@@ -92,6 +92,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         
         if self.mem.inittime==None:#Caso de que se cree la partida sin cargar .glparchis
             self.mem.inittime=datetime.datetime.now()
+        self.table_reload()
         self.on_JugadorDebeTirar()
 
     def on_ogl_doubleClicked(self):

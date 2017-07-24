@@ -74,22 +74,25 @@ class QTableStatistics(QTableWidget):
             self.item(11, column).setText(str(j.comidaspormi))
             self.item(12, column).setText(str(j.comidasporotro))
             
-            
             if j==ganando:
+                self.setCellWidget(13, column, self.widgetCentered(QPixmap(":/glparchis/cube.png")))    
                 self.setCellWidget(13, column, self.widgetCentered(QPixmap(":/glparchis/corona.png")))    
             else:
-                w=QWidget()
-                self.setCellWidget(13, column, w)
+                self.setCellWidget(13, column, self.widgetCentered(QPixmap(":/glparchis/cube.png")))    
             
             item=QTableWidgetItem(str(j.casillasMovidas()))
             item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter)
             self.setItem(14, column, item)    
-    
-            self.item(16, column).setText(str(j.score()))
+            if j==ganando:
+                self.item(16, column).setText(str(j.score()))
+            else:
+                self.item(16, column).setText("")
         #Ultima columna
         self.item(0, self.mem.maxplayers).setText(str(tj.numThrows()))
         for i in range(2, 8):
             self.item(i, self.mem.maxplayers).setText(str(tj.numTimesDiceGetNumber(i-1)))
         self.item(9, self.mem.maxplayers).setText(str(tj.numThreeSixes()))
+        
+        self.update()
         
 
