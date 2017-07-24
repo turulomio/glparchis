@@ -557,6 +557,15 @@ class Jugador(QObject):
             resultado=resultado+f.casillasPorMover()
         return resultado
             
+            
+    def casillasPorMoverATodosLosDemas(self):
+        """Casillas que le queda al resto de jugadores por mover. Las de este jugador no cuentan"""
+        sum_pormover=0
+        for j in self.mem.jugadores.arr:
+            if j!=self:
+                sum_pormover=sum_pormover+j.casillasPorMover()
+        return sum_pormover
+            
     def casillasMovidas(self):
         """Casillas que ha movido el jugador, puede considerarse la puntuacion del jugador"""
         return 4*self.fichas.arr[0].ruta.length()-self.casillasPorMover()
@@ -595,24 +604,8 @@ class Jugador(QObject):
         return resultado
                 
     def score(self):
-        """Da la puntuacion de un jugador, durante o al final de la partida 
-       
-       Score sumatorio(casillas por mover otros jugadores si llevan 
-       En caso de Ganar: 500 puntos + (comidas por mi-comidas por otros)*40 + sumatorio(casillas por mover del resto de jugadores)*2+ (casillas movidas)*
-       
-       Score en partida: (comidas por mi - comidas por otros)*40 + (casillas movidas)*2
-       
-       )
-       """
-        if self.HaGanado()==True:
-            sum_pormover=0
-            for j in self.mem.jugadores.arr:
-                if j!=self:
-                    sum_pormover=sum_pormover+j.casillasPorMover()
-            return 500+(self.comidaspormi-self.comidasporotro)*40+ self.casillasMovidas()*2+sum_pormover*5
-        else:#No ha ganado
-            return (self.comidaspormi-self.comidasporotro)*40+ self.casillasMovidas()*2
-
+        """Da la puntuacion de un jugador"""
+        return 500+(self.comidaspormi-self.comidasporotro)*40+ self.casillasMovidas()*2+ self.casillasPorMoverATodosLosDemas()*5
 
     def tieneBarreras(self):
         if len(self.barreras())>0:
