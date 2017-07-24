@@ -32,20 +32,6 @@ if sys.platform=='win32':
            None,                     # ShowCmd
            'TARGETDIR'               # WkDir
            ),
-
-          ("StartupShortcut",        # Shortcut
-           "StartupFolder",          # Directory_
-           "glParchis",     # Name
-           "TARGETDIR",              # Component_
-           "[TARGETDIR]glparchis.exe",   # Target
-           None,                     # Arguments
-           None,                     # Description
-           None,                     # Hotkey
-           None,                     # Icon
-           None,                     # IconIndex
-           None,                     # ShowCmd
-           'TARGETDIR'               # WkDir
-           ),
       ]
 
       msi_data = {"Shortcut": shortcut_table}  # This will be part of the 'data' option of bdist_msi
