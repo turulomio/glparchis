@@ -15,8 +15,10 @@ from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
 from PyQt5.QtMultimedia import QSound
 from uuid import uuid4
 
-#Cuando se modifique una version sacada se pondra un + p.e. 20120921+
-dateversion=datetime.date(2017, 7, 22)
+#dateversion=datetime.date(2017, 7, 22)
+dateversion=datetime.date(2000, 1, 1)#When developing
+
+
 def version(platform=None):
     """platform can be win32 or linux"""
     if platform==None:
