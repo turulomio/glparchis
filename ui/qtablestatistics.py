@@ -75,10 +75,10 @@ class QTableStatistics(QTableWidget):
             self.item(12, column).setText(str(j.comidasporotro))
             
             if j==ganando:
-                self.setCellWidget(13, column, self.widgetCentered(QPixmap(":/glparchis/cube.png")))    
+                self.setCellWidget(13, column, self.widgetCentered(QPixmap(":/glparchis/cube_transparent.png")))    
                 self.setCellWidget(13, column, self.widgetCentered(QPixmap(":/glparchis/corona.png")))    
             else:
-                self.setCellWidget(13, column, self.widgetCentered(QPixmap(":/glparchis/cube.png")))    
+                self.setCellWidget(13, column, self.widgetCentered(QPixmap(":/glparchis/cube_transparent.png")))    
             
             item=QTableWidgetItem(str(j.casillasMovidas()))
             item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter)

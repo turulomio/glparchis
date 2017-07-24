@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/glparchis">
+    <file>cube_transparent.png</file>
     <file>statistics.png</file>
     <file>fullscreen.png</file>
     <file>soundoff.png</file>
