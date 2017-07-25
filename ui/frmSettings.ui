@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>513</width>
-    <height>304</height>
+    <width>536</width>
+    <height>331</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -233,7 +233,7 @@
        <item>
         <widget class="QToolButton" name="cmdGlobalStatistics">
          <property name="toolTip">
-          <string>See global statistics</string>
+          <string>Ver estadísticas</string>
          </property>
          <property name="icon">
           <iconset resource="../images/glparchis.qrc">
