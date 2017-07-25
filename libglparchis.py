@@ -9,10 +9,10 @@ from poscasillas6 import poscasillas6
 from posfichas6 import posfichas6
 import os,  random,   configparser,  datetime,  codecs,  math
 from PyQt5.QtGui import QColor, QIcon, QPixmap
-from PyQt5.QtCore import Qt, QObject, QCoreApplication, QEventLoop,  pyqtSignal
+from PyQt5.QtCore import Qt, QObject, QCoreApplication, QEventLoop,  pyqtSignal,  QUrl
 from PyQt5.QtOpenGL import QGLWidget
 from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
-from PyQt5.QtMultimedia import QSound
+from PyQt5.QtMultimedia import   QSoundEffect
 from uuid import uuid4
 
 #dateversion=datetime.date(2017, 7, 22)
@@ -2160,6 +2160,31 @@ class Casilla(QObject):
                 resultado.append((i, f))
         return resultado
 
+
+class SoundSystem:
+    def __init__(self):
+        self.sounds={}
+        self.load_all()
+        
+    def load_all(self):
+        for effect in ["comer", "click", "dice", "meter", "shoot"]:
+            s=QSoundEffect()
+
+            urls= ["./sounds/"+effect + ".wav", "/usr/share/glparchis/sounds/"+effect+".wav"]
+            for url in urls:
+                url=QUrl.fromLocalFile("/usr/share/glparchis/sounds/"+effect+".wav")
+                if url.isValid():
+                    break
+            print (url)
+            s.setSource(url)
+            s.setLoopCount(1)
+            s.setVolume(0.99)
+            self.sounds[effect]=s
+            
+    def play(self, effect):      
+        print("Playing", effect)
+        self.sounds[effect].play()
+
 class Mem:
     def __init__(self, maxplayers):     
         self.maxplayers=maxplayers
@@ -2175,17 +2200,14 @@ class Mem:
         self.translator=None           
         self.mediaObject = None
         self.frmMain=None #Pointer to QMainWindow
+        self.sound=SoundSystem()
         
 
     def play(self, sound):
         if str2bool(self.settings.value("frmSettings/sound"))==True:
             if int(self.settings.value("frmSettings/delay","300"))<300 and self.jugadores.actual.ia==True:#If delay is too low and it's a IA
                 return
-            urls= ["./sounds/"+sound + ".wav", "/usr/share/glparchis/sounds/"+sound+".wav"]
-            for url in urls:
-                if os.path.exists(url)==True:
-                    break 
-            QSound.play(url)
+            self.sound.play(sound)
    
     def generar_fichas(self):
         """Debe generarse despunes de jugadores"""
