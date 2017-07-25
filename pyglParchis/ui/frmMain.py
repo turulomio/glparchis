@@ -3,7 +3,7 @@ from urllib.request import urlopen
 from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QEvent
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QDialog, QFileDialog
-from libglparchis import dateversion, str2bool, cargarQTranslator, b2s, qmessagebox,  Mem4, Mem6, Mem8
+from libglparchis import dateversion, str2bool, cargarQTranslator, b2s, qmessagebox,  Mem4, Mem6, Mem8,  SoundSystem
 
 import configparser
 from Ui_frmMain import Ui_frmMain
@@ -18,9 +18,14 @@ from uuid import uuid4
 class frmMain(QMainWindow, Ui_frmMain):#    
     def __init__(self, settings, parent = 0,  flags = False):
         QMainWindow.__init__(self)
+        self.path_program=os.getcwd()
+        self.path_autosaves=os.path.expanduser("~/.glparchis/")
         self.settings=settings
         self.translator=QTranslator()
         cargarQTranslator(self.translator, settings.value("frmSettings/language", "en"))
+        
+        self.sound=SoundSystem()
+        
         self.setupUi(self)
         self.showMaximized()
         self.game=None
@@ -31,6 +36,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.setSound(str2bool(self.settings.value("frmSettings/sound", "True")))
         self.setFullScreen(str2bool(self.settings.value("frmMain/fullscreen", "False")))
         self.setInstallationUUID()
+        
+
         
     def setInstallationUUID(self):
         if self.settings.value("frmMain/uuid", "None")=="None":
@@ -181,8 +188,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
 
     @pyqtSlot()  
     def on_actionRecuperarPartida_triggered(self):
-        cwd=os.getcwd()
-        os.chdir(os.path.expanduser("~/.glparchis/"))
+        os.chdir(self.path_autosaves)
         #ÐEBE SERLOCAL
         filenam=os.path.basename(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")[0])
         if filenam!="":
@@ -197,21 +203,17 @@ class frmMain(QMainWindow, Ui_frmMain):#
             for i, j in enumerate(self.mem.jugadores.arr):
                 j.name=self.mem.settings.value("Players/{}".format(j.color.name), j.DefaultName())
             self.showWdgGame()
-        os.chdir(cwd)
 
     def selectMem(self, filename):
         resultado=None
-        cwd=os.getcwd()
-        os.chdir(os.path.expanduser("~/.glparchis/"))
+        os.chdir(self.path_autosaves)
         config = configparser.ConfigParser()
         config.read(filename)
         try:
             self.maxplayers=int(config.get("game",  "numplayers"))
         except:
             resultado=Mem4()
-            os.chdir(cwd)
-            return resultado            
-        os.chdir(cwd)
+            return resultado  
             
         if self.maxplayers==4:
             resultado=Mem4()
@@ -267,11 +269,9 @@ class frmMain(QMainWindow, Ui_frmMain):#
 
     @pyqtSlot()     
     def on_actionGuardarPartida_triggered(self):
-        cwd=os.getcwd()
-        os.chdir(os.path.expanduser("~/.glparchis/"))
+        os.chdir(self.path_autosaves)
         filename=os.path.basename(QFileDialog.getSaveFileName(self, "", "", "glParchis game (*.glparchis)")[0])
         if filename!="":       
             if os.path.splitext(filename)[1]!=".glparchis":
                 filename=filename+".glparchis"
             self.mem.save(filename)
-        os.chdir(cwd)

@@ -6,11 +6,10 @@ from wdgPlayer import wdgPlayer, SetWdgPlayers
 from Ui_frmInitGame import Ui_frmInitGame
 
 class frmInitGame(QWizard, Ui_frmInitGame):
-    def __init__(self, mem,  parent = None, name = None, modal = False):
+    def __init__(self, mem,  parent = None):
         QWizard.__init__(self, parent)
         self.mem=mem
-        if name:
-            self.setObjectName(name)
+        self.frmMain=parent
         self.setupUi(self)
         self.setGeometry(parent.width()*0.2/2, parent.height()*0.2/2, parent.width()*0.8,  parent.height()*0.8)
         self.wizardPage1.setTitle(self.tr("Configurar la partida"))
@@ -54,6 +53,7 @@ class frmInitGame(QWizard, Ui_frmInitGame):
             if self.mem.jugadores.actual==None:
                 self.set.Players_throws()
                 maxplayers=self.set.arrWdgPlayers_MaximaPuntuacion()
+                self.frmMain.sound.play("dice")
                 if len(maxplayers.arr)==1:
                     self.mem.jugadores.actual=maxplayers.arr[0].jugador
                     self.lblPlayerStarts.setStyleSheet('QLabel {font: bold ; color: '+ self.mem.jugadores.actual.color.name+';}')
