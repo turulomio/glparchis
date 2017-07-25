@@ -23,7 +23,7 @@ def version(platform=None):
     """platform can be win32 or linux"""
     if platform==None:
         platform=sys.platform
-    elif platform=="win32":
+    if platform=="win32":
         return "{}.{}.{}".format(dateversion.year, dateversion.month, dateversion.day)
     else:
         print("version",  platform)
