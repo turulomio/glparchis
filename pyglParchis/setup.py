@@ -30,7 +30,20 @@ if sys.platform=='win32':
            None,                     # Icon
            None,                     # IconIndex
            None,                     # ShowCmd
-           'TARGETDIR'               # WkDir
+           "TARGETDIR"               # WkDir
+           ),
+          ("ProgramMenuShortcut",        # Shortcut
+           "ProgramMenuFolder",          # Directory_
+           "glParchis",     # Name
+           "TARGETDIR",              # Component_
+           "[TARGETDIR]glparchis.exe",   # Target
+           None,                     # Arguments
+           None,                     # Description
+           None,                     # Hotkey
+           None,                     # Icon
+           None,                     # IconIndex
+           None,                     # ShowCmd
+           "TARGETDIR"               # WkDir
            ),
       ]
 
@@ -38,7 +51,7 @@ if sys.platform=='win32':
       build_msi_options = {
            'upgrade_code': '{3849730B-2375-4F76-B4A5-A6677A23AB9B}',
            'add_to_path': False,
-           'initial_target_dir': r'[ProgramFilesFolder]\%s' % (name),
+           'initial_target_dir': r'[ProgramFilesFolder]\glparchis',
            'data': msi_data
             }
       build_exe_options = dict(
@@ -56,18 +69,17 @@ else:#linux
            excludes = [], 
            include_files=include_files
            )
-##      build_options = dict(includes = [], excludes = [], include_files=include_files)
       options=dict(build_exe = build_options)
 
 executables = [
-      Executable('glparchis.py', base=base, icon='images/ficharoja.ico', shortcutName= name, shortcutDir='ProgramMenuFolder')
+      Executable('glparchis.py', base=base, icon='images/ficharoja.ico')
 ]
 
 setup(name=name,
       version = version(),
       author = 'Mariano Muñoz',
       author_email="turulomio@yahoo.es", 
-      description = 'Search devices in my LAN',
+      description = 'GPL Parchessi',
       options = options,
       url="https://sourceforge.net/projects/glparchis/", 
       executables = executables)
