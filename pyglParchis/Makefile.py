@@ -129,12 +129,6 @@ if __name__ == '__main__':
         shell("install -o root -d "+ prefixpixmaps)
         shell("install -o root -d "+ prefixapplications)
         shell("install -o root -d "+ prefixsounds)
-        shell("install -o root -d "+ prefixman+"/man1")
-        shell("install -o root -d "+ prefixman+"/es/man1")
-        shell("install -o root -d "+ prefixman+"/fr/man1")
-        shell("install -o root -d "+ prefixman+"/ro/man1")
-        shell("install -o root -d "+ prefixman+"/ru/man1")
-
         shell("install -m 755 -o root glparchis.py "+ prefixbin+"/glparchis")
         shell("install -m 644 -o root ui/*.py libglparchis.py images/*.py "+ prefixlib)
         shell("install -m 644 -o root i18n/*.qm " + prefixlib)
