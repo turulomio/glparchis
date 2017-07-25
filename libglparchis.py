@@ -9,7 +9,7 @@ from poscasillas6 import poscasillas6
 from posfichas6 import posfichas6
 import os,  random,   configparser,  datetime,  codecs,  math
 from PyQt5.QtGui import QColor, QIcon, QPixmap
-from PyQt5.QtCore import Qt, QObject, QCoreApplication, QEventLoop,  pyqtSignal,  QUrl
+from PyQt5.QtCore import Qt, QObject, QCoreApplication, QEventLoop,  pyqtSignal,  QUrl,  QFileInfo
 from PyQt5.QtOpenGL import QGLWidget
 from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
 from PyQt5.QtMultimedia import   QSoundEffect
@@ -23,9 +23,10 @@ def version(platform=None):
     """platform can be win32 or linux"""
     if platform==None:
         platform=sys.platform
-    if sys.platform=="win32":
+    elif platform=="win32":
         return "{}.{}.{}".format(dateversion.year, dateversion.month, dateversion.day)
     else:
+        print("version",  platform)
         return  str(dateversion).replace("-", "")
 
 def str2bool(s):
@@ -2167,16 +2168,15 @@ class SoundSystem:
         self.load_all()
         
     def load_all(self):
-        for effect in ["comer", "click", "dice", "meter", "shoot"]:
+        for effect in ["comer", "click", "dice", "meter", "shoot", "win"]:
             s=QSoundEffect()
 
-            urls= ["./sounds/"+effect + ".wav", "/usr/share/glparchis/sounds/"+effect+".wav"]
+            urls= [ "/usr/share/glparchis/sounds/"+effect+".wav", "./sounds/"+effect + ".wav"]
             for url in urls:
-                url=QUrl.fromLocalFile("/usr/share/glparchis/sounds/"+effect+".wav")
-                if url.isValid():
+                if os.path.exists(url):
+                    print (url)
                     break
-            print (url)
-            s.setSource(url)
+            s.setSource(QUrl.fromLocalFile(QFileInfo(url).absoluteFilePath()))
             s.setLoopCount(1)
             s.setVolume(0.99)
             self.sounds[effect]=s
@@ -2200,14 +2200,16 @@ class Mem:
         self.translator=None           
         self.mediaObject = None
         self.frmMain=None #Pointer to QMainWindow
-        self.sound=SoundSystem()
         
 
     def play(self, sound):
+        """
+            Play sounds inside a game, You can play sound using self.frmMain.sound.play(sound) directly too
+        """
         if str2bool(self.settings.value("frmSettings/sound"))==True:
             if int(self.settings.value("frmSettings/delay","300"))<300 and self.jugadores.actual.ia==True:#If delay is too low and it's a IA
                 return
-            self.sound.play(sound)
+            self.frmMain.sound.play(sound)
    
     def generar_fichas(self):
         """Debe generarse despunes de jugadores"""
@@ -2236,7 +2238,6 @@ class Mem:
     def save(self, filename):
         """Version 1.1 INtroduce stadisticas
         Version 1.2 Introduce uuid"""
-        cwd=os.getcwd()
         os.chdir(os.path.expanduser("~/.glparchis/"))
         config = configparser.ConfigParser()
         
@@ -2267,8 +2268,7 @@ class Mem:
                 config.set("jugador{0}".format(i),  'rutaficha3',  str(j.fichas.arr[2].posruta))
                 config.set("jugador{0}".format(i),  'rutaficha4',  str(j.fichas.arr[3].posruta))
         with open(filename, 'w') as configfile:
-            config.write(configfile)            
-        os.chdir(cwd)
+            config.write(configfile)           
 
 
             
@@ -2276,9 +2276,7 @@ class Mem:
     def load(self, filename):       
         def error():           
             qmessagebox(QApplication.translate("glparchis", "Este fichero es de una version antigua o esta estropeado. No puede ser cargado."))
-            os.chdir(cwd)
         ################################
-        cwd=os.getcwd()
         os.chdir(os.path.expanduser("~/.glparchis/"))
         config = configparser.ConfigParser()
         config.read(filename)
@@ -2365,10 +2363,6 @@ class Mem:
         self.jugadores.actual=self.jugadores.find_by_colorname(config.get("game", 'playerstarts'))    
         self.jugadores.actual.movimientos_acumulados=None#Comidas ymetidas
         self.jugadores.actual.LastFichaMovida=None #Se utiliza cuando se va a casa
-
-        
-
-        os.chdir(cwd)
         return True
 
 class Mem8(Mem):    
