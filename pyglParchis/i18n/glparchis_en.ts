@@ -3,52 +3,52 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="../libglparchis.py" line="1328"/>
+        <location filename="../libglparchis.py" line="1325"/>
         <source>No es del jugador actual</source>
         <translation>It&apos;s not a current player piece</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1363"/>
+        <location filename="../libglparchis.py" line="1360"/>
         <source>Se ha pasado la meta</source>
         <translation>You missed the central space</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1369"/>
+        <location filename="../libglparchis.py" line="1366"/>
         <source>Hay una barrera</source>
         <translation>There is a blockade</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1378"/>
+        <location filename="../libglparchis.py" line="1375"/>
         <source>No hay espacio en la casilla</source>
         <translation>The space is bussy</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1358"/>
+        <location filename="../libglparchis.py" line="1355"/>
         <source>No puede mover</source>
         <translation>It can&apos;t move</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1376"/>
+        <location filename="../libglparchis.py" line="1373"/>
         <source>Obligado a sacar y a comer</source>
         <translation>You&apos;re forced to move to the first space and to eat</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1436"/>
+        <location filename="../libglparchis.py" line="1434"/>
         <source>He comido una ficha de {0} en la casilla {1}</source>
         <translation>I&apos;ve eaten a piece of {0}at the space {1}</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1312"/>
+        <location filename="../libglparchis.py" line="1309"/>
         <source>No puede mover, porque debe sacar una ficha</source>
         <translation>Pawn can&apos;t move, because you must enter a pawn</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1314"/>
+        <location filename="../libglparchis.py" line="1311"/>
         <source>No puede mover, porque debe abrir una barrera</source>
         <translation>Pawn can&apos;t move, because you must open a blockade</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1453"/>
+        <location filename="../libglparchis.py" line="1451"/>
         <source>Una ficha ha llegado a la meta</source>
         <translation>A piece arrived to central space</translation>
     </message>
@@ -64,27 +64,27 @@
 <context>
     <name>frmAbout</name>
     <message>
-        <location filename="../ui/frmAbout.ui" line="423"/>
+        <location filename="../ui/Ui_frmAbout.py" line="345"/>
         <source>S&amp;alir</source>
         <translation>E&amp;xit</translation>
     </message>
     <message>
-        <location filename="../ui/frmAbout.ui" line="84"/>
+        <location filename="../ui/Ui_frmAbout.py" line="308"/>
         <source>Licencia</source>
         <translation>License</translation>
     </message>
     <message>
-        <location filename="../ui/frmAbout.ui" line="362"/>
+        <location filename="../ui/Ui_frmAbout.py" line="344"/>
         <source>Objetos</source>
         <translation>Objects</translation>
     </message>
     <message>
-        <location filename="../ui/frmAbout.ui" line="49"/>
+        <location filename="../ui/Ui_frmAbout.py" line="306"/>
         <source>glParchis</source>
         <translation>glParchis</translation>
     </message>
     <message>
-        <location filename="../ui/frmAbout.ui" line="248"/>
+        <location filename="../ui/Ui_frmAbout.py" line="309"/>
         <source>Qt</source>
         <translation>Qt</translation>
     </message>
@@ -99,52 +99,52 @@
         <translation>to the following languages&lt;p&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/frmAbout.ui" line="17"/>
+        <location filename="../ui/Ui_frmAbout.py" line="305"/>
         <source>Acerca de glParchis</source>
         <translation>About glParchis</translation>
     </message>
     <message>
-        <location filename="../ui/frmAbout.ui" line="284"/>
+        <location filename="../ui/Ui_frmAbout.py" line="310"/>
         <source>Seleccione en la tabla el objeto a visualizar</source>
         <translation>Select a object to render in the table</translation>
     </message>
     <message>
-        <location filename="../ui/frmAbout.ui" line="367"/>
+        <location filename="../ui/Ui_frmAbout.py" line="330"/>
         <source>Tablero de 4 jugadores</source>
         <translation>4 players board</translation>
     </message>
     <message>
-        <location filename="../ui/frmAbout.ui" line="372"/>
+        <location filename="../ui/Ui_frmAbout.py" line="332"/>
         <source>Tablero de 6 jugadores</source>
         <translation>6 players board</translation>
     </message>
     <message>
-        <location filename="../ui/frmAbout.ui" line="377"/>
+        <location filename="../ui/Ui_frmAbout.py" line="334"/>
         <source>Tablero de 8 jugadores</source>
         <translation>8 players board</translation>
     </message>
     <message>
-        <location filename="../ui/frmAbout.ui" line="382"/>
+        <location filename="../ui/Ui_frmAbout.py" line="336"/>
         <source>Dado</source>
         <translation>Dice</translation>
     </message>
     <message>
-        <location filename="../ui/frmAbout.ui" line="387"/>
+        <location filename="../ui/Ui_frmAbout.py" line="338"/>
         <source>Casilla normal</source>
         <translation>Normal space</translation>
     </message>
     <message>
-        <location filename="../ui/frmAbout.ui" line="392"/>
+        <location filename="../ui/Ui_frmAbout.py" line="340"/>
         <source>Casilla de inicio de 4 jugadores</source>
         <translation>4 players home space</translation>
     </message>
     <message>
-        <location filename="../ui/frmAbout.ui" line="357"/>
+        <location filename="../ui/Ui_frmAbout.py" line="324"/>
         <source>Ficha Roja</source>
         <translation>Red pawn</translation>
     </message>
     <message>
-        <location filename="../ui/frmAbout.ui" line="397"/>
+        <location filename="../ui/Ui_frmAbout.py" line="342"/>
         <source>Ficha roja</source>
         <translation>Red pawn</translation>
     </message>
@@ -164,7 +164,7 @@
         <translation>Avatars have been downloaded from &lt;a href=&quot;http://www.nobleavatar.com/&quot;&gt;http://www.nobleavatar.com/&lt;/a&gt;&lt;p&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/frmAbout.ui" line="70"/>
+        <location filename="../ui/Ui_frmAbout.py" line="307"/>
         <source>Creditos</source>
         <translation>Credits</translation>
     </message>
@@ -177,12 +177,12 @@
 <context>
     <name>frmGameStatistics</name>
     <message>
-        <location filename="../ui/frmGameStatistics.ui" line="39"/>
+        <location filename="../ui/Ui_frmGameStatistics.py" line="77"/>
         <source>Estadisticas de juego</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmGameStatistics.ui" line="102"/>
+        <location filename="../ui/Ui_frmGameStatistics.py" line="78"/>
         <source>Estadisticas de esta instalacion</source>
         <translation type="unfinished"></translation>
     </message>
@@ -192,7 +192,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmGameStatistics.ui" line="118"/>
+        <location filename="../ui/Ui_frmGameStatistics.py" line="79"/>
         <source>Estadisticas mundiales</source>
         <translation type="unfinished">World statistics</translation>
     </message>
@@ -353,12 +353,12 @@
 <context>
     <name>frmInitGame</name>
     <message>
-        <location filename="../ui/frmInitGame.py" line="16"/>
+        <location filename="../ui/frmInitGame.py" line="15"/>
         <source>Configurar la partida</source>
         <translation>Game configuration</translation>
     </message>
     <message>
-        <location filename="../ui/frmInitGame.py" line="19"/>
+        <location filename="../ui/frmInitGame.py" line="18"/>
         <source>Elegir el jugador que empieza la partida</source>
         <translation>Choose the player who starts the game</translation>
     </message>
@@ -373,17 +373,17 @@
         <translation>Player {0} starts the game</translation>
     </message>
     <message>
-        <location filename="../ui/frmInitGame.py" line="22"/>
+        <location filename="../ui/frmInitGame.py" line="21"/>
         <source>Los jugadores lanzan sus dados</source>
         <translation>Players throw its dices</translation>
     </message>
     <message>
-        <location filename="../ui/frmInitGame.py" line="17"/>
+        <location filename="../ui/frmInitGame.py" line="16"/>
         <source>Selecciona las fichas que van a jugar y quien va a jugar con ellas</source>
         <translation>Select pieces and who is going to play with them</translation>
     </message>
     <message>
-        <location filename="../ui/frmInitGame.py" line="20"/>
+        <location filename="../ui/frmInitGame.py" line="19"/>
         <source>El jugador que saque la puntuacion mas alta, empieza la partida</source>
         <translation>Highest puntuation player starts the game</translation>
     </message>
@@ -393,7 +393,7 @@
         <translation>Players {} must throw until it becomes clear who starts the game</translation>
     </message>
     <message>
-        <location filename="../ui/frmInitGame.ui" line="14"/>
+        <location filename="../ui/Ui_frmInitGame.py" line="77"/>
         <source>Configuracion inicial de la partida</source>
         <translation>Game initial configuration</translation>
     </message>
@@ -401,202 +401,202 @@
 <context>
     <name>frmMain</name>
     <message>
-        <location filename="../ui/frmMain.ui" line="45"/>
+        <location filename="../ui/Ui_frmMain.py" line="158"/>
         <source>A&amp;yuda</source>
         <translation>H&amp;elp</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="57"/>
+        <location filename="../ui/Ui_frmMain.py" line="159"/>
         <source>J&amp;ugar</source>
         <translation>P&amp;lay</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="84"/>
+        <location filename="../ui/Ui_frmMain.py" line="161"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="128"/>
+        <location filename="../ui/Ui_frmMain.py" line="162"/>
         <source>S&amp;alir</source>
         <translation>E&amp;xit</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="149"/>
+        <location filename="../ui/Ui_frmMain.py" line="165"/>
         <source>&amp;Recuperar partida</source>
         <translation>&amp;Load game</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="161"/>
+        <location filename="../ui/Ui_frmMain.py" line="166"/>
         <source>&amp;Guardar partida</source>
         <translation>&amp;Save game</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="131"/>
+        <location filename="../ui/Ui_frmMain.py" line="163"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="197"/>
+        <location filename="../ui/Ui_frmMain.py" line="172"/>
         <source>Muestra la ayuda del juego</source>
         <translation>Shows the game help</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="200"/>
+        <location filename="../ui/Ui_frmMain.py" line="173"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="212"/>
+        <location filename="../ui/Ui_frmMain.py" line="175"/>
         <source>Busca actualizaciones en Internet</source>
         <translation>Looks for updates at Internet</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="224"/>
+        <location filename="../ui/Ui_frmMain.py" line="177"/>
         <source>Enciende o apaga el sonido</source>
         <translation>Switchs on or off the sound</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="227"/>
+        <location filename="../ui/Ui_frmMain.py" line="178"/>
         <source>F5</source>
         <translation>F5</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="107"/>
+        <location filename="../ui/frmMain.py" line="114"/>
         <source>Sonido encendido</source>
         <translation>Sound switched on</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="112"/>
+        <location filename="../ui/frmMain.py" line="119"/>
         <source>Sonido apagado</source>
         <translation>Sound switched off</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="170"/>
+        <location filename="../ui/Ui_frmMain.py" line="167"/>
         <source>Partida de &amp;4 jugadores</source>
         <translation>&amp;4 players game</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="173"/>
+        <location filename="../ui/Ui_frmMain.py" line="168"/>
         <source>Partida de 4 jugadores</source>
         <translation>4 players game</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="176"/>
+        <location filename="../ui/Ui_frmMain.py" line="169"/>
         <source>Ctrl+4</source>
         <translation>Ctrl+4</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="236"/>
+        <location filename="../ui/Ui_frmMain.py" line="179"/>
         <source>Partida de &amp;6 jugadores</source>
         <translation>&amp;6 players game</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="239"/>
+        <location filename="../ui/Ui_frmMain.py" line="180"/>
         <source>Partida de 6 jugadores</source>
         <translation>6 players game</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="242"/>
+        <location filename="../ui/Ui_frmMain.py" line="181"/>
         <source>Ctrl+6</source>
         <translation>Ctrl+6</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="251"/>
+        <location filename="../ui/Ui_frmMain.py" line="182"/>
         <source>Partida de &amp;8 jugadores</source>
         <translation>&amp;8 players game</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="254"/>
+        <location filename="../ui/Ui_frmMain.py" line="183"/>
         <source>Partida de 8 jugadores</source>
         <translation>8 players game</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="257"/>
+        <location filename="../ui/Ui_frmMain.py" line="184"/>
         <source>Ctrl+8</source>
         <translation>Ctrl+8</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="27"/>
+        <location filename="../ui/frmMain.py" line="32"/>
         <source>glParchis 2010-{}. GNU General Public License &#xa9;</source>
         <translation>glParchis 2010-{}. GNU General Public License ©</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="272"/>
+        <location filename="../ui/Ui_frmMain.py" line="187"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="269"/>
+        <location filename="../ui/Ui_frmMain.py" line="186"/>
         <source>Cambiar al modo de pantalla completa</source>
         <translation>Change to full screen mode</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="61"/>
+        <location filename="../ui/frmMain.py" line="68"/>
         <source>Salir del modo de pantalla completa</source>
         <translation>Exit from full screen mode</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="2413"/>
+        <location filename="../libglparchis.py" line="2426"/>
         <source>Esta opcion se esta desarrollando</source>
         <translation>This option is being developed</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="131"/>
+        <location filename="../ui/frmMain.py" line="138"/>
         <source>No se ha podido comprobar si hay actualizaciones. Intentelo mas tarde.</source>
         <translation>I couldn&apos;t check if there are updates. Try it later.</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="147"/>
+        <location filename="../ui/frmMain.py" line="154"/>
         <source>Dispone de la ultima version del juego</source>
         <translation>You have the last game version</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="153"/>
+        <location filename="../ui/frmMain.py" line="160"/>
         <source>Hay una nueva version del programa. Bajatela de la pagina web del proyecto &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt; o directamente desde &lt;a href=&apos;https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-</source>
         <translation>There is a new version. Download it from project page &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt; or directly from &lt;a href=&apos;https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="284"/>
+        <location filename="../ui/Ui_frmMain.py" line="189"/>
         <source>Estadisticas mundiales</source>
         <translation>World statistics</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="70"/>
+        <location filename="../ui/Ui_frmMain.py" line="160"/>
         <source>&amp;Configuracion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="140"/>
+        <location filename="../ui/Ui_frmMain.py" line="164"/>
         <source>Acerca &amp;de</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="185"/>
+        <location filename="../ui/Ui_frmMain.py" line="170"/>
         <source>&amp;Preferencias</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="194"/>
+        <location filename="../ui/Ui_frmMain.py" line="171"/>
         <source>&amp;Ayuda del juego</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="209"/>
+        <location filename="../ui/Ui_frmMain.py" line="174"/>
         <source>&amp;Buscar actualizaciones</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="221"/>
+        <location filename="../ui/Ui_frmMain.py" line="176"/>
         <source>&amp;Sonido encendido</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="266"/>
+        <location filename="../ui/Ui_frmMain.py" line="185"/>
         <source>&amp;Cambiar al modo de pantalla completa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="281"/>
+        <location filename="../ui/Ui_frmMain.py" line="188"/>
         <source>&amp;Estadisticas mundiales</source>
         <translation type="unfinished"></translation>
     </message>
@@ -604,85 +604,90 @@
 <context>
     <name>frmSettings</name>
     <message>
-        <location filename="../ui/frmSettings.ui" line="110"/>
+        <location filename="../ui/Ui_frmSettings.py" line="135"/>
         <source>Selecciona un idioma</source>
         <translation>Select a language</translation>
     </message>
     <message>
-        <location filename="../ui/frmSettings.ui" line="35"/>
+        <location filename="../ui/Ui_frmSettings.py" line="134"/>
         <source>Configuracion de glParchis</source>
         <translation>glParchis configuration</translation>
     </message>
     <message>
-        <location filename="../ui/frmSettings.ui" line="127"/>
+        <location filename="../ui/Ui_frmSettings.py" line="136"/>
         <source>Numero de autoguardados</source>
         <translation>Autosaves number</translation>
     </message>
     <message>
-        <location filename="../ui/frmSettings.ui" line="140"/>
+        <location filename="../ui/Ui_frmSettings.py" line="137"/>
         <source>Si quiere autoguardado seleccione un numero mayor que 0</source>
         <translation>Si you want games autosave, select a number greater than 0</translation>
     </message>
     <message>
-        <location filename="../ui/frmSettings.ui" line="226"/>
+        <location filename="../ui/Ui_frmSettings.py" line="146"/>
         <source>Si esta marcado, tus partidas formaran parte de las estadisticas mundiales</source>
         <translation>If checked, your games will be part of world statistics</translation>
     </message>
     <message>
-        <location filename="../ui/frmSettings.ui" line="151"/>
+        <location filename="../ui/Ui_frmSettings.py" line="138"/>
         <source>Facil</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmSettings.ui" line="156"/>
+        <location filename="../ui/Ui_frmSettings.py" line="139"/>
         <source>Muy facil</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmSettings.ui" line="161"/>
+        <location filename="../ui/Ui_frmSettings.py" line="140"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmSettings.ui" line="166"/>
+        <location filename="../ui/Ui_frmSettings.py" line="141"/>
         <source>Dificil</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmSettings.ui" line="171"/>
+        <location filename="../ui/Ui_frmSettings.py" line="142"/>
         <source>Muy dificil</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmSettings.ui" line="179"/>
+        <location filename="../ui/Ui_frmSettings.py" line="143"/>
         <source>Nivel de dificultad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmSettings.ui" line="236"/>
+        <location filename="../ui/Ui_frmSettings.py" line="147"/>
         <source>See global statistics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmSettings.ui" line="186"/>
+        <location filename="../ui/Ui_frmSettings.py" line="144"/>
         <source>Retardo entre movimientos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmSettings.ui" line="196"/>
+        <location filename="../ui/Ui_frmSettings.py" line="145"/>
         <source> ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="../ui/frmSettings.ui" line="236"/>
+        <source>Ver estadísticas</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>frmShowCasilla</name>
     <message>
-        <location filename="../ui/frmShowCasilla.ui" line="14"/>
+        <location filename="../ui/Ui_frmShowCasilla.py" line="68"/>
         <source>Dialog</source>
         <translation>Dialog</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowCasilla.ui" line="45"/>
+        <location filename="../ui/Ui_frmShowCasilla.py" line="71"/>
         <source>TextLabel</source>
         <translation>TextLabel</translation>
     </message>
@@ -737,7 +742,7 @@
         <translation>Empty space</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowCasilla.ui" line="55"/>
+        <location filename="../ui/Ui_frmShowCasilla.py" line="72"/>
         <source>Ocupacion</source>
         <translation>Ocupation</translation>
     </message>
@@ -745,77 +750,77 @@
 <context>
     <name>frmShowFicha</name>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="65"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="118"/>
         <source>TextLabel</source>
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="78"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="126"/>
         <source>Amenazas</source>
         <translation>Threats</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="193"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="140"/>
         <source>Ficha</source>
         <translation>Piece</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="198"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="142"/>
         <source>Casilla</source>
         <translation>Place</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="107"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="145"/>
         <source>Amenazas en destino</source>
         <translation>Destiny threats</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="133"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="129"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="138"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="130"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="143"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="131"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="148"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="132"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="153"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="133"/>
         <source>5</source>
         <translation>5</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="158"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="134"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="163"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="135"/>
         <source>7</source>
         <translation>7</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="168"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="136"/>
         <source>10</source>
         <translation>10</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="173"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="137"/>
         <source>20</source>
         <translation>20</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="183"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="138"/>
         <source>Amenazas en la casilla X</source>
         <translation>Threats at the X place</translation>
     </message>
@@ -825,7 +830,7 @@
         <translation>Threats at the {0} place</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="203"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="144"/>
         <source>Amenaza</source>
         <translation>Threat</translation>
     </message>
@@ -845,17 +850,17 @@
         <translation>Route position: {0}</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="24"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="119"/>
         <source>Informacion</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="117"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="127"/>
         <source>Numero de casillas a avanzar</source>
         <translation>Number of places to move</translation>
     </message>
     <message>
-        <location filename="../ui/frmShowFicha.ui" line="128"/>
+        <location filename="../ui/Ui_frmShowFicha.py" line="128"/>
         <source>Selecciona un numero</source>
         <translation>Select a number</translation>
     </message>
@@ -863,57 +868,57 @@
 <context>
     <name>glparchis</name>
     <message>
-        <location filename="../libglparchis.py" line="247"/>
+        <location filename="../libglparchis.py" line="251"/>
         <source>Sacar un 1</source>
         <translation>Roll a 1</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="248"/>
+        <location filename="../libglparchis.py" line="252"/>
         <source>Sacar un 2</source>
         <translation>Roll a 2</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="249"/>
+        <location filename="../libglparchis.py" line="253"/>
         <source>Sacar un 3</source>
         <translation>Roll a 3</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="250"/>
+        <location filename="../libglparchis.py" line="254"/>
         <source>Sacar un 4</source>
         <translation>Roll a 4</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="251"/>
+        <location filename="../libglparchis.py" line="255"/>
         <source>Sacar un 5</source>
         <translation>Roll a 5</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="252"/>
+        <location filename="../libglparchis.py" line="256"/>
         <source>Sacar un 6</source>
         <translation>Roll a 6</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="253"/>
+        <location filename="../libglparchis.py" line="257"/>
         <source>Sacar un 7</source>
         <translation>Get a 7</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="254"/>
+        <location filename="../libglparchis.py" line="258"/>
         <source>Contar 10</source>
         <translation>Advance 10</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="255"/>
+        <location filename="../libglparchis.py" line="259"/>
         <source>Contar 20</source>
         <translation>Advance 20</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="256"/>
+        <location filename="../libglparchis.py" line="260"/>
         <source>Sacar ficha</source>
         <translation>Take out a piece</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="2260"/>
+        <location filename="../libglparchis.py" line="2279"/>
         <source>Este fichero es de una version antigua o esta estropeado. No puede ser cargado.</source>
         <translation>This file is old or it is broken. It can&apos;t be loaded.</translation>
     </message>
@@ -931,7 +936,7 @@
 <context>
     <name>i18n</name>
     <message>
-        <location filename="../project_i18n.py" line="58"/>
+        <location filename="../project_i18n.py" line="59"/>
         <source>
 20160325
 --------
@@ -956,7 +961,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="70"/>
+        <location filename="../project_i18n.py" line="71"/>
         <source>
 20130716
 --------
@@ -1092,7 +1097,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="148"/>
+        <location filename="../project_i18n.py" line="149"/>
         <source>
 Idea y desarrollo
 ----------------- 
@@ -1115,7 +1120,7 @@ French: Nadejda Adam
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="162"/>
+        <location filename="../project_i18n.py" line="163"/>
         <source>
 Requisitos
 ==========
@@ -1214,42 +1219,42 @@ Procedure to install the game from windows sources
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="52"/>
+        <location filename="../project_i18n.py" line="53"/>
         <source>- Anadido el script project_i18n para traducir la documentacion del proyecto</source>
         <translation>- project_i18n script added to translate project documentation</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="53"/>
+        <location filename="../project_i18n.py" line="54"/>
         <source>- Ahora el tablero rota por su centro pulsando la letra m</source>
         <translation>- Board rotates pressing m key</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="54"/>
+        <location filename="../project_i18n.py" line="55"/>
         <source>- Rendimiento mejorado</source>
         <translation>- Improved performance</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="55"/>
+        <location filename="../project_i18n.py" line="56"/>
         <source>- Corregido error con el icono de fullscreen</source>
         <translation>- Fullscreen icon error fixed</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="47"/>
+        <location filename="../project_i18n.py" line="48"/>
         <source>- La configuracion del splitter del juego se guarda ahora en pantalla normal y en pantalla completa</source>
         <translation>- Splitter game configuration is saved with fullscreen and normal data</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="40"/>
+        <location filename="../project_i18n.py" line="41"/>
         <source>El estado de pantalla completa se guarda en el fichero de configuracion</source>
         <translation>Fullscreen state is saved in settings file</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="41"/>
+        <location filename="../project_i18n.py" line="42"/>
         <source>Anadido sistema de estadistica en la base de datos de Sourceforge</source>
         <translation>Added statistics system in Sourceforge database</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="42"/>
+        <location filename="../project_i18n.py" line="43"/>
         <source>Anadido opcion de no contribuir a la estadistica mundial</source>
         <translation>Added option to do not contribute to world statistics</translation>
     </message>
@@ -1268,201 +1273,206 @@ Procedure to install the game from windows sources
         <source>Anadida la opcion de subir y bajar el tablero en el eje z, con las teclas + y -</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../project_i18n.py" line="36"/>
+        <source>Anadidas estad&#xc3;&#xad;sticas individuales de juego</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>wdgGame</name>
     <message>
-        <location filename="../ui/wdgGame.ui" line="111"/>
+        <location filename="../ui/Ui_wdgGame.py" line="256"/>
         <source>Juego</source>
         <translation>Game</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="163"/>
+        <location filename="../ui/Ui_wdgGame.py" line="260"/>
         <source>Dado saca 1</source>
         <translation>Roll a 1</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="172"/>
+        <location filename="../ui/Ui_wdgGame.py" line="262"/>
         <source>Dado saca 2</source>
         <translation>Roll a 2</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="181"/>
+        <location filename="../ui/Ui_wdgGame.py" line="264"/>
         <source>Dado saca 3</source>
         <translation>Roll a 3</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="190"/>
+        <location filename="../ui/Ui_wdgGame.py" line="266"/>
         <source>Dado saca 4</source>
         <translation>Roll a 4</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="199"/>
+        <location filename="../ui/Ui_wdgGame.py" line="268"/>
         <source>Dado saca 5</source>
         <translation>Roll a 5</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="208"/>
+        <location filename="../ui/Ui_wdgGame.py" line="270"/>
         <source>Dado saca 6</source>
         <translation>Roll a 6</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="232"/>
+        <location filename="../ui/Ui_wdgGame.py" line="274"/>
         <source>Fichas comidas por mi</source>
         <translation>Pieces eaten by me</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="237"/>
+        <location filename="../ui/Ui_wdgGame.py" line="276"/>
         <source>Fichas comidas por otro</source>
         <translation>Pieces eaten by other</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="222"/>
+        <location filename="../ui/Ui_wdgGame.py" line="272"/>
         <source>3 seises seguidos</source>
         <translation>3 sixes in a row</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="36"/>
+        <location filename="../ui/wdgGame.py" line="145"/>
         <source>Tira el dado</source>
         <translation>Roll the dice</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="410"/>
+        <location filename="../ui/Ui_wdgGame.py" line="305"/>
         <source>Tiempo de partida</source>
         <translation>Game time</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="83"/>
+        <location filename="../ui/wdgGame.py" line="76"/>
         <source>Empieza la partida</source>
         <translation>The game starts</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="165"/>
+        <location filename="../ui/wdgGame.py" line="154"/>
         <source>Tire el dado</source>
         <translation>Roll the dice</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="178"/>
+        <location filename="../ui/wdgGame.py" line="167"/>
         <source>IA mueve una ficha</source>
         <translation>IA moves a piece</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="227"/>
+        <location filename="../ui/wdgGame.py" line="217"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation>You got three sixes, but you don&apos;t go home because you got the arrival ramp</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="230"/>
+        <location filename="../ui/wdgGame.py" line="220"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation>You got three sixes. Your last moved piece goes home</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="234"/>
+        <location filename="../ui/wdgGame.py" line="224"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation>You got three sixes, but as you can&apos;t move, you don&apos;t go home</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="236"/>
+        <location filename="../ui/wdgGame.py" line="226"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation>After three sixes, you can&apos;t roll the dice again</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="249"/>
+        <location filename="../ui/wdgGame.py" line="239"/>
         <source>Seleccione una ficha...</source>
         <translation>Select a piece...</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="289"/>
+        <location filename="../ui/wdgGame.py" line="281"/>
         <source>Fin de turno</source>
         <translation>End of turn</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="160"/>
+        <location filename="../ui/wdgGame.py" line="149"/>
         <source>IA Tira el dado</source>
         <translation>IA rolls the dice</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="188"/>
+        <location filename="../ui/wdgGame.py" line="177"/>
         <source>Mueva una ficha</source>
         <translation>Move a piece</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="122"/>
+        <location filename="../ui/wdgGame.py" line="113"/>
         <source>Has ganado la partida</source>
         <translation>You won the game</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="285"/>
+        <location filename="../ui/Ui_wdgGame.py" line="310"/>
         <source>Mejores puntuaciones</source>
         <translation>High Scores</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="400"/>
+        <location filename="../ui/Ui_wdgGame.py" line="301"/>
         <source>Fecha</source>
         <translation>Date</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="405"/>
+        <location filename="../ui/Ui_wdgGame.py" line="303"/>
         <source>Nombre</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="247"/>
+        <location filename="../ui/Ui_wdgGame.py" line="278"/>
         <source>Casillas avanzadas</source>
         <translation>Advanced places</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="304"/>
+        <location filename="../ui/Ui_wdgGame.py" line="290"/>
         <source>Partida de 4 jugadores</source>
         <translation>4 players game</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="346"/>
+        <location filename="../ui/Ui_wdgGame.py" line="299"/>
         <source>Partida de 6 jugadores</source>
         <translation>6 players game</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="390"/>
+        <location filename="../ui/Ui_wdgGame.py" line="308"/>
         <source>Partida de 8 jugadores</source>
         <translation>8 players game</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="59"/>
+        <location filename="../ui/wdgGame.py" line="52"/>
         <source>Tiempo de partida: {0}</source>
         <translation>Match time: {0}</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="74"/>
+        <location filename="../ui/Ui_wdgGame.py" line="255"/>
         <source>Panel de usuario sigue al jugador actual</source>
         <translation>User panel follows to current player</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="142"/>
+        <location filename="../ui/wdgGame.py" line="131"/>
         <source>{0} ha ganado</source>
         <translation>{0} has won</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="135"/>
+        <location filename="../ui/Ui_wdgGame.py" line="281"/>
         <source>Estadisticas</source>
         <translation>Statistics</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="153"/>
+        <location filename="../ui/Ui_wdgGame.py" line="258"/>
         <source>Numero de tiradas</source>
         <translation>Throws number</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="415"/>
+        <location filename="../ui/Ui_wdgGame.py" line="307"/>
         <source>Puntuacion</source>
         <translation>Score</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="433"/>
+        <location filename="../ui/Ui_wdgGame.py" line="309"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La puntuacion que se obtiene al terminar la partida depende de lo lejos que hayan acabado las fichas de los oponentes de la casilla central y de la diferencia entre las fichas comidas por mi y las fichas que me comieron otros jugadores&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Punctuation obtained at the end of the game depends on how far opponents pieces have finished from central square and the difference between pieces ate by me and pieces ate by other players&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.ui" line="33"/>
+        <location filename="../ui/Ui_wdgGame.py" line="253"/>
         <source>Pulsa este boton o haga doble click en el tablero para tirar el dado</source>
         <translation>Click this button or double click in board to throw the dice</translation>
     </message>
@@ -1524,17 +1534,17 @@ Procedure to install the game from windows sources
 <context>
     <name>wdgUserPanel</name>
     <message>
-        <location filename="../ui/wdgUserPanel.ui" line="14"/>
+        <location filename="../ui/Ui_wdgUserPanel.py" line="107"/>
         <source>Form</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/wdgUserPanel.ui" line="23"/>
+        <location filename="../ui/Ui_wdgUserPanel.py" line="108"/>
         <source>Jugador</source>
         <translation>Player</translation>
     </message>
     <message>
-        <location filename="../ui/wdgUserPanel.ui" line="178"/>
+        <location filename="../ui/Ui_wdgUserPanel.py" line="109"/>
         <source>Muestra el historial</source>
         <translation>Show history</translation>
     </message>

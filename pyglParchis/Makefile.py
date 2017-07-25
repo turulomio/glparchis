@@ -142,6 +142,6 @@ if __name__ == '__main__':
         shell("install -m 644 -o root images/ficharoja.png "+ prefixshare)
         shell("install -m 644 -o root sounds/* "+ prefixsounds)
         shell("install -m 644 -o root images/ficharoja.png "+ prefixpixmaps + "/glparchis.png")
-        shell("install -m 644 -o root GPL-3.txt AUTHORS-EN.txt AUTHORS-ES.txt CHANGELOG-EN.txt CHANGELOG-ES.txt INSTALL-EN.txt INSTALL-ES.txt RELEASES.txt "+ prefixshare)
+        shell("install -m 644 -o root GPL-3.txt AUTHORS-EN.txt AUTHORS-ES.txt CHANGELOG-EN.txt CHANGELOG-ES.txt INSTALL-EN.txt INSTALL-ES.txt "+ prefixshare)
     print ("*** Process took {} using {} processors ***".format(datetime.datetime.now()-start , cpu_count()))
 
