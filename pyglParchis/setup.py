@@ -16,8 +16,8 @@ include_files.append(("i18n/glparchis_ru.qm", "i18n/glparchis_ru.qm"))
 
 #Build options
 if sys.platform=='win32':
-      #base = 'Win32GUI'
-      base="Console"
+      base = 'Win32GUI'
+      #base="Console"
       shortcut_table = [
           ("DesktopShortcut",        # Shortcut
            "DesktopFolder",          # Directory_
