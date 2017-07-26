@@ -1,3 +1,11 @@
+20170726
+--------
+- Added delay between movements as a settings option
+- Added difficult level as a settings option
+- Added board zoom  with keys + and -
+- Installation statistics added to the game
+- Windows distribution file has been upgraded to a msi file. Please uninstall the old glparchis before installing the new one
+
 20160812
 --------
 - Fullscreen state is saved in settings file

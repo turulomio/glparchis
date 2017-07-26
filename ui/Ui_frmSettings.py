@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_frmSettings(object):
     def setupUi(self, frmSettings):
         frmSettings.setObjectName("frmSettings")
-        frmSettings.resize(513, 304)
+        frmSettings.resize(536, 331)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/glparchis/configure.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         frmSettings.setWindowIcon(icon)
@@ -144,6 +144,6 @@ class Ui_frmSettings(object):
         self.lblSliderDelay.setText(_translate("frmSettings", "Retardo entre movimientos"))
         self.spinDelay.setSuffix(_translate("frmSettings", " ms"))
         self.chkStatistics.setText(_translate("frmSettings", "Si esta marcado, tus partidas formaran parte de las estadisticas mundiales"))
-        self.cmdGlobalStatistics.setToolTip(_translate("frmSettings", "See global statistics"))
+        self.cmdGlobalStatistics.setToolTip(_translate("frmSettings", "Ver estadisticas"))
 
 import glparchis_rc

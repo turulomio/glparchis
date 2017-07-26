@@ -2,10 +2,11 @@ Nueva release
 =============
 01) Modificar la version en libglparchis
 02) Modificar en project_18n el CHANGELOG XXXXXXXX y poner fecha. 
+03) Ejecutar Makefile.py --compile
 03) Ejecutar Makefile.py --doc. Ejecutar linguist y volver a ejecutar Makefile.py --doc
 04) Ejecutar python3 project_i18n.py 
-05) Subir cambios al subversion
-06) Crear con Makefile.py --dist_sources y --dist_linux subirlo a sourceforge
+06) Crear con Makefile.py --dist_sources y --dist_linux subirlo a sourceforge files
+05) Subir cambios al subversion del glparchis
 07) Pasar a windows, hacer un update del subversion y ejecutar Makefile.py --dist_windows
 08) Colocar las versiones preferidas de windows y linux
 09) Crear un nuevo ebuild con la nueva version
