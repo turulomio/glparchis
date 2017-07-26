@@ -37,15 +37,7 @@ class QTableStatistics(QTableWidget):
             brush.setStyle(Qt.BDiagPattern)
             item.setBackground(brush)
             self.setItem(i, j, item)
-            
-#negrita
-#        item = QTableWidgetItem()
-#        item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter|Qt.AlignCenter)
-#        font = QFont()
-#        font.setBold(True)
-#        font.setWeight(75)
-#        item.setFont(font)
-#        self.setItem(16, 0, item)
+
                 
     def widgetCentered(self, qpixmap):
                 #Define el widget cron para que aparezca centrado el icon dentro de qtableitem
@@ -74,8 +66,9 @@ class QTableStatistics(QTableWidget):
             self.item(11, column).setText(str(j.comidaspormi))
             self.item(12, column).setText(str(j.comidasporotro))
             
+            if self.cellWidget(13, column):#Antes de poner este código se quedaba duplicada la corona
+                self.cellWidget(13, column).close()
             if j==ganando:
-                self.setCellWidget(13, column, self.widgetCentered(QPixmap(":/glparchis/cube_transparent.png")))    
                 self.setCellWidget(13, column, self.widgetCentered(QPixmap(":/glparchis/corona.png")))    
             else:
                 self.setCellWidget(13, column, self.widgetCentered(QPixmap(":/glparchis/cube_transparent.png")))    
@@ -93,6 +86,5 @@ class QTableStatistics(QTableWidget):
             self.item(i, self.mem.maxplayers).setText(str(tj.numTimesDiceGetNumber(i-1)))
         self.item(9, self.mem.maxplayers).setText(str(tj.numThreeSixes()))
         
-        self.update()
         
 
