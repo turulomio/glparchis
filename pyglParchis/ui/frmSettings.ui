@@ -233,7 +233,7 @@
        <item>
         <widget class="QToolButton" name="cmdGlobalStatistics">
          <property name="toolTip">
-          <string>Ver estadísticas</string>
+          <string>Ver estadisticas</string>
          </property>
          <property name="icon">
           <iconset resource="../images/glparchis.qrc">

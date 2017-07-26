@@ -61,7 +61,7 @@ class wdgOGL(QGLWidget):
         
         
     def initializeGL(self):
-        #LAS TEXTURAS SE DEBEN CRAR AQUÍ ES LO PRIMERO QUE SE EJECUTA
+        #LAS TEXTURAS SE DEBEN CRAR AQUI ES LO PRIMERO QUE SE EJECUTA
         self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/0.png')))
         self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/1.png')))
         self.texNumeros.append(self.bindTexture(QPixmap(':/glparchis/2.png')))

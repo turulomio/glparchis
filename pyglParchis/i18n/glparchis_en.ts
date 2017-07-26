@@ -257,7 +257,7 @@
     <message>
         <location filename="../ui/frmHelp.py" line="17"/>
         <source>Cada jugador dispone de 4 fichas que debera mover por el tablero usando un dado y siguiendo un turno entre los distintos jugadores.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Each player has 4 pieces that must move across the board using a dice and following his turn between different players.&lt;p&gt;</translation>
     </message>
     <message>
         <location filename="../ui/frmHelp.py" line="17"/>
@@ -659,11 +659,6 @@
         <translation>Difficulty level</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmSettings.py" line="147"/>
-        <source>See global statistics</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/frmSettings.ui" line="186"/>
         <source>Retardo entre movimientos</source>
         <translation>Delay between movements</translation>
@@ -673,10 +668,10 @@
         <source> ms</source>
         <translation> ms</translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <location filename="../ui/frmSettings.ui" line="236"/>
-        <source>Ver estadísticas</source>
-        <translation type="unfinished"></translation>
+        <source>Ver estadisticas</source>
+        <translation>Show statistics</translation>
     </message>
 </context>
 <context>
@@ -936,7 +931,7 @@
 <context>
     <name>i18n</name>
     <message>
-        <location filename="../project_i18n.py" line="59"/>
+        <location filename="../project_i18n.py" line="60"/>
         <source>
 20160325
 --------
@@ -961,7 +956,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="71"/>
+        <location filename="../project_i18n.py" line="72"/>
         <source>
 20130716
 --------
@@ -1097,7 +1092,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="149"/>
+        <location filename="../project_i18n.py" line="150"/>
         <source>
 Idea y desarrollo
 ----------------- 
@@ -1120,7 +1115,7 @@ French: Nadejda Adam
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="163"/>
+        <location filename="../project_i18n.py" line="164"/>
         <source>
 Requisitos
 ==========
@@ -1219,42 +1214,42 @@ Procedure to install the game from windows sources
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="53"/>
+        <location filename="../project_i18n.py" line="54"/>
         <source>- Anadido el script project_i18n para traducir la documentacion del proyecto</source>
         <translation>- project_i18n script added to translate project documentation</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="54"/>
+        <location filename="../project_i18n.py" line="55"/>
         <source>- Ahora el tablero rota por su centro pulsando la letra m</source>
         <translation>- Board rotates pressing m key</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="55"/>
+        <location filename="../project_i18n.py" line="56"/>
         <source>- Rendimiento mejorado</source>
         <translation>- Improved performance</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="56"/>
+        <location filename="../project_i18n.py" line="57"/>
         <source>- Corregido error con el icono de fullscreen</source>
         <translation>- Fullscreen icon error fixed</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="48"/>
+        <location filename="../project_i18n.py" line="49"/>
         <source>- La configuracion del splitter del juego se guarda ahora en pantalla normal y en pantalla completa</source>
         <translation>- Splitter game configuration is saved with fullscreen and normal data</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="41"/>
+        <location filename="../project_i18n.py" line="42"/>
         <source>El estado de pantalla completa se guarda en el fichero de configuracion</source>
         <translation>Fullscreen state is saved in settings file</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="42"/>
+        <location filename="../project_i18n.py" line="43"/>
         <source>Anadido sistema de estadistica en la base de datos de Sourceforge</source>
         <translation>Added statistics system in Sourceforge database</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="43"/>
+        <location filename="../project_i18n.py" line="44"/>
         <source>Anadido opcion de no contribuir a la estadistica mundial</source>
         <translation>Added option to do not contribute to world statistics</translation>
     </message>
@@ -1275,8 +1270,13 @@ Procedure to install the game from windows sources
     </message>
     <message>
         <location filename="../project_i18n.py" line="36"/>
-        <source>Anadidas estad&#xc3;&#xad;sticas individuales de juego</source>
-        <translation type="unfinished"></translation>
+        <source>Anadidas estadisticas individuales de juego</source>
+        <translation>Installation statistics added to the game</translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="37"/>
+        <source>El distribuible de windows se ha cambiado por un msi. Desinstale el antiguo glparchis antes de instalar el nuevo</source>
+        <translation>Windows distribution file has been upgraded to a msi file. Please uninstall the old glparchis before installing the new one</translation>
     </message>
 </context>
 <context>

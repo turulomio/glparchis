@@ -1,3 +1,11 @@
+20170726
+--------
+- Añadida la opción de configuración de retraso entre movimientos
+- Añadida la opción de configuración de nivel de dificultad
+- Añadida la opción de subir y bajar el tablero en el eje z con las teclas + y -
+- Añadidas estadísticas individuales de juego
+- El distribuible de windows se ha cambiado por un msi. Desinstale el antiguo glparchis antes de instalar el nuevo
+
 20160812
 --------
 - El estado de pantalla completa se guarda en el fichero de configuración

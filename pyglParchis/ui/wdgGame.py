@@ -46,7 +46,7 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     def table_reload(self):
         """
-            Recargar tabla de estadísticas
+            Recargar tabla de estadisticas
         """
         self.table.reload()
         self.lblTime.setText(self.tr("Tiempo de partida: {0}".format(str(datetime.datetime.now()-self.mem.inittime).split(".")[0])))

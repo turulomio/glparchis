@@ -12,11 +12,11 @@ from PyQt5.QtGui import QColor, QIcon, QPixmap
 from PyQt5.QtCore import Qt, QObject, QCoreApplication, QEventLoop,  pyqtSignal,  QUrl,  QFileInfo
 from PyQt5.QtOpenGL import QGLWidget
 from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
-from PyQt5.QtMultimedia import   QSoundEffect
+from PyQt5.QtMultimedia import QSoundEffect
 from uuid import uuid4
 
-#dateversion=datetime.date(2017, 7, 22)
-dateversion=datetime.date(2000, 1, 1)#When developing
+dateversion=datetime.date(2017, 7, 26)
+#dateversion=datetime.date(2000, 1, 1)#When developing
 
 
 def version(platform=None):

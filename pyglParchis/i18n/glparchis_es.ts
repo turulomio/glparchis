@@ -659,11 +659,6 @@
         <translation>Nivel de dificultad</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_frmSettings.py" line="147"/>
-        <source>See global statistics</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/frmSettings.ui" line="186"/>
         <source>Retardo entre movimientos</source>
         <translation>Retardo entre movimientos</translation>
@@ -673,10 +668,10 @@
         <source> ms</source>
         <translation> ms</translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <location filename="../ui/frmSettings.ui" line="236"/>
-        <source>Ver estadísticas</source>
-        <translation type="unfinished"></translation>
+        <source>Ver estadisticas</source>
+        <translation>Ver estadísticas</translation>
     </message>
 </context>
 <context>
@@ -936,7 +931,7 @@
 <context>
     <name>i18n</name>
     <message>
-        <location filename="../project_i18n.py" line="59"/>
+        <location filename="../project_i18n.py" line="60"/>
         <source>
 20160325
 --------
@@ -961,7 +956,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="71"/>
+        <location filename="../project_i18n.py" line="72"/>
         <source>
 20130716
 --------
@@ -1097,7 +1092,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="149"/>
+        <location filename="../project_i18n.py" line="150"/>
         <source>
 Idea y desarrollo
 ----------------- 
@@ -1119,7 +1114,7 @@ French: Nadejda Adam
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="163"/>
+        <location filename="../project_i18n.py" line="164"/>
         <source>
 Requisitos
 ==========
@@ -1218,42 +1213,42 @@ Procedimiento de instalación para fuentes windows
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="53"/>
+        <location filename="../project_i18n.py" line="54"/>
         <source>- Anadido el script project_i18n para traducir la documentacion del proyecto</source>
         <translation>- Añadido el script project_i18n para traducir la documentación del proyecto</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="54"/>
+        <location filename="../project_i18n.py" line="55"/>
         <source>- Ahora el tablero rota por su centro pulsando la letra m</source>
         <translation>- Ahora el tablero rota por su centro pulsando la letra m</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="55"/>
+        <location filename="../project_i18n.py" line="56"/>
         <source>- Rendimiento mejorado</source>
         <translation>- Rendimiento mejorado</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="56"/>
+        <location filename="../project_i18n.py" line="57"/>
         <source>- Corregido error con el icono de fullscreen</source>
         <translation>- Corregido error con el icono de fullscreen</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="48"/>
+        <location filename="../project_i18n.py" line="49"/>
         <source>- La configuracion del splitter del juego se guarda ahora en pantalla normal y en pantalla completa</source>
         <translation>- La configuración del splitter del juego se guarda ahora en pantalla normal y en pantalla completa</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="41"/>
+        <location filename="../project_i18n.py" line="42"/>
         <source>El estado de pantalla completa se guarda en el fichero de configuracion</source>
         <translation>El estado de pantalla completa se guarda en el fichero de configuración</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="42"/>
+        <location filename="../project_i18n.py" line="43"/>
         <source>Anadido sistema de estadistica en la base de datos de Sourceforge</source>
         <translation>Añadido sistema de estadística en la base de datos de Sourceforge</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="43"/>
+        <location filename="../project_i18n.py" line="44"/>
         <source>Anadido opcion de no contribuir a la estadistica mundial</source>
         <translation>Añadida opción de no contribuir a la estadística mundial</translation>
     </message>
@@ -1274,8 +1269,13 @@ Procedimiento de instalación para fuentes windows
     </message>
     <message>
         <location filename="../project_i18n.py" line="36"/>
-        <source>Anadidas estad&#xc3;&#xad;sticas individuales de juego</source>
-        <translation type="unfinished"></translation>
+        <source>Anadidas estadisticas individuales de juego</source>
+        <translation>Añadidas estadísticas individuales de juego</translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="37"/>
+        <source>El distribuible de windows se ha cambiado por un msi. Desinstale el antiguo glparchis antes de instalar el nuevo</source>
+        <translation>El distribuible de windows se ha cambiado por un msi. Desinstale el antiguo glparchis antes de instalar el nuevo</translation>
     </message>
 </context>
 <context>
