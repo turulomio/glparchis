@@ -56,7 +56,9 @@ if sys.platform=='win32':
             }
       build_exe_options = dict(
            includes = ['OpenGL','OpenGL.platform.win32','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters','OpenGL.GLU','OpenGL.GLU.glustruct'],#    ,'PyQt5.QtNetwork','PyQt5.QtWebKit','PyQt5.QtPrintSupport'],
-           excludes=[], 
+           excludes=[],
+           zip_include_packages=["*"],
+           zip_exclude_packages=[],
            include_files=include_files
            )
 
