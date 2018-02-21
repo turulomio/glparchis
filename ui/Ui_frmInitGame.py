@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/frmInitGame.ui'
 #
-# Created by: PyQt5 UI code generator 5.8.2
+# Created by: PyQt5 UI code generator 5.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -29,7 +29,6 @@ class Ui_frmInitGame(object):
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 984, 506))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
-        self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.scrollPlayer = QtWidgets.QVBoxLayout()
         self.scrollPlayer.setObjectName("scrollPlayer")
@@ -50,7 +49,6 @@ class Ui_frmInitGame(object):
         self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 69, 16))
         self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.scrollAreaWidgetContents_2)
-        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.scrollPlayerDado = QtWidgets.QVBoxLayout()
         self.scrollPlayerDado.setObjectName("scrollPlayerDado")

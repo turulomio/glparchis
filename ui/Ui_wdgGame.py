@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/wdgGame.ui'
 #
-# Created by: PyQt5 UI code generator 5.8.2
+# Created by: PyQt5 UI code generator 5.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -37,7 +37,6 @@ class Ui_wdgGame(object):
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 488, 649))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
-        self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
         self.panelScrollLayout = QtWidgets.QVBoxLayout()
         self.panelScrollLayout.setObjectName("panelScrollLayout")
