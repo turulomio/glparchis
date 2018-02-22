@@ -931,7 +931,7 @@
 <context>
     <name>i18n</name>
     <message>
-        <location filename="../project_i18n.py" line="60"/>
+        <location filename="../project_i18n.py" line="65"/>
         <source>
 20160325
 --------
@@ -956,7 +956,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="72"/>
+        <location filename="../project_i18n.py" line="77"/>
         <source>
 20130716
 --------
@@ -1092,7 +1092,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="150"/>
+        <location filename="../project_i18n.py" line="155"/>
         <source>
 Idea y desarrollo
 ----------------- 
@@ -1114,7 +1114,7 @@ French: Nadejda Adam
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="164"/>
+        <location filename="../project_i18n.py" line="169"/>
         <source>
 Requisitos
 ==========
@@ -1213,120 +1213,125 @@ Procedimiento de instalación para fuentes windows
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="54"/>
+        <location filename="../project_i18n.py" line="59"/>
         <source>- Anadido el script project_i18n para traducir la documentacion del proyecto</source>
         <translation>- Añadido el script project_i18n para traducir la documentación del proyecto</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="55"/>
+        <location filename="../project_i18n.py" line="60"/>
         <source>- Ahora el tablero rota por su centro pulsando la letra m</source>
         <translation>- Ahora el tablero rota por su centro pulsando la letra m</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="56"/>
+        <location filename="../project_i18n.py" line="61"/>
         <source>- Rendimiento mejorado</source>
         <translation>- Rendimiento mejorado</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="57"/>
+        <location filename="../project_i18n.py" line="62"/>
         <source>- Corregido error con el icono de fullscreen</source>
         <translation>- Corregido error con el icono de fullscreen</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="49"/>
+        <location filename="../project_i18n.py" line="54"/>
         <source>- La configuracion del splitter del juego se guarda ahora en pantalla normal y en pantalla completa</source>
         <translation>- La configuración del splitter del juego se guarda ahora en pantalla normal y en pantalla completa</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="42"/>
+        <location filename="../project_i18n.py" line="47"/>
         <source>El estado de pantalla completa se guarda en el fichero de configuracion</source>
         <translation>El estado de pantalla completa se guarda en el fichero de configuración</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="43"/>
+        <location filename="../project_i18n.py" line="48"/>
         <source>Anadido sistema de estadistica en la base de datos de Sourceforge</source>
         <translation>Añadido sistema de estadística en la base de datos de Sourceforge</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="44"/>
+        <location filename="../project_i18n.py" line="49"/>
         <source>Anadido opcion de no contribuir a la estadistica mundial</source>
         <translation>Añadida opción de no contribuir a la estadística mundial</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="33"/>
+        <location filename="../project_i18n.py" line="38"/>
         <source>Anadida la opcion de configuracion de retraso entre movimientos</source>
         <translation>Añadida la opción de configuración de retraso entre movimientos</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="34"/>
+        <location filename="../project_i18n.py" line="39"/>
         <source>Anadida la opcion de configuracion de nivel de dificultad</source>
         <translation>Añadida la opción de configuración de nivel de dificultad</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="35"/>
+        <location filename="../project_i18n.py" line="40"/>
         <source>Anadida la opcion de subir y bajar el tablero en el eje z, con las teclas + y -</source>
         <translation>Añadida la opción de subir y bajar el tablero en el eje z con las teclas + y -</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="36"/>
+        <location filename="../project_i18n.py" line="41"/>
         <source>Anadidas estadisticas individuales de juego</source>
         <translation>Añadidas estadísticas individuales de juego</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="37"/>
+        <location filename="../project_i18n.py" line="42"/>
         <source>El distribuible de windows se ha cambiado por un msi. Desinstale el antiguo glparchis antes de instalar el nuevo</source>
         <translation>El distribuible de windows se ha cambiado por un msi. Desinstale el antiguo glparchis antes de instalar el nuevo</translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="33"/>
+        <source>Ahora se puede tirar el dado pulsando ENTER</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>wdgGame</name>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="255"/>
+        <location filename="../ui/Ui_wdgGame.py" line="257"/>
         <source>Juego</source>
         <translation>Juego</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="259"/>
+        <location filename="../ui/Ui_wdgGame.py" line="261"/>
         <source>Dado saca 1</source>
         <translation>Dado saca 1</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="261"/>
+        <location filename="../ui/Ui_wdgGame.py" line="263"/>
         <source>Dado saca 2</source>
         <translation>Dado saca 2</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="263"/>
+        <location filename="../ui/Ui_wdgGame.py" line="265"/>
         <source>Dado saca 3</source>
         <translation>Dado saca 3</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="265"/>
+        <location filename="../ui/Ui_wdgGame.py" line="267"/>
         <source>Dado saca 4</source>
         <translation>Dado saca 4</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="267"/>
+        <location filename="../ui/Ui_wdgGame.py" line="269"/>
         <source>Dado saca 5</source>
         <translation>Dado saca 5</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="269"/>
+        <location filename="../ui/Ui_wdgGame.py" line="271"/>
         <source>Dado saca 6</source>
         <translation>Dado saca 6</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="273"/>
+        <location filename="../ui/Ui_wdgGame.py" line="275"/>
         <source>Fichas comidas por mi</source>
         <translation>Fichas comidas por mí</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="275"/>
+        <location filename="../ui/Ui_wdgGame.py" line="277"/>
         <source>Fichas comidas por otro</source>
         <translation>Fichas comidas por otro</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="271"/>
+        <location filename="../ui/Ui_wdgGame.py" line="273"/>
         <source>3 seises seguidos</source>
         <translation>3 seises seguidos</translation>
     </message>
@@ -1336,7 +1341,7 @@ Procedimiento de instalación para fuentes windows
         <translation>Tira el dado</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="304"/>
+        <location filename="../ui/Ui_wdgGame.py" line="306"/>
         <source>Tiempo de partida</source>
         <translation>Tiempo de partida</translation>
     </message>
@@ -1346,52 +1351,52 @@ Procedimiento de instalación para fuentes windows
         <translation>Empieza la partida</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="154"/>
+        <location filename="../ui/wdgGame.py" line="155"/>
         <source>Tire el dado</source>
         <translation>Tire el dado</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="167"/>
+        <location filename="../ui/wdgGame.py" line="168"/>
         <source>IA mueve una ficha</source>
         <translation>IA mueve una ficha</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="217"/>
+        <location filename="../ui/wdgGame.py" line="218"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="220"/>
+        <location filename="../ui/wdgGame.py" line="221"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation>Han salido tres seises, la última ficha movida se va a casa</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="224"/>
+        <location filename="../ui/wdgGame.py" line="225"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation>Han salido tres seises, pero como no puede mover no se va a casa</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="226"/>
+        <location filename="../ui/wdgGame.py" line="227"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation>Después de tres seises, ya no puede volver a tirar</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="239"/>
+        <location filename="../ui/wdgGame.py" line="240"/>
         <source>Seleccione una ficha...</source>
         <translation>Seleccione una ficha...</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="281"/>
+        <location filename="../ui/wdgGame.py" line="282"/>
         <source>Fin de turno</source>
         <translation>Fin de turno</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="149"/>
+        <location filename="../ui/wdgGame.py" line="150"/>
         <source>IA Tira el dado</source>
         <translation>IA Tira el dado</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="177"/>
+        <location filename="../ui/wdgGame.py" line="178"/>
         <source>Mueva una ficha</source>
         <translation>Mueva una ficha</translation>
     </message>
@@ -1401,37 +1406,37 @@ Procedimiento de instalación para fuentes windows
         <translation>Has ganado la partida</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="309"/>
+        <location filename="../ui/Ui_wdgGame.py" line="311"/>
         <source>Mejores puntuaciones</source>
         <translation>Mejores puntuaciones</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="300"/>
+        <location filename="../ui/Ui_wdgGame.py" line="302"/>
         <source>Fecha</source>
         <translation>Fecha</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="302"/>
+        <location filename="../ui/Ui_wdgGame.py" line="304"/>
         <source>Nombre</source>
         <translation>Nombre</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="277"/>
+        <location filename="../ui/Ui_wdgGame.py" line="279"/>
         <source>Casillas avanzadas</source>
         <translation>Casillas avanzadas</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="289"/>
+        <location filename="../ui/Ui_wdgGame.py" line="291"/>
         <source>Partida de 4 jugadores</source>
         <translation>Partida de 4 jugadores</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="298"/>
+        <location filename="../ui/Ui_wdgGame.py" line="300"/>
         <source>Partida de 6 jugadores</source>
         <translation>Partida de 6 jugadores</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="307"/>
+        <location filename="../ui/Ui_wdgGame.py" line="309"/>
         <source>Partida de 8 jugadores</source>
         <translation>Partida de 8 jugadores</translation>
     </message>
@@ -1441,7 +1446,7 @@ Procedimiento de instalación para fuentes windows
         <translation>Tiempo de partida: {0}</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="254"/>
+        <location filename="../ui/Ui_wdgGame.py" line="256"/>
         <source>Panel de usuario sigue al jugador actual</source>
         <translation>Panel de usuario sigue al jugador actual</translation>
     </message>
@@ -1451,29 +1456,29 @@ Procedimiento de instalación para fuentes windows
         <translation>{0} ha ganado</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="280"/>
+        <location filename="../ui/Ui_wdgGame.py" line="282"/>
         <source>Estadisticas</source>
         <translation>Estadísticas</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="257"/>
+        <location filename="../ui/Ui_wdgGame.py" line="259"/>
         <source>Numero de tiradas</source>
         <translation>Número de tiradas</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="306"/>
+        <location filename="../ui/Ui_wdgGame.py" line="308"/>
         <source>Puntuacion</source>
         <translation>Puntuación</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_wdgGame.py" line="308"/>
+        <location filename="../ui/Ui_wdgGame.py" line="310"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La puntuacion que se obtiene al terminar la partida depende de lo lejos que hayan acabado las fichas de los oponentes de la casilla central y de la diferencia entre las fichas comidas por mi y las fichas que me comieron otros jugadores&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La puntuación que se obtiene al terminar la partida depende de lo lejos que hayan acabado las fichas de los oponentes de la casilla central y de la diferencia entre las fichas comidas por mí y las fichas que me comieron otros jugadores&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message>
-        <location filename="../ui/Ui_wdgGame.py" line="252"/>
-        <source>Pulsa este boton o haga doble click en el tablero para tirar el dado</source>
-        <translation>Pulsa este botón o haga doble click en el tablero para tirar el dado</translation>
+    <message encoding="UTF-8">
+        <location filename="../ui/Ui_wdgGame.py" line="254"/>
+        <source>Pulsa este botón, haga doble click en el tablero o pulse ENTER, para tirar el dado</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -1,3 +1,7 @@
+XXXXXXXX
+--------
+- Ahora se puede tirar el dado pulsando ENTER
+
 20170726
 --------
 - Añadida la opción de configuración de retraso entre movimientos

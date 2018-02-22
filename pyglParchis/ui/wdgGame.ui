@@ -11,7 +11,16 @@
    </rect>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
-   <property name="margin">
+   <property name="leftMargin">
+    <number>1</number>
+   </property>
+   <property name="topMargin">
+    <number>1</number>
+   </property>
+   <property name="rightMargin">
+    <number>1</number>
+   </property>
+   <property name="bottomMargin">
     <number>1</number>
    </property>
    <item>
@@ -30,7 +39,7 @@
        <item>
         <widget class="QPushButton" name="cmdTirarDado">
          <property name="toolTip">
-          <string>Pulsa este boton o haga doble click en el tablero para tirar el dado</string>
+          <string>Pulsa este botón, haga doble click en el tablero o pulse ENTER, para tirar el dado</string>
          </property>
          <property name="text">
           <string>Tira el dado</string>
@@ -40,6 +49,12 @@
            <width>48</width>
            <height>48</height>
           </size>
+         </property>
+         <property name="autoDefault">
+          <bool>true</bool>
+         </property>
+         <property name="default">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -56,8 +71,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>488</width>
-            <height>649</height>
+            <width>454</width>
+            <height>638</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
