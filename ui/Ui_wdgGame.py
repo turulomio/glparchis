@@ -27,6 +27,8 @@ class Ui_wdgGame(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.cmdTirarDado = QtWidgets.QPushButton(self.layoutWidget)
         self.cmdTirarDado.setIconSize(QtCore.QSize(48, 48))
+        self.cmdTirarDado.setAutoDefault(True)
+        self.cmdTirarDado.setDefault(True)
         self.cmdTirarDado.setObjectName("cmdTirarDado")
         self.verticalLayout.addWidget(self.cmdTirarDado)
         self.panelScroll = QtWidgets.QScrollArea(self.layoutWidget)
@@ -34,7 +36,7 @@ class Ui_wdgGame(object):
         self.panelScroll.setWidgetResizable(True)
         self.panelScroll.setObjectName("panelScroll")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 488, 649))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 454, 638))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
@@ -249,7 +251,7 @@ class Ui_wdgGame(object):
 
     def retranslateUi(self, wdgGame):
         _translate = QtCore.QCoreApplication.translate
-        self.cmdTirarDado.setToolTip(_translate("wdgGame", "Pulsa este boton o haga doble click en el tablero para tirar el dado"))
+        self.cmdTirarDado.setToolTip(_translate("wdgGame", "Pulsa este botón, haga doble click en el tablero o pulse ENTER, para tirar el dado"))
         self.cmdTirarDado.setText(_translate("wdgGame", "Tira el dado"))
         self.chkAvanza.setText(_translate("wdgGame", "Panel de usuario sigue al jugador actual"))
         self.tab.setTabText(self.tab.indexOf(self.tabGame), _translate("wdgGame", "Juego"))

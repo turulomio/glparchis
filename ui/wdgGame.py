@@ -145,6 +145,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.cmdTirarDado.setText(self.tr("Tira el dado"))
         if self.mem.jugadores.actual.ia==False:#Cuando es IA no debe permitir tirar dado
             self.cmdTirarDado.setEnabled(True)
+            self.cmdTirarDado.setFocus()
         if self.mem.jugadores.actual.ia==True:
             self.mem.jugadores.actual.log(self.tr("IA Tira el dado"))
             delay(self.delay)

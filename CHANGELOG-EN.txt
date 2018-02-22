@@ -1,3 +1,7 @@
+XXXXXXXX
+--------
+- Ahora se puede tirar el dado pulsando ENTER
+
 20170726
 --------
 - Added delay between movements as a settings option

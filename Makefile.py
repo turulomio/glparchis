@@ -82,6 +82,7 @@ if __name__ == '__main__':
     if args.doc==True:
         shell("pylupdate5 -noobsolete -verbose glparchis.pro")
         shell("lrelease -qt5 glparchis.pro")
+        shell("python3 project_i18n.py")
     elif args.uninstall==True:
         shell("rm " + prefixbin + "/glparchis*")
         shell("rm -Rf " + prefixlib)
