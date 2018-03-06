@@ -35,7 +35,7 @@ class frmHelp(QDialog, Ui_frmHelp):
             self.tr("<h3>Separador de pantalla</h3>")+            
             self.tr("Existe un splitter entre los paneles de usuario y el tablero de parchis, que podra ser movido segun las preferencias del usuario. En algunas resoluciones de pantalla, al empezar el juego, el tablero aparece en negro hasta que se utiliza el splitter para darle el tamano minimo necesario.<p>")+
             self.tr("<h3>Lanzamiento de dado</h3>")+                 
-            self.tr("Para tirar el dado se puede hacer click en el boton 'Tirar el dado' o hacer doble-click encima del tablero, cuando le toque a un jugador humano.<p>")+
+            self.tr("Para tirar el dado se puede hacer click en el boton 'Tirar el dado', hacer doble-click encima del tablero o pulsar la techa 'ENTER', cuando le toque a un jugador humano.<p>")+
             self.tr("<h3>Vistas del tablero</h3>")+                 
             self.tr("Se puede cambiar la vista del tablero pulsando la tecla 'm'.<p>") +
             self.tr("Pulsando las teclas 'x','y' y 'z' puede rotar el tablero en el eje X, Y y Z respectivamente.<p>") +
