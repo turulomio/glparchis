@@ -37,7 +37,7 @@
      <x>0</x>
      <y>0</y>
      <width>995</width>
-     <height>19</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAyuda">
@@ -71,11 +71,20 @@
     </property>
     <addaction name="actionSound"/>
     <addaction name="separator"/>
-    <addaction name="actionFullScreen"/>
     <addaction name="separator"/>
     <addaction name="actionSettings"/>
    </widget>
+   <widget class="QMenu" name="menuVer">
+    <property name="title">
+     <string>Ver</string>
+    </property>
+    <addaction name="actionAcercarTablero"/>
+    <addaction name="actionAlejarTablero"/>
+    <addaction name="separator"/>
+    <addaction name="actionFullScreen"/>
+   </widget>
    <addaction name="menuJugar"/>
+   <addaction name="menuVer"/>
    <addaction name="menuConfiguraci_n"/>
    <addaction name="menuAyuda"/>
   </widget>
@@ -109,15 +118,17 @@
    <addaction name="separator"/>
    <addaction name="actionSound"/>
    <addaction name="separator"/>
-   <addaction name="actionSettings"/>
+   <addaction name="actionAcercarTablero"/>
+   <addaction name="actionAlejarTablero"/>
    <addaction name="actionFullScreen"/>
+   <addaction name="separator"/>
+   <addaction name="actionSettings"/>
    <addaction name="separator"/>
    <addaction name="actionHelp"/>
    <addaction name="actionMundialStatistics"/>
    <addaction name="actionAcercaDe"/>
    <addaction name="separator"/>
    <addaction name="actionSalir"/>
-   <addaction name="separator"/>
   </widget>
   <action name="actionSalir">
    <property name="icon">
@@ -282,6 +293,42 @@
    </property>
    <property name="toolTip">
     <string>Estadisticas mundiales</string>
+   </property>
+  </action>
+  <action name="actionAcercarTablero">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/zoom-in.png</normaloff>:/glparchis/zoom-in.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Acercar tablero</string>
+   </property>
+   <property name="toolTip">
+    <string>Acercar tablero</string>
+   </property>
+   <property name="shortcut">
+    <string>+</string>
+   </property>
+  </action>
+  <action name="actionAlejarTablero">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/zoom-out.png</normaloff>:/glparchis/zoom-out.png</iconset>
+   </property>
+   <property name="text">
+    <string>A&amp;lejar tablero</string>
+   </property>
+   <property name="toolTip">
+    <string>Alejar tablero</string>
+   </property>
+   <property name="shortcut">
+    <string>-</string>
    </property>
   </action>
  </widget>

@@ -1,8 +1,8 @@
 import sys, os, urllib.request,   datetime
 from urllib.request import urlopen
 from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QEvent
-from PyQt5.QtGui import QIcon, QPixmap
-from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QDialog, QFileDialog
+from PyQt5.QtGui import QIcon, QPixmap, QKeyEvent
+from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QDialog, QFileDialog, QApplication
 from libglparchis import dateversion, str2bool, cargarQTranslator, b2s, qmessagebox,  Mem4, Mem6, Mem8,  SoundSystem
 
 import configparser
@@ -184,7 +184,21 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.game.stopthegame=False
         self.layout.addWidget(self.game)
         self.actionGuardarPartida.setEnabled(True)
+        self.actionAcercarTablero.setEnabled(True)
+        self.actionAlejarTablero.setEnabled(True)
         self.game.assign_mem(self.mem)
+
+    @pyqtSlot()  
+    def on_actionAcercarTablero_triggered(self):
+        event=QKeyEvent(QEvent.KeyPress, Qt.Key_Plus, Qt.NoModifier, 0, 0, 0)
+        self.game.ogl.keyPressEvent(event)
+
+    @pyqtSlot()  
+    def on_actionAlejarTablero_triggered(self):
+        event=QKeyEvent(QEvent.KeyPress, Qt.Key_Minus, Qt.NoModifier, 0, 0, 0)
+        self.game.ogl.keyPressEvent(event)
+
+
 
     @pyqtSlot()  
     def on_actionRecuperarPartida_triggered(self):

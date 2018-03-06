@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="/glparchis">
+    <file>zoom-in.png</file>
+    <file>zoom-out.png</file>
     <file>cube_transparent.png</file>
     <file>statistics.png</file>
     <file>fullscreen.png</file>

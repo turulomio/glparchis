@@ -347,7 +347,7 @@
     <message>
         <location filename="../ui/frmHelp.py" line="17"/>
         <source>Para tirar el dado se puede hacer click en el boton &apos;Tirar el dado&apos;, hacer doble-click encima del tablero o pulsar la techa &apos;ENTER&apos;, cuando le toque a un jugador humano.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Para tirar el dado se puede hacer click en el botón &apos;Tirar el dado&apos;, hacer doble-click encima del tablero o pulsar la techa &apos;ENTER&apos;, cuando le toque a un jugador humano.&lt;p&gt;</translation>
     </message>
 </context>
 <context>
@@ -411,52 +411,52 @@
         <translation>J&amp;ugar</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="84"/>
+        <location filename="../ui/frmMain.ui" line="93"/>
         <source>toolBar</source>
         <translation>toolBar</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="128"/>
+        <location filename="../ui/frmMain.ui" line="139"/>
         <source>S&amp;alir</source>
         <translation>S&amp;alir</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="149"/>
+        <location filename="../ui/frmMain.ui" line="160"/>
         <source>&amp;Recuperar partida</source>
         <translation>&amp;Recuperar partida</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="161"/>
+        <location filename="../ui/frmMain.ui" line="172"/>
         <source>&amp;Guardar partida</source>
         <translation>&amp;Guardar partida</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="131"/>
+        <location filename="../ui/frmMain.ui" line="142"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="197"/>
+        <location filename="../ui/frmMain.ui" line="208"/>
         <source>Muestra la ayuda del juego</source>
         <translation>Muestra la ayuda del juego</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="200"/>
+        <location filename="../ui/frmMain.ui" line="211"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="212"/>
+        <location filename="../ui/frmMain.ui" line="223"/>
         <source>Busca actualizaciones en Internet</source>
         <translation>Busca actualizaciones en Internet</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="224"/>
+        <location filename="../ui/frmMain.ui" line="235"/>
         <source>Enciende o apaga el sonido</source>
         <translation>Enciende o apaga el sonido</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="227"/>
+        <location filename="../ui/frmMain.ui" line="238"/>
         <source>F5</source>
         <translation>F5</translation>
     </message>
@@ -471,47 +471,47 @@
         <translation>Sonido apagado</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="170"/>
+        <location filename="../ui/frmMain.ui" line="181"/>
         <source>Partida de &amp;4 jugadores</source>
         <translation>Partida de &amp;4 jugadores</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="173"/>
+        <location filename="../ui/frmMain.ui" line="184"/>
         <source>Partida de 4 jugadores</source>
         <translation>Partida de 4 jugadores</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="176"/>
+        <location filename="../ui/frmMain.ui" line="187"/>
         <source>Ctrl+4</source>
         <translation>Ctrl+4</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="236"/>
+        <location filename="../ui/frmMain.ui" line="247"/>
         <source>Partida de &amp;6 jugadores</source>
         <translation>Partida de &amp;6 jugadores</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="239"/>
+        <location filename="../ui/frmMain.ui" line="250"/>
         <source>Partida de 6 jugadores</source>
         <translation>Partida de 6 jugadores</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="242"/>
+        <location filename="../ui/frmMain.ui" line="253"/>
         <source>Ctrl+6</source>
         <translation>Ctrl+6</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="251"/>
+        <location filename="../ui/frmMain.ui" line="262"/>
         <source>Partida de &amp;8 jugadores</source>
         <translation>Partida de &amp;8 jugadores</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="254"/>
+        <location filename="../ui/frmMain.ui" line="265"/>
         <source>Partida de 8 jugadores</source>
         <translation>Partida de 8 jugadores</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="257"/>
+        <location filename="../ui/frmMain.ui" line="268"/>
         <source>Ctrl+8</source>
         <translation>Ctrl+8</translation>
     </message>
@@ -521,12 +521,12 @@
         <translation>glParchis 2010-{}. GNU General Public License ©</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="272"/>
+        <location filename="../ui/frmMain.ui" line="283"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="269"/>
+        <location filename="../ui/frmMain.ui" line="280"/>
         <source>Cambiar al modo de pantalla completa</source>
         <translation>Cambiar al modo de pantalla completa</translation>
     </message>
@@ -556,7 +556,7 @@
         <translation>Hay una nueva versión del programa. Bájatela de la página web del proyecto &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt; o directamente desde &lt;a href=&apos;https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="284"/>
+        <location filename="../ui/frmMain.ui" line="295"/>
         <source>Estadisticas mundiales</source>
         <translation>Estadísticas mundiales</translation>
     </message>
@@ -566,39 +566,74 @@
         <translation>&amp;Configuración</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="140"/>
+        <location filename="../ui/frmMain.ui" line="151"/>
         <source>Acerca &amp;de</source>
         <translation>Acerca &amp;de</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="185"/>
+        <location filename="../ui/frmMain.ui" line="196"/>
         <source>&amp;Preferencias</source>
         <translation>&amp;Preferencias</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="194"/>
+        <location filename="../ui/frmMain.ui" line="205"/>
         <source>&amp;Ayuda del juego</source>
         <translation>&amp;Ayuda del juego</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="209"/>
+        <location filename="../ui/frmMain.ui" line="220"/>
         <source>&amp;Buscar actualizaciones</source>
         <translation>&amp;Buscar actualizaciones</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="221"/>
+        <location filename="../ui/frmMain.ui" line="232"/>
         <source>&amp;Sonido encendido</source>
         <translation>&amp;Sonido encendido</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="266"/>
+        <location filename="../ui/frmMain.ui" line="277"/>
         <source>&amp;Cambiar al modo de pantalla completa</source>
         <translation>&amp;Cambiar al modo de pantalla completa</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.ui" line="281"/>
+        <location filename="../ui/frmMain.ui" line="292"/>
         <source>&amp;Estadisticas mundiales</source>
         <translation>&amp;Estadísticas mundiales</translation>
+    </message>
+    <message>
+        <location filename="../ui/frmMain.ui" line="79"/>
+        <source>Ver</source>
+        <translation>Ver</translation>
+    </message>
+    <message>
+        <location filename="../ui/frmMain.ui" line="307"/>
+        <source>&amp;Acercar tablero</source>
+        <translation>&amp;Acercar tablero</translation>
+    </message>
+    <message>
+        <location filename="../ui/frmMain.ui" line="310"/>
+        <source>Acercar tablero</source>
+        <translation>Acercar tablero</translation>
+    </message>
+    <message>
+        <location filename="../ui/frmMain.ui" line="313"/>
+        <source>+</source>
+        <translation>+</translation>
+    </message>
+    <message>
+        <location filename="../ui/frmMain.ui" line="325"/>
+        <source>A&amp;lejar tablero</source>
+        <translation>A&amp;lejar tablero</translation>
+    </message>
+    <message>
+        <location filename="../ui/frmMain.ui" line="328"/>
+        <source>Alejar tablero</source>
+        <translation>Alejar tablero</translation>
+    </message>
+    <message>
+        <location filename="../ui/frmMain.ui" line="331"/>
+        <source>-</source>
+        <translation>-</translation>
     </message>
 </context>
 <context>
@@ -931,7 +966,7 @@
 <context>
     <name>i18n</name>
     <message>
-        <location filename="../project_i18n.py" line="65"/>
+        <location filename="../project_i18n.py" line="66"/>
         <source>
 20160325
 --------
@@ -956,7 +991,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="77"/>
+        <location filename="../project_i18n.py" line="78"/>
         <source>
 20130716
 --------
@@ -1092,7 +1127,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="155"/>
+        <location filename="../project_i18n.py" line="156"/>
         <source>
 Idea y desarrollo
 ----------------- 
@@ -1114,7 +1149,7 @@ French: Nadejda Adam
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="169"/>
+        <location filename="../project_i18n.py" line="170"/>
         <source>
 Requisitos
 ==========
@@ -1213,74 +1248,79 @@ Procedimiento de instalación para fuentes windows
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="59"/>
+        <location filename="../project_i18n.py" line="60"/>
         <source>- Anadido el script project_i18n para traducir la documentacion del proyecto</source>
         <translation>- Añadido el script project_i18n para traducir la documentación del proyecto</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="60"/>
+        <location filename="../project_i18n.py" line="61"/>
         <source>- Ahora el tablero rota por su centro pulsando la letra m</source>
         <translation>- Ahora el tablero rota por su centro pulsando la letra m</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="61"/>
+        <location filename="../project_i18n.py" line="62"/>
         <source>- Rendimiento mejorado</source>
         <translation>- Rendimiento mejorado</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="62"/>
+        <location filename="../project_i18n.py" line="63"/>
         <source>- Corregido error con el icono de fullscreen</source>
         <translation>- Corregido error con el icono de fullscreen</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="54"/>
+        <location filename="../project_i18n.py" line="55"/>
         <source>- La configuracion del splitter del juego se guarda ahora en pantalla normal y en pantalla completa</source>
         <translation>- La configuración del splitter del juego se guarda ahora en pantalla normal y en pantalla completa</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="47"/>
+        <location filename="../project_i18n.py" line="48"/>
         <source>El estado de pantalla completa se guarda en el fichero de configuracion</source>
         <translation>El estado de pantalla completa se guarda en el fichero de configuración</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="48"/>
+        <location filename="../project_i18n.py" line="49"/>
         <source>Anadido sistema de estadistica en la base de datos de Sourceforge</source>
         <translation>Añadido sistema de estadística en la base de datos de Sourceforge</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="49"/>
+        <location filename="../project_i18n.py" line="50"/>
         <source>Anadido opcion de no contribuir a la estadistica mundial</source>
         <translation>Añadida opción de no contribuir a la estadística mundial</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="38"/>
+        <location filename="../project_i18n.py" line="39"/>
         <source>Anadida la opcion de configuracion de retraso entre movimientos</source>
         <translation>Añadida la opción de configuración de retraso entre movimientos</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="39"/>
+        <location filename="../project_i18n.py" line="40"/>
         <source>Anadida la opcion de configuracion de nivel de dificultad</source>
         <translation>Añadida la opción de configuración de nivel de dificultad</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="40"/>
+        <location filename="../project_i18n.py" line="41"/>
         <source>Anadida la opcion de subir y bajar el tablero en el eje z, con las teclas + y -</source>
         <translation>Añadida la opción de subir y bajar el tablero en el eje z con las teclas + y -</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="41"/>
+        <location filename="../project_i18n.py" line="42"/>
         <source>Anadidas estadisticas individuales de juego</source>
         <translation>Añadidas estadísticas individuales de juego</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="42"/>
+        <location filename="../project_i18n.py" line="43"/>
         <source>El distribuible de windows se ha cambiado por un msi. Desinstale el antiguo glparchis antes de instalar el nuevo</source>
         <translation>El distribuible de windows se ha cambiado por un msi. Desinstale el antiguo glparchis antes de instalar el nuevo</translation>
     </message>
     <message>
         <location filename="../project_i18n.py" line="33"/>
         <source>Ahora se puede tirar el dado pulsando ENTER</source>
-        <translation type="unfinished"></translation>
+        <translation>Ahora se puede tirar el dado pulsando ENTER</translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="34"/>
+        <source>Anadida la opcion de acercar y alejar el tablero en el menu</source>
+        <translation>Añadida la opción de acercar y alejar el tablero en el menú</translation>
     </message>
 </context>
 <context>
