@@ -31,6 +31,7 @@ class i18n(QObject):
         f.write("XXXXXXXX\n")
         f.write("--------\n")
         f.write("- {}\n".format(self.tr("Ahora se puede tirar el dado pulsando ENTER")))
+        f.write("- {}\n".format(self.tr("Anadida la opcion de acercar y alejar el tablero en el menu")))
         f.write("\n")        
         
         f.write("20170726\n")

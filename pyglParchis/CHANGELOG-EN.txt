@@ -1,6 +1,7 @@
 XXXXXXXX
 --------
-- Ahora se puede tirar el dado pulsando ENTER
+- Now you can throw the dice pressing ENTER
+- Added Zoom IN / Zoom OUT actions to the menu
 
 20170726
 --------

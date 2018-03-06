@@ -1,6 +1,7 @@
 XXXXXXXX
 --------
 - Ahora se puede tirar el dado pulsando ENTER
+- Añadida la opción de acercar y alejar el tablero en el menú
 
 20170726
 --------
