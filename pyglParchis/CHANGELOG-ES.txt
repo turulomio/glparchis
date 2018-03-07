@@ -1,4 +1,4 @@
-XXXXXXXX
+20180307
 --------
 - Ahora se puede tirar el dado pulsando ENTER
 - Añadida la opción de acercar y alejar el tablero en el menú
@@ -103,3 +103,4 @@ XXXXXXXX
 ========
 - Se ha dado el soporte inicial a la aplicación
 - La aplicación es plenamente funcional. Falta mejorar el IA de los jugadores virtuales
+

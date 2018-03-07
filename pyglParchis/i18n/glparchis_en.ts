@@ -184,7 +184,7 @@
     <message>
         <location filename="../ui/frmGameStatistics.ui" line="102"/>
         <source>Estadisticas de esta instalacion</source>
-        <translation>Statistics of this instalation </translation>
+        <translation>Statistics of this instalation</translation>
     </message>
     <message>
         <location filename="../ui/frmGameStatistics.ui" line="125"/>
@@ -1124,6 +1124,7 @@
 ======== 
 - Initial support to the application
 - The app has all the funcionality. We need to improve the virtual players
+
 </translation>
     </message>
     <message>
@@ -1200,7 +1201,8 @@ Procedimiento de instalacion para fuentes windows
 =================================================
 
 </source>
-        <translation>Requirements
+        <translation>
+Requirements
 ========== 
 The app has the following dependencies:
   - PyQt4
@@ -1246,6 +1248,7 @@ Procedure to install the game from windows binaries
 
 Procedure to install the game from windows sources
 =================================================
+
 </translation>
     </message>
     <message>
@@ -1516,10 +1519,10 @@ Procedure to install the game from windows sources
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La puntuacion que se obtiene al terminar la partida depende de lo lejos que hayan acabado las fichas de los oponentes de la casilla central y de la diferencia entre las fichas comidas por mi y las fichas que me comieron otros jugadores&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Punctuation obtained at the end of the game depends on how far opponents pieces have finished from central square and the difference between pieces ate by me and pieces ate by other players&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <location filename="../ui/wdgGame.ui" line="42"/>
-        <source>Pulsa este botón, haga doble click en el tablero o pulse ENTER, para tirar el dado</source>
-        <translation type="unfinished"></translation>
+        <source>Pulsa este boton, haga doble click en el tablero o pulse ENTER, para tirar el dado</source>
+        <translation>Press this button, make double click on the board or press ENTER, to throw the dice</translation>
     </message>
 </context>
 <context>

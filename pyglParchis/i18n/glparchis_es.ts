@@ -1124,6 +1124,7 @@
 ========
 - Se ha dado el soporte inicial a la aplicación
 - La aplicación es plenamente funcional. Falta mejorar el IA de los jugadores virtuales
+
 </translation>
     </message>
     <message>
@@ -1138,7 +1139,8 @@ Traduccion
 English: Mariano Munoz &lt;turulomio@yahoo.es&gt;
 French: Nadejda Adam
 </source>
-        <translation>Idea y desarrollo
+        <translation>
+Idea y desarrollo
 ----------------- 
 Mariano Muñoz &lt;turulomio@yahoo.es&gt; 
 
@@ -1199,7 +1201,8 @@ Procedimiento de instalacion para fuentes windows
 =================================================
 
 </source>
-        <translation>Requisitos
+        <translation>
+Requisitos
 ==========
 El programa tiene las siguientes dependencias:
   - PyQt4
@@ -1245,6 +1248,7 @@ Procedimiento de instalación para binarios windows
 
 Procedimiento de instalación para fuentes windows
 =================================================
+
 </translation>
     </message>
     <message>
@@ -1515,10 +1519,10 @@ Procedimiento de instalación para fuentes windows
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La puntuacion que se obtiene al terminar la partida depende de lo lejos que hayan acabado las fichas de los oponentes de la casilla central y de la diferencia entre las fichas comidas por mi y las fichas que me comieron otros jugadores&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La puntuación que se obtiene al terminar la partida depende de lo lejos que hayan acabado las fichas de los oponentes de la casilla central y de la diferencia entre las fichas comidas por mí y las fichas que me comieron otros jugadores&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <location filename="../ui/wdgGame.ui" line="42"/>
-        <source>Pulsa este botón, haga doble click en el tablero o pulse ENTER, para tirar el dado</source>
-        <translation type="unfinished"></translation>
+        <source>Pulsa este boton, haga doble click en el tablero o pulse ENTER, para tirar el dado</source>
+        <translation>Pulsa este botón, haga doble click en el tablero o pulse ENTER, para tirar el dado</translation>
     </message>
 </context>
 <context>

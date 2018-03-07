@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/wdgGame.ui'
 #
-# Created by: PyQt5 UI code generator 5.10
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -251,7 +251,7 @@ class Ui_wdgGame(object):
 
     def retranslateUi(self, wdgGame):
         _translate = QtCore.QCoreApplication.translate
-        self.cmdTirarDado.setToolTip(_translate("wdgGame", "Pulsa este botón, haga doble click en el tablero o pulse ENTER, para tirar el dado"))
+        self.cmdTirarDado.setToolTip(_translate("wdgGame", "Pulsa este boton, haga doble click en el tablero o pulse ENTER, para tirar el dado"))
         self.cmdTirarDado.setText(_translate("wdgGame", "Tira el dado"))
         self.chkAvanza.setText(_translate("wdgGame", "Panel de usuario sigue al jugador actual"))
         self.tab.setTabText(self.tab.indexOf(self.tabGame), _translate("wdgGame", "Juego"))

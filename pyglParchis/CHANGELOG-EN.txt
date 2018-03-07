@@ -1,4 +1,4 @@
-XXXXXXXX
+20180307
 --------
 - Now you can throw the dice pressing ENTER
 - Added Zoom IN / Zoom OUT actions to the menu
@@ -103,3 +103,4 @@ XXXXXXXX
 ======== 
 - Initial support to the application
 - The app has all the funcionality. We need to improve the virtual players
+

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/frmMain.ui'
 #
-# Created by: PyQt5 UI code generator 5.10
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -159,8 +159,9 @@ class Ui_frmMain(object):
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionAcercarTablero)
         self.toolBar.addAction(self.actionAlejarTablero)
-        self.toolBar.addAction(self.actionSettings)
         self.toolBar.addAction(self.actionFullScreen)
+        self.toolBar.addSeparator()
+        self.toolBar.addAction(self.actionSettings)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionHelp)
         self.toolBar.addAction(self.actionMundialStatistics)

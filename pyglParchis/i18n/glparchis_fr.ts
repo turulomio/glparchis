@@ -66,7 +66,7 @@
     <message>
         <location filename="../ui/frmAbout.ui" line="49"/>
         <source>glParchis</source>
-        <translation></translation>
+        <translation>glParchis</translation>
     </message>
     <message>
         <location filename="../ui/frmAbout.ui" line="84"/>
@@ -86,7 +86,7 @@
     <message>
         <location filename="../ui/frmAbout.ui" line="423"/>
         <source>S&amp;alir</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;ortir</translation>
     </message>
     <message>
         <location filename="../ui/frmAbout.py" line="19"/>
@@ -111,17 +111,17 @@
     <message>
         <location filename="../ui/frmAbout.ui" line="367"/>
         <source>Tablero de 4 jugadores</source>
-        <translation type="unfinished"></translation>
+        <translation>Carte de 4 joueurs</translation>
     </message>
     <message>
         <location filename="../ui/frmAbout.ui" line="372"/>
         <source>Tablero de 6 jugadores</source>
-        <translation type="unfinished"></translation>
+        <translation>Carte de 6 joueurs</translation>
     </message>
     <message>
         <location filename="../ui/frmAbout.ui" line="377"/>
         <source>Tablero de 8 jugadores</source>
-        <translation type="unfinished"></translation>
+        <translation>Carte de 8 joueurs</translation>
     </message>
     <message>
         <location filename="../ui/frmAbout.ui" line="382"/>
@@ -151,7 +151,7 @@
     <message>
         <location filename="../ui/frmAbout.py" line="18"/>
         <source>Version {0}</source>
-        <translation type="unfinished"></translation>
+        <translation>Version {0}</translation>
     </message>
     <message>
         <location filename="../ui/frmAbout.py" line="19"/>
@@ -166,7 +166,7 @@
     <message>
         <location filename="../ui/frmAbout.ui" line="70"/>
         <source>Creditos</source>
-        <translation type="unfinished"></translation>
+        <translation>Crédits</translation>
     </message>
     <message>
         <location filename="../ui/frmAbout.py" line="19"/>
@@ -179,22 +179,22 @@
     <message>
         <location filename="../ui/frmGameStatistics.ui" line="39"/>
         <source>Estadisticas de juego</source>
-        <translation type="unfinished"></translation>
+        <translation>Statistiques du jeu</translation>
     </message>
     <message>
         <location filename="../ui/frmGameStatistics.ui" line="102"/>
         <source>Estadisticas de esta instalacion</source>
-        <translation type="unfinished"></translation>
+        <translation>Statistiques de cette installation</translation>
     </message>
     <message>
         <location filename="../ui/frmGameStatistics.ui" line="125"/>
         <source>about:blank</source>
-        <translation type="unfinished"></translation>
+        <translation>about:blank</translation>
     </message>
     <message>
         <location filename="../ui/frmGameStatistics.ui" line="118"/>
         <source>Estadisticas mundiales</source>
-        <translation type="unfinished"></translation>
+        <translation>Statistiques mondiales</translation>
     </message>
 </context>
 <context>
@@ -418,7 +418,7 @@
     <message>
         <location filename="../ui/frmMain.ui" line="139"/>
         <source>S&amp;alir</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;ortir</translation>
     </message>
     <message>
         <location filename="../ui/frmMain.ui" line="160"/>
@@ -463,12 +463,12 @@
     <message>
         <location filename="../ui/frmMain.py" line="114"/>
         <source>Sonido encendido</source>
-        <translation type="unfinished"></translation>
+        <translation>Son sur</translation>
     </message>
     <message>
         <location filename="../ui/frmMain.py" line="119"/>
         <source>Sonido apagado</source>
-        <translation type="unfinished"></translation>
+        <translation>Éteindre</translation>
     </message>
     <message>
         <location filename="../ui/frmMain.ui" line="181"/>
@@ -523,7 +523,7 @@
     <message>
         <location filename="../ui/frmMain.ui" line="283"/>
         <source>F11</source>
-        <translation type="unfinished"></translation>
+        <translation>F11</translation>
     </message>
     <message>
         <location filename="../ui/frmMain.ui" line="280"/>
@@ -558,7 +558,7 @@
     <message>
         <location filename="../ui/frmMain.ui" line="295"/>
         <source>Estadisticas mundiales</source>
-        <translation type="unfinished"></translation>
+        <translation>Statistiques mondiales</translation>
     </message>
     <message>
         <location filename="../ui/frmMain.ui" line="70"/>
@@ -573,7 +573,7 @@
     <message>
         <location filename="../ui/frmMain.ui" line="196"/>
         <source>&amp;Preferencias</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Préférences</translation>
     </message>
     <message>
         <location filename="../ui/frmMain.ui" line="205"/>
@@ -618,7 +618,7 @@
     <message>
         <location filename="../ui/frmMain.ui" line="313"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation>+</translation>
     </message>
     <message>
         <location filename="../ui/frmMain.ui" line="325"/>
@@ -633,7 +633,7 @@
     <message>
         <location filename="../ui/frmMain.ui" line="331"/>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation>-</translation>
     </message>
 </context>
 <context>
@@ -1386,9 +1386,9 @@ Procedimiento de instalacion para fuentes windows
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La puntuacion que se obtiene al terminar la partida depende de lo lejos que hayan acabado las fichas de los oponentes de la casilla central y de la diferencia entre las fichas comidas por mi y las fichas que me comieron otros jugadores&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <location filename="../ui/wdgGame.ui" line="42"/>
-        <source>Pulsa este botón, haga doble click en el tablero o pulse ENTER, para tirar el dado</source>
+        <source>Pulsa este boton, haga doble click en el tablero o pulse ENTER, para tirar el dado</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

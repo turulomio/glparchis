@@ -9,7 +9,7 @@ class i18n(QObject):
         QObject.__init__(self)
         self.languages=["es", "en"]
         self.translator=QTranslator()
-        
+
         for l in self.languages:
             #### COPY CARGARQTRANSLATOR ####
             urls= ["i18n/glparchis_" + l + ".qm","/usr/share/glparchis/glparchis_" + l + ".qm"]
@@ -27,13 +27,13 @@ class i18n(QObject):
             self.install(l)
     def changelog(self, language):
         f=open("CHANGELOG-{}.txt".format(language.upper()), "w")
-        
-        f.write("XXXXXXXX\n")
+
+        f.write("20180307\n")
         f.write("--------\n")
         f.write("- {}\n".format(self.tr("Ahora se puede tirar el dado pulsando ENTER")))
         f.write("- {}\n".format(self.tr("Anadida la opcion de acercar y alejar el tablero en el menu")))
-        f.write("\n")        
-        
+        f.write("\n")
+
         f.write("20170726\n")
         f.write("--------\n")
         f.write("- {}\n".format(self.tr("Anadida la opcion de configuracion de retraso entre movimientos")))
@@ -49,7 +49,7 @@ class i18n(QObject):
         f.write("- {}\n".format(self.tr("Anadido sistema de estadistica en la base de datos de Sourceforge")))
         f.write("- {}\n".format(self.tr("Anadido opcion de no contribuir a la estadistica mundial")))
         f.write("\n")
-        
+
         f.write("20160801\n")
         f.write("--------\n")
         f.write(self.tr("- La configuracion del splitter del juego se guarda ahora en pantalla normal y en pantalla completa")+"\n")
