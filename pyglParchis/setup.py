@@ -10,6 +10,7 @@ name="glparchis"
 #Add files
 include_files=['sounds/','images/ficharoja.ico', 'GPL-3.txt']
 include_files.append(("i18n/glparchis_es.qm", "i18n/glparchis_es.qm"))
+include_files.append(("i18n/glparchis_en.qm", "i18n/glparchis_en.qm"))
 include_files.append(("i18n/glparchis_fr.qm", "i18n/glparchis_fr.qm"))
 include_files.append(("i18n/glparchis_ro.qm", "i18n/glparchis_ro.qm"))
 include_files.append(("i18n/glparchis_ru.qm", "i18n/glparchis_ru.qm"))
@@ -18,6 +19,8 @@ include_files.append(("i18n/glparchis_ru.qm", "i18n/glparchis_ru.qm"))
 if sys.platform=='win32':
       base = 'Win32GUI'
       #base="Console"
+      import PyQt5
+      include_files.append((PyQt5.__path__[0] + "/Qt/plugins/audio/qtaudio_windows.dll","audio/qtaudio_windows.dll"))
       shortcut_table = [
           ("DesktopShortcut",        # Shortcut
            "DesktopFolder",          # Directory_
@@ -55,7 +58,7 @@ if sys.platform=='win32':
            'data': msi_data
             }
       build_exe_options = dict(
-           includes = ['OpenGL','OpenGL.platform.win32','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters','OpenGL.GLU','OpenGL.GLU.glustruct'],#    ,'PyQt5.QtNetwork','PyQt5.QtWebKit','PyQt5.QtPrintSupport'],
+           includes = ['OpenGL','OpenGL.platform.win32','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters','OpenGL.GLU','OpenGL.GLU.glustruct','PyQt5.QtNetwork','PyQt5.QtWebEngineCore','PyQt5.QtWebChannel','PyQt5.QtPrintSupport', 'PyQt5.QtMultimedia'],
            excludes=[],
            zip_include_packages=["*"],
            zip_exclude_packages=[],
@@ -67,7 +70,7 @@ if sys.platform=='win32':
 else:#linux
       base="Console"
       build_options = dict(
-           includes = ['OpenGL','OpenGL.platform.glx','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters','PyQt5.QtNetwork','PyQt5.QtWebKit','PyQt5.QtPrintSupport', 'OpenGL.GLU.glustruct'],
+           includes = ['OpenGL','OpenGL.platform.glx','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters','PyQt5.QtNetwork','PyQt5.QtPrintSupport', 'OpenGL.GLU.glustruct'],
            excludes = [], 
            include_files=include_files
            )
