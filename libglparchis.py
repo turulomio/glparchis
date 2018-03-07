@@ -15,7 +15,7 @@ from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
 from PyQt5.QtMultimedia import QSoundEffect
 from uuid import uuid4
 
-dateversion=datetime.date(2017, 7, 26)
+dateversion=datetime.date(2018, 3, 7)
 #dateversion=datetime.date(2000, 1, 1)#When developing
 
 

@@ -1386,9 +1386,9 @@ Procedimiento de instalacion para fuentes windows
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La puntuacion que se obtiene al terminar la partida depende de lo lejos que hayan acabado las fichas de los oponentes de la casilla central y de la diferencia entre las fichas comidas por mi y las fichas que me comieron otros jugadores&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <location filename="../ui/wdgGame.ui" line="42"/>
-        <source>Pulsa este botón, haga doble click en el tablero o pulse ENTER, para tirar el dado</source>
+        <source>Pulsa este boton, haga doble click en el tablero o pulse ENTER, para tirar el dado</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

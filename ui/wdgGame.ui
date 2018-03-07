@@ -39,7 +39,7 @@
        <item>
         <widget class="QPushButton" name="cmdTirarDado">
          <property name="toolTip">
-          <string>Pulsa este botón, haga doble click en el tablero o pulse ENTER, para tirar el dado</string>
+          <string>Pulsa este boton, haga doble click en el tablero o pulse ENTER, para tirar el dado</string>
          </property>
          <property name="text">
           <string>Tira el dado</string>
