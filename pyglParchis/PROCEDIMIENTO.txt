@@ -6,7 +6,7 @@ Nueva release
 03) Ejecutar Makefile.py --doc. Ejecutar linguist y volver a ejecutar Makefile.py --doc
 06) Crear con Makefile.py --dist_sources y --dist_linux subirlo a sourceforge files
 05) Subir cambios al subversion del glparchis
-07) Pasar a windows, hacer un update del subversion y ejecutar Makefile.py --dist_windows
+07) Pasar a windows, hacer un update del subversion y ejecutar Makefile.py --dist_windows. Comprobar que funciona y subirlo a subversion
 08) Colocar las versiones preferidas de windows y linux
 09) Crear un nuevo ebuild con la nueva version
 10) Subirlo al subversion del portage

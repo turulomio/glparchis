@@ -1,3 +1,7 @@
+20180308
+--------
+- Linux: Solucionado error al cargar los ficheros de traducción
+
 20180307
 --------
 - Ahora se puede tirar el dado pulsando ENTER

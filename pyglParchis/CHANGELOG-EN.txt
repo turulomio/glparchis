@@ -1,3 +1,7 @@
+20180308
+--------
+- Linux: Fixed bug loading translation files
+
 20180307
 --------
 - Now you can throw the dice pressing ENTER
