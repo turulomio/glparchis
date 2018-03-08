@@ -1,7 +1,7 @@
 from libglparchis import str2bool, cargarQTranslator
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import  QPixmap,  QIcon
-from PyQt5.QtWidgets import   QDialog, QApplication, qApp
+from PyQt5.QtWidgets import   QDialog, QApplication
 
 from Ui_frmSettings import Ui_frmSettings
 
@@ -70,12 +70,6 @@ class SetLanguages:
         if selected!=None:
                 combo.setCurrentIndex(combo.findData(selected))
 
-    def cambiar(self, id):  
-        """language es un string"""
-        self.mem.qtranslator.load("/usr/lib/xulpymoney/xulpymoney_" + id + ".qm")
-        qApp.installTranslator(self.mem.qtranslator);
-        
-        
 class frmSettings(QDialog, Ui_frmSettings):
     def __init__(self, settings, translator, parent = None, name = None, modal = False):
         QDialog.__init__(self, parent)

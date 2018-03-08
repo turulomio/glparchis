@@ -966,7 +966,7 @@
 <context>
     <name>i18n</name>
     <message>
-        <location filename="../project_i18n.py" line="66"/>
+        <location filename="../project_i18n.py" line="71"/>
         <source>
 20160325
 --------
@@ -991,7 +991,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="78"/>
+        <location filename="../project_i18n.py" line="83"/>
         <source>
 20130716
 --------
@@ -1128,7 +1128,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="156"/>
+        <location filename="../project_i18n.py" line="161"/>
         <source>
 Idea y desarrollo
 ----------------- 
@@ -1151,7 +1151,7 @@ French: Nadejda Adam
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="170"/>
+        <location filename="../project_i18n.py" line="175"/>
         <source>
 Requisitos
 ==========
@@ -1252,79 +1252,84 @@ Procedimiento de instalación para fuentes windows
 </translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="60"/>
+        <location filename="../project_i18n.py" line="65"/>
         <source>- Anadido el script project_i18n para traducir la documentacion del proyecto</source>
         <translation>- Añadido el script project_i18n para traducir la documentación del proyecto</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="61"/>
+        <location filename="../project_i18n.py" line="66"/>
         <source>- Ahora el tablero rota por su centro pulsando la letra m</source>
         <translation>- Ahora el tablero rota por su centro pulsando la letra m</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="62"/>
+        <location filename="../project_i18n.py" line="67"/>
         <source>- Rendimiento mejorado</source>
         <translation>- Rendimiento mejorado</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="63"/>
+        <location filename="../project_i18n.py" line="68"/>
         <source>- Corregido error con el icono de fullscreen</source>
         <translation>- Corregido error con el icono de fullscreen</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="55"/>
+        <location filename="../project_i18n.py" line="60"/>
         <source>- La configuracion del splitter del juego se guarda ahora en pantalla normal y en pantalla completa</source>
         <translation>- La configuración del splitter del juego se guarda ahora en pantalla normal y en pantalla completa</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="48"/>
+        <location filename="../project_i18n.py" line="53"/>
         <source>El estado de pantalla completa se guarda en el fichero de configuracion</source>
         <translation>El estado de pantalla completa se guarda en el fichero de configuración</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="49"/>
+        <location filename="../project_i18n.py" line="54"/>
         <source>Anadido sistema de estadistica en la base de datos de Sourceforge</source>
         <translation>Añadido sistema de estadística en la base de datos de Sourceforge</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="50"/>
+        <location filename="../project_i18n.py" line="55"/>
         <source>Anadido opcion de no contribuir a la estadistica mundial</source>
         <translation>Añadida opción de no contribuir a la estadística mundial</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="39"/>
+        <location filename="../project_i18n.py" line="44"/>
         <source>Anadida la opcion de configuracion de retraso entre movimientos</source>
         <translation>Añadida la opción de configuración de retraso entre movimientos</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="40"/>
+        <location filename="../project_i18n.py" line="45"/>
         <source>Anadida la opcion de configuracion de nivel de dificultad</source>
         <translation>Añadida la opción de configuración de nivel de dificultad</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="41"/>
+        <location filename="../project_i18n.py" line="46"/>
         <source>Anadida la opcion de subir y bajar el tablero en el eje z, con las teclas + y -</source>
         <translation>Añadida la opción de subir y bajar el tablero en el eje z con las teclas + y -</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="42"/>
+        <location filename="../project_i18n.py" line="47"/>
         <source>Anadidas estadisticas individuales de juego</source>
         <translation>Añadidas estadísticas individuales de juego</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="43"/>
+        <location filename="../project_i18n.py" line="48"/>
         <source>El distribuible de windows se ha cambiado por un msi. Desinstale el antiguo glparchis antes de instalar el nuevo</source>
         <translation>El distribuible de windows se ha cambiado por un msi. Desinstale el antiguo glparchis antes de instalar el nuevo</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="33"/>
+        <location filename="../project_i18n.py" line="38"/>
         <source>Ahora se puede tirar el dado pulsando ENTER</source>
         <translation>Ahora se puede tirar el dado pulsando ENTER</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="34"/>
+        <location filename="../project_i18n.py" line="39"/>
         <source>Anadida la opcion de acercar y alejar el tablero en el menu</source>
         <translation>Añadida la opción de acercar y alejar el tablero en el menú</translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="33"/>
+        <source>Linux: Solucionado error al cargar los ficheros de traduccion</source>
+        <translation>Linux: Solucionado error al cargar los ficheros de traducción</translation>
     </message>
 </context>
 <context>

@@ -15,7 +15,7 @@ from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
 from PyQt5.QtMultimedia import QSoundEffect
 from uuid import uuid4
 
-dateversion=datetime.date(2018, 3, 7)
+dateversion=datetime.date(2018, 3, 8)
 #dateversion=datetime.date(2000, 1, 1)#When developing
 
 
@@ -2408,7 +2408,7 @@ def dic2list(dic):
 
 def cargarQTranslator(qtranslator, language):  
     """language es un string"""  
-    urls= ["i18n/glparchis_" + language + ".qm","/usr/share/glparchis/glparchis_" + language + ".qm"]
+    urls= ["i18n/glparchis_" + language + ".qm","/usr/lib/glparchis/glparchis_" + language + ".qm"]
     for url in urls:
         if os.path.exists(url)==True:
             print ("Found {} from {}".format(url,  os.getcwd()))

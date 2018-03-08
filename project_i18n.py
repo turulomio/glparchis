@@ -12,7 +12,7 @@ class i18n(QObject):
 
         for l in self.languages:
             #### COPY CARGARQTRANSLATOR ####
-            urls= ["i18n/glparchis_" + l + ".qm","/usr/share/glparchis/glparchis_" + l + ".qm"]
+            urls= ["i18n/glparchis_" + l + ".qm","/usr/lib/glparchis/glparchis_" + l + ".qm"]
             for url in urls:
                 if os.path.exists(url)==True:
                     print ("Found {} from {}".format(url,  os.getcwd()))
@@ -28,6 +28,11 @@ class i18n(QObject):
     def changelog(self, language):
         f=open("CHANGELOG-{}.txt".format(language.upper()), "w")
 
+        f.write("20180308\n")
+        f.write("--------\n")
+        f.write("- {}\n".format(self.tr("Linux: Solucionado error al cargar los ficheros de traduccion")))
+        f.write("\n")
+        
         f.write("20180307\n")
         f.write("--------\n")
         f.write("- {}\n".format(self.tr("Ahora se puede tirar el dado pulsando ENTER")))
