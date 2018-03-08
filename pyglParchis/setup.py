@@ -21,6 +21,13 @@ if sys.platform=='win32':
       #base="Console"
       import PyQt5
       include_files.append((PyQt5.__path__[0] + "/Qt/plugins/audio/qtaudio_windows.dll","audio/qtaudio_windows.dll"))
+      include_files.append((PyQt5.__path__[0] + "/Qt/bin/QtWebEngineProcess.exe","QtWebEngineProcess.exe"))
+      include_files.append((PyQt5.__path__[0] + "/Qt/resources/icudtl.dat","icudtl.dat"))
+      include_files.append((PyQt5.__path__[0] + "/Qt/resources/qtwebengine_resources.pak","qtwebengine_resources.pak"))
+      include_files.append((PyQt5.__path__[0] + "/Qt/resources/qtwebengine_resources_100p.pak","qtwebengine_resources_100p.pak"))
+      include_files.append((PyQt5.__path__[0] + "/Qt/resources/qtwebengine_resources_200p.pak","qtwebengine_resources_200p.pak"))
+      include_files.append((PyQt5.__path__[0] + "/Qt/translations/qtwebengine_locales/es.pak","qtwebengine_locales/es.pak"))
+
       shortcut_table = [
           ("DesktopShortcut",        # Shortcut
            "DesktopFolder",          # Directory_
@@ -58,11 +65,11 @@ if sys.platform=='win32':
            'data': msi_data
             }
       build_exe_options = dict(
-           includes = ['OpenGL','OpenGL.platform.win32','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters','OpenGL.GLU','OpenGL.GLU.glustruct','PyQt5.QtNetwork','PyQt5.QtWebEngineCore','PyQt5.QtWebChannel','PyQt5.QtPrintSupport', 'PyQt5.QtMultimedia'],
+           includes = ['OpenGL','OpenGL.platform.win32','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters','OpenGL.GLU','OpenGL.GLU.glustruct','PyQt5.QtNetwork','PyQt5.QtWebEngineCore','PyQt5.QtWebChannel','PyQt5.QtPrintSupport', 'PyQt5.QtMultimedia','PyQt5.QtWebEngineWidgets'],
            excludes=[],
            zip_include_packages=["*"],
            zip_exclude_packages=[],
-           include_files=include_files
+           include_files=include_files,
            )
 
       options={'bdist_msi': build_msi_options, 'build_exe': build_exe_options}
