@@ -15,8 +15,8 @@ from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
 from PyQt5.QtMultimedia import QSoundEffect
 from uuid import uuid4
 
-dateversion=datetime.date(2018, 3, 8)
-#dateversion=datetime.date(2000, 1, 1)#When developing
+#dateversion=datetime.date(2018, 3, 8)
+dateversion=datetime.date(2000, 1, 1)#When developing
 
 
 def version(platform=None):
@@ -62,92 +62,28 @@ def delay(miliseconds):
     print ("Delay", miliseconds)
 
 
-class Dado(QObject):    
-    throwed=pyqtSignal()
+
+class Dado(QGLWidget):    
+    """
+        Dice opengl object. Just the representation
+    """
     def __init__(self, parent=None ):
         QGLWidget.__init__(self, parent)
-        self.fake=[]
         self.showing=False
         self.position=(65/2, 65/2, 1)
         self.oglname=33
-        self.lasttirada=None
         
-    def tirar(self):
-        random.seed(datetime.datetime.now().microsecond)
-        if len(self.fake)>0:
-            resultado=self.fake[0]
-            self.fake.remove(self.fake[0])
-        else:
-            resultado= int(random.random()*6)+1
-        self.lasttirada=resultado
-        return resultado
         
-    def dibujar(self, ogl, alone=False):
-        """Cuando se dibuja alone, no tiene en cuenta los jugadores es para showobject"""
+    def draw(self, ogl):
         if self.showing==False:
             return
-        glInitNames();
-        glPushName(self.oglname);
-        glPushMatrix();
-        if alone==False:
-            if ogl.mem.maxplayers==4:
-                if ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("yellow"):
-                    self.position=(10, 51, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("blue"):
-                    self.position=(9, 10, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("red"):
-                    self.position=(50, 10, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("green"):
-                    self.position=(50, 51, 1)
-            elif ogl.mem.maxplayers==6:
-                if ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("yellow"):
-                    self.position=(30, 31, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("blue"):
-                    self.position=(23, 27, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("red"):
-                    self.position=(23, 18, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("green"):
-                    self.position=(30, 14, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("dimgray"):
-                    self.position=(37, 18, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("fuchsia"):
-                    self.position=(37, 27, 1)
-            else:
-                if ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("yellow"):
-                    self.position=(30, 30, .9)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("blue"):
-                    self.position=(19, 27, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("red"):
-                    self.position=(15, 15, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("green"):
-                    self.position=(19, 3, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("dimgray"):
-                    self.position=(30, 0, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("fuchsia"):
-                    self.position=(40, 3, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("darkorange"):
-                    self.position=(44, 15, 1)
-                elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("darkturquoise"):
-                    self.position=(40, 27, 1)
-            
-            glTranslatef(self.position[0],self.position[1],self.position[2]);
-        if self.lasttirada==1:
-            glTranslated(0, 0, 3)
-            glRotated(-90.0,1.0,0.0,0.0);
-        if (self.lasttirada==3):
-            glTranslated(3, 0, 3)
-            glRotated(180.0,0.0,1.0,0.0);
-        if (self.lasttirada==4):
-            glTranslated(0, 3, 0)
-            glRotated(90.0,1.0,0.0,0.0);
-       
-        if (self.lasttirada==5):
-            glTranslated(3, 3, 0)
-            glRotated(90.0,1.0,0.0,0.0);
-            glRotated(90.0,0.0,0.0,1.0);
-        if (self.lasttirada==6):
-            glTranslated(0, 0, 3)
-            glRotated(90.0,0.0,1.0,0.0);
+        glPushMatrix()
+        self.opengl(ogl)
+        glPopMatrix();
+        
+    def opengl(self, ogl):
+        glInitNames()
+        glPushName(self.oglname)
         glScaled(3,3,3);
         glColor3d(255, 255, 255);
 
@@ -210,10 +146,100 @@ class Dado(QObject):
         glTexCoord2f(1.0, doster);glVertex3fv(v22)
         glTexCoord2f(0.75, doster);glVertex3fv(v23)
         glEnd();
-        glPopName();
-        glPopMatrix();
 
-        glDisable(GL_TEXTURE_2D);
+        glPopName();
+        glDisable(GL_TEXTURE_2D)
+
+class DadoInGame(Dado):
+    """
+        QGLWidget used during game
+    """
+    throwed=pyqtSignal()
+    def __init__(self, parent=None ):
+        Dado.__init__(self, parent)
+        self.fake=[]
+        self.lasttirada=None
+        
+    def tirar(self):
+        random.seed(datetime.datetime.now().microsecond)
+        if len(self.fake)>0:
+            resultado=self.fake[0]
+            self.fake.remove(self.fake[0])
+        else:
+            resultado= int(random.random()*6)+1
+        self.lasttirada=resultado
+        return resultado
+        
+    def dibujar(self, ogl):
+        """
+            Sets position of the dice during game and showing the number
+        """
+        if self.showing==False:
+            return
+        glPushMatrix();
+        
+        if ogl.mem.maxplayers==4:
+            if ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("yellow"):
+                self.position=(10, 51, 1)
+            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("blue"):
+                self.position=(9, 10, 1)
+            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("red"):
+                self.position=(50, 10, 1)
+            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("green"):
+                self.position=(50, 51, 1)
+        elif ogl.mem.maxplayers==6:
+            if ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("yellow"):
+                self.position=(30, 31, 1)
+            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("blue"):
+                self.position=(23, 27, 1)
+            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("red"):
+                self.position=(23, 18, 1)
+            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("green"):
+                self.position=(30, 14, 1)
+            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("dimgray"):
+                self.position=(37, 18, 1)
+            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("fuchsia"):
+                self.position=(37, 27, 1)
+        else:
+            if ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("yellow"):
+                self.position=(30, 30, .9)
+            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("blue"):
+                self.position=(19, 27, 1)
+            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("red"):
+                self.position=(15, 15, 1)
+            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("green"):
+                self.position=(19, 3, 1)
+            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("dimgray"):
+                self.position=(30, 0, 1)
+            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("fuchsia"):
+                self.position=(40, 3, 1)
+            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("darkorange"):
+                self.position=(44, 15, 1)
+            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("darkturquoise"):
+                self.position=(40, 27, 1)
+        
+        glTranslatef(self.position[0],self.position[1],self.position[2]);
+
+        if self.lasttirada==1:
+            glTranslated(0, 0, 3)
+            glRotated(-90.0,1.0,0.0,0.0);
+        if (self.lasttirada==3):
+            glTranslated(3, 0, 3)
+            glRotated(180.0,0.0,1.0,0.0);
+        if (self.lasttirada==4):
+            glTranslated(0, 3, 0)
+            glRotated(90.0,1.0,0.0,0.0);
+       
+        if (self.lasttirada==5):
+            glTranslated(3, 3, 0)
+            glRotated(90.0,1.0,0.0,0.0);
+            glRotated(90.0,0.0,0.0,1.0);
+        if (self.lasttirada==6):
+            glTranslated(0, 0, 3)
+            glRotated(90.0,0.0,1.0,0.0);
+            
+        self.opengl(ogl)
+        glPopMatrix()
         
     def qicon(self, numero):
             ico = QIcon()
@@ -237,6 +263,7 @@ class Dado(QObject):
         elif numero==None:              
             pix=QPixmap(":/glparchis/cube.png")
         return pix
+
                     
 class Amenaza:
     """Clase que controla las amenazas que se ciernen sobre una ficha"""
@@ -1530,16 +1557,17 @@ class Tablero(QObject):
 
     def dibujar(self, ogl): 
         def tipo4():
-            glPushMatrix()
-            glEnable(GL_TEXTURE_2D);
-            glTranslated(self.position.x,  self.position.y,  self.position.z)
-            verts=[Coord3D(0, 0, 0), Coord3D(0, 65, 0), Coord3D(65, 65, 0), Coord3D(65, 0, 0)]
-            texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
-            p=Polygon().init__create(verts, self.colorbrown, ogl.texDecor[1], texverts)
-            prism=Prism(p, 0.5)
-            prism.opengl(ogl)
-            glPopMatrix()
-            glDisable(GL_TEXTURE_2D)
+            pass
+#            glPushMatrix()
+#            glEnable(GL_TEXTURE_2D);
+#            glTranslated(self.position.x,  self.position.y,  self.position.z)
+#            verts=[Coord3D(0, 0, 0), Coord3D(0, 65, 0), Coord3D(65, 65, 0), Coord3D(65, 0, 0)]
+#            texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
+#            p=Polygon().init__create(verts, self.colorbrown, ogl.texDecor[1], texverts)
+#            prism=Prism(p, 0.5)
+#            prism.opengl(ogl)
+#            glPopMatrix()
+#            glDisable(GL_TEXTURE_2D)
             
         def tipo6():
             glPushMatrix()
@@ -1785,13 +1813,6 @@ class Prism:
             pverts.append(self.bottom.verts[(i+1) % len(self.bottom.verts)].clone())
             pverts.append(self.bottom.verts[i].clone())
             self.contour.append(Polygon().init__create(pverts, Color(200, 200, 200), self.bottom.texture, texverts))
-            
-#            quad(hexsup[0], hexsup[1], hexinf[1], hexinf[0], Color(200, 200, 200))
-#            quad(hexsup[1], hexsup[2], hexinf[2], hexinf[1], Color(200, 200, 200))
-#            quad(hexsup[2], hexsup[3], hexinf[3], hexinf[2], Color(200, 200, 200))
-#            quad(hexsup[3], hexsup[4], hexinf[4], hexinf[3], Color(200, 200, 200))
-#            quad(hexsup[4], hexsup[5], hexinf[5], hexinf[4], Color(200, 200, 200))
-#            quad(hexsup[5], hexsup[0], hexinf[0], hexinf[5], Color(200, 200, 200))     
         
     def opengl(self, ogl):
         self.up.opengl(ogl)
@@ -2193,7 +2214,7 @@ class Mem:
         self.colores=SetColores()
         self.jugadores=SetJugadores(self)
         self.dic_rutas={}
-        self.dado=Dado()
+        self.dado=DadoInGame()
         self.selFicha=None
         self.inittime=None#Tiempo inicio partida
         self.settings=None

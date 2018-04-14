@@ -24,10 +24,8 @@ class frmAbout(QDialog, Ui_frmAbout):
             self.tr("a los siguientes idiomas<p>")+
             "<ul><li>English</li><li>Fran\xe7ais</li><li>Espa\xf1ol</li><li>Rom\xe2n</li><li>\u0420\u0443\u0441\u0441\u043a\u0438\u0439</li></ul><p>"+
             self.tr("Los avatares han sido extraidos de la pagina <a href=\"http://www.nobleavatar.com/\">http://www.nobleavatar.com/</a><p>"))
-#        self.connect(self.cmd, SIGNAL("clicked()"), self.on_cmd_clicked)
         self.cmd.clicked.connect(self.on_cmd_clicked)
-        
-#    @pyqtSignature("")
+
     def on_cmd_clicked(self):
         """
         Slot documentation goes here.
