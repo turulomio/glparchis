@@ -100,7 +100,7 @@ class wdgShowObject(QGLWidget):
             self.tablero8.dibujar(self)
         elif self.objeto==3:
             glScaled(1.5, 1.5,1.5)
-            self.dado.dibujar(self, True)
+            self.dado.draw(self)
         elif self.objeto==4:
             self.cas.dibujar(self)
         elif self.objeto==5:
