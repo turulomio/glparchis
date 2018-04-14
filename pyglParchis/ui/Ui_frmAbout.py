@@ -297,7 +297,7 @@ class Ui_frmAbout(object):
         self.vboxlayout.addLayout(self.vboxlayout1)
 
         self.retranslateUi(frmAbout)
-        self.tab.setCurrentIndex(0)
+        self.tab.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(frmAbout)
 
     def retranslateUi(self, frmAbout):
@@ -344,6 +344,5 @@ class Ui_frmAbout(object):
         self.tab.setTabText(self.tab.indexOf(self.tabObjetos), _translate("frmAbout", "Objetos"))
         self.cmd.setText(_translate("frmAbout", "S&alir"))
 
-from wdgQT import wdgQT
-from wdgShowObject import wdgShowObject
+from myQGLWidget import wdgQT, wdgShowObject
 import glparchis_rc
