@@ -7,7 +7,7 @@ SOURCES         = libglparchis.py \
                   ui/Ui_frmMain.py \
                   ui/Ui_wdgGame.py \
                   ui/wdgGame.py \
-                  ui/wdgOGL.py \
+                  ui/myQGLWidget.py \
                   ui/wdgQT.py \
                   ui/frmHelp.py \
                   ui/Ui_frmHelp.py \
@@ -21,7 +21,6 @@ SOURCES         = libglparchis.py \
                   ui/Ui_frmShowCasilla.py \
                   ui/frmShowFicha.py \
                   ui/Ui_frmShowFicha.py \
-                  ui/wdgShowObject.py \
                   ui/wdgUserPanel.py \
                   ui/Ui_wdgUserPanel.py \
                   ui/qtablestatistics.py
