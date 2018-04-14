@@ -63,12 +63,11 @@ def delay(miliseconds):
 
 
 
-class Dado(QGLWidget):    
+class Dado:    
     """
         Dice opengl object. Just the representation
     """
-    def __init__(self, parent=None ):
-        QGLWidget.__init__(self, parent)
+    def __init__(self):
         self.showing=False
         self.position=(65/2, 65/2, 1)
         self.oglname=33
@@ -150,13 +149,14 @@ class Dado(QGLWidget):
         glPopName();
         glDisable(GL_TEXTURE_2D)
 
-class DadoInGame(Dado):
+class DadoInGame(Dado, QObject):
     """
         QGLWidget used during game
     """
     throwed=pyqtSignal()
-    def __init__(self, parent=None ):
-        Dado.__init__(self, parent)
+    def __init__(self ):
+        Dado.__init__(self)
+        QObject.__init__(self)
         self.fake=[]
         self.lasttirada=None
         
@@ -1557,17 +1557,16 @@ class Tablero(QObject):
 
     def dibujar(self, ogl): 
         def tipo4():
-            pass
-#            glPushMatrix()
-#            glEnable(GL_TEXTURE_2D);
-#            glTranslated(self.position.x,  self.position.y,  self.position.z)
-#            verts=[Coord3D(0, 0, 0), Coord3D(0, 65, 0), Coord3D(65, 65, 0), Coord3D(65, 0, 0)]
-#            texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
-#            p=Polygon().init__create(verts, self.colorbrown, ogl.texDecor[1], texverts)
-#            prism=Prism(p, 0.5)
-#            prism.opengl(ogl)
-#            glPopMatrix()
-#            glDisable(GL_TEXTURE_2D)
+            glPushMatrix()
+            glEnable(GL_TEXTURE_2D);
+            glTranslated(self.position.x,  self.position.y,  self.position.z)
+            verts=[Coord3D(0, 0, 0), Coord3D(0, 65, 0), Coord3D(65, 65, 0), Coord3D(65, 0, 0)]
+            texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
+            p=Polygon().init__create(verts, self.colorbrown, ogl.texDecor[1], texverts)
+            prism=Prism(p, 0.5)
+            prism.opengl(ogl)
+            glDisable(GL_TEXTURE_2D)
+            glPopMatrix()
             
         def tipo6():
             glPushMatrix()
@@ -1576,8 +1575,8 @@ class Tablero(QObject):
             p=Polygon().init__regular(6, 47, self.colorbrown, ogl.texDecor[1])
             prism=Prism(p, 0.5)
             prism.opengl(ogl)
-            glPopMatrix()
-            glDisable(GL_TEXTURE_2D)            
+            glDisable(GL_TEXTURE_2D)    
+            glPopMatrix()        
         def tipo8():
             glPushMatrix()
             glEnable(GL_TEXTURE_2D);
@@ -1586,8 +1585,8 @@ class Tablero(QObject):
             p=Polygon().init__regular(8, 52.5, self.colorbrown, ogl.texDecor[1])
             prism=Prism(p, 0.5)
             prism.opengl(ogl)
-            glPopMatrix()
-            glDisable(GL_TEXTURE_2D)            
+            glDisable(GL_TEXTURE_2D)     
+            glPopMatrix()       
         ###########################################
         if self.maxplayers==4:
             tipo4()
