@@ -8,7 +8,6 @@ SOURCES         = libglparchis.py \
                   ui/Ui_wdgGame.py \
                   ui/wdgGame.py \
                   ui/myQGLWidget.py \
-                  ui/wdgQT.py \
                   ui/frmHelp.py \
                   ui/Ui_frmHelp.py \
                   ui/frmAbout.py \
