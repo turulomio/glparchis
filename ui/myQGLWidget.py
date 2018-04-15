@@ -551,9 +551,9 @@ class wdgShowObject(QGLWidget, ObjectRotationManager):
         self.paintGL()
         self.updateGL()
 
-    def paintGL(self):
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+    def paintGL(self):  
         glLoadIdentity()
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT| GL_STENCIL_BUFFER_BIT)
         glTranslated(0.0, 0.0, self.z)
         glRotated(self.xRot / 16.0, 1.0, 0.0, 0.0)
         glRotated(self.yRot / 16.0, 0.0, 1.0, 0.0)

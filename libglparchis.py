@@ -1565,7 +1565,7 @@ class Tablero(QObject):
             p=Polygon().init__create(verts, self.colorbrown, ogl.texDecor[1], texverts)
             prism=Prism(p, 0.5)
             prism.opengl(ogl)
-            glDisable(GL_TEXTURE_2D)
+            glDisable(GL_TEXTURE_2D)    
             glPopMatrix()
             
         def tipo6():
@@ -1580,7 +1580,6 @@ class Tablero(QObject):
         def tipo8():
             glPushMatrix()
             glEnable(GL_TEXTURE_2D);
-            glBindTexture(GL_TEXTURE_2D, ogl.texDecor[1])
             glTranslated(self.position.x,  self.position.y,  self.position.z)
             p=Polygon().init__regular(8, 52.5, self.colorbrown, ogl.texDecor[1])
             prism=Prism(p, 0.5)
@@ -1776,6 +1775,10 @@ class Polygon:
         return r
         
     def opengl(self, ogl):
+        """
+            glEnable(GL_TEXTURE_2D) must be declared and closed outside
+        """
+        
         if self.texture:
             glBindTexture(GL_TEXTURE_2D, self.texture)   
         glBegin(GL_POLYGON)
@@ -2054,7 +2057,8 @@ class Casilla(QObject):
             prism.opengl_border(ogl, 1)    
             glPopName();
             glPopMatrix()
-            glDisable(GL_TEXTURE_2D)
+            if self.seguro==True and self.rampallegada==False:
+                glDisable(GL_TEXTURE_2D)
             panelnumerico()
     
         def tipo_oblicuoi(lado):
