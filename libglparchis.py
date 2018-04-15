@@ -14,7 +14,7 @@ from PyQt5.QtOpenGL import QGLWidget
 from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
 from PyQt5.QtMultimedia import QSoundEffect
 from uuid import uuid4
-from libopenglobjects import opengl_dice, TTextures
+from libopenglobjects import opengl_dice, TTextures,  opengl_piece
 
 #dateversion=datetime.date(2018, 3, 8)
 dateversion=datetime.date(2000, 1, 1)#When developing
@@ -1218,7 +1218,6 @@ class Ficha(QObject):
         self.number=number#indice dentro de las fichas de mismo color.
         self.ruta=ruta
         self.posruta=0#pOSICION EN LA RUTA
-        self.ficha=gluNewQuadric();
         self.jugador=jugador
         self.oglname=self.id#Nombre usado para pick por opengl
 
@@ -1449,25 +1448,11 @@ class Ficha(QObject):
             p=(0, 0, 0)
         else:
             p=self.ruta.arr[self.posruta].posfichas[posicionBuzon]
-        white=Color(255, 255, 255)
         glTranslated(p[0], p[1], p[2])
-        glRotated(180, 1, 0, 0)# da la vuelta a la cara
-        glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, qglwidget.texture(TTextures.Wood))
-        gluQuadricDrawStyle (self.ficha, GLU_FILL);
-        gluQuadricNormals (self.ficha, GLU_SMOOTH);
-        gluQuadricTexture (self.ficha, True);
-        qglwidget.qglColor(white.qcolor())
-        gluCylinder (self.ficha, 1.4, 1.4, 0.2, 16, 5)
-        glTranslated(0, 0, 0.2)
-        qglwidget.qglColor(self.color.dark().qcolor())
-        gluDisk(self.ficha, 0, 1.4, 16, 5)
-        glTranslated(0, 0, -0.2)
-        glRotated(180, 1, 0, 0)# da la vuelta a la cara
-        gluDisk(self.ficha, 0, 1.40, 16, 5)
-        glPopName();
+        
+        opengl_piece(qglwidget, self.color.qcolor())
+        glPopName()
         glPopMatrix()
-        glDisable(GL_TEXTURE_2D);
 
 
 class Tablero(QObject):

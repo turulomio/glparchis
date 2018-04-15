@@ -8,6 +8,7 @@
 
 from OpenGL.GL import glBegin, glBindTexture, glColor3d, glDisable, glEnable, glEnd, glInitNames, glPopMatrix, glPopName, glPushName, glPushMatrix, glRotated, glScaled, glTexCoord2f, glTranslated, glTranslatef, glVertex3d, glVertex3fv, GL_TEXTURE_2D, GL_QUADS, GL_POLYGON, GL_LINE_LOOP
 from OpenGL.GLU import gluCylinder, gluDisk, gluNewQuadric, gluQuadricDrawStyle, gluQuadricNormals, gluQuadricTexture, GLU_FILL, GLU_SMOOTH
+from PyQt5.QtGui import QColor
 
 class TNames:
     Dice=33
@@ -110,5 +111,22 @@ def opengl_dice(qglwidget):
     glPopMatrix();
     
     
-def opengl_piece(qglwidget):
-    pass
+def opengl_piece(qglwidget, qcolor):
+    glPushMatrix()
+    ficha=gluNewQuadric();
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, qglwidget.texture(TTextures.Wood))
+    gluQuadricDrawStyle (ficha, GLU_FILL);
+    gluQuadricNormals (ficha, GLU_SMOOTH);
+    gluQuadricTexture (ficha, True);
+    qglwidget.qglColor(QColor(255, 255, 255))
+    gluCylinder (ficha, 1.4, 1.4, 0.2, 16, 5)
+    glTranslated(0, 0, 0.2)
+    qglwidget.qglColor(qcolor)
+    gluDisk(ficha, 0, 1.4, 16, 5)
+    glTranslated(0, 0, -0.2)
+    glRotated(180, 1, 0, 0)# da la vuelta a la cara
+    qglwidget.qglColor(QColor(127, 127, 127))
+    gluDisk(ficha, 0, 1.40, 16, 5)
+    glPopMatrix()
+    glDisable(GL_TEXTURE_2D);
