@@ -40,9 +40,7 @@ class TTextures:
 def opengl_dice(qglwidget):
     glInitNames()
     glPushMatrix()
-    print("DADO")
     glPushName(TNames.Dice)
-    print("DADO")
     glScaled(3,3,3);
     glColor3d(255, 255, 255);
 
