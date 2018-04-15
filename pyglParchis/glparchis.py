@@ -21,6 +21,7 @@ try:
 except:
     pass
 
+
 sys.setrecursionlimit(100000)
 app = QApplication(sys.argv)
 app.setOrganizationName("glParchis")

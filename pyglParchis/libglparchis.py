@@ -1479,7 +1479,7 @@ class Tablero(QObject):
             glTranslated(self.position.x,  self.position.y,  self.position.z)
             verts=[Coord3D(0, 0, 0), Coord3D(0, 65, 0), Coord3D(65, 65, 0), Coord3D(65, 0, 0)]
             texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
-            p=Polygon().init__create(verts, self.colorbrown, qglwidget.texDecor[1], texverts)
+            p=Polygon().init__create(verts, self.colorbrown, TTextures.Wood, texverts)
             prism=Prism(p, 0.5)
             prism.opengl(qglwidget)
             glDisable(GL_TEXTURE_2D)    
@@ -1489,16 +1489,17 @@ class Tablero(QObject):
             glPushMatrix()
             glEnable(GL_TEXTURE_2D);
             glTranslated(self.position.x,  self.position.y,  self.position.z)
-            p=Polygon().init__regular(6, 47, self.colorbrown, qglwidget.texDecor[1])
+            p=Polygon().init__regular(6, 47, self.colorbrown, TTextures.Wood)
             prism=Prism(p, 0.5)
             prism.opengl(qglwidget)
             glDisable(GL_TEXTURE_2D)    
             glPopMatrix()        
+
         def tipo8():
             glPushMatrix()
             glEnable(GL_TEXTURE_2D);
             glTranslated(self.position.x,  self.position.y,  self.position.z)
-            p=Polygon().init__regular(8, 52.5, self.colorbrown, qglwidget.texDecor[1])
+            p=Polygon().init__regular(8, 52.5, self.colorbrown, TTextures.Wood)
             prism=Prism(p, 0.5)
             prism.opengl(qglwidget)
             glDisable(GL_TEXTURE_2D)     
@@ -1641,7 +1642,7 @@ class Polygon:
         """
             verts. Array de Coord3D
             color: Color del poligono is a Color object
-            texture: Textura del pol´igno
+            texture: Textura del pol´igno que es un TTextures value. Si no tiene debe valer None
             texCoord: Array de Coord2D de la textura
         """
         self.verts=None
@@ -1652,8 +1653,8 @@ class Polygon:
     def init__create(self, verts, color,  texture, texverts):
         """
             verts. Array de Coord3D
-            color: Color del poligono
-            texture: Textura del pol´igno
+            color: Color del poligono is a Color object
+            texture: Textura del pol´igno que es un TTextures value.
             texCoord: Array de Coord2D de la textura
         """
         self.verts=verts
@@ -1663,18 +1664,22 @@ class Polygon:
         return self
     
     def init__regular(self, lados, radius, color, texture):
-            """position es el centro del hex´agono en su base inferior
+        """
+            position es el centro del hex´agono en su base inferior
             reversed used to see from up in opengl
-            Returns hexagon vertices"""
-            texverts=[]
-            verts=[]
-            for i in range(lados):#Reversed to see from up in opengl.
-                posx=math.sin(i/lados*2*math.pi+math.pi/lados)
-                posy=math.cos(i/lados*2*math.pi+math.pi/lados)
-                if texture:
-                    texverts.append(Coord2D(posx, posy))
-                verts.append(Coord3D(posx*radius, posy*radius, 0))
-            return self.init__create(verts, color, texture, texverts)
+            Returns hexagon vertices
+            texture: Textura del pol´igno que es un TTextures value.
+            color: Color del poligono is a Color object
+        """
+        texverts=[]
+        verts=[]
+        for i in range(lados):#Reversed to see from up in opengl.
+            posx=math.sin(i/lados*2*math.pi+math.pi/lados)
+            posy=math.cos(i/lados*2*math.pi+math.pi/lados)
+            if texture:
+                texverts.append(Coord2D(posx, posy))
+            verts.append(Coord3D(posx*radius, posy*radius, 0))
+        return self.init__create(verts, color, texture, texverts)
 
     def clone(self):
         p=Polygon()
@@ -1699,16 +1704,20 @@ class Polygon:
         """
             glEnable(GL_TEXTURE_2D) must be declared and closed outside
         """
-        
+        glPushMatrix()
         if self.texture:
-            glBindTexture(GL_TEXTURE_2D, self.texture)   
-        glBegin(GL_POLYGON)
+            glEnable(GL_TEXTURE_2D);
+            glBindTexture(GL_TEXTURE_2D, qglwidget.texture(self.texture))   
         qglwidget.qglColor(self.color.qcolor())
+        glBegin(GL_POLYGON)
         for i, v in enumerate(self.verts):
             if self.texture:
                 glTexCoord2f(self.texverts[i].x, self.texverts[i].y)
             glVertex3d(v.x, v.y, v.z)
         glEnd()
+        if self.texture:
+            glDisable(GL_TEXTURE_2D);
+        glPopMatrix()
         
     def translate_z(self, n):
         for v in self.verts:
@@ -1755,7 +1764,9 @@ class Prism:
             self.contour.append(Polygon().init__create(pverts, Color(200, 200, 200), self.bottom.texture, texverts))
         
     def opengl(self, qglwidget):
+        print("C")
         self.up.opengl(qglwidget)
+        print("B")
         self.bottom.opengl(qglwidget)
         for f in self.contour:
             f.opengl(qglwidget)
@@ -1970,7 +1981,7 @@ class Casilla(QObject):
             texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
             if self.seguro==True and self.rampallegada==False:
                 glEnable(GL_TEXTURE_2D);
-                p=Polygon().init__create(verts, self.color, qglwidget.texDecor[2], texverts)
+                p=Polygon().init__create(verts, self.color, TTextures.Sure, texverts)
             else:
                 p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)

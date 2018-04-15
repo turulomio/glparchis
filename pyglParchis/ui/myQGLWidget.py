@@ -524,9 +524,7 @@ class wdgShowObject(myQGLWidget, ObjectRotationManager):
         self.tablero6.position=Coord3D(0, 0, 0)
         self.tablero8=Tablero(8)
         self.tablero8.position=Coord3D(0, 0, 0)
-        print("DADO")
         self.dado=Dado()
-        print("DADO")
         self.dado.showing=True
         self.lasttirada=5
         self.z=-10
@@ -571,7 +569,9 @@ class wdgShowObject(myQGLWidget, ObjectRotationManager):
         glRotated(self.zRot / 16.0, 0.0, 0.0, 1.0)
         if self.objeto==0:
             glScaled(0.1, 0.1,0.1)
+            print("Aqui")
             self.tablero.draw(self)
+            print("Aqui")
         elif self.objeto==1:
             glScaled(0.1, 0.1,0.1)
             self.tablero6.draw(self)
