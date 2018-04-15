@@ -1712,25 +1712,30 @@ class Coord2D:
 
 
 class Polygon:
-    """Un quad es un polygon de cuatro vertices.
-    Cumplen la regla del sacacorchos para la orientaci´on
-    
-    Cuando se vaya a hacer un prisma el poligono que se pone como par´ametro es de abajo, y va en sentido de las agujas del reloj"""
-    def init(self):
-        """verts. Array de Coords3D
-        color: Color del poligono
-        texture: Textura del pol´igno
-        texcoords: Array de coords2D de la textura"""
+    """
+        Un quad es un polygon de cuatro vertices.
+        Cumplen la regla del sacacorchos para la orientaci´on
+        Cuando se vaya a hacer un prisma el poligono que se pone como par´ametro es de abajo, y va en sentido de las agujas del reloj
+    """
+    def __init__(self):
+        """
+            verts. Array de Coords3D
+            color: Color del poligono is a Color object
+            texture: Textura del pol´igno
+            texcoords: Array de coords2D de la textura
+        """
         self.verts=None
         self.color=None
         self.texture=None
         self.texverts=None
         
     def init__create(self, verts, color,  texture, texverts):
-        """verts. Array de Coords3D
-        color: Color del poligono
-        texture: Textura del pol´igno
-        texcoords: Array de coords2D de la textura"""
+        """
+            verts. Array de Coords3D
+            color: Color del poligono
+            texture: Textura del pol´igno
+            texcoords: Array de coords2D de la textura
+        """
         self.verts=verts
         self.color=color
         self.texture=texture
@@ -1762,7 +1767,13 @@ class Polygon:
         return p.init__create(verts, Color(self.color.r, self.color.g, self.color.b, self.color.name), self.texture, texverts)
         
     def reverse(self):
-        self.verts.reverse()
+        """
+            Returns an array with reversed item, buy it doesn't change self.verts order
+        """
+        r=[]
+        for vert in reversed(self.verts):
+            r.append(vert)
+        return r
         
     def opengl(self, ogl):
         if self.texture:
@@ -1779,31 +1790,37 @@ class Polygon:
         for v in self.verts:
             v.z=v.z+n
             
-    def opengl_border(self, ogl):
-        """Draws a polygon border"""
+    def opengl_border(self, ogl, z=0.001):
+        """
+            Draws a polygon border
+            with the z position desplaced as z parameter sets
+        """
         glBegin(GL_LINE_LOOP)
         glColor3d(0, 0, 0)
         for i, v in enumerate(self.verts):
-            glVertex3d(v.x, v.y, v.z+0.001)
+            glVertex3d(v.x, v.y, v.z+z)
         glEnd()
 
 class Prism:
     """Prisma"""
     def __init__(self,  poligon, height):
-        """Genera un prisma a  partir del poligono
-        Face 1: origen 
-        Face 2: otra cara
-        Face n, donde n numero vertices."""
+        """
+            Genera un prisma a  partir del poligono
+        """
         self.height=height
-        self.bottom=poligon
-        self.up=poligon.clone()
-        self.up.translate_z(height)
-        self.up.reverse()
         
-        self.contour=[]
+        self.bottom=poligon
+        
+        self.up=self.bottom.clone()
+        self.up.translate_z(height)
+        self.up.verts=self.up.reverse()
+        
+        self.bottom.color=Color(127, 127, 127, "Bottom")#Must be after cloning to mantein original color
+        
+        self.contour=[] #Poligon array to set contour
         #HAy que re - reverse
         rere=self.up.clone()
-        rere.reverse()
+        rere.verts=rere.reverse()
         for i, v in enumerate(self.up.verts):
             pverts=[]
             texverts=[Coord2D(0, 0),Coord2D(1, 0), Coord2D(1, 1), Coord2D(0, 1) ]
@@ -1820,18 +1837,23 @@ class Prism:
             f.opengl(ogl)
             
     def opengl_border(self, ogl, face=None):
+        """
+            Face is an Integer 
+            Face 0: up
+            Face 1: down
+            Face n, donde n numero vertices.
+        """
         if face==None:
             self.up.opengl_border(ogl)
             self.bottom.opengl_border(ogl)
             for f in self.contour:
                 f.opengl_border(ogl)
         else:
+            zpos=0.201
             if face==0:
-                self.up.opengl_border(ogl)
+                self.up.opengl_border(ogl, zpos)
             elif face==1:
-                self.up.opengl_border(ogl)
-            if face>=2:
-                self.contour.opengl_border(face-2)
+                self.bottom.opengl_border(ogl, zpos)
             
 
             
@@ -2010,7 +2032,7 @@ class Casilla(QObject):
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
             prism.opengl(ogl)
-            prism.opengl_border(ogl, 1)    
+            prism.opengl_border(ogl, 0)# 0 It's prism upper face
             glPopName();
             glPopMatrix()            
     
