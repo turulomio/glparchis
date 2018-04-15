@@ -1,5 +1,5 @@
 import sys
-from OpenGL.GL import glBegin, glBindTexture, glColor3d, glDisable, glEnable, glEnd, glInitNames, glPopMatrix, glPopName, glPushName, glPushMatrix, glRotated, glScaled, glTexCoord2f, glTranslated, glTranslatef, glVertex3d, glVertex3fv, GL_TEXTURE_2D, GL_QUADS, GL_POLYGON, GL_LINE_LOOP
+from OpenGL.GL import glBegin, glBindTexture, glColor3d, glDisable, glEnable, glEnd, glInitNames, glPopMatrix, glPopName, glPushName, glPushMatrix, glRotated, glScaled, glTexCoord2f, glTranslated, glTranslatef, glVertex3d, GL_TEXTURE_2D, GL_QUADS, GL_POLYGON, GL_LINE_LOOP
 from OpenGL.GLU import gluCylinder, gluDisk, gluNewQuadric, gluQuadricDrawStyle, gluQuadricNormals, gluQuadricTexture, GLU_FILL, GLU_SMOOTH
 from poscasillas8 import poscasillas8
 from posfichas8 import posfichas8
@@ -14,6 +14,7 @@ from PyQt5.QtOpenGL import QGLWidget
 from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
 from PyQt5.QtMultimedia import QSoundEffect
 from uuid import uuid4
+from libopenglobjects import opengl_dice, TTextures
 
 #dateversion=datetime.date(2018, 3, 8)
 dateversion=datetime.date(2000, 1, 1)#When developing
@@ -62,103 +63,33 @@ def delay(miliseconds):
     print ("Delay", miliseconds)
 
 
-
-class Dado:    
-    """
-        Dice opengl object. Just the representation
-    """
-    def __init__(self):
-        self.showing=False
-        self.position=(65/2, 65/2, 1)
-        self.oglname=33
+#
+#class Dado:    
+#    """
+#        Dice opengl object. Just the representation
+#    """
+#    def __init__(self):
+#        self.showing=False
+#        self.position=(65/2, 65/2, 1)
+#        
+#        
+#    def draw(self, qglwidget):
+#        if self.showing==False:
+#            return
+#        opengl_dice()
         
-        
-    def draw(self, ogl):
-        if self.showing==False:
-            return
-        glPushMatrix()
-        self.opengl(ogl)
-        glPopMatrix();
-        
-    def opengl(self, ogl):
-        glInitNames()
-        glPushName(self.oglname)
-        glScaled(3,3,3);
-        glColor3d(255, 255, 255);
 
-        glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, ogl.texDecor[3]);
-        unter=1.0/3.0;
-        doster=2.0/3.0;
-        glBegin(GL_QUADS);
-        v0=  (0.0, 0.0, 0.0) 
-        v1=( 1.0, 0.0, 0.0) 
-        v2=( 1.0, 0.0, 1.0) 
-        v3=  (0.0, 0.0, 1.0) 
-
-        v4=(0.0, 0.0, 1.0)
-        v5=( 1.0, 0.0, 1.0)
-        v6=( 1.0, 1.0, 1.0)
-        v7=(0.0, 1.0, 1.0)
-
-        v8=(0.0, 0.0, 0.0)
-        v9=(0.0, 1.0, 0.0)
-        v10=( 1.0, 1.0, 0.0)
-        v11=( 1.0, 0.0, 0.0) 
-
-        v12=(0.0, 1.0, 0.0) 
-        v13=(0.0, 1.0, 1.0) 
-        v14=( 1.0, 1.0, 1.0) 
-        v15=( 1.0, 1.0, 0.0) 
-
-        v16=( 1.0, 0.0, 0.0) 
-        v17=( 1.0, 1.0, 0.0) 
-        v18=( 1.0, 1.0, 1.0) 
-        v19=( 1.0, 0.0, 1.0) 
-
-        v20=(0.0, 0.0, 1.0) 
-        v21=(0.0, 1.0, 1.0) 
-        v22=(0.0, 1.0, 0.0)
-        v23=(0.0, 0.0, 0.0)
-        glTexCoord2f(0.0, unter);glVertex3fv(v0)
-        glTexCoord2f(0.25, unter);glVertex3fv(v1)
-        glTexCoord2f(0.25, doster);glVertex3fv(v2)
-        glTexCoord2f(0.0, doster);glVertex3fv(v3)  
-        glTexCoord2f(0.25, doster);glVertex3fv(v4)
-        glTexCoord2f(0.5, doster);glVertex3fv(v5)
-        glTexCoord2f(0.5, 1.0);glVertex3fv(v6)
-        glTexCoord2f(0.25, 1.0);glVertex3fv(v7)  
-        glTexCoord2f(0.25, doster);glVertex3fv(v8)
-        glTexCoord2f(0.5, doster);glVertex3fv(v9)
-        glTexCoord2f(0.5, unter);glVertex3fv(v10)
-        glTexCoord2f(0.25, unter);glVertex3fv(v11)  
-        glTexCoord2f(0.25, 0.0);glVertex3fv(v12)
-        glTexCoord2f(0.5, 0.0);glVertex3fv(v13)
-        glTexCoord2f(0.5, unter);glVertex3fv(v14)
-        glTexCoord2f(0.25, unter);glVertex3fv(v15)  
-        glTexCoord2f(0.5, unter);glVertex3fv(v16)
-        glTexCoord2f(0.75, unter);glVertex3fv(v17)
-        glTexCoord2f(0.75, doster);glVertex3fv(v18)
-        glTexCoord2f(0.5, doster);glVertex3fv(v19) 
-        glTexCoord2f(0.75, unter);glVertex3fv(v20)
-        glTexCoord2f(1.0, unter);glVertex3fv(v21)
-        glTexCoord2f(1.0, doster);glVertex3fv(v22)
-        glTexCoord2f(0.75, doster);glVertex3fv(v23)
-        glEnd();
-
-        glPopName();
-        glDisable(GL_TEXTURE_2D)
-
-class DadoInGame(Dado, QObject):
+class Dado(QObject):
     """
         QGLWidget used during game
     """
     throwed=pyqtSignal()
     def __init__(self ):
-        Dado.__init__(self)
         QObject.__init__(self)
         self.fake=[]
         self.lasttirada=None
+        self.position=(0, 0, 0)
+        self.showing=True
         
     def tirar(self):
         random.seed(datetime.datetime.now().microsecond)
@@ -170,52 +101,54 @@ class DadoInGame(Dado, QObject):
         self.lasttirada=resultado
         return resultado
         
-    def dibujar(self, ogl):
+        
+    def draw_alone(self, qglwidget):
+        opengl_dice(qglwidget)
+        
+    def draw(self, qglwidget):
         """
             Sets position of the dice during game and showing the number
         """
         if self.showing==False:
             return
-        glPushMatrix();
-        
-        if ogl.mem.maxplayers==4:
-            if ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("yellow"):
+        if qglwidget.mem.maxplayers==4:
+            if qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("yellow"):
                 self.position=(10, 51, 1)
-            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("blue"):
+            elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("blue"):
                 self.position=(9, 10, 1)
-            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("red"):
+            elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("red"):
                 self.position=(50, 10, 1)
-            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("green"):
+            elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("green"):
                 self.position=(50, 51, 1)
-        elif ogl.mem.maxplayers==6:
-            if ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("yellow"):
+        elif qglwidget.mem.maxplayers==6:
+            if qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("yellow"):
                 self.position=(30, 31, 1)
-            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("blue"):
+            elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("blue"):
                 self.position=(23, 27, 1)
-            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("red"):
+            elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("red"):
                 self.position=(23, 18, 1)
-            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("green"):
+            elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("green"):
                 self.position=(30, 14, 1)
-            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("dimgray"):
+            elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("dimgray"):
                 self.position=(37, 18, 1)
-            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("fuchsia"):
+            elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("fuchsia"):
                 self.position=(37, 27, 1)
         else:
-            if ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("yellow"):
+            if qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("yellow"):
                 self.position=(30, 30, .9)
-            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("blue"):
+            elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("blue"):
                 self.position=(19, 27, 1)
-            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("red"):
+            elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("red"):
                 self.position=(15, 15, 1)
-            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("green"):
+            elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("green"):
                 self.position=(19, 3, 1)
-            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("dimgray"):
+            elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("dimgray"):
                 self.position=(30, 0, 1)
-            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("fuchsia"):
+            elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("fuchsia"):
                 self.position=(40, 3, 1)
-            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("darkorange"):
+            elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("darkorange"):
                 self.position=(44, 15, 1)
-            elif ogl.mem.jugadores.actual==ogl.mem.jugadores.find_by_colorname("darkturquoise"):
+            elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("darkturquoise"):
                 self.position=(40, 27, 1)
         
         glTranslatef(self.position[0],self.position[1],self.position[2]);
@@ -238,8 +171,7 @@ class DadoInGame(Dado, QObject):
             glTranslated(0, 0, 3)
             glRotated(90.0,0.0,1.0,0.0);
             
-        self.opengl(ogl)
-        glPopMatrix()
+        opengl_dice(qglwidget)
         
     def qicon(self, numero):
             ico = QIcon()
@@ -1509,7 +1441,7 @@ class Ficha(QObject):
             return True
         return False
 
-    def dibujar(self, ogl,  posicionBuzon):
+    def draw(self, qglwidget,  posicionBuzon):
         glInitNames();
         glPushMatrix()
         glPushName(self.id);
@@ -1521,14 +1453,14 @@ class Ficha(QObject):
         glTranslated(p[0], p[1], p[2])
         glRotated(180, 1, 0, 0)# da la vuelta a la cara
         glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, ogl.texDecor[1])
+        glBindTexture(GL_TEXTURE_2D, qglwidget.texture(TTextures.Wood))
         gluQuadricDrawStyle (self.ficha, GLU_FILL);
         gluQuadricNormals (self.ficha, GLU_SMOOTH);
         gluQuadricTexture (self.ficha, True);
-        ogl.qglColor(white.qcolor())
+        qglwidget.qglColor(white.qcolor())
         gluCylinder (self.ficha, 1.4, 1.4, 0.2, 16, 5)
         glTranslated(0, 0, 0.2)
-        ogl.qglColor(self.color.dark().qcolor())
+        qglwidget.qglColor(self.color.dark().qcolor())
         gluDisk(self.ficha, 0, 1.4, 16, 5)
         glTranslated(0, 0, -0.2)
         glRotated(180, 1, 0, 0)# da la vuelta a la cara
@@ -1555,16 +1487,16 @@ class Tablero(QObject):
         self.colorbrown=Color(88, 40, 0)
 
 
-    def dibujar(self, ogl): 
+    def draw(self, qglwidget): 
         def tipo4():
             glPushMatrix()
             glEnable(GL_TEXTURE_2D);
             glTranslated(self.position.x,  self.position.y,  self.position.z)
             verts=[Coord3D(0, 0, 0), Coord3D(0, 65, 0), Coord3D(65, 65, 0), Coord3D(65, 0, 0)]
             texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
-            p=Polygon().init__create(verts, self.colorbrown, ogl.texDecor[1], texverts)
+            p=Polygon().init__create(verts, self.colorbrown, qglwidget.texDecor[1], texverts)
             prism=Prism(p, 0.5)
-            prism.opengl(ogl)
+            prism.opengl(qglwidget)
             glDisable(GL_TEXTURE_2D)    
             glPopMatrix()
             
@@ -1572,18 +1504,18 @@ class Tablero(QObject):
             glPushMatrix()
             glEnable(GL_TEXTURE_2D);
             glTranslated(self.position.x,  self.position.y,  self.position.z)
-            p=Polygon().init__regular(6, 47, self.colorbrown, ogl.texDecor[1])
+            p=Polygon().init__regular(6, 47, self.colorbrown, qglwidget.texDecor[1])
             prism=Prism(p, 0.5)
-            prism.opengl(ogl)
+            prism.opengl(qglwidget)
             glDisable(GL_TEXTURE_2D)    
             glPopMatrix()        
         def tipo8():
             glPushMatrix()
             glEnable(GL_TEXTURE_2D);
             glTranslated(self.position.x,  self.position.y,  self.position.z)
-            p=Polygon().init__regular(8, 52.5, self.colorbrown, ogl.texDecor[1])
+            p=Polygon().init__regular(8, 52.5, self.colorbrown, qglwidget.texDecor[1])
             prism=Prism(p, 0.5)
-            prism.opengl(ogl)
+            prism.opengl(qglwidget)
             glDisable(GL_TEXTURE_2D)     
             glPopMatrix()       
         ###########################################
@@ -1688,12 +1620,16 @@ class Color:
 
 
 class Coord3D:
-    def __init__(self, x, y, z):
+    def __init__(self, x=0, y=0, z=0):
+        """
+            Contructs the object. If not parametes x,y,x =0
+        """
         self.x=x
         self.y=y
         self.z=z
+
     def clone(self):
-        """Returns other object with the same coords"""
+        """Returns other object with the same Coord"""
         return Coord3D(self.x, self.y,  self.z)
         
     def sum_z(self, n):
@@ -1706,7 +1642,7 @@ class Coord2D:
         self.x=x
         self.y=y
     def clone(self):
-        """Returns other object with the same coords"""
+        """Returns other object with the same Coord"""
         return(Coord2D(self.x, self.y))
 
 
@@ -1718,10 +1654,10 @@ class Polygon:
     """
     def __init__(self):
         """
-            verts. Array de Coords3D
+            verts. Array de Coord3D
             color: Color del poligono is a Color object
             texture: Textura del pol´igno
-            texcoords: Array de coords2D de la textura
+            texCoord: Array de Coord2D de la textura
         """
         self.verts=None
         self.color=None
@@ -1730,10 +1666,10 @@ class Polygon:
         
     def init__create(self, verts, color,  texture, texverts):
         """
-            verts. Array de Coords3D
+            verts. Array de Coord3D
             color: Color del poligono
             texture: Textura del pol´igno
-            texcoords: Array de coords2D de la textura
+            texCoord: Array de Coord2D de la textura
         """
         self.verts=verts
         self.color=color
@@ -1774,7 +1710,7 @@ class Polygon:
             r.append(vert)
         return r
         
-    def opengl(self, ogl):
+    def opengl(self, qglwidget):
         """
             glEnable(GL_TEXTURE_2D) must be declared and closed outside
         """
@@ -1782,7 +1718,7 @@ class Polygon:
         if self.texture:
             glBindTexture(GL_TEXTURE_2D, self.texture)   
         glBegin(GL_POLYGON)
-        ogl.qglColor(self.color.qcolor())
+        qglwidget.qglColor(self.color.qcolor())
         for i, v in enumerate(self.verts):
             if self.texture:
                 glTexCoord2f(self.texverts[i].x, self.texverts[i].y)
@@ -1793,7 +1729,7 @@ class Polygon:
         for v in self.verts:
             v.z=v.z+n
             
-    def opengl_border(self, ogl, z=0.001):
+    def opengl_border(self, qglwidget, z=0.001):
         """
             Draws a polygon border
             with the z position desplaced as z parameter sets
@@ -1833,13 +1769,13 @@ class Prism:
             pverts.append(self.bottom.verts[i].clone())
             self.contour.append(Polygon().init__create(pverts, Color(200, 200, 200), self.bottom.texture, texverts))
         
-    def opengl(self, ogl):
-        self.up.opengl(ogl)
-        self.bottom.opengl(ogl)
+    def opengl(self, qglwidget):
+        self.up.opengl(qglwidget)
+        self.bottom.opengl(qglwidget)
         for f in self.contour:
-            f.opengl(ogl)
+            f.opengl(qglwidget)
             
-    def opengl_border(self, ogl, face=None):
+    def opengl_border(self, qglwidget, face=None):
         """
             Face is an Integer 
             Face 0: up
@@ -1847,16 +1783,16 @@ class Prism:
             Face n, donde n numero vertices.
         """
         if face==None:
-            self.up.opengl_border(ogl)
-            self.bottom.opengl_border(ogl)
+            self.up.opengl_border(qglwidget)
+            self.bottom.opengl_border(qglwidget)
             for f in self.contour:
-                f.opengl_border(ogl)
+                f.opengl_border(qglwidget)
         else:
             zpos=0.201
             if face==0:
-                self.up.opengl_border(ogl, zpos)
+                self.up.opengl_border(qglwidget, zpos)
             elif face==1:
-                self.bottom.opengl_border(ogl, zpos)
+                self.bottom.opengl_border(qglwidget, zpos)
             
 
             
@@ -1909,7 +1845,7 @@ class Casilla(QObject):
                 return False
             
 
-    def dibujar(self, ogl):
+    def draw(self, qglwidget):
         def panelnumerico():
             def cuadrito(x, texture, rotation):
                 glBindTexture(GL_TEXTURE_2D, texture)                
@@ -1917,7 +1853,7 @@ class Casilla(QObject):
                 glTranslated(self.position[0],self.position[1],self.position[2]+0.2)
                 glRotated(self.rotate, 0, 0, 1 )            
                 glBegin(GL_QUADS)
-                ogl.qglColor(self.color.qcolor())
+                qglwidget.qglColor(self.color.qcolor())
                 if rotation==0:
                     glTexCoord2f(0.0,0.0)
                     glVertex3d(x, 1, 0.10)
@@ -1971,14 +1907,14 @@ class Casilla(QObject):
             glEnable(GL_TEXTURE_2D);
             #PRIMERO
             if len(str(self.id))==1:
-                cuadrito(3, ogl.texNumeros[primero], rotation)
+                cuadrito(3, qglwidget.texNumeros[primero], rotation)
             elif len(str(self.id))==2:
-                cuadrito(2.5, ogl.texNumeros[primero], rotation)
-                cuadrito(3.5, ogl.texNumeros[segundo], rotation)
+                cuadrito(2.5, qglwidget.texNumeros[primero], rotation)
+                cuadrito(3.5, qglwidget.texNumeros[segundo], rotation)
             elif len(str(self.id))==3:
-                cuadrito(2, ogl.texNumeros[primero], rotation)
-                cuadrito(3, ogl.texNumeros[segundo], rotation)
-                cuadrito(4, ogl.texNumeros[tercero], rotation)
+                cuadrito(2, qglwidget.texNumeros[primero], rotation)
+                cuadrito(3, qglwidget.texNumeros[segundo], rotation)
+                cuadrito(4, qglwidget.texNumeros[tercero], rotation)
                 
             glDisable(GL_TEXTURE_2D);
             
@@ -1999,8 +1935,8 @@ class Casilla(QObject):
             verts=[Coord3D(0, 0, 0), Coord3D(0, 21, 0), Coord3D(21, 21, 0), Coord3D(21, 0, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
-            prism.opengl(ogl)
-            prism.opengl_border(ogl, 1)    
+            prism.opengl(qglwidget)
+            prism.opengl_border(qglwidget, 1)    
             glPopName();
             glPopMatrix()
             
@@ -2016,8 +1952,8 @@ class Casilla(QObject):
             verts=[ Coord3D(0, 0, 0), Coord3D(b, -d, 0), Coord3D(0, -c-d, 0), Coord3D (-b, -d, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
-            prism.opengl(ogl)
-            prism.opengl_border(ogl, 1)       
+            prism.opengl(qglwidget)
+            prism.opengl_border(qglwidget, 1)       
             glPopName();
             glPopMatrix()                
 
@@ -2034,8 +1970,8 @@ class Casilla(QObject):
             verts=[ Coord3D(a, h-c, 0), Coord3D(2*a, 0, 0), Coord3D(a, -c, 0), Coord3D(0, 0, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
-            prism.opengl(ogl)
-            prism.opengl_border(ogl, 1)# 0 It's prism upper face
+            prism.opengl(qglwidget)
+            prism.opengl_border(qglwidget, 1)# 0 It's prism upper face
             glPopName();
             glPopMatrix()            
     
@@ -2049,12 +1985,12 @@ class Casilla(QObject):
             texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
             if self.seguro==True and self.rampallegada==False:
                 glEnable(GL_TEXTURE_2D);
-                p=Polygon().init__create(verts, self.color, ogl.texDecor[2], texverts)
+                p=Polygon().init__create(verts, self.color, qglwidget.texDecor[2], texverts)
             else:
                 p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
-            prism.opengl(ogl)
-            prism.opengl_border(ogl, 1)    
+            prism.opengl(qglwidget)
+            prism.opengl_border(qglwidget, 1)    
             glPopName();
             glPopMatrix()
             if self.seguro==True and self.rampallegada==False:
@@ -2071,8 +2007,8 @@ class Casilla(QObject):
             verts=[Coord3D(0, 0, 0), Coord3D(lado, 3, 0), Coord3D(7, 3, 0), Coord3D(7, 0, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
-            prism.opengl(ogl)
-            prism.opengl_border(ogl, 1)    
+            prism.opengl(qglwidget)
+            prism.opengl_border(qglwidget, 1)    
             glPopName();
             glPopMatrix()
             panelnumerico()
@@ -2087,8 +2023,8 @@ class Casilla(QObject):
             verts=[Coord3D(0, 0, 0), Coord3D(0, 3, 0), Coord3D(lado, 3, 0), Coord3D(7, 0, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
-            prism.opengl(ogl)
-            prism.opengl_border(ogl, 1)    
+            prism.opengl(qglwidget)
+            prism.opengl_border(qglwidget, 1)    
             glPopName();
             glPopMatrix()
             panelnumerico()
@@ -2100,20 +2036,20 @@ class Casilla(QObject):
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
 
-            if ogl.__class__.__name__!="wdgShowObject":#En caso de que no sea wdgShowObject
-                if ogl.mem.maxplayers==6:
+            if qglwidget.__class__.__name__!="wdgShowObject":#En caso de que no sea wdgShowObject
+                if qglwidget.mem.maxplayers==6:
                     glScaled(2*math.tan(math.pi/6)*(21*math.cos(math.pi/6)-3)/15, (21*math.cos(math.pi/6)-3)/7.5, 1)
-                elif ogl.mem.maxplayers==8:
+                elif qglwidget.mem.maxplayers==8:
                     glScaled((21-2*3*math.tan(math.pi/8))/15.0, ((10.5/math.tan(math.pi/8))-3)/7.5, 1)
             verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(7.5, 7.5, 0), Coord3D(15, 0, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
-            prism.opengl(ogl)
-            prism.opengl_border(ogl, 1)    
+            prism.opengl(qglwidget)
+            prism.opengl_border(qglwidget, 1)    
             glPopName();
             glPopMatrix()
         ##################################
-        if ogl.__class__.__name__=="wdgShowObject":#En caso de wdgShowObject en la ayuda
+        if qglwidget.__class__.__name__=="wdgShowObject":#En caso de wdgShowObject en la ayuda
             if self.tipo==0:
                 tipo_inicio8()
             elif self.tipo==1:
@@ -2128,36 +2064,36 @@ class Casilla(QObject):
         
         
         if self.tipo==0:
-            if ogl.mem.maxplayers==4:
+            if qglwidget.mem.maxplayers==4:
                 tipo_inicio()
-            elif ogl.mem.maxplayers==6:
+            elif qglwidget.mem.maxplayers==6:
                 tipo_inicio6()
-            elif ogl.mem.maxplayers==8:
+            elif qglwidget.mem.maxplayers==8:
                 tipo_inicio8()
         elif self.tipo==1:
             tipo_final()
         elif self.tipo==2:
-            if ogl.mem.maxplayers==4:
+            if qglwidget.mem.maxplayers==4:
                 tipo_oblicuoi(3)
-            elif ogl.mem.maxplayers==6:
+            elif qglwidget.mem.maxplayers==6:
                 tipo_oblicuoi(3.0/math.tan(math.pi/3))
-            elif ogl.mem.maxplayers==8:
+            elif qglwidget.mem.maxplayers==8:
                 tipo_oblicuoi(3.0*math.tan(math.pi/8))
         elif self.tipo==4:
-            if ogl.mem.maxplayers==4:
+            if qglwidget.mem.maxplayers==4:
                 tipo_oblicuod(4)
-            elif ogl.mem.maxplayers==6:
+            elif qglwidget.mem.maxplayers==6:
                 tipo_oblicuod(7-3.0*math.tan(math.pi/6))
-            elif ogl.mem.maxplayers==8:
+            elif qglwidget.mem.maxplayers==8:
                 tipo_oblicuod(7-3.0*math.tan(math.pi/8))
         else:
             tipo_normal()
             
-    def dibujar_fichas(self, ogl):
+    def draw_fichas(self, qglwidget):
         if self.buzon_numfichas()>0:
             for i, f in enumerate(self.buzon):       
                 if f!=None:
-                    f.dibujar(ogl, i)
+                    f.draw(qglwidget, i)
 
     def tieneBarrera(self):
         """Devuelve un booleano, las fichas de la barrera se pueden sacar del buzon"""
@@ -2239,7 +2175,7 @@ class Mem:
         self.colores=SetColores()
         self.jugadores=SetJugadores(self)
         self.dic_rutas={}
-        self.dado=DadoInGame()
+        self.dado=Dado()
         self.selFicha=None
         self.inittime=None#Tiempo inicio partida
         self.settings=None

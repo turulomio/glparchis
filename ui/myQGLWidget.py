@@ -8,63 +8,81 @@ from OpenGL.GL import glCallList, glClear, glColorMaterial, glEnable,  glEndList
 from OpenGL.GL import  GL_AMBIENT, GL_QUADS, GL_AMBIENT_AND_DIFFUSE, GL_CCW, GL_COLOR_BUFFER_BIT, GL_COLOR_MATERIAL, GL_COMPILE, GL_CULL_FACE, GL_DEPTH_BUFFER_BIT, GL_DEPTH_TEST, GL_FRONT, GL_LIGHT0, GL_LIGHTING, GL_MODELVIEW, GL_NICEST, GL_PERSPECTIVE_CORRECTION_HINT, GL_POSITION, GL_PROJECTION, GL_RENDER, GL_SELECT, GL_SMOOTH, GL_STENCIL_BUFFER_BIT, GL_TEXTURE_2D, GL_VIEWPORT,  GL_FLAT
 from OpenGL.GLU import gluPerspective, gluPickMatrix
 
-from libglparchis import Color, Casilla, Ficha, Jugador, Tablero, Coord3D, Dado
+from libglparchis import Color, Casilla, Ficha, Jugador, Tablero, Dado, Coord3D
 from frmShowCasilla import frmShowCasilla
 from frmShowFicha import frmShowFicha
 
-def opengl_load_textures(qglwidget):
-    """
-        Load textures function to be reused in several QGLWidget
+
+
+class myQGLWidget(QGLWidget):
+    def __init__(self, parent):
+        QGLWidget.__init__(self, parent)
+
+    def load_textures(self):
+        """
+            Load textures function to be reused in several QGLWidget
+            
+            I couldn't do it in a class due to it needed QGLWidget and I got Crashes
+        """
+        texNumeros=[]
+        texDecor=[]
+        texNumeros.append(self.bindTexture(QPixmap(':/glparchis/0.png')))
+        texNumeros.append(self.bindTexture(QPixmap(':/glparchis/1.png')))
+        texNumeros.append(self.bindTexture(QPixmap(':/glparchis/2.png')))
+        texNumeros.append(self.bindTexture(QPixmap(':/glparchis/3.png')))
+        texNumeros.append(self.bindTexture(QPixmap(':/glparchis/4.png')))
+        texNumeros.append(self.bindTexture(QPixmap(':/glparchis/5.png')))
+        texNumeros.append(self.bindTexture(QPixmap(':/glparchis/6.png')))
+        texNumeros.append(self.bindTexture(QPixmap(':/glparchis/7.png')))
+        texNumeros.append(self.bindTexture(QPixmap(':/glparchis/8.png')))
+        texNumeros.append(self.bindTexture(QPixmap(':/glparchis/9.png')))
         
-        I couldn't do it in a class due to it needed QGLWidget and I got Crashes
-    """
-    texNumeros=[]
-    texDecor=[]
-    texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/0.png')))
-    texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/1.png')))
-    texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/2.png')))
-    texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/3.png')))
-    texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/4.png')))
-    texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/5.png')))
-    texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/6.png')))
-    texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/7.png')))
-    texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/8.png')))
-    texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/9.png')))
+        texDecor.append(self.bindTexture(QPixmap(':/glparchis/casillainicial.png')))
+        texDecor.append(self.bindTexture(QPixmap(':/glparchis/transwood.png')))
+        texDecor.append(self.bindTexture(QPixmap(':/glparchis/seguro.png')))
+        texDecor.append(self.bindTexture(QPixmap(':/glparchis/dado_desplegado.png')))
+        return texNumeros, texDecor
+
+    def texture(self, ttexture):
+        """
+            Auxiliar function to be reused in several objects
+        """
+        if ttexture>=0 and ttexture<1000:
+            return self.texNumeros[ttexture]
+        elif ttexture>=1000 and ttexture<=2000:
+            return self.texDecor[ttexture-1000]
+
+    def initializeGL(self):
+            print ("initializeGL")
+            self.texNumeros, self.texDecor=self.load_textures()
+            glEnable(GL_TEXTURE_2D);
+            glShadeModel (GL_SMOOTH);
+            glEnable(GL_DEPTH_TEST)
+            glEnable(GL_CULL_FACE)
+            
+            glFrontFace(GL_CCW);
+
+            light_ambient =  [0.3, 0.3, 0.3, 0.1];
+
+            glEnable(GL_LIGHTING)
+            lightpos=(0, 0, 50)
+            glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)  
+            glLightfv(GL_LIGHT0, GL_POSITION, lightpos)  
+            glEnable(GL_LIGHT0);
+            glEnable(GL_COLOR_MATERIAL);
+            glColorMaterial(GL_FRONT,GL_AMBIENT_AND_DIFFUSE);
+
+            glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+
+    def resizeGL(self, width, height):    
+        glViewport(0, 0, width, height)
+        glMatrixMode(GL_PROJECTION)
+        glLoadIdentity()
+        aspect=width/height
+        gluPerspective(60.0, aspect, 1, 400)
+        glMatrixMode(GL_MODELVIEW)
     
-    texDecor.append(qglwidget.bindTexture(QPixmap(':/glparchis/casillainicial.png')))
-    texDecor.append(qglwidget.bindTexture(QPixmap(':/glparchis/transwood.png')))
-    texDecor.append(qglwidget.bindTexture(QPixmap(':/glparchis/seguro.png')))
-    texDecor.append(qglwidget.bindTexture(QPixmap(':/glparchis/dado_desplegado.png')))
-    return texNumeros, texDecor
-
-def opengl_initialize(qglwidget):
-        print ("initializeGL")
-        glEnable(GL_TEXTURE_2D);
-        glShadeModel (GL_SMOOTH);
-        glEnable(GL_DEPTH_TEST)
-        glEnable(GL_CULL_FACE)
-        
-        glFrontFace(GL_CCW);
-
-        light_ambient =  [0.3, 0.3, 0.3, 0.1];
-
-        glEnable(GL_LIGHTING)
-        lightpos=(0, 0, 50)
-        glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)  
-        glLightfv(GL_LIGHT0, GL_POSITION, lightpos)  
-        glEnable(GL_LIGHT0);
-        glEnable(GL_COLOR_MATERIAL);
-        glColorMaterial(GL_FRONT,GL_AMBIENT_AND_DIFFUSE);
-
-        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-
-def opengl_resize(width, height):    
-    glViewport(0, 0, width, height)
-    glMatrixMode(GL_PROJECTION)
-    glLoadIdentity()
-    aspect=width/height
-    gluPerspective(60.0, aspect, 1, 400)
-    glMatrixMode(GL_MODELVIEW)
+    
 
 class ObjectRotationManager:
     """
@@ -147,13 +165,13 @@ class DisplayList:
     def numero():
         return 1
 
-class wdgOGL(QGLWidget):
+class wdgOGL(myQGLWidget):
     """Clase principal del Juego, aqui esta fundamentalmente la representacion.
    Emite click ficha cuando se realiza"""
     fichaClicked=pyqtSignal()
     doubleClicked=pyqtSignal()
     def __init__(self,  parent=None):
-        QGLWidget.__init__(self, parent)
+        myQGLWidget.__init__(self, parent)
         self.tablero=None#After assign_mem creation
         self.texNumeros=[]
         self.texDecor=[]
@@ -185,19 +203,13 @@ class wdgOGL(QGLWidget):
         self.displaylists=glGenLists(DisplayList.numero())
         #Tablero
         glNewList(DisplayList.tablero, GL_COMPILE)
-        self.tablero.dibujar(self)
+        self.tablero.draw(self)
         for c in self.mem.casillas.arr:
             if c.id!=0:
-                c.dibujar(self)
+                c.draw(self)
         glEndList()
         
 
-    def initializeGL(self): 
-        """
-            Initialize Opengl for QGLWidget
-        """
-        self.texNumeros, self.texDecor=opengl_load_textures(self)
-        opengl_initialize(self)
 
 
 
@@ -235,13 +247,11 @@ class wdgOGL(QGLWidget):
         
         for c in self.mem.casillas.arr:
             if c.id!=0:
-                c.dibujar_fichas(self)
-        self.mem.dado.dibujar(self)
+                c.draw_fichas(self)
+        self.mem.dado.draw(self)
             
         print("paintGL", datetime.datetime.now()-inicio)
 
-    def resizeGL(self, width, height):
-        opengl_resize(width, height)
 
     def keyPressEvent(self, event):
         def save_z():
@@ -492,7 +502,7 @@ class wdgQT(QGLWidget, ObjectRotationManager):
         glVertex3d(x2, y2, -0.05)
         glVertex3d(x1, y1, -0.05)
 
-class wdgShowObject(QGLWidget, ObjectRotationManager):
+class wdgShowObject(myQGLWidget, ObjectRotationManager):
     """
         This class shows different objects in a Widget
     """
@@ -500,7 +510,7 @@ class wdgShowObject(QGLWidget, ObjectRotationManager):
     yRotationChanged=pyqtSignal(int)
     zRotationChanged=pyqtSignal(int)
     def __init__(self, parent):
-        QGLWidget.__init__(self,  parent)
+        myQGLWidget.__init__(self,  parent)
         ObjectRotationManager.__init__(self)
         self.objeto=0
                
@@ -514,7 +524,9 @@ class wdgShowObject(QGLWidget, ObjectRotationManager):
         self.tablero6.position=Coord3D(0, 0, 0)
         self.tablero8=Tablero(8)
         self.tablero8.position=Coord3D(0, 0, 0)
+        print("DADO")
         self.dado=Dado()
+        print("DADO")
         self.dado.showing=True
         self.lasttirada=5
         self.z=-10
@@ -541,8 +553,7 @@ class wdgShowObject(QGLWidget, ObjectRotationManager):
             Initialize Opengl for QGLWidget
         """
         self.qglClearColor(QColor(206, 224, 255)) #Sets background color
-        self.texNumeros, self.texDecor=opengl_load_textures(self)
-        opengl_initialize(self)
+        myQGLWidget.initializeGL(self)
 
         
     def showObject(self, obj):
@@ -560,25 +571,23 @@ class wdgShowObject(QGLWidget, ObjectRotationManager):
         glRotated(self.zRot / 16.0, 0.0, 0.0, 1.0)
         if self.objeto==0:
             glScaled(0.1, 0.1,0.1)
-            self.tablero.dibujar(self)
+            self.tablero.draw(self)
         elif self.objeto==1:
             glScaled(0.1, 0.1,0.1)
-            self.tablero6.dibujar(self)
+            self.tablero6.draw(self)
         elif self.objeto==2:
             glScaled(0.1, 0.1,0.1)
-            self.tablero8.dibujar(self)
+            self.tablero8.draw(self)
         elif self.objeto==3:
             glScaled(1.5, 1.5,1.5)
-            self.dado.draw(self)
+            self.dado.draw_alone(self)
         elif self.objeto==4:
             glScaled(1.5, 1.5,1.5)
-            self.cas.dibujar(self)
+            self.cas.draw(self)
         elif self.objeto==5:
             glScaled(0.4, 0.4,0.4)
-            self.casinicio.dibujar(self)
+            self.casinicio.draw(self)
         elif self.objeto==6:
             glScaled(2, 2,2)
-            self.ficha.dibujar(self, None)
+            self.ficha.draw(self, None)
 
-    def resizeGL(self, width, height):
-        opengl_resize(width, height)

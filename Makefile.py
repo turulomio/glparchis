@@ -131,7 +131,7 @@ if __name__ == '__main__':
         shell("install -o root -d "+ prefixapplications)
         shell("install -o root -d "+ prefixsounds)
         shell("install -m 755 -o root glparchis.py "+ prefixbin+"/glparchis")
-        shell("install -m 644 -o root ui/*.py libglparchis.py images/*.py "+ prefixlib)
+        shell("install -m 644 -o root ui/*.py lib*.py images/*.py "+ prefixlib)
         shell("install -m 644 -o root i18n/*.qm " + prefixlib)
         shell("install -m 644 -o root glparchis.desktop "+ prefixapplications)
         shell("install -m 644 -o root images/ficharoja.png "+ prefixshare)
