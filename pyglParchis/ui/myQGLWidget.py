@@ -133,7 +133,6 @@ class wdgOGL(QGLWidget):
         self.rotZ=0
         self.z=None
         self.rotCenter=0
-        self.lock=False
         
         self.rotatecenter=0#Si es 1 rota en sentido agujas del reloj desde el centro del tablero, si -1 al reves, si 0 no rota desde el centro
         
@@ -163,45 +162,6 @@ class wdgOGL(QGLWidget):
                 c.dibujar(self)
         glEndList()
         
-#        
-#    def initializeGL(self):
-#        #LAS TEXTURAS SE DEBEN CRAR AQUI ES LO PRIMERO QUE SE EJECUTA
-#        self.texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/0.png')))
-#        self.texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/1.png')))
-#        self.texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/2.png')))
-#        self.texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/3.png')))
-#        self.texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/4.png')))
-#        self.texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/5.png')))
-#        self.texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/6.png')))
-#        self.texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/7.png')))
-#        self.texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/8.png')))
-#        self.texNumeros.append(qglwidget.bindTexture(QPixmap(':/glparchis/9.png')))
-#        
-#        self.texDecor.append(qglwidget.bindTexture(QPixmap(':/glparchis/casillainicial.png')))
-#        self.texDecor.append(qglwidget.bindTexture(QPixmap(':/glparchis/transwood.png')))
-#        self.texDecor.append(qglwidget.bindTexture(QPixmap(':/glparchis/seguro.png')))
-#        self.texDecor.append(qglwidget.bindTexture(QPixmap(':/glparchis/dado_desplegado.png')))
-#        
-#        print ("initializeGL")
-#        glEnable(GL_TEXTURE_2D);
-#        glShadeModel (GL_SMOOTH);
-#        glEnable(GL_DEPTH_TEST)
-#        glEnable(GL_CULL_FACE)
-#        
-#        glFrontFace(GL_CCW);
-#
-#        light_ambient =  [0.3, 0.3, 0.3, 0.1];
-#
-#        glEnable(GL_LIGHTING)
-#        lightpos=(0, 0, 50)
-#        glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)  
-#        glLightfv(GL_LIGHT0, GL_POSITION, lightpos)  
-#        glEnable(GL_LIGHT0);
-#        glEnable(GL_COLOR_MATERIAL);
-#        glColorMaterial(GL_FRONT,GL_AMBIENT_AND_DIFFUSE);
-#
-#        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-
 
     def initializeGL(self): 
         """
@@ -313,12 +273,7 @@ class wdgOGL(QGLWidget):
         self.updateGL()
     
     def mouseDoubleClickEvent(self, event):
-        if self.lock==False:
-            self.lock=True
-            self.doubleClicked.emit()
-            self.lock=False
-        else:
-            print ("Double click event ignored")
+        self.doubleClicked.emit()
 
     def mousePressEvent(self, event):        
         def pickup(event, right):
@@ -562,6 +517,7 @@ class wdgShowObject(QGLWidget, ObjectRotationManager):
         self.dado=Dado()
         self.dado.showing=True
         self.lasttirada=5
+        self.z=-10
 
     
     def changeOrtho(self):
@@ -572,7 +528,25 @@ class wdgShowObject(QGLWidget, ObjectRotationManager):
         glLoadIdentity()
         glOrtho(self.ortho[0], self.ortho[1], self.ortho[2], self.ortho[3], self.ortho[4], self.ortho[5] )
         glMatrixMode(GL_MODELVIEW)
-        self.updateGL()         
+        self.updateGL()    
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Plus:
+            self.z=self.z+1
+        if event.key() == Qt.Key_Minus:
+            self.z=self.z-1
+        if event.key() == Qt.Key_X: # toggle mode
+            self.xRot=self.xRot+5
+        if event.key() == Qt.Key_Y: # toggle mode
+            self.yRot=self.yRot+5
+        if event.key() == Qt.Key_Z: # toggle mode
+            self.zRot=self.zRot+5
+        if event.key() == Qt.Key_Space: # toggle mode
+            self.xRot=0
+            self.yRot=0
+            self.zRot=0
+        print(self.z, self.xRot, self.yRot, self.zRot)
+        self.updateGL()
 
     def initializeGL(self):
         print("wdgShowObject_initialize")
@@ -608,7 +582,7 @@ class wdgShowObject(QGLWidget, ObjectRotationManager):
     def paintGL(self):
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
         glLoadIdentity()
-        glTranslated(0.0, 0.0, -10.0)
+        glTranslated(0.0, 0.0, self.z)
         glRotated(self.xRot / 16.0, 1.0, 0.0, 0.0)
         glRotated(self.yRot / 16.0, 0.0, 1.0, 0.0)
         glRotated(self.zRot / 16.0, 0.0, 0.0, 1.0)

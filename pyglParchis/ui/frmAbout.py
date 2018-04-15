@@ -36,3 +36,4 @@ class frmAbout(QDialog, Ui_frmAbout):
         for i in self.table.selectedItems():#itera por cada item no row.
             if i.column()==0:
                 self.wdgso.showObject(i.row())
+                self.wdgso.setFocus()
