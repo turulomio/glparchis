@@ -2032,7 +2032,7 @@ class Casilla(QObject):
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
             prism.opengl(ogl)
-            prism.opengl_border(ogl, 0)# 0 It's prism upper face
+            prism.opengl_border(ogl, 1)# 0 It's prism upper face
             glPopName();
             glPopMatrix()            
     
