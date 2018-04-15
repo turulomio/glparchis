@@ -1,5 +1,5 @@
 import sys
-from OpenGL.GL import glBegin, glBindTexture, glColor3d, glDisable, glEnable, glEnd, glInitNames, glPopMatrix, glPopName, glPushName, glPushMatrix, glRotated, glScaled, glTexCoord2f, glTranslated, glTranslatef, glVertex3d, GL_TEXTURE_2D, GL_QUADS, GL_POLYGON, GL_LINE_LOOP
+from OpenGL.GL import glVertex3fv, glBegin, glBindTexture, glColor3d, glDisable, glEnable, glEnd, glInitNames, glPopMatrix, glPopName, glPushName, glPushMatrix, glRotated, glScaled, glTexCoord2f, glTranslated, glTranslatef, glVertex3d, GL_TEXTURE_2D, GL_QUADS, GL_POLYGON, GL_LINE_LOOP
 from OpenGL.GLU import gluCylinder, gluDisk, gluNewQuadric, gluQuadricDrawStyle, gluQuadricNormals, gluQuadricTexture, GLU_FILL, GLU_SMOOTH
 from poscasillas8 import poscasillas8
 from posfichas8 import posfichas8
@@ -14,7 +14,8 @@ from PyQt5.QtOpenGL import QGLWidget
 from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
 from PyQt5.QtMultimedia import QSoundEffect
 from uuid import uuid4
-from libopenglobjects import opengl_dice, TTextures,  opengl_piece
+from libglparchistypes import TTextures,  TNames
+
 
 #dateversion=datetime.date(2018, 3, 8)
 dateversion=datetime.date(2000, 1, 1)#When developing
@@ -100,10 +101,81 @@ class Dado(QObject):
             resultado= int(random.random()*6)+1
         self.lasttirada=resultado
         return resultado
-        
+
+    def opengl(self, qglwidget):
+        glInitNames()
+        glPushMatrix()
+        glPushName(TNames.Dice)
+        glScaled(3,3,3);
+        glColor3d(255, 255, 255);
+
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, qglwidget.texture(TTextures.Dice))
+        unter=1.0/3.0;
+        doster=2.0/3.0;
+        glBegin(GL_QUADS);
+        v0=  (0.0, 0.0, 0.0) 
+        v1=( 1.0, 0.0, 0.0) 
+        v2=( 1.0, 0.0, 1.0) 
+        v3=  (0.0, 0.0, 1.0) 
+
+        v4=(0.0, 0.0, 1.0)
+        v5=( 1.0, 0.0, 1.0)
+        v6=( 1.0, 1.0, 1.0)
+        v7=(0.0, 1.0, 1.0)
+
+        v8=(0.0, 0.0, 0.0)
+        v9=(0.0, 1.0, 0.0)
+        v10=( 1.0, 1.0, 0.0)
+        v11=( 1.0, 0.0, 0.0) 
+
+        v12=(0.0, 1.0, 0.0) 
+        v13=(0.0, 1.0, 1.0) 
+        v14=( 1.0, 1.0, 1.0) 
+        v15=( 1.0, 1.0, 0.0) 
+
+        v16=( 1.0, 0.0, 0.0) 
+        v17=( 1.0, 1.0, 0.0) 
+        v18=( 1.0, 1.0, 1.0) 
+        v19=( 1.0, 0.0, 1.0) 
+
+        v20=(0.0, 0.0, 1.0) 
+        v21=(0.0, 1.0, 1.0) 
+        v22=(0.0, 1.0, 0.0)
+        v23=(0.0, 0.0, 0.0)
+        glTexCoord2f(0.0, unter);glVertex3fv(v0)
+        glTexCoord2f(0.25, unter);glVertex3fv(v1)
+        glTexCoord2f(0.25, doster);glVertex3fv(v2)
+        glTexCoord2f(0.0, doster);glVertex3fv(v3)  
+        glTexCoord2f(0.25, doster);glVertex3fv(v4)
+        glTexCoord2f(0.5, doster);glVertex3fv(v5)
+        glTexCoord2f(0.5, 1.0);glVertex3fv(v6)
+        glTexCoord2f(0.25, 1.0);glVertex3fv(v7)  
+        glTexCoord2f(0.25, doster);glVertex3fv(v8)
+        glTexCoord2f(0.5, doster);glVertex3fv(v9)
+        glTexCoord2f(0.5, unter);glVertex3fv(v10)
+        glTexCoord2f(0.25, unter);glVertex3fv(v11)  
+        glTexCoord2f(0.25, 0.0);glVertex3fv(v12)
+        glTexCoord2f(0.5, 0.0);glVertex3fv(v13)
+        glTexCoord2f(0.5, unter);glVertex3fv(v14)
+        glTexCoord2f(0.25, unter);glVertex3fv(v15)  
+        glTexCoord2f(0.5, unter);glVertex3fv(v16)
+        glTexCoord2f(0.75, unter);glVertex3fv(v17)
+        glTexCoord2f(0.75, doster);glVertex3fv(v18)
+        glTexCoord2f(0.5, doster);glVertex3fv(v19) 
+        glTexCoord2f(0.75, unter);glVertex3fv(v20)
+        glTexCoord2f(1.0, unter);glVertex3fv(v21)
+        glTexCoord2f(1.0, doster);glVertex3fv(v22)
+        glTexCoord2f(0.75, doster);glVertex3fv(v23)
+        glEnd();
+
+        glPopName();
+        glDisable(GL_TEXTURE_2D)
+        glPopMatrix();
         
     def draw_alone(self, qglwidget):
-        opengl_dice(qglwidget)
+        self.position=(0, 0, 0)
+        self.oopengl(qglwidget)
         
     def draw(self, qglwidget):
         """
@@ -171,7 +243,7 @@ class Dado(QObject):
             glTranslated(0, 0, 3)
             glRotated(90.0,0.0,1.0,0.0);
             
-        opengl_dice(qglwidget)
+        self.opengl(qglwidget)
         
     def qicon(self, numero):
             ico = QIcon()
@@ -513,7 +585,9 @@ class Jugador(QObject):
         self.logEmitted.emit(l)
         
     def casillasPorMover(self):
-        """Casillas que le queda al jugador hasta ganar la partida"""
+        """
+            Casillas que le queda al jugador hasta ganar la partida
+        """
         resultado =0
         for f in self.fichas.arr:
             resultado=resultado+f.casillasPorMover()
@@ -529,14 +603,14 @@ class Jugador(QObject):
         return sum_pormover
             
     def casillasMovidas(self):
-        """Casillas que ha movido el jugador, puede considerarse la puntuacion del jugador"""
+        """
+            Devuelve el número de Casillas que ha movido el jugador, puede considerarse la puntuacion del jugador
+        """
         return 4*self.fichas.arr[0].ruta.length()-self.casillasPorMover()
             
         
     def hayDosJugadoresDistintosEnRuta1(self):
         ruta1=self.ruta.ruta1()
-#        if ruta1 not in self.ruta.mem.rutas.rutas1():#Casillas ruta1
-#            return False
         if ruta1.buzon_numfichas()!=2:
             return False
         if ruta1.buzon[0].jugador!=ruta1.buzon[1].jugador:
@@ -1343,7 +1417,28 @@ class Ficha(QObject):
         if startgame==False:
             casillaorigen.buzon_remove(self)
         casilladestino.buzon_append(self)
-
+    
+        
+    def opengl(self, qglwidget, qcolor):
+        glPushMatrix()
+        ficha=gluNewQuadric();
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, qglwidget.texture(TTextures.Wood))
+        gluQuadricDrawStyle (ficha, GLU_FILL);
+        gluQuadricNormals (ficha, GLU_SMOOTH);
+        gluQuadricTexture (ficha, True);
+        qglwidget.qglColor(QColor(255, 255, 255))
+        gluCylinder (ficha, 1.4, 1.4, 0.2, 16, 5)
+        glTranslated(0, 0, 0.2)
+        qglwidget.qglColor(qcolor)
+        gluDisk(ficha, 0, 1.4, 16, 5)
+        glTranslated(0, 0, -0.2)
+        glRotated(180, 1, 0, 0)# da la vuelta a la cara
+        qglwidget.qglColor(QColor(127, 127, 127))
+        gluDisk(ficha, 0, 1.40, 16, 5)
+        glPopMatrix()
+        glDisable(GL_TEXTURE_2D);
+        
     def puedeComer(self, mem, destposruta):
         """Devuelve un (True, ficha a comer) or (False, None) si puede comer una ficha en la posicion ruta"""
         #Controla que la casilla de destino no sobrepase la ruta
@@ -1450,7 +1545,7 @@ class Ficha(QObject):
             p=self.ruta.arr[self.posruta].posfichas[posicionBuzon]
         glTranslated(p[0], p[1], p[2])
         
-        opengl_piece(qglwidget, self.color.qcolor())
+        self.opengl(qglwidget, self.color.qcolor())
         glPopName()
         glPopMatrix()
 
