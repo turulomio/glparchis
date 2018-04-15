@@ -4,8 +4,8 @@ import math
 from PyQt5.QtCore import pyqtSignal, QPoint, QSize, Qt
 from PyQt5.QtOpenGL import QGLWidget
 from PyQt5.QtGui import QPixmap, QColor
-from OpenGL.GL import glCallList, glClear, glColorMaterial, glEnable,  glEndList,  glFrontFace, glGenLists, glGetIntegerv, glHint, glLightfv, glLoadIdentity, glMatrixMode, glNewList, glOrtho, glPopMatrix, glPushMatrix, glRenderMode, glRotated, glSelectBuffer, glShadeModel, glTranslated, glViewport,  glScaled,  glVertex3d, glBegin, glEnd
-from OpenGL.GL import GL_AMBIENT, GL_QUADS, GL_AMBIENT_AND_DIFFUSE, GL_CCW, GL_COLOR_BUFFER_BIT, GL_COLOR_MATERIAL, GL_COMPILE, GL_CULL_FACE, GL_DEPTH_BUFFER_BIT, GL_DEPTH_TEST, GL_FRONT, GL_LIGHT0, GL_LIGHTING, GL_MODELVIEW, GL_NICEST, GL_PERSPECTIVE_CORRECTION_HINT, GL_POSITION, GL_PROJECTION, GL_RENDER, GL_SELECT, GL_SMOOTH, GL_STENCIL_BUFFER_BIT, GL_TEXTURE_2D, GL_VIEWPORT,  GL_FLAT
+from OpenGL.GL import glDepthFunc, glCallList, glClear, glColorMaterial, glEnable,  glEndList,  glFrontFace, glGenLists, glGetIntegerv, glHint, glLightfv, glLoadIdentity, glMatrixMode, glNewList, glOrtho, glPopMatrix, glPushMatrix, glRenderMode, glRotated, glSelectBuffer, glShadeModel, glTranslated, glViewport,  glScaled,  glVertex3d, glBegin, glEnd
+from OpenGL.GL import GL_GEQUAL, GL_GREATER, GL_LESS, GL_LEQUAL,  GL_AMBIENT, GL_QUADS, GL_AMBIENT_AND_DIFFUSE, GL_CCW, GL_COLOR_BUFFER_BIT, GL_COLOR_MATERIAL, GL_COMPILE, GL_CULL_FACE, GL_DEPTH_BUFFER_BIT, GL_DEPTH_TEST, GL_FRONT, GL_LIGHT0, GL_LIGHTING, GL_MODELVIEW, GL_NICEST, GL_PERSPECTIVE_CORRECTION_HINT, GL_POSITION, GL_PROJECTION, GL_RENDER, GL_SELECT, GL_SMOOTH, GL_STENCIL_BUFFER_BIT, GL_TEXTURE_2D, GL_VIEWPORT,  GL_FLAT
 from OpenGL.GLU import gluPerspective, gluPickMatrix
 
 from libglparchis import Color, Casilla, Ficha, Jugador, Tablero, Coord3D, Dado
@@ -581,7 +581,23 @@ class wdgShowObject(QGLWidget, ObjectRotationManager):
         glShadeModel(GL_FLAT)
         glEnable(GL_DEPTH_TEST)
         glEnable(GL_CULL_FACE)
+        
+        #glFrontFace(GL_CCW); #Contra sentido reloj
 
+#        light_ambient =  [0.3, 0.3, 0.3, 0.1];
+        
+#        glDepthFunc(GL_GEQUAL);
+
+#        glEnable(GL_LIGHTING)
+#        lightpos=(0, 0, 50)
+#        glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)  
+#        glLightfv(GL_LIGHT0, GL_POSITION, lightpos)  
+#        glEnable(GL_LIGHT0);
+#        glEnable(GL_COLOR_MATERIAL)
+#        glColorMaterial(GL_FRONT,GL_AMBIENT_AND_DIFFUSE)
+
+#        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST)
+        
     def showObject(self, obj):
         self.objeto=obj
         print ("Visualizando el objeto: " + str(self.objeto))
@@ -609,6 +625,7 @@ class wdgShowObject(QGLWidget, ObjectRotationManager):
             glScaled(1.5, 1.5,1.5)
             self.dado.draw(self)
         elif self.objeto==4:
+            glScaled(1.5, 1.5,1.5)
             self.cas.dibujar(self)
         elif self.objeto==5:
             glScaled(0.4, 0.4,0.4)
