@@ -297,7 +297,7 @@ class Ui_frmAbout(object):
         self.vboxlayout.addLayout(self.vboxlayout1)
 
         self.retranslateUi(frmAbout)
-        self.tab.setCurrentIndex(2)
+        self.tab.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(frmAbout)
 
     def retranslateUi(self, frmAbout):
