@@ -1,7 +1,7 @@
 import datetime
 import math
 
-from PyQt5.QtCore import pyqtSignal, QPoint, QSize, Qt, QObject
+from PyQt5.QtCore import pyqtSignal, QPoint, QSize, Qt
 from PyQt5.QtOpenGL import QGLWidget
 from PyQt5.QtGui import QPixmap, QColor
 from OpenGL.GL import glCallList, glClear, glColorMaterial, glEnable,  glEndList,  glFrontFace, glGenLists, glGetIntegerv, glHint, glLightfv, glLoadIdentity, glMatrixMode, glNewList, glOrtho, glPopMatrix, glPushMatrix, glRenderMode, glRotated, glSelectBuffer, glShadeModel, glTranslated, glViewport,  glScaled,  glVertex3d, glBegin, glEnd
@@ -37,12 +37,18 @@ def load_textures(qglwidget):
     texDecor.append(qglwidget.bindTexture(QPixmap(':/glparchis/dado_desplegado.png')))
     return texNumeros, texDecor
         
-class ObjectRotationManager(QObject):
-    xRotationChanged=pyqtSignal(int)
-    yRotationChanged=pyqtSignal(int)
-    zRotationChanged=pyqtSignal(int)
+class ObjectRotationManager:
+    """
+        Allows a basic rotation system in the subclass QGLWidget
+        
+        In the subclass is mandatory to add as class parameters:
+        
+        xRotationChanged=pyqtSignal(int)
+        yRotationChanged=pyqtSignal(int)
+        zRotationChanged=pyqtSignal(int)
+
+    """
     def __init__(self):
-        QObject.__init__(self)
         self.xRot = 0
         self.yRot = 0
         self.zRot = 0
@@ -117,7 +123,7 @@ class wdgOGL(QGLWidget):
    Emite click ficha cuando se realiza"""
     fichaClicked=pyqtSignal()
     doubleClicked=pyqtSignal()
-    def __init__(self,  parent=None,  filename=None):
+    def __init__(self,  parent=None):
         QGLWidget.__init__(self, parent)
         self.tablero=None#After assign_mem creation
         self.texNumeros=[]
@@ -539,9 +545,9 @@ class wdgShowObject(QGLWidget, ObjectRotationManager):
     zRotationChanged=pyqtSignal(int)
     def __init__(self, parent):
         QGLWidget.__init__(self,  parent)
-        self.ortho=(-9, +9, +9, -9, -25.0, 25.0)
         ObjectRotationManager.__init__(self)
         self.objeto=0
+        self.ortho=(-9, +9, +9, -9, -25.0, 25.0)
                
         #Carga el primer objeto    
         self.cas= Casilla(1, 2, Color(0, 0, 255) , (-3.5, -1.5, 0, 0), 0, False, False, 3,  False, (0, 0, 0), False)
