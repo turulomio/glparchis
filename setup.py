@@ -17,8 +17,8 @@ include_files.append(("i18n/glparchis_ru.qm", "i18n/glparchis_ru.qm"))
 
 #Build options
 if sys.platform=='win32':
-      #base = 'Win32GUI'
-      base="Console"
+      base = 'Win32GUI'
+      #base="Console"
       import PyQt5
       include_files.append((PyQt5.__path__[0] + "/Qt/plugins/audio/qtaudio_windows.dll","audio/qtaudio_windows.dll"))
       include_files.append((PyQt5.__path__[0] + "/Qt/bin/QtWebEngineProcess.exe","QtWebEngineProcess.exe"))
