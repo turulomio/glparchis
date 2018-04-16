@@ -2,7 +2,7 @@ import sys, os, urllib.request,   datetime
 from urllib.request import urlopen
 from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QEvent
 from PyQt5.QtGui import QIcon, QPixmap, QKeyEvent
-from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QDialog, QFileDialog, QApplication
+from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QDialog, QFileDialog
 from libglparchis import dateversion, str2bool, cargarQTranslator, b2s, qmessagebox,  Mem4, Mem6, Mem8,  SoundSystem
 
 import configparser
@@ -40,6 +40,9 @@ class frmMain(QMainWindow, Ui_frmMain):#
 
         
     def setInstallationUUID(self):
+        """
+            Sets an update UUID
+        """
         if self.settings.value("frmMain/uuid", "None")=="None":
             self.settings.setValue("frmMain/uuid", str(uuid4()))
             if str2bool(self.settings.value("frmSettings/statistics", "True"))==True:
@@ -50,6 +53,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
                 except:
                     web=None
                 print (web)       
+        else:
+            print(self.tr("Installation UUID already set"))
 
 
 
