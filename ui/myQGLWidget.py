@@ -293,14 +293,19 @@ class wdgOGL(myQGLWidget):
             """
                 Function to get the Name Stack
                 right es si el boton pulsado es el derecho
+                
+                El viewport[3]-event.y() creo que es porque la medida de las Y está invertida
+                Los problemas que tenía con windows de tener que hacer varios click se corrigieron sustituyendo la región de selección de 1,1 a 5,5
+
             """
+
             viewport=glGetIntegerv(GL_VIEWPORT);
             glMatrixMode(GL_PROJECTION);
             glPushMatrix();
             glSelectBuffer(512);
             glRenderMode(GL_SELECT);
             glLoadIdentity();
-            gluPickMatrix(event.x(),viewport[3] -event.y(),1,1, viewport)
+            gluPickMatrix(event.x(),viewport[3] -event.y(),5,5, viewport)
             aspect=viewport[2]/viewport[3]
             gluPerspective(60,aspect,1.0,400)
             glMatrixMode(GL_MODELVIEW)
@@ -311,9 +316,8 @@ class wdgOGL(myQGLWidget):
             else:
                 parseRightButtonNameStack(glRenderMode(GL_RENDER))
             glPopMatrix();
-            glMatrixMode(GL_MODELVIEW);           
- 
-            
+            glMatrixMode(GL_MODELVIEW); 
+
         def getObjectByName(id_name):
             """Devuelve un objeto dependiendo del nombre.None si no corresponde
             #Nuevo nombrado fichas 0-31, 32,tablero,33 dado,34- Casillas"""
@@ -329,12 +333,17 @@ class wdgOGL(myQGLWidget):
                 return None
                 
         def parseLeftButtonNameStack(nameStack):
-            """nameStack tiene la estructura minDepth, maxDepth, names"""
+            """
+                nameStack tiene la estructura minDepth, maxDepth, names
+            
+                Objetos is an int array with the int names of the selected objects.
+            """
             objetos=[]
             for minDepth, maxDepth, names in nameStack:
                 if len(names)==1:
                     objetos.append(names[0])
             
+            print("LEFT", objetos)
             if len(objetos)==1:#Casilla selector
                 self.mem.selFicha=None
             elif len(objetos)==2:#Ficha Selector
@@ -352,6 +361,7 @@ class wdgOGL(myQGLWidget):
             for minDepth, maxDepth, names in nameStack:
                 if len(names)==1:
                    objetos.append(names[0])
+            print("RIGHT", objetos)
             if len(objetos)==1:
                 selCasilla=getObjectByName(objetos[0])
                 if isinstance(selCasilla, Casilla):
@@ -381,6 +391,7 @@ class wdgOGL(myQGLWidget):
         #########################################
         self.setFocus()
         if event.buttons() & Qt.LeftButton:
+            print("Hola")
             pickup(event, False)            
             if self.mem.selFicha!=None:
                 self.mem.jugadores.actual.log(self.tr("Se ha hecho click en la ficha {0}".format(self.mem.selFicha.id)))

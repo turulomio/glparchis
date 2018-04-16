@@ -1,5 +1,5 @@
 import sys
-from OpenGL.GL import glVertex3fv, glBegin, glBindTexture, glColor3d, glDisable, glEnable, glEnd, glInitNames, glPopMatrix, glPopName, glPushName, glPushMatrix, glRotated, glScaled, glTexCoord2f, glTranslated, glTranslatef, glVertex3d, GL_TEXTURE_2D, GL_QUADS, GL_POLYGON, GL_LINE_LOOP
+from OpenGL.GL import glVertex3fv, glBegin, glBindTexture, glColor3d, glDisable, glEnable, glEnd, glPopMatrix, glPopName, glPushName, glPushMatrix, glRotated, glScaled, glTexCoord2f, glTranslated, glTranslatef, glVertex3d, GL_TEXTURE_2D, GL_QUADS, GL_POLYGON, GL_LINE_LOOP
 from OpenGL.GLU import gluCylinder, gluDisk, gluNewQuadric, gluQuadricDrawStyle, gluQuadricNormals, gluQuadricTexture, GLU_FILL, GLU_SMOOTH
 from poscasillas8 import poscasillas8
 from posfichas8 import posfichas8
@@ -103,9 +103,8 @@ class Dado(QObject):
         return resultado
 
     def opengl(self, qglwidget):
-        glInitNames()
-        glPushMatrix()
         glPushName(TNames.Dice)
+        glPushMatrix()
         glScaled(3,3,3);
         glColor3d(255, 255, 255);
 
@@ -169,9 +168,9 @@ class Dado(QObject):
         glTexCoord2f(0.75, doster);glVertex3fv(v23)
         glEnd();
 
-        glPopName();
         glDisable(GL_TEXTURE_2D)
         glPopMatrix();
+        glPopName();
         
     def draw_alone(self, qglwidget):
         self.position=(0, 0, 0)
@@ -1536,9 +1535,8 @@ class Ficha(QObject):
         return False
 
     def draw(self, qglwidget,  posicionBuzon):
-        glInitNames();
+        glPushName(self.id)
         glPushMatrix()
-        glPushName(self.id);
         if posicionBuzon==None:#Para frmAcercade
             p=(0, 0, 0)
         else:
@@ -1546,8 +1544,8 @@ class Ficha(QObject):
         glTranslated(p[0], p[1], p[2])
         
         self.opengl(qglwidget, self.color.qcolor())
-        glPopName()
         glPopMatrix()
+        glPopName()
 
 
 class Tablero(QObject):
@@ -2016,9 +2014,8 @@ class Casilla(QObject):
             glVertex3d(d[0], d[1], d[2])
             glEnd()
         def tipo_inicio():        
-            glInitNames();
-            glPushMatrix()
             glPushName(self.oglname);
+            glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
             verts=[Coord3D(0, 0, 0), Coord3D(0, 21, 0), Coord3D(21, 21, 0), Coord3D(21, 0, 0)]
@@ -2026,13 +2023,12 @@ class Casilla(QObject):
             prism=Prism(p, 0.2)
             prism.opengl(qglwidget)
             prism.opengl_border(qglwidget, 1)    
-            glPopName();
             glPopMatrix()
+            glPopName();
             
         def tipo_inicio6():        
-            glInitNames();
-            glPushMatrix()
             glPushName(self.oglname);
+            glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
             b=21*math.sin(math.pi/6)
@@ -2042,14 +2038,13 @@ class Casilla(QObject):
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
             prism.opengl(qglwidget)
-            prism.opengl_border(qglwidget, 1)       
-            glPopName();
+            prism.opengl_border(qglwidget, 1)     
             glPopMatrix()                
+            glPopName();  
 
         def tipo_inicio8():        
-            glInitNames();
-            glPushMatrix()
             glPushName(self.oglname);
+            glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
             a22c5=math.pi/8
@@ -2061,13 +2056,16 @@ class Casilla(QObject):
             prism=Prism(p, 0.2)
             prism.opengl(qglwidget)
             prism.opengl_border(qglwidget, 1)# 0 It's prism upper face
-            glPopName();
-            glPopMatrix()            
+            glPopMatrix()      
+            glPopName();      
     
         def tipo_normal():
-            glInitNames();
-            glPushMatrix()
+            """
+                Puede haber varios pushmatrix y popmatrix, como este caso con el panelnumerico
+                El Pushname abarca todo.
+            """
             glPushName(self.oglname);
+            glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )            
             verts=[Coord3D(0, 0, 0), Coord3D(0, 3, 0), Coord3D(7, 3, 0), Coord3D(7, 0, 0)]
@@ -2080,16 +2078,15 @@ class Casilla(QObject):
             prism=Prism(p, 0.2)
             prism.opengl(qglwidget)
             prism.opengl_border(qglwidget, 1)    
-            glPopName();
-            glPopMatrix()
             if self.seguro==True and self.rampallegada==False:
                 glDisable(GL_TEXTURE_2D)
+            glPopMatrix()
             panelnumerico()
+            glPopName();
     
         def tipo_oblicuoi(lado):
-            glInitNames();
-            glPushMatrix()
             glPushName(self.oglname);
+            glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
 
@@ -2097,16 +2094,15 @@ class Casilla(QObject):
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
             prism.opengl(qglwidget)
-            prism.opengl_border(qglwidget, 1)    
-            glPopName();
+            prism.opengl_border(qglwidget, 1)  
             glPopMatrix()
-            panelnumerico()
+            panelnumerico()  
+            glPopName();
     
         def tipo_oblicuod(lado):
             """Como parametro se recibe el lado recortado"""
-            glInitNames();
-            glPushMatrix()
             glPushName(self.oglname);
+            glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
             verts=[Coord3D(0, 0, 0), Coord3D(0, 3, 0), Coord3D(lado, 3, 0), Coord3D(7, 0, 0)]
@@ -2114,14 +2110,13 @@ class Casilla(QObject):
             prism=Prism(p, 0.2)
             prism.opengl(qglwidget)
             prism.opengl_border(qglwidget, 1)    
-            glPopName();
             glPopMatrix()
             panelnumerico()
+            glPopName();
             
         def tipo_final():
-            glInitNames();
-            glPushMatrix()
             glPushName(self.oglname);
+            glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
 
@@ -2135,8 +2130,8 @@ class Casilla(QObject):
             prism=Prism(p, 0.2)
             prism.opengl(qglwidget)
             prism.opengl_border(qglwidget, 1)    
-            glPopName();
             glPopMatrix()
+            glPopName();
         ##################################
         if qglwidget.__class__.__name__=="wdgShowObject":#En caso de wdgShowObject en la ayuda
             if self.tipo==0:
