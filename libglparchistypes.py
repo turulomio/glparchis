@@ -8,6 +8,11 @@
 
 
 class TNames:
+    """
+        0-31 is for pieces
+        34- Casillas
+    """
+    Board=32
     Dice=33
 
 class TTextures:

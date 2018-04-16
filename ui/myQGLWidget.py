@@ -9,6 +9,7 @@ from OpenGL.GL import  GL_AMBIENT, GL_QUADS, GL_AMBIENT_AND_DIFFUSE, GL_CCW, GL_
 from OpenGL.GLU import gluPerspective, gluPickMatrix
 
 from libglparchis import Color, Casilla, Ficha, Jugador, Tablero, Dado, Coord3D
+from libglparchistypes import TNames
 from frmShowCasilla import frmShowCasilla
 from frmShowFicha import frmShowFicha
 
@@ -289,7 +290,10 @@ class wdgOGL(myQGLWidget):
 
     def mousePressEvent(self, event):        
         def pickup(event, right):
-            """right es si el boton pulsado en el derecho"""
+            """
+                Function to get the Name Stack
+                right es si el boton pulsado es el derecho
+            """
             viewport=glGetIntegerv(GL_VIEWPORT);
             glMatrixMode(GL_PROJECTION);
             glPushMatrix();
@@ -303,70 +307,76 @@ class wdgOGL(myQGLWidget):
             self.paintGL()
             glMatrixMode(GL_PROJECTION);
             if right==False:
-                process(glRenderMode(GL_RENDER))
+                parseLeftButtonNameStack(glRenderMode(GL_RENDER))
             else:
-                processright(glRenderMode(GL_RENDER))
+                parseRightButtonNameStack(glRenderMode(GL_RENDER))
             glPopMatrix();
             glMatrixMode(GL_MODELVIEW);           
  
             
-        def object(mem, id_name):
+        def getObjectByName(id_name):
             """Devuelve un objeto dependiendo del nombre.None si no corresponde
             #Nuevo nombrado fichas 0-31, 32,tablero,33 dado,34- Casillas"""
-            if id_name>=0 and id_name<=31: #fichas van de 0 a 15
-                return mem.fichas(id_name)
-            elif id_name==32:#tablero 16
+            if id_name>=0 and id_name<=31:
+                return self.mem.fichas(id_name)
+            elif id_name==TNames.Board:
                 return self.tablero
-            elif id_name==33:#casillas de 17 a 121
-                return mem.dado
-            elif id_name>=34 and id_name<=34+self.mem.casillas.number:#casillas de 17 a 121
-                return mem.casillas.find_by_id(id_name-34)
+            elif id_name==TNames.Dice:
+                return self.mem.dado
+            elif id_name>=34 and id_name<=34+self.mem.casillas.number:
+                return self.mem.casillas.find_by_id(id_name-34)
             else:
                 return None
                 
-        def process(nameStack):
+        def parseLeftButtonNameStack(nameStack):
             """nameStack tiene la estructura minDepth, maxDepth, names"""
             objetos=[]
             for minDepth, maxDepth, names in nameStack:
                 if len(names)==1:
                     objetos.append(names[0])
             
-            if len(objetos)==1:
+            if len(objetos)==1:#Casilla selector
                 self.mem.selFicha=None
-            elif len(objetos)==2:
-                objeto=object(self.mem, objetos[1])
+            elif len(objetos)==2:#Ficha Selector
+                objeto=getObjectByName(objetos[1])
                 if isinstance(objeto, Ficha):
                     self.mem.selFicha=objeto
                 else:
                     self.mem.selFicha=None
-                
-                
-        def processright(nameStack):
+                    print(self.tr("I made click to get a Piece but it wasn't one"))
+
+        def parseRightButtonNameStack(nameStack):
             """nameStack tiene la estructura minDepth, maxDepth, names"""
-            def placePopUp():
-                resultado=QPoint(event.x(), event.y())
-                if event.x()>self.width()-a.width():
-                    resultado.setX(event.x()-a.width())
-                if event.y()>self.height()-a.height():
-                    resultado.setY(event.y()-a.height())
-                return resultado
             ############################333
             objetos=[]
             for minDepth, maxDepth, names in nameStack:
                 if len(names)==1:
                    objetos.append(names[0])
             if len(objetos)==1:
-                selCasilla=object(self.mem, objetos[0])
+                selCasilla=getObjectByName(objetos[0])
                 if isinstance(selCasilla, Casilla):
-                    a=frmShowCasilla(self,  Qt.Popup,  selCasilla)
-                    a. move(self.mapToGlobal(placePopUp() ))
-                    a.show()
+                    frmshow=frmShowCasilla(self,  Qt.Popup,  selCasilla)
+                    frmshow.move(self.mapToGlobal(placePopUp(frmshow)))
+                    frmshow.show()
             elif len(objetos)==2:
-                selFicha=object(self.mem, objetos[1])
+                selFicha=getObjectByName(objetos[1])
                 if isinstance(selFicha, Ficha):
-                    a=frmShowFicha(self,  Qt.Popup,  selFicha, self.mem)
-                    a. move(self.mapToGlobal(placePopUp()))
-                    a.show()
+                    frmshow=frmShowFicha(self,  Qt.Popup,  selFicha, self.mem)
+                    frmshow. move(self.mapToGlobal(placePopUp(frmshow)))
+                    frmshow.show()
+                    
+        def placePopUp(frmshow):
+            """
+                Sets the place of the popup in the windows to avoid getout of the screen
+                frmshow can be a frmShowCasilla or a frmShowFicha
+            """
+            resultado=QPoint(event.x(), event.y())
+            if event.x()>self.width()-frmshow.width():
+                resultado.setX(event.x()-frmshow.width())
+            if event.y()>self.height()-frmshow.height():
+                resultado.setY(event.y()-frmshow.height())
+            return resultado
+
                 
         #########################################
         self.setFocus()

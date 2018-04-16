@@ -174,7 +174,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.mem.selFicha=iaficha
                 self.after_ficha_click()
         else:
-            self.delay=int(self.mem.settings.value("frmSettings/delay",300))#Set delay before human turn, so it can be changed during the match
+#            self.delay=int(self.mem.settings.value("frmSettings/delay",300))#Set delay before human turn, so it can be changed during the match
             self.mem.jugadores.actual.log(self.tr("Mueva una ficha"))
 
     def on_splitter_splitterMoved(self, position, index):
