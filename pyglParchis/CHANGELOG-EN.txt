@@ -1,3 +1,10 @@
+20180416
+--------
+- Windows: Solved annoying bug. User needed to do several clicks to move a piece
+- Improved OpenGL code and it's documentation
+- Added Doxygen document system for developers
+- Windows: Solved bug showing objcts in About menu
+
 20180308
 --------
 - Linux: Fixed bug loading translation files
