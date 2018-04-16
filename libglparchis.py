@@ -17,8 +17,8 @@ from uuid import uuid4
 from libglparchistypes import TTextures,  TNames
 
 
-#dateversion=datetime.date(2018, 3, 8)
-dateversion=datetime.date(2000, 1, 1)#When developing
+dateversion=datetime.date(2018, 4, 16)
+#dateversion=datetime.date(2000, 1, 1)#When developing
 
 
 def version(platform=None):

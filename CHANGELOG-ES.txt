@@ -1,3 +1,10 @@
+20180416
+--------
+- Windows: Solucionado bug molesto. El usuario necesitaba hacer varios clicks para mover una ficha
+- Mejorado el código de OpenGL y su documentación
+- Añadido el sistema de documentación de Doxygen para desarrolladores
+- Windows: Solucionado error al mostrar objetos en el menu Acerca De
+
 20180308
 --------
 - Linux: Solucionado error al cargar los ficheros de traducción
