@@ -175,7 +175,7 @@ class Dado(QObject):
         
     def draw_alone(self, qglwidget):
         self.position=(0, 0, 0)
-        self.oopengl(qglwidget)
+        self.opengl(qglwidget)
         
     def draw(self, qglwidget):
         """
@@ -1859,9 +1859,7 @@ class Prism:
             self.contour.append(Polygon().init__create(pverts, Color(200, 200, 200), self.bottom.texture, texverts))
         
     def opengl(self, qglwidget):
-        print("C")
         self.up.opengl(qglwidget)
-        print("B")
         self.bottom.opengl(qglwidget)
         for f in self.contour:
             f.opengl(qglwidget)
