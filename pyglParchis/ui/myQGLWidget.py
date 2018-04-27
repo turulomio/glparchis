@@ -9,7 +9,7 @@ from OpenGL.GL import  GL_AMBIENT, GL_QUADS, GL_AMBIENT_AND_DIFFUSE, GL_CCW, GL_
 from OpenGL.GLU import gluPerspective, gluPickMatrix
 
 from libglparchis import Color, Casilla, Ficha, Jugador, Tablero, Dado, Coord3D
-from libglparchistypes import TNames
+from libglparchistypes import TNames,  TSquareTypes
 from frmShowCasilla import frmShowCasilla
 from frmShowFicha import frmShowFicha
 
@@ -257,8 +257,7 @@ class wdgOGL(myQGLWidget):
         for c in self.mem.casillas.arr:
             if c.id!=0:
                 c.draw(self)    
-#            if c.id!=0:
-#                c.draw_fichas(self)#Need to draw through Squares to get square position
+
         self.mem.dado.draw(self)
             
         print("paintGL", datetime.datetime.now()-inicio)
@@ -545,19 +544,33 @@ class wdgShowObject(myQGLWidget, ObjectRotationManager):
         self.objeto=0
                
         #Carga el primer objeto    
-        self.cas= Casilla(1, 2, Color(0, 0, 255) , (-3.5, -1.5, 0, 0), 0, False, False, 3,  False, (0, 0, 0), False)
-        self.casinicio= Casilla(1, 2, Color(255, 0, 0) , (-3.5, -1.5, 0, 0), 0, False, False, 0,  False, (0, 0, 0), False)
-        self.ficha=Ficha(None, 0, 1, Color(255, 0, 0), Jugador(None, Color(255, 0, 0)), None)
+        self.ficha1=Ficha(None, 0, 1, Color(255, 0, 0), Jugador(None, Color(255, 0, 0)), None)
+        self.ficha2=Ficha(None, 0, 1, Color(255, 0, 0), Jugador(None, Color(255, 0, 0)), None)
+        self.ficha3=Ficha(None, 0, 1, Color(255, 0, 0), Jugador(None, Color(255, 0, 0)), None)
+        self.ficha4=Ficha(None, 0, 1, Color(255, 0, 0), Jugador(None, Color(255, 0, 0)), None)
+        self.fichaslist2=[self.ficha1, self.ficha2]
+        self.fichaslist4=[self.ficha1, self.ficha2, self.ficha3, self.ficha4]
+        
+        self.casinicio= Casilla(1, 2, Color(255, 0, 0) , (-3.5, -1.5, 0, 0), 0, False, False, TSquareTypes.Initial4,  False, False)
+        self.casinicio.buzon=self.fichaslist4
+        
+        self.cas= Casilla(1, 2, Color(0, 0, 255) , (-3.5, -1.5, 0, 0), 0, False, False, TSquareTypes.Normal,  False, False)
+        self.cas.buzon=self.fichaslist2
+        
         self.tablero=Tablero(4)
         self.tablero.position=Coord3D(0, 0, 0)
+        
         self.tablero6=Tablero(6)
         self.tablero6.position=Coord3D(0, 0, 0)
+        
         self.tablero8=Tablero(8)
         self.tablero8.position=Coord3D(0, 0, 0)
+        
         self.dado=Dado()
         self.dado.showing=True
         self.lasttirada=5
-        self.z=-10
+        
+        self.z=-15
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Plus:
@@ -599,9 +612,7 @@ class wdgShowObject(myQGLWidget, ObjectRotationManager):
         glRotated(self.zRot / 16.0, 0.0, 0.0, 1.0)
         if self.objeto==0:
             glScaled(0.1, 0.1,0.1)
-            print("Aqui")
             self.tablero.draw(self)
-            print("Aqui")
         elif self.objeto==1:
             glScaled(0.1, 0.1,0.1)
             self.tablero6.draw(self)
@@ -615,9 +626,8 @@ class wdgShowObject(myQGLWidget, ObjectRotationManager):
             glScaled(1.5, 1.5,1.5)
             self.cas.draw(self)
         elif self.objeto==5:
-            glScaled(0.4, 0.4,0.4)
             self.casinicio.draw(self)
         elif self.objeto==6:
             glScaled(2, 2,2)
-            self.ficha.draw(self, None)
+            self.ficha1.draw(self, None)
 
