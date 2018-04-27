@@ -1976,7 +1976,7 @@ class Casilla(QObject):
             def cuadrito(x, texture, rotation):
                 glBindTexture(GL_TEXTURE_2D, texture)                
                 glPushMatrix()
-                glTranslated(self.position[0],self.position[1],self.position[2]+0.2)
+                glTranslated(self.position[0],self.position[1],self.position[2]+0.12)
                 glRotated(self.rotate, 0, 0, 1 )            
                 glBegin(GL_QUADS)
                 qglwidget.qglColor(self.color.qcolor())
