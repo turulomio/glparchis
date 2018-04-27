@@ -47,7 +47,7 @@ class TTextures:
     Dice=1003
 
 ## Types of square
-class TSquareType:
+class TSquareTypes:
     Initial4=0
     Final4=1
     ObliqueLeft=2
