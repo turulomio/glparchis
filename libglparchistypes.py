@@ -36,3 +36,10 @@ class TTextures:
     Wood=1001
     Sure=1002
     Dice=1003
+
+## Types of square
+class TSquareType:
+    Initial=0
+    Final=1
+    
+    
