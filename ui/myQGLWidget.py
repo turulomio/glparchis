@@ -207,9 +207,9 @@ class wdgOGL(myQGLWidget):
         #Tablero
         glNewList(DisplayList.tablero, GL_COMPILE)
         self.tablero.draw(self)
-        for c in self.mem.casillas.arr:
-            if c.id!=0:
-                c.draw(self)
+#        for c in self.mem.casillas.arr:
+#            if c.id!=0:
+#                c.draw(self)
         glEndList()
         
 
@@ -256,7 +256,9 @@ class wdgOGL(myQGLWidget):
         
         for c in self.mem.casillas.arr:
             if c.id!=0:
-                c.draw_fichas(self)#Need to draw through Squares to get square position
+                c.draw(self)    
+#            if c.id!=0:
+#                c.draw_fichas(self)#Need to draw through Squares to get square position
         self.mem.dado.draw(self)
             
         print("paintGL", datetime.datetime.now()-inicio)

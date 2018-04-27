@@ -8,7 +8,7 @@ from posfichas8 import posfichas8
 from poscasillas4 import poscasillas4
 from posfichas4 import posfichas4
 from poscasillas3 import poscasillas3
-from posfichas3 import posfichas3
+
 from poscasillas6 import poscasillas6
 from posfichas6 import posfichas6
 import os,  random,   configparser,  datetime,  codecs,  math
@@ -49,7 +49,27 @@ def deprecated(func):
         warnings.simplefilter('default', DeprecationWarning)  # reset filter
         return func(*args, **kwargs)
     return new_func
+## Abstract class to manage and interate objects with no more request
+class ManagerObjectsList(ABC):
+    ## Constructor
+    def __init__(self):
+        self.arr=[]
+        self.mem=None
 
+    ##Assigns mem object
+    ## @param mem Game mem obj
+    def setMem(self, mem):
+        self.mem=mem
+        
+    ## Append an object to self.arr
+    ## @param o Any object
+    def append(self, o):
+        self.arr.append(o)
+                
+    ## Returns the lengh of the array
+    def length(self):
+        return len(self.arr)
+        
 def str2bool(s):
     if s.__class__==bool:#Si ya fuera bool
         return s
@@ -366,8 +386,11 @@ class SetAmenazas:
             else:
                 return
         
-        #Detecta si hay ficha en 1OJO LA CASILLA QUE SE BUSCA NO ES LA ACTUAL DEL OBJETIVO sino la de parametro de entrada self.casilla
+        #Detecta si hay ficha en OJO LA CASILLA QUE SE BUSCA NO ES LA ACTUAL DEL OBJETIVO sino la de parametro de entrada self.casilla
+        
+        print (self.casilla.id, self.casilla)
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -1)
+        print(casillaataque)
         for posicion, ficha in casillaataque.buzon_fichas():
             if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
             if ficha.jugador!=self.objetivo.jugador and ficha.estaAutorizadaAMover(1) and ficha.puedeComer(self.mem, ficha.posruta+1):
@@ -1005,6 +1028,59 @@ class SetCasillas:
     def find_by_id(self, id):
         return self.arr[id]
             
+    ## Sets Pawn positions in a square. Object SquarePawnPositionsManager was created in Casilla constructor
+    def setSquarePawnPositions(self, square):
+        if square.tipo==TSquareType.Normal:
+            square.pawnpositions.append(Coord3D(2, 1.5, 0.2))
+            square.pawnpositions.append(Coord3D(5, 1.5, 0.2))
+        if square.tipo==TSquareType.ObliqueLeft:
+            square.pawnpositions.append(Coord3D(2, 1.5, 0.2))
+            square.pawnpositions.append(Coord3D(5, 1.5, 0.2))
+        if square.tipo==TSquareType.ObliqueRight:
+            square.pawnpositions.append(Coord3D(2, 1.5, 0.2))
+            square.pawnpositions.append(Coord3D(5, 1.5, 0.2))
+        elif square.tipo==TSquareType.Initial3:
+            square.pawnpositions.append(Coord3D(0, 0, 0.2))
+            square.pawnpositions.append(Coord3D(2, 2, 0.2))
+            square.pawnpositions.append(Coord3D(4, 4, 0.2))
+            square.pawnpositions.append(Coord3D(6, 6, 0.2))
+        elif square.tipo==TSquareType.Initial4:
+            square.pawnpositions.append(Coord3D(0, 0, 0.2))
+            square.pawnpositions.append(Coord3D(2, 2, 0.2))
+            square.pawnpositions.append(Coord3D(4, 4, 0.2))
+            square.pawnpositions.append(Coord3D(6, 6, 0.2))
+        elif square.tipo==TSquareType.Initial6:
+            square.pawnpositions.append(Coord3D(0, 0, 0.2))
+            square.pawnpositions.append(Coord3D(2, 2, 0.2))
+            square.pawnpositions.append(Coord3D(4, 4, 0.2))
+            square.pawnpositions.append(Coord3D(6, 6, 0.2))
+        elif square.tipo==TSquareType.Initial8:
+            square.pawnpositions.append(Coord3D(0, 0, 0.2))
+            square.pawnpositions.append(Coord3D(2, 2, 0.2))
+            square.pawnpositions.append(Coord3D(4, 4, 0.2))
+            square.pawnpositions.append(Coord3D(6, 6, 0.2))
+        elif square.tipo==TSquareType.Final3:
+            square.pawnpositions.append(Coord3D(0, 0, 0.2))
+            square.pawnpositions.append(Coord3D(2, 2, 0.2))
+            square.pawnpositions.append(Coord3D(4, 4, 0.2))
+            square.pawnpositions.append(Coord3D(6, 6, 0.2))
+        elif square.tipo==TSquareType.Final4:
+            square.pawnpositions.append(Coord3D(0, 0, 0.2))
+            square.pawnpositions.append(Coord3D(2, 2, 0.2))
+            square.pawnpositions.append(Coord3D(4, 4, 0.2))
+            square.pawnpositions.append(Coord3D(6, 6, 0.2))
+        elif square.tipo==TSquareType.Final6:
+            square.pawnpositions.append(Coord3D(0, 0, 0.2))
+            square.pawnpositions.append(Coord3D(2, 2, 0.2))
+            square.pawnpositions.append(Coord3D(4, 4, 0.2))
+            square.pawnpositions.append(Coord3D(6, 6, 0.2))
+        elif square.tipo==TSquareType.Final8:
+            square.pawnpositions.append(Coord3D(0, 0, 0.2))
+            square.pawnpositions.append(Coord3D(2, 2, 0.2))
+            square.pawnpositions.append(Coord3D(4, 4, 0.2))
+            square.pawnpositions.append(Coord3D(6, 6, 0.2))
+            
+            
     def generar_casillas(self):
         if self.numplayers==6:
             self.generar_casillas6()
@@ -1026,7 +1102,7 @@ class SetCasillas:
         def defineSeguro( id):
             if id==5 or id==12 or id==17 or id==22 or id==29 or id==34 or id==39 or id==46 or id==51:
                 return True
-            elif id>=52 and id<=76:#Las de la rampa de llegada tambien son seguras
+            elif id>=52 and id<=78:#Las de la rampa de llegada tambien son seguras
                 return True
             else:
                 return False
@@ -1044,9 +1120,9 @@ class SetCasillas:
     
         def defineTipo( id):
             if id==76 or id==77 or id==78 :
-               return TSquareType.Initial #Casilla inicial
+               return TSquareType.Initial3 #Casilla inicial
             elif id==59 or id==67 or id==75:
-               return TSquareType.Final #Casilla final
+               return TSquareType.Final3 #Casilla final
             else:
                 return TSquareType.Normal #Casilla Normal
     
@@ -1082,9 +1158,11 @@ class SetCasillas:
                 
         ##############################       
         posCasillas=poscasillas3(self.number)
-        posFichas=posfichas3(self.number)
+#        posFichas=posfichas3(self.number)
         for i in range(0, self.number):#Se debe inializar Antes que las fichas
-            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i],  defineRutas1(i)))
+            c=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), None,  defineRutas1(i))
+            self.setSquarePawnPositions(c)
+            self.arr.append(c)
             
     def generar_casillas4(self):
         def defineRutas1(id):
@@ -1158,8 +1236,10 @@ class SetCasillas:
         posCasillas=poscasillas4(self.number)
         posFichas=posfichas4(self.number)
         for i in range(0, self.number):#Se debe inializar Antes que las fichas
-            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i],  defineRutas1(i)))
-            
+
+            c=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i],  defineRutas1(i))
+            self.setSquarePawnPositions(c)
+            self.arr.append(c)
     def generar_casillas6(self):
 
         def defineRutas1(id):
@@ -1251,8 +1331,9 @@ class SetCasillas:
         posCasillas=poscasillas6(self.number)
         posFichas=posfichas6(self.number, posCasillas)
         for i in range(0, self.number):#Se debe inializar Antes que las fichas
-            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i) , defineRotatePN(i),  defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i], defineRutas1(i)))
-            
+            c=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i],  defineRutas1(i))
+            self.setSquarePawnPositions(c)
+            self.arr.append(c)
  
     def generar_casillas8(self):
         def defineSeguro( id):
@@ -1360,8 +1441,9 @@ class SetCasillas:
         posCasillas=poscasillas8(self.number)
         posFichas=posfichas8(self.number, posCasillas)
         for i in range(0, self.number):#Se debe inializar Antes que las fichas
-            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i], defineRutas1(i)))
-            
+            c=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i],  defineRutas1(i))
+            self.setSquarePawnPositions(c)
+            self.arr.append(c)
 class SetFichas:
     """Agrupacion de fichas"""
     def __init__(self, mem):
@@ -1654,19 +1736,20 @@ class Ficha(QObject):
         if self.posruta==len(self.ruta.arr)-1:
             return True
         return False
-
-    def draw(self, qglwidget,  posicionBuzon):
-        glPushName(self.id)
-        glPushMatrix()
-        if posicionBuzon==None:#Para frmAcercade
-            p=(0, 0, 0)
-        else:
-            p=self.ruta.arr[self.posruta].posfichas[posicionBuzon]
-        glTranslated(p[0], p[1], p[2])
-        
-        self.opengl(qglwidget, self.color.qcolor())
-        glPopMatrix()
-        glPopName()
+#
+#    @deprecated
+#    def draw(self, qglwidget,  posicionBuzon):
+#        glPushName(self.id)
+#        glPushMatrix()
+#        if posicionBuzon==None:#Para frmAcercade
+#            p=(0, 0, 0)
+#        else:
+#            p=self.ruta.arr[self.posruta].posfichas[posicionBuzon]
+#        glTranslated(p[0], p[1], p[2])
+#        
+#        self.opengl(qglwidget, self.color.qcolor())
+#        glPopMatrix()
+#        glPopName()
 
 
 class Tablero(QObject):
@@ -2001,10 +2084,19 @@ class Prism:
                 self.up.opengl_border(qglwidget, zpos)
             elif face==1:
                 self.bottom.opengl_border(qglwidget, zpos)
-            
 
-            
-class Casilla(QObject):
+    
+## Class which manages all Pawn positions in a Square.
+class SquarePawnPositionsManager(ManagerObjectsList):
+    def __init__(self):        
+        ## Stores an array with Coord3D objects, Array can not have None, is where I define positions even
+        ## if there is a pawn or not.
+        ManagerObjectsList.__init__(self)
+        
+
+## Square object where pawns objects are displayed
+## Manage pawns and its drawings
+class Casilla(QObject):    
     def __init__(self, id, maxfichas, color,  position, rotate, rotatepn,  rampallegada, tipo, seguro, posfichas, ruta1):
         QObject.__init__(self)
         self.id=id
@@ -2023,6 +2115,9 @@ class Casilla(QObject):
         self.buzon=[None]*self.maxfichas #Se crean los huecos y se juega con ellos para mantener la posicion
         self.oglname=self.id+34#Nombre usado para pick por opengl
         self.UltimaFichaEnLlegar=None#Puntero a un objeto ficha que es utilizado p.e. cuando se come la segunda ficha en la casilla de salida por un 5 obligado a salir
+        
+        ## Where to put pawns positions
+        self.pawnpositions=SquarePawnPositionsManager()
         
     def __repr__(self):
         return ("Casilla {0} con {1} fichas dentro".format(self.id, self.buzon_numfichas()))
@@ -2136,7 +2231,8 @@ class Casilla(QObject):
             glVertex3d(c[0], c[1], c[2])
             glVertex3d(d[0], d[1], d[2])
             glEnd()
-        def tipo_inicio():        
+            
+        def tipo_inicio3():        
             glPushName(self.oglname);
             glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
@@ -2146,8 +2242,35 @@ class Casilla(QObject):
             prism=Prism(p, 0.2)
             prism.opengl(qglwidget)
             prism.opengl_border(qglwidget, 1)    
-            glPopMatrix()
             glPopName();
+            #Draws pawns with  SquarePawnPositionsManager information
+            for position_in_buzon, ficha in enumerate(self.buzon):
+                if ficha!=None:
+                    glPushName(ficha.id)
+                    glTranslated(self.pawnpositions.arr[position_in_buzon].x,  self.pawnpositions.arr[position_in_buzon].y, self.pawnpositions.arr[position_in_buzon].z)
+                    ficha.opengl(qglwidget, ficha.color.qcolor())
+                    glPopName()
+            glPopMatrix()
+
+        def tipo_inicio4():        
+            glPushName(self.oglname);
+            glPushMatrix()
+            glTranslated(self.position[0],self.position[1],self.position[2] )
+            glRotated(self.rotate, 0, 0, 1 )
+            verts=[Coord3D(0, 0, 0), Coord3D(0, 21, 0), Coord3D(21, 21, 0), Coord3D(21, 0, 0)]
+            p=Polygon().init__create(verts, self.color, None, [])
+            prism=Prism(p, 0.2)
+            prism.opengl(qglwidget)
+            prism.opengl_border(qglwidget, 1)    
+            glPopName();
+            #Draws pawns with  SquarePawnPositionsManager information
+            for position_in_buzon, ficha in enumerate(self.buzon):
+                if ficha!=None:
+                    glPushName(ficha.id)
+                    glTranslated(self.pawnpositions.arr[position_in_buzon].x,  self.pawnpositions.arr[position_in_buzon].y, self.pawnpositions.arr[position_in_buzon].z)
+                    ficha.opengl(qglwidget, ficha.color.qcolor())
+                    glPopName()
+            glPopMatrix()
             
         def tipo_inicio6():        
             glPushName(self.oglname);
@@ -2162,8 +2285,15 @@ class Casilla(QObject):
             prism=Prism(p, 0.2)
             prism.opengl(qglwidget)
             prism.opengl_border(qglwidget, 1)     
-            glPopMatrix()                
-            glPopName();  
+            glPopName();
+            #Draws pawns with  SquarePawnPositionsManager information
+            for position_in_buzon, ficha in enumerate(self.buzon):
+                if ficha!=None:
+                    glPushName(ficha.id)
+                    glTranslated(self.pawnpositions.arr[position_in_buzon].x,  self.pawnpositions.arr[position_in_buzon].y, self.pawnpositions.arr[position_in_buzon].z)
+                    ficha.opengl(qglwidget, ficha.color.qcolor())
+                    glPopName()
+            glPopMatrix()
 
         def tipo_inicio8():        
             glPushName(self.oglname);
@@ -2179,8 +2309,15 @@ class Casilla(QObject):
             prism=Prism(p, 0.2)
             prism.opengl(qglwidget)
             prism.opengl_border(qglwidget, 1)# 0 It's prism upper face
-            glPopMatrix()      
-            glPopName();      
+            glPopName();
+            #Draws pawns with  SquarePawnPositionsManager information
+            for position_in_buzon, ficha in enumerate(self.buzon):
+                if ficha!=None:
+                    glPushName(ficha.id)
+                    glTranslated(self.pawnpositions.arr[position_in_buzon].x,  self.pawnpositions.arr[position_in_buzon].y, self.pawnpositions.arr[position_in_buzon].z)
+                    ficha.opengl(qglwidget, ficha.color.qcolor())
+                    glPopName()
+            glPopMatrix()  
     
         def tipo_normal():
             """
@@ -2203,9 +2340,19 @@ class Casilla(QObject):
             prism.opengl_border(qglwidget, 1)    
             if self.seguro==True and self.rampallegada==False:
                 glDisable(GL_TEXTURE_2D)
+            glPopName();
+            #Draws pawns with  SquarePawnPositionsManager information
+            for position_in_buzon, ficha in enumerate(self.buzon):
+                if ficha!=None:
+                    glPushName(ficha.id)
+#                    glPushMatrix()
+                    print(position_in_buzon, self.pawnpositions.length())
+                    glTranslated(self.pawnpositions.arr[position_in_buzon].x,  self.pawnpositions.arr[position_in_buzon].y, self.pawnpositions.arr[position_in_buzon].z)
+                    ficha.opengl(qglwidget, ficha.color.qcolor())
+#                    glPopMatrix()
+                    glPopName()
             glPopMatrix()
             panelnumerico()
-            glPopName();
     
         def tipo_oblicuoi(lado):
             glPushName(self.oglname);
@@ -2218,9 +2365,16 @@ class Casilla(QObject):
             prism=Prism(p, 0.2)
             prism.opengl(qglwidget)
             prism.opengl_border(qglwidget, 1)  
-            glPopMatrix()
-            panelnumerico()  
             glPopName();
+            #Draws pawns with  SquarePawnPositionsManager information
+            for position_in_buzon, ficha in enumerate(self.buzon):
+                if ficha!=None:
+                    glPushName(ficha.id)
+                    glTranslated(self.pawnpositions.arr[position_in_buzon].x,  self.pawnpositions.arr[position_in_buzon].y, self.pawnpositions.arr[position_in_buzon].z)
+                    ficha.opengl(qglwidget, ficha.color.qcolor())
+                    glPopName()
+            glPopMatrix()
+            panelnumerico()
     
         def tipo_oblicuod(lado):
             """Como parametro se recibe el lado recortado"""
@@ -2233,11 +2387,67 @@ class Casilla(QObject):
             prism=Prism(p, 0.2)
             prism.opengl(qglwidget)
             prism.opengl_border(qglwidget, 1)    
+            glPopName();
+            #Draws pawns with  SquarePawnPositionsManager information
+            for position_in_buzon, ficha in enumerate(self.buzon):
+                if ficha!=None:
+                    glPushName(ficha.id)
+                    glTranslated(self.pawnpositions.arr[position_in_buzon].x,  self.pawnpositions.arr[position_in_buzon].y, self.pawnpositions.arr[position_in_buzon].z)
+                    ficha.opengl(qglwidget, ficha.color.qcolor())
+                    glPopName()
             glPopMatrix()
             panelnumerico()
+        def tipo_final3():
+            glPushName(self.oglname);
+            glPushMatrix()
+            glTranslated(self.position[0],self.position[1],self.position[2] )
+            glRotated(self.rotate, 0, 0, 1 )
+
+            if qglwidget.__class__.__name__!="wdgShowObject":#En caso de que no sea wdgShowObject
+                if qglwidget.mem.maxplayers==6:
+                    glScaled(2*math.tan(math.pi/6)*(21*math.cos(math.pi/6)-3)/15, (21*math.cos(math.pi/6)-3)/7.5, 1)
+                elif qglwidget.mem.maxplayers==8:
+                    glScaled((21-2*3*math.tan(math.pi/8))/15.0, ((10.5/math.tan(math.pi/8))-3)/7.5, 1)
+            verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(7.5, 7.5, 0), Coord3D(15, 0, 0)]
+            p=Polygon().init__create(verts, self.color, None, [])
+            prism=Prism(p, 0.2)
+            prism.opengl(qglwidget)
+            prism.opengl_border(qglwidget, 1)    
             glPopName();
-            
-        def tipo_final():
+            #Draws pawns with  SquarePawnPositionsManager information
+            for position_in_buzon, ficha in enumerate(self.buzon):
+                if ficha!=None:
+                    glPushName(ficha.id)
+                    glTranslated(self.pawnpositions.arr[position_in_buzon].x,  self.pawnpositions.arr[position_in_buzon].y, self.pawnpositions.arr[position_in_buzon].z)
+                    ficha.opengl(qglwidget, ficha.color.qcolor())
+                    glPopName()
+            glPopMatrix()
+        def tipo_final4():
+            glPushName(self.oglname);
+            glPushMatrix()
+            glTranslated(self.position[0],self.position[1],self.position[2] )
+            glRotated(self.rotate, 0, 0, 1 )
+
+            if qglwidget.__class__.__name__!="wdgShowObject":#En caso de que no sea wdgShowObject
+                if qglwidget.mem.maxplayers==6:
+                    glScaled(2*math.tan(math.pi/6)*(21*math.cos(math.pi/6)-3)/15, (21*math.cos(math.pi/6)-3)/7.5, 1)
+                elif qglwidget.mem.maxplayers==8:
+                    glScaled((21-2*3*math.tan(math.pi/8))/15.0, ((10.5/math.tan(math.pi/8))-3)/7.5, 1)
+            verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(7.5, 7.5, 0), Coord3D(15, 0, 0)]
+            p=Polygon().init__create(verts, self.color, None, [])
+            prism=Prism(p, 0.2)
+            prism.opengl(qglwidget)
+            prism.opengl_border(qglwidget, 1)    
+            glPopName();
+            #Draws pawns with  SquarePawnPositionsManager information
+            for position_in_buzon, ficha in enumerate(self.buzon):
+                if ficha!=None:
+                    glPushName(ficha.id)
+                    glTranslated(self.pawnpositions.arr[position_in_buzon].x,  self.pawnpositions.arr[position_in_buzon].y, self.pawnpositions.arr[position_in_buzon].z)
+                    ficha.opengl(qglwidget, ficha.color.qcolor())
+                    glPopName()
+            glPopMatrix()
+        def tipo_final6():
             glPushName(self.oglname);
             glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
@@ -2255,29 +2465,38 @@ class Casilla(QObject):
             prism.opengl_border(qglwidget, 1)    
             glPopMatrix()
             glPopName();
-        def tipo_final3():            
+        def tipo_final8():
             glPushName(self.oglname);
             glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
 
-#            if qglwidget.mem.maxplayers==3:
-#                glScaled(2*math.tan(math.pi/6)*(21*math.cos(math.pi/6)-3)/15, (21*math.cos(math.pi/6)-3)/7.5, 1)
-#            elif qglwidget.mem.maxplayers==8:
-#                glScaled((21-2*3*math.tan(math.pi/8))/15.0, ((10.5/math.tan(math.pi/8))-3)/7.5, 1)
-            verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0),   Coord3D(10.5, 6.08, 0), Coord3D(21,  0, 0),]
+            if qglwidget.__class__.__name__!="wdgShowObject":#En caso de que no sea wdgShowObject
+                if qglwidget.mem.maxplayers==6:
+                    glScaled(2*math.tan(math.pi/6)*(21*math.cos(math.pi/6)-3)/15, (21*math.cos(math.pi/6)-3)/7.5, 1)
+                elif qglwidget.mem.maxplayers==8:
+                    glScaled((21-2*3*math.tan(math.pi/8))/15.0, ((10.5/math.tan(math.pi/8))-3)/7.5, 1)
+            verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(7.5, 7.5, 0), Coord3D(15, 0, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
             prism.opengl(qglwidget)
             prism.opengl_border(qglwidget, 1)    
-            glPopMatrix()
             glPopName();
+            #Draws pawns with  SquarePawnPositionsManager information
+            for position_in_buzon, ficha in enumerate(self.buzon):
+                if ficha!=None:
+                    glPushName(ficha.id)
+                    glTranslated(self.pawnpositions.arr[position_in_buzon].x,  self.pawnpositions.arr[position_in_buzon].y, self.pawnpositions.arr[position_in_buzon].z)
+                    ficha.opengl(qglwidget, ficha.color.qcolor())
+                    glPopName()
+            glPopMatrix()
+
         ##################################
         if qglwidget.__class__.__name__=="wdgShowObject":#En caso de wdgShowObject en la ayuda
-            if self.tipo==TSquareType.Initial:
+            if self.tipo==TSquareType.Initial8:
                 tipo_inicio8()
-            elif self.tipo==TSquareType.Final:
-                tipo_final()
+            elif self.tipo==TSquareType.Final4:
+                tipo_final4()
             elif self.tipo==TSquareType.ObliqueLeft:
                 tipo_oblicuoi(3)
             elif self.tipo==TSquareType.ObliqueRight:
@@ -2287,18 +2506,22 @@ class Casilla(QObject):
             return
         
         
-        if self.tipo==TSquareType.Initial:
-            if qglwidget.mem.maxplayers==4:
-                tipo_inicio()
-            elif qglwidget.mem.maxplayers==6:
+        if self.tipo==TSquareType.Initial4:
+                tipo_inicio4()
+        elif self.tipo==TSquareType.Initial3:
+                tipo_inicio3()
+        elif self.tipo==TSquareType.Initial6:
                 tipo_inicio6()
-            elif qglwidget.mem.maxplayers==8:
+        elif self.tipo==TSquareType.Initial8:
                 tipo_inicio8()
-        elif self.tipo==TSquareType.Final:
-            if qglwidget.mem.maxplayers==3:
+        elif self.tipo==TSquareType.Final3:
                 tipo_final3()
-            else:
-                tipo_final()
+        elif self.tipo==TSquareType.Final4:
+                tipo_final4()
+        elif self.tipo==TSquareType.Final6:
+                tipo_final6()
+        elif self.tipo==TSquareType.Final8:
+                tipo_final8()
         elif self.tipo==TSquareType.ObliqueLeft:
             if qglwidget.mem.maxplayers==4:
                 tipo_oblicuoi(3)
@@ -2317,33 +2540,41 @@ class Casilla(QObject):
             tipo_normal()
             
     ## Draw pawns in is square position
+    @deprecated                
     def draw_fichas(self, qglwidget):
+        pass
+        
+        
         if self.buzon_numfichas()>0:
-            for i, f in enumerate(self.buzon):       
-                if f!=None:
-                    f.draw(qglwidget, i)
+            if self.tipo!=TSquareType.Normal:
+                for i, f in enumerate(self.buzon):       
+                    if f!=None:
+                        f.draw(qglwidget, i)
 
     def tieneBarrera(self):
         """Devuelve un booleano, las fichas de la barrera se pueden sacar del buzon"""
-        if self.tipo not in (TSquareType.Initial, TSquareType.Final):
+        if self.tipo not in (TSquareType.Initial3, TSquareType.Initial4, TSquareType.Initial6, TSquareType.Initial8, 
+                        TSquareType.Final3, TSquareType.Final4, TSquareType.Final6, TSquareType.Final8):
             if self.maxfichas==2:
                 if self.buzon_numfichas()==2:
                     if self.buzon[0].jugador==self.buzon[1].jugador:
                         return True
         return False
 
+    @deprecated
     def posicionLibreEnBuzon(self):
         """Funcion que devuelve la posicion de un sitio libre con un entero. En caso negativo devuelve -1"""
         for i, p in enumerate(self.buzon):
             if p==None:
                 return i
         return -1
-        
+    @deprecated
     def buzon_append(self,  ficha):
         """No chequea debe ser comprobado antes"""
         self.buzon[self.posicionLibreEnBuzon()]=ficha
         self.UltimaFichaEnLlegar=ficha
             
+    @deprecated
     def buzon_remove(self, ficha):
         """No chequea debe ser comprobado antes"""
         for i, f in enumerate(self.buzon):
@@ -2354,6 +2585,7 @@ class Casilla(QObject):
                 return
         print ("No se ha podido hacer buzon_remove con {0}".format(ficha))
                 
+    @deprecated
     def buzon_numfichas(self):
         """Funcion que devuelve el numero de fichas en el buzon"""
         resultado=0
@@ -2362,6 +2594,7 @@ class Casilla(QObject):
                 resultado=resultado+1
         return resultado
 
+    @deprecated
     def buzon_fichas(self):
         """Como ahora puede haber una ficha y estar en buzon[1] se hace necesario esta funcion.
         Devuelve una lista de fichas con una tupla (posicion, ficha)"""
@@ -2394,6 +2627,8 @@ class SoundSystem:
     def play(self, effect):      
         print("Playing", effect)
         self.sounds[effect].play()
+
+
 
 ## Abstract class to manage and interate objects with id attribute in a dict
 class ManagerObjectsId(ABC):
