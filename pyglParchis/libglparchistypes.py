@@ -6,6 +6,15 @@
     DOn't use pusxmatrix nor popmatrix, 
 """
 
+class TPlayers:
+    Yellow=0
+    Blue=1
+    Red=2
+    Green=3
+    Gray=4
+    Fuchsia=5
+    Orange=6
+    Turquoise=7
 
 class TNames:
     """
