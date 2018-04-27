@@ -193,6 +193,8 @@ class wdgOGL(myQGLWidget):
             fs=""
         if self.mem.maxplayers==8:
             self.z=int(self.mem.settings.value("wdgOGL/z_{}{}".format(fs, self.mem.maxplayers), -85))
+        elif self.mem.maxplayers==3:
+            self.z=int(self.mem.settings.value("wdgOGL/z_{}{}".format(fs, self.mem.maxplayers), -50))
         elif self.mem.maxplayers==4:
             self.z=int(self.mem.settings.value("wdgOGL/z_{}{}".format(fs, self.mem.maxplayers), -60))
         elif self.mem.maxplayers==6:
@@ -225,6 +227,8 @@ class wdgOGL(myQGLWidget):
             glTranslated(-31.5, -31.5, self.z)
         elif self.mem.maxplayers==6:
             glTranslated(-31.5, -24, self.z)
+        elif self.mem.maxplayers==3:
+            glTranslated(-31.5, -36, self.z)
             
         if self.rotatecenter==1:
             #Para rotar desde elcentro, hay que llevar el centro al origen
@@ -232,6 +236,10 @@ class wdgOGL(myQGLWidget):
                 glTranslated(31.5, 31.5, 0)
                 glRotated(self.rotCenter, 0, 0, 1)
                 glTranslated(-31.5, -31.5, 0)
+            elif self.mem.maxplayers==3:
+                glTranslated(31.5, 24,  0)
+                glRotated(self.rotCenter, 0, 0, 1)
+                glTranslated(-31.5, -24,  0)
             elif self.mem.maxplayers==6:
                 glTranslated(31.5, 24,  0)
                 glRotated(self.rotCenter, 0, 0, 1)
@@ -391,7 +399,6 @@ class wdgOGL(myQGLWidget):
         #########################################
         self.setFocus()
         if event.buttons() & Qt.LeftButton:
-            print("Hola")
             pickup(event, False)            
             if self.mem.selFicha!=None:
                 self.mem.jugadores.actual.log(self.tr("Se ha hecho click en la ficha {0}".format(self.mem.selFicha.id)))

@@ -25,6 +25,8 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.hide()
 
     def sendStatisticsStart(self):
+        print("#REMOVE AFTER 3 PLAYERS DEVELOPMENT")
+        pass#
         if str2bool(self.mem.settings.value("frmSettings/statistics", "True"))==True:
             url='http://glparchis.sourceforge.net/php/glparchis_game_start.php?uuid={}&installations_uuid={}&numplayers={}&maxplayers={}&version={}'.format(self.mem.uuid, self.mem.settings.value("frmMain/uuid"),  self.mem.jugadores.numPlays(), self.mem.maxplayers, version("linux"))
             print(url)
@@ -35,6 +37,8 @@ class wdgGame(QWidget, Ui_wdgGame):
             print (web)       
         
     def sendStatisticsEnd(self):
+        print("#REMOVE AFTER 3 PLAYERS DEVELOPMENT")
+        pass
         if str2bool(self.mem.settings.value("frmSettings/statistics", "True"))==True:
             url='http://glparchis.sourceforge.net/php/glparchis_game_end.php?uuid={}&installations_uuid={}&human_won={}'.format(self.mem.uuid, self.mem.settings.value("frmMain/uuid"),  not self.mem.jugadores.actual.ia)
             print(url)

@@ -50,5 +50,8 @@ class TTextures:
 class TSquareType:
     Initial=0
     Final=1
+    ObliqueLeft=2
+    ObliqueRight=4
+    Normal=3
     
     
