@@ -269,13 +269,21 @@ class Dado(QObject):
 
                     
 class Amenaza:
-    """Clase que controla las amenazas que se ciernen sobre una ficha"""
+    """
+        Clase que controla las amenazas que se ciernen sobre una ficha
+    """
     def __init__(self,  objetivo, atacante, tipo):
         self.objetivo=objetivo
         self.atacante=atacante
         self.tipo=tipo #1-6 dados, 7 seis con todas fuera,10 meter una ficha, 20 comer una ficha, 51 saca un cinco y mueve 1
-        
+
     def name(self, tipo=None):
+        """
+            Returns the name of the Threat
+            
+            \param self This object class
+            \param tipo ID ot the threat
+        """
         if tipo==None:
             tipo=self.tipo
         if tipo==1: return QApplication.translate("glparchis","Sacar un 1")
