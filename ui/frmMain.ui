@@ -107,6 +107,8 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionPartidaNueva3"/>
+   <addaction name="separator"/>
    <addaction name="actionPartidaNueva4"/>
    <addaction name="separator"/>
    <addaction name="actionPartidaNueva6"/>
@@ -329,6 +331,21 @@
    </property>
    <property name="shortcut">
     <string>-</string>
+   </property>
+  </action>
+  <action name="actionPartidaNueva3">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/game3.png</normaloff>:/glparchis/game3.png</iconset>
+   </property>
+   <property name="text">
+    <string>Partida de &amp;3 jugadores</string>
+   </property>
+   <property name="toolTip">
+    <string>Partida de 3 jugadores</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+4</string>
    </property>
   </action>
  </widget>

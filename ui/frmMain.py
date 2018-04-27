@@ -3,7 +3,7 @@ from urllib.request import urlopen
 from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QEvent
 from PyQt5.QtGui import QIcon, QPixmap, QKeyEvent
 from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QDialog, QFileDialog
-from libglparchis import dateversion, str2bool, cargarQTranslator, b2s, qmessagebox,  Mem4, Mem6, Mem8,  SoundSystem
+from libglparchis import dateversion, str2bool, cargarQTranslator, b2s, qmessagebox,  Mem3, Mem4, Mem6, Mem8,  SoundSystem
 
 import configparser
 from Ui_frmMain import Ui_frmMain
@@ -236,6 +236,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
             
         if self.maxplayers==4:
             resultado=Mem4()
+        elif self.maxplayers==3:
+            resultado=Mem3()
         elif self.maxplayers==6:
             resultado=Mem6()
         elif self.maxplayers==8:
@@ -250,6 +252,17 @@ class frmMain(QMainWindow, Ui_frmMain):#
         fr=frmGameStatistics(uuid, self)
         fr.exec_()
 
+            
+    @pyqtSlot()  
+    def on_actionPartidaNueva3_triggered(self):
+        self.mem=Mem3()
+        self.mem.settings=self.settings
+        self.mem.translator=self.translator
+        self.mem.frmMain=self
+        initgame=frmInitGame(self.mem,  self)
+        salida=initgame.exec_()
+        if salida==QDialog.Accepted:
+            self.showWdgGame()            
             
     @pyqtSlot()  
     def on_actionPartidaNueva4_triggered(self):

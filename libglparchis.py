@@ -7,6 +7,8 @@ from poscasillas8 import poscasillas8
 from posfichas8 import posfichas8
 from poscasillas4 import poscasillas4
 from posfichas4 import posfichas4
+from poscasillas3 import poscasillas3
+from posfichas3 import posfichas3
 from poscasillas6 import poscasillas6
 from posfichas6 import posfichas6
 import os,  random,   configparser,  datetime,  codecs,  math
@@ -811,7 +813,8 @@ class SetColores:
         self.arr.append(Color( 255, 255, 50, "yellow"))
         self.arr.append(Color(50, 60, 180, "blue"))
         self.arr.append(Color(255, 50, 50, "red"))
-        self.arr.append(Color(50, 255, 50, "green"))
+        if maxplayers>3:
+            self.arr.append(Color(50, 255, 50, "green"))
         if maxplayers>4:#Para 6
             self.arr.append(Color(64, 64, 64, "dimgray"))
             self.arr.append(Color(255, 50, 255, "fuchsia"))
@@ -901,6 +904,8 @@ class SetRutas:
         return self.arr[id]
         
     def generar_rutas(self):
+        if self.numplayers==3:
+            self.generar_rutas3()
         if self.numplayers==4:
             self.generar_rutas4()
         elif self.numplayers==6:
@@ -908,6 +913,17 @@ class SetRutas:
         elif self.numplayers==8:
             self.generar_rutas8()
 
+    def generar_rutas3(self):    
+        r=Ruta(self.mem.colores.arr[TPlayers.Yellow], self.mem)
+        r.append_id( [76]+list(range(5, 59+1)))
+        self.arr.append(r)
+        r=Ruta(self.mem.colores.arr[TPlayers.Blue], self.mem)
+        r.append_id([77]+ list(range(22, 51+1))+list(range(1, 17+1))+list(range(60, 67+1)))
+        self.arr.append(r)
+        r=Ruta(self.mem.colores.arr[TPlayers.Red], self.mem)
+        r.append_id( [78]+list(range(39, 51+1))+list(range(1, 34+1))+list(range(68, 75+1)))
+        self.arr.append(r)    
+        
     def generar_rutas4(self):    
         r=Ruta(self.mem.colores.arr[TPlayers.Yellow], self.mem)
         r.append_id( [101]+list(range(5, 76+1)))
@@ -976,7 +992,9 @@ class SetCasillas:
         self.arr=[]
         self.mem=mem
         self.numplayers=numplayers
-        if self.numplayers==4:
+        if self.numplayers==3:
+            self.number=79
+        elif self.numplayers==4:
             self.number=105
         elif self.numplayers==6:
             self.number=157
@@ -994,10 +1012,81 @@ class SetCasillas:
             self.generar_casillas8()
         elif self.numplayers==4:
             self.generar_casillas4()
+        elif self.numplayers==3:
+            self.generar_casillas3()
                                 
+    def generar_casillas3(self):
+        def defineRutas1(id):
+            """Es igual para 3, 4,6,8"""
+            if id==5: return TPlayers.Yellow
+            if id==22: return TPlayers.Blue
+            if id==39: return TPlayers.Red
+            return -1
+                
+        def defineSeguro( id):
+            if id==5 or id==12 or id==17 or id==22 or id==29 or id==34 or id==39 or id==46 or id==51:
+                return True
+            elif id>=52 and id<=76:#Las de la rampa de llegada tambien son seguras
+                return True
+            else:
+                return False
+    
+        def defineMaxFichas( id):
+            if id==76 or id==77 or id==78 or id==59 or id==67 or id==75:
+                return 4
+            else:
+                return 2
+    
+        def defineRampaLlegada(id):
+            if id>=52 and id<= 75:
+               return True
+            return False
+    
+        def defineTipo( id):
+            if id==76 or id==77 or id==78 :
+               return TSquareType.Initial #Casilla inicial
+            elif id==59 or id==67 or id==75:
+               return TSquareType.Final #Casilla final
+            else:
+                return TSquareType.Normal #Casilla Normal
+    
+        def defineColor( id):
+            if id==5 or (id>=52 and id<=59) or id==76:
+               return self.mem.colores.arr[TPlayers.Yellow]
+            elif id==22 or (id>=60 and id<=67) or id==77:
+               return self.mem.colores.arr[TPlayers.Blue]
+            elif id==39 or (id>=68 and id<=75) or id==78:
+               return self.mem.colores.arr[TPlayers.Red]
+            else:
+                return Color(255, 255, 255)            
+                
+        def defineRotatePN(id):
+            """EStablece si debe rotar el panel numerico"""
+            if id in range(9, 42+1) :#(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14):#, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,  61, 62, 63, 64, 65, 66, 67, 68 ):
+                return True
+            return False
+                 
+        def defineRotate( id):
+            if (id in range(9, 25+1) or id in range(60, 66+1)):
+               return 120
+            elif id==75:
+                return 60
+            elif (id in range(26, 42+1) or id in range(68, 75+1) ):
+               return 240
+            elif id in (59, ):
+                return 180
+            elif id in (67, ):
+                return 300
+            else:
+                return 0        
+                
+        ##############################       
+        posCasillas=poscasillas3(self.number)
+        posFichas=posfichas3(self.number)
+        for i in range(0, self.number):#Se debe inializar Antes que las fichas
+            self.arr.append(Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), posFichas[i],  defineRutas1(i)))
+            
     def generar_casillas4(self):
-        
-
         def defineRutas1(id):
             """Es igual para 4,6,8"""
             if id==5: return TPlayers.Yellow
@@ -2166,38 +2255,58 @@ class Casilla(QObject):
             prism.opengl_border(qglwidget, 1)    
             glPopMatrix()
             glPopName();
+        def tipo_final3():            
+            glPushName(self.oglname);
+            glPushMatrix()
+            glTranslated(self.position[0],self.position[1],self.position[2] )
+            glRotated(self.rotate, 0, 0, 1 )
+
+#            if qglwidget.mem.maxplayers==3:
+#                glScaled(2*math.tan(math.pi/6)*(21*math.cos(math.pi/6)-3)/15, (21*math.cos(math.pi/6)-3)/7.5, 1)
+#            elif qglwidget.mem.maxplayers==8:
+#                glScaled((21-2*3*math.tan(math.pi/8))/15.0, ((10.5/math.tan(math.pi/8))-3)/7.5, 1)
+            verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0),   Coord3D(10.5, 6.08, 0), Coord3D(21,  0, 0),]
+            p=Polygon().init__create(verts, self.color, None, [])
+            prism=Prism(p, 0.2)
+            prism.opengl(qglwidget)
+            prism.opengl_border(qglwidget, 1)    
+            glPopMatrix()
+            glPopName();
         ##################################
         if qglwidget.__class__.__name__=="wdgShowObject":#En caso de wdgShowObject en la ayuda
-            if self.tipo==0:
+            if self.tipo==TSquareType.Initial:
                 tipo_inicio8()
-            elif self.tipo==1:
+            elif self.tipo==TSquareType.Final:
                 tipo_final()
-            elif self.tipo==2:
+            elif self.tipo==TSquareType.ObliqueLeft:
                 tipo_oblicuoi(3)
-            elif self.tipo==4:
+            elif self.tipo==TSquareType.ObliqueRight:
                 tipo_oblicuod(4)
             else:
                 tipo_normal()
             return
         
         
-        if self.tipo==0:
+        if self.tipo==TSquareType.Initial:
             if qglwidget.mem.maxplayers==4:
                 tipo_inicio()
             elif qglwidget.mem.maxplayers==6:
                 tipo_inicio6()
             elif qglwidget.mem.maxplayers==8:
                 tipo_inicio8()
-        elif self.tipo==1:
-            tipo_final()
-        elif self.tipo==2:
+        elif self.tipo==TSquareType.Final:
+            if qglwidget.mem.maxplayers==3:
+                tipo_final3()
+            else:
+                tipo_final()
+        elif self.tipo==TSquareType.ObliqueLeft:
             if qglwidget.mem.maxplayers==4:
                 tipo_oblicuoi(3)
             elif qglwidget.mem.maxplayers==6:
                 tipo_oblicuoi(3.0/math.tan(math.pi/3))
             elif qglwidget.mem.maxplayers==8:
                 tipo_oblicuoi(3.0*math.tan(math.pi/8))
-        elif self.tipo==4:
+        elif self.tipo==TSquareType.ObliqueRight:
             if qglwidget.mem.maxplayers==4:
                 tipo_oblicuod(4)
             elif qglwidget.mem.maxplayers==6:
@@ -2525,24 +2634,27 @@ class Mem6(Mem):
         
         self.circulo=Circulo(self, 102)
 
+class Mem3(Mem):    
+    def __init__(self):
+        Mem.__init__(self, 3)
+        self.colores.generar_colores(self.maxplayers)
+        self.generar_jugadores()
+        self.casillas=SetCasillas(self.maxplayers, self)
+        self.rutas=SetRutas(self.maxplayers, self)
+        self.generar_fichas()
+        
+        self.circulo=Circulo(self, 51)
+
 class Mem4(Mem):
     def __init__(self):
         Mem.__init__(self, 4)
         self.colores.generar_colores(self.maxplayers)
         self.generar_jugadores()
-        self.casillas=SetCasillas(4, self)
+        self.casillas=SetCasillas(self.maxplayers, self)
         self.rutas=SetRutas(self.maxplayers, self)
         self.generar_fichas()
         
         self.circulo=Circulo(self, 68)
-            
-def dic2list(dic):
-    """Funcion que convierte un diccionario pasado como parametro a una lista de objetos"""
-    resultado=[]
-    for k,  v in dic.items():
-        resultado.append(v)
-    return resultado
-
 
 def cargarQTranslator(qtranslator, language):  
     """language es un string"""  
