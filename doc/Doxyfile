@@ -91,7 +91,7 @@ ALLOW_UNICODE_NAMES    = YES
 # Ukrainian and Vietnamese.
 # The default value is: English.
 
-OUTPUT_LANGUAGE        = Spanish
+OUTPUT_LANGUAGE        = English
 
 # If the BRIEF_MEMBER_DESC tag is set to YES, doxygen will include brief member
 # descriptions after the members that are listed in the file and class
@@ -877,7 +877,7 @@ RECURSIVE              = YES
 EXCLUDE                = ../build \
                          ../dist \
                          ../__pycache__ \
-                         ./
+                         ./html
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded
