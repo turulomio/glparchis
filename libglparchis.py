@@ -278,11 +278,12 @@ class Amenaza:
         self.tipo=tipo #1-6 dados, 7 seis con todas fuera,10 meter una ficha, 20 comer una ficha, 51 saca un cinco y mueve 1
 
     def name(self, tipo=None):
-        """
+        """!
             Returns the name of the Threat
             
-            \param self This object class
-            \param tipo ID ot the threat
+            @param self This object class
+            @param tipo Threat type id. If None returns this object tipo name
+            @return Returns a string with the name of the threat
         """
         if tipo==None:
             tipo=self.tipo
