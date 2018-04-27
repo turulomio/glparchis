@@ -57,8 +57,7 @@ class QTableStatistics(QTableWidget):
     def reload(self):        
         tj=TiradaJuego(self.mem)
         ganando=self.mem.jugadores.vaGanando()
-        for j in self.mem.jugadores.arr:
-            column=self.mem.colores.index(j.color)
+        for column, j in enumerate(self.mem.jugadores.arr):
             self.item(0, column).setText(str(j.tiradahistorica.numThrows()))
             for i in range(2, 8):
                 self.item(i, column).setText(str(j.tiradahistorica.numTimesDiceGetNumber(i-1)))

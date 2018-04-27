@@ -16,7 +16,7 @@ from PyQt5.QtOpenGL import QGLWidget
 from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
 from PyQt5.QtMultimedia import QSoundEffect
 from uuid import uuid4
-from libglparchistypes import TTextures,  TNames, TSquareType
+from libglparchistypes import TTextures,  TNames, TSquareType,  TPlayers
 from abc import ABC
 
 
@@ -285,10 +285,8 @@ class Dado(QObject):
         return pix
 
                     
+## Clase que controla las amenazas que se ciernen sobre una ficha
 class Amenaza:
-    """
-        Clase que controla las amenazas que se ciernen sobre una ficha
-    """
     def __init__(self,  objetivo, atacante, tipo):
         self.objetivo=objetivo
         self.atacante=atacante
@@ -315,12 +313,17 @@ class Amenaza:
         if tipo==20: return QApplication.translate("glparchis","Contar 20")
         if tipo==51: return QApplication.translate("glparchis","Sacar ficha")
 
+## Class that studies threats of a pawn when setting in a square
 class SetAmenazas:
-    """Clase que genera las amenazas contra un objetivo en la casilla pasado como parametro"""
     def __init__(self,  mem,  objetivo, casilla):
         """Crea objeto"""
+        ##List of Amenaza objects
         self.arr=[]#Array de objetos amenaza
-        self.objetivo=objetivo#Ficha objetivo de la amenaza. 
+        
+        ##Pawn to study threats
+        self.objetivo=objetivo
+        
+        ##Square 
         self.casilla=casilla
         self.mem=mem
         self.detectar()
@@ -338,13 +341,13 @@ class SetAmenazas:
         if self.casilla.rampallegada==True:
             return
         
-        if self.casilla.seguro==True and self.casilla.ruta1==False:#Esta asegurada y no esta en ruta 1
+        if self.casilla.seguro==True and self.casilla.ruta1==-1:#Esta asegurada y no esta en ruta 1
             return
             
         #Detecta salida con un 5 a ruta1
-        if self.casilla.ruta1==True:
+        if self.casilla.ruta1!=-1:
             #Busca la casilla inicial del mismo color
-            casillaataque=self.mem.rutas.ruta(self.mem.colores.index(self.casilla.color)).arr[0]#Casilla inicial
+            casillaataque=self.mem.rutas.arr[self.casilla.ruta1].arr[0]#Casilla inicial de la ruta del jugador con ruta1=TJugador
             if casillaataque.buzon_numfichas()>0:#Hay fichas que coman
                 if self.casilla.buzon_numfichas()==2:
                     if  self.objetivo.posruta!=1: #Si no esta en su propia ruta1, esta llena
@@ -790,6 +793,7 @@ class Ruta:
         """Saca el numero de casillas """
         return len(self.arr)
         
+    ## Devuelve la primera casilla de la ruta
     def ruta1(self):
         return self.arr[1]
     
@@ -800,7 +804,6 @@ class Ruta:
         return False
     
 class SetColores:
-    """Agrupacion de jugadores"""
     def __init__(self):
         self.arr=[]    
     
@@ -816,23 +819,19 @@ class SetColores:
             self.arr.append(Color(255, 128, 50, "darkorange"))
             self.arr.append(Color(50, 255, 255, "darkturquoise"))
             
+    @deprecated
     def color(self, colo):
         for c in self.arr:
             if c==colo:
                 return c
                             
+    @deprecated
     def find_by_name(self, name=None):
         for c in self.arr:
             if c.name==name:
                 return c
         print ("No se ha encontrado el color de nombre {0}".format(name))
-                
-    def index(self, color):
-        """Funcion que devuelve un orden de color segun se ha insertado en el array"""
-        for i, c in enumerate(self.arr):
-            if c==color:
-                return i
-    
+        
 class SetJugadores:
     """Agrupacion de jugadores"""
     def __init__(self, mem):
@@ -840,12 +839,12 @@ class SetJugadores:
         self.mem=mem
         self.actual=None
         self.winner=None
-        
-    def index(self, jugador):
-        """Devuelve la posicion en self.arr del jugador"""
-        for i, j in enumerate(self.arr):
-            if j==jugador:
-                return i
+#        
+#    def index(self, jugador):
+#        """Devuelve la posicion en self.arr del jugador"""
+#        for i, j in enumerate(self.arr):
+#            if j==jugador:
+#                return i
         
     def numPlays(self):
         """Number of players playing"""
@@ -855,9 +854,9 @@ class SetJugadores:
                 r=r+1
         return r
         
-    def cambiarJugador(self):        
-        index=self.index(self.actual)
-        if index==len(self.arr)-1:
+    def cambiarJugador(self):
+        index=self.arr.index(self.actual)
+        if index==len(self.arr)-1:#Index position
             self.actual=self.arr[0]
         else:
             self.actual=self.arr[index+1]
@@ -1006,9 +1005,11 @@ class SetCasillas:
 
         def defineRutas1(id):
             """Es igual para 4,6,8"""
-            if id in (5, 22, 39, 56):
-                return True
-            return False
+            if id==5: return TPlayers.Yellow
+            if id==22: return TPlayers.Blue
+            if id==39: return TPlayers.Red
+            if id==56: return TPlayers.Green
+            return -1
                 
         def defineSeguro( id):
             if id==5 or id==12 or id==17 or id==22 or id==29 or id==34 or id==39 or id==46 or id==51  or id==56 or id==63 or id==68:
@@ -1078,10 +1079,14 @@ class SetCasillas:
     def generar_casillas6(self):
 
         def defineRutas1(id):
-            if id in (5, 22, 39, 56, 73, 90):
-                return True
-            return False
-                
+            if id==5: return TPlayers.Yellow
+            if id==22: return TPlayers.Blue
+            if id==39: return TPlayers.Red
+            if id==56: return TPlayers.Green
+            if id==73: return TPlayers.Gray
+            if id==90: return TPlayers.Fuchsia
+            return -1
+            
         def defineSeguro( id):           
             if id  in (5, 12, 17, 22, 29, 34, 39, 46, 51, 56, 63, 68, 73, 80, 85, 90, 97, 102) or id>=103:
                 return True
@@ -1223,9 +1228,15 @@ class SetCasillas:
                     
         def defineRutas1(id):
             """Es igual para 4,6,8"""
-            if id in (5, 22, 39, 56, 73, 90, 107, 124):
-                return True
-            return False
+            if id==5: return TPlayers.Yellow
+            if id==22: return TPlayers.Blue
+            if id==39: return TPlayers.Red
+            if id==56: return TPlayers.Green
+            if id==73: return TPlayers.Gray
+            if id==90: return TPlayers.Fuchsia
+            if id==107: return TPlayers.Orange
+            if id==124: return TPlayers.Turquoise
+            return -1
         
         def defineRotate( id):
             if id==205:
@@ -1920,7 +1931,9 @@ class Casilla(QObject):
         self.rotate=rotate
         self.rotatepn=rotatepn #Rotar panel numerico
         self.rampallegada=rampallegada#booleano que indica si la casilla es de rampa de llegada
-        self.ruta1=ruta1#Booleano si la casilla es ruta1. Para saber de que color es usar self.color
+        
+        ##Define a que jugador id pertenece la casilla si es la primera casilla de la ruta. Devuelve el id del jugador o -1, si no es ruta 1
+        self.ruta1=ruta1
         self.tipo=tipo
         self.seguro=seguro# No se debe usar directamente ya que en ruta 1 solo es seguro si el jugador no tiene en casa
         self.buzon=[None]*self.maxfichas #Se crean los huecos y se juega con ellos para mantener la posicion
@@ -1936,8 +1949,8 @@ class Casilla(QObject):
         esta funcion mezcla el concepto ruta y seguro dependiendo del numero de fichas
         
         Busca segun beforemove antes de mover ficha, es decir es seguro con 0 fichas, o aftermove seguro con 1 ficha"""
-        if self.ruta1==True:
-            propietario=mem.jugadores.find_by_colorname(self.color.name)
+        if self.ruta1!=-1:
+            propietario=mem.jugadores.arr[self.ruta1]
             if jugador==propietario:
                 return True
             else:#color distinto

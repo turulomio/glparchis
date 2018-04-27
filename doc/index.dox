@@ -15,3 +15,8 @@ This project is hosted in SourceForge, so you can use the next services:
 
 - <a href="https://sourceforge.net/p/glparchis/tickets/" target="_blank">Tickets</a>
 */
+
+
+Convenciones
+============
+Colores no debe usuarse para iterar jugadores, solo debe asignarse al principio
