@@ -1,4 +1,6 @@
 import sys
+import warnings
+import functools
 from OpenGL.GL import glVertex3fv, glBegin, glBindTexture, glColor3d, glDisable, glEnable, glEnd, glPopMatrix, glPopName, glPushName, glPushMatrix, glRotated, glScaled, glTexCoord2f, glTranslated, glTranslatef, glVertex3d, GL_TEXTURE_2D, GL_QUADS, GL_POLYGON, GL_LINE_LOOP
 from OpenGL.GLU import gluCylinder, gluDisk, gluNewQuadric, gluQuadricDrawStyle, gluQuadricNormals, gluQuadricTexture, GLU_FILL, GLU_SMOOTH
 from poscasillas8 import poscasillas8
@@ -14,11 +16,12 @@ from PyQt5.QtOpenGL import QGLWidget
 from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
 from PyQt5.QtMultimedia import QSoundEffect
 from uuid import uuid4
-from libglparchistypes import TTextures,  TNames
+from libglparchistypes import TTextures,  TNames, TSquareType
+from abc import ABC
 
 
-dateversion=datetime.date(2018, 4, 16)
-#dateversion=datetime.date(2000, 1, 1)#When developing
+#dateversion=datetime.date(2018, 4, 16)
+dateversion=datetime.date(2000, 1, 1)#When developing
 
 
 def version(platform=None):
@@ -30,6 +33,20 @@ def version(platform=None):
     else:
         print("version",  platform)
         return  str(dateversion).replace("-", "")
+
+def deprecated(func):
+    """This is a decorator which can be used to mark functions
+    as deprecated. It will result in a warning being emitted
+    when the function is used."""
+    @functools.wraps(func)
+    def new_func(*args, **kwargs):
+        warnings.simplefilter('always', DeprecationWarning)  # turn off filter
+        warnings.warn("Call to deprecated function {}.".format(func.__name__),
+                      category=DeprecationWarning,
+                      stacklevel=2)
+        warnings.simplefilter('default', DeprecationWarning)  # reset filter
+        return func(*args, **kwargs)
+    return new_func
 
 def str2bool(s):
     if s.__class__==bool:#Si ya fuera bool
@@ -2182,6 +2199,7 @@ class Casilla(QObject):
         else:
             tipo_normal()
             
+    ## Draw pawns in is square position
     def draw_fichas(self, qglwidget):
         if self.buzon_numfichas()>0:
             for i, f in enumerate(self.buzon):       
@@ -2190,7 +2208,7 @@ class Casilla(QObject):
 
     def tieneBarrera(self):
         """Devuelve un booleano, las fichas de la barrera se pueden sacar del buzon"""
-        if self.tipo not in (0, 1):#Casilla inicio y final
+        if self.tipo not in (TSquareType.Initial, TSquareType.Final):
             if self.maxfichas==2:
                 if self.buzon_numfichas()==2:
                     if self.buzon[0].jugador==self.buzon[1].jugador:
@@ -2260,11 +2278,56 @@ class SoundSystem:
         print("Playing", effect)
         self.sounds[effect].play()
 
+## Abstract class to manage and interate objects with id attribute in a dict
+class ManagerObjectsId(ABC):
+    ## Constructor
+    def __init__(self):
+        self.dict={}
+        self.mem=None
+
+    ##Assigns mem object
+    ## @param mem Game mem obj
+    def setMem(self, mem):
+        self.mem=mem
+        
+    ## Append an object to self.arr
+    ## @param o Any object
+    def setById(self, o, id):
+        self.dict[str(id)]=o
+        
+    def getById(self, id):
+        return self.dict[str(id)]
+        
+    ## Returns the lengh of the array
+    def length(self):
+        return len(self.dict)
+        
+## Abstract class for pawns manager
+class ManagerPawns(ManagerObjectsId, ABC):
+    def __init__(self):
+        ManagerObjectsId.__init__(self)
+        
+## Class to manage players pawns
+class ManagerPawnsPlayer(ManagerPawns):
+    def __init__(self):
+        ManagerPawns.__init__(self)
+
+## Class to manage game pawns
+class ManagerPawnsGame(ManagerPawns):
+    def __init__(self):
+        ManagerPawns.__init__(self)
+
+## Abstract Mem objcet
+## Must be initializated with Mem4, Mem6 or Mem 8
 class Mem:
+    ## Constructor
+    ## @param maxplayers Number of game players
     def __init__(self, maxplayers):     
         self.maxplayers=maxplayers
         self.uuid=uuid4()
-        self.dic_fichas={}
+                
+                
+        self.pawnsgame=ManagerPawnsGame()
         self.colores=SetColores()
         self.jugadores=SetJugadores(self)
         self.dic_rutas={}
@@ -2276,39 +2339,31 @@ class Mem:
         self.mediaObject = None
         self.frmMain=None #Pointer to QMainWindow
         
-
+    ##  Play sounds inside a game, You can play sound using self.frmMain.sound.play(sound) directly too
     def play(self, sound):
-        """
-            Play sounds inside a game, You can play sound using self.frmMain.sound.play(sound) directly too
-        """
         if str2bool(self.settings.value("frmSettings/sound"))==True:
             if int(self.settings.value("frmSettings/delay","300"))<300 and self.jugadores.actual.ia==True:#If delay is too low and it's a IA
                 return
             self.frmMain.sound.play(sound)
    
+    ## Create Pawns 
+    ## It must be generated after players constructors
     def generar_fichas(self):
-        """Debe generarse despunes de jugadores"""
         id=0
         for ic, c in enumerate(self.colores.arr):
             j=self.jugadores.find_by_colorname(c.name)
             j.ruta=self.rutas.ruta(ic)
             for i in range(4):
-                self.dic_fichas[str(id)]=Ficha(self, id, i, c, self.jugadores.find_by_colorname(c.name), j.ruta)
-                j.fichas.arr.append(self.dic_fichas[str(id)])#Rellena el SetFichas del jugador
+                ficha=Ficha(self, id, i, c, self.jugadores.find_by_colorname(c.name), j.ruta)
+                self.pawnsgame.setById(ficha, id)
+                j.fichas.arr.append(ficha)#Rellena el SetFichas del jugador
                 id=id+1
 
-            
     def generar_jugadores(self):
         for c in self.colores.arr:
             j=Jugador(self, c)
             self.jugadores.arr.append(j)
             j.dado=self.dado
-
-    def fichas(self, name=None):
-        if name==None:
-            return dic2list(self.dic_fichas)
-        else:
-            return self.dic_fichas[str(name)]
 
     def save(self, filename):
         """Version 1.1 INtroduce stadisticas
