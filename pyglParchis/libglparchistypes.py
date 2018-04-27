@@ -48,10 +48,16 @@ class TTextures:
 
 ## Types of square
 class TSquareType:
-    Initial=0
-    Final=1
+    Initial4=0
+    Final4=1
     ObliqueLeft=2
     ObliqueRight=4
     Normal=3
+    Initial3=5
+    Final3=6
+    Initial6=7
+    Final6=8
+    Initial8=9
+    Final8=10
     
     

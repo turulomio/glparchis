@@ -82,6 +82,7 @@ def poscasillas3(maxcasillas):
     posCasillas[74]=(posCasillas[34][0]-3*sqr3_2*7, posCasillas[34][1]+3*0.5*7, 0.5)
 
     posCasillas[75]=(posCasillas[25][0], posCasillas[25][1], 0.5)#Amarilla central
-    posCasillas[76]=(42-21*.5,  39-21*sqr3_2, 0.5)
-    posCasillas[78]=(6, 28, 0.5)
+    posCasillas[76]=(0, 40, 0.5)
+    posCasillas[77]=(21, -10, 0.5)
+    posCasillas[78]=(42, 48, 0.5)
     return posCasillas
