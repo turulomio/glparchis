@@ -46,12 +46,16 @@ class TTextures:
     Sure=1002
     Dice=1003
 
-## Types of square
+## Types of square. One for fisically different objects
 class TSquareTypes:
     Initial4=0
     Final4=1
-    ObliqueLeft=2
-    ObliqueRight=4
+    ObliqueLeft4=2
+    ObliqueRight4=4
+    ObliqueLeft6=11
+    ObliqueRight6=12
+    ObliqueLeft8=13
+    ObliqueRight8=14
     Normal=3
     Initial3=5
     Final3=6
