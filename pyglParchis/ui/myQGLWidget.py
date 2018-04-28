@@ -8,12 +8,10 @@ from OpenGL.GL import glCallList, glClear, glColorMaterial, glEnable,  glEndList
 from OpenGL.GL import  GL_AMBIENT, GL_QUADS, GL_AMBIENT_AND_DIFFUSE, GL_CCW, GL_COLOR_BUFFER_BIT, GL_COLOR_MATERIAL, GL_COMPILE, GL_CULL_FACE, GL_DEPTH_BUFFER_BIT, GL_DEPTH_TEST, GL_FRONT, GL_LIGHT0, GL_LIGHTING, GL_MODELVIEW, GL_NICEST, GL_PERSPECTIVE_CORRECTION_HINT, GL_POSITION, GL_PROJECTION, GL_RENDER, GL_SELECT, GL_SMOOTH, GL_STENCIL_BUFFER_BIT, GL_TEXTURE_2D, GL_VIEWPORT,  GL_FLAT
 from OpenGL.GLU import gluPerspective, gluPickMatrix
 
-from libglparchis import Color, Casilla, Ficha, Jugador, Tablero, Dado, Coord3D
+from libglparchis import Casilla, Ficha, Jugador, Tablero, Dado, Coord3D,  Color, SetColores
 from libglparchistypes import TNames,  TSquareTypes
 from frmShowCasilla import frmShowCasilla
 from frmShowFicha import frmShowFicha
-
-
 
 class myQGLWidget(QGLWidget):
     def __init__(self, parent):
@@ -222,11 +220,11 @@ class wdgOGL(myQGLWidget):
         self.qglClearColor(QColor())
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT| GL_STENCIL_BUFFER_BIT)
         if self.mem.maxplayers==8:
-            glTranslated(-31.5, -17, self.z)
+            glTranslated(-31.5, -16.5, self.z)
         elif self.mem.maxplayers==4:
             glTranslated(-31.5, -31.5, self.z)
         elif self.mem.maxplayers==6:
-            glTranslated(-31.5, -24, self.z)
+            glTranslated(-31.5, -23.85, self.z)
         elif self.mem.maxplayers==3:
             glTranslated(-31.5, -36, self.z)
             
@@ -543,19 +541,45 @@ class wdgShowObject(myQGLWidget, ObjectRotationManager):
         ObjectRotationManager.__init__(self)
         self.objeto=0
                
+               
+        colores=SetColores()
+        colores.generar_colores(8)
+        white=Color(255, 255, 255, "white")
         #Carga el primer objeto    
-        self.ficha1=Ficha(None, 0, 1, Color(255, 0, 0), Jugador(None, Color(255, 0, 0)), None)
-        self.ficha2=Ficha(None, 0, 1, Color(255, 0, 0), Jugador(None, Color(255, 0, 0)), None)
-        self.ficha3=Ficha(None, 0, 1, Color(255, 0, 0), Jugador(None, Color(255, 0, 0)), None)
-        self.ficha4=Ficha(None, 0, 1, Color(255, 0, 0), Jugador(None, Color(255, 0, 0)), None)
-        self.fichaslist2=[self.ficha1, self.ficha2]
-        self.fichaslist4=[self.ficha1, self.ficha2, self.ficha3, self.ficha4]
+        self.pawnred=Ficha(None, 0, 1, colores.arr[2], Jugador(None, colores.arr[0]), None)
+        self.ficha2=Ficha(None, 0, 1, colores.arr[1], Jugador(None, colores.arr[1]), None)
+        self.ficha3=Ficha(None, 0, 1, colores.arr[3], Jugador(None, colores.arr[2]), None)
+        self.ficha4=Ficha(None, 0, 1, colores.arr[4], Jugador(None, colores.arr[3]), None)
+        self.fichaslist2=[self.pawnred, self.ficha2]
+        self.fichaslist4=[self.pawnred, self.ficha2, self.ficha3, self.ficha4]
         
-        self.casinicio= Casilla(1, 2, Color(255, 0, 0) , (-3.5, -1.5, 0, 0), 0, False, False, TSquareTypes.Initial4,  False, False)
+        self.casinicio= Casilla(1, 2, colores.arr[5] , (-3.5, -1.5, 0, 0), 0, False, False, TSquareTypes.Initial4,  False, False)
         self.casinicio.buzon=self.fichaslist4
         
-        self.cas= Casilla(1, 2, Color(0, 0, 255) , (-3.5, -1.5, 0, 0), 0, False, False, TSquareTypes.Normal,  False, False)
+        self.cas= Casilla(1, 2, colores.arr[6] , (-3.5, -1.5, 0, 0), 0, False, False, TSquareTypes.Normal,  False, False)
         self.cas.buzon=self.fichaslist2
+        
+        self.squareInitial6= Casilla(1, 2, colores.arr[7] , (-3.5, -1.5, 0, 0), 0, False, False, TSquareTypes.Initial6,  False, False)
+        self.squareInitial6.buzon=self.fichaslist4
+        
+        self.squareInitial8= Casilla(1, 2, colores.arr[7] , (0, 0, 0), 0, False, False, TSquareTypes.Initial8,  False, False)
+        self.squareInitial8.buzon=[self.pawnred, self.pawnred, self.pawnred, self.pawnred]
+        
+        self.squareleftobliquei4= Casilla(1, 2, white, (0, 0, 0), 0, False, False, TSquareTypes.ObliqueLeft4,  False, False)
+        self.squareleftobliquei4.buzon=[self.pawnred, self.pawnred]
+        self.squareleftobliquei6= Casilla(122, 2, white, (0, 0, 0), 0, False, False, TSquareTypes.ObliqueLeft6,  False, False)
+        self.squareleftobliquei6.buzon=[self.pawnred, self.pawnred]
+        self.squareleftobliquei8=Casilla(1, 2, white , (0, 0, 0), 0, False, False, TSquareTypes.ObliqueLeft8,  False, False)
+        self.squareleftobliquei8.buzon=[self.pawnred, self.pawnred]
+
+
+        self.squarerightobliquei4= Casilla(1, 2, white, (0, 0, 0), 0, False, False, TSquareTypes.ObliqueRight4,  False, False)
+        self.squarerightobliquei4.buzon=[self.pawnred, self.pawnred]
+        self.squarerightobliquei6= Casilla(122, 2, white, (0, 0, 0), 0, False, False, TSquareTypes.ObliqueRight6,  False, False)
+        self.squarerightobliquei6.buzon=[self.pawnred, self.pawnred]
+        self.squarerightobliquei8=Casilla(1, 2, white , (0, 0, 0), 0, False, False, TSquareTypes.ObliqueRight8,  False, False)
+        self.squarerightobliquei8.buzon=[self.pawnred, self.pawnred]
+        
         
         self.tablero=Tablero(4)
         self.tablero.position=Coord3D(0, 0, 0)
@@ -588,6 +612,7 @@ class wdgShowObject(myQGLWidget, ObjectRotationManager):
             self.yRot=0
             self.zRot=0
         self.updateGL()
+        print(self.z)
 
     def initializeGL(self): 
         """
@@ -620,14 +645,53 @@ class wdgShowObject(myQGLWidget, ObjectRotationManager):
             glScaled(0.1, 0.1,0.1)
             self.tablero8.draw(self)
         elif self.objeto==3:
-            glScaled(1.5, 1.5,1.5)
-            self.dado.draw_alone(self)
+            self.z=-10
+            self.pawnred.draw(self)
         elif self.objeto==4:
-            glScaled(1.5, 1.5,1.5)
-            self.cas.draw(self)
+            self.z=-15
+            self.dado.draw_alone(self)
         elif self.objeto==5:
+            self.z=-12
+            self.cas.draw(self)
+        elif self.objeto==7:
+            self.z=-38
             self.casinicio.draw(self)
-        elif self.objeto==6:
-            glScaled(2, 2,2)
-            self.ficha1.draw(self, None)
+        elif self.objeto==8:
+            self.z=-40
+            self.squareInitial6.draw(self)
+        elif self.objeto==9:
+            self.z=-40
+            self.squareInitial8.draw(self)
+        elif self.objeto==10:
+            self.z=-40
+        elif self.objeto==11:
+            self.z=-40
+        elif self.objeto==12:
+            self.z=-40
+        elif self.objeto==13:
+            self.z=-40
+        elif self.objeto==14:
+            self.z=-40
+            glScaled(2, 2, 2)
+            self.squareleftobliquei4.draw(self)
+        elif self.objeto==15:
+            self.z=-40
+            glScaled(2, 2, 2)
+            self.squareleftobliquei6.draw(self)
+        elif self.objeto==16:
+            self.z=-40
+            glScaled(2, 2, 2)
+            self.squareleftobliquei8.draw(self)
+        elif self.objeto==17:
+            self.z=-40
+            glScaled(2, 2, 2)
+            self.squarerightobliquei4.draw(self)
+        elif self.objeto==18:
+            self.z=-40
+            glScaled(2, 2, 2)
+            self.squarerightobliquei6.draw(self)
+        elif self.objeto==19:
+            self.z=-40
+            glScaled(2, 2, 2)
+            self.squarerightobliquei8.draw(self)
 
