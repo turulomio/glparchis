@@ -217,6 +217,13 @@ class Dado(QObject):
         """
         if self.showing==False:
             return
+        if qglwidget.mem.maxplayers==3:
+            if qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("yellow"):
+                self.position=(10, 36, 1)
+            elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("blue"):
+                self.position=(37, 11, 1)
+            elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("red"):
+                self.position=(44, 48, 1)
         if qglwidget.mem.maxplayers==4:
             if qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("yellow"):
                 self.position=(10, 51, 1)
@@ -239,7 +246,7 @@ class Dado(QObject):
                 self.position=(37, 18, 1)
             elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("fuchsia"):
                 self.position=(37, 27, 1)
-        else:
+        elif qglwidget.mem.maxplayers==8:
             if qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("yellow"):
                 self.position=(30, 30, .9)
             elif qglwidget.mem.jugadores.actual==qglwidget.mem.jugadores.find_by_colorname("blue"):
@@ -268,7 +275,6 @@ class Dado(QObject):
         if (self.lasttirada==4):
             glTranslated(0, 3, 0)
             glRotated(90.0,1.0,0.0,0.0);
-       
         if (self.lasttirada==5):
             glTranslated(3, 3, 0)
             glRotated(90.0,1.0,0.0,0.0);
@@ -2369,7 +2375,7 @@ class Casilla(QObject):
             glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
-            verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(10.50, 5.9, 0), Coord3D(21, 0, 0)]
+            verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(10.50, 10.5*math.tan(math.pi/6), 0), Coord3D(21, 0, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
             prism.opengl(qglwidget)
