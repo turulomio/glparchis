@@ -8,7 +8,7 @@ from OpenGL.GL import glCallList, glClear, glColorMaterial, glEnable,  glEndList
 from OpenGL.GL import  GL_AMBIENT, GL_QUADS, GL_AMBIENT_AND_DIFFUSE, GL_CCW, GL_COLOR_BUFFER_BIT, GL_COLOR_MATERIAL, GL_COMPILE, GL_CULL_FACE, GL_DEPTH_BUFFER_BIT, GL_DEPTH_TEST, GL_FRONT, GL_LIGHT0, GL_LIGHTING, GL_MODELVIEW, GL_NICEST, GL_PERSPECTIVE_CORRECTION_HINT, GL_POSITION, GL_PROJECTION, GL_RENDER, GL_SELECT, GL_SMOOTH, GL_STENCIL_BUFFER_BIT, GL_TEXTURE_2D, GL_VIEWPORT,  GL_FLAT
 from OpenGL.GLU import gluPerspective, gluPickMatrix
 
-from libglparchis import Casilla, Ficha, Jugador, Tablero, Dado, Coord3D,  Color, SetColores
+from libglparchis import Casilla, Ficha, Jugador, Dado, Coord3D,  Color, SetColores,  Tablero4,  Tablero6, Tablero8
 from libglparchistypes import TNames,  TSquareTypes
 from frmShowCasilla import frmShowCasilla
 from frmShowFicha import frmShowFicha
@@ -197,17 +197,18 @@ class wdgOGL(myQGLWidget):
             self.z=int(self.mem.settings.value("wdgOGL/z_{}{}".format(fs, self.mem.maxplayers), -60))
         elif self.mem.maxplayers==6:
             self.z=int(self.mem.settings.value("wdgOGL/z_{}{}".format(fs, self.mem.maxplayers), -80))
-            
-        self.tablero=Tablero(mem.maxplayers)
+        
+        self.tablero=self.mem.class_players("Tablero")
+        
         print("DisplayLists")
         #Como vamos a usar varias lists tenemos que crear una base y luego el orden
         self.displaylists=glGenLists(DisplayList.numero())
         #Tablero
         glNewList(DisplayList.tablero, GL_COMPILE)
         self.tablero.draw(self)
-#        for c in self.mem.casillas.arr:
-#            if c.id!=0:
-#                c.draw(self)
+        #        for c in self.mem.casillas.arr:
+        #            if c.id!=0:
+        #                c.draw(self)
         glEndList()
         
 
@@ -581,13 +582,13 @@ class wdgShowObject(myQGLWidget, ObjectRotationManager):
         self.squarerightobliquei8.buzon=[self.pawnred, self.pawnred]
         
         
-        self.tablero=Tablero(4)
+        self.tablero=Tablero4()
         self.tablero.position=Coord3D(0, 0, 0)
         
-        self.tablero6=Tablero(6)
+        self.tablero6=Tablero6()
         self.tablero6.position=Coord3D(0, 0, 0)
         
-        self.tablero8=Tablero(8)
+        self.tablero8=Tablero8()
         self.tablero8.position=Coord3D(0, 0, 0)
         
         self.dado=Dado()
