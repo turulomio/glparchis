@@ -156,14 +156,6 @@ class ObjectRotationManager:
             self.zRotationChanged.emit(angle)
             self.updateGL()
 
-        
-
-class DisplayList:
-    tablero=1
-    
-    def numero():
-        return 1
-
 class wdgOGL(myQGLWidget):
     """Clase principal del Juego, aqui esta fundamentalmente la representacion.
    Emite click ficha cuando se realiza"""
@@ -197,23 +189,6 @@ class wdgOGL(myQGLWidget):
             self.z=int(self.mem.settings.value("wdgOGL/z_{}{}".format(fs, self.mem.maxplayers), -60))
         elif self.mem.maxplayers==6:
             self.z=int(self.mem.settings.value("wdgOGL/z_{}{}".format(fs, self.mem.maxplayers), -80))
-        
-        self.tablero=self.mem.class_players("Tablero")
-        
-        print("DisplayLists")
-        #Como vamos a usar varias lists tenemos que crear una base y luego el orden
-        self.displaylists=glGenLists(DisplayList.numero())
-        #Tablero
-        glNewList(DisplayList.tablero, GL_COMPILE)
-        self.tablero.draw(self)
-        #        for c in self.mem.casillas.arr:
-        #            if c.id!=0:
-        #                c.draw(self)
-        glEndList()
-        
-
-
-
 
     def paintGL(self):   
         inicio=datetime.datetime.now()
@@ -250,8 +225,8 @@ class wdgOGL(myQGLWidget):
         glRotated(self.rotX, 1,0 , 0)
         glRotated(self.rotY, 0,1 , 0)
         glRotated(self.rotZ, 0,0 , 1)
-                
-        glCallList(DisplayList.tablero)
+
+        self.mem.tablero.draw(self)
         
         for c in self.mem.casillas.arr:
             if c.id!=0:

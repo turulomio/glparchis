@@ -1757,7 +1757,7 @@ class Tablero3(AbstractOpenglObject):
                         Coord3D(42+24*sin_pi_3-21*cos_pi_3, 39-24*cos_pi_3-21*sin_pi_3, z), 
                         Coord3D(42+24*sin_pi_3-21*cos_pi_3-2*24*sin_pi_3, 39-24*cos_pi_3-21*sin_pi_3, z), 
                         Coord3D(21-24*sin_pi_3, 39-24*cos_pi_3, z)]
-        texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) , Coord2D(1, 0),  Coord2D(1, 0) ]
+        texverts=[Coord2D(0, 0),Coord2D(1, 0), Coord2D(1, 0.5), Coord2D(1, 1) , Coord2D(0.5, 1),  Coord2D(0, 0.5) ]
         p=Polygon().init__create(verts, self.color, TTextures.Wood, texverts)
         prism=Prism(p, 0.5)
         prism.opengl(qglwidget)
@@ -2062,7 +2062,7 @@ class Prism:
         #HAy que re - reverse
         rere=self.up.clone()
         rere.verts=rere.reverse()
-        for i, v in enumerate(self.up.verts):
+        for i, v in enumerate(self.up.verts):#Laterales
             pverts=[]
             texverts=[Coord2D(0, 0),Coord2D(1, 0), Coord2D(1, 1), Coord2D(0, 1) ]
             pverts.append(rere.verts[i].clone())
@@ -2847,6 +2847,7 @@ class Mem8(Mem):
         self.casillas=SetCasillas(8, self)
         self.rutas=SetRutas(self.maxplayers, self)
         self.generar_fichas()
+        self.tablero=self.class_players("Tablero")
         
         self.circulo=Circulo(self, 136)
 
@@ -2858,6 +2859,7 @@ class Mem6(Mem):
         self.casillas=SetCasillas(6, self)
         self.rutas=SetRutas(self.maxplayers, self)
         self.generar_fichas()
+        self.tablero=self.class_players("Tablero")
         
         self.circulo=Circulo(self, 102)
 
@@ -2869,6 +2871,7 @@ class Mem3(Mem):
         self.casillas=SetCasillas(self.maxplayers, self)
         self.rutas=SetRutas(self.maxplayers, self)
         self.generar_fichas()
+        self.tablero=self.class_players("Tablero")
         
         self.circulo=Circulo(self, 51)
 
@@ -2880,6 +2883,7 @@ class Mem4(Mem):
         self.casillas=SetCasillas(self.maxplayers, self)
         self.rutas=SetRutas(self.maxplayers, self)
         self.generar_fichas()
+        self.tablero=self.class_players("Tablero")
         
         self.circulo=Circulo(self, 68)
 
