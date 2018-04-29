@@ -25,8 +25,6 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.hide()
 
     def sendStatisticsStart(self):
-        print("#REMOVE AFTER 3 PLAYERS DEVELOPMENT")
-        pass#
         if str2bool(self.mem.settings.value("frmSettings/statistics", "True"))==True:
             url='http://glparchis.sourceforge.net/php/glparchis_game_start.php?uuid={}&installations_uuid={}&numplayers={}&maxplayers={}&version={}'.format(self.mem.uuid, self.mem.settings.value("frmMain/uuid"),  self.mem.jugadores.numPlays(), self.mem.maxplayers, version("linux"))
             print(url)
@@ -37,8 +35,6 @@ class wdgGame(QWidget, Ui_wdgGame):
             print (web)       
         
     def sendStatisticsEnd(self):
-        print("#REMOVE AFTER 3 PLAYERS DEVELOPMENT")
-        pass
         if str2bool(self.mem.settings.value("frmSettings/statistics", "True"))==True:
             url='http://glparchis.sourceforge.net/php/glparchis_game_end.php?uuid={}&installations_uuid={}&human_won={}'.format(self.mem.uuid, self.mem.settings.value("frmMain/uuid"),  not self.mem.jugadores.actual.ia)
             print(url)
@@ -63,6 +59,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.table.assign_mem(self.mem)
         self.ogl.assign_mem(self.mem)
         self.ogl.setFocus()
+        self.hs3=HighScore(self.mem, 3)
         self.hs4=HighScore(self.mem, 4)
         self.hs6=HighScore(self.mem, 6)
         self.hs8=HighScore(self.mem, 8)
@@ -85,12 +82,14 @@ class wdgGame(QWidget, Ui_wdgGame):
         
         #Coloca los tabs del widget
         self.tab.setCurrentIndex(0)
-        if self.mem.maxplayers==4:
+        if self.mem.maxplayers==3:
             self.tabHS.setCurrentIndex(0)
-        elif self.mem.maxplayers==6:
+        if self.mem.maxplayers==4:
             self.tabHS.setCurrentIndex(1)
-        elif self.mem.maxplayers==8:
+        elif self.mem.maxplayers==6:
             self.tabHS.setCurrentIndex(2)
+        elif self.mem.maxplayers==8:
+            self.tabHS.setCurrentIndex(3)
         
         self.ogl.doubleClicked.connect(self.on_ogl_doubleClicked)
         
@@ -119,7 +118,10 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.mem.play("win")
         self.stopthegame=True
         if self.mem.jugadores.winner.ia==False:#Solo se genera hs cuando es un humano
-            if self.mem.maxplayers==4:
+            if self.mem.maxplayers==3:
+                self.hs3.insert()
+                self.hs3.save()
+            elif self.mem.maxplayers==4:
                 self.hs4.insert()
                 self.hs4.save()
             elif self.mem.maxplayers==6:
@@ -322,6 +324,7 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.mem.save("autosave_{0}_{1}_{2}.glparchis".format(dt, self.mem.maxplayers, self.mem.jugadores.actual.color.name ))
 
     def highscoresUpdate(self):
+        self.hs3.qtablewidget(self.tblHighScores3)
         self.hs4.qtablewidget(self.tblHighScores4)
         self.hs6.qtablewidget(self.tblHighScores6)
         self.hs8.qtablewidget(self.tblHighScores8)

@@ -6,12 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1021</width>
+    <width>1173</width>
     <height>714</height>
    </rect>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
-   <property name="margin">
+   <property name="leftMargin">
+    <number>1</number>
+   </property>
+   <property name="topMargin">
+    <number>1</number>
+   </property>
+   <property name="rightMargin">
+    <number>1</number>
+   </property>
+   <property name="bottomMargin">
     <number>1</number>
    </property>
    <item>
@@ -62,8 +71,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>429</width>
-            <height>646</height>
+            <width>523</width>
+            <height>638</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -106,7 +115,7 @@
           <enum>QTabWidget::Rounded</enum>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="tabGame">
           <attribute name="icon">
@@ -299,8 +308,46 @@
                 <enum>QTabWidget::North</enum>
                </property>
                <property name="currentIndex">
-                <number>2</number>
+                <number>1</number>
                </property>
+               <widget class="QWidget" name="tab_6">
+                <attribute name="icon">
+                 <iconset resource="../images/glparchis.qrc">
+                  <normaloff>:/glparchis/game3.png</normaloff>:/glparchis/game3.png</iconset>
+                </attribute>
+                <attribute name="title">
+                 <string>Partida de 4 jugadores</string>
+                </attribute>
+                <layout class="QVBoxLayout" name="verticalLayout_7">
+                 <item>
+                  <widget class="QTableWidget" name="tblHighScores3">
+                   <attribute name="verticalHeaderVisible">
+                    <bool>false</bool>
+                   </attribute>
+                   <column>
+                    <property name="text">
+                     <string>Fecha</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Nombre</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Tiempo de partida</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Puntuacion</string>
+                    </property>
+                   </column>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
                <widget class="QWidget" name="tab_5">
                 <attribute name="icon">
                  <iconset resource="../images/glparchis.qrc">
