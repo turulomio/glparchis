@@ -10,12 +10,11 @@ from poscasillas6 import poscasillas6
 import os,  random,   configparser,  datetime,  codecs,  math
 from PyQt5.QtGui import QColor, QIcon, QPixmap
 from PyQt5.QtCore import Qt, QObject, QCoreApplication, QEventLoop,  pyqtSignal,  QUrl,  QFileInfo
-from PyQt5.QtOpenGL import QGLWidget
 from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
 from PyQt5.QtMultimedia import QSoundEffect
 from uuid import uuid4
 from libglparchistypes import TTextures,  TNames, TSquareTypes,  TPlayers
-from abc import ABC
+from abc import ABC,  abstractmethod
 
 
 #dateversion=datetime.date(2018, 4, 16)
@@ -1688,62 +1687,138 @@ class Ficha(QObject):
         glPopMatrix()
         glPopName()
 
-class Tablero(QObject):
-    """Se traduce como Board"""
-    def __init__(self, maxplayers,  parent=None):
-        QGLWidget.__init__(self, parent)
-        self.object = 1
-        self.maxplayers=maxplayers
-        if self.maxplayers==4:
-            self.position=Coord3D(-1, -1, 0)
-        elif self.maxplayers==6:
-            self.position=Coord3D(31.5, 23.9, 0)
-        elif self.maxplayers==8:
-            self.position=Coord3D(31.5, 16.5, 0)
 
-        self.oglname=32#Nombre usado para pick por opengl
-        self.colorbrown=Color(88, 40, 0)
+class AbstractOpenglObject(ABC):
+    def __init__(self, parent=None):
+        self.__position=Coord3D(0, 0, 0)
+        self.__color=Color(255, 255, 255, "white")
+        self.__pickname=None
+        
+    @property
+    def position(self):
+        return self.__position
+        
+    ## Setter of position property
+    ## @param value to assign to the property. Value is Coord3D object
+    @position.setter
+    def position(self, value):
+        self.__position=value
+            
+    @property
+    def color(self):
+        return self.__color
+        
+    ## Setter of color property
+    ## @param value to assign to the property. Value is Color object
+    @color.setter
+    def color(self, value):
+        self.__color=value
+            
+    @property
+    def pickname(self):
+        return self.__pickname
+        
+    ## Setter of pickname property
+    ## @param value to assign to the property. Value is a TNames property
+    @pickname.setter
+    def pickname(self, value):
+        self.__pickname=value
+        
+    ## Opengl Dra function
+    @abstractmethod
+    def draw(self):
+        pass
+        
+        
 
+## Class to draw 3 player board
+class Tablero3(AbstractOpenglObject):
+    def __init__(self, parent=None):
+        AbstractOpenglObject.__init__(self, parent)
+        self.position=Coord3D(0, 0, 0)
+        self.pickname=32
+        self.color=Color(88, 40, 0)
 
     def draw(self, qglwidget): 
-        def tipo4():
-            glPushMatrix()
-            glEnable(GL_TEXTURE_2D);
-            glTranslated(self.position.x,  self.position.y,  self.position.z)
-            verts=[Coord3D(0, 0, 0), Coord3D(0, 65, 0), Coord3D(65, 65, 0), Coord3D(65, 0, 0)]
-            texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
-            p=Polygon().init__create(verts, self.colorbrown, TTextures.Wood, texverts)
-            prism=Prism(p, 0.5)
-            prism.opengl(qglwidget)
-            glDisable(GL_TEXTURE_2D)    
-            glPopMatrix()
-            
-        def tipo6():
-            glPushMatrix()
-            glEnable(GL_TEXTURE_2D);
-            glTranslated(self.position.x,  self.position.y,  self.position.z)
-            p=Polygon().init__regular(6, 47, self.colorbrown, TTextures.Wood)
-            prism=Prism(p, 0.5)
-            prism.opengl(qglwidget)
-            glDisable(GL_TEXTURE_2D)    
-            glPopMatrix()        
+        pi_3=math.pi/3#60º
+        sin_pi_3=math.sin(pi_3)
+        cos_pi_3=math.cos(pi_3)
+        glPushMatrix()
+        glEnable(GL_TEXTURE_2D);
+        
+        glTranslated(self.position.x,  self.position.y,  self.position.z)
+        z=0
+        #Scaling and translating
+        glScaled(1.03, 1.03, 1.03)
+        glTranslated(-0.9, -0.95, 0)
+        verts=[     Coord3D(21, 63, z), #Clock wise
+                        Coord3D(42, 63, z), 
+                        Coord3D(42+24*sin_pi_3, 39-24*cos_pi_3, z), 
+                        Coord3D(42+24*sin_pi_3-21*cos_pi_3, 39-24*cos_pi_3-21*sin_pi_3, z), 
+                        Coord3D(42+24*sin_pi_3-21*cos_pi_3-2*24*sin_pi_3, 39-24*cos_pi_3-21*sin_pi_3, z), 
+                        Coord3D(21-24*sin_pi_3, 39-24*cos_pi_3, z)]
+        texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) , Coord2D(1, 0),  Coord2D(1, 0) ]
+        p=Polygon().init__create(verts, self.color, TTextures.Wood, texverts)
+        prism=Prism(p, 0.5)
+        prism.opengl(qglwidget)
+        glDisable(GL_TEXTURE_2D)    
+        glPopMatrix()
 
-        def tipo8():
-            glPushMatrix()
-            glEnable(GL_TEXTURE_2D);
-            glTranslated(self.position.x,  self.position.y,  self.position.z)
-            p=Polygon().init__regular(8, 52.5, self.colorbrown, TTextures.Wood)
-            prism=Prism(p, 0.5)
-            prism.opengl(qglwidget)
-            glDisable(GL_TEXTURE_2D)     
-            glPopMatrix()       
-        ###########################################
-        if self.maxplayers==4:
-            tipo4()
-        elif self.maxplayers==6:
-            tipo6()
-        elif self.maxplayers==8:
-            tipo8()
+## Class to draw 4 player board
+class Tablero4(AbstractOpenglObject):
+    def __init__(self, parent=None):
+        AbstractOpenglObject.__init__(self, parent)
+        self.position=Coord3D(-1, -1, 0)
+        self.pickname=32
+        self.color=Color(88, 40, 0)
+
+    def draw(self, qglwidget): 
+        glPushMatrix()
+        glEnable(GL_TEXTURE_2D);
+        glTranslated(self.position.x,  self.position.y,  self.position.z)
+        verts=[Coord3D(0, 0, 0), Coord3D(0, 65, 0), Coord3D(65, 65, 0), Coord3D(65, 0, 0)]
+        texverts=[Coord2D(0, 0),Coord2D(0, 1), Coord2D(1, 1), Coord2D(1, 0) ]
+        p=Polygon().init__create(verts, self.color, TTextures.Wood, texverts)
+        prism=Prism(p, 0.5)
+        prism.opengl(qglwidget)
+        glDisable(GL_TEXTURE_2D)    
+        glPopMatrix()
+
+## Class to draw 6 player board
+class Tablero6(AbstractOpenglObject):
+    def __init__(self, parent=None):
+        AbstractOpenglObject.__init__(self, parent)
+        self.position=Coord3D(-1, -1, 0)
+        self.pickname=TNames.Board
+        self.colorbrown=Color(88, 40, 0)
+
+    def draw(self, qglwidget): 
+        glPushMatrix()
+        glEnable(GL_TEXTURE_2D);
+        glTranslated(self.position.x,  self.position.y,  self.position.z)
+        p=Polygon().init__regular(6, 47, self.colorbrown, TTextures.Wood)
+        prism=Prism(p, 0.5)
+        prism.opengl(qglwidget)
+        glDisable(GL_TEXTURE_2D)    
+        glPopMatrix()        
+
+## Class to draw 8 player board
+class Tablero8(AbstractOpenglObject):
+    def __init__(self, parent=None):
+        AbstractOpenglObject.__init__(self, parent)
+        self.position=Coord3D(31.5, 16.5, 0)
+        self.pickname=32#Nombre usado para pick por opengl
+        self.color=Color(88, 40, 0)
+
+    def draw(self, qglwidget): 
+        glPushMatrix()
+        glEnable(GL_TEXTURE_2D);
+        glTranslated(self.position.x,  self.position.y,  self.position.z)
+        p=Polygon().init__regular(8, 52.5, self.color, TTextures.Wood)
+        prism=Prism(p, 0.5)
+        prism.opengl(qglwidget)
+        glDisable(GL_TEXTURE_2D)     
+        glPopMatrix()       
         
 class Circulo:
     """Es el circulo publico por el que se mueven las fichas y pueden comerse entre ellas
@@ -2554,9 +2629,12 @@ class ManagerObjectsId(ABC):
         
     ## Append an object to self.arr
     ## @param o Any object
+    ## @param id Id to assign to the object. It will be the dictionary key.
     def setById(self, o, id):
         self.dict[str(id)]=o
         
+    ## Returns the value of the id (key) from self.dict
+    ## @param id Id of the object
     def getById(self, id):
         return self.dict[str(id)]
         
@@ -2662,9 +2740,13 @@ class Mem:
         with open(filename, 'w') as configfile:
             config.write(configfile)           
 
-
-            
-            
+    ##Function that allows to select current maxplayer object, Given the class root name
+    ## @param module is as module object
+    ## @param cls is a Class string name
+    ## @example  class_players(Tablero), selects Tablero8 if mem.maxplayers=8
+    def class_players(self,  cls, *args ):
+        return globals()["{}{}".format(cls, self.maxplayers)](args)
+   
     def load(self, filename):       
         def error():           
             qmessagebox(QApplication.translate("glparchis", "Este fichero es de una version antigua o esta estropeado. No puede ser cargado."))
