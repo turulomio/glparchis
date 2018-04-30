@@ -2192,10 +2192,10 @@ class Casilla(QObject):
             self.pawnpositions.append(Coord3D(4, 4, 0.2))
             self.pawnpositions.append(Coord3D(6, 6, 0.2))
         elif self.tipo==TSquareTypes.Final8:
-            self.pawnpositions.append(Coord3D(0, 0, 0.2))
-            self.pawnpositions.append(Coord3D(2, 2, 0.2))
-            self.pawnpositions.append(Coord3D(4, 4, 0.2))
-            self.pawnpositions.append(Coord3D(6, 6, 0.2))
+            self.pawnpositions.append(Coord3D(3.7, 2.5, 0.2))
+            self.pawnpositions.append(Coord3D(7.4, 2.5, 0.2))
+            self.pawnpositions.append(Coord3D(11.1,  2.5, 0.2))
+            self.pawnpositions.append(Coord3D(14.8,  2.5, 0.2))
             
     def __repr__(self):
         return ("Casilla {0} con {1} fichas dentro".format(self.id, self.buzon_numfichas()))
@@ -2490,12 +2490,16 @@ class Casilla(QObject):
             glPopName()
 
         def tipo_final8():
+            rad67_5=67.5*2*math.pi/360#67.5º =45+67.5+67.5
+            sin_rad67_5=math.sin(rad67_5)
+            cos_rad67_5=math.cos(rad67_5)
+            tg_rad67_5=sin_rad67_5/cos_rad67_5
+            sin_pi_4=math.sin(math.pi/4)
             glPushName(self.oglname);
             glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
-            glScaled((21-2*3*math.tan(math.pi/8))/15.0, ((10.5/math.tan(math.pi/8))-3)/7.5, 1)
-            verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(7.5, 7.5, 0), Coord3D(15, 0, 0)]
+            verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(21/2-3/tg_rad67_5,  -3+21*sin_pi_4 +10.5, 0), Coord3D(21-3/tg_rad67_5*2, 0, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
             prism.opengl(qglwidget)
