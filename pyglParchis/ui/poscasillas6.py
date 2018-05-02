@@ -1,5 +1,9 @@
+import math
 def poscasillas6(maxcasillas):
     posCasillas=[None]*maxcasillas        
+    sin_pi_3=math.sin(math.pi/3.0)
+    cos_pi_3=math.cos(math.pi/3.0)
+    tan_pi_3=math.tan(math.pi/3.0)
     posCasillas[0]=(0, 0, 0)
     posCasillas[1]=(21, 60, 0.5)
     posCasillas[2]=(21, 57, 0.5)
@@ -110,7 +114,7 @@ def poscasillas6(maxcasillas):
     posCasillas[107]=(28, 45, 0.5)
     posCasillas[108]=(28, 42, 0.5)
     posCasillas[109]=(28, 39, 0.5)
-    posCasillas[110]=(22.73205080756888, 39, 0.5)
+    posCasillas[110]=(28+14-3/tan_pi_3,  39, 0.5)
     posCasillas[111]=(1.0096189432334217, 37.37564434701786, 0.5)
     posCasillas[112]=(3.607695154586736, 35.87564434701786, 0.5)
     posCasillas[113]=(6.205771365940053, 34.37564434701786, 0.5)
@@ -126,7 +130,7 @@ def poscasillas6(maxcasillas):
     posCasillas[123]=(14.901923788646684, 10.189110867544649, 0.5)
     posCasillas[124]=(17.5, 11.689110867544649, 0.5)
     posCasillas[125]=(20.098076211353316, 13.189110867544649, 0.5)
-    posCasillas[126]=(22.73205080756888, 8.626933041053576, 0.5)
+    posCasillas[126]=(22.73205080756888-(21-2*3/tan_pi_3)*cos_pi_3, 8.626933041053576+(21-2*3/tan_pi_3)*sin_pi_3, 0.5)
     posCasillas[127]=(35.0, -9.373066958946422, 0.5)
     posCasillas[128]=(35.0, -6.373066958946422, 0.5)
     posCasillas[129]=(35.0, -3.3730669589464224, 0.5)
@@ -150,12 +154,11 @@ def poscasillas6(maxcasillas):
     posCasillas[147]=(48.098076211353316, 37.43782217350893, 0.5)
     posCasillas[148]=(45.5, 35.93782217350893, 0.5)
     posCasillas[149]=(42.901923788646684, 34.43782217350893, 0.5)
-    posCasillas[150]=(40.267949192431125, 39.0, 0.5)
+    posCasillas[150]=(40.267949192431125+(21-2*3/tan_pi_3)*cos_pi_3, 39.0-(21-2*3/tan_pi_3)*sin_pi_3, 0.5)
     posCasillas[151]=(21, 42, 0.5)
     posCasillas[152]=(10.5, 23.813466520526788, 0.5)
     posCasillas[153]=(21.0, 5.626933041053578, 0.5)
     posCasillas[154]=(42.0, 5.626933041053578, 0.5)
     posCasillas[155]=(52.5, 23.813466520526788, 0.5)
     posCasillas[156]=(42.0, 42.0, 0.5)
-            
     return posCasillas

@@ -1246,23 +1246,23 @@ class SetCasillas:
         def defineRotate( id):
             if id==154:
                 return 30
-            if (id>=10 and id<=24) or (id>=111 and id<=117)  or id in (60, 76, 126, 142):
+            if (id>=10 and id<=24) or (id>=111 and id<=117)  or id in (60, 76, 142):
                return 60
             if id==155:
                 return 90
-            if(id>=27 and id<=41) or (id>=119 and id<=125) or id in (77, 93):
+            if(id>=27 and id<=41) or (id>=119 and id<=125) or id in (77, 93, 150):
                 return 120
             if id==156:
                 return 150
-            if(id>=44 and id<=58) or (id>=127 and id<=133) or id in (8, 94):
+            if(id>=44 and id<=58) or (id>=127 and id<=133) or id in (8, 94, 110):
                 return 180
-            if(id>=61 and id<=75) or (id>=135 and id<=141) or id in (9, 25, 118, 150):
+            if(id>=61 and id<=75) or (id>=135 and id<=141) or id in (9, 25, 118):
                 return 240
             if id==151:
                 return 210
             if id==152:
                 return 270
-            if(id>=78 and id<=92) or (id>=143 and id<=149) or id in (26, 42, 110):
+            if(id>=78 and id<=92) or (id>=143 and id<=149) or id in (26, 42, 126):
                 return 300
             if id==153:
                 return 330
@@ -1735,7 +1735,6 @@ class AbstractOpenglObject(ABC):
 class Tablero3(AbstractOpenglObject):
     def __init__(self, parent=None):
         AbstractOpenglObject.__init__(self, parent)
-        self.position=Coord3D(0, 0, 0)
         self.pickname=32
         self.color=Color(88, 40, 0)
 
@@ -1788,7 +1787,7 @@ class Tablero4(AbstractOpenglObject):
 class Tablero6(AbstractOpenglObject):
     def __init__(self, parent=None):
         AbstractOpenglObject.__init__(self, parent)
-        self.position=Coord3D(-1, -1, 0)
+        self.position=Coord3D(31.5, 23.85, 0)
         self.pickname=TNames.Board
         self.colorbrown=Color(88, 40, 0)
 
@@ -2187,15 +2186,15 @@ class Casilla(QObject):
             self.pawnpositions.append(Coord3D(7.5, 2, 0.2))
             self.pawnpositions.append(Coord3D(7.5, 5, 0.2))
         elif self.tipo==TSquareTypes.Final6:
-            self.pawnpositions.append(Coord3D(0, 0, 0.2))
-            self.pawnpositions.append(Coord3D(2, 2, 0.2))
-            self.pawnpositions.append(Coord3D(4, 4, 0.2))
-            self.pawnpositions.append(Coord3D(6, 6, 0.2))
+            self.pawnpositions.append(Coord3D(3.6, 2.3, 0.2))
+            self.pawnpositions.append(Coord3D(7.2, 2.3, 0.2))
+            self.pawnpositions.append(Coord3D(10.8, 2.3, 0.2))
+            self.pawnpositions.append(Coord3D(14.4, 2.3, 0.2))
         elif self.tipo==TSquareTypes.Final8:
-            self.pawnpositions.append(Coord3D(3.7, 2.5, 0.2))
-            self.pawnpositions.append(Coord3D(7.4, 2.5, 0.2))
-            self.pawnpositions.append(Coord3D(11.1,  2.5, 0.2))
-            self.pawnpositions.append(Coord3D(14.8,  2.5, 0.2))
+            self.pawnpositions.append(Coord3D(3.3, 2.5, 0.2))
+            self.pawnpositions.append(Coord3D(6.8, 2.5, 0.2))
+            self.pawnpositions.append(Coord3D(10.3,  2.5, 0.2))
+            self.pawnpositions.append(Coord3D(13.8,  2.5, 0.2))
             
     def __repr__(self):
         return ("Casilla {0} con {1} fichas dentro".format(self.id, self.buzon_numfichas()))
@@ -2477,10 +2476,9 @@ class Casilla(QObject):
             glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
-            glScaled(2*math.tan(math.pi/6)*(21*math.cos(math.pi/6)-3)/15, (21*math.cos(math.pi/6)-3)/7.5, 1)
-            verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(7.5, 7.5, 0), Coord3D(15, 0, 0)]
-
-            verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(7.5, 7.5, 0), Coord3D(15, 0, 0)]
+            x=2*math.tan(math.pi/6)*(21*math.cos(math.pi/6)-3)/15
+            y=(21*math.cos(math.pi/6)-3)/7.5
+            verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(x*7.5, y*7.5, 0), Coord3D(x*15, 0, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
             prism.opengl(qglwidget)
