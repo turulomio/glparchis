@@ -50,6 +50,8 @@
     <addaction name="separator"/>
     <addaction name="actionUpdates"/>
     <addaction name="separator"/>
+    <addaction name="actionReportBug"/>
+    <addaction name="separator"/>
     <addaction name="actionAcercaDe"/>
    </widget>
    <widget class="QMenu" name="menuJugar">
@@ -346,6 +348,18 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+4</string>
+   </property>
+  </action>
+  <action name="actionReportBug">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/reportbug.svg</normaloff>:/glparchis/reportbug.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Report a bug</string>
+   </property>
+   <property name="toolTip">
+    <string>Report a bug</string>
    </property>
   </action>
  </widget>

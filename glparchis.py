@@ -2,7 +2,6 @@
 import os
 import sys
 
-
 if sys.platform=='win32':
     sys.path.append("ui")
     sys.path.append("images")

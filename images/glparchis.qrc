@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/glparchis">
+    <file>reportbug.svg</file>
     <file>game3.png</file>
     <file>zoom-in.png</file>
     <file>zoom-out.png</file>

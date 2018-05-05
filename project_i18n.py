@@ -28,13 +28,18 @@ class i18n(QObject):
     def changelog(self, language):
         f=open("CHANGELOG-{}.txt".format(language.upper()), "w")
 
+        f.write("XXXXXXXX\n")
+        f.write("--------\n")
+        f.write("- {}\n".format(self.tr("Added 3 players mode")))
+        f.write("- {}\n".format(self.tr("Now you can report a bug from glParchis")))
+        f.write("\n")
+        
         f.write("20180416\n")
         f.write("--------\n")
         f.write("- {}\n".format(self.tr("Windows: Solved annoying bug. User needed to do several clicks to move a piece")))
         f.write("- {}\n".format(self.tr("Improved OpenGL code and it's documentation")))
         f.write("- {}\n".format(self.tr("Added Doxygen document system for developers")))
         f.write("- {}\n".format(self.tr("Windows: Solved bug showing objcts in About menu")))
-        
         f.write("\n")
         
         f.write("20180308\n")
