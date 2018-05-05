@@ -1,7 +1,7 @@
 import sys, os, urllib.request,   datetime
 from urllib.request import urlopen
-from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QEvent
-from PyQt5.QtGui import QIcon, QPixmap, QKeyEvent
+from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QEvent,  QUrl
+from PyQt5.QtGui import QIcon, QPixmap, QKeyEvent, QDesktopServices
 from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QDialog, QFileDialog
 from libglparchis import dateversion, str2bool, cargarQTranslator, b2s, qmessagebox,  Mem3, Mem4, Mem6, Mem8,  SoundSystem
 
@@ -222,6 +222,10 @@ class frmMain(QMainWindow, Ui_frmMain):#
             for i, j in enumerate(self.mem.jugadores.arr):
                 j.name=self.mem.settings.value("Players/{}".format(j.color.name), j.DefaultName())
             self.showWdgGame()
+            
+    @pyqtSlot()
+    def on_actionReportBug_triggered(self):
+        QDesktopServices.openUrl(QUrl('https://sourceforge.net/p/glparchis/tickets/'))
 
     def selectMem(self, filename):
         resultado=None
