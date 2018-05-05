@@ -2743,9 +2743,9 @@ class Mem:
             config.write(configfile)           
 
     ##Function that allows to select current maxplayer object, Given the class root name
-    ## @param module is as module object
     ## @param cls is a Class string name
-    ## @example  class_players(Tablero), selects Tablero8 if mem.maxplayers=8
+    ## @param args are the parameters of cls class constructor
+    ## For example:  class_players(Tablero), selects Tablero8 if mem.maxplayers=8
     def class_players(self,  cls, *args ):
         return globals()["{}{}".format(cls, self.maxplayers)](args)
    

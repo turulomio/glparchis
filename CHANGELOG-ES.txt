@@ -1,3 +1,8 @@
+XXXXXXXX
+--------
+- Añadido el modo de 3 jugadores
+- Ahora puedes informar de errores desde glParchis
+
 20180416
 --------
 - Windows: Solucionado bug molesto. El usuario necesitaba hacer varios clicks para mover una ficha

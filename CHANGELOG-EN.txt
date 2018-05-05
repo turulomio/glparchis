@@ -1,3 +1,8 @@
+XXXXXXXX
+--------
+- Added 3 players mode
+- Now you can report a bug from glParchis
+
 20180416
 --------
 - Windows: Solved annoying bug. User needed to do several clicks to move a piece
