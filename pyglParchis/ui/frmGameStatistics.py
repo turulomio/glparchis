@@ -16,4 +16,5 @@ class frmGameStatistics(QDialog, Ui_frmGameStatistics):
         print("http://glparchis.sourceforge.net/php/glparchis_statistics_installation.php?installations_uuid={}".format(uuid))
         self.webInstallation.setUrl(QUrl("http://glparchis.sourceforge.net/php/glparchis_statistics_installation.php?installations_uuid={}".format(uuid)))
         self.webWorld.setUrl(QUrl("http://glparchis.sourceforge.net/php/glparchis_statistics.php"))
+        self.lblUUID.setText(self.tr("Your statistics UUID is {}").format(uuid))
 
