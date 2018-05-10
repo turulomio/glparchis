@@ -1,48 +1,34 @@
+Requests
+========
+This application has the following dependencies:
+- PyQt5
+- pyopengl
+- python3
 
-Requisitos
-==========
-El programa tiene las siguientes dependencias:
-  - PyQt4
-  - pyopengl
-  - python3
-
-Procedimiento de instalación para fuentes linux
+Procedimiento de instalacion para fuentes linux
 ===============================================
-
-Se descomprime el fichero 
+Se descomprime el fichero
 Una vez en el directorio en el que esta el Makefile se ejecuta
-  # make; make install
+# python3 Makefile.py
 
-Si usas la distribución Gentoo, te puedes bajar el ebuild desde
-https://xulpymoney.svn.sourceforge.net/svnroot/xulpymoney/myportage/games-board/glparchis/
+Si usas la distribucion Gentoo, te puedes bajar el ebuild desde https://xulpymoney.svn.sourceforge.net/svnroot/xulpymoney/myportage/games-board/glparchis/
 
 Si eres atrevido o quieres ayudarme con el desarrollo te lo puedes bajar del subversion con el siguiente comando
-  # svn co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis
+# svn co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis
 
-Para desinstalar utiliza el siguiente comando hace una desinstalación limpia
-  # make uninstall
+Para desinstalar utiliza el siguiente comando hace una desinstalacion limpia
+# python3 Makefile.py --uninstall
 
-  
-  
-Procedimiento de instalación para binarios linux
+Procedimiento de instalacion para binarios linux
 ================================================
-
-Se descomprime el fichero con el comando 
-  # tar xvfz glparchis-bin-linux-VERSION.tar.gz 
-
+Se descomprime el fichero con el comando
+# tar xvfz glparchis-bin-linux-VERSION.tar.gz
 Se entra en el directorio glparchis, que se acaba de crear con
-  # cd glparchis
-
+# cd glparchis
 y se ejecuta el fichero glparchis con
-  # ./glparchis
+# ./glparchis
 
-  
-  
-Procedimiento de instalación para binarios windows
+Procedimiento de instalacion para binarios windows
 ==================================================
-
-
-
-Procedimiento de instalación para fuentes windows
-=================================================
+Just run the executable
 

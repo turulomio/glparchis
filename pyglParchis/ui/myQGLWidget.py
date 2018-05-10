@@ -288,7 +288,7 @@ class wdgOGL(myQGLWidget):
             glSelectBuffer(512);
             glRenderMode(GL_SELECT);
             glLoadIdentity();
-            gluPickMatrix(event.x(),viewport[3] -event.y(),5,5, viewport)
+            gluPickMatrix(event.x(),viewport[3] -event.y(),4,4, viewport)
             aspect=viewport[2]/viewport[3]
             gluPerspective(60,aspect,1.0,400)
             glMatrixMode(GL_MODELVIEW)
