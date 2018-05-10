@@ -1,4 +1,4 @@
-XXXXXXXX
+20180510
 --------
 - Added 3 players mode
 - Now you can report a bug from glParchis

@@ -17,8 +17,8 @@ from libglparchistypes import TTextures,  TNames, TSquareTypes,  TPlayers
 from abc import ABC,  abstractmethod
 
 
-#dateversion=datetime.date(2018, 4, 16)
-dateversion=datetime.date(2000, 1, 1)#When developing
+dateversion=datetime.date(2018, 5, 10)
+#dateversion=datetime.date(2000, 1, 1)#When developing
 
 
 def version(platform=None):

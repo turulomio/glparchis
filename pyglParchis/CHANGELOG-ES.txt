@@ -1,4 +1,4 @@
-XXXXXXXX
+20180510
 --------
 - Añadido el modo de 3 jugadores
 - Ahora puedes informar de errores desde glParchis
