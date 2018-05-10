@@ -1136,59 +1136,6 @@ French: Nadejda Adam
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="189"/>
-        <source>
-Requisitos
-==========
-El programa tiene las siguientes dependencias:
-  - PyQt4
-  - pyopengl
-  - python3
-
-Procedimiento de instalacion para fuentes linux
-===============================================
-
-Se descomprime el fichero 
-Una vez en el directorio en el que esta el Makefile se ejecuta
-  # make; make install
-
-Si usas la distribucion Gentoo, te puedes bajar el ebuild desde
-https://xulpymoney.svn.sourceforge.net/svnroot/xulpymoney/myportage/games-board/glparchis/
-
-Si eres atrevido o quieres ayudarme con el desarrollo te lo puedes bajar del subversion con el siguiente comando
-  # svn co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis
-
-Para desinstalar utiliza el siguiente comando hace una desinstalacion limpia
-  # make uninstall
-
-  
-  
-Procedimiento de instalacion para binarios linux
-================================================
-
-Se descomprime el fichero con el comando 
-  # tar xvfz glparchis-bin-linux-VERSION.tar.gz 
-
-Se entra en el directorio glparchis, que se acaba de crear con
-  # cd glparchis
-
-y se ejecuta el fichero glparchis con
-  # ./glparchis
-
-  
-  
-Procedimiento de instalacion para binarios windows
-==================================================
-
-
-
-Procedimiento de instalacion para fuentes windows
-=================================================
-
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../project_i18n.py" line="79"/>
         <source>- Anadido el script project_i18n para traducir la documentacion del proyecto</source>
         <translation type="unfinished"></translation>
@@ -1296,6 +1243,76 @@ Procedimiento de instalacion para fuentes windows
     <message>
         <location filename="../project_i18n.py" line="34"/>
         <source>Now you can report a bug from glParchis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="189"/>
+        <source>Requests</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="192"/>
+        <source>This application has the following dependencies:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="198"/>
+        <source>Procedimiento de instalacion para fuentes linux</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="201"/>
+        <source>Se descomprime el fichero</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="202"/>
+        <source>Una vez en el directorio en el que esta el Makefile se ejecuta</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="206"/>
+        <source>Si usas la distribucion Gentoo, te puedes bajar el ebuild desde {}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="209"/>
+        <source>Si eres atrevido o quieres ayudarme con el desarrollo te lo puedes bajar del subversion con el siguiente comando</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="213"/>
+        <source>Para desinstalar utiliza el siguiente comando hace una desinstalacion limpia</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="217"/>
+        <source>Procedimiento de instalacion para binarios linux</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="220"/>
+        <source>Se descomprime el fichero con el comando</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="222"/>
+        <source>Se entra en el directorio glparchis, que se acaba de crear con</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="224"/>
+        <source>y se ejecuta el fichero glparchis con</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="228"/>
+        <source>Procedimiento de instalacion para binarios windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="231"/>
+        <source>Just run the executable</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

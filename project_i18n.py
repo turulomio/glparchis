@@ -186,55 +186,52 @@ French: Nadejda Adam
         
     def install(self, language):
         f=open("INSTALL-{}.txt".format(language.upper()), "w")
-        f.write(self.tr("""
-Requisitos
-==========
-El programa tiene las siguientes dependencias:
-  - PyQt4
-  - pyopengl
-  - python3
+        title=self.tr("Requests")
+        f.write(title+"\n")
+        f.write("="*len(title)+"\n")
+        f.write(self.tr("This application has the following dependencies:")+"\n")
+        f.write("- PyQt5"+"\n")
+        f.write("- pyopengl"+"\n")
+        f.write("- python3"+"\n")
+        f.write("\n")
 
-Procedimiento de instalacion para fuentes linux
-===============================================
+        title=self.tr("Procedimiento de instalacion para fuentes linux")
+        f.write(title+"\n")
+        f.write("="*len(title)+"\n")
+        f.write(self.tr("Se descomprime el fichero")+"\n")
+        f.write(self.tr("Una vez en el directorio en el que esta el Makefile se ejecuta")+"\n")
+        f.write("# python3 Makefile.py"+"\n")
+        f.write("\n")
 
-Se descomprime el fichero 
-Una vez en el directorio en el que esta el Makefile se ejecuta
-  # make; make install
+        f.write(self.tr("Si usas la distribucion Gentoo, te puedes bajar el ebuild desde {}").format("https://xulpymoney.svn.sourceforge.net/svnroot/xulpymoney/myportage/games-board/glparchis/")+"\n")
+        f.write("\n")
 
-Si usas la distribucion Gentoo, te puedes bajar el ebuild desde
-https://xulpymoney.svn.sourceforge.net/svnroot/xulpymoney/myportage/games-board/glparchis/
-
-Si eres atrevido o quieres ayudarme con el desarrollo te lo puedes bajar del subversion con el siguiente comando
-  # svn co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis
-
-Para desinstalar utiliza el siguiente comando hace una desinstalacion limpia
-  # make uninstall
-
+        f.write(self.tr("Si eres atrevido o quieres ayudarme con el desarrollo te lo puedes bajar del subversion con el siguiente comando")+"\n")
+        f.write("# svn co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis"+"\n")
+        f.write("\n")
+        
+        f.write(self.tr("Para desinstalar utiliza el siguiente comando hace una desinstalacion limpia")+"\n")
+        f.write("# python3 Makefile.py --uninstall"+"\n")
+        f.write("\n")
   
+        title=self.tr("Procedimiento de instalacion para binarios linux")
+        f.write(title+"\n")
+        f.write("="*len(title)+"\n")
+        f.write(self.tr("Se descomprime el fichero con el comando")+"\n")
+        f.write("# tar xvfz glparchis-bin-linux-VERSION.tar.gz"+"\n")
+        f.write("\n")
+        f.write(self.tr("Se entra en el directorio glparchis, que se acaba de crear con")+"\n")
+        f.write("# cd glparchis"+"\n")
+        f.write("\n")
+        f.write(self.tr("y se ejecuta el fichero glparchis con")+"\n")
+        f.write("# ./glparchis"+"\n")
+        f.write("\n")
   
-Procedimiento de instalacion para binarios linux
-================================================
-
-Se descomprime el fichero con el comando 
-  # tar xvfz glparchis-bin-linux-VERSION.tar.gz 
-
-Se entra en el directorio glparchis, que se acaba de crear con
-  # cd glparchis
-
-y se ejecuta el fichero glparchis con
-  # ./glparchis
-
-  
-  
-Procedimiento de instalacion para binarios windows
-==================================================
-
-
-
-Procedimiento de instalacion para fuentes windows
-=================================================
-
-"""))
+        title=self.tr("Procedimiento de instalacion para binarios windows")
+        f.write(title+"\n")
+        f.write("="*len(title)+"\n")
+        f.write(self.tr("Just run the executable")+"\n")
+        f.write("\n")
         f.close()
 ################
 app = QCoreApplication(sys.argv)
