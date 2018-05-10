@@ -1333,72 +1333,72 @@ French: Nadejda Adam
     <message>
         <location filename="../project_i18n.py" line="189"/>
         <source>Requests</source>
-        <translation type="unfinished"></translation>
+        <translation>Requisitos</translation>
     </message>
     <message>
         <location filename="../project_i18n.py" line="192"/>
         <source>This application has the following dependencies:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="198"/>
-        <source>Procedimiento de instalacion para fuentes linux</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="201"/>
-        <source>Se descomprime el fichero</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="202"/>
-        <source>Una vez en el directorio en el que esta el Makefile se ejecuta</source>
-        <translation type="unfinished"></translation>
+        <translation>Esta aplicación tiene las siguientes dependencias:</translation>
     </message>
     <message>
         <location filename="../project_i18n.py" line="206"/>
         <source>Si usas la distribucion Gentoo, te puedes bajar el ebuild desde {}</source>
-        <translation type="unfinished"></translation>
+        <translation>Si usas la distribución Gentoo, te puedes bajar el ebuild desde {}</translation>
     </message>
     <message>
         <location filename="../project_i18n.py" line="209"/>
         <source>Si eres atrevido o quieres ayudarme con el desarrollo te lo puedes bajar del subversion con el siguiente comando</source>
-        <translation type="unfinished"></translation>
+        <translation>Si eres atrevido o quieres ayudarme con el desarrollo te lo puedes bajar del subversion con el siguiente comando</translation>
     </message>
     <message>
         <location filename="../project_i18n.py" line="213"/>
         <source>Para desinstalar utiliza el siguiente comando hace una desinstalacion limpia</source>
-        <translation type="unfinished"></translation>
+        <translation>Para desinstalar utiliza el siguiente comando hace una desinstalación limpia</translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="223"/>
+        <source>Se entra en el directorio glparchis, que se acaba de crear con</source>
+        <translation>Se entra en el directorio glparchis, que se acaba de crear con</translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="226"/>
+        <source>y se ejecuta el fichero glparchis con</source>
+        <translation>y se ejecuta el fichero glparchis con</translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="233"/>
+        <source>Just run the executable</source>
+        <translation>Simplemente lanza el ejecutable</translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="198"/>
+        <source>Procedure to install in Linux from sourcecode</source>
+        <translation>Procedimiento para instalar en Linux desde el código fuente</translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="201"/>
+        <source>You must uncompress the file</source>
+        <translation>Debes descomprimir el fichero</translation>
+    </message>
+    <message>
+        <location filename="../project_i18n.py" line="202"/>
+        <source>Once you are in the directory where Makefile.py is, just run</source>
+        <translation>Una vez estés en el directorio donde Makefile.py está, ejecuta</translation>
     </message>
     <message>
         <location filename="../project_i18n.py" line="217"/>
-        <source>Procedimiento de instalacion para binarios linux</source>
-        <translation type="unfinished"></translation>
+        <source>Procedure to install Linux binaries</source>
+        <translation>Procedimiento para instalar los binarios en Linux</translation>
     </message>
     <message>
         <location filename="../project_i18n.py" line="220"/>
-        <source>Se descomprime el fichero con el comando</source>
-        <translation type="unfinished"></translation>
+        <source>Uncompress the file with the command</source>
+        <translation>Descomprime el fichero con el comando</translation>
     </message>
     <message>
-        <location filename="../project_i18n.py" line="222"/>
-        <source>Se entra en el directorio glparchis, que se acaba de crear con</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="224"/>
-        <source>y se ejecuta el fichero glparchis con</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="228"/>
-        <source>Procedimiento de instalacion para binarios windows</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="231"/>
-        <source>Just run the executable</source>
-        <translation type="unfinished"></translation>
+        <location filename="../project_i18n.py" line="230"/>
+        <source>Procedure to install Windows binaries</source>
+        <translation>Procedimiento para instalar los binarios en Windows</translation>
     </message>
 </context>
 <context>

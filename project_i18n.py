@@ -195,11 +195,11 @@ French: Nadejda Adam
         f.write("- python3"+"\n")
         f.write("\n")
 
-        title=self.tr("Procedimiento de instalacion para fuentes linux")
+        title=self.tr("Procedure to install in Linux from sourcecode")
         f.write(title+"\n")
         f.write("="*len(title)+"\n")
-        f.write(self.tr("Se descomprime el fichero")+"\n")
-        f.write(self.tr("Una vez en el directorio en el que esta el Makefile se ejecuta")+"\n")
+        f.write(self.tr("You must uncompress the file")+"\n")
+        f.write(self.tr("Once you are in the directory where Makefile.py is, just run")+"\n")
         f.write("# python3 Makefile.py"+"\n")
         f.write("\n")
 
@@ -214,10 +214,10 @@ French: Nadejda Adam
         f.write("# python3 Makefile.py --uninstall"+"\n")
         f.write("\n")
   
-        title=self.tr("Procedimiento de instalacion para binarios linux")
+        title=self.tr("Procedure to install Linux binaries")
         f.write(title+"\n")
         f.write("="*len(title)+"\n")
-        f.write(self.tr("Se descomprime el fichero con el comando")+"\n")
+        f.write(self.tr("Uncompress the file with the command")+"\n")
         f.write("# tar xvfz glparchis-bin-linux-VERSION.tar.gz"+"\n")
         f.write("\n")
         f.write(self.tr("Se entra en el directorio glparchis, que se acaba de crear con")+"\n")
@@ -227,7 +227,7 @@ French: Nadejda Adam
         f.write("# ./glparchis"+"\n")
         f.write("\n")
   
-        title=self.tr("Procedimiento de instalacion para binarios windows")
+        title=self.tr("Procedure to install Windows binaries")
         f.write(title+"\n")
         f.write("="*len(title)+"\n")
         f.write(self.tr("Just run the executable")+"\n")
