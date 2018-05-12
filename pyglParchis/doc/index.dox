@@ -14,9 +14,27 @@ Sourceforge
 This project is hosted in SourceForge, so you can use the next services:
 
 - <a href="https://sourceforge.net/p/glparchis/tickets/" target="_blank">Tickets</a>
-*/
 
+Sourceforge
+===========
+This project is hosted in SourceForge, so you can use the next services:
+
+- <a href="https://sourceforge.net/p/xulpymoney/tickets/" target="_blank">Tickets</a>
+
+Software used to develop Xulpymoney
+===================================
+
+<a target="_blank" href="https://eric-ide.python-projects.org/index.html">Eric</a> is used as the main IDE
+
+Xulpymoney depends on the following software:
+- <a target="_blank" href="https://www.python.org/">Python3</a>, as the main programming language.
+- <a target="_blank" href="https://www.riverbankcomputing.com/software/pyqt/intro">PyQt5</a>, as the main library.
 
 Convenciones
 ============
 Colores no debe usuarse para iterar jugadores, solo debe asignarse al principio
+
+
+
+
+*/
