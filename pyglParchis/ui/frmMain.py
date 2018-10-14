@@ -1,6 +1,6 @@
 import sys, os, urllib.request,   datetime
 from urllib.request import urlopen
-from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QEvent,  QUrl
+from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QEvent,  QUrl,  pyqtSignal
 from PyQt5.QtGui import QIcon, QPixmap, QKeyEvent, QDesktopServices
 from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QDialog, QFileDialog
 from libglparchis import dateversion, str2bool, cargarQTranslator, b2s, qmessagebox,  Mem3, Mem4, Mem6, Mem8,  SoundSystem
@@ -15,7 +15,9 @@ from frmSettings import frmSettings
 from frmHelp import frmHelp
 from uuid import uuid4
 
-class frmMain(QMainWindow, Ui_frmMain):#    
+## Pantalla principal de glparchis
+class frmMain(QMainWindow, Ui_frmMain):
+    showLeftPanel=pyqtSignal(bool)
     def __init__(self, settings, parent = 0,  flags = False):
         QMainWindow.__init__(self)
         self.path_program=os.getcwd()
@@ -36,6 +38,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.setSound(str2bool(self.settings.value("frmSettings/sound", "True")))
         self.setFullScreen(str2bool(self.settings.value("frmMain/fullscreen", "False")))
         self.setAutomaticDice(str2bool(self.settings.value("frmMain/automaticdice", "False")))
+        self.setLeftPanel(str2bool(self.settings.value("frmMain/panel", "True")))
         self.setInstallationUUID()
         
 
@@ -59,27 +62,28 @@ class frmMain(QMainWindow, Ui_frmMain):#
 
 
 
-    def setFullScreen(self, bool):
-        if bool==False:
+    def setFullScreen(self, boolean):
+        if boolean==False:
             self.actionFullScreen.setText(self.tr("Cambiar al modo de pantalla completa"))
             self.actionFullScreen.setToolTip(self.tr("Cambiar al modo de pantalla completa"))
+            self.actionFullScreen.setChecked(False)
             self.menuBar.show()
-            self.showMaximized()
             self.removeToolBar(self.toolBar);
             self.addToolBar(Qt.TopToolBarArea, self.toolBar)
             self.toolBar.show()
-            self.settings.setValue("frmMain/fullscreen", "False")
+            self.showNormal()
+            self.showMaximized()
         else:      
             self.actionFullScreen.setText(self.tr("Salir del modo de pantalla completa"))
             self.actionFullScreen.setToolTip(self.tr("Salir del modo de pantalla completa"))
-            self.showFullScreen()
+            self.actionFullScreen.setChecked(True)
             self.menuBar.hide()
             self.removeToolBar(self.toolBar);
             self.addToolBar(Qt.LeftToolBarArea, self.toolBar)
             self.toolBar.show()
-            self.settings.setValue("frmMain/fullscreen", "True")
-        if self.game!=None:
-            self.game.restoreSplitter()
+            self.showFullScreen()
+        self.settings.setValue("frmMain/fullscreen", str(boolean))
+        self.showLeftPanel.emit(self.actionLeftPanel.isChecked())        
 
     @pyqtSlot()      
     def on_actionAcercaDe_triggered(self):
@@ -92,28 +96,44 @@ class frmMain(QMainWindow, Ui_frmMain):#
         self.setAutomaticDice(not str2bool(self.settings.value("frmMain/automaticdice")))
         
     ## Función que establece el automatismo del dado en el action y guarda el setting
-    def setAutomaticDice(self,  bool):
-        if bool==True:
+    def setAutomaticDice(self,  boolean):
+        if boolean==True:
             self.actionAutomaticDice.setToolTip(self.tr("Pulse para quitar el automatismo del dado")) 
+            self.actionAutomaticDice.setText(self.tr("Desactiva el automatismo del dado")) 
             icon8 = QIcon()
             icon8.addPixmap(QPixmap(":/glparchis/stop.png"), QIcon.Normal, QIcon.Off)
             self.actionAutomaticDice.setIcon(icon8)
             self.actionAutomaticDice.setChecked(True)
         else:
             self.actionAutomaticDice.setToolTip(self.tr("Pulse para añadir automatismo al dado"))
+            self.actionAutomaticDice.setText(self.tr("Activa el automatismo del dado")) 
             icon8 = QIcon()
             icon8.addPixmap(QPixmap(":/glparchis/play.png"), QIcon.Normal, QIcon.Off)
             self.actionAutomaticDice.setIcon(icon8)
             self.actionAutomaticDice.setChecked(False)
-        self.settings.setValue("frmMain/automaticdice", self.actionAutomaticDice.isChecked())
+        self.settings.setValue("frmMain/automaticdice", str(boolean))
 
+    ## Se ejecuta cuando se pulsa el actionPanel
+    @pyqtSlot()
+    def on_actionLeftPanel_triggered(self):
+        self.setLeftPanel(not str2bool(self.settings.value("frmMain/panel")))
+        
+    ## Función que muestra o oculta el panel izquierdo
+    def setLeftPanel(self,  boolean):
+        if boolean==True:
+            self.actionLeftPanel.setToolTip(self.tr("Pulse para ocultar el panel izquierdo")) 
+            self.actionLeftPanel.setText(self.tr("Oculta el panel izquierdo")) 
+            self.actionLeftPanel.setChecked(True)
+        else:
+            self.actionLeftPanel.setToolTip(self.tr("Pulse para mostrar el panel izquierdo"))
+            self.actionLeftPanel.setText(self.tr("Muestra el panel izquierdo")) 
+            self.actionLeftPanel.setChecked(False)
+        self.settings.setValue("frmMain/panel", str(boolean))
+        self.showLeftPanel.emit(boolean)        
 
     @pyqtSlot()      
     def on_actionFullScreen_triggered(self):
-        if self.isFullScreen():
-            self.setFullScreen(False)
-        else:
-            self.setFullScreen(True)
+        self.setFullScreen(not self.isFullScreen())
                 
     @pyqtSlot()      
     def on_actionHelp_triggered(self):
@@ -137,8 +157,8 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def on_actionSound_triggered(self):
         self.setSound(not str2bool(self.settings.value("frmSettings/sound")))
     
-    def setSound(self, bool):
-        if bool==True:
+    def setSound(self, boolean):
+        if boolean==True:
             self.actionSound.setText(self.tr("Sonido encendido")) 
             icon8 = QIcon()
             icon8.addPixmap(QPixmap(":/glparchis/sound.png"), QIcon.Normal, QIcon.Off)
@@ -148,7 +168,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
             icon8 = QIcon()
             icon8.addPixmap(QPixmap(":/glparchis/soundoff.png"), QIcon.Normal, QIcon.Off)
             self.actionSound.setIcon(icon8)
-        self.settings.setValue("frmSettings/sound", bool)
+        self.settings.setValue("frmSettings/sound", str(boolean))
         
     @pyqtSlot()      
     def on_actionUpdates_triggered(self):
