@@ -35,6 +35,7 @@ class frmMain(QMainWindow, Ui_frmMain):#
             self.checkUpdates(False)
         self.setSound(str2bool(self.settings.value("frmSettings/sound", "True")))
         self.setFullScreen(str2bool(self.settings.value("frmMain/fullscreen", "False")))
+        self.setAutomaticDice(str2bool(self.settings.value("frmMain/automaticdice", "False")))
         self.setInstallationUUID()
         
 
@@ -84,6 +85,28 @@ class frmMain(QMainWindow, Ui_frmMain):#
     def on_actionAcercaDe_triggered(self):
         fr=frmAbout(self,"frmabout")
         fr.open()
+
+    ## Se ejecuta cuando se pulsa el actionAutomaticDice
+    @pyqtSlot()
+    def on_actionAutomaticDice_triggered(self):
+        self.setAutomaticDice(not str2bool(self.settings.value("frmMain/automaticdice")))
+        
+    ## Función que establece el automatismo del dado en el action y guarda el setting
+    def setAutomaticDice(self,  bool):
+        if bool==True:
+            self.actionAutomaticDice.setToolTip(self.tr("Pulse para quitar el automatismo del dado")) 
+            icon8 = QIcon()
+            icon8.addPixmap(QPixmap(":/glparchis/stop.png"), QIcon.Normal, QIcon.Off)
+            self.actionAutomaticDice.setIcon(icon8)
+            self.actionAutomaticDice.setChecked(True)
+        else:
+            self.actionAutomaticDice.setToolTip(self.tr("Pulse para añadir automatismo al dado"))
+            icon8 = QIcon()
+            icon8.addPixmap(QPixmap(":/glparchis/play.png"), QIcon.Normal, QIcon.Off)
+            self.actionAutomaticDice.setIcon(icon8)
+            self.actionAutomaticDice.setChecked(False)
+        self.settings.setValue("frmMain/automaticdice", self.actionAutomaticDice.isChecked())
+
 
     @pyqtSlot()      
     def on_actionFullScreen_triggered(self):
