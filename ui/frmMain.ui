@@ -62,6 +62,8 @@
     <addaction name="actionPartidaNueva6"/>
     <addaction name="actionPartidaNueva8"/>
     <addaction name="separator"/>
+    <addaction name="actionAutomaticDice"/>
+    <addaction name="separator"/>
     <addaction name="actionRecuperarPartida"/>
     <addaction name="actionGuardarPartida"/>
     <addaction name="separator"/>
@@ -82,6 +84,8 @@
     </property>
     <addaction name="actionAcercarTablero"/>
     <addaction name="actionAlejarTablero"/>
+    <addaction name="separator"/>
+    <addaction name="actionLeftPanel"/>
     <addaction name="separator"/>
     <addaction name="actionFullScreen"/>
    </widget>
@@ -122,11 +126,11 @@
    <addaction name="actionSound"/>
    <addaction name="actionAcercarTablero"/>
    <addaction name="actionAlejarTablero"/>
+   <addaction name="actionLeftPanel"/>
    <addaction name="actionFullScreen"/>
    <addaction name="separator"/>
    <addaction name="actionSettings"/>
    <addaction name="separator"/>
-   <addaction name="actionHelp"/>
    <addaction name="actionMundialStatistics"/>
    <addaction name="actionAcercaDe"/>
    <addaction name="separator"/>
@@ -271,6 +275,9 @@
    </property>
   </action>
   <action name="actionFullScreen">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="../images/glparchis.qrc">
      <normaloff>:/glparchis/fullscreen.png</normaloff>:/glparchis/fullscreen.png</iconset>
@@ -369,10 +376,28 @@
      <normaloff>:/glparchis/play.png</normaloff>:/glparchis/play.png</iconset>
    </property>
    <property name="text">
-    <string>Enciendo o apaga el automatismo del dado</string>
+    <string>Activa &amp;el automatismo del dado</string>
    </property>
    <property name="toolTip">
-    <string>Enciendo o apaga el automatismo del dado</string>
+    <string>Activa el automatismo del dado</string>
+   </property>
+  </action>
+  <action name="actionLeftPanel">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/panel.png</normaloff>:/glparchis/panel.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Oculta el panel izquierdo</string>
+   </property>
+   <property name="toolTip">
+    <string>Oculta el panel izquierdo</string>
+   </property>
+   <property name="shortcut">
+    <string>F10</string>
    </property>
   </action>
  </widget>

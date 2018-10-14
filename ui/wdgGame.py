@@ -10,7 +10,6 @@ from urllib.request import urlopen
 
 ## Clase principal del Juego, aqui esta toda la ciencia, cuando se deba pasar al UI se crearan emits que captura qT para el UI
 class wdgGame(QWidget, Ui_wdgGame):
-    
     def __init__(self,   parent=None,  filename=None):        
         QWidget.__init__(self, parent)
         self.setupUi(self)
@@ -44,10 +43,46 @@ class wdgGame(QWidget, Ui_wdgGame):
                 web=None
             print (web)       
 
+    ## Se ejecuta al mover el splitter
+    ## @param position Left position
+    ## @param index Looks like always is 1
+    def on_splitter_splitterMoved(self, position, index):
+        if self.mem.frmMain.isFullScreen():
+            fs="FS"
+        else:
+            fs=""
+        if position!=0:
+            self.mem.settings.setValue("wdgGame/splitter_sizes_{}{}".format(fs, self.mem.maxplayers), self.splitter.sizes())
+            print("Stored splliter",  self.splitter.sizes())
+
+    ## Método que muestra u oculta el panel izquierdo según se pase el parámetro.
+    def showLeftPanel(self, boolean):
+        if boolean==True:#Restores splitter
+            if self.mem.frmMain.isFullScreen():
+                fs="FS"
+            else:
+                fs=""
+            try:
+                arr_strsizes=self.mem.settings.value("wdgGame/splitter_sizes_{}{}".format(fs, self.mem.maxplayers), [100, self.ogl.width()-100]) #Returns a list
+                sizes=[int(arr_strsizes[0]), int(arr_strsizes[1])]
+            except:            
+                sizes=[100, self.ogl.width()-100]
+                print("EXCEPT IN SHOWLEFTPANEL")
+##            ## Cuando cargaba el total de x e y cambiaba por lo que hago un calculo considerando tamaño anterior y tamaño actual
+##            position=self.ogl.width()*sizes[0]/(sizes[0]+sizes[1])
+#            print(sizes, position)
+            self.splitter.setSizes(sizes) #position (left position) and index, always 1??
+        else:
+            self.splitter.moveSplitter(0,  1) #position (left position) and index, always 1??
+            
+            
+    ## Salia un cuadrado blanco cuando se cargaba una partida en fullscrren directamente
+    ## Es un problema del splitter por lo que creo esta función que viene de un signal de frmmain
+    def fixing_fullscreen_mode(self):
+        print("CLICK")
+            
+    ## Recargar tabla de estadisticas
     def table_reload(self):
-        """
-            Recargar tabla de estadisticas
-        """
         self.table.reload()
         self.lblTime.setText(self.tr("Tiempo de partida: {0}".format(str(datetime.datetime.now()-self.mem.inittime).split(".")[0])))
 
@@ -78,7 +113,11 @@ class wdgGame(QWidget, Ui_wdgGame):
 
         self.ogl.fichaClicked.connect(self.after_ficha_click)
 
-        self.restoreSplitter()
+        self.showLeftPanel(self.mem.frmMain.actionLeftPanel.isChecked())
+        self.mem.frmMain.showLeftPanel.connect(self.showLeftPanel)
+        
+        if self.mem.frmMain.isFullScreen():
+            self.fixing_fullscreen_mode()
         
         #Coloca los tabs del widget
         self.tab.setCurrentIndex(0)
@@ -187,26 +226,6 @@ class wdgGame(QWidget, Ui_wdgGame):
 #            self.delay=int(self.mem.settings.value("frmSettings/delay",300))#Set delay before human turn, so it can be changed during the match
             self.mem.jugadores.actual.log(self.tr("Mueva una ficha"))
 
-    def on_splitter_splitterMoved(self, position, index):
-        if self.mem.frmMain.isFullScreen():
-            fs="FS"
-        else:
-            fs=""
-        self.mem.settings.setValue("wdgGame/splitter_sizes_{}{}".format(fs, self.mem.maxplayers), self.splitter.sizes())
-
-    def restoreSplitter(self):
-        """Restura la configuraci´on del splitter en el juego"""
-        if self.mem.frmMain.isFullScreen():
-            fs="FS"
-        else:
-            fs=""
-        try:
-            arr_strsizes=self.mem.settings.value("wdgGame/splitter_sizes_{}{}".format(fs, self.mem.maxplayers), None) #Returns a list
-            sizes=[int(arr_strsizes[0]), int(arr_strsizes[1])]
-            self.splitter.setSizes(sizes)
-            print("Splitter restored to {}.".format(sizes))
-        except:
-            print("I couldn't restore splitter sizes.")
 
     @pyqtSlot()      
     def on_cmdTirarDado_clicked(self):  

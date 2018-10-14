@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/glparchis">
+    <file>panel.png</file>
     <file>stop.png</file>
     <file>play.png</file>
     <file>reportbug.svg</file>

@@ -97,23 +97,6 @@ def delay(miliseconds):
         QCoreApplication.processEvents(QEventLoop.AllEvents, 100);    
     print ("Delay", miliseconds)
 
-
-#
-#class Dado:    
-#    """
-#        Dice opengl object. Just the representation
-#    """
-#    def __init__(self):
-#        self.showing=False
-#        self.position=(65/2, 65/2, 1)
-#        
-#        
-#    def draw(self, qglwidget):
-#        if self.showing==False:
-#            return
-#        opengl_dice()
-        
-
 class Dado(QObject):
     """
         QGLWidget used during game

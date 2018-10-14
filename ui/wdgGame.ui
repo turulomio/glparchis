@@ -35,7 +35,7 @@
       <number>5</number>
      </property>
      <widget class="QWidget" name="layoutWidget">
-      <layout class="QVBoxLayout" name="verticalLayout">
+      <layout class="QVBoxLayout" name="layPanel">
        <item>
         <widget class="QPushButton" name="cmdTirarDado">
          <property name="toolTip">
@@ -115,7 +115,7 @@
           <enum>QTabWidget::Rounded</enum>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tabGame">
           <attribute name="icon">
