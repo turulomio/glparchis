@@ -110,18 +110,16 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionPartidaNueva3"/>
-   <addaction name="separator"/>
    <addaction name="actionPartidaNueva4"/>
-   <addaction name="separator"/>
    <addaction name="actionPartidaNueva6"/>
-   <addaction name="separator"/>
    <addaction name="actionPartidaNueva8"/>
+   <addaction name="separator"/>
+   <addaction name="actionAutomaticDice"/>
    <addaction name="separator"/>
    <addaction name="actionRecuperarPartida"/>
    <addaction name="actionGuardarPartida"/>
    <addaction name="separator"/>
    <addaction name="actionSound"/>
-   <addaction name="separator"/>
    <addaction name="actionAcercarTablero"/>
    <addaction name="actionAlejarTablero"/>
    <addaction name="actionFullScreen"/>
@@ -356,10 +354,25 @@
      <normaloff>:/glparchis/reportbug.svg</normaloff>:/glparchis/reportbug.svg</iconset>
    </property>
    <property name="text">
-    <string>Report a bug</string>
+    <string>&amp;Report a bug</string>
    </property>
    <property name="toolTip">
     <string>Report a bug</string>
+   </property>
+  </action>
+  <action name="actionAutomaticDice">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/play.png</normaloff>:/glparchis/play.png</iconset>
+   </property>
+   <property name="text">
+    <string>Enciendo o apaga el automatismo del dado</string>
+   </property>
+   <property name="toolTip">
+    <string>Enciendo o apaga el automatismo del dado</string>
    </property>
   </action>
  </widget>

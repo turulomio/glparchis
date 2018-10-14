@@ -8,8 +8,8 @@ import datetime
 import os
 from urllib.request import urlopen
 
+## Clase principal del Juego, aqui esta toda la ciencia, cuando se deba pasar al UI se crearan emits que captura qT para el UI
 class wdgGame(QWidget, Ui_wdgGame):
-    """Clase principal del Juego, aqui esta toda la ciencia, cuando se deba pasar al UI se crearan emits que captura qT para el UI"""
     
     def __init__(self,   parent=None,  filename=None):        
         QWidget.__init__(self, parent)
@@ -150,17 +150,21 @@ class wdgGame(QWidget, Ui_wdgGame):
             
         self.cmdTirarDado.setText(self.tr("Tira el dado"))
         if self.mem.jugadores.actual.ia==False:#Cuando es IA no debe permitir tirar dado
-            self.cmdTirarDado.setEnabled(True)
-            self.cmdTirarDado.setFocus()
-        if self.mem.jugadores.actual.ia==True:
+            if self.mem.frmMain.actionAutomaticDice.isChecked():
+                delay(self.delay)
+                self.mem.jugadores.actual.log(self.tr("Se ha tirado automáticamente el dado"))
+                self.on_cmdTirarDado_clicked()
+                delay(self.delay)
+            else:
+                self.cmdTirarDado.setEnabled(True)
+                self.cmdTirarDado.setFocus()
+                self.mem.jugadores.actual.log(self.tr("Tire el dado"))
+        elif self.mem.jugadores.actual.ia==True:
             self.mem.jugadores.actual.log(self.tr("IA Tira el dado"))
             delay(self.delay)
             self.on_cmdTirarDado_clicked()
             delay(self.delay)
-        else:
-            self.mem.jugadores.actual.log(self.tr("Tire el dado"))
 
-       
     def on_JugadorDebeMover(self):
         """Funcion que se ejecuta cuando un jugador debe mover
         Aqui se evalua si puede mover devolviendo True en caso positivo y """
