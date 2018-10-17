@@ -62,7 +62,7 @@
     <addaction name="actionPartidaNueva6"/>
     <addaction name="actionPartidaNueva8"/>
     <addaction name="separator"/>
-    <addaction name="actionAutomaticDice"/>
+    <addaction name="actionAutomatism"/>
     <addaction name="separator"/>
     <addaction name="actionRecuperarPartida"/>
     <addaction name="actionGuardarPartida"/>
@@ -118,7 +118,7 @@
    <addaction name="actionPartidaNueva6"/>
    <addaction name="actionPartidaNueva8"/>
    <addaction name="separator"/>
-   <addaction name="actionAutomaticDice"/>
+   <addaction name="actionAutomatism"/>
    <addaction name="separator"/>
    <addaction name="actionRecuperarPartida"/>
    <addaction name="actionGuardarPartida"/>
@@ -367,7 +367,7 @@
     <string>Report a bug</string>
    </property>
   </action>
-  <action name="actionAutomaticDice">
+  <action name="actionAutomatism">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -376,10 +376,10 @@
      <normaloff>:/glparchis/play.png</normaloff>:/glparchis/play.png</iconset>
    </property>
    <property name="text">
-    <string>Activa &amp;el automatismo del dado</string>
+    <string>Activa &amp;el automatismo del juego</string>
    </property>
    <property name="toolTip">
-    <string>Activa el automatismo del dado</string>
+    <string>Activa &amp;el automatismo del dado y cuando sólo puede haber un movimiento de ficha</string>
    </property>
   </action>
   <action name="actionLeftPanel">

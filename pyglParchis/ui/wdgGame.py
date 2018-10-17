@@ -189,7 +189,7 @@ class wdgGame(QWidget, Ui_wdgGame):
             
         self.cmdTirarDado.setText(self.tr("Tira el dado"))
         if self.mem.jugadores.actual.ia==False:#Cuando es IA no debe permitir tirar dado
-            if self.mem.frmMain.actionAutomaticDice.isChecked():
+            if self.mem.frmMain.actionAutomatism.isChecked():
                 delay(self.delay)
                 self.mem.jugadores.actual.log(self.tr("Se ha tirado automáticamente el dado"))
                 self.on_cmdTirarDado_clicked()
@@ -223,8 +223,16 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.mem.selFicha=iaficha
                 self.after_ficha_click()
         else:
-#            self.delay=int(self.mem.settings.value("frmSettings/delay",300))#Set delay before human turn, so it can be changed during the match
-            self.mem.jugadores.actual.log(self.tr("Mueva una ficha"))
+            if self.mem.frmMain.actionAutomatism.isChecked():
+                if len(self.mem.jugadores.actual.fichas.fichasAutorizadasAMover())==1:
+                    delay(self.delay)
+                    iaficha=self.mem.jugadores.actual.IASelectFicha()
+                    self.mem.selFicha=iaficha
+                    self.after_ficha_click()
+                    self.mem.jugadores.actual.log(self.tr("Se ha movido automáticamente la única ficha disponible"))
+                    delay(self.delay)
+            else:
+                self.mem.jugadores.actual.log(self.tr("Mueva una ficha"))
 
 
     @pyqtSlot()      

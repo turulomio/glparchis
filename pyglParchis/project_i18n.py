@@ -32,6 +32,7 @@ class i18n(QObject):
         f.write("--------\n")
         f.write("- {}\n".format(self.tr("Added action to hide/show left panel")))
         f.write("- {}\n".format(self.tr("Added automatism to the dice")))
+        f.write("- {}\n".format(self.tr("Added automatism to pawns when only one can move")))
         f.write("\n")
 
         f.write("20180510\n")
