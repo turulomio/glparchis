@@ -90,27 +90,27 @@ class frmMain(QMainWindow, Ui_frmMain):
         fr=frmAbout(self,"frmabout")
         fr.open()
 
-    ## Se ejecuta cuando se pulsa el actionAutomaticDice
+    ## Se ejecuta cuando se pulsa el actionAutomatism
     @pyqtSlot()
-    def on_actionAutomaticDice_triggered(self):
+    def on_actionAutomatism_triggered(self):
         self.setAutomaticDice(not str2bool(self.settings.value("frmMain/automaticdice")))
         
     ## Función que establece el automatismo del dado en el action y guarda el setting
     def setAutomaticDice(self,  boolean):
         if boolean==True:
-            self.actionAutomaticDice.setToolTip(self.tr("Pulse para quitar el automatismo del dado")) 
-            self.actionAutomaticDice.setText(self.tr("Desactiva el automatismo del dado")) 
+            self.actionAutomatism.setToolTip(self.tr("Pulse para desactivar el automatismo del dado y en caso de poder mover solo una ficha")) 
+            self.actionAutomatism.setText(self.tr("Desactiva el automatismo del dado")) 
             icon8 = QIcon()
             icon8.addPixmap(QPixmap(":/glparchis/stop.png"), QIcon.Normal, QIcon.Off)
-            self.actionAutomaticDice.setIcon(icon8)
-            self.actionAutomaticDice.setChecked(True)
+            self.actionAutomatism.setIcon(icon8)
+            self.actionAutomatism.setChecked(True)
         else:
-            self.actionAutomaticDice.setToolTip(self.tr("Pulse para añadir automatismo al dado"))
-            self.actionAutomaticDice.setText(self.tr("Activa el automatismo del dado")) 
+            self.actionAutomatism.setToolTip(self.tr("Pulse para mover automáticamente el dado y las fichas cuando solo se pueda mover una"))
+            self.actionAutomatism.setText(self.tr("Activa el automatismo del dado")) 
             icon8 = QIcon()
             icon8.addPixmap(QPixmap(":/glparchis/play.png"), QIcon.Normal, QIcon.Off)
-            self.actionAutomaticDice.setIcon(icon8)
-            self.actionAutomaticDice.setChecked(False)
+            self.actionAutomatism.setIcon(icon8)
+            self.actionAutomatism.setChecked(False)
         self.settings.setValue("frmMain/automaticdice", str(boolean))
 
     ## Se ejecuta cuando se pulsa el actionPanel

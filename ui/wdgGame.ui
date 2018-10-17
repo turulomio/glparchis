@@ -36,6 +36,9 @@
      </property>
      <widget class="QWidget" name="layoutWidget">
       <layout class="QVBoxLayout" name="layPanel">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMinimumSize</enum>
+       </property>
        <item>
         <widget class="QPushButton" name="cmdTirarDado">
          <property name="toolTip">

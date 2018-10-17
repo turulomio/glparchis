@@ -23,6 +23,7 @@ class Ui_wdgGame(object):
         self.layoutWidget = QtWidgets.QWidget(self.splitter)
         self.layoutWidget.setObjectName("layoutWidget")
         self.layPanel = QtWidgets.QVBoxLayout(self.layoutWidget)
+        self.layPanel.setSizeConstraint(QtWidgets.QLayout.SetMinimumSize)
         self.layPanel.setContentsMargins(0, 0, 0, 0)
         self.layPanel.setObjectName("layPanel")
         self.cmdTirarDado = QtWidgets.QPushButton(self.layoutWidget)
