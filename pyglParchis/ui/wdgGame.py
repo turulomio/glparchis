@@ -68,18 +68,24 @@ class wdgGame(QWidget, Ui_wdgGame):
             except:            
                 sizes=[100, self.ogl.width()-100]
                 print("EXCEPT IN SHOWLEFTPANEL")
-##            ## Cuando cargaba el total de x e y cambiaba por lo que hago un calculo considerando tamaño anterior y tamaño actual
-##            position=self.ogl.width()*sizes[0]/(sizes[0]+sizes[1])
-#            print(sizes, position)
             self.splitter.setSizes(sizes) #position (left position) and index, always 1??
         else:
             self.splitter.moveSplitter(0,  1) #position (left position) and index, always 1??
+        #Hides panelScroll to avoid an ugly white box in screen
+        if self.mem.frmMain.actionLeftPanel.isChecked():
+            self.panelScroll.show()
+        else:
+            self.panelScroll.hide()
             
             
     ## Salia un cuadrado blanco cuando se cargaba una partida en fullscrren directamente
-    ## Es un problema del splitter por lo que creo esta función que viene de un signal de frmmain
-    def fixing_fullscreen_mode(self):
-        print("CLICK")
+#    ## Es un problema del splitter por lo que creo esta función que viene de un signal de frmmain
+#    def fixing_fullscreen_mode(self):
+#        print("CLICK")
+#        if self.mem.frmMain.actionLeftPanel.isChecked():
+#            self.panelScroll.show()
+#        else:
+#            self.panelScroll.hide()
             
     ## Recargar tabla de estadisticas
     def table_reload(self):
@@ -115,9 +121,6 @@ class wdgGame(QWidget, Ui_wdgGame):
 
         self.showLeftPanel(self.mem.frmMain.actionLeftPanel.isChecked())
         self.mem.frmMain.showLeftPanel.connect(self.showLeftPanel)
-        
-        if self.mem.frmMain.isFullScreen():
-            self.fixing_fullscreen_mode()
         
         #Coloca los tabs del widget
         self.tab.setCurrentIndex(0)
