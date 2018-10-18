@@ -47,6 +47,12 @@ class wdgGame(QWidget, Ui_wdgGame):
     ## @param position Left position
     ## @param index Looks like always is 1
     def on_splitter_splitterMoved(self, position, index):
+        if self.mem.frmMain.actionLeftPanel.isChecked()==False: #If user wants to move splitter  when action is not checked
+            self.splitter.blockSignals(True)
+            self.splitter.moveSplitter(0,1)
+            self.splitter.blockSignals(False)
+            return
+
         if self.mem.frmMain.isFullScreen():
             fs="FS"
         else:
@@ -69,15 +75,18 @@ class wdgGame(QWidget, Ui_wdgGame):
                 sizes=[100, self.ogl.width()-100]
                 print("EXCEPT IN SHOWLEFTPANEL")
             self.splitter.setSizes(sizes) #position (left position) and index, always 1??
+
         else:
             self.splitter.moveSplitter(0,  1) #position (left position) and index, always 1??
         #Hides panelScroll to avoid an ugly white box in screen
         if self.mem.frmMain.actionLeftPanel.isChecked():
             self.panelScroll.show()
             self.splitter.setEnabled(True)
+            self.tab.setEnabled(True)
         else:
             self.panelScroll.hide()
             self.splitter.setEnabled(False)
+            self.tab.setEnabled(True)
 
     ## Recargar tabla de estadisticas
     def table_reload(self):
