@@ -81,12 +81,8 @@ class wdgGame(QWidget, Ui_wdgGame):
         #Hides panelScroll to avoid an ugly white box in screen
         if self.mem.frmMain.actionLeftPanel.isChecked():
             self.panelScroll.show()
-            self.splitter.setEnabled(True)
-            self.tab.setEnabled(True)
         else:
             self.panelScroll.hide()
-            self.splitter.setEnabled(False)
-            self.tab.setEnabled(True)
 
     ## Recargar tabla de estadisticas
     def table_reload(self):
