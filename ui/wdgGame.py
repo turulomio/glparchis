@@ -74,19 +74,11 @@ class wdgGame(QWidget, Ui_wdgGame):
         #Hides panelScroll to avoid an ugly white box in screen
         if self.mem.frmMain.actionLeftPanel.isChecked():
             self.panelScroll.show()
+            self.splitter.setEnabled(True)
         else:
             self.panelScroll.hide()
-            
-            
-    ## Salia un cuadrado blanco cuando se cargaba una partida en fullscrren directamente
-#    ## Es un problema del splitter por lo que creo esta función que viene de un signal de frmmain
-#    def fixing_fullscreen_mode(self):
-#        print("CLICK")
-#        if self.mem.frmMain.actionLeftPanel.isChecked():
-#            self.panelScroll.show()
-#        else:
-#            self.panelScroll.hide()
-            
+            self.splitter.setEnabled(False)
+
     ## Recargar tabla de estadisticas
     def table_reload(self):
         self.table.reload()
