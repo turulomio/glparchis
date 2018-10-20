@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/frmAbout.ui'
+# Form implementation generated from reading ui file 'glparchis/ui/frmAbout.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #
@@ -409,4 +409,4 @@ class Ui_frmAbout(object):
         self.cmd.setText(_translate("frmAbout", "S&alir"))
 
 from myQGLWidget import wdgQT, wdgShowObject
-import glparchis_rc
+import glparchis.ui.glparchis_rc

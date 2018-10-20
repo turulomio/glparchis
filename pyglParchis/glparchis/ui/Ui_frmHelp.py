@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/frmHelp.ui'
+# Form implementation generated from reading ui file 'glparchis/ui/frmHelp.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #
@@ -59,4 +59,4 @@ class Ui_frmHelp(object):
         frmHelp.setWindowTitle(_translate("frmHelp", "Ayuda de glParchis"))
         self.lblApp.setText(_translate("frmHelp", "Ayuda de glParchis"))
 
-import glparchis_rc
+import glparchis.ui.glparchis_rc

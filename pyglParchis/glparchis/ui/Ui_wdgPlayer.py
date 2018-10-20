@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/wdgPlayer.ui'
+# Form implementation generated from reading ui file 'glparchis/ui/wdgPlayer.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #
@@ -61,4 +61,4 @@ class Ui_wdgPlayer(object):
         self.chkIA.setToolTip(_translate("wdgPlayer", "Selecciona si quieres que el jugador lo controle el ordenador"))
         self.chkIA.setText(_translate("wdgPlayer", "Inteligencia artificial?"))
 
-import glparchis_rc
+import glparchis.ui.glparchis_rc

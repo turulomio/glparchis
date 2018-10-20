@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/wdgUserPanel.ui'
+# Form implementation generated from reading ui file 'glparchis/ui/wdgUserPanel.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #
@@ -108,4 +108,4 @@ class Ui_wdgUserPanel(object):
         self.grp.setTitle(_translate("wdgUserPanel", "Jugador"))
         self.chk.setText(_translate("wdgUserPanel", "Muestra el historial"))
 
-import glparchis_rc
+import glparchis.ui.glparchis_rc

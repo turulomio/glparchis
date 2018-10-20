@@ -17,19 +17,6 @@ from libglparchistypes import TTextures,  TNames, TSquareTypes,  TPlayers
 from abc import ABC,  abstractmethod
 
 
-dateversion=datetime.date(2018, 10, 20)
-#dateversion=datetime.date(2000, 1, 1)#When developing
-
-
-def version(platform=None):
-    """platform can be win32 or linux"""
-    if platform==None:
-        platform=sys.platform
-    if platform=="win32":
-        return "{}.{}.{}".format(dateversion.year, dateversion.month, dateversion.day)
-    else:
-        print("version",  platform)
-        return  str(dateversion).replace("-", "")
 
 def deprecated(func):
     """This is a decorator which can be used to mark functions

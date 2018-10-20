@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/frmShowFicha.ui'
+# Form implementation generated from reading ui file 'glparchis/ui/frmShowFicha.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #
@@ -144,4 +144,4 @@ class Ui_frmShowFicha(object):
         item.setText(_translate("frmShowFicha", "Amenaza"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("frmShowFicha", "Amenazas en destino"))
 
-import glparchis_rc
+import glparchis.ui.glparchis_rc

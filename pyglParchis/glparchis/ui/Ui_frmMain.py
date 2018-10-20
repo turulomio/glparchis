@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/frmMain.ui'
+# Form implementation generated from reading ui file 'glparchis/ui/frmMain.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #
@@ -254,4 +254,4 @@ class Ui_frmMain(object):
         self.actionLeftPanel.setToolTip(_translate("frmMain", "Oculta el panel izquierdo"))
         self.actionLeftPanel.setShortcut(_translate("frmMain", "F10"))
 
-import glparchis_rc
+import glparchis.ui.glparchis_rc
