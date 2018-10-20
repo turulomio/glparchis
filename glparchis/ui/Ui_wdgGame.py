@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/wdgGame.ui'
+# Form implementation generated from reading ui file 'glparchis/ui/wdgGame.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #
@@ -343,4 +343,4 @@ class Ui_wdgGame(object):
 
 from myQGLWidget import wdgOGL
 from qtablestatistics import QTableStatistics
-import glparchis_rc
+import glparchis.ui.glparchis_rc

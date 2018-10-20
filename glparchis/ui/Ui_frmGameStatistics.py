@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/frmGameStatistics.ui'
+# Form implementation generated from reading ui file 'glparchis/ui/frmGameStatistics.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #
@@ -86,4 +86,4 @@ class Ui_frmGameStatistics(object):
         self.tab.setTabText(self.tab.indexOf(self.tabLicense), _translate("frmGameStatistics", "Estadisticas mundiales"))
 
 from PyQt5 import QtWebEngineWidgets
-import glparchis_rc
+import glparchis.ui.glparchis_rc

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/frmInitGame.ui'
+# Form implementation generated from reading ui file 'glparchis/ui/frmInitGame.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #
@@ -74,4 +74,4 @@ class Ui_frmInitGame(object):
         _translate = QtCore.QCoreApplication.translate
         frmInitGame.setWindowTitle(_translate("frmInitGame", "Configuracion inicial de la partida"))
 
-import glparchis_rc
+import glparchis.ui.glparchis_rc

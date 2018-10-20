@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/frmSettings.ui'
+# Form implementation generated from reading ui file 'glparchis/ui/frmSettings.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #
@@ -146,4 +146,4 @@ class Ui_frmSettings(object):
         self.chkStatistics.setText(_translate("frmSettings", "Si esta marcado, tus partidas formaran parte de las estadisticas mundiales"))
         self.cmdGlobalStatistics.setToolTip(_translate("frmSettings", "Ver estadisticas"))
 
-import glparchis_rc
+import glparchis.ui.glparchis_rc

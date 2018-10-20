@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/frmShowCasilla.ui'
+# Form implementation generated from reading ui file 'glparchis/ui/frmShowCasilla.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #
@@ -71,4 +71,4 @@ class Ui_frmShowCasilla(object):
         self.lblSeguro.setText(_translate("frmShowCasilla", "TextLabel"))
         self.grp.setTitle(_translate("frmShowCasilla", "Ocupacion"))
 
-import glparchis_rc
+import glparchis.ui.glparchis_rc

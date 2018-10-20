@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/wdgPlayerDado.ui'
+# Form implementation generated from reading ui file 'glparchis/ui/wdgPlayerDado.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #
@@ -73,4 +73,4 @@ class Ui_wdgPlayerDado(object):
         _translate = QtCore.QCoreApplication.translate
         wdgPlayerDado.setWindowTitle(_translate("wdgPlayerDado", "Form"))
 
-import glparchis_rc
+import glparchis.ui.glparchis_rc
