@@ -8,10 +8,10 @@ from OpenGL.GL import glCallList, glClear, glColorMaterial, glEnable,  glEndList
 from OpenGL.GL import  GL_AMBIENT, GL_QUADS, GL_AMBIENT_AND_DIFFUSE, GL_CCW, GL_COLOR_BUFFER_BIT, GL_COLOR_MATERIAL, GL_COMPILE, GL_CULL_FACE, GL_DEPTH_BUFFER_BIT, GL_DEPTH_TEST, GL_FRONT, GL_LIGHT0, GL_LIGHTING, GL_MODELVIEW, GL_NICEST, GL_PERSPECTIVE_CORRECTION_HINT, GL_POSITION, GL_PROJECTION, GL_RENDER, GL_SELECT, GL_SMOOTH, GL_STENCIL_BUFFER_BIT, GL_TEXTURE_2D, GL_VIEWPORT,  GL_FLAT
 from OpenGL.GLU import gluPerspective, gluPickMatrix
 
-from libglparchis import Casilla, Ficha, Jugador, Dado, Coord3D,  Color, SetColores,  Tablero4,  Tablero6, Tablero8
-from libglparchistypes import TNames,  TSquareTypes
-from frmShowCasilla import frmShowCasilla
-from frmShowFicha import frmShowFicha
+from glparchis.libglparchis import Casilla, Ficha, Jugador, Dado, Coord3D,  Color, SetColores,  Tablero4,  Tablero6, Tablero8
+from glparchis.libglparchistypes import TNames,  TSquareTypes
+from glparchis.ui.frmShowCasilla import frmShowCasilla
+from glparchis.ui.frmShowFicha import frmShowFicha
 
 class myQGLWidget(QGLWidget):
     def __init__(self, parent):

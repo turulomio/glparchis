@@ -3,16 +3,17 @@ from urllib.request import urlopen
 from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QEvent,  QUrl,  pyqtSignal
 from PyQt5.QtGui import QIcon, QPixmap, QKeyEvent, QDesktopServices
 from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QDialog, QFileDialog
-from libglparchis import dateversion, str2bool, cargarQTranslator, b2s, qmessagebox,  Mem3, Mem4, Mem6, Mem8,  SoundSystem
+from glparchis.libglparchis import str2bool, cargarQTranslator, b2s, qmessagebox,  Mem3, Mem4, Mem6, Mem8,  SoundSystem
+from glparchis.version import __versiondate__
 
 import configparser
-from Ui_frmMain import Ui_frmMain
-from wdgGame import wdgGame
-from frmAbout import frmAbout
-from frmGameStatistics import frmGameStatistics
-from frmInitGame import frmInitGame
-from frmSettings import frmSettings
-from frmHelp import frmHelp
+from glparchis.ui.Ui_frmMain import Ui_frmMain
+from glparchis.ui.wdgGame import wdgGame
+from glparchis.ui.frmAbout import frmAbout
+from glparchis.ui.frmGameStatistics import frmGameStatistics
+from glparchis.ui.frmInitGame import frmInitGame
+from glparchis.ui.frmSettings import frmSettings
+from glparchis.ui.frmHelp import frmHelp
 from uuid import uuid4
 
 ## Pantalla principal de glparchis
@@ -31,7 +32,7 @@ class frmMain(QMainWindow, Ui_frmMain):
         self.setupUi(self)
         self.showMaximized()
         self.game=None
-        self.setWindowTitle(self.tr("glParchis 2010-{}. GNU General Public License \xa9").format(dateversion.year))
+        self.setWindowTitle(self.tr("glParchis 2010-{}. GNU General Public License \xa9").format(__versiondate__.year))
         if datetime.date.today()-datetime.date.fromordinal(int(self.settings.value("frmMain/lastupdate", 1)))>=datetime.timedelta(days=7):
             print ("Actualizando")
             self.checkUpdates(False)

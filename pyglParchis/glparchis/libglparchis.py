@@ -1,19 +1,20 @@
 import sys
 import warnings
 import functools
+import pkg_resources
 from OpenGL.GL import glVertex3fv, glBegin, glBindTexture, glColor3d, glDisable, glEnable, glEnd, glPopMatrix, glPopName, glPushName, glPushMatrix, glRotated, glScaled, glTexCoord2f, glTranslated, glTranslatef, glVertex3d, GL_TEXTURE_2D, GL_QUADS, GL_POLYGON, GL_LINE_LOOP
 from OpenGL.GLU import gluCylinder, gluDisk, gluNewQuadric, gluQuadricDrawStyle, gluQuadricNormals, gluQuadricTexture, GLU_FILL, GLU_SMOOTH
-from poscasillas8 import poscasillas8
-from poscasillas4 import poscasillas4
-from poscasillas3 import poscasillas3
-from poscasillas6 import poscasillas6
+from glparchis.ui.poscasillas8 import poscasillas8
+from glparchis.ui.poscasillas4 import poscasillas4
+from glparchis.ui.poscasillas3 import poscasillas3
+from glparchis.ui.poscasillas6 import poscasillas6
 import os,  random,   configparser,  datetime,  codecs,  math
 from PyQt5.QtGui import QColor, QIcon, QPixmap
-from PyQt5.QtCore import Qt, QObject, QCoreApplication, QEventLoop,  pyqtSignal,  QUrl,  QFileInfo
+from PyQt5.QtCore import Qt, QObject, QCoreApplication, QEventLoop,  pyqtSignal,  QUrl
 from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
 from PyQt5.QtMultimedia import QSoundEffect
 from uuid import uuid4
-from libglparchistypes import TTextures,  TNames, TSquareTypes,  TPlayers
+from glparchis.libglparchistypes import TTextures,  TNames, TSquareTypes,  TPlayers
 from abc import ABC,  abstractmethod
 
 
@@ -2571,12 +2572,9 @@ class SoundSystem:
         for effect in ["comer", "click", "dice", "meter", "shoot", "win"]:
             s=QSoundEffect()
 
-            urls= [ "/usr/share/glparchis/sounds/"+effect+".wav", "./sounds/"+effect + ".wav"]
-            for url in urls:
-                if os.path.exists(url):
-                    print (url)
-                    break
-            s.setSource(QUrl.fromLocalFile(QFileInfo(url).absoluteFilePath()))
+            url=pkg_resources.resource_filename("glparchis","sounds/{}.wav".format(effect))
+            print(url)
+            s.setSource(QUrl.fromLocalFile(url))
             s.setLoopCount(1)
             s.setVolume(0.99)
             self.sounds[effect]=s
@@ -2861,14 +2859,9 @@ class Mem4(Mem):
 
 def cargarQTranslator(qtranslator, language):  
     """language es un string"""  
-    urls= ["i18n/glparchis_" + language + ".qm","/usr/lib/glparchis/glparchis_" + language + ".qm"]
-    for url in urls:
-        if os.path.exists(url)==True:
-            print ("Found {} from {}".format(url,  os.getcwd()))
-            break
-        else:
-            print ("Not found {} from {}".format(url,  os.getcwd()))        
-        
+
+    url=pkg_resources.resource_filename("glparchis","i18n/glparchis_{}.qm".format(language))
+    print(url)
     qtranslator.load(url)
     QCoreApplication.installTranslator(qtranslator);
 

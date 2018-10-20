@@ -1,6 +1,5 @@
 from setuptools import setup, Command
 
-import datetime
 import gettext
 import logging
 import os
@@ -69,10 +68,17 @@ class Compile(Command):
             futures.append(executor.submit(os.system, "pyuic5 glparchis/ui/wdgPlayerDado.ui -o glparchis/ui/Ui_wdgPlayerDado.py"))
             futures.append(executor.submit(os.system, "pyuic5 glparchis/ui/wdgUserPanel.ui -o glparchis/ui/Ui_wdgUserPanel.py"))
             futures.append(executor.submit(os.system, "pyrcc5 images/glparchis.qrc -o glparchis/ui/glparchis_rc.py"))
+        # Overwriting glparchis_rc
         for file in ['glparchis/ui/Ui_frmAbout.py', 'glparchis/ui/Ui_frmHelp.py', 'glparchis/ui/Ui_frmMain.py', 'glparchis/ui/Ui_frmSettings.py', 
                      'glparchis/ui/Ui_frmGameStatistics.py', 'glparchis/ui/Ui_frmInitGame.py', 'glparchis/ui/Ui_frmShowFicha.py', 'glparchis/ui/Ui_frmShowCasilla.py',
                      'glparchis/ui/Ui_wdgGame.py', 'glparchis/ui/Ui_wdgPlayer.py', 'glparchis/ui/Ui_wdgPlayerDado.py', 'glparchis/ui/Ui_wdgUserPanel.py']:
             os.system("sed -i -e 's/glparchis_rc/glparchis.ui.glparchis_rc/' {}".format(file))
+        # Overwriting myQGLWidget
+        os.system("sed -i -e 's/from myQGLWidget/from glparchis.ui.myQGLWidget/' glparchis/ui/Ui_wdgGame.py")
+        os.system("sed -i -e 's/from myQGLWidget/from glparchis.ui.myQGLWidget/' glparchis/ui/Ui_frmAbout.py")
+        # Overwriting qtablestatistics
+        os.system("sed -i -e 's/from qtablestatistics/from glparchis.ui.qtablestatistics/' glparchis/ui/Ui_wdgGame.py")
+
 
 class Uninstall(Command):
     description = "Uninstall installed files with install"

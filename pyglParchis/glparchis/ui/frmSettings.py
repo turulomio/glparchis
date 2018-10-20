@@ -1,9 +1,9 @@
-from libglparchis import str2bool, cargarQTranslator
+from glparchis.libglparchis import str2bool, cargarQTranslator
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import  QPixmap,  QIcon
 from PyQt5.QtWidgets import   QDialog, QApplication
 
-from Ui_frmSettings import Ui_frmSettings
+from glparchis.ui.Ui_frmSettings import Ui_frmSettings
 
 class Language:
     def __init__(self, id, name):

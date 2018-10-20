@@ -1,4 +1,4 @@
-from Ui_frmShowCasilla import Ui_frmShowCasilla
+from glparchis.ui.Ui_frmShowCasilla import Ui_frmShowCasilla
 from PyQt5.QtWidgets import QDialog
 
 class frmShowCasilla(QDialog, Ui_frmShowCasilla):
