@@ -65,7 +65,7 @@ if sys.platform=='win32':
            'data': msi_data
             }
       build_exe_options = dict(
-           includes = ['OpenGL','OpenGL.platform.win32','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters','OpenGL.GLU','OpenGL.GLU.glustruct','PyQt5.QtNetwork','PyQt5.QtWebEngineCore','PyQt5.QtWebChannel','PyQt5.QtPrintSupport', 'PyQt5.QtMultimedia','PyQt5.QtWebEngineWidgets'],
+           includes = ['OpenGL','OpenGL.platform.win32','OpenGL.arrays','OpenGL.arrays.ctypesarrays', 'OpenGL.arrays.lists','OpenGL.converters','OpenGL.GLU','OpenGL.GLU.glustruct','PyQt5.QtNetwork','PyQt5.QtWebEngineCore','PyQt5.QtWebChannel','PyQt5.QtPrintSupport', 'PyQt5.QtMultimedia','PyQt5.QtWebEngineWidgets','PyQt5.sip'],
            excludes=[],
            zip_include_packages=["*"],
            zip_exclude_packages=[],
