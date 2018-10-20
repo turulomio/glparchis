@@ -1,3 +1,9 @@
+20181020
+--------
+- Added action to hide/show left panel
+- Added automatism to the dice
+- Added automatism to pawns when only one can move
+
 20180510
 --------
 - Added 3 players mode

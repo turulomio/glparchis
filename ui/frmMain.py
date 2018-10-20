@@ -105,7 +105,7 @@ class frmMain(QMainWindow, Ui_frmMain):
             self.actionAutomatism.setIcon(icon8)
             self.actionAutomatism.setChecked(True)
         else:
-            self.actionAutomatism.setToolTip(self.tr("Pulse para mover automáticamente el dado y las fichas cuando solo se pueda mover una"))
+            self.actionAutomatism.setToolTip(self.tr("Pulse para mover automaticamente el dado y las fichas cuando solo se pueda mover una"))
             self.actionAutomatism.setText(self.tr("Activa el automatismo del dado")) 
             icon8 = QIcon()
             icon8.addPixmap(QPixmap(":/glparchis/play.png"), QIcon.Normal, QIcon.Off)

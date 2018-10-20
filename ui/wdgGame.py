@@ -191,7 +191,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         if self.mem.jugadores.actual.ia==False:#Cuando es IA no debe permitir tirar dado
             if self.mem.frmMain.actionAutomatism.isChecked():
                 delay(self.delay)
-                self.mem.jugadores.actual.log(self.tr("Se ha tirado automáticamente el dado"))
+                self.mem.jugadores.actual.log(self.tr("Se ha tirado automaticamente el dado"))
                 self.on_cmdTirarDado_clicked()
                 delay(self.delay)
             else:
@@ -229,7 +229,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                     iaficha=self.mem.jugadores.actual.IASelectFicha()
                     self.mem.selFicha=iaficha
                     self.after_ficha_click()
-                    self.mem.jugadores.actual.log(self.tr("Se ha movido automáticamente la única ficha disponible"))
+                    self.mem.jugadores.actual.log(self.tr("Se ha movido automaticamente la unica ficha disponible"))
                     delay(self.delay)
             else:
                 self.mem.jugadores.actual.log(self.tr("Mueva una ficha"))

@@ -11,7 +11,7 @@ You must uncompress the file
 Once you are in the directory where Makefile.py is, just run
 # python3 Makefile.py
 
-Si usas la distribucion Gentoo, te puedes bajar el ebuild desde https://xulpymoney.svn.sourceforge.net/svnroot/xulpymoney/myportage/games-board/glparchis/
+If you use Gentoo distribution, you can download its ebuild from https://xulpymoney.svn.sourceforge.net/svnroot/xulpymoney/myportage/games-board/glparchis/
 
 Si eres atrevido o quieres ayudarme con el desarrollo te lo puedes bajar del subversion con el siguiente comando
 # svn co https://glparchis.svn.sourceforge.net/svnroot/glparchis/pyglParchis glparchis
