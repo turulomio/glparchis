@@ -1,6 +1,6 @@
 from PyQt5.QtCore import  Qt
 from PyQt5.QtWidgets import QWidget
-from Ui_wdgUserPanel import Ui_wdgUserPanel
+from glparchis.ui.Ui_wdgUserPanel import Ui_wdgUserPanel
 
 class wdgUserPanel(QWidget, Ui_wdgUserPanel):
     def __init__(self, parent = None, name = None):

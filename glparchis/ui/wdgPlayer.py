@@ -1,9 +1,9 @@
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QLabel, QHBoxLayout, QApplication
-from libglparchis import c2b
-from Ui_wdgPlayer import Ui_wdgPlayer
-from wdgPlayerDado import wdgPlayerDado
+from glparchis.libglparchis import c2b
+from glparchis.ui.Ui_wdgPlayer import Ui_wdgPlayer
+from glparchis.ui.wdgPlayerDado import wdgPlayerDado
 
 class SetWdgPlayers:
     """Set Jugadores que deben tirar un turno de inicio"""

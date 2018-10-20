@@ -408,5 +408,5 @@ class Ui_frmAbout(object):
         self.tab.setTabText(self.tab.indexOf(self.tabObjetos), _translate("frmAbout", "Objetos"))
         self.cmd.setText(_translate("frmAbout", "S&alir"))
 
-from myQGLWidget import wdgQT, wdgShowObject
+from glparchis.ui.myQGLWidget import wdgQT, wdgShowObject
 import glparchis.ui.glparchis_rc

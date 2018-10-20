@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QDialog
 from PyQt5.QtCore import QUrl
-from Ui_frmGameStatistics import Ui_frmGameStatistics
+from glparchis.ui.Ui_frmGameStatistics import Ui_frmGameStatistics
 
 class frmGameStatistics(QDialog, Ui_frmGameStatistics):
     def __init__(self, uuid, parent = None):

@@ -341,6 +341,6 @@ class Ui_wdgGame(object):
         self.label.setText(_translate("wdgGame", "<html><head/><body><p>La puntuacion que se obtiene al terminar la partida depende de lo lejos que hayan acabado las fichas de los oponentes de la casilla central y de la diferencia entre las fichas comidas por mi y las fichas que me comieron otros jugadores</p></body></html>"))
         self.tab.setTabText(self.tab.indexOf(self.tab_2), _translate("wdgGame", "Mejores puntuaciones"))
 
-from myQGLWidget import wdgOGL
-from qtablestatistics import QTableStatistics
+from glparchis.ui.myQGLWidget import wdgOGL
+from glparchis.ui.qtablestatistics import QTableStatistics
 import glparchis.ui.glparchis_rc

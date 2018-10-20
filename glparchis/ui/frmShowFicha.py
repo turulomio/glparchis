@@ -1,5 +1,5 @@
 from PyQt5.QtCore import pyqtSlot, Qt
-from Ui_frmShowFicha import Ui_frmShowFicha
+from glparchis.ui.Ui_frmShowFicha import Ui_frmShowFicha
 from PyQt5.QtWidgets import QDialog, QTableWidgetItem
 
 class frmShowFicha(QDialog, Ui_frmShowFicha):

@@ -2,8 +2,8 @@ import random
 import datetime
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWizard
-from wdgPlayer import wdgPlayer, SetWdgPlayers
-from Ui_frmInitGame import Ui_frmInitGame
+from glparchis.ui.wdgPlayer import wdgPlayer, SetWdgPlayers
+from glparchis.ui.Ui_frmInitGame import Ui_frmInitGame
 
 class frmInitGame(QWizard, Ui_frmInitGame):
     def __init__(self, mem,  parent = None):
