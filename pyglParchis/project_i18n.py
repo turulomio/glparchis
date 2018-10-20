@@ -28,7 +28,7 @@ class i18n(QObject):
     def changelog(self, language):
         f=open("CHANGELOG-{}.txt".format(language.upper()), "w")
 
-        f.write("XXXXXXXX\n")
+        f.write("20181020\n")
         f.write("--------\n")
         f.write("- {}\n".format(self.tr("Added action to hide/show left panel")))
         f.write("- {}\n".format(self.tr("Added automatism to the dice")))

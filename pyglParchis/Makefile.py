@@ -52,6 +52,7 @@ if __name__ == '__main__':
     start=datetime.datetime.now()
     parser=argparse.ArgumentParser(prog='Makefile.py', description='Makefile in python', epilog="Developed by Mariano Muñoz", formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('--doc', help="Generate docs and i18n",action="store_true",default=False)
+    parser.add_argument('--doxygen', help="Generate doxygen documentation",action="store_true",default=False)
     parser.add_argument('--compile', help="App compilation",action="store_true",default=False)
     parser.add_argument('--compile_windows', help="Make a Windows binary compilation", action="store_true",default=False)
     parser.add_argument('--compile_images', help="App images compilation",action="store_true",default=False)
@@ -83,8 +84,12 @@ if __name__ == '__main__':
         shell("pylupdate5 -noobsolete -verbose glparchis.pro")
         shell("lrelease -qt5 glparchis.pro")
         shell("python3 project_i18n.py")
+    elif args.doxygen==True:
+        print("El lenguaje de desarrollo es el español pero sin acentos, ya que luego genero un es.ts, por problemas con el unicode")
+        shell("rm -Rf build")
         os.chdir("doc")
         shell("doxygen Doxyfile")
+        shell("rsync -avzP -e 'ssh -l turulomio' html/ frs.sourceforge.net:/home/users/t/tu/turulomio/userweb/htdocs/doxygen/glparchis/ --delete-after")
         os.chdir("../")
     elif args.uninstall==True:
         shell("rm " + prefixbin + "/glparchis*")
@@ -104,7 +109,7 @@ if __name__ == '__main__':
             pass
         os.chdir(build_dir())
         print (build_dir(), filename_output(), os.getcwd())
-        os.system("tar cvz -f '{0}/dist/{1}.tar.gz' * -C '{0}/'".format(pwd, filename_output()))#,  build_dir()))
+        os.system("tar cvz -f '{0}/dist/{1}.tar.gz' *".format(pwd, filename_output()))#,  build_dir()))
     elif args.compile_windows==True:
         check_call([sys.executable, "setup.py","build_exe"])
     elif args.dist_windows==True:

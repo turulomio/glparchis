@@ -1,3 +1,9 @@
+20181020
+--------
+- Añadida acción para ocultar/mostrar el panel izquierdo
+- Añadido el automatismo del dado
+- Añadido automatismo a las fichas cuando solo se puede mover una
+
 20180510
 --------
 - Añadido el modo de 3 jugadores
