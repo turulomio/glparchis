@@ -2080,13 +2080,7 @@ class Prism:
             elif face==1:
                 self.bottom.opengl_border(qglwidget, zpos)
 
-    
-## Class which manages all Pawn positions in a Square.
-class SquarePawnPositionsManager(ManagerObjectsList):
-    def __init__(self):        
-        ## Stores an array with Coord3D objects, Array can not have None, is where I define positions even
-        ## if there is a pawn or not.
-        ManagerObjectsList.__init__(self)
+
         
 
 ## Square object where pawns objects are displayed
@@ -2111,75 +2105,75 @@ class Casilla(QObject):
         self.UltimaFichaEnLlegar=None#Puntero a un objeto ficha que es utilizado p.e. cuando se come la segunda ficha en la casilla de salida por un 5 obligado a salir
         
         ## Where to put pawns positions
-        self.pawnpositions=SquarePawnPositionsManager()
-        self.__setSquarePawnPositions()
+        self.pawncoords=[]
+        self.__setPawnCoordsInSquare()
     
-    ## Sets Pawn positions in a square. Object SquarePawnPositionsManager was created in Casilla constructor
-    def __setSquarePawnPositions(self):
+    ## Sets Pawn positions in a square. Object ManagerPawnsSquare was created in Casilla constructor
+    def __setPawnCoordsInSquare(self):
         if self.tipo==TSquareTypes.Normal:
-            self.pawnpositions.append(Coord3D(1.8, 1.5, 0.2))
-            self.pawnpositions.append(Coord3D(5.2, 1.5, 0.2))
+            self.pawncoords.append(Coord3D(1.8, 1.5, 0.2))
+            self.pawncoords.append(Coord3D(5.2, 1.5, 0.2))
         #Oblique Left
         elif self.tipo==TSquareTypes.ObliqueLeft4:
-            self.pawnpositions.append(Coord3D(3.5, 1.5, 0.2))
-            self.pawnpositions.append(Coord3D(5.6, 1.5, 0.2))
+            self.pawncoords.append(Coord3D(3.5, 1.5, 0.2))
+            self.pawncoords.append(Coord3D(5.6, 1.5, 0.2))
         elif self.tipo==TSquareTypes.ObliqueLeft6:
-            self.pawnpositions.append(Coord3D(2.6, 1.5, 0.2))
-            self.pawnpositions.append(Coord3D(5.4, 1.5, 0.2))
+            self.pawncoords.append(Coord3D(2.6, 1.5, 0.2))
+            self.pawncoords.append(Coord3D(5.4, 1.5, 0.2))
         elif self.tipo==TSquareTypes.ObliqueLeft8:
-            self.pawnpositions.append(Coord3D(2.3, 1.5, 0.2))
-            self.pawnpositions.append(Coord3D(5.2, 1.5, 0.2))
+            self.pawncoords.append(Coord3D(2.3, 1.5, 0.2))
+            self.pawncoords.append(Coord3D(5.2, 1.5, 0.2))
         #Oblique Right
         elif self.tipo==TSquareTypes.ObliqueRight4:
-            self.pawnpositions.append(Coord3D(1.4, 1.5, 0.2))
-            self.pawnpositions.append(Coord3D(3.5, 1.5, 0.2))
+            self.pawncoords.append(Coord3D(1.4, 1.5, 0.2))
+            self.pawncoords.append(Coord3D(3.5, 1.5, 0.2))
         elif self.tipo==TSquareTypes.ObliqueRight6:
-            self.pawnpositions.append(Coord3D(1.6, 1.5, 0.2))
-            self.pawnpositions.append(Coord3D(4.4, 1.5, 0.2))
+            self.pawncoords.append(Coord3D(1.6, 1.5, 0.2))
+            self.pawncoords.append(Coord3D(4.4, 1.5, 0.2))
         elif self.tipo==TSquareTypes.ObliqueRight8:
-            self.pawnpositions.append(Coord3D(1.8, 1.5, 0.2))
-            self.pawnpositions.append(Coord3D(4.7, 1.5, 0.2))
+            self.pawncoords.append(Coord3D(1.8, 1.5, 0.2))
+            self.pawncoords.append(Coord3D(4.7, 1.5, 0.2))
         #Initial
         elif self.tipo==TSquareTypes.Initial3:
-            self.pawnpositions.append(Coord3D(-1.8, 10.5, 0.2))
-            self.pawnpositions.append(Coord3D(-3.3, 7.5, 0.2))
-            self.pawnpositions.append(Coord3D(-4.7, 4.5, 0.2))
-            self.pawnpositions.append(Coord3D(-6.2, 1.5, 0.2))
+            self.pawncoords.append(Coord3D(-1.8, 10.5, 0.2))
+            self.pawncoords.append(Coord3D(-3.3, 7.5, 0.2))
+            self.pawncoords.append(Coord3D(-4.7, 4.5, 0.2))
+            self.pawncoords.append(Coord3D(-6.2, 1.5, 0.2))
         elif self.tipo==TSquareTypes.Initial4:
-            self.pawnpositions.append(Coord3D(7, 7, 0.2))
-            self.pawnpositions.append(Coord3D(14, 7, 0.2))
-            self.pawnpositions.append(Coord3D(14, 14, 0.2))
-            self.pawnpositions.append(Coord3D(7, 14, 0.2))
+            self.pawncoords.append(Coord3D(7, 7, 0.2))
+            self.pawncoords.append(Coord3D(14, 7, 0.2))
+            self.pawncoords.append(Coord3D(14, 14, 0.2))
+            self.pawncoords.append(Coord3D(7, 14, 0.2))
         elif self.tipo==TSquareTypes.Initial6:
-            self.pawnpositions.append(Coord3D(0, -8, 0.2))
-            self.pawnpositions.append(Coord3D(0, -11, 0.2))
-            self.pawnpositions.append(Coord3D(0, -14, 0.2))
-            self.pawnpositions.append(Coord3D(0, -17, 0.2))
+            self.pawncoords.append(Coord3D(0, -8, 0.2))
+            self.pawncoords.append(Coord3D(0, -11, 0.2))
+            self.pawncoords.append(Coord3D(0, -14, 0.2))
+            self.pawncoords.append(Coord3D(0, -17, 0.2))
         elif self.tipo==TSquareTypes.Initial8:
-            self.pawnpositions.append(Coord3D(8, 1, 0.2))
-            self.pawnpositions.append(Coord3D(8, 4, 0.2))
-            self.pawnpositions.append(Coord3D(8, 7, 0.2))
-            self.pawnpositions.append(Coord3D(8, 10, 0.2))
+            self.pawncoords.append(Coord3D(8, 1, 0.2))
+            self.pawncoords.append(Coord3D(8, 4, 0.2))
+            self.pawncoords.append(Coord3D(8, 7, 0.2))
+            self.pawncoords.append(Coord3D(8, 10, 0.2))
         elif self.tipo==TSquareTypes.Final3:
-            self.pawnpositions.append(Coord3D(6, 1.6, 0.2))
-            self.pawnpositions.append(Coord3D(9, 1.6, 0.2))
-            self.pawnpositions.append(Coord3D(12,  1.6, 0.2))
-            self.pawnpositions.append(Coord3D(15, 1.6, 0.2))
+            self.pawncoords.append(Coord3D(6, 1.6, 0.2))
+            self.pawncoords.append(Coord3D(9, 1.6, 0.2))
+            self.pawncoords.append(Coord3D(12,  1.6, 0.2))
+            self.pawncoords.append(Coord3D(15, 1.6, 0.2))
         elif self.tipo==TSquareTypes.Final4:
-            self.pawnpositions.append(Coord3D(10.5, 2, 0.2))
-            self.pawnpositions.append(Coord3D(4.5, 2, 0.2))
-            self.pawnpositions.append(Coord3D(7.5, 2, 0.2))
-            self.pawnpositions.append(Coord3D(7.5, 5, 0.2))
+            self.pawncoords.append(Coord3D(10.5, 2, 0.2))
+            self.pawncoords.append(Coord3D(4.5, 2, 0.2))
+            self.pawncoords.append(Coord3D(7.5, 2, 0.2))
+            self.pawncoords.append(Coord3D(7.5, 5, 0.2))
         elif self.tipo==TSquareTypes.Final6:
-            self.pawnpositions.append(Coord3D(3.6, 2.3, 0.2))
-            self.pawnpositions.append(Coord3D(7.2, 2.3, 0.2))
-            self.pawnpositions.append(Coord3D(10.8, 2.3, 0.2))
-            self.pawnpositions.append(Coord3D(14.4, 2.3, 0.2))
+            self.pawncoords.append(Coord3D(3.6, 2.3, 0.2))
+            self.pawncoords.append(Coord3D(7.2, 2.3, 0.2))
+            self.pawncoords.append(Coord3D(10.8, 2.3, 0.2))
+            self.pawncoords.append(Coord3D(14.4, 2.3, 0.2))
         elif self.tipo==TSquareTypes.Final8:
-            self.pawnpositions.append(Coord3D(3.3, 2.5, 0.2))
-            self.pawnpositions.append(Coord3D(6.8, 2.5, 0.2))
-            self.pawnpositions.append(Coord3D(10.3,  2.5, 0.2))
-            self.pawnpositions.append(Coord3D(13.8,  2.5, 0.2))
+            self.pawncoords.append(Coord3D(3.3, 2.5, 0.2))
+            self.pawncoords.append(Coord3D(6.8, 2.5, 0.2))
+            self.pawncoords.append(Coord3D(10.3,  2.5, 0.2))
+            self.pawncoords.append(Coord3D(13.8,  2.5, 0.2))
             
     def __repr__(self):
         return ("Casilla {0} con {1} fichas dentro".format(self.id, self.buzon_numfichas()))
@@ -2314,13 +2308,13 @@ class Casilla(QObject):
             glPopMatrix()
             
         def draw_fichas():
-            #Draws pawns with  SquarePawnPositionsManager information
+            #Draws pawns with  ManagerPawnsSquare(ManagerPawns) information
             for position_in_buzon, ficha in enumerate(self.buzon):
                 if ficha!=None:
                     glPushName(ficha.id)
-                    glTranslated(self.pawnpositions.arr[position_in_buzon].x,  self.pawnpositions.arr[position_in_buzon].y, self.pawnpositions.arr[position_in_buzon].z)
+                    glTranslated(self.pawncoords[position_in_buzon].x,  self.pawncoords[position_in_buzon].y, self.pawncoords[position_in_buzon].z)
                     ficha.opengl(qglwidget, ficha.color.qcolor())
-                    glTranslated(-self.pawnpositions.arr[position_in_buzon].x,  -self.pawnpositions.arr[position_in_buzon].y, -self.pawnpositions.arr[position_in_buzon].z)
+                    glTranslated(-self.pawncoords[position_in_buzon].x,  -self.pawncoords[position_in_buzon].y, -self.pawncoords[position_in_buzon].z)
                     glPopName()
             
         def tipo_inicio6():        
@@ -2533,20 +2527,18 @@ class Casilla(QObject):
                         return True
         return False
 
-    @deprecated
     def posicionLibreEnBuzon(self):
         """Funcion que devuelve la posicion de un sitio libre con un entero. En caso negativo devuelve -1"""
         for i, p in enumerate(self.buzon):
             if p==None:
                 return i
         return -1
-    @deprecated
+
     def buzon_append(self,  ficha):
         """No chequea debe ser comprobado antes"""
         self.buzon[self.posicionLibreEnBuzon()]=ficha
         self.UltimaFichaEnLlegar=ficha
             
-    @deprecated
     def buzon_remove(self, ficha):
         """No chequea debe ser comprobado antes"""
         for i, f in enumerate(self.buzon):
@@ -2557,7 +2549,6 @@ class Casilla(QObject):
                 return
         print ("No se ha podido hacer buzon_remove con {0}".format(ficha))
                 
-    @deprecated
     def buzon_numfichas(self):
         """Funcion que devuelve el numero de fichas en el buzon"""
         resultado=0
@@ -2566,7 +2557,6 @@ class Casilla(QObject):
                 resultado=resultado+1
         return resultado
 
-    @deprecated
     def buzon_fichas(self):
         """Como ahora puede haber una ficha y estar en buzon[1] se hace necesario esta funcion.
         Devuelve una lista de fichas con una tupla (posicion, ficha)"""
@@ -2631,13 +2621,13 @@ class ManagerPawns(ManagerObjectsId, ABC):
     def __init__(self):
         ManagerObjectsId.__init__(self)
         
-## Class to manage players pawns
-class ManagerPawnsPlayer(ManagerPawns):
+## Class to manage game pawns
+class ManagerPawnsGame(ManagerPawns):
     def __init__(self):
         ManagerPawns.__init__(self)
 
-## Class to manage game pawns
-class ManagerPawnsGame(ManagerPawns):
+## Class to manage players pawns
+class ManagerPawnsPlayer(ManagerPawns):
     def __init__(self):
         ManagerPawns.__init__(self)
 
