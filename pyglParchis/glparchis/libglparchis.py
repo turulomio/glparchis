@@ -52,6 +52,14 @@ class ManagerObjectsList(ABC):
     ## Returns the lengh of the array
     def length(self):
         return len(self.arr)
+    
+    ## Devuelve el primer objeto del array si exite
+    ## @return Object or None if it doesn't exit
+    def first(self):
+        if self.length()==0:
+            return None
+        else:
+            return self.arr[0]
         
 def str2bool(s):
     if s.__class__==bool:#Si ya fuera bool
@@ -286,14 +294,11 @@ class Amenaza:
         self.atacante=atacante
         self.tipo=tipo #1-6 dados, 7 seis con todas fuera,10 meter una ficha, 20 comer una ficha, 51 saca un cinco y mueve 1
 
+    ## Returns the name of the Threat
+    ## @param self This object class
+    ## @param tipo Threat type id. If None returns this object tipo name
+    ## @return Returns a string with the name of the threat
     def name(self, tipo=None):
-        """!
-            Returns the name of the Threat
-            
-            @param self This object class
-            @param tipo Threat type id. If None returns this object tipo name
-            @return Returns a string with the name of the threat
-        """
         if tipo==None:
             tipo=self.tipo
         if tipo==1: return QApplication.translate("glparchis","Sacar un 1")
@@ -310,7 +315,6 @@ class Amenaza:
 ## Class that studies threats of a pawn when setting in a square
 class SetAmenazas:
     def __init__(self,  mem,  objetivo, casilla):
-        """Crea objeto"""
         ##List of Amenaza objects
         self.arr=[]#Array de objetos amenaza
         
@@ -320,7 +324,9 @@ class SetAmenazas:
         ##Square 
         self.casilla=casilla
         self.mem=mem
+        inicio=datetime.datetime.now()
         self.detectar()
+        print("Detectar amenazas de {} en {} llevó: {}".format(self.objetivo,  self.casilla,  datetime.datetime.now()-inicio))
         
     def append(self, atacante, type):
         self.arr.append(Amenaza(self.objetivo, atacante, type))
@@ -425,6 +431,7 @@ class SetAmenazas:
             if ficha.ruta.estaEnRuta(self.objetivo.casilla())==False: continue
             if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(20) and ficha.puedeComer(self.mem, ficha.posruta+20):
                 self.append(ficha, 20)
+                
 
 
     def numero(self):
@@ -711,8 +718,8 @@ class Jugador(QObject):
                 return False
         return True
         
+    ## Funcion que devuelve la ficha seleccionada por la IA. Si devuelve None es que ninguna se puede mover 
     def IASelectFicha(self):
-        """Funcion que devuelve la ficha seleccionada por la IA. Si devuelve None es que ninguna se puede mover"""
         def azar():
             """Funcion que saca un numero al azar de entre 1 y 100. Si es mayor del tope devuelve true. Sino devuelve false. Es decir tope 85 es una probabilidad del 85%"""
             random.seed(datetime.datetime.now().microsecond)
@@ -722,29 +729,24 @@ class Jugador(QObject):
             return False
         ####################################
         fichas=self.fichas.fichasAutorizadasAMover()
-        fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)     
-        if len(fichas)==0:
+        if fichas.length()==0:
             return None
+        fichas.order_by_posruta(reverse=True)
         
         # Hay porcentajes de acierto si falla pasa a la siguiente prioridad
         #1 prioridad. Puede comer IA 85%
         if azar():
-            for f in fichas:#Recorre las que pueden mover
+            for f in fichas.arr:#Recorre las que pueden mover
                 movimiento=f.estaAutorizadaAMover()[1]
                 (puede, fichaacomer)=f.puedeComer(self.mem, f.posruta+movimiento)
                 if puede:
                     print (f, "seleccionada por azar comer")
                     return f
-        
-        
-        
+
         #2 prioridad. Mueve fichas que disminuyen en numero de amenazas en la nueva posicion
-#        fichas=sorted(fichas, key=lambda f:f.numeroAmenazasMejora(self.mem),  reverse=True)     
-#        for f in fichas:
-#            print (f, f.numeroAmenazasMejora(self.mem), f.numFichasPuedenComer(self.mem, f.posruta), f.numFichasPuedenComer(self.mem, f.posruta+f.estaAutorizadaAMover(self.mem)[1]))
-        if azar():
-            fichas=sorted(fichas, key=lambda f:f.amenazas().numero(),  reverse=True)     
-            for f in fichas:
+        if azar():  
+            fichas.order_by_numero_amenazas(reverse=True)
+            for f in fichas.arr:
                 movimiento=f.estaAutorizadaAMover()[1]
                 antes=f.amenazas()
                 despues=f.amenazasDestino(movimiento)
@@ -754,9 +756,9 @@ class Jugador(QObject):
         
         
         #3 prioridad Asegura IA  de ultima a primera 85%
-        fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)     
+        fichas.order_by_posruta(reverse=True)
         if azar():
-            for f in fichas:
+            for f in fichas.arr:
                 movimiento=f.estaAutorizadaAMover()[1]
                 if f.casilla().esSegura(self.mem, self, True)==False  and  f.casilla(f.posruta+movimiento).esSegura(self.mem, self, False)==True:
                     print (f,"seleccionado por azar asegurar")
@@ -764,15 +766,14 @@ class Jugador(QObject):
         
         #4 Alguna ficha no asegurada puede mover
         if azar():
-            for f in fichas:
+            for f in fichas.arr:
                 if f.casilla().esSegura(self.mem, f.jugador, True)==False:
                     print(f,"seleccionado por azar ficha no asegurada")
                     return f
         
         #5 prioridad Mueve la ultima IA 100%
-        fichas=sorted(fichas, key=lambda f:f.posruta,  reverse=True)
-        print (fichas[0], "Sin azar. Ultima ficha")
-        return fichas[0]
+        print (fichas.first(), "Sin azar. Ultima ficha")
+        return fichas.first()
 
             
 class Ruta:
@@ -1354,27 +1355,28 @@ class SetCasillas:
             c=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), defineRutas1(i))
             self.arr.append(c)
 
-class SetFichas:
-    """Agrupacion de fichas"""
+## Clase que agrupa fichas
+class SetFichas(ManagerObjectsList):
     def __init__(self, mem):
         self.arr=[]
         self.mem=mem
-
+        
+    ## Busca entre las fichas que pueden mover si alguna esta obligada a mover
     def algunaEstaObligada(self):
-        """Busca entre las fichas que pueden mover si alguna esta obligada a mover"""
         for f in self.arr:
             if f.estaObligada(self.mem)==True:
                 return True
         return False
 
     def algunaEstaAutorizadaAmover(self):
-        if len(self.fichasAutorizadasAMover())>0:
+        if self.fichasAutorizadasAMover().length()>0:
             return True
         return False
         
+    ## Devuelve un SetFichas con las autorizadas a mover
     def fichasAutorizadasAMover(self):
         """Devuelve un arr con las fichas que pueden mover"""
-        resultado=[]
+        resultado=SetFichas(self.mem)
         for f in self.arr:
             if f.estaAutorizadaAMover()[0]==True:
                 resultado.append(f)
@@ -1391,6 +1393,18 @@ class SetFichas:
             if f.posruta==0:
                 return False
         return True
+        
+    ## Ordena las fichas por su posición en la ruta.
+    def order_by_posruta(self, reverse=False):
+        fichas=sorted(self.arr, key=lambda f:f.posruta,  reverse=reverse)
+        del self.arr
+        self.arr=fichas
+
+    ## Ordena por el número de amenazas, calcula las amenazas al ordenar
+    def order_by_numero_amenazas(self, reverse=False):
+        fichas=sorted(self.arr, key=lambda f:f.amenazas().numero(),  reverse=reverse)
+        del self.arr
+        self.arr=fichas
         
 class Ficha(QObject):
     moved=pyqtSignal()

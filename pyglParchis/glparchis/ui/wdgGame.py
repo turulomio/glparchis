@@ -225,7 +225,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.after_ficha_click()
         else:
             if self.mem.frmMain.actionAutomatism.isChecked():
-                if len(self.mem.jugadores.actual.fichas.fichasAutorizadasAMover())==1:
+                if self.mem.jugadores.actual.fichas.fichasAutorizadasAMover().length()==1:
                     delay(self.delay)
                     iaficha=self.mem.jugadores.actual.IASelectFicha()
                     self.mem.selFicha=iaficha
