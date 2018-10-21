@@ -198,7 +198,7 @@ class frmMain(QMainWindow, Ui_frmMain):
             return
         dateremoteversion=datetime.date(int(remoteversion[:4]), int(remoteversion[4:6]), int(remoteversion[6:8]))
                 
-        if dateremoteversion==dateversion: 
+        if dateremoteversion==__versiondate__:
             if showdialogwhennoupdates==True:
                 qmessagebox(self.tr("Dispone de la ultima version del juego"))
         else:

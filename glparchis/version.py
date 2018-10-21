@@ -12,5 +12,4 @@ def version(platform=None):
     if platform=="win32":
         return "{}.{}.{}".format(__versiondate__.year, __versiondate__.month, __versiondate__.day)
     else:
-        print("version",  platform)
-        return str(__versiondate__).replace("-", "")
+        return __version__
