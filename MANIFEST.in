@@ -1,5 +1,4 @@
-include AUTHORS-ES.txt AUTHORS-EN.txt GPL-3.txt INSTALL-ES.txt INSTALL-EN.txt glparchis.desktop glparchis.pro CHANGELOG-ES.txt CHANGELOG-EN.txt *.py
-recursive-include glparchis *.ts *.qm *.py *.ui *.wav
-recursive-include images *.png  glparchis.qrc *.py
+include LICENSE.txt glparchis.desktop glparchis.pro README.rst *.py
+recursive-include glparchis *.ts *.qm *.py *.ui *.wav *.ico *.png  glparchis.qrc 
 prune __pycache__
 global-exclude *.pyc

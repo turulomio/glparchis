@@ -3,6 +3,7 @@ import logging
 import os
 import platform
 import site
+import shutil
 import sys
 from concurrent.futures import ProcessPoolExecutor
 from multiprocessing import cpu_count
