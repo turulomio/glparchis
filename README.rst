@@ -25,25 +25,25 @@ Parchís game
 
 You can run the game with 3, 4, 6 or 8 player mode:
 
-.. image:: https://raw.githubusercontent.com/Turulomio/recpermissions/master/doc/glparchis-players-3.png
+.. image:: https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-3.png
    :height: 800px
    :width: 600px
    :scale: 100 %
    :align: center
 
-.. image:: https://raw.githubusercontent.com/Turulomio/recpermissions/master/doc/glparchis-players-4.png
+.. image:: https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-4.png
    :height: 800px
    :width: 600px
    :scale: 100 %
    :align: center
 
-.. image:: https://raw.githubusercontent.com/Turulomio/recpermissions/master/doc/glparchis-players-6.png
+.. image:: https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-6.png
    :height: 800px
    :width: 600px
    :scale: 100 %
    :align: center
 
-.. image:: https://raw.githubusercontent.com/Turulomio/recpermissions/master/doc/glparchis-players-8.png
+.. image:: https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-8.png
    :height: 800px
    :width: 600px
    :scale: 100 %
