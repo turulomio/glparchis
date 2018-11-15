@@ -409,4 +409,4 @@ class Ui_frmAbout(object):
         self.cmd.setText(_translate("frmAbout", "S&alir"))
 
 from glparchis.ui.myQGLWidget import wdgQT, wdgShowObject
-import glparchis.ui.glparchis_rc
+import glparchis.images.glparchis_rc

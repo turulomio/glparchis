@@ -74,4 +74,4 @@ class Ui_frmInitGame(object):
         _translate = QtCore.QCoreApplication.translate
         frmInitGame.setWindowTitle(_translate("frmInitGame", "Configuracion inicial de la partida"))
 
-import glparchis.ui.glparchis_rc
+import glparchis.images.glparchis_rc

@@ -59,4 +59,4 @@ class Ui_frmHelp(object):
         frmHelp.setWindowTitle(_translate("frmHelp", "Ayuda de glParchis"))
         self.lblApp.setText(_translate("frmHelp", "Ayuda de glParchis"))
 
-import glparchis.ui.glparchis_rc
+import glparchis.images.glparchis_rc

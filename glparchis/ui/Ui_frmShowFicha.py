@@ -144,4 +144,4 @@ class Ui_frmShowFicha(object):
         item.setText(_translate("frmShowFicha", "Amenaza"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("frmShowFicha", "Amenazas en destino"))
 
-import glparchis.ui.glparchis_rc
+import glparchis.images.glparchis_rc

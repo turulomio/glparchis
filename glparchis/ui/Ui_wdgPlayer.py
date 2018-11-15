@@ -61,4 +61,4 @@ class Ui_wdgPlayer(object):
         self.chkIA.setToolTip(_translate("wdgPlayer", "Selecciona si quieres que el jugador lo controle el ordenador"))
         self.chkIA.setText(_translate("wdgPlayer", "Inteligencia artificial?"))
 
-import glparchis.ui.glparchis_rc
+import glparchis.images.glparchis_rc

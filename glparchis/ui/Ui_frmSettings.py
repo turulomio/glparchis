@@ -146,4 +146,4 @@ class Ui_frmSettings(object):
         self.chkStatistics.setText(_translate("frmSettings", "Si esta marcado, tus partidas formaran parte de las estadisticas mundiales"))
         self.cmdGlobalStatistics.setToolTip(_translate("frmSettings", "Ver estadisticas"))
 
-import glparchis.ui.glparchis_rc
+import glparchis.images.glparchis_rc

@@ -254,4 +254,4 @@ class Ui_frmMain(object):
         self.actionLeftPanel.setToolTip(_translate("frmMain", "Oculta el panel izquierdo"))
         self.actionLeftPanel.setShortcut(_translate("frmMain", "F10"))
 
-import glparchis.ui.glparchis_rc
+import glparchis.images.glparchis_rc

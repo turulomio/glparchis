@@ -73,4 +73,4 @@ class Ui_wdgPlayerDado(object):
         _translate = QtCore.QCoreApplication.translate
         wdgPlayerDado.setWindowTitle(_translate("wdgPlayerDado", "Form"))
 
-import glparchis.ui.glparchis_rc
+import glparchis.images.glparchis_rc

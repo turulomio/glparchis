@@ -2,7 +2,7 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QWidget
 from glparchis.ui.wdgUserPanel import wdgUserPanel
 from glparchis.libglparchis import str2bool, b2s, HighScore, qmessagebox, delay
-from glparchis.version import version
+from glparchis.version import __version__
 from glparchis.ui.Ui_wdgGame import Ui_wdgGame
 import glob
 import datetime
@@ -26,7 +26,7 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     def sendStatisticsStart(self):
         if str2bool(self.mem.settings.value("frmSettings/statistics", "True"))==True:
-            url='http://glparchis.sourceforge.net/php/glparchis_game_start.php?uuid={}&installations_uuid={}&numplayers={}&maxplayers={}&version={}'.format(self.mem.uuid, self.mem.settings.value("frmMain/uuid"),  self.mem.jugadores.numPlays(), self.mem.maxplayers, version("linux"))
+            url='http://glparchis.sourceforge.net/php/glparchis_game_start.php?uuid={}&installations_uuid={}&numplayers={}&maxplayers={}&version={}'.format(self.mem.uuid, self.mem.settings.value("frmMain/uuid"),  self.mem.jugadores.numPlays(), self.mem.maxplayers, __version__)
             print(url)
             try:
                 web=b2s(urlopen(url).read())

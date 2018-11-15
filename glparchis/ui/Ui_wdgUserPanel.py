@@ -108,4 +108,4 @@ class Ui_wdgUserPanel(object):
         self.grp.setTitle(_translate("wdgUserPanel", "Jugador"))
         self.chk.setText(_translate("wdgUserPanel", "Muestra el historial"))
 
-import glparchis.ui.glparchis_rc
+import glparchis.images.glparchis_rc

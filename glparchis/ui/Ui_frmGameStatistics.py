@@ -86,4 +86,4 @@ class Ui_frmGameStatistics(object):
         self.tab.setTabText(self.tab.indexOf(self.tabLicense), _translate("frmGameStatistics", "Estadisticas mundiales"))
 
 from PyQt5 import QtWebEngineWidgets
-import glparchis.ui.glparchis_rc
+import glparchis.images.glparchis_rc

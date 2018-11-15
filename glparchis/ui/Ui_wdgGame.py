@@ -343,4 +343,4 @@ class Ui_wdgGame(object):
 
 from glparchis.ui.myQGLWidget import wdgOGL
 from glparchis.ui.qtablestatistics import QTableStatistics
-import glparchis.ui.glparchis_rc
+import glparchis.images.glparchis_rc

@@ -1,4 +1,4 @@
-from glparchis.version import version
+from glparchis.version import __version__
 from PyQt5.QtWidgets import QDialog
 from glparchis.ui.Ui_frmAbout import Ui_frmAbout
 
@@ -16,7 +16,7 @@ class frmAbout(QDialog, Ui_frmAbout):
             self.setObjectName(name)
         self.setupUi(self)
         self.showMaximized()
-        self.lblVersion.setText(self.tr("Version {0}".format(version())))
+        self.lblVersion.setText(self.tr("Version {0}".format(__version__)))
         self.textBrowser.setHtml(
             self.tr("La pagina del proyecto se encuentra en <a href=\"http://glparchis.sourceforge.net\">http://glparchis.sourceforge.net</a><p> <p>")+
             self.tr("Este programa ha sido desarrollado por Mariano Munoz.<p>")+

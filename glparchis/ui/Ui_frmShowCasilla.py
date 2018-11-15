@@ -71,4 +71,4 @@ class Ui_frmShowCasilla(object):
         self.lblSeguro.setText(_translate("frmShowCasilla", "TextLabel"))
         self.grp.setTitle(_translate("frmShowCasilla", "Ocupacion"))
 
-import glparchis.ui.glparchis_rc
+import glparchis.images.glparchis_rc

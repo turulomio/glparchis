@@ -1,0 +1,1 @@
+from glparchis.version import __version__, __versiondate__

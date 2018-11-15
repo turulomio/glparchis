@@ -1,26 +1,12 @@
 from setuptools import setup, Command
-
-import gettext
 import logging
 import os
 import platform
 import site
 import sys
-from PyQt5.QtCore import QCoreApplication,  QTranslator
-from colorama import Style, Fore
 from concurrent.futures import ProcessPoolExecutor
 from multiprocessing import cpu_count
 
-def change_language(language):  
-    """language es un string"""
-    url= "glparchis/qm/glparchis_{}.qm".format(language)
-    if os.path.exists(url)==True:
-        translator.load(url)
-        QCoreApplication.installTranslator(translator)
-        logging.info(("Language changed to {} using {}".format(language, url)))
-        return
-    if language!="en":
-        logging.warning(Style.BRIGHT+ Fore.CYAN+ app.tr("Language ({}) couldn't be loaded in {}. Using default (en).".format(language, url)))
 
 class Doxygen(Command):
     description = "Create/update doxygen documentation in doc/html"
@@ -34,8 +20,8 @@ class Doxygen(Command):
 
     def run(self):
         print("Creating Doxygen Documentation")
-#        os.system("""sed -i -e "41d" doc/Doxyfile""")#Delete line 41
-#        os.system("""sed -i -e "41iPROJECT_NUMBER         = {}" doc/Doxyfile""".format(__version__))#Insert line 41
+        os.system("""sed -i -e "41d" doc/Doxyfile""")#Delete line 41
+        os.system("""sed -i -e "41iPROJECT_NUMBER         = {}" doc/Doxyfile""".format(__version__))#Insert line 41
         os.chdir("doc")
         os.system("doxygen Doxyfile")
         os.system("rsync -avzP -e 'ssh -l turulomio' html/ frs.sourceforge.net:/home/users/t/tu/turulomio/userweb/htdocs/doxygen/glparchis/ --delete-after")
@@ -54,29 +40,46 @@ class Compile(Command):
     def run(self):
         futures=[]
         with ProcessPoolExecutor(max_workers=cpu_count()+1) as executor:
-            futures.append(executor.submit(os.system, "pyuic5 glparchis/ui/frmAbout.ui -o glparchis/ui/Ui_frmAbout.py"))
-            futures.append(executor.submit(os.system, "pyuic5 glparchis/ui/frmHelp.ui -o glparchis/ui/Ui_frmHelp.py"))
-            futures.append(executor.submit(os.system, "pyuic5 glparchis/ui/frmMain.ui -o glparchis/ui/Ui_frmMain.py"))
-            futures.append(executor.submit(os.system, "pyuic5 glparchis/ui/frmSettings.ui -o glparchis/ui/Ui_frmSettings.py"))
-            futures.append(executor.submit(os.system, "pyuic5 glparchis/ui/frmGameStatistics.ui -o glparchis/ui/Ui_frmGameStatistics.py"))
-            futures.append(executor.submit(os.system, "pyuic5 glparchis/ui/frmInitGame.ui -o glparchis/ui/Ui_frmInitGame.py"))
-            futures.append(executor.submit(os.system, "pyuic5 glparchis/ui/frmShowCasilla.ui -o glparchis/ui/Ui_frmShowCasilla.py"))
-            futures.append(executor.submit(os.system, "pyuic5 glparchis/ui/frmShowFicha.ui -o glparchis/ui/Ui_frmShowFicha.py"))
-            futures.append(executor.submit(os.system, "pyuic5 glparchis/ui/wdgGame.ui -o glparchis/ui/Ui_wdgGame.py"))
-            futures.append(executor.submit(os.system, "pyuic5 glparchis/ui/wdgPlayer.ui -o glparchis/ui/Ui_wdgPlayer.py"))
-            futures.append(executor.submit(os.system, "pyuic5 glparchis/ui/wdgPlayerDado.ui -o glparchis/ui/Ui_wdgPlayerDado.py"))
-            futures.append(executor.submit(os.system, "pyuic5 glparchis/ui/wdgUserPanel.ui -o glparchis/ui/Ui_wdgUserPanel.py"))
-            futures.append(executor.submit(os.system, "pyrcc5 images/glparchis.qrc -o glparchis/ui/glparchis_rc.py"))
+            for filename in os.listdir("glparchis/ui/"):
+                if filename.endswith(".ui"):
+                    without_extension=filename[:-3]
+                    futures.append(executor.submit(os.system, "pyuic5 glparchis/ui/{0}.ui -o glparchis/ui/Ui_{0}.py".format(without_extension)))
+            futures.append(executor.submit(os.system, "pyrcc5 glparchis/images/glparchis.qrc -o glparchis/images/glparchis_rc.py"))
         # Overwriting glparchis_rc
-        for file in ['glparchis/ui/Ui_frmAbout.py', 'glparchis/ui/Ui_frmHelp.py', 'glparchis/ui/Ui_frmMain.py', 'glparchis/ui/Ui_frmSettings.py', 
-                     'glparchis/ui/Ui_frmGameStatistics.py', 'glparchis/ui/Ui_frmInitGame.py', 'glparchis/ui/Ui_frmShowFicha.py', 'glparchis/ui/Ui_frmShowCasilla.py',
-                     'glparchis/ui/Ui_wdgGame.py', 'glparchis/ui/Ui_wdgPlayer.py', 'glparchis/ui/Ui_wdgPlayerDado.py', 'glparchis/ui/Ui_wdgUserPanel.py']:
-            os.system("sed -i -e 's/glparchis_rc/glparchis.ui.glparchis_rc/' {}".format(file))
-        # Overwriting myQGLWidget
-        os.system("sed -i -e 's/from myQGLWidget/from glparchis.ui.myQGLWidget/' glparchis/ui/Ui_wdgGame.py")
-        os.system("sed -i -e 's/from myQGLWidget/from glparchis.ui.myQGLWidget/' glparchis/ui/Ui_frmAbout.py")
-        # Overwriting qtablestatistics
-        os.system("sed -i -e 's/from qtablestatistics/from glparchis.ui.qtablestatistics/' glparchis/ui/Ui_wdgGame.py")
+        for filename in os.listdir("glparchis/ui/"):
+             if filename.startswith("Ui_"):
+                 os.system("sed -i -e 's/glparchis_rc/glparchis.images.glparchis_rc/' glparchis/ui/{}".format(filename))
+                 os.system("sed -i -e 's/from myQGLWidget/from glparchis.ui.myQGLWidget/' glparchis/ui/{}".format(filename))
+                 os.system("sed -i -e 's/from qtablestatistics/from glparchis.ui.qtablestatistics/' glparchis/ui/{}".format(filename))
+
+
+class Procedure(Command):
+    description = "Uninstall installed files with install"
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        print("""
+Nueva versión:
+  * Cambiar la versión y la fecha en version.py
+  * Modificar el Changelog en README
+  * python setup.py doc
+  * linguist
+  * python setup.py doc
+  * python setup.py install
+  * python setup.py doxygen
+  * git commit -a -m 'glparchis-version'
+  * git push
+  * Hacer un nuevo tag en GitHub
+  * python setup.py sdist upload -r pypi
+  * Crea un nuevo ebuild de Gentoo con la nueva versión
+  * Subelo al repositorio del portage
+""")
 
 
 class Uninstall(Command):
@@ -115,24 +118,26 @@ class Doc(Command):
     def run(self):
         os.system("pylupdate5 -noobsolete -verbose glparchis.pro")
         os.system("lrelease -qt5 glparchis.pro")
+
+class PyInstaller(Command):
+    description = "pyinstaller file generator"
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        shutil.rmtree("build")
+        os.system("""pyinstaller glparchis/glparchis.py -n glparchis-{}  --onefile   --windowed --icon glparchis/images/glparchis.ico""".format(__version__))
+
+
     ########################################################################
 
-app=QCoreApplication(sys.argv)
-
-app.setOrganizationName("glparchis")
-app.setOrganizationDomain("glparchis.sourceforge.net")
-app.setApplicationName("glparchis")
-translator=QTranslator()
 with open('README.rst', encoding='utf-8') as f:
     long_description = f.read()
-
-if platform.system()=="Linux":
-    data_files=[]
-    #('/usr/share/man/man1/', ['man/man1/glparchis.1']), 
-    #            ('/usr/share/man/es/man1/', ['man/es/man1/glparchis.1'])
-    #           ]
-else:
-    data_files=[]
 
 ## Version of officegenerator captured from commons to avoid problems with package dependencies
 __version__= None
@@ -161,16 +166,22 @@ setup(name='glparchis',
     entry_points = {'console_scripts': [    'glparchis=glparchis.glparchis:main',
                                     ],
                 },
-    install_requires=['PyQt5', 'pyopengl','setuptools'],
-    data_files=data_files,
+    install_requires=['setuptools',
+                      'pyopengl',
+                      'PyQtChart;platform_system=="Windows"',
+                      'PyQt5;platform_system=="Windows"',
+                      'pywin32;platform_system=="Windows"',
+                     ],
+    data_files=[],
     cmdclass={
                         'doxygen': Doxygen,
                         'doc': Doc,
                         'uninstall':Uninstall, 
                         'compile': Compile, 
+                        'pyinstaller': PyInstaller,
+                        'procedure': Procedure,
                      },
     zip_safe=False,
     include_package_data=True
     )
 
-_=gettext.gettext#To avoid warnings
