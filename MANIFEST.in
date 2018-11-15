@@ -1,4 +1,4 @@
 include LICENSE.txt glparchis.desktop glparchis.pro README.rst *.py
-recursive-include glparchis *.ts *.qm *.py *.ui *.wav *.ico *.png  glparchis.qrc 
+recursive-include glparchis *.ts *.qm *.py *.ui *.wav *.ico *.png glparchis.qrc
 prune __pycache__
 global-exclude *.pyc

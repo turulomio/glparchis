@@ -1,10 +1,18 @@
-Source code & Development:
-    https://glparchis.sourceforge.io
-Glparchis doxygen documentation:
-    http://turulomio.users.sourceforge.net/doxygen/glparchis/
-Web page main developer
-    http://turulomio.users.sourceforge.net/
+Links
+=====
 
+Source code & Development:
+  * https://github.com/Turulomio/glparchis
+
+Doxygen documentation:
+  * http://turulomio.users.sourceforge.net/doxygen/glparchis/
+
+Main developer web page:
+  * https://github.com/Turulomio 
+  * http://turulomio.users.sourceforge.net/en/proyectos.html
+
+Pypi web page:
+  * https://pypi.org/project/glparchis/
 
 Authors
 =======
@@ -15,43 +23,103 @@ Description
 ===========
 Parchís game
 
+You can run the game with 3, 4, 6 or 8 player mode:
+
+.. image:: https://raw.githubusercontent.com/Turulomio/recpermissions/master/doc/glparchis-players-3.png
+   :height: 800px
+   :width: 600px
+   :scale: 100 %
+   :align: center
+
+.. image:: https://raw.githubusercontent.com/Turulomio/recpermissions/master/doc/glparchis-players-4.png
+   :height: 800px
+   :width: 600px
+   :scale: 100 %
+   :align: center
+
+.. image:: https://raw.githubusercontent.com/Turulomio/recpermissions/master/doc/glparchis-players-6.png
+   :height: 800px
+   :width: 600px
+   :scale: 100 %
+   :align: center
+
+.. image:: https://raw.githubusercontent.com/Turulomio/recpermissions/master/doc/glparchis-players-8.png
+   :height: 800px
+   :width: 600px
+   :scale: 100 %
+   :align: center
+
+
 License
 =======
 GPL-3
 
+
+
+Install in Linux
+================
+If you use Gentoo you can find a ebuild in https://sourceforge.net/p/xulpymoney/code/HEAD/tree/myportage/games-board/glparchis/
+
+If you use other distribution, you need to install PyQt5 manually. PyQt5 is not in Linux setup.py dependencies due to it doesn't use standard setup tools. So for compatibility reasons with distributions like Gentoo, we use this additional step.
+
+`pip install PyQt5`
+
+`pip install glparchis`
+
+`glparchis`
+
+Install in Windows
+==================
+You need to install Python from https://www.python.org and add it to the PATH
+
+You must open a console with Administrator privileges and type:
+
+`pip install glparchis
+
 Dependencies
 ============
 * https://www.python.org/, as the main programming language.
+* https://pypi.org/project/PyQt5/, as the main library.
+* https://pypi.org/project/pywin32/, to create shortcuts.
+* http://pyopengl.sourceforge.net/, as OpenGL library.
 
 Changelog
 =========
+
 20181115
-  * Created a pypi project from glparchis-20181020 with package structure
-  * Migrated to github
+
+* Created a pypi project from glparchis-20181020 with package structure
+* Migrated to github
 
 20181020
+
 * Added action to hide/show left panel
 * Added automatism to the dice
 * Added automatism to pawns when only one can move
 
 20180510
+
 * Added 3 players mode
 * Now you can report a bug from glParchis
 
 20180416
+
 * Windows: Solved annoying bug. User needed to do several clicks to move a piece
 * Improved OpenGL code and it's documentation
 * Added Doxygen document system for developers
 * Windows: Solved bug showing objcts in About menu
 
 20180308
+
 * Linux: Fixed bug loading translation files
 
 20180307
+
 * Now you can throw the dice pressing ENTER
 * Added Zoom IN / Zoom OUT actions to the menu
 
 20170726
+
 * Added delay between movements as a settings option
 * Added difficult level as a settings option
 * Added board zoom  with keys + and -
@@ -59,20 +127,24 @@ Changelog
 * Windows distribution file has been upgraded to a msi file. Please uninstall the old glparchis before installing the new one
 
 20160812
+
 * Fullscreen state is saved in settings file
 * Added statistics system in Sourceforge database
 * Added option to do not contribute to world statistics
 
 20160801
+
 * Splitter game configuration is saved with fullscreen and normal data
 
 20160623
+
 * project_i18n script added to translate project documentation
 * Board rotates pressing m key
 * Improved performance
 * Fullscreen icon error fixed
 
 20160325
+
 * Sound configuration is saved now in settings
 * Makefile have been changed to compile with make and to install with make install
 * Windows sources are not going to be released
@@ -82,6 +154,7 @@ Changelog
 * We have added full screen support
 
 20130716
+
 * When you eat a piece in the first spacem, this piece is the last in arrive, when both pieces are of different color.
 * Change color pink by fuchsia, cyan by darturquise and orange by darkorange 
 * Compatibility added with old highscores
@@ -93,6 +166,7 @@ Changelog
 * App has been migrated to python3. I have test it with python 3.3
 
 20130228
+
 * About menu shows a dice
 * cmdDado improved
 * Double click on the board to roll the dice
@@ -101,6 +175,7 @@ Changelog
 * Added 6 and 8 players game
 
 20120921
+
 * Bug solved looking for game updates
 * Numerical textures added to places
 * A sound plays after rolling 3 sixes, if you go home.
@@ -110,6 +185,7 @@ Changelog
 * The dice is now in 3D
 
 20120917
+
 * Bug solved when pressing ESCAPE. Now it exists the game
 * Switch off / on sound added
 * Screen hyperlinks are now clickable.
@@ -120,11 +196,13 @@ Changelog
 * All popups are now inside the screen
 
 20120914
+
 * Windows and Linux binary distribution
 * Solved bug when pressing cancel at initial dialog
 * Solved several bugs
 
 20120910
+
 * Solved bug with saved games directory
 * Dice text changes color to the current player color
 * Score system added. It uses the number of moved places. 
@@ -136,5 +214,6 @@ Changelog
 * User panel logs have been improved
 
 20120902
+
 * Initial support to the application
 * The app has all the funcionality. We need to improve the virtual players
