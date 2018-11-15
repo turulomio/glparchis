@@ -1,7 +1,6 @@
 SOURCES         = glparchis/libglparchis.py \
                   glparchis/libglparchistypes.py \
                   glparchis/glparchis.py \
-                  glparchis/project_i18n.py \
                   glparchis/ui/frmInitGame.py \
                   glparchis/ui/Ui_frmInitGame.py \
                   glparchis/ui/frmMain.py \

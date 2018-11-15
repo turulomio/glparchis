@@ -3,52 +3,52 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="../libglparchis.py" line="1481"/>
+        <location filename="../libglparchis.py" line="1483"/>
         <source>No es del jugador actual</source>
         <translation>It&apos;s not a current player piece</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1516"/>
+        <location filename="../libglparchis.py" line="1518"/>
         <source>Se ha pasado la meta</source>
         <translation>You missed the central space</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1522"/>
+        <location filename="../libglparchis.py" line="1524"/>
         <source>Hay una barrera</source>
         <translation>There is a blockade</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1531"/>
+        <location filename="../libglparchis.py" line="1533"/>
         <source>No hay espacio en la casilla</source>
         <translation>The space is bussy</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1511"/>
+        <location filename="../libglparchis.py" line="1513"/>
         <source>No puede mover</source>
         <translation>It can&apos;t move</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1529"/>
+        <location filename="../libglparchis.py" line="1531"/>
         <source>Obligado a sacar y a comer</source>
         <translation>You&apos;re forced to move to the first space and to eat</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1611"/>
+        <location filename="../libglparchis.py" line="1613"/>
         <source>He comido una ficha de {0} en la casilla {1}</source>
         <translation>I&apos;ve eaten a piece of {0}at the space {1}</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1465"/>
+        <location filename="../libglparchis.py" line="1467"/>
         <source>No puede mover, porque debe sacar una ficha</source>
         <translation>Pawn can&apos;t move, because you must enter a pawn</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1467"/>
+        <location filename="../libglparchis.py" line="1469"/>
         <source>No puede mover, porque debe abrir una barrera</source>
         <translation>Pawn can&apos;t move, because you must open a blockade</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1628"/>
+        <location filename="../libglparchis.py" line="1630"/>
         <source>Una ficha ha llegado a la meta</source>
         <translation>A piece arrived to central space</translation>
     </message>
@@ -511,12 +511,12 @@
         <translation>F5</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="162"/>
+        <location filename="../ui/frmMain.py" line="163"/>
         <source>Sonido encendido</source>
         <translation>Sound switched on</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="167"/>
+        <location filename="../ui/frmMain.py" line="168"/>
         <source>Sonido apagado</source>
         <translation>Sound switched off</translation>
     </message>
@@ -566,7 +566,7 @@
         <translation>Ctrl+8</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="34"/>
+        <location filename="../ui/frmMain.py" line="35"/>
         <source>glParchis 2010-{}. GNU General Public License &#xa9;</source>
         <translation>glParchis 2010-{}. GNU General Public License ©</translation>
     </message>
@@ -581,27 +581,27 @@
         <translation>Change to full screen mode</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="78"/>
+        <location filename="../ui/frmMain.py" line="79"/>
         <source>Salir del modo de pantalla completa</source>
         <translation>Exit from full screen mode</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="2892"/>
+        <location filename="../libglparchis.py" line="2876"/>
         <source>Esta opcion se esta desarrollando</source>
         <translation>This option is being developed</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="186"/>
+        <location filename="../ui/frmMain.py" line="187"/>
         <source>No se ha podido comprobar si hay actualizaciones. Intentelo mas tarde.</source>
         <translation>I couldn&apos;t check if there are updates. Try it later.</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="202"/>
+        <location filename="../ui/frmMain.py" line="203"/>
         <source>Dispone de la ultima version del juego</source>
         <translation>You have the last game version</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="208"/>
+        <location filename="../ui/frmMain.py" line="209"/>
         <source>Hay una nueva version del programa. Bajatela de la pagina web del proyecto &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt; o directamente desde &lt;a href=&apos;https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-</source>
         <translation>There is a new version. Download it from project page &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt; or directly from &lt;a href=&apos;https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-</translation>
     </message>
@@ -686,7 +686,7 @@
         <translation>-</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="61"/>
+        <location filename="../ui/frmMain.py" line="62"/>
         <source>Installation UUID already set</source>
         <translation>Installation UUID already set</translation>
     </message>
@@ -706,22 +706,22 @@
         <translation>Report a bug</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="101"/>
+        <location filename="../ui/frmMain.py" line="102"/>
         <source>Pulse para desactivar el automatismo del dado y en caso de poder mover solo una ficha</source>
         <translation>Press to deactivate the automatism of the dice and pieces, in the case you can move only one</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="102"/>
+        <location filename="../ui/frmMain.py" line="103"/>
         <source>Desactiva el automatismo del dado</source>
         <translation>Disable the automatism of the dice</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="109"/>
+        <location filename="../ui/frmMain.py" line="110"/>
         <source>Activa el automatismo del dado</source>
         <translation>Enable the automatism of the dice</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="124"/>
+        <location filename="../ui/frmMain.py" line="125"/>
         <source>Pulse para ocultar el panel izquierdo</source>
         <translation>Press to hide the left panel</translation>
     </message>
@@ -731,12 +731,12 @@
         <translation>Hides the left panel</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="128"/>
+        <location filename="../ui/frmMain.py" line="129"/>
         <source>Pulse para mostrar el panel izquierdo</source>
         <translation>Press to show the left panel</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="129"/>
+        <location filename="../ui/frmMain.py" line="130"/>
         <source>Muestra el panel izquierdo</source>
         <translation>Shows the left panel</translation>
     </message>
@@ -761,7 +761,7 @@
         <translation>F10</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="108"/>
+        <location filename="../ui/frmMain.py" line="109"/>
         <source>Pulse para mover automaticamente el dado y las fichas cuando solo se pueda mover una</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1033,57 +1033,57 @@
 <context>
     <name>glparchis</name>
     <message>
-        <location filename="../libglparchis.py" line="311"/>
+        <location filename="../libglparchis.py" line="304"/>
         <source>Sacar un 1</source>
         <translation>Roll a 1</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="312"/>
+        <location filename="../libglparchis.py" line="305"/>
         <source>Sacar un 2</source>
         <translation>Roll a 2</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="313"/>
+        <location filename="../libglparchis.py" line="306"/>
         <source>Sacar un 3</source>
         <translation>Roll a 3</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="314"/>
+        <location filename="../libglparchis.py" line="307"/>
         <source>Sacar un 4</source>
         <translation>Roll a 4</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="315"/>
+        <location filename="../libglparchis.py" line="308"/>
         <source>Sacar un 5</source>
         <translation>Roll a 5</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="316"/>
+        <location filename="../libglparchis.py" line="309"/>
         <source>Sacar un 6</source>
         <translation>Roll a 6</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="317"/>
+        <location filename="../libglparchis.py" line="310"/>
         <source>Sacar un 7</source>
         <translation>Get a 7</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="318"/>
+        <location filename="../libglparchis.py" line="311"/>
         <source>Contar 10</source>
         <translation>Advance 10</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="319"/>
+        <location filename="../libglparchis.py" line="312"/>
         <source>Contar 20</source>
         <translation>Advance 20</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="320"/>
+        <location filename="../libglparchis.py" line="313"/>
         <source>Sacar ficha</source>
         <translation>Take out a piece</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="2738"/>
+        <location filename="../libglparchis.py" line="2727"/>
         <source>Este fichero es de una version antigua o esta estropeado. No puede ser cargado.</source>
         <translation>This file is old or it is broken. It can&apos;t be loaded.</translation>
     </message>
@@ -1096,389 +1096,6 @@
         <location filename="../ui/frmSettings.py" line="42"/>
         <source>Francais</source>
         <translation>Français</translation>
-    </message>
-</context>
-<context>
-    <name>i18n</name>
-    <message>
-        <location filename="../project_i18n.py" line="92"/>
-        <source>
-20160325
---------
-- La configuracion del sonido se graba ahora en glparchis.cfg
-- Se ha cambiado el makefile para que se compile con make y se instale con make install
-- Ya no se van a distribuir los sources de windows
-- Ahora se generan versiones de Windows de 32 bits y de 64 bits
-- Se ha eliminado el soporte para phonon, ahora se utiliza QMultimedia
-- Se ha migrado a PyQt5
-- Se ha anadido el modo de pantalla completa
-</source>
-        <translation>
-20160325
---------
-- Sound configuration is saved now in settings
-- Makefile have been changed to compile with make and to install with make install
-- Windows sources are not going to be released
-- 32 bits and 64 bits windows versions are going to be released
-- Phonon support have been droped. Now we use QMultimedia
-- We have migrated to PyQt5
-- We have added full screen support
-</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="104"/>
-        <source>
-20130716
---------
-- Cuando se come una ficha en la casilla de salida, esta ficha es la ultima en llegar si son dos distintas al color de la casilla
-- Cambiado el pink por el fuchsia, el cyan por darkturquoise y el orange por darkorange en colores web. 
-- Se ha anadido compatibilidad con los highscores que usaban los antiguos
-- Se ha anadido soporte para autoguardado
-- Mejorado el interfaz de usuario
-- Solucionado error al cerrar la aplicacion
-- Anadida opcion de que el panel de usuario siga al jugador actual o no
-- Al guardar la partida se graba, el tiempo de inicio y el numero de fichas comidas.
-- Se ha migrado a python3, yo lo he testeado con python 3.3
-
-20130228
---------
-- Ahora se muestra un dado en Acerca De
-- Mejorado el cmdDado
-- Ahora se puede tirar el dado haciendo doble click encima del tablero.
-- Solucionando problema con el sistema de consultar actualizaciones
-- Se ha anadido soporte para highscores
-- Se ha anadido juegos de 6 y 8 jugadores
-
-20120921
---------
-- Solucionado error al buscar si hay actualizacion disponible
-- Agregadas texturas numericas a las casillas
-- Emite un sonido si se va por 3 seises a casa.
-- Ahora permite guardar la partida cuando esta con todos jugadores IA
-- Se han modificado los sonidos del juego
-- Solucionado problema de un doble click en el dado
-- Se ha puesto la visualizacion del dado en 3D
-
-20120917
---------
-- Solucionado bug al pulsar la tecla ESCAPE. Ahora sale de la aplicacion
-- Anadido apagar / encender sonido
-- Enlaces de pantalla ahora son clickables
-- Nueva opcion de menu que busca actualizaciones de forma manual o cada 7 dias
-- Ahora el splitter muestra el ogl por defecto
-- Ahora el idioma por defecto es el ingles , pero en settings se puede cambiar el idioma y se graba en fichero de configuracion
-- Se ha anadido un pequeno manual de ayuda al juego. Se puede acceder pulsando F1
-- Los popup no se salen de la pantalla.
-
-20120914
---------
-- Anadida distribucion de binarios en windows y linux
-- Solucionado bug al cancelar en el dialogo inicial
-- Solucionados numeros bugs
-
-20120910
---------
-- Solucionado problema con directorio de partidas guardadas
-- El texto del dado cambia de color segun el jugador actual
-- Se ha anadido puntuacion al juego teniendo en cuenta el numero de casillas movidas. 
-- Se ha anadido una corona en la tabla de estadisticas al jugador que va ganando.
-- Ahora se muestra los primeros movimientos cuando empieza un jugador de AI
-- Solucionados varios bugs
-- Mejorada la inteligencia artificial de los jugadores virtuales, con un porcentaje de acierto en las decisiones
-- Se ha anadido un contador con el tiempo de partida transcurrido
-- Se ha mejorado la visualizacion de logs en pantalla
-
-20120902
---------
-- Se ha dado el soporte inicial a la aplicacion
-- La aplicacion es plenamente funcional. Falta mejorar el IA de los jugadores virtuales
-
-</source>
-        <translation>
-20130716
-======== 
-- When you eat a piece in the first spacem, this piece is the last in arrive, when both pieces are of different color.
-- Change color pink by fuchsia, cyan by darturquise and orange by darkorange 
-- Compatibility added with old highscores
-- Added autosave support
-- Improved user interface
-- Solved bug when closing app
-- Added option to follow the current player in the user panel
-- When saving the current game, it saves now inittime and the number of eaten pieces
-- App has been migrated to python3. I have test it with python 3.3
-
-20130228
-======== 
-- About menu shows a dice
-- cmdDado improved
-- Double click on the board to roll the dice
-- Solved bug when there&apos;s a new game version
-- Added support to highscores
-- Added 6 and 8 players game
-
-20120921
-======== 
-- Bug solved looking for game updates
-- Numerical textures added to places
-- A sound plays after rolling 3 sixes, if you go home.
-- You can save the game even when all the players are IA
-- Game sounds updated
-- Dice double click bug solved
-- The dice is now in 3D
-
-20120917
-======== 
-- Bug solved when pressing ESCAPE. Now it exists the game
-- Switch off / on sound added
-- Screen hyperlinks are now clickable.
-- New menu option to look for update manually or each 7 days
-- The splitter now shows the board by default
-- English is the default language. You can change the language at Settings. Settings will be saved for the next execution
-- A game handbook have been added To read press F1
-- All popups are now inside the screen
-
-20120914
-======== 
-- Windows and Linux binary distribution
-- Solved bug when pressing cancel at initial dialog
-- Solved several bugs
-
-20120910
-======== 
-- Solved bug with saved games directory
-- Dice text changes color to the current player color
-- Score system added. It uses the number of moved places. 
-- A crown is added in statistics table to show the player is winning the game.
-- IA first movements are now showed
-- Solved several bugs
-- IA improved using probabilities.
-- A game timer has been added
-- User panel logs have been improved
-
-20120902
-======== 
-- Initial support to the application
-- The app has all the funcionality. We need to improve the virtual players
-
-</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="182"/>
-        <source>
-Idea y desarrollo
------------------ 
-Mariano Munoz &lt;turulomio@yahoo.es&gt; 
-
-Traduccion
----------- 
-English: Mariano Munoz &lt;turulomio@yahoo.es&gt;
-French: Nadejda Adam
-</source>
-        <translation>
-Idea and development
------------------  
-Mariano Muñoz &lt;turulomio@yahoo.es&gt;  
-
-Translation
-----------  
-English: Mariano Muñoz &lt;turulomio@yahoo.es&gt;
-French: Nadejda Adam
-</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="86"/>
-        <source>- Anadido el script project_i18n para traducir la documentacion del proyecto</source>
-        <translation>- project_i18n script added to translate project documentation</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="87"/>
-        <source>- Ahora el tablero rota por su centro pulsando la letra m</source>
-        <translation>- Board rotates pressing m key</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="88"/>
-        <source>- Rendimiento mejorado</source>
-        <translation>- Improved performance</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="89"/>
-        <source>- Corregido error con el icono de fullscreen</source>
-        <translation>- Fullscreen icon error fixed</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="81"/>
-        <source>- La configuracion del splitter del juego se guarda ahora en pantalla normal y en pantalla completa</source>
-        <translation>- Splitter game configuration is saved with fullscreen and normal data</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="74"/>
-        <source>El estado de pantalla completa se guarda en el fichero de configuracion</source>
-        <translation>Fullscreen state is saved in settings file</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="75"/>
-        <source>Anadido sistema de estadistica en la base de datos de Sourceforge</source>
-        <translation>Added statistics system in Sourceforge database</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="76"/>
-        <source>Anadido opcion de no contribuir a la estadistica mundial</source>
-        <translation>Added option to do not contribute to world statistics</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="65"/>
-        <source>Anadida la opcion de configuracion de retraso entre movimientos</source>
-        <translation>Added delay between movements as a settings option</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="66"/>
-        <source>Anadida la opcion de configuracion de nivel de dificultad</source>
-        <translation>Added difficult level as a settings option</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="67"/>
-        <source>Anadida la opcion de subir y bajar el tablero en el eje z, con las teclas + y -</source>
-        <translation>Added board zoom  with keys + and -</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="68"/>
-        <source>Anadidas estadisticas individuales de juego</source>
-        <translation>Installation statistics added to the game</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="69"/>
-        <source>El distribuible de windows se ha cambiado por un msi. Desinstale el antiguo glparchis antes de instalar el nuevo</source>
-        <translation>Windows distribution file has been upgraded to a msi file. Please uninstall the old glparchis before installing the new one</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="59"/>
-        <source>Ahora se puede tirar el dado pulsando ENTER</source>
-        <translation>Now you can throw the dice pressing ENTER</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="60"/>
-        <source>Anadida la opcion de acercar y alejar el tablero en el menu</source>
-        <translation>Added Zoom IN / Zoom OUT actions to the menu</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="54"/>
-        <source>Linux: Solucionado error al cargar los ficheros de traduccion</source>
-        <translation>Linux: Fixed bug loading translation files</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="46"/>
-        <source>Windows: Solved annoying bug. User needed to do several clicks to move a piece</source>
-        <translation>Windows: Solved annoying bug. User needed to do several clicks to move a piece</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="47"/>
-        <source>Improved OpenGL code and it&apos;s documentation</source>
-        <translation>Improved OpenGL code and it&apos;s documentation</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="48"/>
-        <source>Added Doxygen document system for developers</source>
-        <translation>Added Doxygen document system for developers</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="49"/>
-        <source>Windows: Solved bug showing objcts in About menu</source>
-        <translation>Windows: Solved bug showing objcts in About menu</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="40"/>
-        <source>Added 3 players mode</source>
-        <translation>Added 3 players mode</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="41"/>
-        <source>Now you can report a bug from glParchis</source>
-        <translation>Now you can report a bug from glParchis</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="196"/>
-        <source>Requests</source>
-        <translation>Requests</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="199"/>
-        <source>This application has the following dependencies:</source>
-        <translation>This application has the following dependencies:</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="213"/>
-        <source>Si usas la distribucion Gentoo, te puedes bajar el ebuild desde {}</source>
-        <translation>If you use Gentoo distribution, you can download its ebuild from {}</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="216"/>
-        <source>Si eres atrevido o quieres ayudarme con el desarrollo te lo puedes bajar del subversion con el siguiente comando</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="220"/>
-        <source>Para desinstalar utiliza el siguiente comando hace una desinstalacion limpia</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="230"/>
-        <source>Se entra en el directorio glparchis, que se acaba de crear con</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="233"/>
-        <source>y se ejecuta el fichero glparchis con</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="240"/>
-        <source>Just run the executable</source>
-        <translation>Just run the executable</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="205"/>
-        <source>Procedure to install in Linux from sourcecode</source>
-        <translation>Procedure to install in Linux from sourcecode</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="208"/>
-        <source>You must uncompress the file</source>
-        <translation>You must uncompress the file</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="209"/>
-        <source>Once you are in the directory where Makefile.py is, just run</source>
-        <translation>Once you are in the directory where Makefile.py is, just run</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="224"/>
-        <source>Procedure to install Linux binaries</source>
-        <translation>Procedure to install Linux binaries</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="227"/>
-        <source>Uncompress the file with the command</source>
-        <translation>Uncompress the file with the command</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="237"/>
-        <source>Procedure to install Windows binaries</source>
-        <translation>Procedure to install Windows binaries</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="33"/>
-        <source>Added action to hide/show left panel</source>
-        <translation>Added action to hide/show left panel</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="34"/>
-        <source>Added automatism to the dice</source>
-        <translation>Added automatism to the dice</translation>
-    </message>
-    <message>
-        <location filename="../project_i18n.py" line="35"/>
-        <source>Added automatism to pawns when only one can move</source>
-        <translation>Added automatism to pawns when only one can move</translation>
     </message>
 </context>
 <context>
@@ -1534,7 +1151,7 @@ French: Nadejda Adam
         <translation>3 sixes in a row</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="192"/>
+        <location filename="../ui/wdgGame.py" line="193"/>
         <source>Tira el dado</source>
         <translation>Roll the dice</translation>
     </message>
@@ -1544,62 +1161,62 @@ French: Nadejda Adam
         <translation>Game time</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="117"/>
+        <location filename="../ui/wdgGame.py" line="118"/>
         <source>Empieza la partida</source>
         <translation>The game starts</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="202"/>
+        <location filename="../ui/wdgGame.py" line="203"/>
         <source>Tire el dado</source>
         <translation>Roll the dice</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="219"/>
+        <location filename="../ui/wdgGame.py" line="220"/>
         <source>IA mueve una ficha</source>
         <translation>IA moves a piece</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="255"/>
+        <location filename="../ui/wdgGame.py" line="256"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation>You got three sixes, but you don&apos;t go home because you got the arrival ramp</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="258"/>
+        <location filename="../ui/wdgGame.py" line="259"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation>You got three sixes. Your last moved piece goes home</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="262"/>
+        <location filename="../ui/wdgGame.py" line="263"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation>You got three sixes, but as you can&apos;t move, you don&apos;t go home</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="264"/>
+        <location filename="../ui/wdgGame.py" line="265"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation>After three sixes, you can&apos;t roll the dice again</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="277"/>
+        <location filename="../ui/wdgGame.py" line="278"/>
         <source>Seleccione una ficha...</source>
         <translation>Select a piece...</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="319"/>
+        <location filename="../ui/wdgGame.py" line="320"/>
         <source>Fin de turno</source>
         <translation>End of turn</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="204"/>
+        <location filename="../ui/wdgGame.py" line="205"/>
         <source>IA Tira el dado</source>
         <translation>IA rolls the dice</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="237"/>
+        <location filename="../ui/wdgGame.py" line="238"/>
         <source>Mueva una ficha</source>
         <translation>Move a piece</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="157"/>
+        <location filename="../ui/wdgGame.py" line="158"/>
         <source>Has ganado la partida</source>
         <translation>You won the game</translation>
     </message>
@@ -1639,7 +1256,7 @@ French: Nadejda Adam
         <translation>8 players game</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="92"/>
+        <location filename="../ui/wdgGame.py" line="93"/>
         <source>Tiempo de partida: {0}</source>
         <translation>Match time: {0}</translation>
     </message>
@@ -1649,7 +1266,7 @@ French: Nadejda Adam
         <translation>User panel follows to current player</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="178"/>
+        <location filename="../ui/wdgGame.py" line="179"/>
         <source>{0} ha ganado</source>
         <translation>{0} has won</translation>
     </message>
@@ -1679,12 +1296,12 @@ French: Nadejda Adam
         <translation>Press this button, make double click on the board or press ENTER, to throw the dice</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="196"/>
+        <location filename="../ui/wdgGame.py" line="197"/>
         <source>Se ha tirado automaticamente el dado</source>
         <translation>Dice has been automatically thrown</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="234"/>
+        <location filename="../ui/wdgGame.py" line="235"/>
         <source>Se ha movido automaticamente la unica ficha disponible</source>
         <translation>The only piece available has been moved</translation>
     </message>

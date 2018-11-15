@@ -25,9 +25,9 @@ Dependencies
 
 Changelog
 =========
-1.0.0
+20181115
   * Created a pypi project from glparchis-20181020 with package structure
-  * Changed version numeration 1.0.0 will correspond to 
+  * Migrated to github
 
 20181020
 * Added action to hide/show left panel
