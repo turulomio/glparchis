@@ -97,12 +97,8 @@ class Uninstall(Command):
         if platform.system()=="Linux":
             os.system("rm -Rf {}/glparchis*".format(site.getsitepackages()[0]))
             os.system("rm /usr/bin/glparchis")
-#            os.system("rm " + prefixbin + "/glparchis*")
-#        shell("rm -Rf " + prefixlib)
-#        shell("rm -Rf " + prefixshare)
-#        shell("rm -fr " + prefixpixmaps + "/glparchis.png")
-#        shell("rm -fr " + prefixapplications +"/glparchis.desktop")
-
+            os.system("rm /usr/share/pixmaps/glparchis.png")
+            os.system("rm /usr/share/applications/glparchis.desktop")
         else:
             print(_("Uninstall command only works in Linux"))
 
@@ -147,6 +143,15 @@ with open('glparchis/version.py', encoding='utf-8') as f:
         if line.find("__version__ =")!=-1:
             __version__=line.split("'")[1]
 
+if platform.system()=="Linux":
+    data_files=[
+                 ('/usr/share/applications/', ['glparchis.desktop']),
+                 ('/usr/share/pixmaps/', ['glparchis/images/glparchis.png']),
+               ]
+else:
+    data_files=[]
+
+
 setup(name='glparchis',
     version=__version__,
     description='Parchís game',
@@ -172,7 +177,7 @@ setup(name='glparchis',
                       'PyQt5;platform_system=="Windows"',
                       'pywin32;platform_system=="Windows"',
                      ],
-    data_files=[],
+    data_files=data_files,
     cmdclass={
                         'doxygen': Doxygen,
                         'doc': Doc,
