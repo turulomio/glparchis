@@ -14,11 +14,6 @@ Main developer web page:
 Pypi web page:
   * https://pypi.org/project/glparchis/
 
-Authors
-=======
-* Turulomio: Idea and development. English and spanish translations.
-* Nadejda Adam: French translation
-
 Description
 ===========
 Parchís game
@@ -26,35 +21,28 @@ Parchís game
 You can run the game with 3, 4, 6 or 8 player mode:
 
 .. image:: https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-3.png
-   :height: 800px
-   :width: 600px
-   :scale: 100 %
+   :width: 200px
+   :height: 200px
    :align: center
-
+   
 .. image:: https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-4.png
-   :height: 800px
-   :width: 600px
-   :scale: 100 %
+   :width: 200px
+   :height: 200px
    :align: center
-
+   
 .. image:: https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-6.png
-   :height: 800px
-   :width: 600px
-   :scale: 100 %
+   :width: 200px
+   :height: 200px
    :align: center
-
+   
 .. image:: https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-8.png
-   :height: 800px
-   :width: 600px
-   :scale: 100 %
+   :width: 200px
+   :height: 200px
    :align: center
-
 
 License
 =======
 GPL-3
-
-
 
 Install in Linux
 ================
@@ -82,6 +70,11 @@ Dependencies
 * https://pypi.org/project/PyQt5/, as the main library.
 * https://pypi.org/project/pywin32/, to create shortcuts.
 * http://pyopengl.sourceforge.net/, as OpenGL library.
+
+Authors
+=======
+* Turulomio: Idea and development. English and spanish translations.
+* Nadejda Adam: French translation
 
 Changelog
 =========
