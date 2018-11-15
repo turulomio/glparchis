@@ -20,25 +20,10 @@ Parchís game
 
 You can run the game with 3, 4, 6 or 8 player mode:
 
-.. image:: https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-3.png
-   :width: 200px
-   :height: 200px
-   :align: center
-   
-.. image:: https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-4.png
-   :width: 200px
-   :height: 200px
-   :align: center
-   
-.. image:: https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-6.png
-   :width: 200px
-   :height: 200px
-   :align: center
-   
-.. image:: https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-8.png
-   :width: 200px
-   :height: 200px
-   :align: center
+.. raw:: html
+
+  <img src="https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-3.png" width="300px"\><img src="https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-4.png" width="300px"\><img src="https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-6.png" width="300px"\><img src="https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-8.png" width="300px"\>
+
 
 License
 =======
@@ -50,11 +35,11 @@ If you use Gentoo you can find a ebuild in https://sourceforge.net/p/xulpymoney/
 
 If you use other distribution, you need to install PyQt5 manually. PyQt5 is not in Linux setup.py dependencies due to it doesn't use standard setup tools. So for compatibility reasons with distributions like Gentoo, we use this additional step.
 
-`pip install PyQt5`
+.. code:: 
 
-`pip install glparchis`
-
-`glparchis`
+  pip install PyQt5
+  pip install glparchis
+  glparchis
 
 Install in Windows
 ==================
@@ -62,7 +47,10 @@ You need to install Python from https://www.python.org and add it to the PATH
 
 You must open a console with Administrator privileges and type:
 
-`pip install glparchis
+.. code-block:: 
+
+  pip install glparchis
+  glparchis
 
 Dependencies
 ============
