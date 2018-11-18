@@ -1,13 +1,10 @@
 from setuptools import setup, Command
-import logging
 import os
 import platform
 import site
 import shutil
-import sys
 from concurrent.futures import ProcessPoolExecutor
 from multiprocessing import cpu_count
-
 
 class Doxygen(Command):
     description = "Create/update doxygen documentation in doc/html"
@@ -100,7 +97,17 @@ class Uninstall(Command):
             os.system("rm /usr/share/pixmaps/glparchis.png")
             os.system("rm /usr/share/applications/glparchis.desktop")
         else:
-            print(_("Uninstall command only works in Linux"))
+            print(site.getsitepackages())
+            for file in os.listdir(site.getsitepackages()[1]):#site packages
+               path=site.getsitepackages()[1]+"\\"+ file
+               if file.find("glparchis")!=-1:
+                   shutil.rmtree(path)
+                   print(path,  "Erased")
+            for file in os.listdir(site.getsitepackages()[0]+"\\Scripts\\"):#Scripts
+               path=site.getsitepackages()[0]+"\\scripts\\"+ file
+               if file.find("glparchis")!=-1:
+                   os.remove(path)
+                   print(path,  "Erased")
 
 class Doc(Command):
     description = "Update man pages and translations"
@@ -148,8 +155,10 @@ if platform.system()=="Linux":
                  ('/usr/share/applications/', ['glparchis.desktop']),
                  ('/usr/share/pixmaps/', ['glparchis/images/glparchis.png']),
                ]
+    entry_points={'gui_scripts': ['glparchis=glparchis.glparchis:main', ]}
 else:
     data_files=[]
+    entry_points={'gui_scripts': ['glparchis=glparchis.glparchis:main', ], 'console_scripts' : [ 'glparchis_shortcuts=glparchis.shortcuts:create', ]}
 
 
 setup(name='glparchis',
@@ -169,9 +178,7 @@ setup(name='glparchis',
     author_email='turulomio@yahoo.es',
     license='GPL-3',
     packages=['glparchis'],
-    entry_points = {'console_scripts': [    'glparchis=glparchis.glparchis:main',
-                                    ],
-                },
+    entry_points = entry_points,
     install_requires=['setuptools',
                       'pyopengl',
                       'PyQt5;platform_system=="Windows"',
