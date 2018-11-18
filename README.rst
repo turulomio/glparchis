@@ -1,5 +1,3 @@
-Source code & Development:
-    https://glparchis.sourceforge.io
 Glparchis doxygen documentation:
     http://turulomio.users.sourceforge.net/doxygen/glparchis/
 Web page main developer
