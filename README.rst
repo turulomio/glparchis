@@ -1,3 +1,5 @@
+Project links
+=============
 Glparchis doxygen documentation:
     http://turulomio.users.sourceforge.net/doxygen/glparchis/
 Web page main developer
@@ -54,4 +56,6 @@ Authors
 
 Changelog
 =========
-Please read CHANGELOG.rst
+Please read the CHANGELOG_
+
+.. _CHANGELOG: https://raw.githubusercontent.com/Turulomio/glparchis/master/CHANGELOG.rst
