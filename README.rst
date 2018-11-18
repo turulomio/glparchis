@@ -3,6 +3,13 @@ Glparchis doxygen documentation:
 Web page main developer
     http://turulomio.users.sourceforge.net/
 
+Snapshots
+=========
+.. raw:: html
+
+  <img src="https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-3.png" width="300px"\><img src="https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-4.png" width="300px"\><img src="https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-6.png" width="300px"\><img src="https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-8.png" width="300px"\>
+
+
 Install in Linux
 ================
 If you use Gentoo you can find a ebuild in https://github.com/Turulomio/myportage/tree/master/games-board/glparchis
