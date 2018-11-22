@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 import os
 import sys
 
@@ -10,7 +9,7 @@ def main():
     from PyQt5.QtCore import QSettings
     from PyQt5.QtWidgets import QApplication
     from glparchis.ui.frmMain import frmMain
-    
+
     try:
         os.makedirs(os.path.expanduser("~/.glparchis/"))
     except:
@@ -29,5 +28,3 @@ def main():
     frmMain.show()
     sys.exit(app.exec_())
 
-if __name__ == "__main__":
-    main()

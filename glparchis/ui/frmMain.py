@@ -1,10 +1,12 @@
-import sys, os, urllib.request,   datetime
+import sys 
+import os
+import datetime
 from urllib.request import urlopen
 from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QEvent,  QUrl,  pyqtSignal
 from PyQt5.QtGui import QIcon, QPixmap, QKeyEvent, QDesktopServices
 from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QDialog, QFileDialog
 from glparchis.libglparchis import str2bool, cargarQTranslator, b2s, qmessagebox,  Mem3, Mem4, Mem6, Mem8,  SoundSystem
-from glparchis.version import __versiondate__
+from glparchis.version import __version__,  get_remote, __versiondate__
 
 import configparser
 from glparchis.ui.Ui_frmMain import Ui_frmMain
@@ -176,29 +178,12 @@ class frmMain(QMainWindow, Ui_frmMain):
         self.checkUpdates(True)
         
     def checkUpdates(self, showdialogwhennoupdates=False):
-        #Chequea en Internet
-        try:
-            web=b2s(urllib.request.urlopen('https://sourceforge.net/projects/glparchis/files/glparchis/').read())
-        except:
-            web=None
-        #Si hay error de internet avisa
-        if web==None:
-            if showdialogwhennoupdates==True:
-                qmessagebox(self.tr("No se ha podido comprobar si hay actualizaciones. Intentelo mas tarde."))
-            return
-        #Saca la version de internet
-        remoteversion=None
-        for line in web.split("\n"):
-            if line.find('class="folder "')!=-1:
-                remoteversion=line.split('glparchis-')[1].split('"') [0]
-                break
-        #Si no hay version sale
-        print ("Remote version",  remoteversion)
+        remoteversion=get_remote("https://raw.githubusercontent.com/Turulomio/glparchis/master/glparchis/version.py")
         if remoteversion==None:
+            qmessagebox(self.tr("I couldn't look for updates. Try it later.."))
             return
-        dateremoteversion=datetime.date(int(remoteversion[:4]), int(remoteversion[4:6]), int(remoteversion[6:8]))
-                
-        if dateremoteversion==__versiondate__:
+
+        if remoteversion.replace("+", "")==__version__.replace("+", ""):#Quita el más de desarrollo 
             if showdialogwhennoupdates==True:
                 qmessagebox(self.tr("Dispone de la ultima version del juego"))
         else:
@@ -206,12 +191,10 @@ class frmMain(QMainWindow, Ui_frmMain):
             m.setIcon(QMessageBox.Information)
             m.setWindowIcon(QIcon(":glparchis/ficharoja.png"))
             m.setTextFormat(Qt.RichText)#this is what makes the links clickable
-            m.setText(self.tr("Hay una nueva version del programa. Bajatela de la pagina web del proyecto <a href='http://glparchis.sourceforge.net'>http://glparchis.sourceforge.net</a> o directamente desde <a href='https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-")+remoteversion+"/'>Sourceforge</a>")
+            m.setText(self.tr("There is a new glParchis version. You can download it from <a href='https://github.com/Turulomio/glparchis/releases'>GitHub</a>."))
             m.exec_() 
         self.settings.setValue("frmMain/lastupdate", datetime.date.today().toordinal())
-        
 
-        
     @pyqtSlot(QEvent)   
     def closeEvent(self,event):   
         print ("saliendo")
