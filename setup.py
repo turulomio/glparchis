@@ -136,7 +136,15 @@ class PyInstaller(Command):
 
     def run(self):
         shutil.rmtree("build")
-        os.system("""pyinstaller glparchis/glparchis.py -n glparchis-{}  --onefile   --windowed --icon glparchis/images/glparchis.ico""".format(__version__))
+        os.mkdir("build")
+        os.system("python setup.py uninstall")
+        os.system("python setup.py install")
+        f=open("build/run.py","w")
+        f.write("import glparchis.glparchis\n")
+        f.write("glparchis.glparchis.main()\n")
+        f.close()
+        os.chdir("build")
+        os.system("pyinstaller run.py -n glparchis-{} --onefile --windowed --icon ../glparchis/images/glparchis.ico --distpath ../dist".format(__version__))
 
 
     ########################################################################
