@@ -75,6 +75,7 @@ Nueva versión:
   * git push
   * Hacer un nuevo tag en GitHub
   * python setup.py sdist upload -r pypi
+  * Pasa a Windows y ejecuta setup.py pyinstaller
   * Crea un nuevo ebuild de Gentoo con la nueva versión
   * Subelo al repositorio del portage
 """.format(__version__))
