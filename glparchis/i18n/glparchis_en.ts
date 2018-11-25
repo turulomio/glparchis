@@ -511,12 +511,12 @@
         <translation>F5</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="163"/>
+        <location filename="../ui/frmMain.py" line="165"/>
         <source>Sonido encendido</source>
         <translation>Sound switched on</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="168"/>
+        <location filename="../ui/frmMain.py" line="170"/>
         <source>Sonido apagado</source>
         <translation>Sound switched off</translation>
     </message>
@@ -566,7 +566,7 @@
         <translation>Ctrl+8</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="35"/>
+        <location filename="../ui/frmMain.py" line="37"/>
         <source>glParchis 2010-{}. GNU General Public License &#xa9;</source>
         <translation>glParchis 2010-{}. GNU General Public License ©</translation>
     </message>
@@ -581,7 +581,7 @@
         <translation>Change to full screen mode</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="79"/>
+        <location filename="../ui/frmMain.py" line="81"/>
         <source>Salir del modo de pantalla completa</source>
         <translation>Exit from full screen mode</translation>
     </message>
@@ -591,19 +591,9 @@
         <translation>This option is being developed</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="187"/>
-        <source>No se ha podido comprobar si hay actualizaciones. Intentelo mas tarde.</source>
-        <translation>I couldn&apos;t check if there are updates. Try it later.</translation>
-    </message>
-    <message>
-        <location filename="../ui/frmMain.py" line="203"/>
+        <location filename="../ui/frmMain.py" line="188"/>
         <source>Dispone de la ultima version del juego</source>
         <translation>You have the last game version</translation>
-    </message>
-    <message>
-        <location filename="../ui/frmMain.py" line="209"/>
-        <source>Hay una nueva version del programa. Bajatela de la pagina web del proyecto &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt; o directamente desde &lt;a href=&apos;https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-</source>
-        <translation>There is a new version. Download it from project page &lt;a href=&apos;http://glparchis.sourceforge.net&apos;&gt;http://glparchis.sourceforge.net&lt;/a&gt; or directly from &lt;a href=&apos;https://sourceforge.net/projects/glparchis/files/glparchis/glparchis-</translation>
     </message>
     <message>
         <location filename="../ui/Ui_frmMain.py" line="239"/>
@@ -686,7 +676,7 @@
         <translation>-</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="62"/>
+        <location filename="../ui/frmMain.py" line="64"/>
         <source>Installation UUID already set</source>
         <translation>Installation UUID already set</translation>
     </message>
@@ -706,22 +696,22 @@
         <translation>Report a bug</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="102"/>
+        <location filename="../ui/frmMain.py" line="104"/>
         <source>Pulse para desactivar el automatismo del dado y en caso de poder mover solo una ficha</source>
         <translation>Press to deactivate the automatism of the dice and pieces, in the case you can move only one</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="103"/>
+        <location filename="../ui/frmMain.py" line="105"/>
         <source>Desactiva el automatismo del dado</source>
         <translation>Disable the automatism of the dice</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="110"/>
+        <location filename="../ui/frmMain.py" line="112"/>
         <source>Activa el automatismo del dado</source>
         <translation>Enable the automatism of the dice</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="125"/>
+        <location filename="../ui/frmMain.py" line="127"/>
         <source>Pulse para ocultar el panel izquierdo</source>
         <translation>Press to hide the left panel</translation>
     </message>
@@ -731,12 +721,12 @@
         <translation>Hides the left panel</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="129"/>
+        <location filename="../ui/frmMain.py" line="131"/>
         <source>Pulse para mostrar el panel izquierdo</source>
         <translation>Press to show the left panel</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="130"/>
+        <location filename="../ui/frmMain.py" line="132"/>
         <source>Muestra el panel izquierdo</source>
         <translation>Shows the left panel</translation>
     </message>
@@ -761,13 +751,23 @@
         <translation>F10</translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="109"/>
+        <location filename="../ui/frmMain.py" line="111"/>
         <source>Pulse para mover automaticamente el dado y las fichas cuando solo se pueda mover una</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
         <location filename="../ui/Ui_frmMain.py" line="252"/>
         <source>Activa &amp;el automatismo del dado y cuando sólo puede haber un movimiento de ficha</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmMain.py" line="183"/>
+        <source>I couldn&apos;t look for updates. Try it later..</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmMain.py" line="194"/>
+        <source>There is a new glParchis version. You can download it from &lt;a href=&apos;https://github.com/Turulomio/glparchis/releases&apos;&gt;GitHub&lt;/a&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

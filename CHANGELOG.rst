@@ -1,3 +1,6 @@
+20181125
+  * Created glparchis_shortcuts.exe in Windows to create Desktop shortcut
+  * Fixed update detection system
 
 20181115
   * Created a pypi project from glparchis-20181020 with package structure

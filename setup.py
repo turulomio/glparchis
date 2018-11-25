@@ -71,13 +71,13 @@ Nueva versión:
   * python setup.py doc
   * python setup.py install
   * python setup.py doxygen
-  * git commit -a -m 'glparchis-version'
+  * git commit -a -m 'glparchis-{}'
   * git push
   * Hacer un nuevo tag en GitHub
   * python setup.py sdist upload -r pypi
   * Crea un nuevo ebuild de Gentoo con la nueva versión
   * Subelo al repositorio del portage
-""")
+""".format(__version__))
 
 
 class Uninstall(Command):
