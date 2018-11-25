@@ -4,6 +4,8 @@ Glparchis doxygen documentation:
     http://turulomio.users.sourceforge.net/doxygen/glparchis/
 Web page main developer
     http://turulomio.users.sourceforge.net/
+Game statistics
+    http://glparchis.sourceforge.net/php/glparchis_statistics.php
 
 Snapshots
 =========
