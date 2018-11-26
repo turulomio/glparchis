@@ -1,0 +1,4 @@
+*.ui binary
+*.ts binary
+*.qm binary
+glparchis_rc.py binary

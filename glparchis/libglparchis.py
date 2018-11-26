@@ -1732,6 +1732,7 @@ class Tablero3(AbstractOpenglObject):
         
         glTranslated(self.position.x,  self.position.y,  self.position.z)
         z=0
+        qglwidget.qglColor(self.color.qcolor())
         #Scaling and translating
         glScaled(1.03, 1.03, 1.03)
         glTranslated(-0.9, -0.95, 0)
@@ -1745,8 +1746,10 @@ class Tablero3(AbstractOpenglObject):
         p=Polygon().init__create(verts, self.color, TTextures.Wood, texverts)
         prism=Prism(p, 0.5)
         prism.opengl(qglwidget)
-        glDisable(GL_TEXTURE_2D)    
         glPopMatrix()
+        glDisable(GL_TEXTURE_2D)    
+
+
 
 ## Class to draw 4 player board
 class Tablero4(AbstractOpenglObject):
@@ -2054,6 +2057,8 @@ class Prism:
             pverts.append(self.bottom.verts[(i+1) % len(self.bottom.verts)].clone())
             pverts.append(self.bottom.verts[i].clone())
             self.contour.append(Polygon().init__create(pverts, Color(200, 200, 200), self.bottom.texture, texverts))
+        
+        
         
     def opengl(self, qglwidget):
         self.up.opengl(qglwidget)

@@ -63,7 +63,7 @@
      <item>
       <widget class="QTabWidget" name="tab">
        <property name="currentIndex">
-        <number>3</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tabGLParchis">
         <attribute name="title">
@@ -422,6 +422,11 @@ p, li { white-space: pre-wrap; }
                  <string/>
                 </property>
                </row>
+               <row>
+                <property name="text">
+                 <string/>
+                </property>
+               </row>
                <column>
                 <property name="text">
                  <string>Objetos</string>
@@ -429,100 +434,105 @@ p, li { white-space: pre-wrap; }
                </column>
                <item row="0" column="0">
                 <property name="text">
-                 <string>Tablero de 4 jugadores</string>
+                 <string>Tablero de 3 jugadores</string>
                 </property>
                </item>
                <item row="1" column="0">
                 <property name="text">
-                 <string>Tablero de 6 jugadores</string>
+                 <string>Tablero de 4 jugadores</string>
                 </property>
                </item>
                <item row="2" column="0">
                 <property name="text">
-                 <string>Tablero de 8 jugadores</string>
+                 <string>Tablero de 6 jugadores</string>
                 </property>
                </item>
                <item row="3" column="0">
                 <property name="text">
-                 <string>Ficha roja</string>
+                 <string>Tablero de 8 jugadores</string>
                 </property>
                </item>
                <item row="4" column="0">
                 <property name="text">
-                 <string>Dado</string>
+                 <string>Ficha roja</string>
                 </property>
                </item>
                <item row="5" column="0">
                 <property name="text">
-                 <string>Casilla normal</string>
+                 <string>Dado</string>
                 </property>
                </item>
                <item row="6" column="0">
                 <property name="text">
-                 <string>3 players initial square</string>
+                 <string>Casilla normal</string>
                 </property>
                </item>
                <item row="7" column="0">
                 <property name="text">
-                 <string>4 players initial square</string>
+                 <string>3 players initial square</string>
                 </property>
                </item>
                <item row="8" column="0">
                 <property name="text">
-                 <string>6 players initial square</string>
+                 <string>4 players initial square</string>
                 </property>
                </item>
                <item row="9" column="0">
                 <property name="text">
-                 <string>8 players initial square</string>
+                 <string>6 players initial square</string>
                 </property>
                </item>
                <item row="10" column="0">
                 <property name="text">
-                 <string>3 players final square</string>
+                 <string>8 players initial square</string>
                 </property>
                </item>
                <item row="11" column="0">
                 <property name="text">
-                 <string>4 players final square</string>
+                 <string>3 players final square</string>
                 </property>
                </item>
                <item row="12" column="0">
                 <property name="text">
-                 <string>6 players final square</string>
+                 <string>4 players final square</string>
                 </property>
                </item>
                <item row="13" column="0">
                 <property name="text">
-                 <string>8 players final square</string>
+                 <string>6 players final square</string>
                 </property>
                </item>
                <item row="14" column="0">
                 <property name="text">
-                 <string>4 player left oblique square</string>
+                 <string>8 players final square</string>
                 </property>
                </item>
                <item row="15" column="0">
                 <property name="text">
-                 <string>6 player left oblique square</string>
+                 <string>4 player left oblique square</string>
                 </property>
                </item>
                <item row="16" column="0">
                 <property name="text">
-                 <string>8 player left oblique square</string>
+                 <string>6 player left oblique square</string>
                 </property>
                </item>
                <item row="17" column="0">
                 <property name="text">
-                 <string>4 player left oblique square</string>
+                 <string>8 player left oblique square</string>
                 </property>
                </item>
                <item row="18" column="0">
                 <property name="text">
-                 <string>6 player left oblique square</string>
+                 <string>4 player left oblique square</string>
                 </property>
                </item>
                <item row="19" column="0">
+                <property name="text">
+                 <string>6 player left oblique square</string>
+                </property>
+               </item>
+               <item row="20" column="0">
                 <property name="text">
                  <string>8 player left oblique square</string>
                 </property>

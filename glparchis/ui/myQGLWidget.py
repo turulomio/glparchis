@@ -8,7 +8,7 @@ from OpenGL.GL import glCallList, glClear, glColorMaterial, glEnable,  glEndList
 from OpenGL.GL import  GL_AMBIENT, GL_QUADS, GL_AMBIENT_AND_DIFFUSE, GL_CCW, GL_COLOR_BUFFER_BIT, GL_COLOR_MATERIAL, GL_COMPILE, GL_CULL_FACE, GL_DEPTH_BUFFER_BIT, GL_DEPTH_TEST, GL_FRONT, GL_LIGHT0, GL_LIGHTING, GL_MODELVIEW, GL_NICEST, GL_PERSPECTIVE_CORRECTION_HINT, GL_POSITION, GL_PROJECTION, GL_RENDER, GL_SELECT, GL_SMOOTH, GL_STENCIL_BUFFER_BIT, GL_TEXTURE_2D, GL_VIEWPORT,  GL_FLAT
 from OpenGL.GLU import gluPerspective, gluPickMatrix
 
-from glparchis.libglparchis import Casilla, Ficha, Jugador, Dado, Coord3D,  Color, SetColores,  Tablero4,  Tablero6, Tablero8
+from glparchis.libglparchis import Casilla, Ficha, Jugador, Dado, Coord3D,  Color, SetColores, Tablero3, Tablero4,  Tablero6, Tablero8
 from glparchis.libglparchistypes import TNames,  TSquareTypes
 from glparchis.ui.frmShowCasilla import frmShowCasilla
 from glparchis.ui.frmShowFicha import frmShowFicha
@@ -535,11 +535,23 @@ class wdgShowObject(myQGLWidget, ObjectRotationManager):
         self.cas= Casilla(1, 2, colores.arr[6] , (-3.5, -1.5, 0, 0), 0, False, False, TSquareTypes.Normal,  False, False)
         self.cas.buzon=self.fichaslist2
         
-        self.squareInitial6= Casilla(1, 2, colores.arr[7] , (-3.5, -1.5, 0, 0), 0, False, False, TSquareTypes.Initial6,  False, False)
+        self.squareInitial3= Casilla(1, 2, colores.arr[4] , (-3.5, -1.5, 0, 0), 0, False, False, TSquareTypes.Initial3,  False, False)
+        self.squareInitial3.buzon=self.fichaslist4
+        
+        self.squareInitial6= Casilla(1, 2, colores.arr[0] , (-3.5, -1.5, 0, 0), 0, False, False, TSquareTypes.Initial6,  False, False)
         self.squareInitial6.buzon=self.fichaslist4
         
         self.squareInitial8= Casilla(1, 2, colores.arr[7] , (0, 0, 0), 0, False, False, TSquareTypes.Initial8,  False, False)
         self.squareInitial8.buzon=[self.pawnred, self.pawnred, self.pawnred, self.pawnred]
+        
+        self.squareFinal3= Casilla(1, 2, colores.arr[0] , (-3.5, -1.5, 0, 0), 0, False, False, TSquareTypes.Final3,  False, False)
+        self.squareFinal3.buzon=self.fichaslist4
+        self.squareFinal4= Casilla(1, 2, colores.arr[1] , (-3.5, -1.5, 0, 0), 0, False, False, TSquareTypes.Final4,  False, False)
+        self.squareFinal4.buzon=self.fichaslist4
+        self.squareFinal6= Casilla(1, 2, colores.arr[2] , (-3.5, -1.5, 0, 0), 0, False, False, TSquareTypes.Final6,  False, False)
+        self.squareFinal6.buzon=self.fichaslist4
+        self.squareFinal8= Casilla(1, 2, colores.arr[3] , (-3.5, -1.5, 0, 0), 0, False, False, TSquareTypes.Final8,  False, False)
+        self.squareFinal8.buzon=self.fichaslist4
         
         self.squareleftobliquei4= Casilla(1, 2, white, (0, 0, 0), 0, False, False, TSquareTypes.ObliqueLeft4,  False, False)
         self.squareleftobliquei4.buzon=[self.pawnred, self.pawnred]
@@ -557,8 +569,11 @@ class wdgShowObject(myQGLWidget, ObjectRotationManager):
         self.squarerightobliquei8.buzon=[self.pawnred, self.pawnred]
         
         
-        self.tablero=Tablero4()
-        self.tablero.position=Coord3D(0, 0, 0)
+        self.tablero3=Tablero3()
+        self.tablero3.position=Coord3D(0, 0, 0)
+        
+        self.tablero4=Tablero4()
+        self.tablero4.position=Coord3D(0, 0, 0)
         
         self.tablero6=Tablero6()
         self.tablero6.position=Coord3D(0, 0, 0)
@@ -590,10 +605,7 @@ class wdgShowObject(myQGLWidget, ObjectRotationManager):
         self.updateGL()
         print(self.z)
 
-    def initializeGL(self): 
-        """
-            Initialize Opengl for QGLWidget
-        """
+    def initializeGL(self):
         self.qglClearColor(QColor(206, 224, 255)) #Sets background color
         myQGLWidget.initializeGL(self)
 
@@ -613,60 +625,70 @@ class wdgShowObject(myQGLWidget, ObjectRotationManager):
         glRotated(self.zRot / 16.0, 0.0, 0.0, 1.0)
         if self.objeto==0:
             glScaled(0.1, 0.1,0.1)
-            self.tablero.draw(self)
+            self.tablero3.draw(self)
         elif self.objeto==1:
             glScaled(0.1, 0.1,0.1)
-            self.tablero6.draw(self)
+            self.tablero4.draw(self)
         elif self.objeto==2:
             glScaled(0.1, 0.1,0.1)
-            self.tablero8.draw(self)
+            self.tablero6.draw(self)
         elif self.objeto==3:
+            glScaled(0.1, 0.1,0.1)
+            self.tablero8.draw(self)
+        elif self.objeto==4:
             self.z=-10
             self.pawnred.draw(self)
-        elif self.objeto==4:
+        elif self.objeto==5:
             self.z=-15
             self.dado.draw_alone(self)
-        elif self.objeto==5:
+        elif self.objeto==6:
             self.z=-12
             self.cas.draw(self)
         elif self.objeto==7:
-            self.z=-38
-            self.casinicio.draw(self)
+            self.z=-36
+            self.squareInitial3.draw(self)
         elif self.objeto==8:
-            self.z=-40
-            self.squareInitial6.draw(self)
+            self.z=-36
+            self.casinicio.draw(self)
         elif self.objeto==9:
             self.z=-40
-            self.squareInitial8.draw(self)
+            self.squareInitial6.draw(self)
         elif self.objeto==10:
             self.z=-40
+            self.squareInitial8.draw(self)
         elif self.objeto==11:
             self.z=-40
+            self.squareFinal3.draw(self)
         elif self.objeto==12:
             self.z=-40
+            self.squareFinal4.draw(self)
         elif self.objeto==13:
             self.z=-40
+            self.squareFinal6.draw(self)
         elif self.objeto==14:
             self.z=-40
-            glScaled(2, 2, 2)
-            self.squareleftobliquei4.draw(self)
+            self.squareFinal8.draw(self)
         elif self.objeto==15:
             self.z=-40
             glScaled(2, 2, 2)
-            self.squareleftobliquei6.draw(self)
+            self.squareleftobliquei4.draw(self)
         elif self.objeto==16:
             self.z=-40
             glScaled(2, 2, 2)
-            self.squareleftobliquei8.draw(self)
+            self.squareleftobliquei6.draw(self)
         elif self.objeto==17:
             self.z=-40
             glScaled(2, 2, 2)
-            self.squarerightobliquei4.draw(self)
+            self.squareleftobliquei8.draw(self)
         elif self.objeto==18:
             self.z=-40
             glScaled(2, 2, 2)
-            self.squarerightobliquei6.draw(self)
+            self.squarerightobliquei4.draw(self)
         elif self.objeto==19:
+            self.z=-40
+            glScaled(2, 2, 2)
+            self.squarerightobliquei6.draw(self)
+        elif self.objeto==20:
             self.z=-40
             glScaled(2, 2, 2)
             self.squarerightobliquei8.draw(self)
