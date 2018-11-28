@@ -546,7 +546,7 @@ class HighScore:
 
     def insert(self):
         """Solo se puede ejecutar, cuando haya un winner"""
-        self.arr.append((datetime.date.today().toordinal(), self.mem.jugadores.winner.name, (datetime.datetime.now()-self.mem.playedtime).seconds, self.mem.jugadores.winner.color.name,  self.mem.jugadores.winner.score()))
+        self.arr.append((datetime.date.today().toordinal(), self.mem.jugadores.winner.name, (datetime.datetime.now()-self.mem.playedtime).total_seconds(), self.mem.jugadores.winner.color.name,  self.mem.jugadores.winner.score()))
         self.sort()
         
     def qtablewidget(self, table): 
