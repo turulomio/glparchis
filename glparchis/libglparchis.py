@@ -546,7 +546,7 @@ class HighScore:
 
     def insert(self):
         """Solo se puede ejecutar, cuando haya un winner"""
-        self.arr.append((datetime.date.today().toordinal(), self.mem.jugadores.winner.name, (datetime.datetime.now()-self.mem.inittime).seconds, self.mem.jugadores.winner.color.name,  self.mem.jugadores.winner.score()))
+        self.arr.append((datetime.date.today().toordinal(), self.mem.jugadores.winner.name, (datetime.datetime.now()-self.mem.playedtime).seconds, self.mem.jugadores.winner.color.name,  self.mem.jugadores.winner.score()))
         self.sort()
         
     def qtablewidget(self, table): 
@@ -2130,14 +2130,14 @@ class Casilla(QObject):
             self.pawncoords.append(Coord3D(5.2, 1.5, 0.2))
         #Oblique Right
         elif self.tipo==TSquareTypes.ObliqueRight4:
-            self.pawncoords.append(Coord3D(1.4, 1.5, 0.2))
             self.pawncoords.append(Coord3D(3.5, 1.5, 0.2))
+            self.pawncoords.append(Coord3D(1.4, 1.5, 0.2))
         elif self.tipo==TSquareTypes.ObliqueRight6:
-            self.pawncoords.append(Coord3D(1.6, 1.5, 0.2))
             self.pawncoords.append(Coord3D(4.4, 1.5, 0.2))
+            self.pawncoords.append(Coord3D(1.6, 1.5, 0.2))
         elif self.tipo==TSquareTypes.ObliqueRight8:
-            self.pawncoords.append(Coord3D(1.8, 1.5, 0.2))
             self.pawncoords.append(Coord3D(4.7, 1.5, 0.2))
+            self.pawncoords.append(Coord3D(1.8, 1.5, 0.2))
         #Initial
         elif self.tipo==TSquareTypes.Initial3:
             self.pawncoords.append(Coord3D(-1.8, 10.5, 0.2))
@@ -2182,7 +2182,6 @@ class Casilla(QObject):
             
     def __repr__(self):
         return ("Casilla {0} con {1} fichas dentro".format(self.id, self.buzon_numfichas()))
-
 
     def esSegura(self, mem,  jugador, beforemove=True):
         """Devuelve si la casilla es segura para el jugador pasado como parametro ante un posible moviiento,
@@ -2652,7 +2651,7 @@ class Mem:
         self.dic_rutas={}
         self.dado=Dado()
         self.selFicha=None
-        self.inittime=None#Tiempo inicio partida
+        self.playedtime=None#Tiempo inicio partida
         self.settings=None
         self.translator=None           
         self.mediaObject = None
@@ -2686,7 +2685,8 @@ class Mem:
 
     def save(self, filename):
         """Version 1.1 INtroduce stadisticas
-        Version 1.2 Introduce uuid"""
+        Version 1.2 Introduce uuid
+        Version 1.3 Changed iniitime by playedtime"""
         os.chdir(os.path.expanduser("~/.glparchis/"))
         config = configparser.ConfigParser()
         
@@ -2694,8 +2694,8 @@ class Mem:
         config.set("game", 'playerstarts',self.jugadores.actual.color.name)
         config.set("game",  "numplayers",  str(self.maxplayers))
         config.set("game", 'fakedice','')
-        config.set("game", 'fileversion','1.2')
-        config.set("game",  'inittime', str(datetime.datetime.now()-self.inittime))
+        config.set("game", 'fileversion','1.3')
+        config.set("game",  'playedtime', str(datetime.datetime.now()-self.playedtime))
         config.set("game",  'uuid', str(self.uuid))
         for i, j in enumerate(self.jugadores.arr):
             config.add_section("jugador{0}".format(i))
@@ -2742,18 +2742,18 @@ class Mem:
             fileversion=None
             error()
             return False
-        if fileversion!="1.2":#Ir cambiando segun necesidades
+        if fileversion!="1.3":#Ir cambiando segun necesidades
             error()
             return False
         
         try:
-            init=config.get("game", "inittime").split(".")[0]#Quita milissegundos
+            init=config.get("game", "playedtime").split(".")[0]#Quita milissegundos
             arrinit=init.split(":")
             delta=datetime.timedelta(hours=int(arrinit[0]), minutes=int(arrinit[1]),  seconds=int(arrinit[2]))
-            self.inittime=datetime.datetime.now()-delta
+            self.playedtime=datetime.datetime.now()-delta
         except:
-            self.inittime=datetime.datetime.now()
-            print ("No se ha podido cargar el inittime")
+            self.playedtime=datetime.datetime.now()
+            print ("No se ha podido cargar el playedtime")
         
         for i, j in enumerate(self.jugadores.arr):
             j.name=config.get("jugador{0}".format(i), "name")

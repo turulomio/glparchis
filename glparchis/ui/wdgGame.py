@@ -88,7 +88,7 @@ class wdgGame(QWidget, Ui_wdgGame):
     ## Recargar tabla de estadisticas
     def table_reload(self):
         self.table.reload()
-        self.lblTime.setText(self.tr("Tiempo de partida: {0}".format(str(datetime.datetime.now()-self.mem.inittime).split(".")[0])))
+        self.lblTime.setText(self.tr("Tiempo de partida: {0}".format(str(datetime.datetime.now()-self.mem.playedtime).split(".")[0])))
 
     def assign_mem(self, mem):
         self.mem=mem
@@ -133,8 +133,8 @@ class wdgGame(QWidget, Ui_wdgGame):
         
         self.ogl.doubleClicked.connect(self.on_ogl_doubleClicked)
         
-        if self.mem.inittime==None:#Caso de que se cree la partida sin cargar .glparchis
-            self.mem.inittime=datetime.datetime.now()
+        if self.mem.playedtime==None:#Caso de que se cree la partida sin cargar .glparchis
+            self.mem.playedtime=datetime.datetime.now()
         self.table_reload()
         self.on_JugadorDebeTirar()
 
