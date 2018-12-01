@@ -2727,8 +2727,8 @@ class Mem:
                 j.fichas.arr[1].mover(config.getint("jugador{0}".format(i), "rutaficha2"), False,  True)
                 j.fichas.arr[2].mover(config.getint("jugador{0}".format(i), "rutaficha3"), False,  True)
                 j.fichas.arr[3].mover(config.getint("jugador{0}".format(i), "rutaficha4"), False,  True)
-                #INICIO ESTADISTICAS
-                #Regeneracion de estad´isticas
+                
+                #REGENERATE STATISTICS
                 #Genera dos arrays, con seixes y no seises
                 sixes=[]
                 nosixes=[]
@@ -2738,8 +2738,7 @@ class Mem:
                             nosixes.append(dice)#Mete los no seises por jugador
                         else:
                             sixes.append(dice)#Mete los seises por jugador
-                        
-                        
+
                 # Para generar las tiradas, hay que crear en jugador una TiradaTurno nuevo, usar la funcion jugador.tirarDAdo en ese turno, la funci´on hace el resto.
                 #list.pop(0) borra el primero de la lista y lo devuleve
                 #1 Los 3 seises
@@ -2759,7 +2758,6 @@ class Mem:
                 for a in nosixes:
                     j.tiradaturno=TiradaTurno()
                     j.tirarDado(a)
-
                 #FIN  DE ESTADISTICAS
 
 
@@ -2769,6 +2767,7 @@ class Mem:
                 self.dado.fake.append(int(i))
 
         self.jugadores.actual=self.jugadores.find_by_colorname(config.get("game", 'playerstarts'))    
+        self.jugadores.actual.tiradaturno=TiradaTurno()
         self.jugadores.actual.movimientos_acumulados=None#Comidas ymetidas
         self.jugadores.actual.LastFichaMovida=None #Se utiliza cuando se va a casa
         return True

@@ -36,6 +36,7 @@ class Compile(Command):
         pass
 
     def run(self):
+        import datetime
         futures=[]
         with ProcessPoolExecutor(max_workers=cpu_count()+1) as executor:
             for filename in os.listdir("glparchis/ui/"):
@@ -53,7 +54,7 @@ class Compile(Command):
         os.chdir("glparchis")
         os.remove("libmanagers.py")
         os.system("wget https://raw.githubusercontent.com/Turulomio/xulpymoney/master/xulpymoney/libmanagers.py  --no-clobber")
-
+        os.system("sed -i -e '3i ## THIS FILE HAS BEEN DOWNLOADED AT {} FROM https://github.com/Turulomio/xulpymoney/xulpymoney/libmanagers.py.' libmanagers.py".format(datetime.datetime.now()))
 
 
 class Procedure(Command):
