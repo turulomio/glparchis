@@ -29,8 +29,6 @@ class frmShowFicha(QDialog, Ui_frmShowFicha):
                 
         
     def table_reload(self, table, setamenazas):
-#        table.verticalHeader().setResizeMode(QHeaderView.ResizeToContents)
-#        table.horizontalHeader().setResizeMode(QHeaderView.ResizeToContents)
         table.setRowCount(len(setamenazas.arr))        
         for i,  a in enumerate(setamenazas.arr):
             item = QTableWidgetItem()

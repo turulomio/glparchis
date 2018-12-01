@@ -235,8 +235,7 @@ class frmMain(QMainWindow, Ui_frmMain):
     @pyqtSlot()  
     def on_actionRecuperarPartida_triggered(self):
         os.chdir(self.path_autosaves)
-        #ÐEBE SERLOCAL
-        filenam=os.path.basename(QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")[0])
+        filenam=QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")[0]
         if filenam!="":
             #Busca si es de 4,6,8
             self.mem=self.selectMem(filenam)
