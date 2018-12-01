@@ -15,6 +15,7 @@ from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
 from PyQt5.QtMultimedia import QSoundEffect
 from uuid import uuid4
 from glparchis.libglparchistypes import TTextures,  TNames, TSquareTypes,  TPlayers
+from glparchis.libmanagers import ObjectManager_With_Id, ObjectManager, DictObjectManager_With_Id 
 from abc import ABC,  abstractmethod
 
 
@@ -33,35 +34,13 @@ def deprecated(func):
         return func(*args, **kwargs)
     return new_func
 
-## Abstract class to manage and interate objects with no more request
-class ManagerObjectsList(ABC):
-    ## Constructor
+## Class to manage game pawns
+class ManagerPawnsGame(DictObjectManager_With_Id):
     def __init__(self):
-        self.arr=[]
-        self.mem=None
+        DictObjectManager_With_Id.__init__(self)
+        
+        
 
-    ##Assigns mem object
-    ## @param mem Game mem obj
-    def setMem(self, mem):
-        self.mem=mem
-        
-    ## Append an object to self.arr
-    ## @param o Any object
-    def append(self, o):
-        self.arr.append(o)
-                
-    ## Returns the lengh of the array
-    def length(self):
-        return len(self.arr)
-    
-    ## Devuelve el primer objeto del array si exite
-    ## @return Object or None if it doesn't exit
-    def first(self):
-        if self.length()==0:
-            return None
-        else:
-            return self.arr[0]
-        
 def str2bool(s):
     if s.__class__==bool:#Si ya fuera bool
         return s
@@ -314,13 +293,12 @@ class Amenaza:
         if tipo==51: return QApplication.translate("glparchis","Sacar ficha")
 
 ## Class that studies threats of a pawn when setting in a square
-class SetAmenazas:
+class SetAmenazas(ObjectManager):
     ## @param mem Mem singleton
     ## @param objetivo Ficha de la que se van a estudiar las amenazas
     ## @param casilla Casilla en la que queremos estudiar las amenazas tras colocar la ficha objetivo
     def __init__(self,  mem,  objetivo, casilla):
-        ##List of Amenaza objects
-        self.arr=[]#Array de objetos amenaza
+        ObjectManager.__init__(self)
         
         ##Pawn to study threats
         self.objetivo=objetivo
@@ -827,9 +805,9 @@ class Ruta:
             return True
         return False
     
-class SetColores:
+class SetColores(ObjectManager):
     def __init__(self):
-        self.arr=[]    
+        ObjectManager.__init__(self)
     
     def generar_colores(self, maxplayers):
         self.arr.append(Color( 255, 255, 50, "yellow"))
@@ -852,10 +830,10 @@ class SetColores:
                 return c
         print ("No se ha encontrado el color de nombre {0}".format(name))
         
-class SetJugadores:
+class SetJugadores(ObjectManager):
     """Agrupacion de jugadores"""
     def __init__(self, mem):
-        self.arr=[]
+        ObjectManager.__init__(self)
         self.mem=mem
         self.actual=None
         self.winner=None
@@ -907,10 +885,10 @@ class SetJugadores:
         
         
         
-class SetRutas:        
+class SetRutas(ObjectManager):
     def __init__(self, numplayers,  mem):
         """Mem se necesita para identificar los colores"""
-        self.arr=[]
+        ObjectManager.__init__(self)
         self.mem=mem
         self.numplayers=numplayers
         self.generar_rutas()
@@ -1001,11 +979,11 @@ class SetRutas:
         r.append_id([208]+list(range(124, 136+1))+list(range(1, 119+1))+list(range(193, 200+1)))
         self.arr.append(r)    
 
-class SetCasillas:
+class SetCasillas(ObjectManager_With_Id):
     """Conjunto de casillas. Si es 209 es para 8 jugadores, Si es 105 es para 4 jugadores y 1 para 6 jugadores"""
     def __init__(self, numplayers, mem):
         """Mem se necesita para identificar los colores"""
-        self.arr=[]
+        ObjectManager_With_Id.__init__(self)
         self.mem=mem
         self.numplayers=numplayers
         if self.numplayers==3:
@@ -1017,12 +995,7 @@ class SetCasillas:
         elif self.numplayers==8:
             self.number=209
         self.generar_casillas()
-        
-    def find_by_id(self, id):
-        return self.arr[id]
-            
 
-            
     def generar_casillas(self):
         if self.numplayers==6:
             self.generar_casillas6()
@@ -1382,9 +1355,9 @@ class SetCasillas:
             self.arr.append(c)
 
 ## Clase que agrupa fichas
-class SetFichas(ManagerObjectsList):
+class SetFichas(ObjectManager_With_Id):
     def __init__(self, mem):
-        self.arr=[]
+        ObjectManager_With_Id.__init__(self)
         self.mem=mem
         
     ## Busca entre las fichas que pueden mover si alguna esta obligada a mover
@@ -2619,47 +2592,47 @@ class SoundSystem:
             while self.sounds[effect].isPlaying():
                 QCoreApplication.processEvents()
 
-## Abstract class to manage and interate objects with id attribute in a dict
-class ManagerObjectsId(ABC):
-    ## Constructor
-    def __init__(self):
-        self.dict={}
-        self.mem=None
+### Abstract class to manage and interate objects with id attribute in a dict
+#class ManagerObjectsId(ABC):
+#    ## Constructor
+#    def __init__(self):
+#        self.dict={}
+#        self.mem=None
+#
+#    ##Assigns mem object
+#    ## @param mem Game mem obj
+#    def setMem(self, mem):
+#        self.mem=mem
+#        
+#    ## Append an object to self.arr
+#    ## @param o Any object
+#    ## @param id Id to assign to the object. It will be the dictionary key.
+#    def setById(self, o, id):
+#        self.dict[str(id)]=o
+#        
+#    ## Returns the value of the id (key) from self.dict
+#    ## @param id Id of the object
+#    def getById(self, id):
+#        return self.dict[str(id)]
+#        
+#    ## Returns the lengh of the array
+#    def length(self):
+#        return len(self.dict)
+#        
+### Abstract class for pawns manager
+#class ManagerPawns(ManagerObjectsId, ABC):
+#    def __init__(self):
+#        ManagerObjectsId.__init__(self)
+#        
+### Class to manage game pawns
+#class ManagerPawnsGame(ManagerPawns):
+#    def __init__(self):
+#        ManagerPawns.__init__(self)
 
-    ##Assigns mem object
-    ## @param mem Game mem obj
-    def setMem(self, mem):
-        self.mem=mem
-        
-    ## Append an object to self.arr
-    ## @param o Any object
-    ## @param id Id to assign to the object. It will be the dictionary key.
-    def setById(self, o, id):
-        self.dict[str(id)]=o
-        
-    ## Returns the value of the id (key) from self.dict
-    ## @param id Id of the object
-    def getById(self, id):
-        return self.dict[str(id)]
-        
-    ## Returns the lengh of the array
-    def length(self):
-        return len(self.dict)
-        
-## Abstract class for pawns manager
-class ManagerPawns(ManagerObjectsId, ABC):
-    def __init__(self):
-        ManagerObjectsId.__init__(self)
-        
-## Class to manage game pawns
-class ManagerPawnsGame(ManagerPawns):
-    def __init__(self):
-        ManagerPawns.__init__(self)
-
-## Class to manage players pawns
-class ManagerPawnsPlayer(ManagerPawns):
-    def __init__(self):
-        ManagerPawns.__init__(self)
+### Class to manage players pawns
+#class ManagerPawnsPlayer(ManagerPawns):
+#    def __init__(self):
+#        ManagerPawns.__init__(self)
 
 ## Abstract Mem objcet
 ## Must be initializated with Mem4, Mem6 or Mem 8
@@ -2669,9 +2642,9 @@ class Mem:
     def __init__(self, maxplayers):     
         self.maxplayers=maxplayers
         self.uuid=uuid4()
-                
-                
         self.pawnsgame=ManagerPawnsGame()
+
+                
         self.colores=SetColores()
         self.jugadores=SetJugadores(self)
         self.dic_rutas={}
@@ -2699,7 +2672,7 @@ class Mem:
             j.ruta=self.rutas.ruta(ic)
             for i in range(4):
                 ficha=Ficha(self, id, i, c, self.jugadores.find_by_colorname(c.name), j.ruta)
-                self.pawnsgame.setById(ficha, id)
+                self.pawnsgame.append(ficha)
                 j.fichas.arr.append(ficha)#Rellena el SetFichas del jugador
                 id=id+1
 

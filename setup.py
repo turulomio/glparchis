@@ -49,6 +49,11 @@ class Compile(Command):
                  os.system("sed -i -e 's/glparchis_rc/glparchis.images.glparchis_rc/' glparchis/ui/{}".format(filename))
                  os.system("sed -i -e 's/from myQGLWidget/from glparchis.ui.myQGLWidget/' glparchis/ui/{}".format(filename))
                  os.system("sed -i -e 's/from qtablestatistics/from glparchis.ui.qtablestatistics/' glparchis/ui/{}".format(filename))
+        print ("Copying libmanagers.py from Xulpymoney project")
+        os.chdir("glparchis")
+        os.remove("libmanagers.py")
+        os.system("wget https://raw.githubusercontent.com/Turulomio/xulpymoney/master/xulpymoney/libmanagers.py  --no-clobber")
+
 
 
 class Procedure(Command):

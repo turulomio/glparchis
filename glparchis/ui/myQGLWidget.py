@@ -305,7 +305,7 @@ class wdgOGL(myQGLWidget):
             """Devuelve un objeto dependiendo del nombre.None si no corresponde
             #Nuevo nombrado fichas 0-31, 32,tablero,33 dado,34- Casillas"""
             if id_name>=0 and id_name<=31:
-                return self.mem.pawnsgame.getById(id_name)
+                return self.mem.pawnsgame.find_by_id(id_name)
             elif id_name==TNames.Board:
                 return self.tablero
             elif id_name==TNames.Dice:
