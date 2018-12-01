@@ -251,7 +251,7 @@ class frmMain(QMainWindow, Ui_frmMain):
             
     @pyqtSlot()
     def on_actionReportBug_triggered(self):
-        QDesktopServices.openUrl(QUrl('https://sourceforge.net/p/glparchis/tickets/'))
+        QDesktopServices.openUrl(QUrl('https://github.com/Turulomio/glparchis/issues'))
 
     def selectMem(self, filename):
         resultado=None
