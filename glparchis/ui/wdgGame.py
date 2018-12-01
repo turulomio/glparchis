@@ -152,11 +152,10 @@ class wdgGame(QWidget, Ui_wdgGame):
                 return p
 
     def afterWinning(self):
-        print("AFTERWINNING")
         self.mem.jugadores.actual.log(self.tr("Has ganado la partida"))
         self.mem.jugadores.winner=self.mem.jugadores.actual
-        self.mem.play("win")
         self.stopthegame=True
+        self.mem.play("win", waittofinish=False)
         if self.mem.jugadores.winner.ia==False:#Solo se genera hs cuando es un humano
             if self.mem.maxplayers==3:
                 self.hs3.insert()
@@ -194,7 +193,6 @@ class wdgGame(QWidget, Ui_wdgGame):
                 delay(self.delay)
                 self.mem.jugadores.actual.log(self.tr("Se ha tirado automaticamente el dado"))
                 self.on_cmdTirarDado_clicked()
-                delay(self.delay)
             else:
                 self.cmdTirarDado.setEnabled(True)
                 self.cmdTirarDado.setFocus()
@@ -203,7 +201,6 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.mem.jugadores.actual.log(self.tr("IA Tira el dado"))
             delay(self.delay)
             self.on_cmdTirarDado_clicked()
-            delay(self.delay)
 
     def on_JugadorDebeMover(self):
         """Funcion que se ejecuta cuando un jugador debe mover
@@ -240,12 +237,12 @@ class wdgGame(QWidget, Ui_wdgGame):
     def on_cmdTirarDado_clicked(self):  
         self.cmdTirarDado.setEnabled(False)
         self.cmdTirarDado.setText("")
-        self.mem.play("dice")
         self.mem.jugadores.actual.tirarDado()
         self.table_reload()
         self.mem.dado.showing=True
         self.ogl.updateGL()
         self.panel().setLabelDado()
+        self.mem.play("dice")
         
         if self.mem.jugadores.actual.tiradaturno.tresSeises()==True:
             if self.mem.jugadores.actual.LastFichaMovida!=None:
@@ -294,7 +291,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.mem.play("meter")
             else:
                 self.mem.play("comer")            
-            delay(self.delay)
+#            delay(self.delay)
             if self.mem.jugadores.actual.fichas.algunaEstaAutorizadaAmover()==True:
                 self.on_JugadorDebeMover()
                 return

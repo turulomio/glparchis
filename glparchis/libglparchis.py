@@ -32,6 +32,7 @@ def deprecated(func):
         warnings.simplefilter('default', DeprecationWarning)  # reset filter
         return func(*args, **kwargs)
     return new_func
+
 ## Abstract class to manage and interate objects with no more request
 class ManagerObjectsList(ABC):
     ## Constructor
@@ -552,7 +553,7 @@ class HighScore:
 
     def insert(self):
         """Solo se puede ejecutar, cuando haya un winner"""
-        self.arr.append((datetime.date.today().toordinal(), self.mem.jugadores.winner.name, (datetime.datetime.now()-self.mem.playedtime).total_seconds(), self.mem.jugadores.winner.color.name,  self.mem.jugadores.winner.score()))
+        self.arr.append((datetime.date.today().toordinal(), self.mem.jugadores.winner.name, int((datetime.datetime.now()-self.mem.playedtime).total_seconds()), self.mem.jugadores.winner.color.name,  self.mem.jugadores.winner.score()))
         self.sort()
         
     def qtablewidget(self, table): 
@@ -648,7 +649,7 @@ class Jugador(QObject):
             
         
     def hayDosJugadoresDistintosEnRuta1(self):
-        ruta1=self.ruta.ruta1()
+        ruta1=self.ruta.squareFirst()
         if ruta1.buzon_numfichas()!=2:
             return False
         if ruta1.buzon[0].jugador!=ruta1.buzon[1].jugador:
@@ -1681,7 +1682,7 @@ class Ficha(QObject):
         return False
 
     def estaEnMeta(self):
-        if self.posruta==len(self.ruta.arr)-1:
+        if self.posruta==self.ruta.squareFinalPosition():
             return True
         return False
 
@@ -2603,19 +2604,20 @@ class SoundSystem:
     def load_all(self):
         for effect in ["comer", "click", "dice", "meter", "shoot", "win"]:
             s=QSoundEffect()
-
             url=pkg_resources.resource_filename("glparchis","sounds/{}.wav".format(effect))
-            print(url)
             s.setSource(QUrl.fromLocalFile(url))
             s.setLoopCount(1)
             s.setVolume(0.99)
             self.sounds[effect]=s
             
-    def play(self, effect):      
-        print("Playing", effect)
+    ## Plays a QSoundEffect
+    ## @param effect 
+    ## @param waittofinish. If False sound is played asyncronously
+    def play(self, effect, waittofinish=True):
         self.sounds[effect].play()
-
-
+        if waittofinish==True:
+            while self.sounds[effect].isPlaying():
+                QCoreApplication.processEvents()
 
 ## Abstract class to manage and interate objects with id attribute in a dict
 class ManagerObjectsId(ABC):
@@ -2682,11 +2684,11 @@ class Mem:
         self.frmMain=None #Pointer to QMainWindow
         
     ##  Play sounds inside a game, You can play sound using self.frmMain.sound.play(sound) directly too
-    def play(self, sound):
+    ## @param sound
+    ## @param waittofinish. If False sound is played asyncronously
+    def play(self, sound, waittofinish=True):
         if str2bool(self.settings.value("frmSettings/sound"))==True:
-            if int(self.settings.value("frmSettings/delay","300"))<300 and self.jugadores.actual.ia==True:#If delay is too low and it's a IA
-                return
-            self.frmMain.sound.play(sound)
+            self.frmMain.sound.play(sound, waittofinish)
    
     ## Create Pawns 
     ## It must be generated after players constructors
