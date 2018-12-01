@@ -248,7 +248,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 else:
                     if self.mem.jugadores.actual.LastFichaMovida.estaAutorizadaAMover()[0]==True:
                         self.mem.jugadores.actual.log(self.tr("Han salido tres seises, la ultima ficha movida se va a casa"))
-                        self.mem.play("shoot")
+                        self.mem.play("threesix")
                         self.mem.jugadores.actual.LastFichaMovida.mover(0)
                     else:
                         self.mem.jugadores.actual.log(self.tr("Han salido tres seises, pero como no puede mover no se va a casa"))
