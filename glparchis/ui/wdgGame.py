@@ -294,6 +294,7 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.mem.selFicha.mover( self.mem.selFicha.posruta + movimiento)    
             self.table_reload()
             self.ogl.updateGL()
+            self.mem.play("move")
        #Quita el movimiento acumulados
         if self.mem.jugadores.actual.movimientos_acumulados in (10, 20):
             self.mem.jugadores.actual.movimientos_acumulados=None
@@ -309,8 +310,7 @@ class wdgGame(QWidget, Ui_wdgGame):
             return          
         self.mem.jugadores.actual.log (self.tr("Fin de turno"))
         self.ogl.updateGL()        
-        self.mem.play("changeplayer")
-        #self.delay)
+        delay(self.delay)
         self.mem.dado.showing=False
         self.ogl.updateGL()        
 

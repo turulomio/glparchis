@@ -325,7 +325,6 @@ class wdgOGL(myQGLWidget):
                 if len(names)==1:
                     objetos.append(names[0])
             
-            print("LEFT", objetos)
             if len(objetos)==1:#Casilla selector
                 self.mem.selFicha=None
             elif len(objetos)==2:#Ficha Selector
@@ -343,7 +342,6 @@ class wdgOGL(myQGLWidget):
             for minDepth, maxDepth, names in nameStack:
                 if len(names)==1:
                    objetos.append(names[0])
-            print("RIGHT", objetos)
             if len(objetos)==1:
                 selCasilla=getObjectByName(objetos[0])
                 if isinstance(selCasilla, Casilla):

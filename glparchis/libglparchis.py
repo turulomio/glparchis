@@ -1,4 +1,5 @@
 import sys
+import logging
 import warnings
 import functools
 import pkg_resources
@@ -308,7 +309,7 @@ class SetAmenazas(ObjectManager):
         self.mem=mem
         inicio=datetime.datetime.now()
         self.detectar()
-        print("Detectar amenazas de {} en {} llevó: {}".format(self.objetivo,  self.casilla,  datetime.datetime.now()-inicio))
+        logging.debug("Detectar amenazas de {} en {} llevó: {}".format(self.objetivo,  self.casilla,  datetime.datetime.now()-inicio))
         
     def append(self, atacante, type):
         self.arr.append(Amenaza(self.objetivo, atacante, type))
@@ -1406,8 +1407,6 @@ class SetFichas(ObjectManager_With_Id):
         self.arr=fichas
         
 class Ficha(QObject):
-    moved=pyqtSignal()
-    """En ingl´es se traduce como Pawn"""
     def __init__(self, mem, id, number,  color, jugador, ruta):
         """El identificador de la ficha viene dado por el nombre del color y el id (numero de creacion), se genera en la clase Mem"""
         QObject.__init__(self)
@@ -1533,7 +1532,6 @@ class Ficha(QObject):
         return (True, movimiento)
         
     def mover(self, ruta, controllastficha=True,  startgame=False):
-        self.moved.emit()
         casillaorigen=self.ruta.arr[self.posruta]
         casilladestino=self.ruta.arr[ruta]        
         self.posruta=ruta
@@ -2575,7 +2573,7 @@ class SoundSystem:
         self.load_all()
         
     def load_all(self):
-        for effect in ["comer", "click", "dice", "meter", "shoot", "win", "changeplayer"]:
+        for effect in ["comer", "click", "dice", "meter", "shoot", "win", "move"]:
             s=QSoundEffect()
             url=pkg_resources.resource_filename("glparchis","sounds/{}.wav".format(effect))
             s.setSource(QUrl.fromLocalFile(url))
