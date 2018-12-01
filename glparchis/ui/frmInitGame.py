@@ -53,7 +53,7 @@ class frmInitGame(QWizard, Ui_frmInitGame):
             if self.mem.jugadores.actual==None:
                 self.set.Players_throws()
                 maxplayers=self.set.arrWdgPlayers_MaximaPuntuacion()
-                self.frmMain.sound.play("dice", waittofinish=False)
+                self.mem.play("dice", waittofinish=False)
                 if len(maxplayers.arr)==1:
                     self.mem.jugadores.actual=maxplayers.arr[0].jugador
                     self.lblPlayerStarts.setStyleSheet('QLabel {font: bold ; color: '+ self.mem.jugadores.actual.color.name+';}')

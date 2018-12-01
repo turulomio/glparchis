@@ -2618,6 +2618,8 @@ class Mem:
     def play(self, sound, waittofinish=True):
         if str2bool(self.settings.value("frmSettings/sound"))==True:
             self.frmMain.sound.play(sound, waittofinish)
+        else:
+            delay(self.delay)
    
     ## Create Pawns 
     ## It must be generated after players constructors
