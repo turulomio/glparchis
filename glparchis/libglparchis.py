@@ -16,7 +16,8 @@ from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
 from PyQt5.QtMultimedia import QSoundEffect
 from uuid import uuid4
 from glparchis.libglparchistypes import TTextures,  TNames, TSquareTypes,  TPlayers
-from glparchis.libmanagers import ObjectManager_With_Id, ObjectManager, DictObjectManager_With_Id 
+from glparchis.libmanagers import ObjectManager_With_Id, ObjectManager, DictObjectManager_With_Id
+from glparchis.functions import swap_list_with_two_items
 from abc import ABC,  abstractmethod
 
 
@@ -39,8 +40,7 @@ def deprecated(func):
 class ManagerPawnsGame(DictObjectManager_With_Id):
     def __init__(self):
         DictObjectManager_With_Id.__init__(self)
-        
-        
+
 
 def str2bool(s):
     if s.__class__==bool:#Si ya fuera bool
@@ -1074,10 +1074,17 @@ class SetCasillas(ObjectManager_With_Id):
             else:
                 return 0        
                 
+        ## Swaps pawn coords in square when needed
+        ## In Color Ramp we set first pawn opposite to initial square
+        ## First coord inside route
+        def swapPawnCoordsInSquare(c):
+            if c.id in [1, 2, 3, 4, 5, 6, 7, 8, 18, 19, 20, 21, 22, 23, 24, 25, 34, 35, 36, 37, 38, 39, 40, 41, 42]:
+                swap_list_with_two_items(c.pawncoords)
         ##############################       
         posCasillas=poscasillas3(self.number)
         for i in range(0, self.number):#Se debe inializar Antes que las fichas
             c=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), defineRutas1(i))
+            swapPawnCoordsInSquare(c)
             self.arr.append(c)
             
     def generar_casillas4(self):
@@ -1148,11 +1155,17 @@ class SetCasillas(ObjectManager_With_Id):
             else:
                 return 0        
                 
+        ## Swaps pawn coords in square when needed
+        ## In Color Ramp we set first pawn opposite to initial square
+        ## First coord inside route
+        def swapPawnCoordsInSquare(c):
+            if c.id in [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 42, 43, 44, 45, 46, 47, 48, 49, 50, 60, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 92]:
+                swap_list_with_two_items(c.pawncoords)
         ##############################       
         posCasillas=poscasillas4(self.number)
         for i in range(0, self.number):#Se debe inializar Antes que las fichas
-
             c=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), defineRutas1(i))
+            swapPawnCoordsInSquare(c)
             self.arr.append(c)
 
     def generar_casillas6(self):
@@ -1240,11 +1253,17 @@ class SetCasillas(ObjectManager_With_Id):
                 return 330
             else:
                 return 0        
-                
+        ## Swaps pawn coords in square when needed
+        ## In Color Ramp we set first pawn opposite to initial square
+        ## First coord inside route
+        def swapPawnCoordsInSquare(c):
+            if c.id in [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 102, 103, 104, 105, 106, 107, 108, 109, 119, 120, 121, 122, 123, 124, 125, 127, 128, 129, 130, 131, 132, 133, 135, 136, 137, 138, 139, 140, 141]:
+                swap_list_with_two_items(c.pawncoords)
         ##############################        
         posCasillas=poscasillas6(self.number)
         for i in range(0, self.number):#Se debe inializar Antes que las fichas
             c=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), defineRutas1(i))
+            swapPawnCoordsInSquare(c)
             self.arr.append(c)
  
     def generar_casillas8(self):
@@ -1348,11 +1367,17 @@ class SetCasillas(ObjectManager_With_Id):
                 return 337.5
             else:
                 return 0        
-                
+        ## Swaps pawn coords in square when needed
+        ## In Color Ramp we set first pawn opposite to initial square
+        ## First coord inside route
+        def swapPawnCoordsInSquare(c):
+            if c.id in [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,  42, 43, 50, 51, 52, 53, 54, 55, 56, 57, 58, 60, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92]:
+                swap_list_with_two_items(c.pawncoords)
         ##############################        
         posCasillas=poscasillas8(self.number)
         for i in range(0, self.number):#Se debe inializar Antes que las fichas
             c=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), defineRutas1(i))
+            swap_list_with_two_items(c)
             self.arr.append(c)
 
 ## Clase que agrupa fichas
@@ -2175,6 +2200,7 @@ class Casilla(QObject):
             self.pawncoords.append(Coord3D(6.8, 2.5, 0.2))
             self.pawncoords.append(Coord3D(10.3,  2.5, 0.2))
             self.pawncoords.append(Coord3D(13.8,  2.5, 0.2))
+
             
     def __repr__(self):
         return ("Casilla {0} con {1} fichas dentro".format(self.id, self.buzon_numfichas()))
