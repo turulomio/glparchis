@@ -71,7 +71,7 @@ def delay(miliseconds):
     dieTime= datetime.datetime.now()+datetime.timedelta(microseconds=miliseconds*1000)
     while datetime.datetime.now()< dieTime :
         QCoreApplication.processEvents(QEventLoop.AllEvents, 100);    
-    print ("Delay", miliseconds)
+    #print ("Delay", miliseconds)
 
 class Dado(QObject):
     """
@@ -2575,7 +2575,7 @@ class SoundSystem:
         self.load_all()
         
     def load_all(self):
-        for effect in ["comer", "click", "dice", "meter", "shoot", "win"]:
+        for effect in ["comer", "click", "dice", "meter", "shoot", "win", "changeplayer"]:
             s=QSoundEffect()
             url=pkg_resources.resource_filename("glparchis","sounds/{}.wav".format(effect))
             s.setSource(QUrl.fromLocalFile(url))
@@ -2591,48 +2591,6 @@ class SoundSystem:
         if waittofinish==True:
             while self.sounds[effect].isPlaying():
                 QCoreApplication.processEvents()
-
-### Abstract class to manage and interate objects with id attribute in a dict
-#class ManagerObjectsId(ABC):
-#    ## Constructor
-#    def __init__(self):
-#        self.dict={}
-#        self.mem=None
-#
-#    ##Assigns mem object
-#    ## @param mem Game mem obj
-#    def setMem(self, mem):
-#        self.mem=mem
-#        
-#    ## Append an object to self.arr
-#    ## @param o Any object
-#    ## @param id Id to assign to the object. It will be the dictionary key.
-#    def setById(self, o, id):
-#        self.dict[str(id)]=o
-#        
-#    ## Returns the value of the id (key) from self.dict
-#    ## @param id Id of the object
-#    def getById(self, id):
-#        return self.dict[str(id)]
-#        
-#    ## Returns the lengh of the array
-#    def length(self):
-#        return len(self.dict)
-#        
-### Abstract class for pawns manager
-#class ManagerPawns(ManagerObjectsId, ABC):
-#    def __init__(self):
-#        ManagerObjectsId.__init__(self)
-#        
-### Class to manage game pawns
-#class ManagerPawnsGame(ManagerPawns):
-#    def __init__(self):
-#        ManagerPawns.__init__(self)
-
-### Class to manage players pawns
-#class ManagerPawnsPlayer(ManagerPawns):
-#    def __init__(self):
-#        ManagerPawns.__init__(self)
 
 ## Abstract Mem objcet
 ## Must be initializated with Mem4, Mem6 or Mem 8

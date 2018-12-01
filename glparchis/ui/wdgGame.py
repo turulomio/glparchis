@@ -190,7 +190,6 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.cmdTirarDado.setText(self.tr("Tira el dado"))
         if self.mem.jugadores.actual.ia==False:#Cuando es IA no debe permitir tirar dado
             if self.mem.frmMain.actionAutomatism.isChecked():
-                delay(self.delay)
                 self.mem.jugadores.actual.log(self.tr("Se ha tirado automaticamente el dado"))
                 self.on_cmdTirarDado_clicked()
             else:
@@ -199,7 +198,6 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.mem.jugadores.actual.log(self.tr("Tire el dado"))
         elif self.mem.jugadores.actual.ia==True:
             self.mem.jugadores.actual.log(self.tr("IA Tira el dado"))
-            delay(self.delay)
             self.on_cmdTirarDado_clicked()
 
     def on_JugadorDebeMover(self):
@@ -223,15 +221,13 @@ class wdgGame(QWidget, Ui_wdgGame):
         else:
             if self.mem.frmMain.actionAutomatism.isChecked():
                 if self.mem.jugadores.actual.fichas.fichasAutorizadasAMover().length()==1:
-                    delay(self.delay)
                     iaficha=self.mem.jugadores.actual.IASelectFicha()
+                    delay(self.delay)   
                     self.mem.selFicha=iaficha
                     self.after_ficha_click()
                     self.mem.jugadores.actual.log(self.tr("Se ha movido automaticamente la unica ficha disponible"))
-                    delay(self.delay)
             else:
                 self.mem.jugadores.actual.log(self.tr("Mueva una ficha"))
-
 
     @pyqtSlot()      
     def on_cmdTirarDado_clicked(self):  
@@ -290,8 +286,7 @@ class wdgGame(QWidget, Ui_wdgGame):
             if self.mem.jugadores.actual.movimientos_acumulados==10:
                 self.mem.play("meter")
             else:
-                self.mem.play("comer")            
-#            delay(self.delay)
+                self.mem.play("comer")
             if self.mem.jugadores.actual.fichas.algunaEstaAutorizadaAmover()==True:
                 self.on_JugadorDebeMover()
                 return
@@ -314,7 +309,8 @@ class wdgGame(QWidget, Ui_wdgGame):
             return          
         self.mem.jugadores.actual.log (self.tr("Fin de turno"))
         self.ogl.updateGL()        
-        delay(self.delay)
+        self.mem.play("changeplayer")
+        #self.delay)
         self.mem.dado.showing=False
         self.ogl.updateGL()        
 

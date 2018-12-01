@@ -1,4 +1,3 @@
-import datetime
 import math
 
 from PyQt5.QtCore import pyqtSignal, QPoint, QSize, Qt
@@ -191,7 +190,7 @@ class wdgOGL(myQGLWidget):
             self.z=int(self.mem.settings.value("wdgOGL/z_{}{}".format(fs, self.mem.maxplayers), -80))
 
     def paintGL(self):   
-        inicio=datetime.datetime.now()
+#        inicio=datetime.datetime.now()
         glLoadIdentity()
         self.qglClearColor(QColor())
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT| GL_STENCIL_BUFFER_BIT)
@@ -234,7 +233,7 @@ class wdgOGL(myQGLWidget):
 
         self.mem.dado.draw(self)
             
-        print("paintGL", datetime.datetime.now()-inicio)
+#        print("paintGL", datetime.datetime.now()-inicio)
 
 
     def keyPressEvent(self, event):
