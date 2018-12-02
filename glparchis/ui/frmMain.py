@@ -2,7 +2,7 @@ import sys
 import os
 import datetime
 from urllib.request import urlopen
-from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QEvent,  QUrl,  pyqtSignal
+from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QEvent,  QUrl,  pyqtSignal, QThread
 from PyQt5.QtGui import QIcon, QPixmap, QKeyEvent, QDesktopServices
 from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QDialog, QFileDialog
 from glparchis.libglparchis import str2bool, cargarQTranslator, b2s, qmessagebox,  Mem3, Mem4, Mem6, Mem8,  SoundSystem
@@ -45,11 +45,8 @@ class frmMain(QMainWindow, Ui_frmMain):
         self.setInstallationUUID()
         
 
-        
+    ## Sets installation uuid. Don't get wrong with game uuid
     def setInstallationUUID(self):
-        """
-            Sets an update UUID
-        """
         if self.settings.value("frmMain/uuid", "None")=="None":
             self.settings.setValue("frmMain/uuid", str(uuid4()))
             if str2bool(self.settings.value("frmSettings/statistics", "True"))==True:
@@ -62,8 +59,9 @@ class frmMain(QMainWindow, Ui_frmMain):
                 print (web)       
         else:
             print(self.tr("Installation UUID already set"))
-
-
+        self.uuid_installation=self.settings.value("frmMain/uuid")
+        self.url_statistics_installation="http://glparchis.sourceforge.net/php/glparchis_statistics_installation.php?installations_uuid={}".format(self.uuid_installation)
+        self.url_statistics_world="http://glparchis.sourceforge.net/php/glparchis_statistics.php"
 
     def setFullScreen(self, boolean):
         if boolean==False:
@@ -278,9 +276,19 @@ class frmMain(QMainWindow, Ui_frmMain):
 
     @pyqtSlot()  
     def on_actionMundialStatistics_triggered(self):
-        uuid=self.settings.value("frmMain/uuid", "None")
-        fr=frmGameStatistics(uuid, self)
-        fr.exec_()
+        try:
+            user=os.environ['USER']
+        except:
+            user=None
+        
+        
+        if user!=None and user=="root":
+            QDesktopServices.openUrl(QUrl(self.url_statistics_installation))
+            QThread.sleep(2)
+            QDesktopServices.openUrl(QUrl(self.url_statistics_world))
+        else:
+            fr=frmGameStatistics(self.url_statistics_world, self.url_statistics_installation, self.uuid_installation, self)
+            fr.exec_()
 
             
     @pyqtSlot()  

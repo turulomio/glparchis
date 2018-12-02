@@ -2638,6 +2638,9 @@ class Mem:
         self.mediaObject = None
         self.frmMain=None #Pointer to QMainWindow
         
+        
+        
+        
     ##  Play sounds inside a game, You can play sound using self.frmMain.sound.play(sound) directly too
     ## @param sound
     ## @param waittofinish. If False sound is played asyncronously
