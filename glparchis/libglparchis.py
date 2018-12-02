@@ -980,10 +980,8 @@ class SetRutas(ObjectManager):
         r.append_id([208]+list(range(124, 136+1))+list(range(1, 119+1))+list(range(193, 200+1)))
         self.arr.append(r)    
 
-class SetCasillas(ObjectManager_With_Id):
-    """Conjunto de casillas. Si es 209 es para 8 jugadores, Si es 105 es para 4 jugadores y 1 para 6 jugadores"""
+class CasillaManager(ObjectManager_With_Id):
     def __init__(self, numplayers, mem):
-        """Mem se necesita para identificar los colores"""
         ObjectManager_With_Id.__init__(self)
         self.mem=mem
         self.numplayers=numplayers
@@ -1371,13 +1369,17 @@ class SetCasillas(ObjectManager_With_Id):
         ## In Color Ramp we set first pawn opposite to initial square
         ## First coord inside route
         def swapPawnCoordsInSquare(c):
-            if c.id in [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,  42, 43, 50, 51, 52, 53, 54, 55, 56, 57, 58, 60, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92]:
+            if c.id in [ 
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
+                42, 43, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 
+                81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 102, 103, 104, 105, 106, 107, 108, 109,  111
+            ]:
                 swap_list_with_two_items(c.pawncoords)
         ##############################        
         posCasillas=poscasillas8(self.number)
         for i in range(0, self.number):#Se debe inializar Antes que las fichas
             c=Casilla( i, defineMaxFichas(i), defineColor(i), posCasillas[i],  defineRotate(i), defineRotatePN(i) , defineRampaLlegada(i), defineTipo(i), defineSeguro(i), defineRutas1(i))
-            swap_list_with_two_items(c)
+            swapPawnCoordsInSquare(c)
             self.arr.append(c)
 
 ## Clase que agrupa fichas
@@ -2808,7 +2810,7 @@ class Mem8(Mem):
         Mem.__init__(self, 8)
         self.colores.generar_colores(self.maxplayers)
         self.generar_jugadores()
-        self.casillas=SetCasillas(8, self)
+        self.casillas=CasillaManager(8, self)
         self.rutas=SetRutas(self.maxplayers, self)
         self.generar_fichas()
         self.tablero=self.class_players("Tablero")
@@ -2820,7 +2822,7 @@ class Mem6(Mem):
         Mem.__init__(self, 6)
         self.colores.generar_colores(self.maxplayers)
         self.generar_jugadores()
-        self.casillas=SetCasillas(6, self)
+        self.casillas=CasillaManager(6, self)
         self.rutas=SetRutas(self.maxplayers, self)
         self.generar_fichas()
         self.tablero=self.class_players("Tablero")
@@ -2832,7 +2834,7 @@ class Mem3(Mem):
         Mem.__init__(self, 3)
         self.colores.generar_colores(self.maxplayers)
         self.generar_jugadores()
-        self.casillas=SetCasillas(self.maxplayers, self)
+        self.casillas=CasillaManager(self.maxplayers, self)
         self.rutas=SetRutas(self.maxplayers, self)
         self.generar_fichas()
         self.tablero=self.class_players("Tablero")
@@ -2844,7 +2846,7 @@ class Mem4(Mem):
         Mem.__init__(self, 4)
         self.colores.generar_colores(self.maxplayers)
         self.generar_jugadores()
-        self.casillas=SetCasillas(self.maxplayers, self)
+        self.casillas=CasillaManager(self.maxplayers, self)
         self.rutas=SetRutas(self.maxplayers, self)
         self.generar_fichas()
         self.tablero=self.class_players("Tablero")

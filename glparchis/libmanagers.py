@@ -1,6 +1,6 @@
 ## @namespace xulpymoney.libmanagers
 ## @brief Module with objects managers as list or as dictionary.
-## THIS FILE HAS BEEN DOWNLOADED AT 2018-12-01 13:12:14.215815 FROM https://github.com/Turulomio/xulpymoney/xulpymoney/libmanagers.py.
+## THIS FILE HAS BEEN DOWNLOADED AT 2018-12-02 09:04:48.367165 FROM https://github.com/Turulomio/xulpymoney/xulpymoney/libmanagers.py.
 ##
 ## This file is from pysgae project. Do not edit, It will be overriden.
 ##

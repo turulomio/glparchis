@@ -12,7 +12,7 @@ class Ui_frmMain(object):
     def setupUi(self, frmMain):
         frmMain.setObjectName("frmMain")
         frmMain.setWindowModality(QtCore.Qt.ApplicationModal)
-        frmMain.resize(995, 568)
+        frmMain.resize(1024, 768)
         frmMain.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/glparchis/ficharoja.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -27,7 +27,7 @@ class Ui_frmMain(object):
         self.horizontalLayout.addLayout(self.layout)
         frmMain.setCentralWidget(self.wdg)
         self.menuBar = QtWidgets.QMenuBar(frmMain)
-        self.menuBar.setGeometry(QtCore.QRect(0, 0, 995, 30))
+        self.menuBar.setGeometry(QtCore.QRect(0, 0, 1024, 30))
         self.menuBar.setObjectName("menuBar")
         self.menuAyuda = QtWidgets.QMenu(self.menuBar)
         self.menuAyuda.setObjectName("menuAyuda")
@@ -199,7 +199,6 @@ class Ui_frmMain(object):
         self.toolBar.addAction(self.actionSalir)
 
         self.retranslateUi(frmMain)
-        self.actionSalir.triggered.connect(frmMain.close)
         QtCore.QMetaObject.connectSlotsByName(frmMain)
 
     def retranslateUi(self, frmMain):

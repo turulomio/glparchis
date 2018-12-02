@@ -1,14 +1,15 @@
-import sys 
 import os
+import configparser
 import datetime
+import logging
+
 from urllib.request import urlopen
-from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QEvent,  QUrl,  pyqtSignal, QThread
+from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QEvent,  QUrl,  pyqtSignal, QThread, QSize
 from PyQt5.QtGui import QIcon, QPixmap, QKeyEvent, QDesktopServices
 from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QDialog, QFileDialog
 from glparchis.libglparchis import str2bool, cargarQTranslator, b2s, qmessagebox,  Mem3, Mem4, Mem6, Mem8,  SoundSystem
 from glparchis.version import __version__,  get_remote, __versiondate__
 
-import configparser
 from glparchis.ui.Ui_frmMain import Ui_frmMain
 from glparchis.ui.wdgGame import wdgGame
 from glparchis.ui.frmAbout import frmAbout
@@ -32,9 +33,11 @@ class frmMain(QMainWindow, Ui_frmMain):
         self.sound=SoundSystem()
         
         self.setupUi(self)
-        self.showMaximized()
+        
+        
+        
         self.game=None
-        self.setWindowTitle(self.tr("glParchis 2010-{}. GNU General Public License \xa9").format(__versiondate__.year))
+        self.setWindowTitle(self.tr("glParchis 2006-{}. GNU General Public License \xa9").format(__versiondate__.year))
         if datetime.date.today()-datetime.date.fromordinal(int(self.settings.value("frmMain/lastupdate", 1)))>=datetime.timedelta(days=7):
             print ("Actualizando")
             self.checkUpdates(False)
@@ -65,6 +68,7 @@ class frmMain(QMainWindow, Ui_frmMain):
 
     def setFullScreen(self, boolean):
         if boolean==False:
+            self.resize(self.settings.value("frmMain/size", QSize(1024, 768)))
             self.actionFullScreen.setText(self.tr("Cambiar al modo de pantalla completa"))
             self.actionFullScreen.setToolTip(self.tr("Cambiar al modo de pantalla completa"))
             self.actionFullScreen.setChecked(False)
@@ -73,7 +77,6 @@ class frmMain(QMainWindow, Ui_frmMain):
             self.addToolBar(Qt.TopToolBarArea, self.toolBar)
             self.toolBar.show()
             self.showNormal()
-            self.showMaximized()
         else:      
             self.actionFullScreen.setText(self.tr("Salir del modo de pantalla completa"))
             self.actionFullScreen.setToolTip(self.tr("Salir del modo de pantalla completa"))
@@ -141,6 +144,14 @@ class frmMain(QMainWindow, Ui_frmMain):
         fr=frmHelp(self,"frmHelp")
         fr.open()
         
+    @pyqtSlot()   
+    def on_actionSalir_triggered(self):
+        logging.info(self.tr("Closing glParchis..."))
+        self.settings.setValue("frmMain/size", self.size()) 
+        if self.game:
+            self.game.__del__()
+        qApp.quit()
+
     @pyqtSlot()      
     def on_actionSettings_triggered(self):
         f=frmSettings(self.settings, self.translator,    self)
@@ -194,13 +205,9 @@ class frmMain(QMainWindow, Ui_frmMain):
         self.settings.setValue("frmMain/lastupdate", datetime.date.today().toordinal())
 
     @pyqtSlot(QEvent)   
-    def closeEvent(self,event):   
-        print ("saliendo")
-        if self.game:
-            self.game.__del__()
-        qApp.closeAllWindows()
-        qApp.exit()
-        sys.exit(0)
+    def closeEvent(self,event):
+        event.ignore()
+        self.on_actionSalir_triggered()
   
     def showWdgGame(self):
         self.actionSound.setEnabled(True)
@@ -227,8 +234,6 @@ class frmMain(QMainWindow, Ui_frmMain):
     def on_actionAlejarTablero_triggered(self):
         event=QKeyEvent(QEvent.KeyPress, Qt.Key_Minus, Qt.NoModifier, 0, 0, 0)
         self.game.ogl.keyPressEvent(event)
-
-
 
     @pyqtSlot()  
     def on_actionRecuperarPartida_triggered(self):

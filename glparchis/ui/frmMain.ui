@@ -10,8 +10,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>995</width>
-    <height>568</height>
+    <width>1024</width>
+    <height>768</height>
    </rect>
   </property>
   <property name="cursor">
@@ -36,7 +36,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>995</width>
+     <width>1024</width>
      <height>30</height>
     </rect>
    </property>
@@ -404,22 +404,5 @@
  <resources>
   <include location="../images/glparchis.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>actionSalir</sender>
-   <signal>triggered()</signal>
-   <receiver>frmMain</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>497</x>
-     <y>283</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
