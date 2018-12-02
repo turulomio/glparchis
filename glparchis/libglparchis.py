@@ -221,9 +221,9 @@ class Dado(QObject):
                     
 ## Clase que controla las amenazas que se ciernen sobre una ficha
 class Threat:
-    def __init__(self,  objetivo, atacante, tipo):
-        self.objetivo=objetivo
-        self.atacante=atacante
+    def __init__(self,  target_pawn, attacking_pawn, tipo):
+        self.target_pawn=target_pawn
+        self.attacking_pawn=attacking_pawn
         self.tipo=tipo #1-6 dados, 7 seis con todas fuera,10 meter una ficha, 20 comer una ficha, 51 saca un cinco y mueve 1
 
     ## Returns the name of the Threat
@@ -243,29 +243,45 @@ class Threat:
         if tipo==10: return QApplication.translate("glparchis","Contar 10")
         if tipo==20: return QApplication.translate("glparchis","Contar 20")
         if tipo==51: return QApplication.translate("glparchis","Sacar ficha")
+        
+    ## This function is usefull to detect duplicated threats due to same player barriers
+    def stringPlayerAndSquare(self):
+        return "{}#{}".format(self.attacking_pawn.jugador.color.name,self.attacking_pawn.casilla().id)
 
 ## Class that studies threats of a pawn when setting in a square
 class ThreatManager(ObjectManager):
     ## @param mem Mem singleton
-    ## @param objetivo Ficha de la que se van a estudiar las amenazas
-    ## @param casilla Casilla en la que queremos estudiar las amenazas tras colocar la ficha objetivo
-    def __init__(self,  mem,  objetivo, casilla):
+    ## @param target_pawn Ficha de la que se van a estudiar las amenazas
+    ## @param casilla Casilla en la que queremos estudiar las amenazas tras colocar la ficha target_pawn
+    def __init__(self,  mem,  target_pawn, casilla):
         ObjectManager.__init__(self)
         
         ##Pawn to study threats
-        self.objetivo=objetivo
+        self.target_pawn=target_pawn
         
         ##Square 
         self.casilla=casilla
         self.mem=mem
         inicio=datetime.datetime.now()
-        self.detectar()
-        logging.debug("Detectar amenazas de {} en {} llevó: {}".format(self.objetivo,  self.casilla,  datetime.datetime.now()-inicio))
+        self.__detect()
+        self.__removingBarriers()
+        logging.debug("Detectar amenazas de {} en {} llevó: {}".format(self.target_pawn,  self.casilla,  datetime.datetime.now()-inicio))
         
-    def append(self, atacante, type):
-        self.arr.append(Threat(self.objetivo, atacante, type))
+    def __append(self, attacking_pawn, type):
+        self.arr.append(Threat(self.target_pawn, attacking_pawn, type))
+        
+    ## Removes Threat of the same player from the same square
+    def __removingBarriers(self):
+        strPS=[]
+        newarr=[]
+        for threat in self.arr:
+            if threat.stringPlayerAndSquare() not in strPS:
+                strPS.append(threat.stringPlayerAndSquare())
+                newarr.append(threat)
+        del self.arr
+        self.arr=newarr
             
-    def detectar(self):
+    def __detect(self):
         del self.arr
         self.arr=[]
         
@@ -281,10 +297,10 @@ class ThreatManager(ObjectManager):
             casillaataque=self.mem.rutas.arr[self.casilla.ruta1].squareInitial()#Casilla inicial de la ruta del jugador con ruta1=TJugador
             if casillaataque.buzon_numfichas()>0:#Hay fichas que coman
                 if self.casilla.buzon_numfichas()==2:
-                    if  self.objetivo.posruta!=1: #Si no esta en su propia ruta1, esta llena
+                    if  self.target_pawn.posruta!=1: #Si no esta en su propia ruta1, esta llena
                         position, attacking_pawn=casillaataque.buzon_fichas()[0]
                         if attacking_pawn.puedeComer(self.mem, attacking_pawn.posruta+1): #aqui chequea que sea mismo color o distinta, ultima en llegar...
-                            self.append(attacking_pawn, 51)
+                            self.__append(attacking_pawn, 51)
                         else:
                             return
                     else:#Esta en su propia ruta1
@@ -301,44 +317,44 @@ class ThreatManager(ObjectManager):
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -1)
         for posicion, ficha in casillaataque.buzon_fichas():
             if ficha.ruta.casillaEstaEnRuta(self.casilla)==False: continue
-            if ficha.jugador!=self.objetivo.jugador and ficha.estaAutorizadaAMover(1) and ficha.puedeComer(self.mem, ficha.posruta+1):
-                self.append(ficha, 1)
+            if ficha.jugador!=self.target_pawn.jugador and ficha.estaAutorizadaAMover(1) and ficha.puedeComer(self.mem, ficha.posruta+1):
+                self.__append(ficha, 1)
 
         #Detecta si hay ficha en 2
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -2)
         for posicion, ficha in casillaataque.buzon_fichas():
             if ficha.ruta.casillaEstaEnRuta(self.casilla)==False: continue
-            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(2) and ficha.puedeComer(self.mem, ficha.posruta+2):
-                self.append(ficha, 2)
+            if ficha.jugador!=self.target_pawn.jugador  and ficha.estaAutorizadaAMover(2) and ficha.puedeComer(self.mem, ficha.posruta+2):
+                self.__append(ficha, 2)
 
         #Detecta si hay ficha en 3
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -3)
         for posicion, ficha in casillaataque.buzon_fichas():
             if ficha.ruta.casillaEstaEnRuta(self.casilla)==False: continue
-            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(3) and ficha.puedeComer(self.mem, ficha.posruta+3):
-                self.append(ficha, 3)
+            if ficha.jugador!=self.target_pawn.jugador  and ficha.estaAutorizadaAMover(3) and ficha.puedeComer(self.mem, ficha.posruta+3):
+                self.__append(ficha, 3)
     
         #Detecta si hay ficha en 4
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -4)
         for posicion, ficha in casillaataque.buzon_fichas():
             if ficha.ruta.casillaEstaEnRuta(self.casilla)==False: continue
-            if ficha.jugador!=self.objetivo.jugador and ficha.estaAutorizadaAMover(4)  and ficha.puedeComer(self.mem, ficha.posruta+4):
-                self.append(ficha, 4)
+            if ficha.jugador!=self.target_pawn.jugador and ficha.estaAutorizadaAMover(4)  and ficha.puedeComer(self.mem, ficha.posruta+4):
+                self.__append(ficha, 4)
         #Detecta si hay ficha en 5
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -5)
         for posicion, ficha in casillaataque.buzon_fichas():
             if ficha.ruta.casillaEstaEnRuta(self.casilla)==False: continue
             if ficha.jugador.tieneFichasEnCasa(): continue
-            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(5) and ficha.puedeComer(self.mem, ficha.posruta+5):
-                self.append(ficha, 5 )
+            if ficha.jugador!=self.target_pawn.jugador  and ficha.estaAutorizadaAMover(5) and ficha.puedeComer(self.mem, ficha.posruta+5):
+                self.__append(ficha, 5 )
         #Detecta si hay ficha en 6 y chequea que no tiene todas fuera de casa
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -6)
         for posicion, ficha in casillaataque.buzon_fichas():
             if ficha.ruta.casillaEstaEnRuta(self.casilla)==False: continue
             if ficha.jugador.tieneFichasEnCasa()==False:
                 continue
-            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(6) and ficha.puedeComer(self.mem, ficha.posruta+6):
-                self.append(ficha, 6 )
+            if ficha.jugador!=self.target_pawn.jugador  and ficha.estaAutorizadaAMover(6) and ficha.puedeComer(self.mem, ficha.posruta+6):
+                self.__append(ficha, 6 )
                 
         #Detecta si hay ficha en 7 y chequea que tiene todas fuera de casa
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -7)
@@ -346,32 +362,28 @@ class ThreatManager(ObjectManager):
             if ficha.ruta.casillaEstaEnRuta(self.casilla)==False: continue
             if ficha.jugador.tieneFichasEnCasa()==True:
                 continue
-            if ficha.jugador!=self.objetivo.jugador and ficha.estaAutorizadaAMover(7)  and ficha.puedeComer(self.mem, ficha.posruta+7):
-                self.append(ficha, 7 )
+            if ficha.jugador!=self.target_pawn.jugador and ficha.estaAutorizadaAMover(7)  and ficha.puedeComer(self.mem, ficha.posruta+7):
+                self.__append(ficha, 7 )
         
         #Detecta si hay ficha en 10
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -10)
         for posicion, ficha in casillaataque.buzon_fichas():
             if (ficha.ruta.casillaEstaEnRuta(self.casilla) and 
                 ficha.jugador.tieneFichasATiroDeLlegada() and 
-                ficha.jugador!=self.objetivo.jugador  and 
+                ficha.jugador!=self.target_pawn.jugador  and 
                 ficha.estaAutorizadaAMover(10) and 
                 ficha.puedeComer(self.mem, ficha.posruta+10) and 
                 ficha.jugador.tieneFichasATiroDeLlegada()
             ):
-                self.append(ficha, 10 )
+                self.__append(ficha, 10 )
                 
         #Detecta si hay ficha en 20
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -20)
         for posicion, ficha in casillaataque.buzon_fichas():
             if ficha.ruta.casillaEstaEnRuta(self.casilla)==False: continue
-            if ficha.jugador!=self.objetivo.jugador  and ficha.estaAutorizadaAMover(20) and ficha.puedeComer(self.mem, ficha.posruta+20):
-                self.append(ficha, 20)
-                
+            if ficha.jugador!=self.target_pawn.jugador  and ficha.estaAutorizadaAMover(20) and ficha.puedeComer(self.mem, ficha.posruta+20):
+                self.__append(ficha, 20)
 
-
-    def numero(self):
-        return len(self.arr)
 
 class TiradaHistorica:
     """Estudio estadistico de tiradas. Lleva un array con todas los objetos TiradaTurno por cada jugador
@@ -686,8 +698,8 @@ class Jugador(QObject):
                 movimiento=f.estaAutorizadaAMover()[1]
                 antes=f.amenazas()
                 despues=f.amenazasDestino(movimiento)
-                if antes.numero()>despues.numero():
-                    print (f, "seleccionada por azar al mejorar numero de fichas la pueden comer. Pasa de {0} a {1}".format(antes.numero(), despues.numero()))
+                if antes.length()>despues.length():
+                    print (f, "seleccionada por azar al mejorar numero de fichas la pueden comer. Pasa de {0} a {1}".format(antes.length(), despues.length()))
                     return f
         
         
@@ -1324,7 +1336,9 @@ class CasillaManager(ObjectManager_With_Id):
                 42, 43, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67,
                 76, 77,
                 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 102, 103, 104, 105, 106, 107, 108, 109,  111,
-                119, 120, 121, 122, 123, 124, 125, 126, 127,  128
+                119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 
+                177, 178, 179, 180, 181, 182, 183, 
+                185, 186, 187, 188, 189, 190, 191, 
             ]:
                 swap_list_with_two_items(c.pawncoords)
         ##############################        
@@ -1381,7 +1395,7 @@ class SetFichas(ObjectManager_With_Id):
 
     ## Ordena por el número de amenazas, calcula las amenazas al ordenar
     def order_by_numero_amenazas(self, reverse=False):
-        fichas=sorted(self.arr, key=lambda f:f.amenazas().numero(),  reverse=reverse)
+        fichas=sorted(self.arr, key=lambda f:f.amenazas().length(),  reverse=reverse)
         del self.arr
         self.arr=fichas
         

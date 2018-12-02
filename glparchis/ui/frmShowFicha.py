@@ -32,9 +32,9 @@ class frmShowFicha(QDialog, Ui_frmShowFicha):
         table.setRowCount(len(setamenazas.arr))        
         for i,  a in enumerate(setamenazas.arr):
             item = QTableWidgetItem()
-            item.setIcon(a.atacante.color.qicon())                
+            item.setIcon(a.attacking_pawn.color.qicon())                
             table.setItem(i, 0, QTableWidgetItem(item))
-            item = QTableWidgetItem(str(a.atacante.casilla().id))
+            item = QTableWidgetItem(str(a.attacking_pawn.casilla().id))
             item.setTextAlignment(Qt.AlignCenter)
             table.setItem(i, 1, item)
             item = QTableWidgetItem(a.name())
