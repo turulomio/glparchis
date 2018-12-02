@@ -2854,37 +2854,6 @@ class ReportPlayer(ObjectManager):
         
     def search_pawns_movements(self):
         pass
-        
-
-
-##Con el constructor se calculan todas las amenazas asociadas a la ficha teniendo en cuenta las circunstancias de juego
-
-## Cuando se añade from dice or from _movement se calcula las amenzas y la posibilidad de movimeinto
-class ReportPawn():
-    def __init__(self, mem, pawn):
-        self.mem=mem
-        self.pawn=pawn
-        self.square=pawn.casilla()
-        self.threats=ThreatManager(self.mem, self.pawn, self.square)
-        self.threats.detect()
-        
-    def __repr__(self):
-            return "Pawn {} can move from C{} ({} threats) to C ( threates)".format(self.pawn.id, self.square.id, self.threats.length())
-#        else:
-#            return "Pawn {} can move from C{} ({} threats) to C{} ({} threates) and eats Pawn"
-        
-    def report_for_dice(self, dice):
-        self.dice=dice
-
-    def report_for_movement(self, movement):
-        self.valid=None
-        self.movement=movement
-        self.square_destinty=None
-        self.eatten_pawn=None
-        self.threats_destiny=ThreatManager(self.mem)
-        self.threats_destiny.detect()
-
-
 
 class PretendMovement:
     def __init__(self):
