@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QLabel, QHBoxLayout, QApplication
-from glparchis.libglparchis import c2b
+from glparchis.functions import c2b
 from glparchis.ui.Ui_wdgPlayer import Ui_wdgPlayer
 from glparchis.ui.wdgPlayerDado import wdgPlayerDado
 

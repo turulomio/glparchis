@@ -1,4 +1,4 @@
-from glparchis.libglparchis import str2bool, cargarQTranslator
+from glparchis.functions import str2bool, cargarQTranslator
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import  QPixmap,  QIcon
 from PyQt5.QtWidgets import   QDialog, QApplication

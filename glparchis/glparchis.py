@@ -1,13 +1,9 @@
 import argparse
-import logging
 import os
 import signal
 import sys
-from colorama import init as colorama_init, Style, Fore
+from colorama import init as colorama_init
 
-def signal_handler(signal, frame):
-        logging.critical(Style.BRIGHT+Fore.RED+app.translate("Core","You pressed 'Ctrl+C', exiting..."))
-        sys.exit(1)
 
 def main():
     colorama_init()
@@ -17,6 +13,7 @@ def main():
     from glparchis.ui.frmMain import frmMain
     from glparchis.version import __versiondate__   
     from glparchis.loggingsystem import argparse_add_debug_argument, argparse_parsing_debug_argument
+    from glparchis.functions import signal_handler
 
     try:
         os.makedirs(os.path.expanduser("~/.glparchis/"))

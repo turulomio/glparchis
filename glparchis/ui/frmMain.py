@@ -7,7 +7,8 @@ from urllib.request import urlopen
 from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QEvent,  QUrl,  pyqtSignal, QThread, QSize
 from PyQt5.QtGui import QIcon, QPixmap, QKeyEvent, QDesktopServices
 from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QDialog, QFileDialog
-from glparchis.libglparchis import str2bool, cargarQTranslator, b2s, qmessagebox,  Mem3, Mem4, Mem6, Mem8,  SoundSystem
+from glparchis.libglparchis import Mem3, Mem4, Mem6, Mem8,  SoundSystem
+from glparchis.functions import str2bool, cargarQTranslator, b2s, qmessagebox
 from glparchis.version import __version__,  get_remote, __versiondate__
 
 from glparchis.ui.Ui_frmMain import Ui_frmMain

@@ -1,7 +1,5 @@
-import sys
+
 import logging
-import warnings
-import functools
 import pkg_resources
 from OpenGL.GL import glVertex3fv, glBegin, glBindTexture, glColor3d, glDisable, glEnable, glEnd, glPopMatrix, glPopName, glPushName, glPushMatrix, glRotated, glScaled, glTexCoord2f, glTranslated, glTranslatef, glVertex3d, GL_TEXTURE_2D, GL_QUADS, GL_POLYGON, GL_LINE_LOOP
 from OpenGL.GLU import gluCylinder, gluDisk, gluNewQuadric, gluQuadricDrawStyle, gluQuadricNormals, gluQuadricTexture, GLU_FILL, GLU_SMOOTH
@@ -11,30 +9,14 @@ from glparchis.ui.poscasillas3 import poscasillas3
 from glparchis.ui.poscasillas6 import poscasillas6
 import os,  random,   configparser,  datetime,  codecs,  math
 from PyQt5.QtGui import QColor, QIcon, QPixmap
-from PyQt5.QtCore import Qt, QObject, QCoreApplication, QEventLoop,  pyqtSignal,  QUrl
-from PyQt5.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
+from PyQt5.QtCore import Qt, QObject, QCoreApplication,  pyqtSignal,  QUrl
+from PyQt5.QtWidgets import QApplication, QTableWidgetItem
 from PyQt5.QtMultimedia import QSoundEffect
 from uuid import uuid4
 from glparchis.libglparchistypes import TTextures,  TNames, TSquareTypes,  TPlayers
 from glparchis.libmanagers import ObjectManager_With_Id, ObjectManager, DictObjectManager_With_Id
-from glparchis.functions import swap_list_with_two_items
+from glparchis.functions import swap_list_with_two_items, str2bool, qmessagebox, delay
 from abc import ABC,  abstractmethod
-
-
-
-def deprecated(func):
-    """This is a decorator which can be used to mark functions
-    as deprecated. It will result in a warning being emitted
-    when the function is used."""
-    @functools.wraps(func)
-    def new_func(*args, **kwargs):
-        warnings.simplefilter('always', DeprecationWarning)  # turn off filter
-        warnings.warn("Call to deprecated function {}.".format(func.__name__),
-                      category=DeprecationWarning,
-                      stacklevel=2)
-        warnings.simplefilter('default', DeprecationWarning)  # reset filter
-        return func(*args, **kwargs)
-    return new_func
 
 ## Class to manage game pawns
 class ManagerPawnsGame(DictObjectManager_With_Id):
@@ -42,37 +24,6 @@ class ManagerPawnsGame(DictObjectManager_With_Id):
         DictObjectManager_With_Id.__init__(self)
 
 
-def str2bool(s):
-    if s.__class__==bool:#Si ya fuera bool
-        return s
-    if s.lower()=="true":
-        return True
-    if s.lower()=="false":
-        return False
-    print ("I coudn't convert string to boolean")
-
-def b2s(b, code='UTF-8'):
-    return bytes(b).decode(code)
-    
-def s2b(s, code='UTF8'):
-    if s==None:
-        return "".encode(code)
-    else:
-        return s.encode(code)
-        
-
-def c2b(state):
-    """QCheckstate to python bool"""
-    if state==Qt.Checked:
-        return True
-    else:
-        return False
-
-def delay(miliseconds):
-    dieTime= datetime.datetime.now()+datetime.timedelta(microseconds=miliseconds*1000)
-    while datetime.datetime.now()< dieTime :
-        QCoreApplication.processEvents(QEventLoop.AllEvents, 100);    
-    #print ("Delay", miliseconds)
 
 class Dado(QObject):
     """
@@ -2852,25 +2803,3 @@ class Mem4(Mem):
         self.tablero=self.class_players("Tablero")
         
         self.circulo=Circulo(self, 68)
-
-def cargarQTranslator(qtranslator, language):  
-    """language es un string"""  
-
-    url=pkg_resources.resource_filename("glparchis","i18n/glparchis_{}.qm".format(language))
-    print(url)
-    qtranslator.load(url)
-    QCoreApplication.installTranslator(qtranslator);
-
-def developing():
-    """Funcion que permite avanzar si hay un parametro y da un aviso e interrumpe si no, se debe poner un if en donde se use"""
-    if len (sys.argv)==1:
-        qmessagebox(QApplication.translate("frmMain", "Esta opcion se esta desarrollando"))
-        return False
-    return True
-
-def qmessagebox(message, type=QMessageBox.Information):
-    m=QMessageBox()
-    m.setWindowIcon(QIcon(":glparchis/ficharoja.png"))
-    m.setIcon(type)
-    m.setText(str(message))
-    m.exec_() 
