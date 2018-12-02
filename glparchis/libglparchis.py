@@ -13,7 +13,7 @@ from PyQt5.QtCore import Qt, QObject, QCoreApplication,  pyqtSignal,  QUrl
 from PyQt5.QtWidgets import QApplication, QTableWidgetItem
 from PyQt5.QtMultimedia import QSoundEffect
 from uuid import uuid4
-from glparchis.libglparchistypes import TTextures,  TNames, TSquareTypes,  TPlayers
+from glparchis.libglparchistypes import TTextures,  TNames, TSquareTypes,  TPlayers, TThreatTypes
 from glparchis.libmanagers import ObjectManager_With_Id, ObjectManager, DictObjectManager_With_Id
 from glparchis.functions import swap_list_with_two_items, str2bool, qmessagebox, delay
 from abc import ABC,  abstractmethod
@@ -233,16 +233,16 @@ class Threat:
     def name(self, tipo=None):
         if tipo==None:
             tipo=self.tipo
-        if tipo==1: return QApplication.translate("glparchis","Sacar un 1")
-        if tipo==2: return QApplication.translate("glparchis","Sacar un 2")
-        if tipo==3: return QApplication.translate("glparchis","Sacar un 3")
-        if tipo==4: return QApplication.translate("glparchis","Sacar un 4")
-        if tipo==5: return QApplication.translate("glparchis","Sacar un 5")
-        if tipo==6: return QApplication.translate("glparchis","Sacar un 6")
-        if tipo==7: return QApplication.translate("glparchis","Sacar un 7")
-        if tipo==10: return QApplication.translate("glparchis","Contar 10")
-        if tipo==20: return QApplication.translate("glparchis","Contar 20")
-        if tipo==51: return QApplication.translate("glparchis","Sacar ficha")
+        if tipo==TThreatTypes.Move1: return QApplication.translate("glparchis","Sacar un 1")
+        if tipo==TThreatTypes.Move2: return QApplication.translate("glparchis","Sacar un 2")
+        if tipo==TThreatTypes.Move3: return QApplication.translate("glparchis","Sacar un 3")
+        if tipo==TThreatTypes.Move4: return QApplication.translate("glparchis","Sacar un 4")
+        if tipo==TThreatTypes.Move5: return QApplication.translate("glparchis","Sacar un 5")
+        if tipo==TThreatTypes.Move6: return QApplication.translate("glparchis","Sacar un 6")
+        if tipo==TThreatTypes.Move7: return QApplication.translate("glparchis","Sacar un 7")
+        if tipo==TThreatTypes.Move10: return QApplication.translate("glparchis","Contar 10")
+        if tipo==TThreatTypes.Move20: return QApplication.translate("glparchis","Contar 20")
+        if tipo==TThreatTypes.Outside: return QApplication.translate("glparchis","Sacar ficha")
         
     ## This function is usefull to detect duplicated threats due to same player barriers
     def stringPlayerAndSquare(self):
@@ -793,7 +793,7 @@ class ColorManager(ObjectManager):
                 return c
         print ("No se ha encontrado el color de nombre {0}".format(name))
         
-class SetJugadores(ObjectManager):
+class JugadorManager(ObjectManager):
     """Agrupacion de jugadores"""
     def __init__(self, mem):
         ObjectManager.__init__(self)
@@ -1523,6 +1523,7 @@ class Ficha(QObject):
                 if log: self.mem.jugadores.actual.log(self.tr("No hay espacio en la casilla"))
                 return (False, 0)
         return (True, movimiento)
+
         
     def mover(self, ruta, controllastficha=True,  startgame=False):
         casillaorigen=self.ruta.arr[self.posruta]
@@ -2596,7 +2597,7 @@ class Mem:
 
                 
         self.colores=ColorManager()
-        self.jugadores=SetJugadores(self)
+        self.jugadores=JugadorManager(self)
         self.dic_rutas={}
         self.dado=Dado()
         self.selFicha=None
@@ -2818,3 +2819,281 @@ class Mem4(Mem):
         self.tablero=self.class_players("Tablero")
         
         self.circulo=Circulo(self, 68)
+
+## Realiza un estudio de todos los posibles movimientos y devuelve un array ordenado por prioridad de mayor a menor
+## Si hay movimientos obligados, solo muestra los obligados
+
+## Esto es muy comodo para el IA, al que luego le podré aplicar probabilidad
+
+## También es muy cómodo para el humano, ya que solo debe ver si la pieza está
+
+## También es util para calcular las amenazas en origen y en destino, ya que se calculan en cada PawnnMovementReport
+
+## Esta clase no realiza movimentos simplemente, calcula el resultado, atendiendo a las circunstancias del juego
+
+class ReportPlayer(ObjectManager):
+    def __init__(self, mem, player):
+        ObjectManager.__init__(self)
+        self.player=player
+        
+    def report_for_dice(self, dice):
+        self.dice=dice
+        
+        
+    def report_for_movement(self, movement):
+        self.movement=movement
+        self.search_obligated_movements()
+        if self.length()==0:
+            self.search_pawns_movements()
+
+    def search_obligated_movements(self):
+        pass
+        
+    def search_pawns_movements(self):
+        pass
+        
+
+
+##Con el constructor se calculan todas las amenazas asociadas a la ficha teniendo en cuenta las circunstancias de juego
+
+## Cuando se añade from dice or from _movement se calcula las amenzas y la posibilidad de movimeinto
+class ReportPawn():
+    def __init__(self, mem, pawn):
+        self.mem=mem
+        self.pawn=pawn
+        self.square=pawn.casilla()
+        self.threats=ReportThreatManager(self.mem, self.pawn, self.square)
+        self.threats.detect()
+        
+    def __repr__(self):
+            return "Pawn {} can move from C{} ({} threats) to C ( threates)".format(self.pawn.id, self.square.id, self.threats.length())
+#        else:
+#            return "Pawn {} can move from C{} ({} threats) to C{} ({} threates) and eats Pawn"
+        
+    def report_for_dice(self, dice):
+        self.dice=dice
+
+    def report_for_movement(self, movement):
+        self.valid=None
+        self.movement=movement
+        self.square_destinty=None
+        self.eatten_pawn=None
+        self.threats_destiny=ReportThreatManager(self.mem)
+        self.threats_destiny.detect()
+        
+class ReportThreatManager(ObjectManager):
+    def __init__(self, mem, pawn, square):
+        ObjectManager.__init__(self)
+        self.pawn=pawn
+        self.square=square
+
+    def detect(self):        
+        if self.square.tipo==TSquareTypes.Initial(self.mem.maxplayers) or self.square.tipo==TSquareTypes.Final(self.mem.maxplayers):
+            return
+        
+        if self.square.rampallegada==True:
+            return
+
+        #Detecta salida con un 5 a ruta1
+        if self.square.ruta1!=-1:
+            #Busca la casilla inicial del mismo color
+            casillaataque=self.mem.rutas.arr[self.square.ruta1].squareInitial()#Casilla inicial de la ruta del jugador con ruta1=TJugador
+            if casillaataque.buzon_numfichas()>0:#Hay fichas que coman
+                if self.square.buzon_numfichas()==2:
+                    if  self.pawn.posruta!=1: #Si no esta en su propia ruta1, esta llena
+                        position, attacking_pawn=casillaataque.buzon_fichas()[0]
+                        if attacking_pawn.puedeComer(self.mem, attacking_pawn.posruta+1): #aqui chequea que sea mismo color o distinta, ultima en llegar...
+                            self.append(Threat(self.pawn, attacking_pawn, TThreatTypes.Outside))
+                        else:
+                            return
+                    else:#Esta en su propia ruta1
+                        return
+                else:
+                    return
+            else:
+                return
+        
+        if self.square.seguro==True:#All secure squares, including "route1 squares" for the rest of enemy pawns, not only route1
+            return
+        
+        #Detecta si hay ficha en OJO LA CASILLA QUE SE BUSCA NO ES LA ACTUAL DEL OBJETIVO sino la de parametro de entrada self.square
+        casillaataque=self.mem.circulo.square(self.square.id, -1)
+        for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.ruta.squareEstaEnRuta(self.square)==False: continue
+            if ficha.jugador!=self.pawn.jugador and ficha.estaAutorizadaAMover(1) and ficha.puedeComer(self.mem, ficha.posruta+1):
+                self.__append(ficha, 1)
+
+        #Detecta si hay ficha en 2
+        casillaataque=self.mem.circulo.square(self.square.id, -2)
+        for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.ruta.squareEstaEnRuta(self.square)==False: continue
+            if ficha.jugador!=self.pawn.jugador  and ficha.estaAutorizadaAMover(2) and ficha.puedeComer(self.mem, ficha.posruta+2):
+                self.__append(ficha, 2)
+
+        #Detecta si hay ficha en 3
+        casillaataque=self.mem.circulo.square(self.square.id, -3)
+        for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.ruta.squareEstaEnRuta(self.square)==False: continue
+            if ficha.jugador!=self.pawn.jugador  and ficha.estaAutorizadaAMover(3) and ficha.puedeComer(self.mem, ficha.posruta+3):
+                self.__append(ficha, 3)
+    
+        #Detecta si hay ficha en 4
+        casillaataque=self.mem.circulo.square(self.square.id, -4)
+        for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.ruta.squareEstaEnRuta(self.square)==False: continue
+            if ficha.jugador!=self.pawn.jugador and ficha.estaAutorizadaAMover(4)  and ficha.puedeComer(self.mem, ficha.posruta+4):
+                self.__append(ficha, 4)
+        #Detecta si hay ficha en 5
+        casillaataque=self.mem.circulo.square(self.square.id, -5)
+        for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.ruta.squareEstaEnRuta(self.square)==False: continue
+            if ficha.jugador.tieneFichasEnCasa(): continue
+            if ficha.jugador!=self.pawn.jugador  and ficha.estaAutorizadaAMover(5) and ficha.puedeComer(self.mem, ficha.posruta+5):
+                self.__append(ficha, 5 )
+        #Detecta si hay ficha en 6 y chequea que no tiene todas fuera de casa
+        casillaataque=self.mem.circulo.square(self.square.id, -6)
+        for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.ruta.squareEstaEnRuta(self.square)==False: continue
+            if ficha.jugador.tieneFichasEnCasa()==False:
+                continue
+            if ficha.jugador!=self.pawn.jugador  and ficha.estaAutorizadaAMover(6) and ficha.puedeComer(self.mem, ficha.posruta+6):
+                self.__append(ficha, 6 )
+                
+        #Detecta si hay ficha en 7 y chequea que tiene todas fuera de casa
+        casillaataque=self.mem.circulo.square(self.square.id, -7)
+        for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.ruta.squareEstaEnRuta(self.square)==False: continue
+            if ficha.jugador.tieneFichasEnCasa()==True:
+                continue
+            if ficha.jugador!=self.pawn.jugador and ficha.estaAutorizadaAMover(7)  and ficha.puedeComer(self.mem, ficha.posruta+7):
+                self.__append(ficha, 7 )
+        
+        #Detecta si hay ficha en 10
+        casillaataque=self.mem.circulo.square(self.square.id, -10)
+        for posicion, ficha in casillaataque.buzon_fichas():
+            if (ficha.ruta.squareEstaEnRuta(self.square) and 
+                ficha.jugador.tieneFichasATiroDeLlegada() and 
+                ficha.jugador!=self.pawn.jugador  and 
+                ficha.estaAutorizadaAMover(10) and 
+                ficha.puedeComer(self.mem, ficha.posruta+10) and 
+                ficha.jugador.tieneFichasATiroDeLlegada()
+            ):
+                self.__append(ficha, 10 )
+                
+        #Detecta si hay ficha en 20
+        casillaataque=self.mem.circulo.square(self.square.id, -20)
+        for posicion, ficha in casillaataque.buzon_fichas():
+            if ficha.ruta.squareEstaEnRuta(self.square)==False: continue
+            if ficha.jugador!=self.pawn.jugador  and ficha.estaAutorizadaAMover(20) and ficha.puedeComer(self.mem, ficha.posruta+20):
+                self.__append(ficha, 20)
+
+
+
+class PretendMovement:
+    def __init__(self):
+        self.can=False
+        self.square=None
+        self.movement=None
+        self.eatten_pawn=None
+        self.log=[]
+        
+    def __repr__(self):
+        return "{},{},{},{}".format(self.can, self.square, self.movement, self.eatten_pawn)
+        
+    def set(self, square, movement, eatten_pawn):
+        self.can=True
+        self.square=square
+        self.movement=movement
+        self.eatten_pawn=eatten_pawn
+
+
+## Returns a PretendMovement object
+## If dado isNOne it means, it has to move movimientos_acumulados
+def pretend_dado(mem, pawn, dado=None):
+    result=PretendMovement()
+    player=pawn.jugador
+        
+    #No se puede mover una ficha que esta en casa con puntos acumulados
+    if player.movimientos_acumulados!=None and pawn.estaEnCasa():
+        return result
+
+    if player.movimientos_acumulados!=None:
+        movement=player.movimientos_acumulados
+    elif pawn.estaEnCasa() and dado==5:   
+        movement= 1
+    elif pawn.estaEnCasa()==True and dado!=5: #Saco un 5
+        return result
+    elif player.fichas.TodasFichasFueraDeCasa()==True and dado==6:
+        movement=7
+    else:
+        movement=dado
+        
+    return pretend_movement(mem, pawn, movement)
+       
+       
+
+## Returns a PretendMovement object
+## Movement can be 1 (1 or Outside its automatically detected),2,3,4,5,6,7,10,20
+def pretend_movement(mem, pawn, movement):
+    result=PretendMovement()
+    player=pawn.jugador
+        
+    #se ha pasado la meta
+    if pawn.posruta+movement>pawn.ruta.squareFinalPosition():
+        result.log.append("Se ha pasado la meta")
+        return result
+        
+    #Rastrea todas las casillas de paso en busca de barrera. desde la siguiente
+    for i in range(pawn.posruta+1, pawn.posruta+movement+1): 
+        if pawn.ruta.arr[i].tieneBarrera()==True:
+            result.log.append("Hay una barrera")
+            return result
+
+    #Comprueba si hay sitio libre
+    casilladestino=pawn.ruta.arr[pawn.posruta+movement]
+    if casilladestino.posicionLibreEnBuzon()==-1:
+        if player.hayDosJugadoresDistintosEnRuta1():#COmprueeba si es primera casilla en ruta y hay otra de otro color.
+            result.log.append("Obligado a sacar y a comer")
+        else:
+            result.log.append("No hay espacio en la casilla")
+            return result
+    
+
+    # PUEDE MOVER PERO DEBE BUSCAR SI ALGUNA ESTA OBLIGADA 
+    # ANTIGUA ESTA AUTORIZADA A MOVER
+    if player.fichas.algunaEstaObligada() :
+        if pawn.estaObligada(mem)==False:                 
+            return result
+            
+    
+    ## ANTIGUA PUEDE COMER
+    fichasdestino=casilladestino.buzon_fichas()
+    #debe estar primero porque es una casilla segura
+    if pawn.posruta==0 and movement==1 and casilladestino.buzon_numfichas()==2:                
+        #Las dos fichas son del jugador actual
+        if player==fichasdestino[0][1].jugador and player==fichasdestino[1][1].jugador:
+            print ("igual0,igual1")
+            return result
+        elif player==fichasdestino[0][1].jugador and player!=fichasdestino[1][1].jugador:
+            print ("igual0,noigual1")
+            result.set(casilladestino, movement, fichasdestino[1][1])
+            return result
+        elif player!=fichasdestino[0][1].jugador and player==fichasdestino[1][1].jugador:
+            print ("noigual0,igual1")
+            result.set(casilladestino, movement, fichasdestino[0][1])
+            return result
+        else: #Las dos son distintas se escoge la ultima que entro
+            print ("noigual0,noigual1")
+            result.set(casilladestino, movement, casilladestino.UltimaFichaEnLlegar)
+            return result
+            
+    if casilladestino.seguro==True and len(fichasdestino)<2:
+        result.set(casilladestino, movement, None)
+        return result
+    
+    if len(fichasdestino)==1:#Todavia no se ha movido
+        if fichasdestino[0][1].jugador!=player:
+            result.set(casilladestino, movement, fichasdestino[0][1])
+            return result
+    result.set(casilladestino, movement, None)
+    return result

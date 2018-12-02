@@ -89,4 +89,15 @@ class TSquareTypes:
         elif maxplayers==8:
             return TSquareTypes.Final8
     
+class TThreatTypes:
+    Move1=1
+    Move2=2
+    Move3=3
+    Move4=4
+    Move5=5
+    Move6=6
+    Move7=7
+    Move10=10
+    Move20=20
+    Outside=51
     
