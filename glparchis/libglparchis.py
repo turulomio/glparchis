@@ -220,7 +220,7 @@ class Dado(QObject):
 
                     
 ## Clase que controla las amenazas que se ciernen sobre una ficha
-class Amenaza:
+class Threat:
     def __init__(self,  objetivo, atacante, tipo):
         self.objetivo=objetivo
         self.atacante=atacante
@@ -245,7 +245,7 @@ class Amenaza:
         if tipo==51: return QApplication.translate("glparchis","Sacar ficha")
 
 ## Class that studies threats of a pawn when setting in a square
-class SetAmenazas(ObjectManager):
+class ThreatManager(ObjectManager):
     ## @param mem Mem singleton
     ## @param objetivo Ficha de la que se van a estudiar las amenazas
     ## @param casilla Casilla en la que queremos estudiar las amenazas tras colocar la ficha objetivo
@@ -263,40 +263,39 @@ class SetAmenazas(ObjectManager):
         logging.debug("Detectar amenazas de {} en {} llevó: {}".format(self.objetivo,  self.casilla,  datetime.datetime.now()-inicio))
         
     def append(self, atacante, type):
-        self.arr.append(Amenaza(self.objetivo, atacante, type))
+        self.arr.append(Threat(self.objetivo, atacante, type))
             
     def detectar(self):
         del self.arr
         self.arr=[]
         
-        if self.casilla.tipo==0 or self.casilla.tipo==1:#Casilla inicial y final
+        if self.casilla.tipo==TSquareTypes.Initial(self.mem.maxplayers) or self.casilla.tipo==TSquareTypes.Final(self.mem.maxplayers):
             return
         
         if self.casilla.rampallegada==True:
             return
-        
-        if self.casilla.seguro==True and self.casilla.ruta1==-1:#Esta asegurada y no esta en ruta 1
-            return
-            
+
         #Detecta salida con un 5 a ruta1
         if self.casilla.ruta1!=-1:
             #Busca la casilla inicial del mismo color
-            casillaataque=self.mem.rutas.arr[self.casilla.ruta1].arr[0]#Casilla inicial de la ruta del jugador con ruta1=TJugador
+            casillaataque=self.mem.rutas.arr[self.casilla.ruta1].squareInitial()#Casilla inicial de la ruta del jugador con ruta1=TJugador
             if casillaataque.buzon_numfichas()>0:#Hay fichas que coman
                 if self.casilla.buzon_numfichas()==2:
                     if  self.objetivo.posruta!=1: #Si no esta en su propia ruta1, esta llena
-                        for posicion, ficha in casillaataque.buzon_fichas():
-                            if  ficha.puedeComer(self.mem, ficha.posruta+1): #aqui chequea que sea mismo color o distinta, ultima en llegar...
-                                self.append(ficha, 51)
-                                break#Con que haya uno es suficiente
-                            else:
-                                return
+                        position, attacking_pawn=casillaataque.buzon_fichas()[0]
+                        if attacking_pawn.puedeComer(self.mem, attacking_pawn.posruta+1): #aqui chequea que sea mismo color o distinta, ultima en llegar...
+                            self.append(attacking_pawn, 51)
+                        else:
+                            return
                     else:#Esta en su propia ruta1
                         return
                 else:
                     return
             else:
                 return
+        
+        if self.casilla.seguro==True:#All secure squares, including "route1 squares" for the rest of enemy pawns, not only route1
+            return
         
         #Detecta si hay ficha en OJO LA CASILLA QUE SE BUSCA NO ES LA ACTUAL DEL OBJETIVO sino la de parametro de entrada self.casilla
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -1)
@@ -487,7 +486,7 @@ class HighScore:
         self.sort()
         
     def qtablewidget(self, table): 
-        colores=SetColores()#Se pinta hs,hs6 y hs8
+        colores=ColorManager()#Se pinta hs,hs6 y hs8
         colores.generar_colores(8)
         table.setRowCount(len(self.arr))        
         self.sort()
@@ -757,7 +756,7 @@ class Ruta:
             return True
         return False
     
-class SetColores(ObjectManager):
+class ColorManager(ObjectManager):
     def __init__(self):
         ObjectManager.__init__(self)
     
@@ -1321,9 +1320,11 @@ class CasillaManager(ObjectManager_With_Id):
         ## First coord inside route
         def swapPawnCoordsInSquare(c):
             if c.id in [ 
-                1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
-                42, 43, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 
-                81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 102, 103, 104, 105, 106, 107, 108, 109,  111
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 34, 35, 36, 37, 38, 39, 40, 41,
+                42, 43, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67,
+                76, 77,
+                85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 102, 103, 104, 105, 106, 107, 108, 109,  111,
+                119, 120, 121, 122, 123, 124, 125, 126, 127,  128
             ]:
                 swap_list_with_two_items(c.pawncoords)
         ##############################        
@@ -1398,12 +1399,12 @@ class Ficha(QObject):
         self.oglname=self.id#Nombre usado para pick por opengl
 
     def amenazas(self):
-        return SetAmenazas(self.mem, self, self.casilla())
+        return ThreatManager(self.mem, self, self.casilla())
         
         
     def amenazasDestino(self,  desplazamiento):
         if self.posruta+desplazamiento<self.ruta.length():
-            return SetAmenazas(self.mem,  self, self.ruta.arr[self.posruta+desplazamiento])
+            return ThreatManager(self.mem,  self, self.ruta.arr[self.posruta+desplazamiento])
         else:
             print ("No se puede ver la amenaza destino de una ruta pasada")
         
@@ -2580,7 +2581,7 @@ class Mem:
         self.pawnsgame=ManagerPawnsGame()
 
                 
-        self.colores=SetColores()
+        self.colores=ColorManager()
         self.jugadores=SetJugadores(self)
         self.dic_rutas={}
         self.dado=Dado()

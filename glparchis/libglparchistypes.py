@@ -63,5 +63,30 @@ class TSquareTypes:
     Final6=8
     Initial8=9
     Final8=10
+
+    ## Return initial type depending of maximum number of players
+    ## @param int Maximum number of players
+    def Initial(maxplayers):
+        if maxplayers==3:
+            return TSquareTypes.Initial3
+        elif maxplayers==4:
+            return TSquareTypes.Initial4
+        elif maxplayers==6:
+            return TSquareTypes.Initial6
+        elif maxplayers==8:
+            return TSquareTypes.Initial8
+            
+            
+    ## Return Final type depending of maximum number of players
+    ## @param int Maximum number of players
+    def Final(maxplayers):
+        if maxplayers==3:
+            return TSquareTypes.Final3
+        elif maxplayers==4:
+            return TSquareTypes.Final4
+        elif maxplayers==6:
+            return TSquareTypes.Final6
+        elif maxplayers==8:
+            return TSquareTypes.Final8
     
     

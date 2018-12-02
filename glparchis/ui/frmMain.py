@@ -40,7 +40,7 @@ class frmMain(QMainWindow, Ui_frmMain):
         self.game=None
         self.setWindowTitle(self.tr("glParchis 2006-{}. GNU General Public License \xa9").format(__versiondate__.year))
         if datetime.date.today()-datetime.date.fromordinal(int(self.settings.value("frmMain/lastupdate", 1)))>=datetime.timedelta(days=7):
-            print ("Actualizando")
+            logging.info(self.tr("Checking for updates..."))
             self.checkUpdates(False)
         self.setSound(str2bool(self.settings.value("frmSettings/sound", "True")))
         self.setFullScreen(str2bool(self.settings.value("frmMain/fullscreen", "False")))
@@ -55,14 +55,14 @@ class frmMain(QMainWindow, Ui_frmMain):
             self.settings.setValue("frmMain/uuid", str(uuid4()))
             if str2bool(self.settings.value("frmSettings/statistics", "True"))==True:
                 url='http://glparchis.sourceforge.net/php/glparchis_installations.php?uuid={}'.format(self.settings.value("frmMain/uuid"))
-                print(url)
+                logging.info(self.tr("Setting uuid with {}").format(url))
                 try:
                     web=b2s(urlopen(url).read())
                 except:
                     web=None
-                print (web)       
+                logging.debug(web)       
         else:
-            print(self.tr("Installation UUID already set"))
+            logging.info(self.tr("Installation UUID already set"))
         self.uuid_installation=self.settings.value("frmMain/uuid")
         self.url_statistics_installation="http://glparchis.sourceforge.net/php/glparchis_statistics_installation.php?installations_uuid={}".format(self.uuid_installation)
         self.url_statistics_world="http://glparchis.sourceforge.net/php/glparchis_statistics.php"
@@ -336,7 +336,6 @@ class frmMain(QMainWindow, Ui_frmMain):
         if salida==QDialog.Accepted:
             self.showWdgGame()
 
-
     @pyqtSlot()  
     def on_actionPartidaNueva8_triggered(self):
         self.mem=Mem8()
@@ -348,11 +347,10 @@ class frmMain(QMainWindow, Ui_frmMain):
         if salida==QDialog.Accepted:
             self.showWdgGame()
 
-
     @pyqtSlot()     
     def on_actionGuardarPartida_triggered(self):
         os.chdir(self.path_autosaves)
-        filename=os.path.basename(QFileDialog.getSaveFileName(self, "", "", "glParchis game (*.glparchis)")[0])
+        filename=QFileDialog.getSaveFileName(self, "", "", "glParchis game (*.glparchis)")[0]
         if filename!="":       
             if os.path.splitext(filename)[1]!=".glparchis":
                 filename=filename+".glparchis"
