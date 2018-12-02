@@ -281,10 +281,7 @@ class ThreatManager(ObjectManager):
         del self.arr
         self.arr=newarr
             
-    def __detect(self):
-        del self.arr
-        self.arr=[]
-        
+    def __detect(self):        
         if self.casilla.tipo==TSquareTypes.Initial(self.mem.maxplayers) or self.casilla.tipo==TSquareTypes.Final(self.mem.maxplayers):
             return
         
@@ -299,8 +296,9 @@ class ThreatManager(ObjectManager):
                 if self.casilla.buzon_numfichas()==2:
                     if  self.target_pawn.posruta!=1: #Si no esta en su propia ruta1, esta llena
                         position, attacking_pawn=casillaataque.buzon_fichas()[0]
-                        if attacking_pawn.puedeComer(self.mem, attacking_pawn.posruta+1): #aqui chequea que sea mismo color o distinta, ultima en llegar...
-                            self.__append(attacking_pawn, 51)
+                        pretend=pretend_movement(self.mem, attacking_pawn, 1)
+                        if pretend.eatten_pawn!=None:
+                            self.__append(attacking_pawn, TThreatTypes.Outside)
                         else:
                             return
                     else:#Esta en su propia ruta1
@@ -315,74 +313,79 @@ class ThreatManager(ObjectManager):
         
         #Detecta si hay ficha en OJO LA CASILLA QUE SE BUSCA NO ES LA ACTUAL DEL OBJETIVO sino la de parametro de entrada self.casilla
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -1)
-        for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.ruta.casillaEstaEnRuta(self.casilla)==False: continue
-            if ficha.jugador!=self.target_pawn.jugador and ficha.estaAutorizadaAMover(1) and ficha.puedeComer(self.mem, ficha.posruta+1):
-                self.__append(ficha, 1)
+        for posicion, attacking_pawn in casillaataque.buzon_fichas():
+            if attacking_pawn.ruta.casillaEstaEnRuta(self.casilla)==False: continue
+            pretend=pretend_movement(self.mem, attacking_pawn, 1)
+            if pretend.eatten_pawn!=None:
+                self.__append(attacking_pawn, TThreatTypes.Move1)
 
-        #Detecta si hay ficha en 2
+        #Detecta si hay attacking_pawn en 2
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -2)
-        for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.ruta.casillaEstaEnRuta(self.casilla)==False: continue
-            if ficha.jugador!=self.target_pawn.jugador  and ficha.estaAutorizadaAMover(2) and ficha.puedeComer(self.mem, ficha.posruta+2):
-                self.__append(ficha, 2)
+        for posicion, attacking_pawn in casillaataque.buzon_fichas():
+            if attacking_pawn.ruta.casillaEstaEnRuta(self.casilla)==False: continue
+            pretend=pretend_movement(self.mem, attacking_pawn, 2)
+            if pretend.eatten_pawn!=None:
+                self.__append(attacking_pawn, TThreatTypes.Move2)
 
-        #Detecta si hay ficha en 3
+        #Detecta si hay attacking_pawn en 3
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -3)
-        for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.ruta.casillaEstaEnRuta(self.casilla)==False: continue
-            if ficha.jugador!=self.target_pawn.jugador  and ficha.estaAutorizadaAMover(3) and ficha.puedeComer(self.mem, ficha.posruta+3):
-                self.__append(ficha, 3)
+        for posicion, attacking_pawn in casillaataque.buzon_fichas():
+            if attacking_pawn.ruta.casillaEstaEnRuta(self.casilla)==False: continue
+            pretend=pretend_movement(self.mem, attacking_pawn, 3)
+            if pretend.eatten_pawn!=None:
+                self.__append(attacking_pawn, TThreatTypes.Move3)
     
-        #Detecta si hay ficha en 4
+        #Detecta si hay attacking_pawn en 4
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -4)
-        for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.ruta.casillaEstaEnRuta(self.casilla)==False: continue
-            if ficha.jugador!=self.target_pawn.jugador and ficha.estaAutorizadaAMover(4)  and ficha.puedeComer(self.mem, ficha.posruta+4):
-                self.__append(ficha, 4)
-        #Detecta si hay ficha en 5
+        for posicion, attacking_pawn in casillaataque.buzon_fichas():
+            if attacking_pawn.ruta.casillaEstaEnRuta(self.casilla)==False: continue
+            pretend=pretend_movement(self.mem, attacking_pawn, 4)
+            if pretend.eatten_pawn!=None:
+                self.__append(attacking_pawn, TThreatTypes.Move4)
+                
+        #Detecta si hay attacking_pawn en 5
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -5)
-        for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.ruta.casillaEstaEnRuta(self.casilla)==False: continue
-            if ficha.jugador.tieneFichasEnCasa(): continue
-            if ficha.jugador!=self.target_pawn.jugador  and ficha.estaAutorizadaAMover(5) and ficha.puedeComer(self.mem, ficha.posruta+5):
-                self.__append(ficha, 5 )
-        #Detecta si hay ficha en 6 y chequea que no tiene todas fuera de casa
+        for posicion, attacking_pawn in casillaataque.buzon_fichas():
+            if attacking_pawn.ruta.casillaEstaEnRuta(self.casilla)==False: continue
+            if attacking_pawn.jugador.tieneFichasEnCasa(): continue
+            pretend=pretend_movement(self.mem, attacking_pawn, 5)
+            if pretend.eatten_pawn!=None:
+                self.__append(attacking_pawn, TThreatTypes.Move5)
+
+        #Detecta si hay attacking_pawn en 6 y chequea que no tiene todas fuera de casa
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -6)
-        for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.ruta.casillaEstaEnRuta(self.casilla)==False: continue
-            if ficha.jugador.tieneFichasEnCasa()==False:
-                continue
-            if ficha.jugador!=self.target_pawn.jugador  and ficha.estaAutorizadaAMover(6) and ficha.puedeComer(self.mem, ficha.posruta+6):
-                self.__append(ficha, 6 )
+        for posicion, attacking_pawn in casillaataque.buzon_fichas():
+            if attacking_pawn.ruta.casillaEstaEnRuta(self.casilla)==False: continue
+            if attacking_pawn.jugador.tieneFichasEnCasa()==False: continue
+            pretend=pretend_movement(self.mem, attacking_pawn, 6)
+            if pretend.eatten_pawn!=None:
+                self.__append(attacking_pawn, TThreatTypes.Move6)
                 
-        #Detecta si hay ficha en 7 y chequea que tiene todas fuera de casa
+        #Detecta si hay attacking_pawn en 7 y chequea que tiene todas fuera de casa
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -7)
-        for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.ruta.casillaEstaEnRuta(self.casilla)==False: continue
-            if ficha.jugador.tieneFichasEnCasa()==True:
-                continue
-            if ficha.jugador!=self.target_pawn.jugador and ficha.estaAutorizadaAMover(7)  and ficha.puedeComer(self.mem, ficha.posruta+7):
-                self.__append(ficha, 7 )
+        for posicion, attacking_pawn in casillaataque.buzon_fichas():
+            if attacking_pawn.ruta.casillaEstaEnRuta(self.casilla)==False: continue
+            if attacking_pawn.jugador.tieneFichasEnCasa()==True: continue
+            pretend=pretend_movement(self.mem, attacking_pawn, 7)
+            if pretend.eatten_pawn!=None:
+                self.__append(attacking_pawn, TThreatTypes.Move7)
         
-        #Detecta si hay ficha en 10
+        #Detecta si hay attacking_pawn en 10
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -10)
-        for posicion, ficha in casillaataque.buzon_fichas():
-            if (ficha.ruta.casillaEstaEnRuta(self.casilla) and 
-                ficha.jugador.tieneFichasATiroDeLlegada() and 
-                ficha.jugador!=self.target_pawn.jugador  and 
-                ficha.estaAutorizadaAMover(10) and 
-                ficha.puedeComer(self.mem, ficha.posruta+10) and 
-                ficha.jugador.tieneFichasATiroDeLlegada()
-            ):
-                self.__append(ficha, 10 )
+        for posicion, attacking_pawn in casillaataque.buzon_fichas():
+            if attacking_pawn.ruta.casillaEstaEnRuta(self.casilla)==False: continue
+            if attacking_pawn.jugador.tieneFichasATiroDeLlegada()==False: continue
+            pretend=pretend_movement(self.mem, attacking_pawn, 10)
+            if pretend.eatten_pawn!=None:
+                self.__append(attacking_pawn, TThreatTypes.Move10)
                 
-        #Detecta si hay ficha en 20
+        #Detecta si hay attacking_pawn en 20
         casillaataque=self.mem.circulo.casilla(self.casilla.id, -20)
-        for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.ruta.casillaEstaEnRuta(self.casilla)==False: continue
-            if ficha.jugador!=self.target_pawn.jugador  and ficha.estaAutorizadaAMover(20) and ficha.puedeComer(self.mem, ficha.posruta+20):
-                self.__append(ficha, 20)
+        for posicion, attacking_pawn in casillaataque.buzon_fichas():
+            if attacking_pawn.ruta.casillaEstaEnRuta(self.casilla)==False: continue
+            pretend=pretend_movement(self.mem, attacking_pawn, 20)
+            if pretend.eatten_pawn!=None:
+                self.__append(attacking_pawn, TThreatTypes.Move20)
 
 
 class TiradaHistorica:
@@ -2862,7 +2865,7 @@ class ReportPawn():
         self.mem=mem
         self.pawn=pawn
         self.square=pawn.casilla()
-        self.threats=ReportThreatManager(self.mem, self.pawn, self.square)
+        self.threats=ThreatManager(self.mem, self.pawn, self.square)
         self.threats.detect()
         
     def __repr__(self):
@@ -2878,114 +2881,8 @@ class ReportPawn():
         self.movement=movement
         self.square_destinty=None
         self.eatten_pawn=None
-        self.threats_destiny=ReportThreatManager(self.mem)
+        self.threats_destiny=ThreatManager(self.mem)
         self.threats_destiny.detect()
-        
-class ReportThreatManager(ObjectManager):
-    def __init__(self, mem, pawn, square):
-        ObjectManager.__init__(self)
-        self.pawn=pawn
-        self.square=square
-
-    def detect(self):        
-        if self.square.tipo==TSquareTypes.Initial(self.mem.maxplayers) or self.square.tipo==TSquareTypes.Final(self.mem.maxplayers):
-            return
-        
-        if self.square.rampallegada==True:
-            return
-
-        #Detecta salida con un 5 a ruta1
-        if self.square.ruta1!=-1:
-            #Busca la casilla inicial del mismo color
-            casillaataque=self.mem.rutas.arr[self.square.ruta1].squareInitial()#Casilla inicial de la ruta del jugador con ruta1=TJugador
-            if casillaataque.buzon_numfichas()>0:#Hay fichas que coman
-                if self.square.buzon_numfichas()==2:
-                    if  self.pawn.posruta!=1: #Si no esta en su propia ruta1, esta llena
-                        position, attacking_pawn=casillaataque.buzon_fichas()[0]
-                        if attacking_pawn.puedeComer(self.mem, attacking_pawn.posruta+1): #aqui chequea que sea mismo color o distinta, ultima en llegar...
-                            self.append(Threat(self.pawn, attacking_pawn, TThreatTypes.Outside))
-                        else:
-                            return
-                    else:#Esta en su propia ruta1
-                        return
-                else:
-                    return
-            else:
-                return
-        
-        if self.square.seguro==True:#All secure squares, including "route1 squares" for the rest of enemy pawns, not only route1
-            return
-        
-        #Detecta si hay ficha en OJO LA CASILLA QUE SE BUSCA NO ES LA ACTUAL DEL OBJETIVO sino la de parametro de entrada self.square
-        casillaataque=self.mem.circulo.square(self.square.id, -1)
-        for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.ruta.squareEstaEnRuta(self.square)==False: continue
-            if ficha.jugador!=self.pawn.jugador and ficha.estaAutorizadaAMover(1) and ficha.puedeComer(self.mem, ficha.posruta+1):
-                self.__append(ficha, 1)
-
-        #Detecta si hay ficha en 2
-        casillaataque=self.mem.circulo.square(self.square.id, -2)
-        for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.ruta.squareEstaEnRuta(self.square)==False: continue
-            if ficha.jugador!=self.pawn.jugador  and ficha.estaAutorizadaAMover(2) and ficha.puedeComer(self.mem, ficha.posruta+2):
-                self.__append(ficha, 2)
-
-        #Detecta si hay ficha en 3
-        casillaataque=self.mem.circulo.square(self.square.id, -3)
-        for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.ruta.squareEstaEnRuta(self.square)==False: continue
-            if ficha.jugador!=self.pawn.jugador  and ficha.estaAutorizadaAMover(3) and ficha.puedeComer(self.mem, ficha.posruta+3):
-                self.__append(ficha, 3)
-    
-        #Detecta si hay ficha en 4
-        casillaataque=self.mem.circulo.square(self.square.id, -4)
-        for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.ruta.squareEstaEnRuta(self.square)==False: continue
-            if ficha.jugador!=self.pawn.jugador and ficha.estaAutorizadaAMover(4)  and ficha.puedeComer(self.mem, ficha.posruta+4):
-                self.__append(ficha, 4)
-        #Detecta si hay ficha en 5
-        casillaataque=self.mem.circulo.square(self.square.id, -5)
-        for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.ruta.squareEstaEnRuta(self.square)==False: continue
-            if ficha.jugador.tieneFichasEnCasa(): continue
-            if ficha.jugador!=self.pawn.jugador  and ficha.estaAutorizadaAMover(5) and ficha.puedeComer(self.mem, ficha.posruta+5):
-                self.__append(ficha, 5 )
-        #Detecta si hay ficha en 6 y chequea que no tiene todas fuera de casa
-        casillaataque=self.mem.circulo.square(self.square.id, -6)
-        for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.ruta.squareEstaEnRuta(self.square)==False: continue
-            if ficha.jugador.tieneFichasEnCasa()==False:
-                continue
-            if ficha.jugador!=self.pawn.jugador  and ficha.estaAutorizadaAMover(6) and ficha.puedeComer(self.mem, ficha.posruta+6):
-                self.__append(ficha, 6 )
-                
-        #Detecta si hay ficha en 7 y chequea que tiene todas fuera de casa
-        casillaataque=self.mem.circulo.square(self.square.id, -7)
-        for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.ruta.squareEstaEnRuta(self.square)==False: continue
-            if ficha.jugador.tieneFichasEnCasa()==True:
-                continue
-            if ficha.jugador!=self.pawn.jugador and ficha.estaAutorizadaAMover(7)  and ficha.puedeComer(self.mem, ficha.posruta+7):
-                self.__append(ficha, 7 )
-        
-        #Detecta si hay ficha en 10
-        casillaataque=self.mem.circulo.square(self.square.id, -10)
-        for posicion, ficha in casillaataque.buzon_fichas():
-            if (ficha.ruta.squareEstaEnRuta(self.square) and 
-                ficha.jugador.tieneFichasATiroDeLlegada() and 
-                ficha.jugador!=self.pawn.jugador  and 
-                ficha.estaAutorizadaAMover(10) and 
-                ficha.puedeComer(self.mem, ficha.posruta+10) and 
-                ficha.jugador.tieneFichasATiroDeLlegada()
-            ):
-                self.__append(ficha, 10 )
-                
-        #Detecta si hay ficha en 20
-        casillaataque=self.mem.circulo.square(self.square.id, -20)
-        for posicion, ficha in casillaataque.buzon_fichas():
-            if ficha.ruta.squareEstaEnRuta(self.square)==False: continue
-            if ficha.jugador!=self.pawn.jugador  and ficha.estaAutorizadaAMover(20) and ficha.puedeComer(self.mem, ficha.posruta+20):
-                self.__append(ficha, 20)
 
 
 

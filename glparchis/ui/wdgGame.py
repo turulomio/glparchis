@@ -1,7 +1,7 @@
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QWidget
 from glparchis.ui.wdgUserPanel import wdgUserPanel
-from glparchis.libglparchis import HighScore, ReportPlayer, ReportPawn, pretend_dado, pretend_movement
+from glparchis.libglparchis import HighScore
 from glparchis.functions import str2bool, b2s, qmessagebox, delay
 from glparchis.version import __version__
 from glparchis.ui.Ui_wdgGame import Ui_wdgGame
@@ -240,11 +240,6 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.ogl.updateGL()
         self.panel().setLabelDado()
         self.mem.play("dice")
-        
-        reportdice=ReportPlayer(self.mem, self.mem.jugadores.actual)
-        reportdice.report_for_dice(self.mem.jugadores.actual.tiradaturno.ultimoValor())
-        reportdice.print()
-        
 
         if self.mem.jugadores.actual.tiradaturno.tresSeises()==True:
             if self.mem.jugadores.actual.LastFichaMovida!=None:
@@ -277,14 +272,7 @@ class wdgGame(QWidget, Ui_wdgGame):
             
         if self.cmdTirarDado.isEnabled():#Esta esperando dado no se puede pulsar ficha para mover.
             return
-        
-#        reportpawn=ReportPawn(self.mem, self.mem.selFicha)
-#        print(reportpawn)
-        print("#############################################3")
-        print(pretend_dado(self.mem, self.mem.selFicha, self.mem.jugadores.actual.tiradaturno.ultimoValor()))
-        print("#############################################3")
-        
-        
+
         (puede, movimiento)=self.mem.selFicha.estaAutorizadaAMover(None, True)
             
         if puede==False:
@@ -292,7 +280,6 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.mem.play("click")
             return
 
-                
         if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta+movimiento) or self.mem.selFicha.mete(self.mem.selFicha.posruta+movimiento):    
             self.table_reload()
             self.ogl.updateGL()
