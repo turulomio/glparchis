@@ -68,7 +68,12 @@ class frmMain(QMainWindow, Ui_frmMain):
 
     def setFullScreen(self, boolean):
         if boolean==False:
-            self.resize(self.settings.value("frmMain/size", QSize(1024, 768)))
+            desktop = qApp.desktop()
+            size=self.settings.value("frmMain/size", QSize(1024, 768))
+            x = (desktop.width() - size.width()) / 2
+            y = (desktop.height() - size.height()) / 2
+            self.resize(size)
+            self.move(x, y)
             self.actionFullScreen.setText(self.tr("Cambiar al modo de pantalla completa"))
             self.actionFullScreen.setToolTip(self.tr("Cambiar al modo de pantalla completa"))
             self.actionFullScreen.setChecked(False)
@@ -148,6 +153,8 @@ class frmMain(QMainWindow, Ui_frmMain):
     def on_actionSalir_triggered(self):
         logging.info(self.tr("Closing glParchis..."))
         self.settings.setValue("frmMain/size", self.size()) 
+        self.settings.sync()
+        logging.debug("Syncing settings")
         if self.game:
             self.game.__del__()
         qApp.quit()
@@ -206,7 +213,6 @@ class frmMain(QMainWindow, Ui_frmMain):
 
     @pyqtSlot(QEvent)   
     def closeEvent(self,event):
-        event.ignore()
         self.on_actionSalir_triggered()
   
     def showWdgGame(self):
