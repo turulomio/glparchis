@@ -212,7 +212,8 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.cmdTirarDado.setEnabled(False)
         if self.mem.jugadores.actual.ia==True:
             self.mem.jugadores.actual.log(self.tr("IA mueve una ficha"))     
-            iaficha=self.mem.jugadores.actual.IASelectFicha()
+            iaficha=self.mem.jugadores.actual.NewIASelectFicha(self.mem.jugadores.actual.tiradaturno.ultimoValor())
+#                    iaficha=self.mem.jugadores.actual.IASelectFicha()
             delay(self.delay)
             if iaficha==None:
                 self.cambiarJugador()
@@ -222,7 +223,8 @@ class wdgGame(QWidget, Ui_wdgGame):
         else:
             if self.mem.frmMain.actionAutomatism.isChecked():
                 if self.mem.jugadores.actual.fichas.fichasAutorizadasAMover().length()==1:
-                    iaficha=self.mem.jugadores.actual.IASelectFicha()
+#                    iaficha=self.mem.jugadores.actual.IASelectFicha()
+                    iaficha=self.mem.jugadores.actual.NewIASelectFicha(self.mem.jugadores.actual.tiradaturno.ultimoValor())
                     delay(self.delay)   
                     self.mem.selFicha=iaficha
                     self.after_ficha_click()
@@ -235,6 +237,8 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.cmdTirarDado.setEnabled(False)
         self.cmdTirarDado.setText("")
         self.mem.jugadores.actual.tirarDado()
+        self.mem.jugadores.actual.updatePretendMovementPlayerManager()
+        
         self.table_reload()
         self.mem.dado.showing=True
         self.ogl.updateGL()
