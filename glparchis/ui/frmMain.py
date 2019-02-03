@@ -14,7 +14,6 @@ from glparchis.version import __version__,  get_remote, __versiondate__
 from glparchis.ui.Ui_frmMain import Ui_frmMain
 from glparchis.ui.wdgGame import wdgGame
 from glparchis.ui.frmAbout import frmAbout
-from glparchis.ui.frmGameStatistics import frmGameStatistics
 from glparchis.ui.frmInitGame import frmInitGame
 from glparchis.ui.frmSettings import frmSettings
 from glparchis.ui.frmHelp import frmHelp
@@ -288,19 +287,26 @@ class frmMain(QMainWindow, Ui_frmMain):
 
     @pyqtSlot()  
     def on_actionMundialStatistics_triggered(self):
+        def in_external():
+            QDesktopServices.openUrl(QUrl(self.url_statistics_installation))
+            QThread.sleep(2)
+            QDesktopServices.openUrl(QUrl(self.url_statistics_world))
+
         try:
             user=os.environ['USER']
         except:
             user=None
-        
-        
-        if user!=None and user=="root":
-            QDesktopServices.openUrl(QUrl(self.url_statistics_installation))
-            QThread.sleep(2)
-            QDesktopServices.openUrl(QUrl(self.url_statistics_world))
-        else:
-            fr=frmGameStatistics(self.url_statistics_world, self.url_statistics_installation, self.uuid_installation, self)
-            fr.exec_()
+
+        try: ## Remove when qwebwenginewidgets work again
+            from glparchis.ui.frmGameStatistics import frmGameStatistics
+
+            if user!=None and user=="root":
+                in_external()
+            else:
+                fr=frmGameStatistics(self.url_statistics_world, self.url_statistics_installation, self.uuid_installation, self)
+                fr.exec_()
+        except:
+            in_external()
 
             
     @pyqtSlot()  
