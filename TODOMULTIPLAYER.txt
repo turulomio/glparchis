@@ -13,6 +13,8 @@ El cliente es una caja tonta, hace lo que se le dice
 Hacer funciones send command to client, send_command_to_server, broadcast_clients
 
 
+Ver si hace falta el \n
+
 20190413 Mem se usa para el server, mem2bytes
 20190413 El cliente usa Display, updatedisplay function converts bytes to new display status
 
@@ -21,3 +23,8 @@ Use threading events
 
 
 LOS SOCKETS ESTADO DESHABILITADO ES RECEIVE PONER BUCLE
+
+
+Las funciones de los comandos son get. Cuando se obtiene un resultado
+                                  serve. Cuando el servidor sirve _game _server
+                                  

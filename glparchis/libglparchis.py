@@ -556,6 +556,7 @@ class Jugador(QObject):
         self.comidaspormi=0
         self.comidasporotro=0
         self.ruta=None#Se apunta
+        self.netplayer=None#Pointer to NetPlayer object Network Player
 
     def __repr__(self):
         return "Jugador {0}".format(self.color.name)

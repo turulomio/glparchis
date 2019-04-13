@@ -89,4 +89,8 @@ class TSquareTypes:
         elif maxplayers==8:
             return TSquareTypes.Final8
     
-    
+class TGameMode:
+    Three=3
+    Four=4
+    Six=6
+    Eight=8

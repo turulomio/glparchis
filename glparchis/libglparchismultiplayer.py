@@ -1,8 +1,10 @@
 import datetime
 import socket
 import uuid
+import json
 from glparchis.libmanagers import ObjectManager_With_Id
 from glparchis.libglparchis import Mem4
+from glparchis.libglparchistypes import TGameMode
 import threading
 ## Class to manage server
 class Server():
@@ -26,7 +28,7 @@ class Server():
         while True:
             conn, addr = self.socket.accept()
             print("Connected to: ", addr)
-            player=ServerPlayer(conn, self)
+            player=NetPlayer(conn, self)
             self.players.append(player)
             player.start()
 
@@ -39,75 +41,114 @@ class Server():
     def close(self):
         self.socket.close()
 
-
+    def process_commands(self, s, netplayer):
+        (command, args)=command_split(s)
+        print(s, command,  args)
+        if command=="server_creategame":
+            a= self.c2s_creategame(command, args[1], args[2:],  netplayer)
+            print(a)
+            return (a)
+        elif command=="server_listgames":
+            return self.c2s_listgames(command, netplayer)
+            
+    def c2s_creategame(self, command, mode, arrPlays, netplayer):
+        game=Game(mode)
+        game.owner=netplayer
+        netplayer.game=game
+        self.games.append(game)
+        return "OK"
+        
+    def c2s_listgames(self, command, netplayer):
+        return str(self.games.arr)
 
 ## Class to manage a 
-class ServerGame:
+class Game(threading.Thread):
     def __init__(self, numplayers):
+        threading.Thread.__init__(self)
         self.id=uuid.uuid4()
-        self.numplayers=numplayers
         self.players=ObjectManager_With_Id()
-        self.start=datetime.datetime.now()
+        self.owner=None
+        self.mem=None
+        self.mode=None
+
+    ##Has the main loop of the game until it's  finished
+    def start(self):
+        self.mem=Mem4()
+        self.mode=TGameMode.Four
+        self.mem.jugadores.actual=self.mem.jugadores.arr[0]
+        self.mem.playedtime=datetime.datetime.now()
+        for j in self.mem.jugadores.arr:
+            j.name=str("Jug")
+            j.fichas.arr[0].mover(0, False,  True)
+            j.fichas.arr[1].mover(0, False,  True)
+            j.fichas.arr[2].mover(0, False,  True)
+            j.fichas.arr[3].mover(0, False,  True)
+        self.mem.jugadores.actual.movimientos_acumulados=None#Comidas ymetidas
+        self.mem.jugadores.actual.LastFichaMovida=None #Se utiliza cuando se va a casa
         
-    def assign_id(self):
-        return 1
+        #Assigns network player to game players, not all players have netplayer. None if it hasn't.
+        for i in range(self.players.length()):
+            self.players.arr[i].player=self.mem.jugadores.arr[i]
+            self.mem.jugadores.arr[i].netplayer=self.players.arr[i]
+         
+        print("Game created")
+#
+#        self.mem.jugadores.actual.netplayer.sock.send(s2b("gamecreated {}\n".format(self.game.id)))
+#        b2list(self.sock.recv(1024))#OK
+#        self.sock.send(s2b("gameuserid {}_{}\n".format(self.game.id, "MAL")))
+#        b2list(self.sock.recv(1024))#OK
+#        self.sock.send(s2b("gamestart\n"))
+#        b2list(self.sock.recv(1024))#OK
+            
+            
+    def process_commands(self, s,  netplayer):
+        (command, args)=command_split(s)
+        print(s, command, args)
+        if command=="status":
+            return self.g2c_status(command, args, netplayer)
+        elif command=="startgame":
+            self.start()
+            return "OK"
+        print ("GAME COMMAND NOT FOUND")
+
+    def g2c_status(self, command, args, netplayer):
+        if netplayer!=None:
+            netplayer.sock.send(s2b(self.mem.mem2bytes()))
+            self.sock.recv(self.BUFSIZ)#ok
+
 
 ## Class to manage server
-class ServerPlayerManager(ObjectManager_With_Id):
+class NetPlayerManager(ObjectManager_With_Id):
     def __init__(self):
         ObjectManager_With_Id.__init__(self)
 
                 
-class ServerPlayer(threading.Thread):
+class NetPlayer(threading.Thread):
     def __init__(self, sock,  server):
         threading.Thread.__init__(self)
         self.sock=sock
         self.server=server
-        self.event=threading.Event()        
+        self.game=None #Assignes in Server.c2s_creategame
+#        self.event=threading.Event()        
         self.destroy=False
-        self.mode="s"#puede ser s send o r receive.
         self.buffer=b""
-    
-    def send(self, buffer):
-        self.mode
-        pass
-        
-    def receive(self):
-        pass
+        self.player=None #glparchis
 
+
+    ## Commands from clients to server
+    ## - creategame maxplayers True* players: Creates a game and returns the uuid
+    ## - gamestart: Creates a game. returns the id of the player. and create virtual players
     def run(self):
         while self.destroy==False:
             print("Esperando",  self)
             self.buffer=self.sock.recv(1024)
-            data=b2list(self.buffer)
-            if data[0]=="creategame":
-                game=ServerGame(data[1])
-                self.server.games.append(game)
-                self.sock.send(s2b("OK\n"))
-                self.sock.send(s2b("gamecreated {}\n".format(game.id)))
-                b2list(self.sock.recv(1024))#OK
-                self.sock.send(s2b("gameuserid {}_{}\n".format(game.id, game.assign_id())))
-                b2list(self.sock.recv(1024))#OK
-                self.sock.send(s2b("gamestart\n"))
-                b2list(self.sock.recv(1024))#OK
-                game.mem=Mem4()                     
-                game.mem.jugadores.actual=game.mem.jugadores.arr[0]
-                game.mem.playedtime=datetime.datetime.now()
-                for j in game.mem.jugadores.arr:
-                    j.name=str("Jug")
-                    j.fichas.arr[0].mover(0, False,  True)
-                    j.fichas.arr[1].mover(0, False,  True)
-                    j.fichas.arr[2].mover(0, False,  True)
-                    j.fichas.arr[3].mover(0, False,  True)
-                game.mem.jugadores.actual.movimientos_acumulados=None#Comidas ymetidas
-                game.mem.jugadores.actual.LastFichaMovida=None #Se utiliza cuando se va a casa
-                self.sock.send(s2b("status {}\n".format(game.mem.mem2bytes())))
-                self.sock.send(s2b("yourturn\n"))
-                b2list(self.sock.recv(1024))#OK
-            elif data[0]=="listgames":
-                game=ServerGame(data[1])
-                self.sock.send(s2b(str(self.server.games.arr)))
-            print(self.server.status())
+            data=b2s(self.buffer)
+            if data.startswith("server_"):
+                result=self.server.process_commands(b2s(self.buffer), self)
+                self.sock.send(s2b(result))
+            else:#Send command to Game
+                result=self.game.process_commands(b2s(self.buffer), self)
+                self.sock.send(s2b(result))
                     
 def b2list(data):
     data=data.replace(b"\n", b"")
@@ -115,3 +156,56 @@ def b2list(data):
 
 def s2b(data):
     return data.encode("UTF-8")
+def b2s(data):
+    return data.decode("UTF-8")
+    
+def command_split(s):
+        arr=s.split(" ")
+        return (arr[0], arr[1:])
+    
+class MemDisplay:
+    def __init__(self, host,  port):
+        self.BUFSIZ=2048
+        self.host=host
+        self.port=port
+        self.status=None
+        self.display=False
+        self.sock=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.sock.connect((self.host, self.port))
+        # Connect to server and send data
+        print("Asking listgames")
+        print(self.c2s_listgames())
+        print("Asking creategame")
+        print(self.c2s_creategame(TGameMode.Four, True, True, True, True))
+        print("Asking startgame")
+        print(self.c2s_startgame())
+        while True:
+            try:
+                buffer=self.sock.recv(self.BUFSIZ)
+                command, args=command_split(buffer.replace(b"\n", b""))
+                if command=="display":
+                    js=buffer.replace(b"status ", b"")
+                    self.status = json.loads(js)
+                    print("status",  self.status)
+                self.sock.send(s2b("OK\n"))
+            except OSError:  # Possibly client has left the chat.
+                print("Error in client")
+                break
+    
+    def s2c_update_display(self,  wail):
+        pass
+    
+    def c2s_creategame(self, mode, *arrPlays):
+        self.sock.send(s2b("server_creategame {} True True True True".format(TGameMode.Four)))
+        self.sock.recv(self.BUFSIZ)#OK
+        return "OK"
+        
+    def c2s_startgame(self):
+        self.sock.send(s2b("startgame"))
+        self.sock.recv(self.BUFSIZ)#OK
+        return "OK"
+
+    def c2s_listgames(self):
+        self.sock.send(s2b("server_listgames"))
+        lists=self.sock.recv(self.BUFSIZ)
+        return lists
