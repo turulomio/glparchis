@@ -5,7 +5,10 @@ import sys
 from colorama import init as colorama_init
 import socket
 
+from _thread import start_new_thread
 
+
+BUFSIZ=2048
 def main():
     colorama_init()
 
@@ -14,6 +17,7 @@ def main():
     from glparchis.version import __versiondate__   
     from glparchis.loggingsystem import argparse_add_debug_argument, argparse_parsing_debug_argument
     from glparchis.functions import signal_handler
+    from glparchis.libglparchismultiplayer import b2list, s2b
 
     try:
         os.makedirs(os.path.expanduser("~/.glparchis/"))
@@ -49,21 +53,50 @@ def main():
     PORT = 65432        # The port used by the server
 
     # Create a socket (SOCK_STREAM means a TCP socket)
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-        # Connect to server and send data
-        sock.connect((HOST, PORT))
-        data=b"creategame 4\n"
-        sock.sendall(data)
+    sock=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.connect((HOST, PORT))
+    # Connect to server and send data
+    sock.send(s2b("creategame 4\n"))
 
-        # Receive data from the server and shut down
-        received = str(sock.recv(1024), "utf-8")
+    # Receive data from the server and shut down
+    received = b2list(sock.recv(1024))
+    print("Received: {}".format(received))
+    sock.send(s2b("OK\n"))
 
-        print("Sent:     {}".format(data))
-        print("Received: {}".format(received))
-#    frmMain = frmMain(settings) 
-#    frmMain.show()
-#    sys.exit(app.exec_())
-#import xmltodict, json
+
+    while True:
+        try:
+            data = b2list(sock.recv(BUFSIZ))
+            if data[0]=="gamecreated":
+                print("Game has been created",  data)
+            elif data[0]=="gameuserid":
+                print("Assignes user id",  data)
+            elif data[0]=="gamestart":
+                print("Game starts",  data)
+            sock.send(s2b("OK\n"))
+        except OSError:  # Possibly client has left the chat.
+            print("Error in client")
+            break
+
+
+
+
+#        except socket.error as e:
+#            print(str(e))
 #
-#o = xmltodict.parse('<e> <a>text</a> <a>text</a> </e>')
-#json.dumps(o) # '{"e": {"a": ["text", "text"]}}'
+#    print("Waiting for a connection")
+#    while True:
+#        conn, addr = sock.accept()
+#        print("Connected to: ", addr)
+#        player=None
+#        start_new_thread(threaded_client, (player,))
+        
+#    
+#def threaded_client( player):
+#    print("threaded_client in client")
+#    pass
+#    data=b2list(player.socket.recv(1024))
+#    if data[0]=="creategame":
+#        game=ServerGame(data[1])
+#        player.socket.send(s2b("gamecreated {}\n".format(game.id)))
+#        player.socket.send(s2b("gameuserid {}_{}\n".format(game.id, game.assign_id())))

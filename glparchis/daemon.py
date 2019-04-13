@@ -2,14 +2,21 @@ import argparse
 import os
 import signal
 import sys
-from colorama import init as colorama_init
+import logging
+from colorama import init as colorama_init, Style, Fore
 
-from glparchis.functions import signal_handler
 from glparchis.version import __versiondate__   
 from glparchis.loggingsystem import argparse_add_debug_argument, argparse_parsing_debug_argument
 from glparchis.libglparchismultiplayer import Server            
 from PyQt5.QtCore import QCoreApplication, QSettings
 
+    
+    
+def signal_handler(signal, frame):
+    logging.critical(Style.BRIGHT+Fore.RED+QCoreApplication.translate("Core","You pressed 'Ctrl+C', exiting..."))
+    server.close()
+    sys.exit(1)
+        
 def main():
     colorama_init()
 
@@ -40,7 +47,7 @@ def main():
 
     settings=QSettings()
     settings
-    
+    global server    
     server=Server()
     server.start()
     

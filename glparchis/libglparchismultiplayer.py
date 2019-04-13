@@ -1,14 +1,16 @@
 from PyQt5.QtCore import QObject
 import datetime
 import socket
+import uuid
 from glparchis.libmanagers import ObjectManager_With_Id
 from _thread import start_new_thread
 
 
 ## Class to manage server
-class Server(ObjectManager_With_Id):
+class Server():
     def __init__(self):
-        ObjectManager_With_Id.__init__(self)
+        self.games=ObjectManager_With_Id()
+        self.players=ObjectManager_With_Id()
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         
     def start(self):
@@ -28,15 +30,33 @@ class Server(ObjectManager_With_Id):
         while True:
             conn, addr = self.socket.accept()
             print("Connected to: ", addr)
-            self.append(ServerPlayer(conn))
+            player=ServerPlayer(conn)
+            self.players.append(player)
 
-            start_new_thread(self.threaded_client, (conn,))
+            start_new_thread(self.threaded_client, (player,))
         
-    def threaded_client(self, conn):
+        
+    def generate_tockent(self):
+        return str(datetime.datetime.now())
+    
+    def threaded_client(self, player):
         print("threaded_client")
-        data=conn.recv(1024)
-        print(data)
+        data=b2list(player.socket.recv(1024))
+        if data[0]=="creategame":
+            game=ServerGame(data[1])
+            player.socket.send(s2b("gamecreated {}\n".format(game.id)))
+            ok=b2list(player.socket.recv(1024))
+            player.socket.send(s2b("gameuserid {}_{}\n".format(game.id, game.assign_id())))
+            ok=b2list(player.socket.recv(1024))
+            player.socket.send(s2b("gamestart\n"))
+            ok=b2list(player.socket.recv(1024))
+#            ## Ahora recibe interacciones del juego luego se pone a escuchar
+#            while needServer==False:
+                
         
+        
+    def close(self):
+        self.socket.close()
 #        conn.send(str.encode(currentId))
 #        currentId = "1"
 #        reply = ''
@@ -63,15 +83,17 @@ class Server(ObjectManager_With_Id):
 #            except:
 #                break
 
-    def close(self):
-        self.socket.close()
 
 
 ## Class to manage a 
 class ServerGame:
-    def __init__(self):
-        self.id=None
+    def __init__(self, numplayers):
+        self.id=uuid.uuid4()
+        self.numplayers=numplayers
         self.start=datetime.datetime.now()
+        
+    def assign_id(self):
+        return 1
 
 ## Class to manage server
 class ServerPlayerManager(ObjectManager_With_Id):
@@ -85,3 +107,10 @@ class ServerPlayer(QObject):
         self.id=None
         self.ia=None
         self.socket=socket
+        
+def b2list(data):
+    data=data.replace(b"\n", b"")
+    return data.decode("UTF-8").split(" ")
+
+def s2b(data):
+    return data.encode("UTF-8")
