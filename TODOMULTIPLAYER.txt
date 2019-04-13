@@ -1,0 +1,5 @@
+20190413 Hacer icono de multiplayer
+20190413 Si pulsamos en 4, 6,8 lanza el demonio por detrás
+20190413 Daemon crea sockets y luego los asocia a un thread por game, que también puede ser proceso
+20190413 Se podría ejecutar solo en consola
+20190413 Separar
