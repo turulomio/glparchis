@@ -1,12 +1,9 @@
-from PyQt5.QtCore import QObject
 import datetime
 import socket
 import uuid
 from glparchis.libmanagers import ObjectManager_With_Id
 from glparchis.libglparchis import Mem4
-from _thread import start_new_thread
-
-
+import threading
 ## Class to manage server
 class Server():
     def __init__(self):
@@ -15,8 +12,6 @@ class Server():
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         
     def start(self):
-        
-
         server = '127.0.0.1'
         port = 65432
 
@@ -31,49 +26,15 @@ class Server():
         while True:
             conn, addr = self.socket.accept()
             print("Connected to: ", addr)
-            player=ServerPlayer(conn)
+            player=ServerPlayer(conn, self)
             self.players.append(player)
+            player.start()
 
-            start_new_thread(self.threaded_client, (player,))
-        
-        
-    def generate_tockent(self):
-        return str(datetime.datetime.now())
-    
-    def threaded_client(self, player):
-#        def mem2bytes(mem):
-#            mem.save("/tmp/glparchis.glparchis")
-#            return open("/tmp/glparchis.glparchis").read()
-        print("threaded_client")
-        data=b2list(player.socket.recv(1024))
-        if data[0]=="creategame":
-            game=ServerGame(data[1])
-            player.socket.send(s2b("gamecreated {}\n".format(game.id)))
-            b2list(player.socket.recv(1024))#OK
-            player.socket.send(s2b("gameuserid {}_{}\n".format(game.id, game.assign_id())))
-            b2list(player.socket.recv(1024))#OK
-            player.socket.send(s2b("gamestart\n"))
-            b2list(player.socket.recv(1024))#OK
-            mem=Mem4()                     
-            mem.jugadores.actual=mem.jugadores.arr[0]
-            mem.playedtime=datetime.datetime.now()
-            for j in mem.jugadores.arr:
-                j.name=str("Jug")
-                j.fichas.arr[0].mover(0, False,  True)
-                j.fichas.arr[1].mover(0, False,  True)
-                j.fichas.arr[2].mover(0, False,  True)
-                j.fichas.arr[3].mover(0, False,  True)
-            mem.jugadores.actual.movimientos_acumulados=None#Comidas ymetidas
-            mem.jugadores.actual.LastFichaMovida=None #Se utiliza cuando se va a casa
-            player.socket.send(s2b("status {}\n".format(mem.mem2bytes())))
-            player.socket.send(s2b("yourturn\n"))
-            b2list(player.socket.recv(1024))#OK
-#            ## Ahora recibe interacciones del juego luego se pone a escuchar
-#            while needServer==False:
-        elif data[0]=="joingame":
-            print ("Not developped yet")
-                
-        
+    def status(self):
+        return """Server status
+    - Connections: {}
+    - Games: {}
+""".format(self.players.length(), self.games.length())
         
     def close(self):
         self.socket.close()
@@ -85,6 +46,7 @@ class ServerGame:
     def __init__(self, numplayers):
         self.id=uuid.uuid4()
         self.numplayers=numplayers
+        self.players=ObjectManager_With_Id()
         self.start=datetime.datetime.now()
         
     def assign_id(self):
@@ -96,13 +58,57 @@ class ServerPlayerManager(ObjectManager_With_Id):
         ObjectManager_With_Id.__init__(self)
 
                 
-class ServerPlayer(QObject):
-    def __init__(self, socket):
-        QObject.__init__(self)
-        self.id=None
-        self.ia=None
-        self.socket=socket
+class ServerPlayer(threading.Thread):
+    def __init__(self, sock,  server):
+        threading.Thread.__init__(self)
+        self.sock=sock
+        self.server=server
+        self.event=threading.Event()        
+        self.destroy=False
+        self.mode="s"#puede ser s send o r receive.
+        self.buffer=b""
+    
+    def send(self, buffer):
+        self.mode
+        pass
         
+    def receive(self):
+        pass
+
+    def run(self):
+        while self.destroy==False:
+            print("Esperando",  self)
+            self.buffer=self.sock.recv(1024)
+            data=b2list(self.buffer)
+            if data[0]=="creategame":
+                game=ServerGame(data[1])
+                self.server.games.append(game)
+                self.sock.send(s2b("OK\n"))
+                self.sock.send(s2b("gamecreated {}\n".format(game.id)))
+                b2list(self.sock.recv(1024))#OK
+                self.sock.send(s2b("gameuserid {}_{}\n".format(game.id, game.assign_id())))
+                b2list(self.sock.recv(1024))#OK
+                self.sock.send(s2b("gamestart\n"))
+                b2list(self.sock.recv(1024))#OK
+                game.mem=Mem4()                     
+                game.mem.jugadores.actual=game.mem.jugadores.arr[0]
+                game.mem.playedtime=datetime.datetime.now()
+                for j in game.mem.jugadores.arr:
+                    j.name=str("Jug")
+                    j.fichas.arr[0].mover(0, False,  True)
+                    j.fichas.arr[1].mover(0, False,  True)
+                    j.fichas.arr[2].mover(0, False,  True)
+                    j.fichas.arr[3].mover(0, False,  True)
+                game.mem.jugadores.actual.movimientos_acumulados=None#Comidas ymetidas
+                game.mem.jugadores.actual.LastFichaMovida=None #Se utiliza cuando se va a casa
+                self.sock.send(s2b("status {}\n".format(game.mem.mem2bytes())))
+                self.sock.send(s2b("yourturn\n"))
+                b2list(self.sock.recv(1024))#OK
+            elif data[0]=="listgames":
+                game=ServerGame(data[1])
+                self.sock.send(s2b(str(self.server.games.arr)))
+            print(self.server.status())
+                    
 def b2list(data):
     data=data.replace(b"\n", b"")
     return data.decode("UTF-8").split(" ")

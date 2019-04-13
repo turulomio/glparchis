@@ -57,14 +57,11 @@ def main():
     sock=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect((HOST, PORT))
     # Connect to server and send data
+    sock.send(s2b("listgames 4\n"))
+    lists=sock.recv(BUFSIZ)
+    print (lists)
     sock.send(s2b("creategame 4\n"))
-
-    # Receive data from the server and shut down
-    received = b2list(sock.recv(1024))
-    print("Received: {}".format(received))
-    sock.send(s2b("OK\n"))
-
-
+    sock.recv(BUFSIZ)#OK
     while True:
         try:
             bruto=sock.recv(BUFSIZ).replace(b"\n", b"")
@@ -77,10 +74,8 @@ def main():
                 print("Game starts",  data)
             elif data[0]=="status":
                 js=bruto.replace(b"status ", b"")
-                print("status",  js)
-                
                 d = json.loads(js)
-                print (d)
+                print("status",  d)
             sock.send(s2b("OK\n"))
         except OSError:  # Possibly client has left the chat.
             print("Error in client")

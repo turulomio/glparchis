@@ -2686,15 +2686,10 @@ class Mem:
         l=[]
         for j in self.jugadores.arr:
             for ficha in j.fichas.arr:
-                l.append(ficha.id)
+                l.append(ficha.posruta)
         data['pieces'] = l
-        print(data)
         json_data = json.dumps(data)
-        print(json_data)
         return json_data
-       
-       
-   
    
     def load(self, filename):       
         def error():           

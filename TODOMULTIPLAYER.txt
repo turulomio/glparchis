@@ -15,3 +15,9 @@ Hacer funciones send command to client, send_command_to_server, broadcast_client
 
 20190413 Mem se usa para el server, mem2bytes
 20190413 El cliente usa Display, updatedisplay function converts bytes to new display status
+
+
+Use threading events
+
+
+LOS SOCKETS ESTADO DESHABILITADO ES RECEIVE PONER BUCLE
