@@ -41,9 +41,9 @@ class Server():
         return str(datetime.datetime.now())
     
     def threaded_client(self, player):
-        def mem2bytes(mem):
-            mem.save("/tmp/glparchis.glparchis")
-            return open("/tmp/glparchis.glparchis").read()
+#        def mem2bytes(mem):
+#            mem.save("/tmp/glparchis.glparchis")
+#            return open("/tmp/glparchis.glparchis").read()
         print("threaded_client")
         data=b2list(player.socket.recv(1024))
         if data[0]=="creategame":
@@ -65,7 +65,7 @@ class Server():
                 j.fichas.arr[3].mover(0, False,  True)
             mem.jugadores.actual.movimientos_acumulados=None#Comidas ymetidas
             mem.jugadores.actual.LastFichaMovida=None #Se utiliza cuando se va a casa
-            player.socket.send(s2b("status {}\n".format(mem2bytes(mem))))
+            player.socket.send(s2b("status {}\n".format(mem.mem2bytes())))
             player.socket.send(s2b("yourturn\n"))
             b2list(player.socket.recv(1024))#OK
 #            ## Ahora recibe interacciones del juego luego se pone a escuchar

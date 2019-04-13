@@ -2,4 +2,16 @@
 20190413 Si pulsamos en 4, 6,8 lanza el demonio por detrás
 20190413 Daemon crea sockets y luego los asocia a un thread por game, que también puede ser proceso
 20190413 Se podría ejecutar solo en consola
-20190413 Separar
+20190413 Un nuevo usuario podra empezar con joingame o creategame, apartir de ahí:
+20190413 Todas las comunicaciones al servidor estarán codificadas con game, jugador, comando, argumentos
+20190413 Todas las comunicaciones del servidor a jugadores son estarán codificadas con game jugador, comando, argumentos
+20190413 Hacer función de mem a json y de json a mem
+20190413 Deberá haber comandos al servidor, Throw dice, move piece
+20190413 Deberá haber comandos al jugador must throw dice, must move (allowed pieces)
+20190413 Cada evento de jugador, mover, comer, contar, será sincronizado a todos los clientes, para que emitan sonidos.
+El cliente es una caja tonta, hace lo que se le dice
+Hacer funciones send command to client, send_command_to_server, broadcast_clients
+
+
+20190413 Mem se usa para el server, mem2bytes
+20190413 El cliente usa Display, updatedisplay function converts bytes to new display status

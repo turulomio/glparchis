@@ -4,6 +4,7 @@ import signal
 import sys
 from colorama import init as colorama_init
 import socket
+import json
 
 
 BUFSIZ=2048
@@ -12,7 +13,7 @@ def main():
 
     from PyQt5.QtCore import QSettings
     from PyQt5.QtWidgets import QApplication
-    from glparchis.ui.frmMain import frmMain
+#    from glparchis.ui.frmMain import frmMain
     from glparchis.version import __versiondate__   
     from glparchis.loggingsystem import argparse_add_debug_argument, argparse_parsing_debug_argument
     from glparchis.functions import signal_handler
@@ -66,7 +67,8 @@ def main():
 
     while True:
         try:
-            data = b2list(sock.recv(BUFSIZ))
+            bruto=sock.recv(BUFSIZ).replace(b"\n", b"")
+            data = b2list(bruto)
             if data[0]=="gamecreated":
                 print("Game has been created",  data)
             elif data[0]=="gameuserid":
@@ -74,7 +76,11 @@ def main():
             elif data[0]=="gamestart":
                 print("Game starts",  data)
             elif data[0]=="status":
-                print("status",  data)
+                js=bruto.replace(b"status ", b"")
+                print("status",  js)
+                
+                d = json.loads(js)
+                print (d)
             sock.send(s2b("OK\n"))
         except OSError:  # Possibly client has left the chat.
             print("Error in client")

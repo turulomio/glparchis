@@ -1,4 +1,4 @@
-
+import json
 import logging
 import pkg_resources
 from OpenGL.GL import glVertex3fv, glBegin, glBindTexture, glColor3d, glDisable, glEnable, glEnd, glPopMatrix, glPopName, glPushName, glPushMatrix, glRotated, glScaled, glTexCoord2f, glTranslated, glTranslatef, glVertex3d, GL_TEXTURE_2D, GL_QUADS, GL_POLYGON, GL_LINE_LOOP
@@ -2679,6 +2679,22 @@ class Mem:
     ## For example:  class_players(Tablero), selects Tablero8 if mem.maxplayers=8
     def class_players(self,  cls, *args ):
         return globals()["{}{}".format(cls, self.maxplayers)](args)
+   
+    ## Returns a bytes stream with parsed for json recovery
+    def mem2bytes(self):
+        data = {}
+        l=[]
+        for j in self.jugadores.arr:
+            for ficha in j.fichas.arr:
+                l.append(ficha.id)
+        data['pieces'] = l
+        print(data)
+        json_data = json.dumps(data)
+        print(json_data)
+        return json_data
+       
+       
+   
    
     def load(self, filename):       
         def error():           
