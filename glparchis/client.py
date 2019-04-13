@@ -5,8 +5,6 @@ import sys
 from colorama import init as colorama_init
 import socket
 
-from _thread import start_new_thread
-
 
 BUFSIZ=2048
 def main():
@@ -14,6 +12,7 @@ def main():
 
     from PyQt5.QtCore import QSettings
     from PyQt5.QtWidgets import QApplication
+    from glparchis.ui.frmMain import frmMain
     from glparchis.version import __versiondate__   
     from glparchis.loggingsystem import argparse_add_debug_argument, argparse_parsing_debug_argument
     from glparchis.functions import signal_handler
@@ -53,6 +52,7 @@ def main():
     PORT = 65432        # The port used by the server
 
     # Create a socket (SOCK_STREAM means a TCP socket)
+    global sock
     sock=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect((HOST, PORT))
     # Connect to server and send data
@@ -73,6 +73,7 @@ def main():
                 print("Assignes user id",  data)
             elif data[0]=="gamestart":
                 print("Game starts",  data)
+                break
             sock.send(s2b("OK\n"))
         except OSError:  # Possibly client has left the chat.
             print("Error in client")
@@ -81,6 +82,10 @@ def main():
 
 
 
+
+    frmMain = frmMain(settings) 
+    frmMain.show()
+    sys.exit(app.exec_())
 #        except socket.error as e:
 #            print(str(e))
 #
