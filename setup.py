@@ -170,7 +170,7 @@ if platform.system()=="Linux":
                  ('/usr/share/applications/', ['glparchis.desktop']),
                  ('/usr/share/pixmaps/', ['glparchis/images/glparchis.png']),
                ]
-    entry_points={'gui_scripts': ['glparchis=glparchis.glparchis:main', ]}
+    entry_points={'gui_scripts': ['glparchis=glparchis.glparchis:main', ], 'console_scripts' : ['glparchis_daemon=glparchis.daemon:main', 'glparchis_client=glparchis.client:main']}
 else:
     data_files=[]
     entry_points={'gui_scripts': ['glparchis=glparchis.glparchis:main', ], 'console_scripts' : [ 'glparchis_shortcuts=glparchis.shortcuts:create', ]}
