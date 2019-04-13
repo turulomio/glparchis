@@ -34,6 +34,9 @@ class Server(ObjectManager_With_Id):
         
     def threaded_client(self, conn):
         print("threaded_client")
+        data=conn.recv(1024)
+        print(data)
+        
 #        conn.send(str.encode(currentId))
 #        currentId = "1"
 #        reply = ''
