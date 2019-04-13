@@ -73,19 +73,20 @@ def main():
                 print("Assignes user id",  data)
             elif data[0]=="gamestart":
                 print("Game starts",  data)
-                break
+            elif data[0]=="status":
+                print("status",  data)
             sock.send(s2b("OK\n"))
         except OSError:  # Possibly client has left the chat.
             print("Error in client")
             break
 
 
-
-
-
-    frmMain = frmMain(settings) 
-    frmMain.show()
-    sys.exit(app.exec_())
+#
+#
+#
+#    frmMain = frmMain(settings) 
+#    frmMain.show()
+#    sys.exit(app.exec_())
 #        except socket.error as e:
 #            print(str(e))
 #
