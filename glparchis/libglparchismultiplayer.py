@@ -55,6 +55,7 @@ class Server():
         game=Game(mode)
         game.owner=netplayer
         netplayer.game=game
+        game.players.append(netplayer)
         self.games.append(game)
         return "OK"
         
@@ -90,8 +91,14 @@ class Game(threading.Thread):
         for i in range(self.players.length()):
             self.players.arr[i].player=self.mem.jugadores.arr[i]
             self.mem.jugadores.arr[i].netplayer=self.players.arr[i]
+            print(self.mem.jugadores.arr[i],  self.mem.jugadores.arr[i].netplayer, self.players.arr[i])
          
         print("Game created")
+        
+        
+        print("Updating display")
+        self.g2c_display(self.mem.jugadores.actual.netplayer)
+        
 #
 #        self.mem.jugadores.actual.netplayer.sock.send(s2b("gamecreated {}\n".format(self.game.id)))
 #        b2list(self.sock.recv(1024))#OK
@@ -104,17 +111,18 @@ class Game(threading.Thread):
     def process_commands(self, s,  netplayer):
         (command, args)=command_split(s)
         print(s, command, args)
-        if command=="status":
+        if command=="display":
             return self.g2c_status(command, args, netplayer)
         elif command=="startgame":
             self.start()
             return "OK"
         print ("GAME COMMAND NOT FOUND")
 
-    def g2c_status(self, command, args, netplayer):
-        if netplayer!=None:
-            netplayer.sock.send(s2b(self.mem.mem2bytes()))
-            self.sock.recv(self.BUFSIZ)#ok
+    def g2c_display(self, netplayer):
+        a="display "+ self.mem.mem2bytes()
+        print(a)
+        netplayer.sock.send(s2b(a))
+        netplayer.sock.recv(1024)#ok
 
 
 ## Class to manage server
@@ -180,21 +188,22 @@ class MemDisplay:
         print("Asking startgame")
         print(self.c2s_startgame())
         while True:
+            print("Cliente esperando")
             try:
                 buffer=self.sock.recv(self.BUFSIZ)
+                print(buffer)
                 command, args=command_split(buffer.replace(b"\n", b""))
                 if command=="display":
-                    js=buffer.replace(b"status ", b"")
-                    self.status = json.loads(js)
-                    print("status",  self.status)
-                self.sock.send(s2b("OK\n"))
+                    self.s2c_update_display(command, args)
             except OSError:  # Possibly client has left the chat.
                 print("Error in client")
                 break
     
-    def s2c_update_display(self,  wail):
-        pass
-    
+    def s2c_update_display(self, command, stream,  wait=200):
+        self.status = json.loads(stream)
+        print("display",  self.status)
+        self.sock.send(s2b("OK\n"))
+
     def c2s_creategame(self, mode, *arrPlays):
         self.sock.send(s2b("server_creategame {} True True True True".format(TGameMode.Four)))
         self.sock.recv(self.BUFSIZ)#OK
