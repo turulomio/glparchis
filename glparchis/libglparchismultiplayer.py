@@ -148,7 +148,7 @@ class NetPlayer(threading.Thread):
     ## - gamestart: Creates a game. returns the id of the player. and create virtual players
     def run(self):
         while self.destroy==False:
-            print("Esperando",  self)
+            print("Esperando NetPlayer",  self)
             self.buffer=self.sock.recv(1024)
             data=b2s(self.buffer)
             if data.startswith("server_"):

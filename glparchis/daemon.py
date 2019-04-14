@@ -7,8 +7,9 @@ from colorama import init as colorama_init, Style, Fore
 
 from glparchis.version import __versiondate__   
 from glparchis.loggingsystem import argparse_add_debug_argument, argparse_parsing_debug_argument
-from glparchis.libglparchismultiplayer import Server            
+from glparchis.libglparchismultiplayerqt import Server            
 from PyQt5.QtCore import QCoreApplication, QSettings
+from PyQt5.QtNetwork import QHostAddress
 
     
     
@@ -48,6 +49,7 @@ def main():
     settings=QSettings()
     settings
     global server    
-    server=Server()
-    server.start()
+    server=Server(QHostAddress.Any,  65432)
+    server.quit.connect(app.quit)
+    app.exec()
     
