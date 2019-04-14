@@ -92,3 +92,11 @@ def qmessagebox(message, type=QMessageBox.Information):
     m.setIcon(type)
     m.setText(str(message))
     m.exec_() 
+    
+## Converts a bytes stream to a tuple of strings (command, [args])
+## @param s bytes
+## @return (command,args)
+def command_split(s):
+        s=b2s(s)
+        arr=s.split(" ")
+        return (arr[0], arr[1:])

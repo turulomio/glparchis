@@ -7,7 +7,7 @@ from colorama import init as colorama_init, Style, Fore
 
 from glparchis.version import __versiondate__   
 from glparchis.loggingsystem import argparse_add_debug_argument, argparse_parsing_debug_argument
-from glparchis.libglparchismultiplayerqt import Server            
+from glparchis.libglparchismultiplayer import Server            
 from PyQt5.QtCore import QCoreApplication, QSettings
 from PyQt5.QtNetwork import QHostAddress
 

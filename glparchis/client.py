@@ -10,9 +10,9 @@ from PyQt5.QtWidgets import QApplication
 from PyQt5.QtNetwork import QHostAddress, QTcpSocket
 from glparchis.version import __versiondate__   
 from glparchis.loggingsystem import argparse_add_debug_argument, argparse_parsing_debug_argument
-from glparchis.functions import signal_handler
+from glparchis.functions import signal_handler, s2b
 from glparchis.libglparchistypes import TGameMode
-from glparchis.libglparchismultiplayerqt import command_split, s2b
+from glparchis.libglparchismultiplayer import command_split
     
 class MemDisplay(QObject):
     quit=pyqtSignal()
@@ -30,11 +30,11 @@ class MemDisplay(QObject):
     def on_connected(self):
         # Connect to server and send data
         print("Asking listgames")
-        print(self.c2s_listgames())
+        self.c2s_listgames()
         print("Asking creategame")
-        print(self.c2s_creategame(TGameMode.Four, True, True, True, True))
+        self.c2s_creategame(TGameMode.Four, True, True, True, True)
         print("Asking startgame")
-        print(self.c2s_startgame())
+        self.c2s_startgame()
         self.quit.emit()
                 
     def readSocketData(self):
@@ -47,7 +47,7 @@ class MemDisplay(QObject):
     def s2c_update_display(self, command, stream,  wait=200):
         self.status = json.loads(stream)
         print("display",  self.status)
-        self.sock.send(s2b("OK\n"))
+        self.sock.send(s2b("True"))
 
     def c2s_creategame(self, mode, *arrPlays):
         self.sock.write(s2b("server_creategame {} True True True True".format(TGameMode.Four)))
