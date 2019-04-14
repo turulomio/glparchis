@@ -8,7 +8,6 @@ from colorama import init as colorama_init
 from PyQt5.QtCore import QSettings, QObject, pyqtSignal
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtNetwork import QHostAddress, QTcpSocket
-#    from glparchis.ui.frmMain import frmMain
 from glparchis.version import __versiondate__   
 from glparchis.loggingsystem import argparse_add_debug_argument, argparse_parsing_debug_argument
 from glparchis.functions import signal_handler
@@ -37,31 +36,10 @@ class MemDisplay(QObject):
         print("Asking startgame")
         print(self.c2s_startgame())
         self.quit.emit()
-#        while True:
-#            print("Cliente esperando")
-#            try:
-#                buffer=self.sock.recv(self.BUFSIZ)
-#                print(buffer)
-#                command, args=command_split(buffer.replace(b"\n", b""))
-#                if command=="display":
-#                    self.s2c_update_display(command, args)
-#            except OSError:  # Possibly client has left the chat.
-#                print("Error in client")
-#                break
                 
     def readSocketData(self):
         buffer=self.sock.readAll().data()#To convert to bytes data    
-#        print("on readSocketData", self.buffer)
-#        data=b2s(self.buffer)
-#        if data.startswith("server_"):
-#            result=self.server.process_commands(b2s(self.buffer), self)
-#            print(result)
-#            self.sock.write(s2b(result))
-#            self.sock.flush()
-#        else:#Send command to Game
-#            result=self.game.process_commands(b2s(self.buffer), self)
-#            self.sock.write(s2b(result))
-#            self.sock.flush()
+
         command, args=command_split(buffer.replace(b"\n", b""))
         if command=="display":
             self.s2c_update_display(command, args)

@@ -14,57 +14,99 @@ class Server(QTcpServer):
         self.ip=ip
         self.port=port
         self.games=ObjectManager_With_Id()
-        self.players=ObjectManager_With_Id()
+        self.sockets=ObjectManager_With_Id()
         self.listen(self.ip, self.port)
         self.newConnection.connect(self.on_newConnection)
         print(self.tr("The server is running on {}:{}").format(self.ip,  self.serverPort()))
 
+
+    def find_socket(self, o):
+        for sock in self.sockets.arr:
+            if sock==o:
+                return o
+        return None
+        
+    def find_game_from_socket(self, o):
+        for game in self.games.arr:
+            for socket in game.sockets.arr:
+                if socket==o:
+                    return game
+        return None
+
     def on_newConnection(self):
         sock=self.nextPendingConnection()
-        player=NetPlayer(sock, self)
-        self.players.append(player)
-#        player.start()
+        self.sockets.append(sock)
+        sock.readyRead.connect(lambda: self.readSocketData(sock))# From https://eli.thegreenplace.net/2011/04/25/passing-extra-arguments-to-pyqt-slot/
+        sock.stateChanged.connect(lambda: self.on_stateChanged(sock))
         print(self.status())
+    
+    def on_stateChanged(self, sock):
+        print("on_stateChanged")
+        print(sock.state())
+
+    def readSocketData(self, sock):
+        print("on readSocketData", sock)
+        buffer=sock.readAll().data()#To convert to bytes data    
+        (command, args)=command_split(buffer)
+        print(buffer, command, args)
+        
+        if command=="server_creategame":
+            self.c2s_creategame(command, args[1], args[2:],  sock)
+        elif command=="server_listgames":
+            self.c2s_listgames(command, sock)            
+        elif command=="display":
+            self.g2c_status(command, args, sock)
+        elif command=="startgame":
+            game=self.find_game_from_socket(sock)
+            game.start()
+        else:
+            print ("COMMAND NOT FOUND")
+
+        
         
     def status(self):
         return """Server status
     - Connections: {}
     - Games: {}
-""".format(self.players.length(), self.games.length())
+""".format(self.sockets.length(), self.games.length())
         
     def close(self):
         self.close()
 
-    def process_commands(self, s, netplayer):
-        (command, args)=command_split(s)
-        print(s, command,  args)
-        if command=="server_creategame":
-            a= self.c2s_creategame(command, args[1], args[2:],  netplayer)
-            print(a)
-            return (a)
-        elif command=="server_listgames":
-            return self.c2s_listgames(command, netplayer)
             
-    def c2s_creategame(self, command, mode, arrPlays, netplayer):
-        game=Game(mode)
-        game.owner=netplayer
-        netplayer.game=game
-        game.players.append(netplayer)
+    def c2s_creategame(self, command, mode, arrPlays, sock):
+        game=Game(mode, self)
+        game.owner=sock
+        game.sockets.append(sock)
         self.games.append(game)
-        return "OK"
+        sock.write(s2b("OK"))
+        sock.flush()
         
-    def c2s_listgames(self, command, netplayer):
-        return str(self.games.arr+["COSITA"])
+    def c2s_listgames(self, command, sock):
+        r=str(self.games.arr+["COSITA"])
+        sock.write(s2b(r))
+        sock.flush()
+
+    def g2c_display(self, sock):
+        game=self.find_game_from_socket(sock)
+        a="display "+ game.mem.mem2bytes()
+        print(a)
+        sock.write(s2b(a))
+        sock.flush()
+        sock.waitForReadyRead()
+        sock.readAll()
+
 
 ## Class to manage a 
 class Game(threading.Thread):
-    def __init__(self, numplayers):
+    def __init__(self, numplayers, server):
         threading.Thread.__init__(self)
         self.id=uuid.uuid4()
-        self.players=ObjectManager_With_Id()
-        self.owner=None
+        self.sockets=ObjectManager_With_Id()
+        self.owner=None#socket
         self.mem=None
         self.mode=None
+        self.server=server
 
     ##Has the main loop of the game until it's  finished
     def start(self):
@@ -82,158 +124,15 @@ class Game(threading.Thread):
         self.mem.jugadores.actual.LastFichaMovida=None #Se utiliza cuando se va a casa
         
         #Assigns network player to game players, not all players have netplayer. None if it hasn't.
-        for i in range(self.players.length()):
-            self.players.arr[i].player=self.mem.jugadores.arr[i]
-            self.mem.jugadores.arr[i].netplayer=self.players.arr[i]
-            print(self.mem.jugadores.arr[i],  self.mem.jugadores.arr[i].netplayer, self.players.arr[i])
+        for i in range(self.sockets.length()):
+            self.mem.jugadores.arr[i].sock=self.sockets.arr[i]
+            print(self.mem.jugadores.arr[i],  self.mem.jugadores.arr[i].sock, self.sockets.arr[i])
          
         print("Game created")
         
         
         print("Updating display")
-        self.g2c_display(self.mem.jugadores.actual.netplayer)
-        
-#
-#        self.mem.jugadores.actual.netplayer.sock.send(s2b("gamecreated {}\n".format(self.game.id)))
-#        b2list(self.sock.recv(1024))#OK
-#        self.sock.send(s2b("gameuserid {}_{}\n".format(self.game.id, "MAL")))
-#        b2list(self.sock.recv(1024))#OK
-#        self.sock.send(s2b("gamestart\n"))
-#        b2list(self.sock.recv(1024))#OK
-            
-            
-    def process_commands(self, s,  netplayer):
-        (command, args)=command_split(s)
-        print(s, command, args)
-        if command=="display":
-            return self.g2c_status(command, args, netplayer)
-        elif command=="startgame":
-            self.start()
-            return "OK"
-        print ("GAME COMMAND NOT FOUND")
-
-    def g2c_display(self, netplayer):
-        a="display "+ self.mem.mem2bytes()
-        print(a)
-        netplayer.sock.write(s2b(a))
-        netplayer.sock.flush()
-        netplayer.sock.waitForReadyRead()
-        return netplayer.sock.readAll()
-
-                
-class NetPlayer:
-    def __init__(self, sock,  server):
-        self.sock=sock
-        self.sock.readyRead.connect(self.readSocketData)
-        self.sock.stateChanged.connect(self.on_stateChanged)
-        self.server=server
-        self.game=None #Assignes in Server.c2s_creategame
-#        self.event=threading.Event()        
-        self.destroy=False
-        self.buffer=b""
-        self.player=None #glparchis
-
-    def on_stateChanged(self):
-        print("on_stateChanged")
-        print(self.sock.state())
-
-    def readSocketData(self):
-        self.buffer=self.sock.readAll().data()#To convert to bytes data    
-        print("on readSocketData", self.buffer)
-        data=b2s(self.buffer)
-        if data.startswith("server_"):
-            result=self.server.process_commands(b2s(self.buffer), self)
-            print(result)
-            self.sock.write(s2b(result))
-            self.sock.flush()
-        else:#Send command to Game
-            result=self.game.process_commands(b2s(self.buffer), self)
-            self.sock.write(s2b(result))
-            self.sock.flush()
-#void connectToHost(QString hostname, int port){
-#    if(!m_pTcpSocket)
-#{
-#    m_pTcpSocket = new QTcpSocket(this);
-#    m_pTcpSocket->setSocketOption(QAbstractSocket::KeepAliveOption,1);
-#}
-#connect(m_pTcpSocket,SIGNAL(readyRead()),SLOT(readSocketData()),Qt::UniqueConnection);
-#connect(m_pTcpSocket,SIGNAL(error(QAbstractSocket::SocketError)),SIGNAL(connectionError(QAbstractSocket::SocketError)),Qt::UniqueConnection);
-#connect(m_pTcpSocket,SIGNAL(stateChanged(QAbstractSocket::SocketState)),SIGNAL(tcpSocketState(QAbstractSocket::SocketState)),Qt::UniqueConnection);
-#connect(m_pTcpSocket,SIGNAL(disconnected()),SLOT(onConnectionTerminated()),Qt::UniqueConnection);
-#connect(m_pTcpSocket,SIGNAL(connected()),SLOT(onConnectionEstablished()),Qt::UniqueConnection);
-#
-#if(!(QAbstractSocket::ConnectedState == m_pTcpSocket->state())){
-#    m_pTcpSocket->connectToHost(hostname,port, QIODevice::ReadWrite);
-#}
-#}
-#
-#Write:
-#
-#void sendMessage(QString msgToSend){
-#QByteArray l_vDataToBeSent;
-#QDataStream l_vStream(&l_vDataToBeSent, QIODevice::WriteOnly);
-#l_vStream.setByteOrder(QDataStream::LittleEndian);
-#l_vStream << msgToSend.length();
-#l_vDataToBeSent.append(msgToSend);
-#
-#m_pTcpSocket->write(l_vDataToBeSent, l_vDataToBeSent.length());
-#}
-#
-#Read:
-#
-#void readSocketData(){
-#while(m_pTcpSocket->bytesAvailable()){
-#    QByteArray receivedData = m_pTcpSocket->readAll();       
-#}
-#}
-
-
-#
-#    if(!m_pTcpSocket)
-#{
-#    m_pTcpSocket = new QTcpSocket(this);
-#    m_pTcpSocket->setSocketOption(QAbstractSocket::KeepAliveOption,1);
-#}
-#connect(m_pTcpSocket,SIGNAL(readyRead()),SLOT(readSocketData()),Qt::UniqueConnection);
-#connect(m_pTcpSocket,SIGNAL(error(QAbstractSocket::SocketError)),SIGNAL(connectionError(QAbstractSocket::SocketError)),Qt::UniqueConnection);
-#connect(m_pTcpSocket,SIGNAL(stateChanged(QAbstractSocket::SocketState)),SIGNAL(tcpSocketState(QAbstractSocket::SocketState)),Qt::UniqueConnection);
-#connect(m_pTcpSocket,SIGNAL(disconnected()),SLOT(onConnectionTerminated()),Qt::UniqueConnection);
-#connect(m_pTcpSocket,SIGNAL(connected()),SLOT(onConnectionEstablished()),Qt::UniqueConnection);
-#
-#if(!(QAbstractSocket::ConnectedState == m_pTcpSocket->state())){
-#    m_pTcpSocket->connectToHost(hostname,port, QIODevice::ReadWrite);
-#}
-#}
-
-
-def socket_configuration(socket):
-    socket.readyRead()
-
-
-def socket_write(socket, message):
-    socket.write(message, message.length())
-#Write:
-#
-#void sendMessage(QString msgToSend){
-#QByteArray l_vDataToBeSent;
-#QDataStream l_vStream(&l_vDataToBeSent, QIODevice::WriteOnly);
-#l_vStream.setByteOrder(QDataStream::LittleEndian);
-#l_vStream << msgToSend.length();
-#l_vDataToBeSent.append(msgToSend);
-#
-#m_pTcpSocket->write(l_vDataToBeSent, l_vDataToBeSent.length());
-#}
-
-def socket_read(socket, ):
-    pass
-#
-#Read:
-#
-#void readSocketData(){
-#while(m_pTcpSocket->bytesAvailable()){
-#    QByteArray receivedData = m_pTcpSocket->readAll();       
-#}
-#}
+        self.server.g2c_display(self.mem.jugadores.actual.sock)
 
 
 def b2list(data):
@@ -246,5 +145,6 @@ def b2s(data):
     return data.decode("UTF-8")
     
 def command_split(s):
+        s=b2s(s)
         arr=s.split(" ")
         return (arr[0], arr[1:])
