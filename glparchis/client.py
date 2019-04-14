@@ -26,6 +26,9 @@ class MemDisplay(QObject):
         self.sock=QTcpSocket()
         self.sock.connectToHost(QHostAddress.LocalHost, 65432)
         self.sock.connected.connect(self.on_connected)
+        self.sock.readyRead.connect(self.readSocketData)
+        self.must_move=False
+        self.must_throw=False
         
     def on_connected(self):
         # Connect to server and send data
@@ -35,19 +38,28 @@ class MemDisplay(QObject):
         self.c2s_creategame(TGameMode.Four, True, True, True, True)
         print("Asking startgame")
         self.c2s_startgame()
-        self.quit.emit()
                 
     def readSocketData(self):
         buffer=self.sock.readAll().data()#To convert to bytes data    
-
-        command, args=command_split(buffer.replace(b"\n", b""))
+        command, args=command_split(buffer)
         if command=="display":
-            self.s2c_update_display(command, args)
+            self.receive_display(buffer.replace(b"display ", b""))
+        elif command=="must_throw":
+            self.receive_must_throw()
+        else:
+            print("Command not found",  buffer)
     
-    def s2c_update_display(self, command, stream,  wait=200):
+    def receive_display(self, stream,  wait=200):
         self.status = json.loads(stream)
         print("display",  self.status)
-        self.sock.send(s2b("True"))
+        self.sock.write(s2b("True"))
+        self.sock.flush()
+    
+    def receive_must_throw(self):
+        print("Receiving must_throw")
+        self.must_throw=True
+        self.sock.write(b"True")
+        self.sock.flush()
 
     def c2s_creategame(self, mode, *arrPlays):
         self.sock.write(s2b("server_creategame {} True True True True".format(TGameMode.Four)))

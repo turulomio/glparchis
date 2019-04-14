@@ -5,7 +5,7 @@ from PyQt5.QtNetwork import QTcpServer
 from glparchis.libmanagers import ObjectManager_With_Id
 from glparchis.libglparchis import Mem4
 from glparchis.libglparchistypes import TGameMode
-from glparchis.functions import s2b, command_split
+from glparchis.functions import s2b, command_split, bytes2bool
 import threading
 
 ## Class to manage server
@@ -48,7 +48,7 @@ class Server(QTcpServer):
         elif command=="server_listgames":
             self.c2s_listgames(command, sock)            
         elif command=="display":
-            self.g2c_status(command, args, sock)
+            self.send_display(command, args, sock)
         elif command=="startgame":
             game=self.find_game_from_socket(sock)
             game.start()
@@ -64,7 +64,6 @@ class Server(QTcpServer):
     def close(self):
         self.close()
 
-            
     def c2s_creategame(self, command, mode, arrPlays, sock):
         game=Game(mode, self)
         game.owner=sock
@@ -78,13 +77,20 @@ class Server(QTcpServer):
         sock.write(s2b(r))
         sock.flush()
 
-    def s2c_display(self, sock):
+    def send_display(self, sock):
         game=self.find_game_from_socket(sock)
         a="display "+ game.mem.mem2bytes()
         sock.write(s2b(a))
         sock.flush()
         sock.waitForReadyRead()
         sock.readAll()
+        
+    def send_must_throw(self, sock):
+        sock.write(b"must_throw")
+        sock.flush()
+        sock.waitForReadyRead()
+        return bytes2bool(sock.readAll())
+        
 
 ## Class to manage a 
 class Game(threading.Thread):
@@ -116,5 +122,11 @@ class Game(threading.Thread):
         for i in range(self.sockets.length()):
             self.mem.jugadores.arr[i].sock=self.sockets.arr[i]
         
-        self.server.s2c_display(self.mem.jugadores.actual.sock)
+        self.server.send_display(self.mem.jugadores.actual.sock)
+        
+        print("Sending must throw")
+        self.server.send_must_throw(self.mem.jugadores.actual.sock)
+        
+        print("Quiting")
+        self.server.quit.emit()
 

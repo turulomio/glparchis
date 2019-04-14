@@ -39,7 +39,10 @@ def str2bool(s):
         return True
     if s.lower()=="false":
         return False
-    print ("I coudn't convert string to boolean")
+    print ("I coudn't convert string to boolean '{}'".format(s))
+    
+def bytes2bool(b):
+    return str2bool(b2s(b))
 
 def b2s(b, code='UTF-8'):
     return bytes(b).decode(code)

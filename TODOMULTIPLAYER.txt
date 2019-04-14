@@ -3,7 +3,7 @@
 20190413 Daemon crea sockets y luego los asocia a un thread por game, que también puede ser proceso
 20190413 Se podría ejecutar solo en consola
 20190413 Un nuevo usuario podra empezar con joingame o creategame, apartir de ahí:
-l20190413 Todas las comunicaciones al servidor estarán codificadas con game, jugador, comando, argumentos
+20190413 Todas las comunicaciones al servidor estarán codificadas con game, jugador, comando, argumentos
 20190413 Todas las comunicaciones del servidor a jugadores son estarán codificadas con game jugador, comando, argumentos
 20190413 Deberá haber comandos al servidor, Throw dice, move piece
 20190413 Deberá haber comandos al jugador must throw dice, must move (allowed pieces)
@@ -16,6 +16,4 @@ Use threading events
 Las funciones de los comandos son get. Cuando se obtiene un resultado
                                   serve. Cuando el servidor sirve _game _server
 
-DESPUES DE QT BIDIRECCIONAL FUNCIONANDO
-- Comandos a server y a client, Quitar NetClient
-- Game solo para logica de juego
+* Detectar perdidas de conexión y convertir en IA automáticamente
