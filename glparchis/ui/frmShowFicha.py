@@ -9,9 +9,9 @@ class frmShowFicha(QDialog, Ui_frmShowFicha):
         self.ficha=ficha
         self.setupUi(self)
         self.lblFicha.setPixmap(self.ficha.jugador.color.qpixmap())       
-        self.lblName.setText(self.tr("Nombre: {0}".format(self.ficha.id)))
-        self.lblJugador.setText(self.tr("Jugador: {0} ({1})".format(self.ficha.jugador.name, self.ficha.jugador.color.name)))
-        self.lblRuta.setText(self.tr("Posicion en ruta: {0}".format(self.ficha.posruta)))
+        self.lblName.setText(self.tr("Name: {0}".format(self.ficha.id)))
+        self.lblJugador.setText(self.tr("Player: {0} ({1})".format(self.ficha.jugador.name, self.ficha.jugador.color.name)))
+        self.lblRuta.setText(self.tr("Route position: {0}".format(self.ficha.posruta)))
         self.tblAmenazas_reload()
         if self.mem.jugadores.actual.tiradaturno.ultimoValor()!=None:
             (puedemover, movimiento)=self.ficha.puedeMover()
@@ -24,10 +24,13 @@ class frmShowFicha(QDialog, Ui_frmShowFicha):
 
     @pyqtSlot(str)      
     def on_cmbDestino_currentIndexChanged(self, stri):
-        self.group.setTitle(self.tr("Amenazas en la casilla {0}".format(self.ficha.casilla(self.ficha.posruta+int(stri)).id)))
-        self.table_reload(self.tblAmenazasDestino, self.ficha.amenazasDestino( int(stri)))
-                
-        
+        if self.ficha.posruta+int(stri)+1<=self.ficha.ruta.length(): #Movement can be bigger than route length
+            self.group.setTitle(self.tr("Threats in {} square".format(self.ficha.casilla(self.ficha.posruta+int(stri)).id)))
+            self.table_reload(self.tblAmenazasDestino, self.ficha.amenazasDestino( int(stri)))
+        else:
+            self.group.setTitle(self.tr("Piece has already arrived to final square"))
+            self.tblAmenazasDestino.setRowCount(0)
+
     def table_reload(self, table, setamenazas):
         table.setRowCount(len(setamenazas.arr))        
         for i,  a in enumerate(setamenazas.arr):
