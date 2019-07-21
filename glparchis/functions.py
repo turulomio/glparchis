@@ -61,8 +61,7 @@ def c2b(state):
 def delay(miliseconds):
     dieTime= datetime.datetime.now()+datetime.timedelta(microseconds=miliseconds*1000)
     while datetime.datetime.now()< dieTime :
-        QCoreApplication.processEvents(QEventLoop.AllEvents, 100);    
-    #print ("Delay", miliseconds)
+        QCoreApplication.processEvents(QEventLoop.AllEvents, 100);
     
     
     

@@ -9,7 +9,7 @@ from glparchis.ui.poscasillas3 import poscasillas3
 from glparchis.ui.poscasillas6 import poscasillas6
 import os,  random,   configparser,  datetime,  codecs,  math
 from PyQt5.QtGui import QColor, QIcon, QPixmap
-from PyQt5.QtCore import Qt, QObject, QCoreApplication,  pyqtSignal,  QUrl
+from PyQt5.QtCore import Qt, QObject,  pyqtSignal,  QUrl
 from PyQt5.QtWidgets import QApplication, QTableWidgetItem
 from PyQt5.QtMultimedia import QSoundEffect
 from uuid import uuid4
@@ -2580,9 +2580,6 @@ class SoundSystem:
     ## @param waittofinish. If False sound is played asyncronously
     def play(self, effect, waittofinish=True):
         self.sounds[effect].play()
-        if waittofinish==True:
-            while self.sounds[effect].isPlaying():
-                QCoreApplication.processEvents()
 
 ## Abstract Mem objcet
 ## Must be initializated with Mem4, Mem6 or Mem 8
@@ -2605,6 +2602,7 @@ class Mem:
         self.translator=None           
         self.mediaObject = None
         self.frmMain=None #Pointer to QMainWindow
+        self.delay=300
         
         
         

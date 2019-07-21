@@ -93,7 +93,6 @@ class wdgGame(QWidget, Ui_wdgGame):
 
     def assign_mem(self, mem):
         self.mem=mem
-        self.delay=int(self.mem.settings.value("frmSettings/delay",300))#First set to initializate, later its set afeter human player change
         self.sendStatisticsStart()
         self.stopthegame=False
         self.table.assign_mem(self.mem)
@@ -213,7 +212,6 @@ class wdgGame(QWidget, Ui_wdgGame):
         if self.mem.jugadores.actual.ia==True:
             self.mem.jugadores.actual.log(self.tr("IA mueve una ficha"))     
             iaficha=self.mem.jugadores.actual.IASelectFicha()
-            delay(self.delay)
             if iaficha==None:
                 self.cambiarJugador()
             else:
@@ -223,7 +221,6 @@ class wdgGame(QWidget, Ui_wdgGame):
             if self.mem.frmMain.actionAutomatism.isChecked():
                 if self.mem.jugadores.actual.fichas.fichasAutorizadasAMover().length()==1:
                     iaficha=self.mem.jugadores.actual.IASelectFicha()
-                    delay(self.delay)   
                     self.mem.selFicha=iaficha
                     self.after_ficha_click()
                     self.mem.jugadores.actual.log(self.tr("Se ha movido automaticamente la unica ficha disponible"))
@@ -250,6 +247,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                     if self.mem.jugadores.actual.LastFichaMovida.estaAutorizadaAMover()[0]==True:
                         self.mem.jugadores.actual.log(self.tr("Han salido tres seises, la ultima ficha movida se va a casa"))
                         self.mem.play("threesix")
+                        delay(self.mem.delay*3)
                         self.mem.jugadores.actual.LastFichaMovida.mover(0)
                     else:
                         self.mem.jugadores.actual.log(self.tr("Han salido tres seises, pero como no puede mover no se va a casa"))
@@ -258,11 +256,14 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.cambiarJugador()
         else: # si no han salido 3 seises
             if self.mem.jugadores.actual.fichas.algunaEstaAutorizadaAmover()==True:
+                delay(self.mem.delay)
                 self.on_JugadorDebeMover()
             else:#ninguna puede mover.
                 if self.mem.jugadores.actual.tiradaturno.ultimoEsSeis()==True:
+                    delay(self.mem.delay)
                     self.on_JugadorDebeTirar()
                 else:            
+                    delay(self.mem.delay)
                     self.cambiarJugador()
 
     def after_ficha_click(self):
@@ -286,22 +287,26 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.ogl.updateGL()
             if self.mem.jugadores.actual.movimientos_acumulados==10:
                 self.mem.play("meter")
+                delay(self.mem.delay*3)
             else:
                 self.mem.play("comer")
+                delay(self.mem.delay*3)
             if self.mem.jugadores.actual.fichas.algunaEstaAutorizadaAmover()==True:
                 self.on_JugadorDebeMover()
                 return
         else:
+            delay(self.mem.delay*2)
             self.mem.selFicha.mover( self.mem.selFicha.posruta + movimiento)    
             self.table_reload()
             self.ogl.updateGL()
-            self.mem.play("move")
+            delay(self.mem.delay*2)
        #Quita el movimiento acumulados
         if self.mem.jugadores.actual.movimientos_acumulados in (10, 20):
             self.mem.jugadores.actual.movimientos_acumulados=None
 
         if self.mem.jugadores.actual.tiradaturno.ultimoEsSeis()==True:
             self.on_JugadorDebeTirar()
+            delay(self.mem.delay*2)
         else:
             self.cambiarJugador()
 
@@ -311,7 +316,7 @@ class wdgGame(QWidget, Ui_wdgGame):
             return          
         self.mem.jugadores.actual.log (self.tr("Fin de turno"))
         self.ogl.updateGL()        
-        delay(self.delay)
+        delay(self.mem.delay)
         self.mem.dado.showing=False
         self.ogl.updateGL()        
 
