@@ -1,7 +1,9 @@
 Project links
 =============
+
 Glparchis doxygen documentation:
     http://turulomio.users.sourceforge.net/doxygen/glparchis/
+    
 Game statistics
     http://glparchis.sourceforge.net/php/glparchis_statistics.php
 
@@ -55,6 +57,4 @@ Authors
 
 Changelog
 =========
-Please read the CHANGELOG_
-
-.. _CHANGELOG: https://raw.githubusercontent.com/Turulomio/glparchis/master/CHANGELOG.rst
+Please read the [CHANGELOG](CHANGELOG.md)
