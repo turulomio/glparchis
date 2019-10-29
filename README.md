@@ -2,16 +2,13 @@ Project links
 =============
 Glparchis doxygen documentation:
     http://turulomio.users.sourceforge.net/doxygen/glparchis/
-Web page main developer
-    http://turulomio.users.sourceforge.net/
 Game statistics
     http://glparchis.sourceforge.net/php/glparchis_statistics.php
 
 Snapshots
 =========
-.. raw:: html
 
-  <img src="https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-3.png" width="300px"\><img src="https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-4.png" width="300px"\><img src="https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-6.png" width="300px"\><img src="https://raw.githubusercontent.com/Turulomio/glparchis/master/doc/glparchis-players-8.png" width="300px"\>
+<img src="doc/glparchis-players-3.png" height="200"/> <img src="doc/glparchis-players-4.png" height="200"/> <img src="doc/glparchis-players-6.png" height="200"/> <img src="doc/glparchis-players-8.png" height="200"/>
 
 
 Install in Linux
