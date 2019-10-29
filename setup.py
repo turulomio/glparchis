@@ -155,7 +155,7 @@ class PyInstaller(Command):
 
     ########################################################################
 
-with open('README.rst', encoding='utf-8') as f:
+with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
 ## Version of officegenerator captured from commons to avoid problems with package dependencies
@@ -188,7 +188,7 @@ setup(name='glparchis',
               'Programming Language :: Python :: 3',
              ], 
     keywords='parchís game',
-    url='https://glparchis.sourceforge.io/',
+    url='https://github.com/turulomio/glparchis',
     author='Turulomio',
     author_email='turulomio@yahoo.es',
     license='GPL-3',
