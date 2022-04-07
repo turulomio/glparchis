@@ -1,5 +1,9 @@
 Project links
 =============
+[![PyPI](https://img.shields.io/pypi/v/glparchis)](https://pypi.org/project/glparchis/) [![PyPI - Downloads](https://img.shields.io/pypi/dm/glparchis)](https://pypi.org/project/glparchis/)
+
+[![Github](https://img.shields.io/github/stars/turulomio/glparchis?style=social)](https://github.com/turulomio/glparchis/) [![Github - Downloads](https://shields.io/github/downloads/turulomio/glparchis/total )](https://github.com/turulomio/glparchis/)
+
 
 Glparchis doxygen documentation:
     http://turulomio.users.sourceforge.net/doxygen/glparchis/
