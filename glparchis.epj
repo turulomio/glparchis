@@ -2,7 +2,7 @@
   "header": {
     "comment": "eric project file for project glparchis",
     "copyright": "Copyright (C) 2022 , ",
-    "saved": "2022-05-08, 07:37:51"
+    "saved": "2022-05-08, 12:06:11"
   },
   "project": {
     "AUTHOR": "",
@@ -63,6 +63,7 @@
     },
     "MIXEDLANGUAGE": 0,
     "OTHERS": [
+      "DEVELOPMENT_NOTES.md",
       "LICENSE.txt",
       "glparchis.egg-info/SOURCES.txt",
       "glparchis.egg-info/dependency_links.txt",
