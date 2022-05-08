@@ -1,7 +1,7 @@
-import os
-import configparser
-import datetime
-import logging
+from os import getcwd,  path, chdir, environ
+from configparser import ConfigParser
+from datetime import date, timedelta
+from logging import debug, info
 
 from urllib.request import urlopen
 from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QEvent,  QUrl,  pyqtSignal, QThread, QSize
@@ -24,8 +24,8 @@ class frmMain(QMainWindow, Ui_frmMain):
     showLeftPanel=pyqtSignal(bool)
     def __init__(self, settings, parent = 0,  flags = False):
         QMainWindow.__init__(self)
-        self.path_program=os.getcwd()
-        self.path_autosaves=os.path.expanduser("~/.glparchis/")
+        self.path_program=getcwd()
+        self.path_autosaves=path.expanduser("~/.glparchis/")
         self.settings=settings
         self.translator=QTranslator()
         cargarQTranslator(self.translator, settings.value("frmSettings/language", "en"))
@@ -38,8 +38,8 @@ class frmMain(QMainWindow, Ui_frmMain):
         
         self.game=None
         self.setWindowTitle(self.tr("glParchis 2006-{}. GNU General Public License \xa9").format(__versiondate__.year))
-        if datetime.date.today()-datetime.date.fromordinal(int(self.settings.value("frmMain/lastupdate", 1)))>=datetime.timedelta(days=7):
-            logging.info(self.tr("Checking for updates..."))
+        if date.today()-date.fromordinal(int(self.settings.value("frmMain/lastupdate", 1)))>=timedelta(days=7):
+            info(self.tr("Checking for updates..."))
             self.checkUpdates(False)
         self.setSound(str2bool(self.settings.value("frmSettings/sound", "True")))
         self.setFullScreen(str2bool(self.settings.value("frmMain/fullscreen", "False")))
@@ -54,14 +54,14 @@ class frmMain(QMainWindow, Ui_frmMain):
             self.settings.setValue("frmMain/uuid", str(uuid4()))
             if str2bool(self.settings.value("frmSettings/statistics", "True"))==True:
                 url='http://glparchis.sourceforge.net/php/glparchis_installations.php?uuid={}'.format(self.settings.value("frmMain/uuid"))
-                logging.info(self.tr("Setting uuid with {}").format(url))
+                info(self.tr("Setting uuid with {}").format(url))
                 try:
                     web=b2s(urlopen(url).read())
                 except:
                     web=None
-                logging.debug(web)       
+                debug(web)       
         else:
-            logging.info(self.tr("Installation UUID already set"))
+            info(self.tr("Installation UUID already set"))
         self.uuid_installation=self.settings.value("frmMain/uuid")
         self.url_statistics_installation="http://glparchis.sourceforge.net/php/glparchis_statistics_installation.php?installations_uuid={}".format(self.uuid_installation)
         self.url_statistics_world="http://glparchis.sourceforge.net/php/glparchis_statistics.php"
@@ -151,10 +151,10 @@ class frmMain(QMainWindow, Ui_frmMain):
         
     @pyqtSlot()   
     def on_actionSalir_triggered(self):
-        logging.info(self.tr("Closing glParchis..."))
+        info(self.tr("Closing glParchis..."))
         self.settings.setValue("frmMain/size", self.size()) 
         self.settings.sync()
-        logging.debug("Syncing settings")
+        debug("Syncing settings")
         if self.game:
             self.game.__del__()
         qApp.quit()
@@ -209,7 +209,7 @@ class frmMain(QMainWindow, Ui_frmMain):
             m.setTextFormat(Qt.RichText)#this is what makes the links clickable
             m.setText(self.tr("There is a new glParchis version. You can download it from <a href='https://github.com/Turulomio/glparchis/releases'>GitHub</a>."))
             m.exec_() 
-        self.settings.setValue("frmMain/lastupdate", datetime.date.today().toordinal())
+        self.settings.setValue("frmMain/lastupdate", date.today().toordinal())
 
     @pyqtSlot(QEvent)   
     def closeEvent(self,event):
@@ -243,7 +243,7 @@ class frmMain(QMainWindow, Ui_frmMain):
 
     @pyqtSlot()  
     def on_actionRecuperarPartida_triggered(self):
-        os.chdir(self.path_autosaves)
+        chdir(self.path_autosaves)
         filenam=QFileDialog.getOpenFileName(self, "", "", "glParchis game (*.glparchis)")[0]
         if filenam!="":
             #Busca si es de 4,6,8
@@ -264,8 +264,8 @@ class frmMain(QMainWindow, Ui_frmMain):
 
     def selectMem(self, filename):
         resultado=None
-        os.chdir(self.path_autosaves)
-        config = configparser.ConfigParser()
+        chdir(self.path_autosaves)
+        config = ConfigParser()
         config.read(filename)
         try:
             self.maxplayers=int(config.get("game",  "numplayers"))
@@ -293,7 +293,7 @@ class frmMain(QMainWindow, Ui_frmMain):
             QDesktopServices.openUrl(QUrl(self.url_statistics_world))
 
         try:
-            user=os.environ['USER']
+            user=environ['USER']
         except:
             user=None
 
@@ -355,9 +355,9 @@ class frmMain(QMainWindow, Ui_frmMain):
 
     @pyqtSlot()     
     def on_actionGuardarPartida_triggered(self):
-        os.chdir(self.path_autosaves)
+        chdir(self.path_autosaves)
         filename=QFileDialog.getSaveFileName(self, "", "", "glParchis game (*.glparchis)")[0]
         if filename!="":       
-            if os.path.splitext(filename)[1]!=".glparchis":
+            if path.splitext(filename)[1]!=".glparchis":
                 filename=filename+".glparchis"
             self.mem.save(filename)

@@ -1,9 +1,9 @@
-import datetime
-import warnings
-import functools
-import logging
-import pkg_resources
-import sys
+from datetime import datetime, timedelta
+from warnings import simplefilter, warn
+from functools import wraps
+from logging import critical
+from pkg_resources import resource_filename
+from sys import exit, argv
 
 from PyQt5.QtCore import Qt, QCoreApplication, QEventLoop
 from PyQt5.QtWidgets import QApplication, QMessageBox
@@ -16,13 +16,13 @@ def deprecated(func):
     """This is a decorator which can be used to mark functions
     as deprecated. It will result in a warning being emitted
     when the function is used."""
-    @functools.wraps(func)
+    @wraps(func)
     def new_func(*args, **kwargs):
-        warnings.simplefilter('always', DeprecationWarning)  # turn off filter
-        warnings.warn("Call to deprecated function {}.".format(func.__name__),
+        simplefilter('always', DeprecationWarning)  # turn off filter
+        warn("Call to deprecated function {}.".format(func.__name__),
                       category=DeprecationWarning,
                       stacklevel=2)
-        warnings.simplefilter('default', DeprecationWarning)  # reset filter
+        simplefilter('default', DeprecationWarning)  # reset filter
         return func(*args, **kwargs)
     return new_func
 
@@ -59,28 +59,28 @@ def c2b(state):
         return False
 
 def delay(miliseconds):
-    dieTime= datetime.datetime.now()+datetime.timedelta(microseconds=miliseconds*1000)
-    while datetime.datetime.now()< dieTime :
+    dieTime= datetime.now()+timedelta(microseconds=miliseconds*1000)
+    while datetime.now()< dieTime :
         QCoreApplication.processEvents(QEventLoop.AllEvents, 100);
     
     
     
 def signal_handler(signal, frame):
-        logging.critical(Style.BRIGHT+Fore.RED+QApplication.translate("Core","You pressed 'Ctrl+C', exiting..."))
-        sys.exit(1)
+        critical(Style.BRIGHT+Fore.RED+QApplication.translate("Core","You pressed 'Ctrl+C', exiting..."))
+        exit(1)
         
         
 def cargarQTranslator(qtranslator, language):  
     """language es un string"""  
 
-    url=pkg_resources.resource_filename("glparchis","i18n/glparchis_{}.qm".format(language))
+    url=resource_filename("glparchis","i18n/glparchis_{}.qm".format(language))
     print(url)
     qtranslator.load(url)
     QCoreApplication.installTranslator(qtranslator);
 
 def developing():
     """Funcion que permite avanzar si hay un parametro y da un aviso e interrumpe si no, se debe poner un if en donde se use"""
-    if len (sys.argv)==1:
+    if len (argv)==1:
         qmessagebox(QApplication.translate("frmMain", "Esta opcion se esta desarrollando"))
         return False
     return True

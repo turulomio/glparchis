@@ -5,9 +5,9 @@ from glparchis.libglparchis import HighScore
 from glparchis.functions import str2bool, b2s, qmessagebox, delay
 from glparchis.version import __version__
 from glparchis.ui.Ui_wdgGame import Ui_wdgGame
-import glob
-import datetime
-import os
+from datetime import datetime
+from glob import glob
+from os import path, unlink
 from urllib.request import urlopen
 
 ## Clase principal del Juego, aqui esta toda la ciencia, cuando se deba pasar al UI se crearan emits que captura qT para el UI
@@ -89,7 +89,7 @@ class wdgGame(QWidget, Ui_wdgGame):
     ## Recargar tabla de estadisticas
     def table_reload(self):
         self.table.reload()
-        self.lblTime.setText(self.tr("Tiempo de partida: {0}".format(str(datetime.datetime.now()-self.mem.playedtime).split(".")[0])))
+        self.lblTime.setText(self.tr("Tiempo de partida: {0}".format(str(datetime.now()-self.mem.playedtime).split(".")[0])))
 
     def assign_mem(self, mem):
         self.mem=mem
@@ -134,7 +134,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.ogl.doubleClicked.connect(self.on_ogl_doubleClicked)
         
         if self.mem.playedtime==None:#Caso de que se cree la partida sin cargar .glparchis
-            self.mem.playedtime=datetime.datetime.now()
+            self.mem.playedtime=datetime.now()
         self.table_reload()
         self.on_JugadorDebeTirar()
 
@@ -343,14 +343,14 @@ class wdgGame(QWidget, Ui_wdgGame):
         if maxautosaves>0 and self.mem.jugadores.actual.ia==False:
             #Borra el n-esimo autosave
             autosaves=[]
-            for infile in glob.glob( os.path.join(os.path.expanduser("~/.glparchis/"), 'autosave_*.glparchis') ):
+            for infile in glob( path.join(path.expanduser("~/.glparchis/"), 'autosave_*.glparchis') ):
                 autosaves.append(infile)
             autosaves.sort()
             if len(autosaves)>=maxautosaves:
                 for f in autosaves[:len(autosaves)-maxautosaves+1]:
-                    os.unlink(f)
+                    unlink(f)
             #Graba el ultimo autosave
-            n=datetime.datetime.now()
+            n=datetime.now()
             dt="{0}{1:02d}{2:02d}_{3:02d}{4:02d}{5:02d}".format(n.year, n.month, n.day, n.hour, n.minute, n.second)
             self.mem.save("autosave_{0}_{1}_{2}.glparchis".format(dt, self.mem.maxplayers, self.mem.jugadores.actual.color.name ))
 

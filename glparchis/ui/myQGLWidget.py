@@ -1,5 +1,3 @@
-import math
-
 from PyQt5.QtCore import pyqtSignal, QPoint, QSize, Qt
 from PyQt5.QtOpenGL import QGLWidget
 from PyQt5.QtGui import QPixmap, QColor
@@ -11,6 +9,9 @@ from glparchis.libglparchis import Casilla, Ficha, Jugador, Dado, Coord3D,  Colo
 from glparchis.libglparchistypes import TNames,  TSquareTypes
 from glparchis.ui.frmShowCasilla import frmShowCasilla
 from glparchis.ui.frmShowFicha import frmShowFicha
+from math import sin, cos
+
+
 
 class myQGLWidget(QGLWidget):
     def __init__(self, parent):
@@ -460,16 +461,16 @@ class wdgQT(QGLWidget, ObjectRotationManager):
 
         for i in range(NumSectors):
             angle1 = (i * 2 * Pi) / NumSectors
-            x5 = 0.30 * math.sin(angle1)
-            y5 = 0.30 * math.cos(angle1)
-            x6 = 0.20 * math.sin(angle1)
-            y6 = 0.20 * math.cos(angle1)
+            x5 = 0.30 * sin(angle1)
+            y5 = 0.30 * cos(angle1)
+            x6 = 0.20 * sin(angle1)
+            y6 = 0.20 * cos(angle1)
 
             angle2 = ((i + 1) * 2 * Pi) / NumSectors
-            x7 = 0.20 * math.sin(angle2)
-            y7 = 0.20 * math.cos(angle2)
-            x8 = 0.30 * math.sin(angle2)
-            y8 = 0.30 * math.cos(angle2)
+            x7 = 0.20 * sin(angle2)
+            y7 = 0.20 * cos(angle2)
+            x8 = 0.30 * sin(angle2)
+            y8 = 0.30 * cos(angle2)
 
             self.quad(x5, y5, x6, y6, x7, y7, x8, y8)
 

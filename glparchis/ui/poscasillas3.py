@@ -1,7 +1,7 @@
-import math
+from math import sqrt, sin, pi
 def poscasillas3(maxcasillas):
     posCasillas=[None]*maxcasillas
-    sqr3_2=math.sqrt(3)/2
+    sqr3_2=sqrt(3)/2
     posCasillas[0]=(0, 0, 0)
     posCasillas[1]=(21, 60, 0.5)
     posCasillas[2]=(21, 57, 0.5)
@@ -83,6 +83,6 @@ def poscasillas3(maxcasillas):
 
     posCasillas[75]=(posCasillas[25][0], posCasillas[25][1], 0.5)#Amarilla central
     posCasillas[76]=(21, 39, 0.5)
-    posCasillas[77]=(31.5, 39-21*math.sin(math.pi/3), 0.5)
+    posCasillas[77]=(31.5, 39-21*sin(pi/3), 0.5)
     posCasillas[78]=(42, 39, 0.5)
     return posCasillas

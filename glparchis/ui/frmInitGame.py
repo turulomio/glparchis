@@ -1,5 +1,5 @@
-import random
-import datetime
+from random import seed
+from datetime import datetime
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWizard
 from glparchis.ui.wdgPlayer import wdgPlayer, SetWdgPlayers
@@ -19,7 +19,7 @@ class frmInitGame(QWizard, Ui_frmInitGame):
         self.wizardPage2.setSubTitle(self.tr("El jugador que saque la puntuacion mas alta, empieza la partida"))        
         
         self.setButtonText(QWizard.FinishButton, self.tr("Los jugadores lanzan sus dados"))
-        random.seed(datetime.datetime.now().microsecond)
+        seed(datetime.now().microsecond)
         self.players=[]#players primera del wizard
         self.set=None #SetWdgPlayers()#Set para tirar dados un turno
         

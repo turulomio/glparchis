@@ -1,7 +1,7 @@
-import argparse
-import os
-import signal
-import sys
+from argparse import ArgumentParser, RawTextHelpFormatter
+from os import path, makedirs
+from signal import signal, SIGINT
+from sys import setrecursionlimit, argv, exit
 from colorama import init as colorama_init
 
 
@@ -16,25 +16,25 @@ def main():
     from glparchis.functions import signal_handler
 
     try:
-        os.makedirs(os.path.expanduser("~/.glparchis/"))
+        makedirs(path.expanduser("~/.glparchis/"))
     except:
         pass
 
-    sys.setrecursionlimit(100000)
+    setrecursionlimit(100000)
     global app
-    app = QApplication(sys.argv)
+    app = QApplication(argv)
     app.setOrganizationName("glParchis")
     app.setOrganizationDomain("glParchis")
     app.setApplicationName("glParchis")
     app.setQuitOnLastWindowClosed(True)
-    signal.signal(signal.SIGINT, signal_handler)
+    signal(SIGINT, signal_handler)
 
-    parser=argparse.ArgumentParser(
+    parser=ArgumentParser(
             prog='glparchis', 
             description=app.translate("Core",'Parchis Game'),  
             epilog=app.translate("Core","If you like this app, please give me a star in Github (https://github.com/Turulomio/glparchis).")+"\n" +
                         app.translate("Core","Developed by Mariano Mu\xf1oz 2006-{} \xa9".format(__versiondate__.year)),
-            formatter_class=argparse.RawTextHelpFormatter
+            formatter_class=RawTextHelpFormatter
         )
     argparse_add_debug_argument(parser)
     args=parser.parse_args()        
@@ -45,5 +45,5 @@ def main():
 
     frmMain = frmMain(settings) 
     frmMain.show()
-    sys.exit(app.exec_())
+    exit(app.exec_())
 

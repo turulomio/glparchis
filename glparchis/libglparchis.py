@@ -1,13 +1,17 @@
-
-import logging
-import pkg_resources
+from logging import debug
+from pkg_resources import resource_filename
 from OpenGL.GL import glVertex3fv, glBegin, glBindTexture, glColor3d, glDisable, glEnable, glEnd, glPopMatrix, glPopName, glPushName, glPushMatrix, glRotated, glScaled, glTexCoord2f, glTranslated, glTranslatef, glVertex3d, GL_TEXTURE_2D, GL_QUADS, GL_POLYGON, GL_LINE_LOOP
 from OpenGL.GLU import gluCylinder, gluDisk, gluNewQuadric, gluQuadricDrawStyle, gluQuadricNormals, gluQuadricTexture, GLU_FILL, GLU_SMOOTH
 from glparchis.ui.poscasillas8 import poscasillas8
 from glparchis.ui.poscasillas4 import poscasillas4
 from glparchis.ui.poscasillas3 import poscasillas3
 from glparchis.ui.poscasillas6 import poscasillas6
-import os,  random,   configparser,  datetime,  codecs,  math
+from os import path, chdir
+from random import random, seed
+from configparser import ConfigParser
+from datetime import datetime, date, timedelta
+from math import sin, cos, tan, pi
+from codecs import open as codecs_open
 from PyQt5.QtGui import QColor, QIcon, QPixmap
 from PyQt5.QtCore import Qt, QObject,  pyqtSignal,  QUrl
 from PyQt5.QtWidgets import QApplication, QTableWidgetItem
@@ -38,12 +42,12 @@ class Dado(QObject):
         self.showing=True
         
     def tirar(self):
-        random.seed(datetime.datetime.now().microsecond)
+        seed(datetime.now().microsecond)
         if len(self.fake)>0:
             resultado=self.fake[0]
             self.fake.remove(self.fake[0])
         else:
-            resultado= int(random.random()*6)+1
+            resultado= int(random()*6)+1
         self.lasttirada=resultado
         return resultado
 
@@ -262,10 +266,10 @@ class ThreatManager(ObjectManager):
         ##Square 
         self.casilla=casilla
         self.mem=mem
-        inicio=datetime.datetime.now()
+        inicio=datetime.now()
         self.__detect()
         self.__removingBarriers()
-        logging.debug("Detectar amenazas de {} en {} llevó: {}".format(self.target_pawn,  self.casilla,  datetime.datetime.now()-inicio))
+        debug("Detectar amenazas de {} en {} llevó: {}".format(self.target_pawn,  self.casilla,  datetime.now()-inicio))
         
     def __append(self, attacking_pawn, type):
         self.arr.append(Threat(self.target_pawn, attacking_pawn, type))
@@ -494,7 +498,7 @@ class HighScore:
 
     def insert(self):
         """Solo se puede ejecutar, cuando haya un winner"""
-        self.arr.append((datetime.date.today().toordinal(), self.mem.jugadores.winner.name, int((datetime.datetime.now()-self.mem.playedtime).total_seconds()), self.mem.jugadores.winner.color.name,  self.mem.jugadores.winner.score()))
+        self.arr.append((date.today().toordinal(), self.mem.jugadores.winner.name, int((datetime.now()-self.mem.playedtime).total_seconds()), self.mem.jugadores.winner.color.name,  self.mem.jugadores.winner.score()))
         self.sort()
         
     def qtablewidget(self, table): 
@@ -503,12 +507,12 @@ class HighScore:
         table.setRowCount(len(self.arr))        
         self.sort()
         for i,  a in enumerate(self.arr):
-            item=QTableWidgetItem(str(datetime.date.fromordinal(int(a[0]))))
+            item=QTableWidgetItem(str(date.fromordinal(int(a[0]))))
             table.setItem(i, 0, item)
             item = QTableWidgetItem(a[1])
             item.setIcon(colores.find_by_name(a[3]).qicon())                
             table.setItem(i, 1, QTableWidgetItem(item))
-            item = QTableWidgetItem(str(datetime.timedelta(seconds=int(a[2]))))
+            item = QTableWidgetItem(str(timedelta(seconds=int(a[2]))))
             item.setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
             table.setItem(i, 2, item)
             item = QTableWidgetItem(str(a[4]))
@@ -517,7 +521,7 @@ class HighScore:
 
     def load(self):
         try:
-            f=codecs.open(os.path.expanduser("~/.glparchis/")+ "highscores"+str(self.players), "r", "utf-8")
+            f=codecs_open(path.expanduser("~/.glparchis/")+ "highscores"+str(self.players), "r", "utf-8")
             for line in f.readlines():
                 a=line[:-1].split(";")
                 self.arr.append((a[0], a[1], a[2], self.mem.colores.arr[0].compatibilityName(a[3]),  int(a[4])))
@@ -530,7 +534,7 @@ class HighScore:
 
         
     def save(self):        
-        f=codecs.open(os.path.expanduser("~/.glparchis/")+ "highscores"+str(self.players), "w", "utf-8")
+        f=codecs_open(path.expanduser("~/.glparchis/")+ "highscores"+str(self.players), "w", "utf-8")
         s=""
         print (self.arr)
         for a in self.arr[:10]:
@@ -561,7 +565,7 @@ class Jugador(QObject):
         return "Jugador {0}".format(self.color.name)
 
     def log(self, l):
-        l="{0} {1}".format(str(datetime.datetime.now().time()).split(".")[0], l)
+        l="{0} {1}".format(str(datetime.now().time()).split(".")[0], l)
         self.logEmitted.emit(l)
         
     def casillasPorMover(self):
@@ -670,8 +674,8 @@ class Jugador(QObject):
     def IASelectFicha(self):
         def azar():
             """Funcion que saca un numero al azar de entre 1 y 100. Si es mayor del tope devuelve true. Sino devuelve false. Es decir tope 85 es una probabilidad del 85%"""
-            random.seed(datetime.datetime.now().microsecond)
-            numero=int(random.random()*100)
+            seed(datetime.now().microsecond)
+            numero=int(random()*100)
             if numero<self.mem.difficulty:
                 return True
             return False
@@ -1713,9 +1717,9 @@ class Tablero3(AbstractOpenglObject):
         self.color=Color(88, 40, 0)
 
     def draw(self, qglwidget): 
-        pi_3=math.pi/3#60º
-        sin_pi_3=math.sin(pi_3)
-        cos_pi_3=math.cos(pi_3)
+        pi_3=pi/3#60º
+        sin_pi_3=sin(pi_3)
+        cos_pi_3=cos(pi_3)
         glPushMatrix()
         glEnable(GL_TEXTURE_2D);
         
@@ -1958,8 +1962,8 @@ class Polygon:
         texverts=[]
         verts=[]
         for i in range(lados):#Reversed to see from up in opengl.
-            posx=math.sin(i/lados*2*math.pi+math.pi/lados)
-            posy=math.cos(i/lados*2*math.pi+math.pi/lados)
+            posx=sin(i/lados*2*pi+pi/lados)
+            posy=cos(i/lados*2*pi+pi/lados)
             if texture:
                 texverts.append(Coord2D(posx, posy))
             verts.append(Coord3D(posx*radius, posy*radius, 0))
@@ -2278,7 +2282,7 @@ class Casilla(QObject):
             glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
-            verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(-24*math.sin(math.pi/3), -24*math.cos(math.pi/3), 0),  Coord3D(0, 24, 0)]
+            verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(-24*sin(pi/3), -24*cos(pi/3), 0),  Coord3D(0, 24, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
             prism.opengl(qglwidget)
@@ -2316,9 +2320,9 @@ class Casilla(QObject):
             glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
-            b=21*math.sin(math.pi/6)
-            c=21*math.tan(math.pi/6)*math.sin(math.pi/6)
-            d=21*math.cos(math.pi/6)
+            b=21*sin(pi/6)
+            c=21*tan(pi/6)*sin(pi/6)
+            d=21*cos(pi/6)
             verts=[ Coord3D(0, 0, 0), Coord3D(b, -d, 0), Coord3D(0, -c-d, 0), Coord3D (-b, -d, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
@@ -2333,10 +2337,10 @@ class Casilla(QObject):
             glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
-            a22c5=math.pi/8
-            a=21*math.sin(a22c5)
-            c=21*math.tan(a22c5)*math.sin(a22c5)
-            h=21/math.cos(a22c5)
+            a22c5=pi/8
+            a=21*sin(a22c5)
+            c=21*tan(a22c5)*sin(a22c5)
+            h=21/cos(a22c5)
             verts=[ Coord3D(a, h-c, 0), Coord3D(2*a, 0, 0), Coord3D(a, -c, 0), Coord3D(0, 0, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
@@ -2407,22 +2411,22 @@ class Casilla(QObject):
         def tipo_oblicuoi4():
             tipo_oblicuoi(3)
         def tipo_oblicuoi6():
-            tipo_oblicuoi(3.0/math.tan(math.pi/3))
+            tipo_oblicuoi(3.0/tan(pi/3))
         def tipo_oblicuoi8():
-            tipo_oblicuoi(3.0*math.tan(math.pi/8))
+            tipo_oblicuoi(3.0*tan(pi/8))
         def tipo_oblicuod4():
             tipo_oblicuod(4)
         def tipo_oblicuod6():
-            tipo_oblicuod(7-3.0/math.tan(math.pi/3))
+            tipo_oblicuod(7-3.0/tan(pi/3))
         def tipo_oblicuod8():
-            tipo_oblicuod(7-3.0*math.tan(math.pi/8))
+            tipo_oblicuod(7-3.0*tan(pi/8))
 
         def tipo_final3():
             glPushName(self.oglname);
             glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
-            verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(10.50, 10.5*math.tan(math.pi/6), 0), Coord3D(21, 0, 0)]
+            verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(10.50, 10.5*tan(pi/6), 0), Coord3D(21, 0, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
             prism.opengl(qglwidget)
@@ -2449,8 +2453,8 @@ class Casilla(QObject):
             glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
             glRotated(self.rotate, 0, 0, 1 )
-            x=2*math.tan(math.pi/6)*(21*math.cos(math.pi/6)-3)/15
-            y=(21*math.cos(math.pi/6)-3)/7.5
+            x=2*tan(pi/6)*(21*cos(pi/6)-3)/15
+            y=(21*cos(pi/6)-3)/7.5
             verts=[Coord3D(0, 0, 0), Coord3D(0, 0, 0), Coord3D(x*7.5, y*7.5, 0), Coord3D(x*15, 0, 0)]
             p=Polygon().init__create(verts, self.color, None, [])
             prism=Prism(p, 0.2)
@@ -2461,11 +2465,11 @@ class Casilla(QObject):
             glPopName()
 
         def tipo_final8():
-            rad67_5=67.5*2*math.pi/360#67.5º =45+67.5+67.5
-            sin_rad67_5=math.sin(rad67_5)
-            cos_rad67_5=math.cos(rad67_5)
+            rad67_5=67.5*2*pi/360#67.5º =45+67.5+67.5
+            sin_rad67_5=sin(rad67_5)
+            cos_rad67_5=cos(rad67_5)
             tg_rad67_5=sin_rad67_5/cos_rad67_5
-            sin_pi_4=math.sin(math.pi/4)
+            sin_pi_4=sin(pi/4)
             glPushName(self.oglname);
             glPushMatrix()
             glTranslated(self.position[0],self.position[1],self.position[2] )
@@ -2569,7 +2573,7 @@ class SoundSystem:
     def load_all(self):
         for effect in ["comer", "click", "dice", "meter", "threesix", "win", "move"]:
             s=QSoundEffect()
-            url=pkg_resources.resource_filename("glparchis","sounds/{}.wav".format(effect))
+            url=resource_filename("glparchis","sounds/{}.wav".format(effect))
             s.setSource(QUrl.fromLocalFile(url))
             s.setLoopCount(1)
             s.setVolume(0.99)
@@ -2639,15 +2643,15 @@ class Mem:
         """Version 1.1 INtroduce stadisticas
         Version 1.2 Introduce uuid
         Version 1.3 Changed iniitime by playedtime"""
-        os.chdir(os.path.expanduser("~/.glparchis/"))
-        config = configparser.ConfigParser()
+        chdir(path.expanduser("~/.glparchis/"))
+        config = ConfigParser()
         
         config.add_section("game")
         config.set("game", 'playerstarts',self.jugadores.actual.color.name)
         config.set("game",  "numplayers",  str(self.maxplayers))
         config.set("game", 'fakedice','')
         config.set("game", 'fileversion','1.3')
-        config.set("game",  'playedtime', str(datetime.datetime.now()-self.playedtime))
+        config.set("game",  'playedtime', str(datetime.now()-self.playedtime))
         config.set("game",  'uuid', str(self.uuid))
         for i, j in enumerate(self.jugadores.arr):
             config.add_section("jugador{0}".format(i))
@@ -2682,7 +2686,7 @@ class Mem:
         def error():           
             qmessagebox(QApplication.translate("glparchis", "Este fichero es de una version antigua o esta estropeado. No puede ser cargado."))
         ################################
-        config = configparser.ConfigParser()
+        config = ConfigParser()
         config.read(filename)
         
         try:
@@ -2701,10 +2705,10 @@ class Mem:
         try:
             init=config.get("game", "playedtime").split(".")[0]#Quita milissegundos
             arrinit=init.split(":")
-            delta=datetime.timedelta(hours=int(arrinit[0]), minutes=int(arrinit[1]),  seconds=int(arrinit[2]))
-            self.playedtime=datetime.datetime.now()-delta
+            delta=timedelta(hours=int(arrinit[0]), minutes=int(arrinit[1]),  seconds=int(arrinit[2]))
+            self.playedtime=datetime.now()-delta
         except:
-            self.playedtime=datetime.datetime.now()
+            self.playedtime=datetime.now()
             print ("No se ha podido cargar el playedtime")
         
         for i, j in enumerate(self.jugadores.arr):

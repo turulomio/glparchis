@@ -1,8 +1,8 @@
 from setuptools import setup, Command
-import os
-import platform
-import site
-import shutil
+from os import system, chdir, listdir, remove, mkdir
+from platform import system as platform_system
+from site import getsitepackages
+from shutil import rmtree
 from concurrent.futures import ProcessPoolExecutor
 from multiprocessing import cpu_count
 
@@ -18,12 +18,12 @@ class Doxygen(Command):
 
     def run(self):
         print("Creating Doxygen Documentation")
-        os.system("""sed -i -e "41d" doc/Doxyfile""")#Delete line 41
-        os.system("""sed -i -e "41iPROJECT_NUMBER         = {}" doc/Doxyfile""".format(__version__))#Insert line 41
-        os.chdir("doc")
-        os.system("doxygen Doxyfile")
-        os.system("rsync -avzP -e 'ssh -l turulomio' html/ frs.sourceforge.net:/home/users/t/tu/turulomio/userweb/htdocs/doxygen/glparchis/ --delete-after")
-        os.chdir("..")
+        system("""sed -i -e "41d" doc/Doxyfile""")#Delete line 41
+        system("""sed -i -e "41iPROJECT_NUMBER         = {}" doc/Doxyfile""".format(__version__))#Insert line 41
+        chdir("doc")
+        system("doxygen Doxyfile")
+        system("rsync -avzP -e 'ssh -l turulomio' html/ frs.sourceforge.net:/home/users/t/tu/turulomio/userweb/htdocs/doxygen/glparchis/ --delete-after")
+        chdir("..")
 
 class Compile(Command):
     description = "Compile ui and images"
@@ -39,22 +39,22 @@ class Compile(Command):
         import datetime
         futures=[]
         with ProcessPoolExecutor(max_workers=cpu_count()+1) as executor:
-            for filename in os.listdir("glparchis/ui/"):
+            for filename in listdir("glparchis/ui/"):
                 if filename.endswith(".ui"):
                     without_extension=filename[:-3]
-                    futures.append(executor.submit(os.system, "pyuic5 glparchis/ui/{0}.ui -o glparchis/ui/Ui_{0}.py".format(without_extension)))
-            futures.append(executor.submit(os.system, "pyrcc5 glparchis/images/glparchis.qrc -o glparchis/images/glparchis_rc.py"))
+                    futures.append(executor.submit(system, "pyuic5 glparchis/ui/{0}.ui -o glparchis/ui/Ui_{0}.py".format(without_extension)))
+            futures.append(executor.submit(system, "pyrcc5 glparchis/images/glparchis.qrc -o glparchis/images/glparchis_rc.py"))
         # Overwriting glparchis_rc
-        for filename in os.listdir("glparchis/ui/"):
+        for filename in listdir("glparchis/ui/"):
              if filename.startswith("Ui_"):
-                 os.system("sed -i -e 's/glparchis_rc/glparchis.images.glparchis_rc/' glparchis/ui/{}".format(filename))
-                 os.system("sed -i -e 's/from myQGLWidget/from glparchis.ui.myQGLWidget/' glparchis/ui/{}".format(filename))
-                 os.system("sed -i -e 's/from qtablestatistics/from glparchis.ui.qtablestatistics/' glparchis/ui/{}".format(filename))
+                 system("sed -i -e 's/glparchis_rc/glparchis.images.glparchis_rc/' glparchis/ui/{}".format(filename))
+                 system("sed -i -e 's/from myQGLWidget/from glparchis.ui.myQGLWidget/' glparchis/ui/{}".format(filename))
+                 system("sed -i -e 's/from qtablestatistics/from glparchis.ui.qtablestatistics/' glparchis/ui/{}".format(filename))
         print ("Copying libmanagers.py from Xulpymoney project")
-        os.chdir("glparchis")
-        os.remove("libmanagers.py")
-        os.system("wget https://raw.githubusercontent.com/Turulomio/xulpymoney/master/xulpymoney/libmanagers.py  --no-clobber")
-        os.system("sed -i -e '3i ## THIS FILE HAS BEEN DOWNLOADED AT {} FROM https://github.com/Turulomio/xulpymoney/xulpymoney/libmanagers.py.' libmanagers.py".format(datetime.datetime.now()))
+        chdir("glparchis")
+        remove("libmanagers.py")
+        system("wget https://raw.githubusercontent.com/Turulomio/xulpymoney/master/xulpymoney/libmanagers.py  --no-clobber")
+        system("sed -i -e '3i ## THIS FILE HAS BEEN DOWNLOADED AT {} FROM https://github.com/Turulomio/xulpymoney/xulpymoney/libmanagers.py.' libmanagers.py".format(datetime.datetime.now()))
 
 
 class Procedure(Command):
@@ -98,22 +98,22 @@ class Uninstall(Command):
         pass
 
     def run(self):
-        if platform.system()=="Linux":
-            os.system("rm -Rf {}/glparchis*".format(site.getsitepackages()[0]))
-            os.system("rm /usr/bin/glparchis")
-            os.system("rm /usr/share/pixmaps/glparchis.png")
-            os.system("rm /usr/share/applications/glparchis.desktop")
+        if platform_system()=="Linux":
+            system("rm -Rf {}/glparchis*".format(getsitepackages()[0]))
+            system("rm /usr/bin/glparchis")
+            system("rm /usr/share/pixmaps/glparchis.png")
+            system("rm /usr/share/applications/glparchis.desktop")
         else:
-            print(site.getsitepackages())
-            for file in os.listdir(site.getsitepackages()[1]):#site packages
-               path=site.getsitepackages()[1]+"\\"+ file
+            print(getsitepackages())
+            for file in listdir(getsitepackages()[1]):#site packages
+               path=getsitepackages()[1]+"\\"+ file
                if file.find("glparchis")!=-1:
-                   shutil.rmtree(path)
+                   rmtree(path)
                    print(path,  "Erased")
-            for file in os.listdir(site.getsitepackages()[0]+"\\Scripts\\"):#Scripts
-               path=site.getsitepackages()[0]+"\\scripts\\"+ file
+            for file in listdir(getsitepackages()[0]+"\\Scripts\\"):#Scripts
+               path=getsitepackages()[0]+"\\scripts\\"+ file
                if file.find("glparchis")!=-1:
-                   os.remove(path)
+                   remove(path)
                    print(path,  "Erased")
 
 class Doc(Command):
@@ -127,8 +127,8 @@ class Doc(Command):
         pass
 
     def run(self):
-        os.system("pylupdate5 -noobsolete -verbose glparchis.pro")
-        os.system("lrelease -qt5 glparchis.pro")
+        system("pylupdate5 -noobsolete -verbose glparchis.pro")
+        system("lrelease -qt5 glparchis.pro")
 
 class PyInstaller(Command):
     description = "pyinstaller file generator"
@@ -141,16 +141,16 @@ class PyInstaller(Command):
         pass
 
     def run(self):
-        shutil.rmtree("build")
-        os.mkdir("build")
-        os.system("python setup.py uninstall")
-        os.system("python setup.py install")
+        rmtree("build")
+        mkdir("build")
+        system("python setup.py uninstall")
+        system("python setup.py install")
         f=open("build/run.py","w")
         f.write("import glparchis.glparchis\n")
         f.write("glparchis.glparchis.main()\n")
         f.close()
-        os.chdir("build")
-        os.system("pyinstaller run.py -n glparchis-{} --onefile --windowed --icon ../glparchis/images/glparchis.ico --distpath ../dist".format(__version__))
+        chdir("build")
+        system("pyinstaller run.py -n glparchis-{} --onefile --windowed --icon ../glparchis/images/glparchis.ico --distpath ../dist".format(__version__))
 
 
     ########################################################################
@@ -165,7 +165,7 @@ with open('glparchis/version.py', encoding='utf-8') as f:
         if line.find("__version__ =")!=-1:
             __version__=line.split("'")[1]
 
-if platform.system()=="Linux":
+if platform_system()=="Linux":
     data_files=[
                  ('/usr/share/applications/', ['glparchis.desktop']),
                  ('/usr/share/pixmaps/', ['glparchis/images/glparchis.png']),
@@ -189,7 +189,7 @@ setup(name='glparchis',
              ], 
     keywords='parchís game',
     url='https://github.com/turulomio/glparchis',
-    author='Turulomio',
+    author='turulomio',
     author_email='turulomio@yahoo.es',
     license='GPL-3',
     packages=['glparchis'],

@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QWidget
-import random
+from random import random
 from glparchis.ui.Ui_wdgPlayerDado import Ui_wdgPlayerDado
 
 class wdgPlayerDado(QWidget, Ui_wdgPlayerDado):
@@ -24,5 +24,5 @@ class wdgPlayerDado(QWidget, Ui_wdgPlayerDado):
         self.lblName.setText(name)
 
     def on_cmd_released(self):
-        self.tirada=int(random.random()*6)+1
+        self.tirada=int(random()*6)+1
         self.lblDado.setPixmap(self.mem.dado.qpixmap(self.tirada))

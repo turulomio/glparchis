@@ -1,9 +1,9 @@
-import math
+from math import sin, pi, cos, tan
 def poscasillas6(maxcasillas):
     posCasillas=[None]*maxcasillas        
-    sin_pi_3=math.sin(math.pi/3.0)
-    cos_pi_3=math.cos(math.pi/3.0)
-    tan_pi_3=math.tan(math.pi/3.0)
+    sin_pi_3=sin(pi/3.0)
+    cos_pi_3=cos(pi/3.0)
+    tan_pi_3=tan(pi/3.0)
     posCasillas[0]=(0, 0, 0)
     posCasillas[1]=(21, 60, 0.5)
     posCasillas[2]=(21, 57, 0.5)
