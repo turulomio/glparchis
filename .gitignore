@@ -11,3 +11,9 @@ cur/
 tmp/
 __pycache__/
 *.DS_Store
+.eric7project/
+.jedi/
+build/
+dist/
+doc/html/
+glparchis.egg-info/

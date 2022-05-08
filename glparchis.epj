@@ -1,0 +1,196 @@
+{
+  "header": {
+    "comment": "eric project file for project glparchis",
+    "copyright": "Copyright (C) 2022 , ",
+    "saved": "2022-05-08, 07:37:51"
+  },
+  "project": {
+    "AUTHOR": "",
+    "CHECKERSPARMS": {},
+    "DESCRIPTION": "",
+    "DOCSTRING": "",
+    "DOCUMENTATIONPARMS": {},
+    "EMAIL": "",
+    "EOL": 0,
+    "FILETYPES": {
+      "*.e4p": "OTHERS",
+      "*.idl": "INTERFACES",
+      "*.md": "OTHERS",
+      "*.proto": "PROTOCOLS",
+      "*.py": "SOURCES",
+      "*.py3": "SOURCES",
+      "*.pyw": "SOURCES",
+      "*.pyw3": "SOURCES",
+      "*.qm": "TRANSLATIONS",
+      "*.qrc": "RESOURCES",
+      "*.rst": "OTHERS",
+      "*.ts": "TRANSLATIONS",
+      "*.txt": "OTHERS",
+      "*.ui": "FORMS",
+      "README": "OTHERS",
+      "README.*": "OTHERS"
+    },
+    "FORMS": [
+      "glparchis/ui/frmAbout.ui",
+      "glparchis/ui/frmGameStatistics.ui",
+      "glparchis/ui/frmHelp.ui",
+      "glparchis/ui/frmInitGame.ui",
+      "glparchis/ui/frmMain.ui",
+      "glparchis/ui/frmSettings.ui",
+      "glparchis/ui/frmShowCasilla.ui",
+      "glparchis/ui/frmShowFicha.ui",
+      "glparchis/ui/wdgGame.ui",
+      "glparchis/ui/wdgPlayer.ui",
+      "glparchis/ui/wdgPlayerDado.ui",
+      "glparchis/ui/wdgUserPanel.ui"
+    ],
+    "HASH": "55707c985e3d7b255f98b05bbf1a84152cb00fb0",
+    "IDLPARAMS": {
+      "DefinedNames": [],
+      "IncludeDirs": [],
+      "UndefinedNames": []
+    },
+    "INTERFACES": [],
+    "LEXERASSOCS": {},
+    "MAINSCRIPT": "setup.py",
+    "MAKEPARAMS": {
+      "MakeEnabled": false,
+      "MakeExecutable": "",
+      "MakeFile": "",
+      "MakeParameters": "",
+      "MakeTarget": "",
+      "MakeTestOnly": true
+    },
+    "MIXEDLANGUAGE": 0,
+    "OTHERS": [
+      "LICENSE.txt",
+      "glparchis.egg-info/SOURCES.txt",
+      "glparchis.egg-info/dependency_links.txt",
+      "glparchis.egg-info/entry_points.txt",
+      "glparchis.egg-info/requires.txt",
+      "glparchis.egg-info/top_level.txt"
+    ],
+    "OTHERTOOLSPARMS": {},
+    "PACKAGERSPARMS": {},
+    "PROGLANGUAGE": "Python3",
+    "PROJECTTYPE": "PyQt5",
+    "PROJECTTYPESPECIFICDATA": {},
+    "PROTOCOLS": [],
+    "RCCPARAMS": {
+      "CompressLevel": 0,
+      "CompressionDisable": false,
+      "CompressionThreshold": 70,
+      "PathPrefix": ""
+    },
+    "RESOURCES": [
+      "glparchis/images/glparchis.qrc"
+    ],
+    "SOURCES": [
+      "glparchis/__init__.py",
+      "glparchis/functions.py",
+      "glparchis/glparchis.py",
+      "glparchis/images/glparchis_rc.py",
+      "glparchis/libglparchis.py",
+      "glparchis/libglparchistypes.py",
+      "glparchis/libmanagers.py",
+      "glparchis/loggingsystem.py",
+      "glparchis/shortcuts.py",
+      "glparchis/ui/Ui_frmAbout.py",
+      "glparchis/ui/Ui_frmGameStatistics.py",
+      "glparchis/ui/Ui_frmHelp.py",
+      "glparchis/ui/Ui_frmInitGame.py",
+      "glparchis/ui/Ui_frmMain.py",
+      "glparchis/ui/Ui_frmSettings.py",
+      "glparchis/ui/Ui_frmShowCasilla.py",
+      "glparchis/ui/Ui_frmShowFicha.py",
+      "glparchis/ui/Ui_wdgGame.py",
+      "glparchis/ui/Ui_wdgPlayer.py",
+      "glparchis/ui/Ui_wdgPlayerDado.py",
+      "glparchis/ui/Ui_wdgUserPanel.py",
+      "glparchis/ui/frmAbout.py",
+      "glparchis/ui/frmGameStatistics.py",
+      "glparchis/ui/frmHelp.py",
+      "glparchis/ui/frmInitGame.py",
+      "glparchis/ui/frmMain.py",
+      "glparchis/ui/frmSettings.py",
+      "glparchis/ui/frmShowCasilla.py",
+      "glparchis/ui/frmShowFicha.py",
+      "glparchis/ui/myQGLWidget.py",
+      "glparchis/ui/poscasillas3.py",
+      "glparchis/ui/poscasillas4.py",
+      "glparchis/ui/poscasillas6.py",
+      "glparchis/ui/poscasillas8.py",
+      "glparchis/ui/qtablestatistics.py",
+      "glparchis/ui/wdgGame.py",
+      "glparchis/ui/wdgPlayer.py",
+      "glparchis/ui/wdgPlayerDado.py",
+      "glparchis/ui/wdgUserPanel.py",
+      "glparchis/version.py",
+      "setup.py"
+    ],
+    "SPELLEXCLUDES": "",
+    "SPELLLANGUAGE": "en_US",
+    "SPELLWORDS": "",
+    "TRANSLATIONEXCEPTIONS": [],
+    "TRANSLATIONPATTERN": "glparchis/i18n/glparchis_%language%.ts",
+    "TRANSLATIONS": [
+      "glparchis/i18n/glparchis_en.qm",
+      "glparchis/i18n/glparchis_en.ts",
+      "glparchis/i18n/glparchis_es.qm",
+      "glparchis/i18n/glparchis_es.ts",
+      "glparchis/i18n/glparchis_fr.qm",
+      "glparchis/i18n/glparchis_fr.ts",
+      "glparchis/i18n/glparchis_ro.qm",
+      "glparchis/i18n/glparchis_ro.ts",
+      "glparchis/i18n/glparchis_ru.qm",
+      "glparchis/i18n/glparchis_ru.ts"
+    ],
+    "TRANSLATIONSBINPATH": "",
+    "UICPARAMS": {
+      "Package": "",
+      "PackagesRoot": "",
+      "RcSuffix": ""
+    },
+    "VCS": "Git",
+    "VCSOPTIONS": {
+      "add": [
+        ""
+      ],
+      "checkout": [
+        ""
+      ],
+      "commit": [
+        ""
+      ],
+      "diff": [
+        ""
+      ],
+      "export": [
+        ""
+      ],
+      "global": [
+        ""
+      ],
+      "history": [
+        ""
+      ],
+      "log": [
+        ""
+      ],
+      "remove": [
+        ""
+      ],
+      "status": [
+        ""
+      ],
+      "tag": [
+        ""
+      ],
+      "update": [
+        ""
+      ]
+    },
+    "VCSOTHERDATA": {},
+    "VERSION": "0.1"
+  }
+}
