@@ -231,12 +231,16 @@ class wdgGame(QWidget, Ui_wdgGame):
     def on_cmdTirarDado_clicked(self):  
         self.cmdTirarDado.setEnabled(False)
         self.cmdTirarDado.setText("")
+        if self.mem.dado.lasttirada==6: #Si la ultima tirada fue un 6, espera un poco, ya que si no suena muy seguido
+            delay(self.mem.delay*1)
         self.mem.jugadores.actual.tirarDado()
         self.table_reload()
         self.mem.dado.showing=True
-        self.ogl.updateGL()
-        self.panel().setLabelDado()
         self.mem.play("dice")
+        self.ogl.updateGL()
+        delay(self.mem.delay*2)
+        
+        self.panel().setLabelDado()
         
         if self.mem.jugadores.actual.tiradaturno.tresSeises()==True:
             if self.mem.jugadores.actual.LastFichaMovida!=None:
@@ -247,7 +251,8 @@ class wdgGame(QWidget, Ui_wdgGame):
                     if self.mem.jugadores.actual.LastFichaMovida.estaAutorizadaAMover()[0]==True:
                         self.mem.jugadores.actual.log(self.tr("Han salido tres seises, la ultima ficha movida se va a casa"))
                         self.mem.play("threesix")
-                        delay(self.mem.delay*3)
+                        self.ogl.updateGL()
+                        delay(self.mem.delay*2)
                         self.mem.jugadores.actual.LastFichaMovida.mover(0)
                     else:
                         self.mem.jugadores.actual.log(self.tr("Han salido tres seises, pero como no puede mover no se va a casa"))
@@ -256,14 +261,14 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.cambiarJugador()
         else: # si no han salido 3 seises
             if self.mem.jugadores.actual.fichas.algunaEstaAutorizadaAmover()==True:
-                delay(self.mem.delay)
+                #delay(self.mem.delay)
                 self.on_JugadorDebeMover()
             else:#ninguna puede mover.
                 if self.mem.jugadores.actual.tiradaturno.ultimoEsSeis()==True:
-                    delay(self.mem.delay)
+                    #delay(self.mem.delay*2)
                     self.on_JugadorDebeTirar()
                 else:            
-                    delay(self.mem.delay)
+                    #delay(self.mem.delay*2)
                     self.cambiarJugador()
 
     def after_ficha_click(self):
@@ -284,29 +289,29 @@ class wdgGame(QWidget, Ui_wdgGame):
                 
         if self.mem.selFicha.come(self.mem, self.mem.selFicha.posruta+movimiento) or self.mem.selFicha.mete(self.mem.selFicha.posruta+movimiento):    
             self.table_reload()
-            self.ogl.updateGL()
+            delay(self.mem.delay*1)##Se pone antes también para que los movimientos de comer y meter se vean más
             if self.mem.jugadores.actual.movimientos_acumulados==10:
                 self.mem.play("meter")
-                delay(self.mem.delay*3)
             else:
                 self.mem.play("comer")
-                delay(self.mem.delay*3)
+            self.ogl.updateGL()
+            delay(self.mem.delay*2)
             if self.mem.jugadores.actual.fichas.algunaEstaAutorizadaAmover()==True:
                 self.on_JugadorDebeMover()
                 return
         else:
-            delay(self.mem.delay*2)
             self.mem.selFicha.mover( self.mem.selFicha.posruta + movimiento)    
-            self.table_reload()
+            if movimiento>7:
+                self.mem.play("move")
             self.ogl.updateGL()
             delay(self.mem.delay*2)
+            self.table_reload()
        #Quita el movimiento acumulados
         if self.mem.jugadores.actual.movimientos_acumulados in (10, 20):
             self.mem.jugadores.actual.movimientos_acumulados=None
 
         if self.mem.jugadores.actual.tiradaturno.ultimoEsSeis()==True:
             self.on_JugadorDebeTirar()
-            delay(self.mem.delay*2)
         else:
             self.cambiarJugador()
 
@@ -315,10 +320,11 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.afterWinning()
             return          
         self.mem.jugadores.actual.log (self.tr("Fin de turno"))
-        self.ogl.updateGL()        
-        delay(self.mem.delay)
+#        self.ogl.updateGL()        
+#        delay(self.mem.delay)
         self.mem.dado.showing=False
         self.ogl.updateGL()        
+        delay(self.mem.delay*2)
 
         self.panel().setActivated(False)
         
