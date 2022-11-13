@@ -70,8 +70,8 @@ class frmMain(QMainWindow, Ui_frmMain):
         if boolean==False:
             desktop = qApp.desktop()
             size=self.settings.value("frmMain/size", QSize(1024, 768))
-            x = (desktop.width() - size.width()) / 2
-            y = (desktop.height() - size.height()) / 2
+            x = int((desktop.width() - size.width()) / 2)
+            y = int((desktop.height() - size.height()) / 2)
             self.resize(size)
             self.move(x, y)
             self.actionFullScreen.setText(self.tr("Cambiar al modo de pantalla completa"))

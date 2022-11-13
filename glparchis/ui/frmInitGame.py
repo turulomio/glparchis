@@ -11,7 +11,7 @@ class frmInitGame(QWizard, Ui_frmInitGame):
         self.mem=mem
         self.frmMain=parent
         self.setupUi(self)
-        self.setGeometry(parent.width()*0.2/2, parent.height()*0.2/2, parent.width()*0.8,  parent.height()*0.8)
+        self.setGeometry(int(parent.width()*0.2/2), int(parent.height()*0.2/2), int(parent.width()*0.8),  int(parent.height()*0.8))
         self.wizardPage1.setTitle(self.tr("Configurar la partida"))
         self.wizardPage1.setSubTitle(self.tr("Selecciona las fichas que van a jugar y quien va a jugar con ellas"))
 
