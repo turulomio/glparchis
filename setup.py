@@ -167,8 +167,8 @@ with open('glparchis/version.py', encoding='utf-8') as f:
 
 if platform_system()=="Linux":
     data_files=[
-                 ('/usr/share/applications/', ['glparchis.desktop']),
-                 ('/usr/share/pixmaps/', ['glparchis/images/glparchis.png']),
+#                 ('/usr/share/applications/', ['glparchis.desktop']),
+#                 ('/usr/share/pixmaps/', ['glparchis/images/glparchis.png']),
                ]
     entry_points={'gui_scripts': ['glparchis=glparchis.glparchis:main', ]}
 else:
@@ -197,7 +197,7 @@ setup(name='glparchis',
     install_requires=['setuptools',
                       'pyopengl',
                       'colorama', 
-                      'PyQt5;platform_system=="Windows"',
+                      'PyQtWebEngine', 
                       'pywin32;platform_system=="Windows"',
                      ],
     data_files=data_files,
