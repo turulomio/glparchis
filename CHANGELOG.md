@@ -1,4 +1,10 @@
 # Change log
+## 20221113
+  *  Change inittime in .glparchis files to played seconds.
+  * There is not 10 moves threat if there is no pieces to enter final square with a throw.
+  * Improving delays.
+  * Fixed lots of bugs.
+  * Fixed pip dependencies.
 
 ## 20181125
   * Created glparchis_shortcuts.exe in Windows to create Desktop shortcut
