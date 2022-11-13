@@ -6,12 +6,23 @@ from shutil import rmtree
 from concurrent.futures import ProcessPoolExecutor
 from multiprocessing import cpu_count
 
+## Class to define doxygen command
 class Doxygen(Command):
     description = "Create/update doxygen documentation in doc/html"
-    user_options = []
+
+    user_options = [
+      # The format is (long option, short option, description).
+      ( 'user=', None, 'Remote ssh user'),
+      ( 'directory=', None, 'Remote ssh path'),
+      ( 'port=', None, 'Remote ssh port'),
+      ( 'server=', None, 'Remote ssh server'),
+  ]
 
     def initialize_options(self):
-        pass
+        self.user="root"
+        self.directory="/var/www/html/doxygen/glparchis/"
+        self.port=22
+        self.server="127.0.0.1"
 
     def finalize_options(self):
         pass
@@ -20,10 +31,14 @@ class Doxygen(Command):
         print("Creating Doxygen Documentation")
         system("""sed -i -e "41d" doc/Doxyfile""")#Delete line 41
         system("""sed -i -e "41iPROJECT_NUMBER         = {}" doc/Doxyfile""".format(__version__))#Insert line 41
+        system("rm -Rf build")
         chdir("doc")
-        system("doxygen Doxyfile")
-        system("rsync -avzP -e 'ssh -l turulomio' html/ frs.sourceforge.net:/home/users/t/tu/turulomio/userweb/htdocs/doxygen/glparchis/ --delete-after")
+        system("doxygen Doxyfile")      
+        command=f"""rsync -avzP -e 'ssh -l {self.user} -p {self.port} ' html/ {self.server}:{self.directory} --delete-after"""
+        print(command)
+        system(command)
         chdir("..")
+
 
 class Compile(Command):
     description = "Compile ui and images"
@@ -77,10 +92,11 @@ Nueva versión:
   * python setup.py doc
   * python setup.py install
   * python setup.py doxygen
-  * git commit -a -m 'glparchis-{}'
+  * git commit -a -m 'glparchis-{0}'
   * git push
   * Hacer un nuevo tag en GitHub
-  * python setup.py sdist upload -r pypi
+  * python setup.py sdist
+  * twine upload dist/glparchis-{0}.tar.gz 
   * Pasa a Windows y ejecuta setup.py pyinstaller
   * Crea un nuevo ebuild de Gentoo con la nueva versión
   * Subelo al repositorio del portage

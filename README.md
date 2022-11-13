@@ -3,8 +3,8 @@
 ## Project links
 
 Glparchis doxygen documentation:
-    http://turulomio.users.sourceforge.net/doxygen/glparchis/
-    
+    https://coolnewton.mooo.com/doxygen/glparchis/index.html
+
 Game statistics
     http://glparchis.sourceforge.net/php/glparchis_statistics.php
 
@@ -17,13 +17,9 @@ Game statistics
 
 If you use Gentoo you can find a ebuild in https://github.com/Turulomio/myportage/tree/master/games-board/glparchis
 
-If you use other distribution compatible con pip, you need to install PyQt5 and glParchis with the following commands:
-
-`pip install PyQt5`
+If you use other distribution compatible con pip, you need to run:
 
 `pip install glparchis`
-
-You need to install PyQt5 first, because is not in Linux setup.py dependencies, due to PyQt5 doesn't use standard setup tools. So for compatibility reasons with distributions like Gentoo, we use this additional step.
 
 ## Install in Windows as a python module
 
