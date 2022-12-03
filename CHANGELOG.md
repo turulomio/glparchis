@@ -1,4 +1,7 @@
 # Change log
+## 20221204
+  * Fixed bug with version
+
 ## 20221203
   * Removed setup old PyQt5 versions
 
