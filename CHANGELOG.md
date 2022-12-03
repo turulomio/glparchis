@@ -1,6 +1,9 @@
 # Change log
+## 20221203
+  * Removed setup old PyQt5 versions
+
 ## 20221113
-  *  Change inittime in .glparchis files to played seconds.
+  * Change inittime in .glparchis files to played seconds.
   * There is not 10 moves threat if there is no pieces to enter final square with a throw.
   * Improving delays.
   * Fixed lots of bugs.

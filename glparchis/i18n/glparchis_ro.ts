@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="ro" sourcelanguage="es">
+<!DOCTYPE TS>
+<TS version="2.1" language="ro" sourcelanguage="es">
 <context>
     <name>Core</name>
     <message>
@@ -16,52 +17,52 @@
 <context>
     <name>Ficha</name>
     <message>
-        <location filename="../libglparchis.py" line="1472"/>
+        <location filename="../libglparchis.py" line="1477"/>
         <source>No es del jugador actual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1507"/>
+        <location filename="../libglparchis.py" line="1512"/>
         <source>Se ha pasado la meta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1513"/>
+        <location filename="../libglparchis.py" line="1518"/>
         <source>Hay una barrera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1522"/>
+        <location filename="../libglparchis.py" line="1527"/>
         <source>No hay espacio en la casilla</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1502"/>
+        <location filename="../libglparchis.py" line="1507"/>
         <source>No puede mover</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1520"/>
+        <location filename="../libglparchis.py" line="1525"/>
         <source>Obligado a sacar y a comer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1601"/>
+        <location filename="../libglparchis.py" line="1606"/>
         <source>He comido una ficha de {0} en la casilla {1}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1456"/>
+        <location filename="../libglparchis.py" line="1461"/>
         <source>No puede mover, porque debe sacar una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1458"/>
+        <location filename="../libglparchis.py" line="1463"/>
         <source>No puede mover, porque debe abrir una barrera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="1618"/>
+        <location filename="../libglparchis.py" line="1623"/>
         <source>Una ficha ha llegado a la meta</source>
         <translation type="unfinished"></translation>
     </message>
@@ -748,7 +749,7 @@
         <source>Activa &amp;el automatismo del juego</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <location filename="../ui/Ui_frmMain.py" line="251"/>
         <source>Activa &amp;el automatismo del dado y cuando sólo puede haber un movimiento de ficha</source>
         <translation type="unfinished"></translation>
@@ -779,11 +780,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/frmMain.py" line="40"/>
-        <source>glParchis 2006-{}. GNU General Public License &#xa9;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/frmMain.py" line="42"/>
         <source>Checking for updates...</source>
         <translation type="unfinished"></translation>
@@ -796,6 +792,11 @@
     <message>
         <location filename="../ui/frmMain.py" line="154"/>
         <source>Closing glParchis...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/frmMain.py" line="40"/>
+        <source>glParchis 2006-{}. GNU General Public License �</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1066,57 +1067,57 @@
 <context>
     <name>glparchis</name>
     <message>
-        <location filename="../libglparchis.py" line="235"/>
+        <location filename="../libglparchis.py" line="240"/>
         <source>Sacar un 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="236"/>
+        <location filename="../libglparchis.py" line="241"/>
         <source>Sacar un 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="237"/>
+        <location filename="../libglparchis.py" line="242"/>
         <source>Sacar un 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="238"/>
+        <location filename="../libglparchis.py" line="243"/>
         <source>Sacar un 4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="239"/>
+        <location filename="../libglparchis.py" line="244"/>
         <source>Sacar un 5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="240"/>
+        <location filename="../libglparchis.py" line="245"/>
         <source>Sacar un 6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="241"/>
+        <location filename="../libglparchis.py" line="246"/>
         <source>Sacar un 7</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="242"/>
+        <location filename="../libglparchis.py" line="247"/>
         <source>Contar 10</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="243"/>
+        <location filename="../libglparchis.py" line="248"/>
         <source>Contar 20</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="244"/>
+        <location filename="../libglparchis.py" line="249"/>
         <source>Sacar ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="2684"/>
+        <location filename="../libglparchis.py" line="2687"/>
         <source>Este fichero es de una version antigua o esta estropeado. No puede ser cargado.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1184,7 +1185,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="191"/>
+        <location filename="../ui/wdgGame.py" line="190"/>
         <source>Tira el dado</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1194,62 +1195,62 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="117"/>
+        <location filename="../ui/wdgGame.py" line="116"/>
         <source>Empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="199"/>
+        <location filename="../ui/wdgGame.py" line="198"/>
         <source>Tire el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="214"/>
+        <location filename="../ui/wdgGame.py" line="213"/>
         <source>IA mueve una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="248"/>
+        <location filename="../ui/wdgGame.py" line="249"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="251"/>
+        <location filename="../ui/wdgGame.py" line="252"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="255"/>
+        <location filename="../ui/wdgGame.py" line="258"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="257"/>
+        <location filename="../ui/wdgGame.py" line="260"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="270"/>
+        <location filename="../ui/wdgGame.py" line="276"/>
         <source>Seleccione una ficha...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="312"/>
+        <location filename="../ui/wdgGame.py" line="322"/>
         <source>Fin de turno</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="201"/>
+        <location filename="../ui/wdgGame.py" line="200"/>
         <source>IA Tira el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="231"/>
+        <location filename="../ui/wdgGame.py" line="228"/>
         <source>Mueva una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="156"/>
+        <location filename="../ui/wdgGame.py" line="155"/>
         <source>Has ganado la partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1299,7 +1300,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="177"/>
+        <location filename="../ui/wdgGame.py" line="176"/>
         <source>{0} ha ganado</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1329,12 +1330,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="194"/>
+        <location filename="../ui/wdgGame.py" line="193"/>
         <source>Se ha tirado automaticamente el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="229"/>
+        <location filename="../ui/wdgGame.py" line="226"/>
         <source>Se ha movido automaticamente la unica ficha disponible</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1342,12 +1343,12 @@
 <context>
     <name>wdgOGL</name>
     <message>
-        <location filename="../ui/myQGLWidget.py" line="376"/>
+        <location filename="../ui/myQGLWidget.py" line="377"/>
         <source>Se ha hecho click en la ficha {0}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/myQGLWidget.py" line="336"/>
+        <location filename="../ui/myQGLWidget.py" line="337"/>
         <source>I made click to get a Piece but it wasn&apos;t one</source>
         <translation type="unfinished"></translation>
     </message>
