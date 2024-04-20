@@ -1,5 +1,5 @@
 from argparse import ArgumentParser, RawTextHelpFormatter
-from os import path, makedirs
+from os import path, makedirs, environ
 from signal import signal, SIGINT
 from sys import setrecursionlimit, argv, exit
 from colorama import init as colorama_init
@@ -7,6 +7,10 @@ from colorama import init as colorama_init
 
 def main():
     colorama_init()
+    environ['QT_QPA_PLATFORM'] = 'xcb'
+    
+    print(environ['QT_QPA_PLATFORM'])
+    
 
     from PyQt5.QtCore import QSettings
     from PyQt5.QtWidgets import QApplication
