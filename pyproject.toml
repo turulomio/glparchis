@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "glparchis"
+version = "20221204"
+description = "Parchís game"
+authors = ["turulomio <turulomio@yahoo.es>"]
+license = "GPL-3"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+PyOpenGL = "^3.1.7"
+colorama = "^0.4.6"
+PyQt5 = "==5.15.2"
+PyQtWebEngine = "^5.15.2"
+pywin32 = { version = "^306", platform = "windows" }
+
+[tool.poetry.group.dev.dependencies]
+poetry = "^1.8.2"
+poethepoet = "^0.25.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+glparchis = 'glparchis.glparchis:main'
+glparchis_shortcuts = 'glparchis.shortcuts:main'
+
+[tool.poe.tasks]
+release = { script = "devicesinlan.poethepoet:release" }
+translate = { script = "devicesinlan.poethepoet:translate" }
+compile = { script = "devicesinlan.poethepoet:compile" }
+pyinstaller = { script = "devicesinlan.poethepoet:pyinstaller" }
