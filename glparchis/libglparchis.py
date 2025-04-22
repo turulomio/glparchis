@@ -2573,7 +2573,7 @@ class SoundSystem:
     def load_all(self):
         for effect in ["comer", "click", "dice", "meter", "threesix", "win", "move"]:
             s=QSoundEffect()
-            url=files("glparchis") / "sounds/{}.wav".format(effect)
+            url=str(files("glparchis") / "sounds/{}.wav".format(effect))
             s.setSource(QUrl.fromLocalFile(url))
             s.setLoopCount(1)
             s.setVolume(0.99)

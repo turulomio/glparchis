@@ -73,7 +73,7 @@ def signal_handler(signal, frame):
 def cargarQTranslator(qtranslator, language):  
     """language es un string"""  
 
-    url=files("glparchis") / "i18n/glparchis_{}.qm".format(language)
+    url=str(files("glparchis") / "i18n/glparchis_{}.qm".format(language))
     print(url)
     qtranslator.load(url)
     QCoreApplication.installTranslator(qtranslator)
