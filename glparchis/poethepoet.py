@@ -43,12 +43,12 @@ def pyinstaller():
 
 
         # List of commands you want to run in the background. IF SOMETHING GOES WRONG USE SYSTEM WITH THAT PROCESS
-        common_parameters='--onefile --add-data="glparchis/i18n/*.qm:glparchis/i18n" --distpath ./dist/'
+        common_parameters=' --add-data="glparchis/i18n/*.qm:glparchis/i18n" --distpath ./dist/'
         commands = [
-#            f"""pyinstaller {tmpdir}/run_gui.py -n glparchis_gui-{__version__} --windowed --icon {tmpdir}/glparchis/images/glparchis.ico  {common_parameters} --workpath="linux_ui""", 
+#            f"""pyinstaller {tmpdir}/run.py -n glparchis-{__version__} --windowed --icon {tmpdir}/glparchis/images/glparchis.ico  {common_parameters} --workpath="linux_ui""", 
 #            f"""pyinstaller {tmpdir}/run.py -n glparchis-{__version__} --console  {common_parameters}""", 
 #            f"""{wineprefix} wine pyinstaller {tmpdir}/run_gui.py -n glparchis_gui-{__version__} --windowed  --icon {tmpdir}/glparchis/images/glparchis.ico  {common_parameters}""", 
-            f"""{wineprefix} wine pyinstaller {tmpdir}/run.py -n glparchis-{__version__} --windowed  {common_parameters}""", 
+            f"""{wineprefix} wine pyinstaller {tmpdir}/run.py -n glparchis-{__version__} --windowed --collect-all PyQt5  {common_parameters}""", 
         ]
         print(commands)
 
