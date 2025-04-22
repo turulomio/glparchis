@@ -52,26 +52,27 @@ class myQGLWidget(QGLWidget):
             return self.texDecor[ttexture-1000]
 
     def initializeGL(self):
-            print ("initializeGL")
-            self.texNumeros, self.texDecor=self.load_textures()
-            glEnable(GL_TEXTURE_2D);
-            glShadeModel (GL_SMOOTH);
-            glEnable(GL_DEPTH_TEST)
-            glEnable(GL_CULL_FACE)
-            
-            glFrontFace(GL_CCW);
+        print ("initializeGL")
+        glEnable(GL_DEPTH_TEST) 
+        self.texNumeros, self.texDecor=self.load_textures()
+        glEnable(GL_TEXTURE_2D);
+        glShadeModel (GL_SMOOTH);
+        glEnable(GL_CULL_FACE)
+        
+        glFrontFace(GL_CCW);
 
-            light_ambient =  [0.3, 0.3, 0.3, 0.1];
+        light_ambient =  [0.3, 0.3, 0.3, 0.1];
 
-            glEnable(GL_LIGHTING)
-            lightpos=(0, 0, 50)
-            glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)  
-            glLightfv(GL_LIGHT0, GL_POSITION, lightpos)  
-            glEnable(GL_LIGHT0);
-            glEnable(GL_COLOR_MATERIAL);
-            glColorMaterial(GL_FRONT,GL_AMBIENT_AND_DIFFUSE);
+        glEnable(GL_LIGHTING)
+        lightpos=(0, 0, 50)
+        glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)  
+        glLightfv(GL_LIGHT0, GL_POSITION, lightpos)  
+        glEnable(GL_LIGHT0);
+        glEnable(GL_COLOR_MATERIAL);
+        glColorMaterial(GL_FRONT,GL_AMBIENT_AND_DIFFUSE);
 
-            glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);      
+
 
     def resizeGL(self, width, height):    
         glViewport(0, 0, width, height)
@@ -173,6 +174,7 @@ class wdgOGL(myQGLWidget):
         self.rotCenter=0
         
         self.rotatecenter=0#Si es 1 rota en sentido agujas del reloj desde el centro del tablero, si -1 al reves, si 0 no rota desde el centro
+
         
     def assign_mem(self, mem):
         self.mem=mem
@@ -189,6 +191,8 @@ class wdgOGL(myQGLWidget):
             self.z=int(self.mem.settings.value("wdgOGL/z_{}{}".format(fs, self.mem.maxplayers), -60))
         elif self.mem.maxplayers==6:
             self.z=int(self.mem.settings.value("wdgOGL/z_{}{}".format(fs, self.mem.maxplayers), -80))
+            
+
 
     def paintGL(self):   
 #        inicio=datetime.datetime.now()
@@ -283,8 +287,13 @@ class wdgOGL(myQGLWidget):
             """
 
             viewport=glGetIntegerv(GL_VIEWPORT);
+            print(list(viewport))
             glMatrixMode(GL_PROJECTION);
-            glPushMatrix();
+            glPushMatrix();        
+            if not self.context().isValid():
+                print("Context is not valid")
+            if not self.context().makeCurrent():
+                print("Failed to make context current")
             glSelectBuffer(512);
             glRenderMode(GL_SELECT);
             glLoadIdentity();
@@ -373,7 +382,7 @@ class wdgOGL(myQGLWidget):
         self.setFocus()
         if event.buttons() & Qt.LeftButton:
             pickup(event, False)            
-            if self.mem.selFicha!=None:
+            if self.mem.selFicha is not None:
                 self.mem.jugadores.actual.log(self.tr("Se ha hecho click en la ficha {0}".format(self.mem.selFicha.id)))
                 self.fichaClicked.emit()
         elif event.buttons() & Qt.RightButton:

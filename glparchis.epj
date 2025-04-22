@@ -1,8 +1,8 @@
 {
   "header": {
     "comment": "eric project file for project glparchis",
-    "copyright": "Copyright (C) 2022 , ",
-    "saved": "2022-05-08, 12:06:11"
+    "copyright": "Copyright (C) 2024 , ",
+    "saved": "2024-04-20, 19:42:05"
   },
   "project": {
     "AUTHOR": "",
@@ -11,6 +11,7 @@
     "DOCSTRING": "",
     "DOCUMENTATIONPARMS": {},
     "EMAIL": "",
+    "EMBEDDED_VENV": false,
     "EOL": 0,
     "FILETYPES": {
       "*.e4p": "OTHERS",
@@ -52,6 +53,7 @@
     },
     "INTERFACES": [],
     "LEXERASSOCS": {},
+    "LICENSE": "",
     "MAINSCRIPT": "setup.py",
     "MAKEPARAMS": {
       "MakeEnabled": false,
@@ -63,13 +65,10 @@
     },
     "MIXEDLANGUAGE": 0,
     "OTHERS": [
+      "CHANGELOG.md",
       "DEVELOPMENT_NOTES.md",
       "LICENSE.txt",
-      "glparchis.egg-info/SOURCES.txt",
-      "glparchis.egg-info/dependency_links.txt",
-      "glparchis.egg-info/entry_points.txt",
-      "glparchis.egg-info/requires.txt",
-      "glparchis.egg-info/top_level.txt"
+      "README.md"
     ],
     "OTHERTOOLSPARMS": {},
     "PACKAGERSPARMS": {},
@@ -95,6 +94,7 @@
       "glparchis/libglparchistypes.py",
       "glparchis/libmanagers.py",
       "glparchis/loggingsystem.py",
+      "glparchis/poethepoet.py",
       "glparchis/shortcuts.py",
       "glparchis/ui/Ui_frmAbout.py",
       "glparchis/ui/Ui_frmGameStatistics.py",
@@ -126,12 +126,13 @@
       "glparchis/ui/wdgPlayer.py",
       "glparchis/ui/wdgPlayerDado.py",
       "glparchis/ui/wdgUserPanel.py",
-      "glparchis/version.py",
-      "setup.py"
+      "glparchis/version.py"
     ],
+    "SOURCESDIR": "",
     "SPELLEXCLUDES": "",
     "SPELLLANGUAGE": "en_US",
     "SPELLWORDS": "",
+    "TESTING_FRAMEWORK": "",
     "TRANSLATIONEXCEPTIONS": [],
     "TRANSLATIONPATTERN": "glparchis/i18n/glparchis_%language%.ts",
     "TRANSLATIONS": [
@@ -147,6 +148,7 @@
       "glparchis/i18n/glparchis_ru.ts"
     ],
     "TRANSLATIONSBINPATH": "",
+    "TRANSLATIONSOURCESTARTPATH": "",
     "UICPARAMS": {
       "Package": "",
       "PackagesRoot": "",

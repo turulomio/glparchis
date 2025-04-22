@@ -3,7 +3,7 @@
 
 from os import path, remove as os_remove
 from pythoncom import CoCreateInstance,CLSCTX_INPROC_SERVER, ID_IPersistFile#Viene en pywin32
-from pkg_resources import resource_filename
+from importlib.resources import files
 from win32com.shell import shell, shellcon
 
 ##Creates a shortcut in the Windows Desktop
@@ -15,7 +15,7 @@ def create():
       shell.IID_IShellLink
     )
 
-    icon=resource_filename("glparchis","images/glparchis.ico")
+    icon=files("glparchis") / "images/glparchis.ico" 
     shortcut.SetPath (r'glparchis.exe')
     shortcut.SetDescription ("Parchís game")
     shortcut.SetIconLocation (icon, 0)
