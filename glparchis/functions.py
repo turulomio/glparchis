@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from warnings import simplefilter, warn
 from functools import wraps
 from logging import critical
-from pkg_resources import resource_filename
+from importlib.resources import files
 from sys import exit, argv
 
 from PyQt5.QtCore import Qt, QCoreApplication, QEventLoop
@@ -73,10 +73,10 @@ def signal_handler(signal, frame):
 def cargarQTranslator(qtranslator, language):  
     """language es un string"""  
 
-    url=resource_filename("glparchis","i18n/glparchis_{}.qm".format(language))
+    url=files("glparchis") / "i18n/glparchis_{}.qm".format(language)
     print(url)
     qtranslator.load(url)
-    QCoreApplication.installTranslator(qtranslator);
+    QCoreApplication.installTranslator(qtranslator)
 
 def developing():
     """Funcion que permite avanzar si hay un parametro y da un aviso e interrumpe si no, se debe poner un if en donde se use"""

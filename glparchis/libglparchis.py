@@ -1,5 +1,5 @@
 from logging import debug
-from pkg_resources import resource_filename
+from importlib.resources import files
 from OpenGL.GL import glVertex3fv, glBegin, glBindTexture, glColor3d, glDisable, glEnable, glEnd, glPopMatrix, glPopName, glPushName, glPushMatrix, glRotated, glScaled, glTexCoord2f, glTranslated, glTranslatef, glVertex3d, GL_TEXTURE_2D, GL_QUADS, GL_POLYGON, GL_LINE_LOOP
 from OpenGL.GLU import gluCylinder, gluDisk, gluNewQuadric, gluQuadricDrawStyle, gluQuadricNormals, gluQuadricTexture, GLU_FILL, GLU_SMOOTH
 from glparchis.ui.poscasillas8 import poscasillas8
@@ -2573,7 +2573,7 @@ class SoundSystem:
     def load_all(self):
         for effect in ["comer", "click", "dice", "meter", "threesix", "win", "move"]:
             s=QSoundEffect()
-            url=resource_filename("glparchis","sounds/{}.wav".format(effect))
+            url=files("glparchis") / "sounds/{}.wav".format(effect)
             s.setSource(QUrl.fromLocalFile(url))
             s.setLoopCount(1)
             s.setVolume(0.99)
