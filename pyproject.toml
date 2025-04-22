@@ -1,28 +1,31 @@
-[tool.poetry]
+[project]
 name = "glparchis"
-version = "20221204"
+version = "20221204dev"
 description = "Parchís game"
-authors = ["turulomio <turulomio@yahoo.es>"]
-license = "GPL-3"
+authors = [
+    {name = "turulomio",email = "turulomio@yahoo.es"}
+]
+license = {text = "GPL-3.0-only"}
 readme = "README.md"
+requires-python = ">=3.11,<4"
+dependencies = [
+    "pyopengl (>=3.1.9,<4.0.0)",
+    "colorama (>=0.4.6,<0.5.0)",
+    "pyqt5 (>=5.15.11,<6.0.0)",
+    "pyqtwebengine (>=5.15.7,<6.0.0)"
+]
 
-[tool.poetry.dependencies]
-python = "^3.11"
-PyOpenGL = "^3.1.7"
-colorama = "^0.4.6"
-PyQt5 = "==5.15.2"
-PyQtWebEngine = "^5.15.2"
-pywin32 = { version = "^306", platform = "windows" }
+[tool.poetry]
 
 [tool.poetry.group.dev.dependencies]
-poetry = "^1.8.2"
-poethepoet = "^0.25.1"
+poetry = "^2.1.2"
+poethepoet = "^0.34.0"
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.poetry.scripts]
+[project.scripts]
 glparchis = 'glparchis.glparchis:main'
 glparchis_shortcuts = 'glparchis.shortcuts:main'
 
@@ -31,3 +34,4 @@ release = { script = "devicesinlan.poethepoet:release" }
 translate = { script = "devicesinlan.poethepoet:translate" }
 compile = { script = "devicesinlan.poethepoet:compile" }
 pyinstaller = { script = "devicesinlan.poethepoet:pyinstaller" }
+
