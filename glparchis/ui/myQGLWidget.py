@@ -12,6 +12,7 @@ from glparchis.libglparchistypes import TNames,  TSquareTypes
 from glparchis.ui.frmShowCasilla import frmShowCasilla
 from glparchis.ui.frmShowFicha import frmShowFicha
 from math import sin, cos
+from glparchis.images import glparchis_rc
 
 
 
@@ -26,7 +27,11 @@ class myQGLWidget(QOpenGLWidget):
         glColor4f(color.redF(), color.greenF(), color.blueF(), color.alphaF())
 
     def bindTexture(self, pixmap):
-        texture = QOpenGLTexture(pixmap.toImage())
+        image = pixmap.toImage()
+        if image.isNull():
+            print("Warning: Attempted to bind a null texture from pixmap")
+            return 0
+        texture = QOpenGLTexture(image)
         if not hasattr(self, '_textures_cache'):
             self._textures_cache = []
         self._textures_cache.append(texture)
@@ -186,7 +191,7 @@ class wdgOGL(myQGLWidget):
         self.rotX=0
         self.rotY=0
         self.rotZ=0
-        self.z=None
+        self.z=-60
         self.rotCenter=0
         
         self.rotatecenter=0#Si es 1 rota en sentido agujas del reloj desde el centro del tablero, si -1 al reves, si 0 no rota desde el centro
@@ -303,7 +308,6 @@ class wdgOGL(myQGLWidget):
                 Los problemas que tenía con windows de tener que hacer varios click se corrigieron sustituyendo la región de selección de 1,1 a 5,5
 
             """
-            self.makeCurrent()
             viewport=glGetIntegerv(GL_VIEWPORT);
             glMatrixMode(GL_PROJECTION);
             glPushMatrix();        
@@ -393,6 +397,7 @@ class wdgOGL(myQGLWidget):
 
                 
         #########################################
+        self.makeCurrent()
         self.setFocus()
         if event.buttons() & Qt.MouseButton.LeftButton:
             pickup(event, False)            
