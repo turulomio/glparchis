@@ -27,7 +27,7 @@ class myQGLWidget(QOpenGLWidget):
         glColor4f(color.redF(), color.greenF(), color.blueF(), color.alphaF())
 
     def bindTexture(self, pixmap):
-        image = pixmap.toImage()
+        image = pixmap.toImage().mirrored()
         if image.isNull():
             print("Warning: Attempted to bind a null texture from pixmap")
             return 0
@@ -221,7 +221,7 @@ class wdgOGL(myQGLWidget):
         if self.mem is None:
             return
         glLoadIdentity()
-        self.qglClearColor(QColor(0, 0, 0, 0))
+        self.qglClearColor(QColor(0, 0, 0, 255))
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT| GL_STENCIL_BUFFER_BIT)
         if self.mem.maxplayers==8:
             glTranslated(-31.5, -16.5, self.z)
@@ -316,7 +316,8 @@ class wdgOGL(myQGLWidget):
             glSelectBuffer(512, select_buffer)
             glRenderMode(GL_SELECT);
             glLoadIdentity();
-            gluPickMatrix(event.position().x(), viewport[3] - event.position().y(), 4, 4, viewport)
+            dpr = self.devicePixelRatio()
+            gluPickMatrix(event.position().x() * dpr, (self.height() - event.position().y()) * dpr, 4 * dpr, 4 * dpr, viewport)
             aspect=viewport[2]/viewport[3]
             gluPerspective(60,aspect,1.0,400)
             glMatrixMode(GL_MODELVIEW)
@@ -335,7 +336,7 @@ class wdgOGL(myQGLWidget):
             if id_name>=0 and id_name<=31:
                 return self.mem.pawnsgame.find_by_id(id_name)
             elif id_name==TNames.Board:
-                return self.tablero
+                return self.mem.tablero
             elif id_name==TNames.Dice:
                 return self.mem.dado
             elif id_name>=34 and id_name<=34+self.mem.casillas.number:
@@ -349,40 +350,37 @@ class wdgOGL(myQGLWidget):
             
                 Objetos is an int array with the int names of the selected objects.
             """
-            objetos=[]
-            for minDepth, maxDepth, names in nameStack:
-                if len(names)==1:
-                    objetos.append(names[0])
-            
-            if len(objetos)==1:#Casilla selector
-                self.mem.selFicha=None
-            elif len(objetos)==2:#Ficha Selector
-                objeto=getObjectByName(objetos[1])
-                if isinstance(objeto, Ficha):
-                    self.mem.selFicha=objeto
-                else:
-                    self.mem.selFicha=None
-                    print(self.tr("I made click to get a Piece but it wasn't one"))
+            if not nameStack:
+                self.mem.selFicha = None
+                return
+
+            # Busca el impacto más cercano a la cámara
+            nearest_hit = min(nameStack, key=lambda x: x[0])
+            names = nearest_hit[2]
+
+            objeto = getObjectByName(names[-1])
+            if isinstance(objeto, Ficha):
+                self.mem.selFicha = objeto
+            else:
+                self.mem.selFicha = None
 
         def parseRightButtonNameStack(nameStack):
             """nameStack tiene la estructura minDepth, maxDepth, names"""
-            ############################333
-            objetos=[]
-            for minDepth, maxDepth, names in nameStack:
-                if len(names)==1:
-                   objetos.append(names[0])
-            if len(objetos)==1:
-                selCasilla=getObjectByName(objetos[0])
-                if isinstance(selCasilla, Casilla):
-                    frmshow=frmShowCasilla(self,  Qt.WindowType.Popup,  selCasilla)
-                    frmshow.move(self.mapToGlobal(placePopUp(frmshow)))
-                    frmshow.show()
-            elif len(objetos)==2:
-                selFicha=getObjectByName(objetos[1])
-                if isinstance(selFicha, Ficha):
-                    frmshow=frmShowFicha(self,  Qt.WindowType.Popup,  selFicha, self.mem)
-                    frmshow. move(self.mapToGlobal(placePopUp(frmshow)))
-                    frmshow.show()
+            if not nameStack:
+                return
+
+            nearest_hit = min(nameStack, key=lambda x: x[0])
+            names = nearest_hit[2]
+
+            objeto = getObjectByName(names[-1])
+            if isinstance(objeto, Ficha):
+                frmshow = frmShowFicha(self, Qt.WindowType.Popup, objeto, self.mem)
+                frmshow.move(self.mapToGlobal(placePopUp(frmshow)))
+                frmshow.show()
+            elif isinstance(objeto, Casilla):
+                frmshow = frmShowCasilla(self, Qt.WindowType.Popup, objeto)
+                frmshow.move(self.mapToGlobal(placePopUp(frmshow)))
+                frmshow.show()
                     
         def placePopUp(frmshow):
             """

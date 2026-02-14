@@ -1833,7 +1833,7 @@ class Color:
         glColor3d(self.r, self.g, self.b)
         
     def qcolor(self):
-        return QColor(self.r, self.g, self.b, 125)
+        return QColor(self.r, self.g, self.b, 255)
         
     def dark(self):
         """Suma al color el incremento"""
