@@ -1,6 +1,6 @@
 [project]
 name = "glparchis"
-version = "20240522dev"
+version = "20260214"
 description = "Parchís game"
 authors = [
     {name = "turulomio",email = "turulomio@yahoo.es"}
@@ -21,7 +21,7 @@ dependencies = [
 [tool.poetry.group.dev.dependencies]
 poetry = ">=2.3.2"
 poethepoet = ">=0.41.0"
-qt6-tools = "^6.5.0.1.3"
+qt6-tools = ">=6.5.0.1.3"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
@@ -33,6 +33,4 @@ glparchis_shortcuts = 'glparchis.shortcuts:main'
 
 [tool.poe.tasks]
 release = { script = "glparchis.poethepoet:release" }
-translate = { script = "glparchis.poethepoet:translate" }
 compile = { script = "glparchis.poethepoet:compile" }
-pyinstaller = { script = "glparchis.poethepoet:pyinstaller" }

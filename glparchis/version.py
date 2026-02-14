@@ -1,8 +1,8 @@
 from datetime import date
 from urllib.request import urlopen
 
-__version__ = '20221204'
-__versiondate__=date(2022, 12, 4)
+__version__ = '20260214'
+__versiondate__=date(2026, 2, 14)
 
 ## This function expectss __version__= 'VERSION' file
 ## @return String removeversion or None if it couln't be found

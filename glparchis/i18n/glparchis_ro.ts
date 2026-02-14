@@ -4,12 +4,12 @@
 <context>
     <name>Core</name>
     <message>
-        <location filename="../glparchis.py" line="41"/>
+        <location filename="../glparchis.py" line="32"/>
         <source>Parchis Game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../glparchis.py" line="42"/>
+        <location filename="../glparchis.py" line="33"/>
         <source>If you like this app, please give me a star in Github (https://github.com/Turulomio/glparchis).</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1131,7 +1131,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="2687"/>
+        <location filename="../libglparchis.py" line="2695"/>
         <source>Este fichero es de una version antigua o esta estropeado. No puede ser cargado.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1199,7 +1199,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="190"/>
+        <location filename="../ui/wdgGame.py" line="192"/>
         <location filename="../ui/wdgGame.ui" line="48"/>
         <source>Tira el dado</source>
         <translation type="unfinished"></translation>
@@ -1213,62 +1213,62 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="116"/>
+        <location filename="../ui/wdgGame.py" line="118"/>
         <source>Empieza la partida</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="198"/>
+        <location filename="../ui/wdgGame.py" line="200"/>
         <source>Tire el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="213"/>
+        <location filename="../ui/wdgGame.py" line="215"/>
         <source>IA mueve una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="249"/>
+        <location filename="../ui/wdgGame.py" line="251"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="252"/>
+        <location filename="../ui/wdgGame.py" line="254"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="258"/>
+        <location filename="../ui/wdgGame.py" line="260"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="260"/>
+        <location filename="../ui/wdgGame.py" line="262"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="276"/>
+        <location filename="../ui/wdgGame.py" line="278"/>
         <source>Seleccione una ficha...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="322"/>
+        <location filename="../ui/wdgGame.py" line="324"/>
         <source>Fin de turno</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="200"/>
+        <location filename="../ui/wdgGame.py" line="202"/>
         <source>IA Tira el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="228"/>
+        <location filename="../ui/wdgGame.py" line="230"/>
         <source>Mueva una ficha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="155"/>
+        <location filename="../ui/wdgGame.py" line="157"/>
         <source>Has ganado la partida</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1315,7 +1315,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="92"/>
+        <location filename="../ui/wdgGame.py" line="94"/>
         <source>Tiempo de partida: {0}</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1325,7 +1325,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="176"/>
+        <location filename="../ui/wdgGame.py" line="178"/>
         <source>{0} ha ganado</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1359,12 +1359,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="193"/>
+        <location filename="../ui/wdgGame.py" line="195"/>
         <source>Se ha tirado automaticamente el dado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="226"/>
+        <location filename="../ui/wdgGame.py" line="228"/>
         <source>Se ha movido automaticamente la unica ficha disponible</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1372,13 +1372,8 @@
 <context>
     <name>wdgOGL</name>
     <message>
-        <location filename="../ui/myQGLWidget.py" line="400"/>
+        <location filename="../ui/myQGLWidget.py" line="411"/>
         <source>Se ha hecho click en la ficha {0}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/myQGLWidget.py" line="360"/>
-        <source>I made click to get a Piece but it wasn&apos;t one</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
