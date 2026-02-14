@@ -358,6 +358,9 @@ class wdgOGL(myQGLWidget):
             nearest_hit = min(nameStack, key=lambda x: x[0])
             names = nearest_hit[2]
 
+            if not names:
+                self.mem.selFicha = None
+                return
             objeto = getObjectByName(names[-1])
             if isinstance(objeto, Ficha):
                 self.mem.selFicha = objeto
@@ -371,6 +374,9 @@ class wdgOGL(myQGLWidget):
 
             nearest_hit = min(nameStack, key=lambda x: x[0])
             names = nearest_hit[2]
+
+            if not names:
+                return
 
             objeto = getObjectByName(names[-1])
             if isinstance(objeto, Ficha):

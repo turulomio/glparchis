@@ -1720,6 +1720,7 @@ class Tablero3(AbstractOpenglObject):
         pi_3=pi/3#60º
         sin_pi_3=sin(pi_3)
         cos_pi_3=cos(pi_3)
+        glPushName(self.pickname)
         glPushMatrix()
         glEnable(GL_TEXTURE_2D);
         
@@ -1739,8 +1740,9 @@ class Tablero3(AbstractOpenglObject):
         p=Polygon().init__create(verts, self.color, TTextures.Wood, texverts)
         prism=Prism(p, 0.5)
         prism.opengl(qglwidget)
-        glPopMatrix()
         glDisable(GL_TEXTURE_2D)    
+        glPopMatrix()
+        glPopName()
 
 
 
@@ -1753,6 +1755,7 @@ class Tablero4(AbstractOpenglObject):
         self.color=Color(88, 40, 0)
 
     def draw(self, qglwidget): 
+        glPushName(self.pickname)
         glPushMatrix()
         glEnable(GL_TEXTURE_2D);
         glTranslated(self.position.x,  self.position.y,  self.position.z)
@@ -1763,6 +1766,7 @@ class Tablero4(AbstractOpenglObject):
         prism.opengl(qglwidget)
         glDisable(GL_TEXTURE_2D)    
         glPopMatrix()
+        glPopName()
 
 ## Class to draw 6 player board
 class Tablero6(AbstractOpenglObject):
@@ -1773,6 +1777,7 @@ class Tablero6(AbstractOpenglObject):
         self.colorbrown=Color(88, 40, 0)
 
     def draw(self, qglwidget): 
+        glPushName(self.pickname)
         glPushMatrix()
         glEnable(GL_TEXTURE_2D);
         glTranslated(self.position.x,  self.position.y,  self.position.z)
@@ -1781,6 +1786,7 @@ class Tablero6(AbstractOpenglObject):
         prism.opengl(qglwidget)
         glDisable(GL_TEXTURE_2D)    
         glPopMatrix()        
+        glPopName()
 
 ## Class to draw 8 player board
 class Tablero8(AbstractOpenglObject):
@@ -1791,6 +1797,7 @@ class Tablero8(AbstractOpenglObject):
         self.color=Color(88, 40, 0)
 
     def draw(self, qglwidget): 
+        glPushName(self.pickname)
         glPushMatrix()
         glEnable(GL_TEXTURE_2D);
         glTranslated(self.position.x,  self.position.y,  self.position.z)
@@ -1799,6 +1806,7 @@ class Tablero8(AbstractOpenglObject):
         prism.opengl(qglwidget)
         glDisable(GL_TEXTURE_2D)     
         glPopMatrix()       
+        glPopName()
         
 class Circulo:
     """Es el circulo publico por el que se mueven las fichas y pueden comerse entre ellas
