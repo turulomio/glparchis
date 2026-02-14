@@ -140,11 +140,12 @@ class ObjectRotationManager:
         
         
     def mousePressEvent(self, event):
-        self.lastPos = QPoint(event.pos())
+        self.lastPos = event.position().toPoint()
 
     def mouseMoveEvent(self, event):
-        dx = event.x() - self.lastPos.x()
-        dy = event.y() - self.lastPos.y()
+        pos = event.position().toPoint()
+        dx = pos.x() - self.lastPos.x()
+        dy = pos.y() - self.lastPos.y()
 
         if event.buttons() & Qt.MouseButton.LeftButton:
             self.setXRotation(self.xRot + 8 * dy)
@@ -153,7 +154,7 @@ class ObjectRotationManager:
             self.setXRotation(self.xRot + 8 * dy)
             self.setZRotation(self.zRot + 8 * dx)
 
-        self.lastPos = QPoint(event.pos())
+        self.lastPos = pos
         
         
     def setXRotation(self, angle):
@@ -315,7 +316,7 @@ class wdgOGL(myQGLWidget):
             glSelectBuffer(512, select_buffer)
             glRenderMode(GL_SELECT);
             glLoadIdentity();
-            gluPickMatrix(event.x(),viewport[3] -event.y(),4,4, viewport)
+            gluPickMatrix(event.position().x(), viewport[3] - event.position().y(), 4, 4, viewport)
             aspect=viewport[2]/viewport[3]
             gluPerspective(60,aspect,1.0,400)
             glMatrixMode(GL_MODELVIEW)
@@ -388,11 +389,12 @@ class wdgOGL(myQGLWidget):
                 Sets the place of the popup in the windows to avoid getout of the screen
                 frmshow can be a frmShowCasilla or a frmShowFicha
             """
-            resultado=QPoint(event.x(), event.y())
-            if event.x()>self.width()-frmshow.width():
-                resultado.setX(event.x()-frmshow.width())
-            if event.y()>self.height()-frmshow.height():
-                resultado.setY(event.y()-frmshow.height())
+            pos = event.position().toPoint()
+            resultado = QPoint(pos)
+            if pos.x() > self.width() - frmshow.width():
+                resultado.setX(pos.x() - frmshow.width())
+            if pos.y() > self.height() - frmshow.height():
+                resultado.setY(pos.y() - frmshow.height())
             return resultado
 
                 

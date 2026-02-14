@@ -6,15 +6,6 @@ from colorama import init as colorama_init
 
 
 def main():
-
-    # 1. Use X11 (XCB) platform plugin via XWayland. Native Wayland support for legacy QGLWidget in Qt5 is unstable.
-    environ["QT_QPA_PLATFORM"] = "xcb" 
-    environ["QT_XCB_GL_INTEGRATION"] = "egl"
-
-    # 2. Tell PyOpenGL to use EGL to match Qt's integration.
-    environ["PYOPENGL_PLATFORM"] = "egl"
-    
-
     from PyQt6.QtCore import QSettings
     from PyQt6.QtWidgets import QApplication
     from glparchis.ui.frmMain import frmMain
