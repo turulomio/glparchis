@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=glParchis
+GenericName=Parchís
+GenericName[en]=Parchesse
+Type=Application
+Comment=OpenGL Parchís
+Comment[en]=OpenGL Parchesse
+Exec=glparchis
+TryExec=glparchis
+Icon=/usr/share/pixmaps/glparchis.png
+Categories=Game;BoardGame;

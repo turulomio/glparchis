@@ -1,0 +1,62 @@
+[game]
+playerstarts = yellow
+numplayers = 3
+fakedice = 
+fileversion = 1.3
+playedtime = 0:03:31.814322
+uuid = de07ff69-8fd7-4516-8898-5a15e88b307d
+
+[jugador0]
+ia = False
+name = Yellowy
+plays = True
+eatbyme = 3
+eatbyothers = 3
+roll1 = 11
+roll2 = 4
+roll3 = 7
+roll4 = 8
+roll5 = 10
+roll6 = 14
+six3 = 0
+rutaficha1 = 50
+rutaficha2 = 55
+rutaficha3 = 31
+rutaficha4 = 30
+
+[jugador1]
+ia = True
+name = Bluey
+plays = True
+eatbyme = 2
+eatbyothers = 1
+roll1 = 11
+roll2 = 8
+roll3 = 11
+roll4 = 5
+roll5 = 5
+roll6 = 7
+six3 = 0
+rutaficha1 = 55
+rutaficha2 = 8
+rutaficha3 = 54
+rutaficha4 = 24
+
+[jugador2]
+ia = True
+name = Redy
+plays = True
+eatbyme = 2
+eatbyothers = 3
+roll1 = 5
+roll2 = 10
+roll3 = 9
+roll4 = 6
+roll5 = 9
+roll6 = 12
+six3 = 1
+rutaficha1 = 0
+rutaficha2 = 0
+rutaficha3 = 55
+rutaficha4 = 0
+

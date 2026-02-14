@@ -1,0 +1,24 @@
+/*! \mainpage glParchis
+
+Introduction
+============
+
+glParchis is an opensource board game, with 4, 6 and 8 players mode to play parchessi
+
+@warning Develop language is English, despite of some classes and text strings are in Spanish. We should refactor then and rewrite to English
+
+
+Development
+===========
+- Turulomio (Idea y development)
+
+GitHub
+======
+This project is hosted in <a href="https://github.com/Turulomio/glparchis">Github</a>.
+
+
+Convenciones
+============
+Colores no debe usuarse para iterar jugadores, solo debe asignarse al principio
+
+*/

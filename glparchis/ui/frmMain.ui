@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <author>Mariano Muñoz</author>
+ <class>frmMain</class>
+ <widget class="QMainWindow" name="frmMain">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>768</height>
+   </rect>
+  </property>
+  <property name="cursor">
+   <cursorShape>PointingHandCursor</cursorShape>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../images/glparchis.qrc">
+    <normaloff>:/glparchis/ficharoja.png</normaloff>:/glparchis/ficharoja.png</iconset>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonIconOnly</enum>
+  </property>
+  <widget class="QWidget" name="wdg">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <layout class="QVBoxLayout" name="layout"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1024</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuAyuda">
+    <property name="title">
+     <string>A&amp;yuda</string>
+    </property>
+    <addaction name="actionHelp"/>
+    <addaction name="separator"/>
+    <addaction name="actionMundialStatistics"/>
+    <addaction name="separator"/>
+    <addaction name="actionUpdates"/>
+    <addaction name="separator"/>
+    <addaction name="actionReportBug"/>
+    <addaction name="separator"/>
+    <addaction name="actionAcercaDe"/>
+   </widget>
+   <widget class="QMenu" name="menuJugar">
+    <property name="title">
+     <string>J&amp;ugar</string>
+    </property>
+    <addaction name="actionPartidaNueva4"/>
+    <addaction name="actionPartidaNueva6"/>
+    <addaction name="actionPartidaNueva8"/>
+    <addaction name="separator"/>
+    <addaction name="actionAutomatism"/>
+    <addaction name="separator"/>
+    <addaction name="actionRecuperarPartida"/>
+    <addaction name="actionGuardarPartida"/>
+    <addaction name="separator"/>
+    <addaction name="actionSalir"/>
+   </widget>
+   <widget class="QMenu" name="menuConfiguraci_n">
+    <property name="title">
+     <string>&amp;Configuracion</string>
+    </property>
+    <addaction name="actionSound"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="actionSettings"/>
+   </widget>
+   <widget class="QMenu" name="menuVer">
+    <property name="title">
+     <string>Ver</string>
+    </property>
+    <addaction name="actionAcercarTablero"/>
+    <addaction name="actionAlejarTablero"/>
+    <addaction name="separator"/>
+    <addaction name="actionLeftPanel"/>
+    <addaction name="separator"/>
+    <addaction name="actionFullScreen"/>
+   </widget>
+   <addaction name="menuJugar"/>
+   <addaction name="menuVer"/>
+   <addaction name="menuConfiguraci_n"/>
+   <addaction name="menuAyuda"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonIconOnly</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionPartidaNueva3"/>
+   <addaction name="actionPartidaNueva4"/>
+   <addaction name="actionPartidaNueva6"/>
+   <addaction name="actionPartidaNueva8"/>
+   <addaction name="separator"/>
+   <addaction name="actionAutomatism"/>
+   <addaction name="separator"/>
+   <addaction name="actionRecuperarPartida"/>
+   <addaction name="actionGuardarPartida"/>
+   <addaction name="separator"/>
+   <addaction name="actionSound"/>
+   <addaction name="actionAcercarTablero"/>
+   <addaction name="actionAlejarTablero"/>
+   <addaction name="actionLeftPanel"/>
+   <addaction name="actionFullScreen"/>
+   <addaction name="separator"/>
+   <addaction name="actionSettings"/>
+   <addaction name="separator"/>
+   <addaction name="actionMundialStatistics"/>
+   <addaction name="actionAcercaDe"/>
+   <addaction name="separator"/>
+   <addaction name="actionSalir"/>
+  </widget>
+  <action name="actionSalir">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/exit.png</normaloff>:/glparchis/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>S&amp;alir</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
+   </property>
+  </action>
+  <action name="actionAcercaDe">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/ficharoja.png</normaloff>:/glparchis/ficharoja.png</iconset>
+   </property>
+   <property name="text">
+    <string>Acerca &amp;de</string>
+   </property>
+  </action>
+  <action name="actionRecuperarPartida">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/open.png</normaloff>:/glparchis/open.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Recuperar partida</string>
+   </property>
+  </action>
+  <action name="actionGuardarPartida">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/save.png</normaloff>:/glparchis/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Guardar partida</string>
+   </property>
+  </action>
+  <action name="actionPartidaNueva4">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/game4.png</normaloff>:/glparchis/game4.png</iconset>
+   </property>
+   <property name="text">
+    <string>Partida de &amp;4 jugadores</string>
+   </property>
+   <property name="toolTip">
+    <string>Partida de 4 jugadores</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+4</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/configure.png</normaloff>:/glparchis/configure.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Preferencias</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/help.png</normaloff>:/glparchis/help.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Ayuda del juego</string>
+   </property>
+   <property name="toolTip">
+    <string>Muestra la ayuda del juego</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="actionUpdates">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/update.png</normaloff>:/glparchis/update.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Buscar actualizaciones</string>
+   </property>
+   <property name="toolTip">
+    <string>Busca actualizaciones en Internet</string>
+   </property>
+  </action>
+  <action name="actionSound">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/sound.png</normaloff>:/glparchis/sound.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Sonido encendido</string>
+   </property>
+   <property name="toolTip">
+    <string>Enciende o apaga el sonido</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+  </action>
+  <action name="actionPartidaNueva6">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/game6.png</normaloff>:/glparchis/game6.png</iconset>
+   </property>
+   <property name="text">
+    <string>Partida de &amp;6 jugadores</string>
+   </property>
+   <property name="toolTip">
+    <string>Partida de 6 jugadores</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+6</string>
+   </property>
+  </action>
+  <action name="actionPartidaNueva8">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/game8.png</normaloff>:/glparchis/game8.png</iconset>
+   </property>
+   <property name="text">
+    <string>Partida de &amp;8 jugadores</string>
+   </property>
+   <property name="toolTip">
+    <string>Partida de 8 jugadores</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+8</string>
+   </property>
+  </action>
+  <action name="actionFullScreen">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/fullscreen.png</normaloff>:/glparchis/fullscreen.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Cambiar al modo de pantalla completa</string>
+   </property>
+   <property name="toolTip">
+    <string>Cambiar al modo de pantalla completa</string>
+   </property>
+   <property name="shortcut">
+    <string>F11</string>
+   </property>
+  </action>
+  <action name="actionMundialStatistics">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/statistics.png</normaloff>:/glparchis/statistics.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Estadisticas mundiales</string>
+   </property>
+   <property name="toolTip">
+    <string>Estadisticas mundiales</string>
+   </property>
+  </action>
+  <action name="actionAcercarTablero">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/zoom-in.png</normaloff>:/glparchis/zoom-in.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Acercar tablero</string>
+   </property>
+   <property name="toolTip">
+    <string>Acercar tablero</string>
+   </property>
+   <property name="shortcut">
+    <string>+</string>
+   </property>
+  </action>
+  <action name="actionAlejarTablero">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/zoom-out.png</normaloff>:/glparchis/zoom-out.png</iconset>
+   </property>
+   <property name="text">
+    <string>A&amp;lejar tablero</string>
+   </property>
+   <property name="toolTip">
+    <string>Alejar tablero</string>
+   </property>
+   <property name="shortcut">
+    <string>-</string>
+   </property>
+  </action>
+  <action name="actionPartidaNueva3">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/game3.png</normaloff>:/glparchis/game3.png</iconset>
+   </property>
+   <property name="text">
+    <string>Partida de &amp;3 jugadores</string>
+   </property>
+   <property name="toolTip">
+    <string>Partida de 3 jugadores</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+4</string>
+   </property>
+  </action>
+  <action name="actionReportBug">
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/reportbug.svg</normaloff>:/glparchis/reportbug.svg</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Report a bug</string>
+   </property>
+   <property name="toolTip">
+    <string>Report a bug</string>
+   </property>
+  </action>
+  <action name="actionAutomatism">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/play.png</normaloff>:/glparchis/play.png</iconset>
+   </property>
+   <property name="text">
+    <string>Activa &amp;el automatismo del juego</string>
+   </property>
+   <property name="toolTip">
+    <string>Activa &amp;el automatismo del dado y cuando sólo puede haber un movimiento de ficha</string>
+   </property>
+  </action>
+  <action name="actionLeftPanel">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../images/glparchis.qrc">
+     <normaloff>:/glparchis/panel.png</normaloff>:/glparchis/panel.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Oculta el panel izquierdo</string>
+   </property>
+   <property name="toolTip">
+    <string>Oculta el panel izquierdo</string>
+   </property>
+   <property name="shortcut">
+    <string>F10</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../images/glparchis.qrc"/>
+ </resources>
+ <connections/>
+</ui>
