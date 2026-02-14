@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem, QWidget, QLabel, QHBoxLayout
-from PyQt5.QtCore import Qt, QSize
-from PyQt5.QtGui import QBrush, QColor, QPixmap
+from PyQt6.QtWidgets import QTableWidget, QTableWidgetItem, QWidget, QLabel, QHBoxLayout
+from PyQt6.QtCore import Qt, QSize
+from PyQt6.QtGui import QBrush, QColor, QPixmap
 from glparchis.libglparchis import TiradaJuego
 
 class QTableStatistics(QTableWidget):
@@ -15,26 +15,26 @@ class QTableStatistics(QTableWidget):
         for i, j in enumerate(self.mem.jugadores.arr):
             self.setColumnWidth(i, 90)
             item = QTableWidgetItem(j.name)
-            item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter|Qt.AlignCenter)
+            item.setTextAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignVCenter|Qt.AlignmentFlag.AlignCenter)
             item.setIcon(j.color.qicon())   
             self.setHorizontalHeaderItem(i, item)
         item = QTableWidgetItem(self.tr("Total"))
-        item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter|Qt.AlignCenter)
+        item.setTextAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignVCenter|Qt.AlignmentFlag.AlignCenter)
         self.setHorizontalHeaderItem(self.mem.maxplayers, item)
         
         #Crea items
         for i in range(self.mem.maxplayers+1+1):
             for j in range(17):
                 item=QTableWidgetItem()
-                item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter|Qt.AlignCenter)
+                item.setTextAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignVCenter|Qt.AlignmentFlag.AlignCenter)
                 self.setItem( j,i, item )
                 
         #Rallando la tabla
         for i, j in ((11, self.mem.maxplayers), (12, self.mem.maxplayers), (14, self.mem.maxplayers), (16, self.mem.maxplayers)):
             item = QTableWidgetItem()
-            item.setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
+            item.setTextAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignVCenter)
             brush = QBrush(QColor(0, 0, 0))
-            brush.setStyle(Qt.BDiagPattern)
+            brush.setStyle(Qt.BrushStyle.BDiagPattern)
             item.setBackground(brush)
             self.setItem(i, j, item)
 
@@ -86,4 +86,3 @@ class QTableStatistics(QTableWidget):
         self.item(9, self.mem.maxplayers).setText(str(tj.numThreeSixes()))
         
         
-

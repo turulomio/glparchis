@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'glparchis/ui/frmAbout.ui'
+# Form implementation generated from reading ui file 'glparchis/ui/frmAbout.ui' and migrated to PyQt6
 #
-# Created by: PyQt5 UI code generator 5.10.1
+# Created by: PyQt6 UI code generator
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtGui, QtWidgets
 
 class Ui_frmAbout(object):
     def setupUi(self, frmAbout):
         frmAbout.setObjectName("frmAbout")
-        frmAbout.setWindowModality(QtCore.Qt.NonModal)
+        frmAbout.setWindowModality(QtCore.Qt.WindowModality.NonModal)
         frmAbout.resize(1050, 739)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/glparchis/ficharoja.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/glparchis/ficharoja.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         frmAbout.setWindowIcon(icon)
         frmAbout.setModal(True)
         self.vboxlayout = QtWidgets.QVBoxLayout(frmAbout)
@@ -23,20 +23,20 @@ class Ui_frmAbout(object):
         self.vboxlayout1.setObjectName("vboxlayout1")
         self.lblPixmap = QtWidgets.QLabel(frmAbout)
         self.lblPixmap.setPixmap(QtGui.QPixmap(":/glparchis/keko.png"))
-        self.lblPixmap.setAlignment(QtCore.Qt.AlignCenter)
+        self.lblPixmap.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.lblPixmap.setObjectName("lblPixmap")
         self.vboxlayout1.addWidget(self.lblPixmap)
         self.lblApp = QtWidgets.QLabel(frmAbout)
         font = QtGui.QFont()
         font.setPointSize(20)
         font.setBold(True)
-        font.setWeight(75)
+        font.setWeight(QtGui.QFont.Weight.Bold)
         self.lblApp.setFont(font)
-        self.lblApp.setAlignment(QtCore.Qt.AlignCenter)
+        self.lblApp.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.lblApp.setObjectName("lblApp")
         self.vboxlayout1.addWidget(self.lblApp)
         self.lblVersion = QtWidgets.QLabel(frmAbout)
-        self.lblVersion.setAlignment(QtCore.Qt.AlignCenter)
+        self.lblVersion.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.lblVersion.setObjectName("lblVersion")
         self.vboxlayout1.addWidget(self.lblVersion)
         self.tab = QtWidgets.QTabWidget(frmAbout)
@@ -55,7 +55,7 @@ class Ui_frmAbout(object):
         self.vboxlayout2 = QtWidgets.QVBoxLayout(self.tabLicense)
         self.vboxlayout2.setObjectName("vboxlayout2")
         self.txtLicense = QtWidgets.QTextBrowser(self.tabLicense)
-        self.txtLicense.setLineWrapMode(QtWidgets.QTextEdit.WidgetWidth)
+        self.txtLicense.setLineWrapMode(QtWidgets.QTextEdit.LineWrapMode.WidgetWidth)
         self.txtLicense.setLineWrapColumnOrWidth(80)
         self.txtLicense.setHtml("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -218,29 +218,29 @@ class Ui_frmAbout(object):
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
         self.lbObjeto = QtWidgets.QLabel(self.tabObjetos)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lbObjeto.sizePolicy().hasHeightForWidth())
         self.lbObjeto.setSizePolicy(sizePolicy)
         self.lbObjeto.setMinimumSize(QtCore.QSize(0, 40))
         self.lbObjeto.setMaximumSize(QtCore.QSize(16777215, 40))
-        self.lbObjeto.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbObjeto.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.lbObjeto.setObjectName("lbObjeto")
         self.verticalLayout.addWidget(self.lbObjeto)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.table = QtWidgets.QTableWidget(self.tabObjetos)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.table.sizePolicy().hasHeightForWidth())
         self.table.setSizePolicy(sizePolicy)
-        self.table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.table.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
         self.table.setProperty("showDropIndicator", False)
         self.table.setDragDropOverwriteMode(False)
-        self.table.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
-        self.table.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.table.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.SingleSelection)
+        self.table.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
         self.table.setWordWrap(False)
         self.table.setObjectName("table")
         self.table.setColumnCount(1)
@@ -335,7 +335,7 @@ class Ui_frmAbout(object):
         self.table.verticalHeader().setVisible(False)
         self.horizontalLayout.addWidget(self.table)
         self.wdgso = wdgShowObject(self.tabObjetos)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.wdgso.sizePolicy().hasHeightForWidth())

@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget
+from PyQt6.QtWidgets import QWidget
 from random import random
 from glparchis.ui.Ui_wdgPlayerDado import Ui_wdgPlayerDado
 

@@ -1,6 +1,6 @@
-from PyQt5.QtCore import pyqtSlot, Qt
+from PyQt6.QtCore import pyqtSlot, Qt
 from glparchis.ui.Ui_frmShowFicha import Ui_frmShowFicha
-from PyQt5.QtWidgets import QDialog, QTableWidgetItem
+from PyQt6.QtWidgets import QDialog, QTableWidgetItem
 
 class frmShowFicha(QDialog, Ui_frmShowFicha):
     def __init__(self,   parent = None, flags= None,  ficha=None, mem=None):
@@ -38,7 +38,7 @@ class frmShowFicha(QDialog, Ui_frmShowFicha):
             item.setIcon(a.attacking_pawn.color.qicon())                
             table.setItem(i, 0, QTableWidgetItem(item))
             item = QTableWidgetItem(str(a.attacking_pawn.casilla().id))
-            item.setTextAlignment(Qt.AlignCenter)
+            item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
             table.setItem(i, 1, item)
             item = QTableWidgetItem(a.name())
             table.setItem(i, 2, item)

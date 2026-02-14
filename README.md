@@ -42,7 +42,7 @@ Just execute it
 ## Dependencies
 
 * https://www.python.org/, as the main programming language.
-* https://pypi.org/project/PyQt5/, as the main library.
+* https://pypi.org/project/PyQt6/, as the main library.
 * https://pypi.org/project/pywin32/, to create shortcuts.
 * https://pypi.org/project/PyOpenGL/, for OpenGL api.
 

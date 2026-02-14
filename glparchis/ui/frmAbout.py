@@ -1,5 +1,5 @@
 from glparchis.version import __version__
-from PyQt5.QtWidgets import QDialog
+from PyQt6.QtWidgets import QDialog
 from glparchis.ui.Ui_frmAbout import Ui_frmAbout
 
 class frmAbout(QDialog, Ui_frmAbout):

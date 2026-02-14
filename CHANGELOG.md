@@ -1,4 +1,7 @@
 # Change log
+## 20240522
+  * Migrated to PyQt6
+
 ## 20221204
   * Fixed bug with version
 

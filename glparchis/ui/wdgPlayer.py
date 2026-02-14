@@ -1,6 +1,5 @@
-from PyQt5.QtWidgets import QWidget
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QLabel, QHBoxLayout, QApplication
+from PyQt6.QtWidgets import QWidget, QLabel, QHBoxLayout, QApplication
+from PyQt6.QtCore import Qt
 from glparchis.functions import c2b
 from glparchis.ui.Ui_wdgPlayer import Ui_wdgPlayer
 from glparchis.ui.wdgPlayerDado import wdgPlayerDado
@@ -25,7 +24,7 @@ class SetWdgPlayers:
     def Players_throws(self):
         """wdgPlayerDado throws if IA"""
         for i,  w in enumerate(self.arr):
-            if w.chkPlays.checkState()==Qt.Checked:#IA#Tira el dado de IA si juega y si es AI
+            if w.chkPlays.checkState() == Qt.CheckState.Checked: #IA#Tira el dado de IA si juega y si es AI
                 w.wdgplayerdado.on_cmd_released()
 
     def strNames(self):

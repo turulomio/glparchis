@@ -1,7 +1,7 @@
 import ctypes
-from PyQt5.QtCore import pyqtSignal, QPoint, QSize, Qt
-from PyQt5.QtOpenGL import QGLWidget
-from PyQt5.QtGui import QPixmap, QColor
+from PyQt6.QtCore import pyqtSignal, QPoint, QSize, Qt
+from PyQt6.QtOpenGLWidgets import QOpenGLWidget
+from PyQt6.QtGui import QPixmap, QColor
 from OpenGL.GL import glCallList, glClear, glColorMaterial, glEnable,  glEndList,  glFrontFace, glGenLists, glGetIntegerv, glHint, glLightfv, glLoadIdentity, glMatrixMode, glNewList, glOrtho, glPopMatrix, glPushMatrix, glRenderMode, glRotated, glSelectBuffer, glShadeModel, glTranslated, glViewport,  glScaled,  glVertex3d, glBegin, glEnd
 from OpenGL.GL import  GL_AMBIENT, GL_QUADS, GL_AMBIENT_AND_DIFFUSE, GL_CCW, GL_COLOR_BUFFER_BIT, GL_COLOR_MATERIAL, GL_COMPILE, GL_CULL_FACE, GL_DEPTH_BUFFER_BIT, GL_DEPTH_TEST, GL_FRONT, GL_LIGHT0, GL_LIGHTING, GL_MODELVIEW, GL_NICEST, GL_PERSPECTIVE_CORRECTION_HINT, GL_POSITION, GL_PROJECTION, GL_RENDER, GL_SELECT, GL_SMOOTH, GL_STENCIL_BUFFER_BIT, GL_TEXTURE_2D, GL_VIEWPORT,  GL_FLAT
 from OpenGL.GLU import gluPerspective, gluPickMatrix
@@ -14,9 +14,9 @@ from math import sin, cos
 
 
 
-class myQGLWidget(QGLWidget):
+class myQGLWidget(QOpenGLWidget):
     def __init__(self, parent):
-        QGLWidget.__init__(self, parent)
+        QOpenGLWidget.__init__(self, parent)
 
     def load_textures(self):
         """
@@ -127,10 +127,10 @@ class ObjectRotationManager:
         dx = event.x() - self.lastPos.x()
         dy = event.y() - self.lastPos.y()
 
-        if event.buttons() & Qt.LeftButton:
+        if event.buttons() & Qt.MouseButton.LeftButton:
             self.setXRotation(self.xRot + 8 * dy)
             self.setYRotation(self.yRot + 8 * dx)
-        elif event.buttons() & Qt.RightButton:
+        elif event.buttons() & Qt.MouseButton.RightButton:
             self.setXRotation(self.xRot + 8 * dy)
             self.setZRotation(self.zRot + 8 * dx)
 
@@ -142,21 +142,21 @@ class ObjectRotationManager:
         if angle != self.xRot:
             self.xRot = angle
             self.xRotationChanged.emit(angle)
-            self.updateGL()
+            self.update()
 
     def setYRotation(self, angle):
         angle = self.normalizeAngle(angle)
         if angle != self.yRot:
             self.yRot = angle
             self.yRotationChanged.emit(angle)
-            self.updateGL()
+            self.update()
 
     def setZRotation(self, angle):
         angle = self.normalizeAngle(angle)
         if angle != self.zRot:
             self.zRot = angle
             self.zRotationChanged.emit(angle)
-            self.updateGL()
+            self.update()
 
 class wdgOGL(myQGLWidget):
     """Clase principal del Juego, aqui esta fundamentalmente la representacion.

@@ -1,7 +1,7 @@
 from glparchis.functions import str2bool, cargarQTranslator
-from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtGui import  QPixmap,  QIcon
-from PyQt5.QtWidgets import   QDialog, QApplication
+from PyQt6.QtCore import pyqtSlot
+from PyQt6.QtGui import  QPixmap,  QIcon
+from PyQt6.QtWidgets import   QDialog, QApplication
 
 from glparchis.ui.Ui_frmSettings import Ui_frmSettings
 
@@ -24,7 +24,7 @@ class Language:
             
     def qicon(self):
         ico = QIcon()
-        ico.addPixmap(self.qpixmap(), QIcon.Normal, QIcon.Off) 
+        ico.addPixmap(self.qpixmap(), QIcon.Mode.Normal, QIcon.State.Off) 
         return ico
 
 class SetLanguages:
@@ -119,4 +119,3 @@ class frmSettings(QDialog, Ui_frmSettings):
         
     def on_cmdGlobalStatistics_released(self):
         self.parent.on_actionMundialStatistics_triggered()
-

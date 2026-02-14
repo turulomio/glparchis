@@ -4,9 +4,9 @@ from datetime import date, timedelta
 from logging import debug, info
 
 from urllib.request import urlopen
-from PyQt5.QtCore import QTranslator, Qt, pyqtSlot, QEvent,  QUrl,  pyqtSignal, QThread, QSize
-from PyQt5.QtGui import QIcon, QPixmap, QKeyEvent, QDesktopServices
-from PyQt5.QtWidgets import QMainWindow, QMessageBox, qApp, QDialog, QFileDialog
+from PyQt6.QtCore import QTranslator, Qt, pyqtSlot, QEvent,  QUrl,  pyqtSignal, QThread, QSize
+from PyQt6.QtGui import QIcon, QPixmap, QKeyEvent, QDesktopServices, QGuiApplication
+from PyQt6.QtWidgets import QMainWindow, QMessageBox, QApplication, QDialog, QFileDialog
 from glparchis.libglparchis import Mem3, Mem4, Mem6, Mem8,  SoundSystem
 from glparchis.functions import str2bool, cargarQTranslator, b2s, qmessagebox
 from glparchis.version import __version__,  get_remote, __versiondate__
@@ -68,10 +68,10 @@ class frmMain(QMainWindow, Ui_frmMain):
 
     def setFullScreen(self, boolean):
         if boolean==False:
-            desktop = qApp.desktop()
+            screen = QGuiApplication.primaryScreen().geometry()
             size=self.settings.value("frmMain/size", QSize(1024, 768))
-            x = int((desktop.width() - size.width()) / 2)
-            y = int((desktop.height() - size.height()) / 2)
+            x = int((screen.width() - size.width()) / 2)
+            y = int((screen.height() - size.height()) / 2)
             self.resize(size)
             self.move(x, y)
             self.actionFullScreen.setText(self.tr("Cambiar al modo de pantalla completa"))
@@ -79,7 +79,7 @@ class frmMain(QMainWindow, Ui_frmMain):
             self.actionFullScreen.setChecked(False)
             self.menuBar.show()
             self.removeToolBar(self.toolBar);
-            self.addToolBar(Qt.TopToolBarArea, self.toolBar)
+            self.addToolBar(Qt.ToolBarArea.TopToolBarArea, self.toolBar)
             self.toolBar.show()
             self.showNormal()
         else:      
@@ -88,7 +88,7 @@ class frmMain(QMainWindow, Ui_frmMain):
             self.actionFullScreen.setChecked(True)
             self.menuBar.hide()
             self.removeToolBar(self.toolBar);
-            self.addToolBar(Qt.LeftToolBarArea, self.toolBar)
+            self.addToolBar(Qt.ToolBarArea.LeftToolBarArea, self.toolBar)
             self.toolBar.show()
             self.showFullScreen()
         self.settings.setValue("frmMain/fullscreen", str(boolean))
@@ -110,14 +110,14 @@ class frmMain(QMainWindow, Ui_frmMain):
             self.actionAutomatism.setToolTip(self.tr("Pulse para desactivar el automatismo del dado y en caso de poder mover solo una ficha")) 
             self.actionAutomatism.setText(self.tr("Desactiva el automatismo del dado")) 
             icon8 = QIcon()
-            icon8.addPixmap(QPixmap(":/glparchis/stop.png"), QIcon.Normal, QIcon.Off)
+            icon8.addPixmap(QPixmap(":/glparchis/stop.png"), QIcon.Mode.Normal, QIcon.State.Off)
             self.actionAutomatism.setIcon(icon8)
             self.actionAutomatism.setChecked(True)
         else:
             self.actionAutomatism.setToolTip(self.tr("Pulse para mover automaticamente el dado y las fichas cuando solo se pueda mover una"))
             self.actionAutomatism.setText(self.tr("Activa el automatismo del dado")) 
             icon8 = QIcon()
-            icon8.addPixmap(QPixmap(":/glparchis/play.png"), QIcon.Normal, QIcon.Off)
+            icon8.addPixmap(QPixmap(":/glparchis/play.png"), QIcon.Mode.Normal, QIcon.State.Off)
             self.actionAutomatism.setIcon(icon8)
             self.actionAutomatism.setChecked(False)
         self.settings.setValue("frmMain/automaticdice", str(boolean))
@@ -157,12 +157,12 @@ class frmMain(QMainWindow, Ui_frmMain):
         debug("Syncing settings")
         if self.game:
             self.game.__del__()
-        qApp.quit()
+        QApplication.instance().quit()
 
     @pyqtSlot()      
     def on_actionSettings_triggered(self):
         f=frmSettings(self.settings, self.translator,    self)
-        f.exec_()
+        f.exec()
         if self.game!=None:
             self.game.retranslateUi(self)
             for p in self.game.panels:
@@ -180,12 +180,12 @@ class frmMain(QMainWindow, Ui_frmMain):
         if boolean==True:
             self.actionSound.setText(self.tr("Sonido encendido")) 
             icon8 = QIcon()
-            icon8.addPixmap(QPixmap(":/glparchis/sound.png"), QIcon.Normal, QIcon.Off)
+            icon8.addPixmap(QPixmap(":/glparchis/sound.png"), QIcon.Mode.Normal, QIcon.State.Off)
             self.actionSound.setIcon(icon8)
         else:
             self.actionSound.setText(self.tr("Sonido apagado"))
             icon8 = QIcon()
-            icon8.addPixmap(QPixmap(":/glparchis/soundoff.png"), QIcon.Normal, QIcon.Off)
+            icon8.addPixmap(QPixmap(":/glparchis/soundoff.png"), QIcon.Mode.Normal, QIcon.State.Off)
             self.actionSound.setIcon(icon8)
         self.settings.setValue("frmSettings/sound", str(boolean))
         
@@ -206,9 +206,9 @@ class frmMain(QMainWindow, Ui_frmMain):
             m=QMessageBox()
             m.setIcon(QMessageBox.Information)
             m.setWindowIcon(QIcon(":glparchis/ficharoja.png"))
-            m.setTextFormat(Qt.RichText)#this is what makes the links clickable
+            m.setTextFormat(Qt.TextFormat.RichText)#this is what makes the links clickable
             m.setText(self.tr("There is a new glParchis version. You can download it from <a href='https://github.com/Turulomio/glparchis/releases'>GitHub</a>."))
-            m.exec_() 
+            m.exec() 
         self.settings.setValue("frmMain/lastupdate", date.today().toordinal())
 
     @pyqtSlot(QEvent)   
@@ -233,12 +233,12 @@ class frmMain(QMainWindow, Ui_frmMain):
 
     @pyqtSlot()  
     def on_actionAcercarTablero_triggered(self):
-        event=QKeyEvent(QEvent.KeyPress, Qt.Key_Plus, Qt.NoModifier, 0, 0, 0)
+        event=QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_Plus, Qt.KeyboardModifier.NoModifier)
         self.game.ogl.keyPressEvent(event)
 
     @pyqtSlot()  
     def on_actionAlejarTablero_triggered(self):
-        event=QKeyEvent(QEvent.KeyPress, Qt.Key_Minus, Qt.NoModifier, 0, 0, 0)
+        event=QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_Minus, Qt.KeyboardModifier.NoModifier)
         self.game.ogl.keyPressEvent(event)
 
     @pyqtSlot()  
@@ -304,7 +304,7 @@ class frmMain(QMainWindow, Ui_frmMain):
                 in_external()
             else:
                 fr=frmGameStatistics(self.url_statistics_world, self.url_statistics_installation, self.uuid_installation, self)
-                fr.exec_()
+                fr.exec()
         except:
             in_external()
 
@@ -316,8 +316,8 @@ class frmMain(QMainWindow, Ui_frmMain):
         self.mem.translator=self.translator
         self.mem.frmMain=self
         initgame=frmInitGame(self.mem,  self)
-        salida=initgame.exec_()
-        if salida==QDialog.Accepted:
+        salida=initgame.exec()
+        if salida==QDialog.DialogCode.Accepted:
             self.showWdgGame()            
             
     @pyqtSlot()  
@@ -327,8 +327,8 @@ class frmMain(QMainWindow, Ui_frmMain):
         self.mem.translator=self.translator
         self.mem.frmMain=self
         initgame=frmInitGame(self.mem,  self)
-        salida=initgame.exec_()
-        if salida==QDialog.Accepted:
+        salida=initgame.exec()
+        if salida==QDialog.DialogCode.Accepted:
             self.showWdgGame()
 
     @pyqtSlot()  
@@ -338,8 +338,8 @@ class frmMain(QMainWindow, Ui_frmMain):
         self.mem.translator=self.translator
         self.mem.frmMain=self
         initgame=frmInitGame(self.mem,  self)
-        salida=initgame.exec_()
-        if salida==QDialog.Accepted:
+        salida=initgame.exec()
+        if salida==QDialog.DialogCode.Accepted:
             self.showWdgGame()
 
     @pyqtSlot()  
@@ -349,8 +349,8 @@ class frmMain(QMainWindow, Ui_frmMain):
         self.mem.translator=self.translator
         self.mem.frmMain=self
         initgame=frmInitGame(self.mem,  self)
-        salida=initgame.exec_()
-        if salida==QDialog.Accepted:
+        salida=initgame.exec()
+        if salida==QDialog.DialogCode.Accepted:
             self.showWdgGame()
 
     @pyqtSlot()     

@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QDialog
+from PyQt6.QtWidgets import QDialog
 from glparchis.ui.Ui_frmHelp import Ui_frmHelp
 
 class frmHelp(QDialog, Ui_frmHelp):

@@ -1,5 +1,5 @@
 from glparchis.ui.Ui_frmShowCasilla import Ui_frmShowCasilla
-from PyQt5.QtWidgets import QDialog
+from PyQt6.QtWidgets import QDialog
 
 class frmShowCasilla(QDialog, Ui_frmShowCasilla):
     def __init__(self, parent = None, flags= None,  casilla=None):
@@ -48,4 +48,3 @@ class frmShowCasilla(QDialog, Ui_frmShowCasilla):
             self.lbl3.setPixmap(fichas[2][1].jugador.color.qpixmap())       
             self.lbl4.setPixmap(fichas[3][1].jugador.color.qpixmap())       
             self.grp.setTitle(self.tr("Casilla llena"))
-

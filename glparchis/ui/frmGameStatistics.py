@@ -1,5 +1,5 @@
-from PyQt5.QtWidgets import QDialog
-from PyQt5.QtCore import QUrl
+from PyQt6.QtWidgets import QDialog
+from PyQt6.QtCore import QUrl
 from glparchis.ui.Ui_frmGameStatistics import Ui_frmGameStatistics
 from logging import info
 
@@ -12,4 +12,3 @@ class frmGameStatistics(QDialog, Ui_frmGameStatistics):
         self.webInstallation.setUrl(QUrl(url_statistics_installation))
         self.webWorld.setUrl(QUrl(url_statistics_world))
         self.lblUUID.setText(self.tr("Your statistics UUID is {}").format(uuid_installation))
-

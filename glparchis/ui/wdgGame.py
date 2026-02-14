@@ -1,5 +1,5 @@
-from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QWidget
+from PyQt6.QtCore import pyqtSlot
+from PyQt6.QtWidgets import QWidget
 from glparchis.ui.wdgUserPanel import wdgUserPanel
 from glparchis.libglparchis import HighScore
 from glparchis.functions import str2bool, b2s, qmessagebox, delay

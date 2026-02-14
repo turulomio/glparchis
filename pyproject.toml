@@ -1,6 +1,6 @@
 [project]
 name = "glparchis"
-version = "20221204dev"
+version = "20240522dev"
 description = "Parchís game"
 authors = [
     {name = "turulomio",email = "turulomio@yahoo.es"}
@@ -11,8 +11,8 @@ requires-python = ">=3.11,<4"
 dependencies = [
     "pyopengl >=3.1.9",
     "colorama >=0.4.6",
-    "PyQt5-Qt5 >=5.15.18",
-    "PyQtWebEngine-Qt5 >=5.15.18"
+    "PyQt6 >=6.4.0",
+    "PyQt6-WebEngine >=6.4.0"
 ]
  
 [tool.poetry]
@@ -34,4 +34,3 @@ release = { script = "devicesinlan.poethepoet:release" }
 translate = { script = "devicesinlan.poethepoet:translate" }
 compile = { script = "devicesinlan.poethepoet:compile" }
 pyinstaller = { script = "devicesinlan.poethepoet:pyinstaller" }
-

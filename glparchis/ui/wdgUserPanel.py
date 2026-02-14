@@ -1,5 +1,5 @@
-from PyQt5.QtCore import  Qt
-from PyQt5.QtWidgets import QWidget
+from PyQt6.QtCore import  Qt
+from PyQt6.QtWidgets import QWidget
 from glparchis.ui.Ui_wdgUserPanel import Ui_wdgUserPanel
 
 class wdgUserPanel(QWidget, Ui_wdgUserPanel):
@@ -52,12 +52,12 @@ class wdgUserPanel(QWidget, Ui_wdgUserPanel):
 
     def on_chk_stateChanged(self, state):        
         """Reescribe solo cuando cambia el tamano"""
-        if state==Qt.Checked and self.lst.count()!=len(self.loghistorico):
+        if state == Qt.CheckState.Checked.value and self.lst.count() != len(self.loghistorico):
             self.lst.clear()
             self.lst.addItems(self.loghistorico)  
             self.lst.setCurrentRow(len(self.loghistorico)-1)
             self.lst.clearSelection()
-        elif state==Qt.Unchecked and self.lst.count()!=len(self.logturno):
+        elif state == Qt.CheckState.Unchecked.value and self.lst.count() != len(self.logturno):
             self.lst.clear()
             self.lst.addItems(self.logturno)          
             self.lst.setCurrentRow(len(self.logturno)-1)  
