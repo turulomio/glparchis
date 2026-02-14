@@ -26,24 +26,26 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.hide()
 
     def sendStatisticsStart(self):
-        if str2bool(self.mem.settings.value("frmSettings/statistics", "True"))==True:
-            url='http://glparchis.sourceforge.net/php/glparchis_game_start.php?uuid={}&installations_uuid={}&numplayers={}&maxplayers={}&version={}'.format(self.mem.uuid, self.mem.settings.value("frmMain/uuid"),  self.mem.jugadores.numPlays(), self.mem.maxplayers, __version__)
-            print(url)
-            try:
-                web=b2s(urlopen(url).read())
-            except:
-                web=None
-            print (web)       
+        pass
+        # if str2bool(self.mem.settings.value("frmSettings/statistics", "True"))==True:
+        #     url='http://glparchis.sourceforge.net/php/glparchis_game_start.php?uuid={}&installations_uuid={}&numplayers={}&maxplayers={}&version={}'.format(self.mem.uuid, self.mem.settings.value("frmMain/uuid"),  self.mem.jugadores.numPlays(), self.mem.maxplayers, __version__)
+        #     print(url)
+        #     try:
+        #         web=b2s(urlopen(url).read())
+        #     except:
+        #         web=None
+        #     print (web)       
         
     def sendStatisticsEnd(self):
-        if str2bool(self.mem.settings.value("frmSettings/statistics", "True"))==True:
-            url='http://glparchis.sourceforge.net/php/glparchis_game_end.php?uuid={}&installations_uuid={}&human_won={}'.format(self.mem.uuid, self.mem.settings.value("frmMain/uuid"),  not self.mem.jugadores.actual.ia)
-            print(url)
-            try:
-                web=b2s(urlopen(url).read())
-            except:
-                web=None
-            print (web)       
+        pass
+        # if str2bool(self.mem.settings.value("frmSettings/statistics", "True"))==True:
+        #     url='http://glparchis.sourceforge.net/php/glparchis_game_end.php?uuid={}&installations_uuid={}&human_won={}'.format(self.mem.uuid, self.mem.settings.value("frmMain/uuid"),  not self.mem.jugadores.actual.ia)
+        #     print(url)
+        #     try:
+        #         web=b2s(urlopen(url).read())
+        #     except:
+        #         web=None
+        #     print (web)       
 
     ## Se ejecuta al mover el splitter
     ## @param position Left position
