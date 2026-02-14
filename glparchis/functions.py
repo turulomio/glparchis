@@ -5,9 +5,9 @@ from logging import critical
 from importlib.resources import files
 from sys import exit, argv
 
-from PyQt5.QtCore import Qt, QCoreApplication, QEventLoop
-from PyQt5.QtWidgets import QApplication, QMessageBox
-from PyQt5.QtGui import QIcon
+from PyQt6.QtCore import Qt, QCoreApplication, QEventLoop
+from PyQt6.QtWidgets import QApplication, QMessageBox
+from PyQt6.QtGui import QIcon
 from colorama import Style, Fore
 
 
@@ -53,7 +53,7 @@ def s2b(s, code='UTF8'):
 
 def c2b(state):
     """QCheckstate to python bool"""
-    if state==Qt.Checked:
+    if state == Qt.CheckState.Checked:
         return True
     else:
         return False
@@ -61,7 +61,7 @@ def c2b(state):
 def delay(miliseconds):
     dieTime= datetime.now()+timedelta(microseconds=miliseconds*1000)
     while datetime.now()< dieTime :
-        QCoreApplication.processEvents(QEventLoop.AllEvents, 100);
+        QCoreApplication.processEvents(QEventLoop.ProcessEventsFlag.AllEvents, 100);
     
     
     
@@ -85,9 +85,9 @@ def developing():
         return False
     return True
 
-def qmessagebox(message, type=QMessageBox.Information):
+def qmessagebox(message, type=QMessageBox.Icon.Information):
     m=QMessageBox()
     m.setWindowIcon(QIcon(":glparchis/ficharoja.png"))
     m.setIcon(type)
     m.setText(str(message))
-    m.exec_() 
+    m.exec()

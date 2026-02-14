@@ -1,8 +1,9 @@
 import ctypes
 from PyQt6.QtCore import pyqtSignal, QPoint, QSize, Qt
 from PyQt6.QtOpenGLWidgets import QOpenGLWidget
+from PyQt6.QtOpenGL import QOpenGLTexture
 from PyQt6.QtGui import QPixmap, QColor
-from OpenGL.GL import glCallList, glClear, glColorMaterial, glEnable,  glEndList,  glFrontFace, glGenLists, glGetIntegerv, glHint, glLightfv, glLoadIdentity, glMatrixMode, glNewList, glOrtho, glPopMatrix, glPushMatrix, glRenderMode, glRotated, glSelectBuffer, glShadeModel, glTranslated, glViewport,  glScaled,  glVertex3d, glBegin, glEnd
+from OpenGL.GL import glCallList, glClear, glColorMaterial, glEnable,  glEndList,  glFrontFace, glGenLists, glGetIntegerv, glHint, glLightfv, glLoadIdentity, glMatrixMode, glNewList, glOrtho, glPopMatrix, glPushMatrix, glRenderMode, glRotated, glSelectBuffer, glShadeModel, glTranslated, glViewport,  glScaled,  glVertex3d, glBegin, glEnd, glClearColor, glColor4f
 from OpenGL.GL import  GL_AMBIENT, GL_QUADS, GL_AMBIENT_AND_DIFFUSE, GL_CCW, GL_COLOR_BUFFER_BIT, GL_COLOR_MATERIAL, GL_COMPILE, GL_CULL_FACE, GL_DEPTH_BUFFER_BIT, GL_DEPTH_TEST, GL_FRONT, GL_LIGHT0, GL_LIGHTING, GL_MODELVIEW, GL_NICEST, GL_PERSPECTIVE_CORRECTION_HINT, GL_POSITION, GL_PROJECTION, GL_RENDER, GL_SELECT, GL_SMOOTH, GL_STENCIL_BUFFER_BIT, GL_TEXTURE_2D, GL_VIEWPORT,  GL_FLAT
 from OpenGL.GLU import gluPerspective, gluPickMatrix
 
@@ -17,6 +18,19 @@ from math import sin, cos
 class myQGLWidget(QOpenGLWidget):
     def __init__(self, parent):
         QOpenGLWidget.__init__(self, parent)
+
+    def qglClearColor(self, color):
+        glClearColor(color.redF(), color.greenF(), color.blueF(), color.alphaF())
+
+    def qglColor(self, color):
+        glColor4f(color.redF(), color.greenF(), color.blueF(), color.alphaF())
+
+    def bindTexture(self, pixmap):
+        texture = QOpenGLTexture(pixmap.toImage())
+        if not hasattr(self, '_textures_cache'):
+            self._textures_cache = []
+        self._textures_cache.append(texture)
+        return texture.textureId()
 
     def load_textures(self):
         """
@@ -165,6 +179,7 @@ class wdgOGL(myQGLWidget):
     doubleClicked=pyqtSignal()
     def __init__(self,  parent=None):
         myQGLWidget.__init__(self, parent)
+        self.mem=None
         self.tablero=None#After assign_mem creation
         self.texNumeros=[]
         self.texDecor=[]
@@ -197,8 +212,10 @@ class wdgOGL(myQGLWidget):
 
     def paintGL(self):   
 #        inicio=datetime.datetime.now()
+        if self.mem is None:
+            return
         glLoadIdentity()
-        self.qglClearColor(QColor())
+        self.qglClearColor(QColor(0, 0, 0, 0))
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT| GL_STENCIL_BUFFER_BIT)
         if self.mem.maxplayers==8:
             glTranslated(-31.5, -16.5, self.z)
@@ -252,26 +269,26 @@ class wdgOGL(myQGLWidget):
             print(self.z)
             ###########################
         self.rotatecenter=0
-        if event.key() == Qt.Key_Plus:
+        if event.key() == Qt.Key.Key_Plus:
             self.z=self.z+1
             save_z()
-        if event.key() == Qt.Key_Minus:
+        if event.key() == Qt.Key.Key_Minus:
             self.z=self.z-1
             save_z()
-        if event.key() == Qt.Key_X: # toggle mode
+        if event.key() == Qt.Key.Key_X: # toggle mode
             self.rotX=self.rotX+5
-        if event.key() == Qt.Key_Y: # toggle mode
+        if event.key() == Qt.Key.Key_Y: # toggle mode
             self.rotY=self.rotY+5
-        if event.key() == Qt.Key_Z: # toggle mode
+        if event.key() == Qt.Key.Key_Z: # toggle mode
             self.rotZ=self.rotZ+5
-        if event.key() == Qt.Key_Space: # toggle mode
+        if event.key() == Qt.Key.Key_Space: # toggle mode
             self.rotX=0
             self.rotY=0
             self.rotZ=0
-        if event.key() == Qt.Key_M: # toggle mode
+        if event.key() == Qt.Key.Key_M: # toggle mode
             self.rotatecenter=1
             self.rotCenter=self.rotCenter+5
-        self.updateGL()
+        self.update()
     
     def mouseDoubleClickEvent(self, event):
         self.doubleClicked.emit()
@@ -287,7 +304,6 @@ class wdgOGL(myQGLWidget):
 
             """
             self.makeCurrent()
-            self.context().makeCurrent()
             viewport=glGetIntegerv(GL_VIEWPORT);
             glMatrixMode(GL_PROJECTION);
             glPushMatrix();        
@@ -353,13 +369,13 @@ class wdgOGL(myQGLWidget):
             if len(objetos)==1:
                 selCasilla=getObjectByName(objetos[0])
                 if isinstance(selCasilla, Casilla):
-                    frmshow=frmShowCasilla(self,  Qt.Popup,  selCasilla)
+                    frmshow=frmShowCasilla(self,  Qt.WindowType.Popup,  selCasilla)
                     frmshow.move(self.mapToGlobal(placePopUp(frmshow)))
                     frmshow.show()
             elif len(objetos)==2:
                 selFicha=getObjectByName(objetos[1])
                 if isinstance(selFicha, Ficha):
-                    frmshow=frmShowFicha(self,  Qt.Popup,  selFicha, self.mem)
+                    frmshow=frmShowFicha(self,  Qt.WindowType.Popup,  selFicha, self.mem)
                     frmshow. move(self.mapToGlobal(placePopUp(frmshow)))
                     frmshow.show()
                     
@@ -378,17 +394,17 @@ class wdgOGL(myQGLWidget):
                 
         #########################################
         self.setFocus()
-        if event.buttons() & Qt.LeftButton:
+        if event.buttons() & Qt.MouseButton.LeftButton:
             pickup(event, False)            
             if self.mem.selFicha is not None:
                 self.mem.jugadores.actual.log(self.tr("Se ha hecho click en la ficha {0}".format(self.mem.selFicha.id)))
                 self.fichaClicked.emit()
-        elif event.buttons() & Qt.RightButton:
+        elif event.buttons() & Qt.MouseButton.RightButton:
             pickup(event, True)                    
-        self.updateGL()
+        self.update()
 
 
-class wdgQT(QGLWidget, ObjectRotationManager):
+class wdgQT(myQGLWidget, ObjectRotationManager):
     """
         Qt example class
     """
@@ -396,7 +412,7 @@ class wdgQT(QGLWidget, ObjectRotationManager):
     yRotationChanged=pyqtSignal(int)
     zRotationChanged=pyqtSignal(int)
     def __init__(self, parent=None):
-        QGLWidget.__init__(self, parent)
+        myQGLWidget.__init__(self, parent)
         ObjectRotationManager.__init__(self)
         self.object = 0
 
@@ -593,21 +609,21 @@ class wdgShowObject(myQGLWidget, ObjectRotationManager):
         self.z=-15
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_Plus:
+        if event.key() == Qt.Key.Key_Plus:
             self.z=self.z+1
-        if event.key() == Qt.Key_Minus:
+        if event.key() == Qt.Key.Key_Minus:
             self.z=self.z-1
-        if event.key() == Qt.Key_X: # toggle mode
+        if event.key() == Qt.Key.Key_X: # toggle mode
             self.xRot=self.xRot+5
-        if event.key() == Qt.Key_Y: # toggle mode
+        if event.key() == Qt.Key.Key_Y: # toggle mode
             self.yRot=self.yRot+5
-        if event.key() == Qt.Key_Z: # toggle mode
+        if event.key() == Qt.Key.Key_Z: # toggle mode
             self.zRot=self.zRot+5
-        if event.key() == Qt.Key_Space: # toggle mode
+        if event.key() == Qt.Key.Key_Space: # toggle mode
             self.xRot=0
             self.yRot=0
             self.zRot=0
-        self.updateGL()
+        self.update()
         print(self.z)
 
     def initializeGL(self):
@@ -619,7 +635,7 @@ class wdgShowObject(myQGLWidget, ObjectRotationManager):
         self.objeto=obj
         print ("Visualizando el objeto: " + str(self.objeto))
         self.paintGL()
-        self.updateGL()
+        self.update()
 
     def paintGL(self):  
         glLoadIdentity()

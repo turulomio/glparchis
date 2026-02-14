@@ -48,7 +48,7 @@ class QTableStatistics(QTableWidget):
         pix.setMaximumSize(QSize(24, 24))
         pix.setScaledContents(True)
         pix.setPixmap(qpixmap)
-        pix.setAlignment(Qt.AlignCenter)
+        pix.setAlignment(Qt.AlignmentFlag.AlignCenter)
         lay.addWidget(pix)
         lay.addSpacing(0)
         w.setLayout(lay)
@@ -73,7 +73,7 @@ class QTableStatistics(QTableWidget):
                 self.setCellWidget(13, column, self.widgetCentered(QPixmap(":/glparchis/cube_transparent.png")))    
             
             item=QTableWidgetItem(str(j.casillasMovidas()))
-            item.setTextAlignment(Qt.AlignHCenter|Qt.AlignVCenter)
+            item.setTextAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignVCenter)
             self.setItem(14, column, item)    
             if j==ganando:
                 self.item(16, column).setText(str(j.score()))

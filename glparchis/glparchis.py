@@ -15,8 +15,8 @@ def main():
     environ["PYOPENGL_PLATFORM"] = "egl"
     
 
-    from PyQt5.QtCore import QSettings
-    from PyQt5.QtWidgets import QApplication
+    from PyQt6.QtCore import QSettings
+    from PyQt6.QtWidgets import QApplication
     from glparchis.ui.frmMain import frmMain
     from glparchis.version import __versiondate__   
     from glparchis.loggingsystem import argparse_add_debug_argument, argparse_parsing_debug_argument
@@ -52,4 +52,4 @@ def main():
 
     frmMain = frmMain(settings) 
     frmMain.show()
-    exit(app.exec_())
+    exit(app.exec())

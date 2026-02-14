@@ -237,7 +237,7 @@ class wdgGame(QWidget, Ui_wdgGame):
         self.table_reload()
         self.mem.dado.showing=True
         self.mem.play("dice")
-        self.ogl.updateGL()
+        self.ogl.update()
         delay(self.mem.delay*2)
         
         self.panel().setLabelDado()
@@ -251,7 +251,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                     if self.mem.jugadores.actual.LastFichaMovida.estaAutorizadaAMover()[0]==True:
                         self.mem.jugadores.actual.log(self.tr("Han salido tres seises, la ultima ficha movida se va a casa"))
                         self.mem.play("threesix")
-                        self.ogl.updateGL()
+                        self.ogl.update()
                         delay(self.mem.delay*2)
                         self.mem.jugadores.actual.LastFichaMovida.mover(0)
                     else:
@@ -294,7 +294,7 @@ class wdgGame(QWidget, Ui_wdgGame):
                 self.mem.play("meter")
             else:
                 self.mem.play("comer")
-            self.ogl.updateGL()
+            self.ogl.update()
             delay(self.mem.delay*2)
             if self.mem.jugadores.actual.fichas.algunaEstaAutorizadaAmover()==True:
                 self.on_JugadorDebeMover()
@@ -303,7 +303,7 @@ class wdgGame(QWidget, Ui_wdgGame):
             self.mem.selFicha.mover( self.mem.selFicha.posruta + movimiento)    
             if movimiento>7:
                 self.mem.play("move")
-            self.ogl.updateGL()
+            self.ogl.update()
             delay(self.mem.delay*2)
             self.table_reload()
        #Quita el movimiento acumulados
@@ -323,7 +323,7 @@ class wdgGame(QWidget, Ui_wdgGame):
 #        self.ogl.updateGL()        
 #        delay(self.mem.delay)
         self.mem.dado.showing=False
-        self.ogl.updateGL()        
+        self.ogl.update()        
         delay(self.mem.delay*2)
 
         self.panel().setActivated(False)

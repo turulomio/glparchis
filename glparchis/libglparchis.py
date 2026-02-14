@@ -12,10 +12,10 @@ from configparser import ConfigParser
 from datetime import datetime, date, timedelta
 from math import sin, cos, tan, pi
 from codecs import open as codecs_open
-from PyQt5.QtGui import QColor, QIcon, QPixmap
-from PyQt5.QtCore import Qt, QObject,  pyqtSignal,  QUrl
-from PyQt5.QtWidgets import QApplication, QTableWidgetItem
-from PyQt5.QtMultimedia import QSoundEffect
+from PyQt6.QtGui import QColor, QIcon, QPixmap
+from PyQt6.QtCore import Qt, QObject,  pyqtSignal,  QUrl
+from PyQt6.QtWidgets import QApplication, QTableWidgetItem
+from PyQt6.QtMultimedia import QSoundEffect
 from uuid import uuid4
 from glparchis.libglparchistypes import TTextures,  TNames, TSquareTypes,  TPlayers
 from glparchis.libmanagers import ObjectManager_With_Id, ObjectManager, DictObjectManager_With_Id
@@ -513,10 +513,10 @@ class HighScore:
             item.setIcon(colores.find_by_name(a[3]).qicon())                
             table.setItem(i, 1, QTableWidgetItem(item))
             item = QTableWidgetItem(str(timedelta(seconds=int(a[2]))))
-            item.setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
+            item.setTextAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignVCenter)
             table.setItem(i, 2, item)
             item = QTableWidgetItem(str(a[4]))
-            item.setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
+            item.setTextAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignVCenter)
             table.setItem(i, 3, item)
 
     def load(self):
@@ -1868,7 +1868,7 @@ class Color:
             
     def qicon(self):
         ico = QIcon()
-        ico.addPixmap(self.qpixmap(), QIcon.Normal, QIcon.Off) 
+        ico.addPixmap(self.qpixmap(), QIcon.Mode.Normal, QIcon.State.Off) 
         return ico
     
     def qpixmap(self):

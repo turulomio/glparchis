@@ -204,7 +204,7 @@ class frmMain(QMainWindow, Ui_frmMain):
                 qmessagebox(self.tr("Dispone de la ultima version del juego"))
         else:
             m=QMessageBox()
-            m.setIcon(QMessageBox.Information)
+            m.setIcon(QMessageBox.Icon.Information)
             m.setWindowIcon(QIcon(":glparchis/ficharoja.png"))
             m.setTextFormat(Qt.TextFormat.RichText)#this is what makes the links clickable
             m.setText(self.tr("There is a new glParchis version. You can download it from <a href='https://github.com/Turulomio/glparchis/releases'>GitHub</a>."))
