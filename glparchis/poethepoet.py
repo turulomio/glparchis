@@ -32,22 +32,17 @@ def compile():
         # Ensure qt6-linguist tools are installed (e.g. sudo apt install qt6-linguist-utils). Command might be lrelease or lrelease-qt6
         system("/usr/lib64/qt6/bin/lrelease glparchis.pro")
 
-def relase():
+def release():
         print("""
 Nueva versión:
-  * Cambiar la versión y la fecha en version.py
-  * Modificar el Changelog en README
-  * python setup.py doc
+  * Cambiar la versión y la fecha en version.py y en pyproject.toml
+  * Crear un issue y su rama
+  * poe translate
   * linguist
-  * python setup.py doc
-  * python setup.py install
-  * python setup.py doxygen
   * git commit -a -m 'glparchis-{0}'
   * git push
   * Hacer un nuevo tag en GitHub
-  * python setup.py sdist
-  * twine upload dist/glparchis-{0}.tar.gz 
-  * Pasa a Windows y ejecuta setup.py pyinstaller
-  * Crea un nuevo ebuild de Gentoo con la nueva versión
-  * Subelo al repositorio del portage
+  * git checkout main
+  * git pull
+  * poetry publish
 """.format(__version__))

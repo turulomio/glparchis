@@ -4,12 +4,12 @@
 <context>
     <name>Core</name>
     <message>
-        <location filename="../glparchis.py" line="41"/>
+        <location filename="../glparchis.py" line="32"/>
         <source>Parchis Game</source>
         <translation>Juego del Parchís</translation>
     </message>
     <message>
-        <location filename="../glparchis.py" line="42"/>
+        <location filename="../glparchis.py" line="33"/>
         <source>If you like this app, please give me a star in Github (https://github.com/Turulomio/glparchis).</source>
         <translation>Si te gusta esta aplicación, dame una estrella en Github (https://github.com/turulomio/glparchis).</translation>
     </message>
@@ -1135,7 +1135,7 @@
         <translation>Sacar ficha</translation>
     </message>
     <message>
-        <location filename="../libglparchis.py" line="2687"/>
+        <location filename="../libglparchis.py" line="2695"/>
         <source>Este fichero es de una version antigua o esta estropeado. No puede ser cargado.</source>
         <translation>Este fichero es de una versión antigua o está estropeado. No puede ser cargado.</translation>
     </message>
@@ -1203,7 +1203,7 @@
         <translation>3 seises seguidos</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="190"/>
+        <location filename="../ui/wdgGame.py" line="192"/>
         <location filename="../ui/wdgGame.ui" line="48"/>
         <source>Tira el dado</source>
         <translation>Tira el dado</translation>
@@ -1217,62 +1217,62 @@
         <translation>Tiempo de partida</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="116"/>
+        <location filename="../ui/wdgGame.py" line="118"/>
         <source>Empieza la partida</source>
         <translation>Empieza la partida</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="198"/>
+        <location filename="../ui/wdgGame.py" line="200"/>
         <source>Tire el dado</source>
         <translation>Tire el dado</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="213"/>
+        <location filename="../ui/wdgGame.py" line="215"/>
         <source>IA mueve una ficha</source>
         <translation>IA mueve una ficha</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="249"/>
+        <location filename="../ui/wdgGame.py" line="251"/>
         <source>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</source>
         <translation>Han salido tres seises, no se va a casa por haber llegado a rampa de llegada</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="252"/>
+        <location filename="../ui/wdgGame.py" line="254"/>
         <source>Han salido tres seises, la ultima ficha movida se va a casa</source>
         <translation>Han salido tres seises, la última ficha movida se va a casa</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="258"/>
+        <location filename="../ui/wdgGame.py" line="260"/>
         <source>Han salido tres seises, pero como no puede mover no se va a casa</source>
         <translation>Han salido tres seises, pero como no puede mover no se va a casa</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="260"/>
+        <location filename="../ui/wdgGame.py" line="262"/>
         <source>Despues de tres seises, ya no puede volver a tirar</source>
         <translation>Después de tres seises, ya no puede volver a tirar</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="276"/>
+        <location filename="../ui/wdgGame.py" line="278"/>
         <source>Seleccione una ficha...</source>
         <translation>Seleccione una ficha...</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="322"/>
+        <location filename="../ui/wdgGame.py" line="324"/>
         <source>Fin de turno</source>
         <translation>Fin de turno</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="200"/>
+        <location filename="../ui/wdgGame.py" line="202"/>
         <source>IA Tira el dado</source>
         <translation>IA Tira el dado</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="228"/>
+        <location filename="../ui/wdgGame.py" line="230"/>
         <source>Mueva una ficha</source>
         <translation>Mueva una ficha</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="155"/>
+        <location filename="../ui/wdgGame.py" line="157"/>
         <source>Has ganado la partida</source>
         <translation>Has ganado la partida</translation>
     </message>
@@ -1319,7 +1319,7 @@
         <translation>Partida de 8 jugadores</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="92"/>
+        <location filename="../ui/wdgGame.py" line="94"/>
         <source>Tiempo de partida: {0}</source>
         <translation>Tiempo de partida: {0}</translation>
     </message>
@@ -1329,7 +1329,7 @@
         <translation>Panel de usuario sigue al jugador actual</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="176"/>
+        <location filename="../ui/wdgGame.py" line="178"/>
         <source>{0} ha ganado</source>
         <translation>{0} ha ganado</translation>
     </message>
@@ -1363,12 +1363,12 @@
         <translation>Pulsa este botón, haga doble click en el tablero o pulse ENTER, para tirar el dado</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="193"/>
+        <location filename="../ui/wdgGame.py" line="195"/>
         <source>Se ha tirado automaticamente el dado</source>
         <translation>Se ha tirado automáticamente el dado</translation>
     </message>
     <message>
-        <location filename="../ui/wdgGame.py" line="226"/>
+        <location filename="../ui/wdgGame.py" line="228"/>
         <source>Se ha movido automaticamente la unica ficha disponible</source>
         <translation>Se ha movido automáticamente la única ficha disponible</translation>
     </message>
@@ -1376,14 +1376,13 @@
 <context>
     <name>wdgOGL</name>
     <message>
-        <location filename="../ui/myQGLWidget.py" line="400"/>
+        <location filename="../ui/myQGLWidget.py" line="411"/>
         <source>Se ha hecho click en la ficha {0}</source>
         <translation>Se ha hecho click en la ficha {0}</translation>
     </message>
     <message>
-        <location filename="../ui/myQGLWidget.py" line="360"/>
         <source>I made click to get a Piece but it wasn&apos;t one</source>
-        <translation>He hecho click para seleccionar una Ficha pero no era</translation>
+        <translation type="vanished">He hecho click para seleccionar una Ficha pero no era</translation>
     </message>
 </context>
 <context>
