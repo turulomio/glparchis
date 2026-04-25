@@ -19,7 +19,7 @@ dependencies = [
 [tool.poetry]
 
 [tool.poetry.group.dev.dependencies]
-poetry = ">=2.3.2"
+poetry = ">=2.3.4"
 poethepoet = ">=0.41.0"
 qt6-tools = ">=6.5.0.1.3"
 
