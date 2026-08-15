@@ -1,5 +1,8 @@
 # glParchis [![PyPI - Downloads](https://img.shields.io/pypi/dm/glparchis?label=Pypi%20downloads)](https://pypi.org/project/glparchis/) [![Github - Downloads](https://shields.io/github/downloads/turulomio/glparchis/total?label=Github%20downloads )](https://github.com/turulomio/glparchis/)
 
+
+THIS PROJECT HAS BEEN ARCHIVED. GdParchis is the evolution of this game using Godot Engine. You can find it in https://github.com/turulomio/gdparchis/
+
 ## Project links
 
 Glparchis doxygen documentation:
